@@ -1,15 +1,19 @@
-@nav-bg: #754EF7;
+@nav-bg: #754ef7;
 @nav-text-color: rgba(255, 255, 255, 0.5);
-@nav-profile-pattern: ~'';
-@nav-bg-pattern: linear-gradient(180deg, #754EF7 0%, #4510B7 100%);
+@nav-profile-pattern: ~"";
+@nav-bg-pattern: linear-gradient(180deg, #754ef7 0%, #4510b7 100%);
 
 .nav > li.active {
   border-right: 4px solid darken(@navy, 2%);
   border-left: none;
   background: rgba(255, 255, 255, 0.3);
 }
-.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus {
+.navbar-default .nav > li > a:hover,
+.navbar-default .nav > li > a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid darken(@navy, 2%);
+}
+.nav > li.active > a > i.fa {
+  color: #22D091;
 }

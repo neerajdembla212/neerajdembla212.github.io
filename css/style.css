@@ -915,7 +915,7 @@ h5 {
 }
 .navbar-default {
   background-color: transparent;
-  border-color: #754EF7;
+  border-color: #754ef7;
 }
 .navbar-top-links li {
   display: inline-block;
@@ -1019,7 +1019,7 @@ h5 {
 }
 .nav-header {
   padding: 33px 25px;
-  background-color: #754EF7;
+  background-color: #754ef7;
   background-image: ;
 }
 .caret {
@@ -1159,7 +1159,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: absolute;
   left: 70px;
   top: 0;
-  background-color: #754EF7;
+  background-color: #754ef7;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
 }
@@ -1406,7 +1406,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {
 }
 body.canvas-menu nav.navbar-static-side {
   z-index: 2001;
-  background: #754EF7;
+  background: #754ef7;
   height: 100%;
   position: fixed;
   display: none;
@@ -2176,35 +2176,35 @@ button.dim:active:before {
 }
 /* TOOLTIPS */
 .tooltip-inner {
-  background-color: #754EF7;
+  background-color: #754ef7;
 }
 .tooltip.top .tooltip-arrow {
-  border-top-color: #754EF7;
+  border-top-color: #754ef7;
 }
 .tooltip.right .tooltip-arrow {
-  border-right-color: #754EF7;
+  border-right-color: #754ef7;
 }
 .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #754EF7;
+  border-bottom-color: #754ef7;
 }
 .tooltip.left .tooltip-arrow {
-  border-left-color: #754EF7;
+  border-left-color: #754ef7;
 }
 .bs-tooltip-auto[x-placement^=left] .arrow::before,
 .bs-tooltip-left .arrow::before {
-  border-left-color: #754EF7;
+  border-left-color: #754ef7;
 }
 .bs-tooltip-auto[x-placement^=right] .arrow::before,
 .bs-tooltip-right .arrow::before {
-  border-right-color: #754EF7;
+  border-right-color: #754ef7;
 }
 .bs-tooltip-auto[x-placement^=top] .arrow::before,
 .bs-tooltip-top .arrow::before {
-  border-top-color: #754EF7;
+  border-top-color: #754ef7;
 }
 .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
 .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: #754EF7;
+  border-bottom-color: #754ef7;
 }
 /* EASY PIE CHART*/
 .easypiechart {
@@ -4382,7 +4382,7 @@ samp {
   padding: 12px 10px;
   margin: 0;
   border-radius: 0;
-  background: #754EF7;
+  background: #754ef7;
   color: #fff;
   text-align: center;
   border-right: 1px solid #7d58f7;
@@ -4455,7 +4455,7 @@ samp {
 }
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #754EF7;
+  background-color: #754ef7;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
@@ -4475,7 +4475,7 @@ body.boxed-layout {
   background: url('patterns/shattered.png');
 }
 body.boxed-layout #wrapper {
-  background-color: #754EF7;
+  background-color: #754ef7;
   max-width: 1200px;
   margin: 0 auto;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -6477,7 +6477,7 @@ dd.project-people {
 .article h1 {
   font-size: 48px;
   font-weight: 700;
-  color: #754EF7;
+  color: #754ef7;
 }
 .article p {
   font-size: 15px;
@@ -6854,7 +6854,7 @@ body.body-small .vote-icon {
   z-index: 1001;
 }
 .small-chat-box .heading {
-  background: #754EF7;
+  background: #754ef7;
   padding: 8px 15px;
   font-weight: bold;
   color: #fff;
@@ -9880,6 +9880,9 @@ body.md-skin {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid #19aa8d;
+}
+.nav > li.active > a > i.fa {
+  color: #22D091;
 }
 @media print {
   nav.navbar-static-side {
