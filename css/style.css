@@ -9875,14 +9875,24 @@ body.md-skin {
   border-left: none;
   background: rgba(255, 255, 255, 0.3);
 }
-.navbar-default .nav > li > a:hover,
-.navbar-default .nav > li > a:focus {
+.navbar-default .nav > li:not(:active) > a:hover,
+.navbar-default .nav > li:not(:active) > a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid #19aa8d;
 }
 .nav > li.active > a > i.fa {
-  color: #22D091;
+  color: #22d091;
+}
+.profile-element {
+  display: flex;
+  justify-content: space-between;
+}
+.mini-navbar > .profile-element {
+  display: block;
+}
+.text-light-white {
+  color: rgba(255, 255, 255, 0.5);
 }
 @media print {
   nav.navbar-static-side {
