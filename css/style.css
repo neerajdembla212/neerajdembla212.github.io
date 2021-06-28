@@ -931,6 +931,9 @@ h5 {
   padding: 20px 10px;
   min-height: 50px;
 }
+.navbar-top-links li.button {
+  padding: 20px 10px;
+}
 .dropdown-menu {
   border: medium none;
   border-radius: 3px;
@@ -1055,14 +1058,14 @@ ul.nav-second-level {
   height: auto !important;
 }
 .nav-header a {
-  color: #DFE4ED;
+  color: #dfe4ed;
 }
 .nav-header .text-muted {
   color: #8095a8 !important;
 }
 .minimalize-styl-2 {
   padding: 4px 12px;
-  margin: 14px 5px 5px 20px;
+  margin: 14px 10px 5px 20px;
   font-size: 14px;
   float: left;
 }
@@ -1098,6 +1101,13 @@ ul.nav-second-level {
 .navbar-static-top .dropdown-menu {
   right: 0;
   left: auto;
+}
+.navbar-static-top .navbar-header {
+  width: 220px;
+}
+.navbar-static-top .navbar-header .title {
+  padding: 4px 12px;
+  margin: 14px 5px 5px 20px;
 }
 .count-info .label {
   line-height: 12px;
@@ -1249,7 +1259,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
   background: none;
-  border-color: #DDDDDD #DDDDDD rgba(0, 0, 0, 0);
+  border-color: #dddddd #dddddd rgba(0, 0, 0, 0);
   border-bottom: #f3f3f4;
   border-image: none;
   border-style: solid;
@@ -1556,7 +1566,7 @@ button:focus {
   margin-bottom: 5px;
 }
 .btn-w-m {
-  min-width: 120px;
+  min-width: 100px;
 }
 .btn-primary.btn-outline {
   color: #1ab394;
