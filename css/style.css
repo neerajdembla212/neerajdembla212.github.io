@@ -9997,6 +9997,34 @@ body.mini-navbar .nav.metismenu > li.logo {
 .nav li.active > a > .nav-icon.news-feed {
   background-image: url("/img/ic_newsFeed_active.svg");
 }
+.divider {
+  border-bottom: 1px solid #eeeeee;
+}
+.nav-header .role-card {
+  width: 200px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 31px;
+  left: 64px;
+}
+.role-card .fa-check {
+  color: #339a4a;
+  font-size: 1vw;
+}
+.role-card .role-list > p {
+  display: flex;
+  justify-content: space-between;
+}
+.role-card .role-list > p:last-child {
+  margin-bottom: 0;
+}
+.role-card .role-list > p.active > .fa {
+  display: block;
+}
+.role-card .role-list > p > .fa {
+  display: none;
+}
 @media print {
   nav.navbar-static-side {
     display: none;
