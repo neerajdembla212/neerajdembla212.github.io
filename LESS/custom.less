@@ -14,8 +14,14 @@
   color: white;
   border-right: 4px solid darken(@navy, 2%);
 }
-.nav > li.active > a > i.fa {
-  color: #22d091;
+.nav li > a > .nav-icon {
+  height: 20px;
+  width: 20px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 1px;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .profile-element {
@@ -35,4 +41,52 @@ body.mini-navbar .nav-header {
 }
 body.mini-navbar .nav.metismenu > li.logo {
   padding: 20px 20px 0 20px;
+}
+.nav li > a > .nav-icon.my-portfolio {
+  background-image: url("/img/ic_myPortfolio.svg");
+}
+.nav li > a > .nav-icon.trade-terminal {
+  background-image: url("/img/ic_tradeTerminal.svg");
+}
+.nav li > a > .nav-icon.strategy-providers {
+  background-image: url("/img/ic_tradeTerminal.svg");
+}
+.nav li > a > .nav-icon.watchlist {
+  background-image: url("/img/ic_watchlist.svg");
+}
+.nav li > a > .nav-icon.copy-traders {
+  background-image: url("/img/ic_copyTraders.svg");
+}
+.nav li > a > .nav-icon.copypip-academy {
+  background-image: url("/img/ic_copypip-academy.svg");
+}
+.nav li > a > .nav-icon.simulation {
+  background-image: url("/img/ic_simulation.svg");
+}
+.nav li > a > .nav-icon.news-feed {
+  background-image: url("/img/ic_newsFeed.svg");
+}
+.nav > li.active > a > .nav-icon.my-portfolio {
+  background-image: url("/img/ic_myPortfolio_active.svg");
+}
+.nav > li.active > a > .nav-icon.trade-terminal {
+  background-image: url("/img/ic_tradeTerminal_active.svg");
+}
+.nav li.active > a > .nav-icon.strategy-providers {
+  background-image: url("/img/ic_tradeTerminal_active.svg");
+}
+.nav li.active > a > .nav-icon.watchlist {
+  background-image: url("/img/ic_watchlist_active.svg");
+}
+.nav li.active > a > .nav-icon.copy-traders {
+  background-image: url("/img/ic_copyTraders_active.svg");
+}
+.nav li.active > a > .nav-icon.copypip-academy {
+  background-image: url("/img/ic_copypipAcademy_active.svg");
+}
+.nav li.active > a > .nav-icon.simulation {
+  background-image: url("/img/ic_simulation_active.svg");
+}
+.nav li.active > a > .nav-icon.news-feed {
+  background-image: url("/img/ic_newsFeed_active.svg");
 }

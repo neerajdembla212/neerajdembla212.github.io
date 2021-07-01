@@ -526,9 +526,12 @@ body.mini-navbar .navbar-static-side {
 }
 
 body.mini-navbar .profile-element .details,
-body.mini-navbar .nav-label,
-body.mini-navbar .navbar-default .nav li a span {
+body.mini-navbar .nav-label {
   display: none;
+}
+
+body.mini-navbar .nav li > a {
+  padding: 14px 20px 30px 22px;
 }
 
 body.canvas-menu .profile-element {
@@ -537,10 +540,6 @@ body.canvas-menu .profile-element {
 
 body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav-second-level {
   display: none;
-}
-
-body.mini-navbar .navbar-default .nav > li > a {
-  font-size: 16px;
 }
 
 body.mini-navbar .logo-element {
