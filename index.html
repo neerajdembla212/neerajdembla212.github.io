@@ -41,12 +41,20 @@
                             <img alt="image" src="img/company_logo_cp.svg" />
                         </div>
                     </li>
-                    <li class="nav-header">
+                    <li class="nav-header position-relative">
                         <div class="dropdown profile-element">
                             <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
                             <div class="details">
                                 <span class="block m-t-xs font-bold text-white">KS Tan</span>
                                 <span class="text-xs text-light-white">Strategy Follower</span>
+                            </div>
+                        </div>
+                        <div class="card role-card d-none">
+                            <h3 class="pl-3 pt-2">KS Tan</h3>
+                            <div class="divider"></div>
+                            <div class="p-3 role-list">
+                                <p class="active">Strategy Follower <i class="fa fa-check"></i></p> 
+                                <p>Strategy Provider <i class="fa fa-check"></i></p>
                             </div>
                         </div>
                     </li>
@@ -192,6 +200,16 @@
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
-
+<script>
+            $(document).ready(function() {
+                $('.nav-header').mouseenter(() => {
+                    if($('.mini-navbar').is(':visible')) {
+                        $(this).find('.role-card').removeClass('d-none');
+                    }
+                }).mouseleave(() => {
+                    $(this).find('.role-card').addClass('d-none');
+                })
+            })
+    </script>
 </body>
 </html>
