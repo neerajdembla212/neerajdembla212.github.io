@@ -1238,7 +1238,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 }
 .navbar-fixed-top,
 .navbar-static-top {
-  background: #f3f3f4;
+  background: #ffffff;
 }
 .fixed-nav #wrapper {
   margin-top: 0;
@@ -1444,6 +1444,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   border-right: 7px solid #734CF5;
   border-bottom: 5px solid transparent;
   display: block;
+  margin: 0 2px 0 0;
 }
 .mini-navbar .nav-menu-toggle-arrow {
   width: 0;
@@ -1453,6 +1454,82 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   border-bottom: 5px solid transparent;
   border-right: 0;
   display: block;
+  margin: 0 0 0 2px;
+}
+.strategy-providers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.startegy-providers-filters {
+  display: flex;
+  width: 33%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.startegy-providers-input {
+  width: 300px;
+  position: relative;
+}
+input.startegy-providers-input-box {
+  width: 100%;
+  height: 40px;
+  padding-left: 40px;
+  font-size: 14px;
+  background: #FFFFFF;
+  border: 1px solid #E7EDF4;
+  box-sizing: border-box;
+  border-radius: 4px;
+  outline: #E7EDF4;
+  color: #768496;
+}
+.startegy-providers-search-icon {
+  background-image: url('../img/search-icon.svg');
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  width: 17px;
+  height: 17px;
+}
+.startegy-providers-view-filters {
+  display: flex;
+  width: 80px;
+}
+.startegy-providers-grid {
+  width: 40px;
+  background: #FFFFFF;
+  border-radius: 4px 0px 0px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.startegy-providers-grid > span {
+  background-image: url('../img/ic_viewCards.svg');
+  height: 24px;
+  width: 24px;
+  display: block;
+}
+.startegy-providers-list {
+  width: 40px;
+  background: #E2E7FB;
+  border-radius: 0px 4px 4px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.startegy-providers-list > span {
+  background-image: url('../img/ic_viewList.svg');
+  height: 24px;
+  width: 24px;
+  display: block;
+}
+.strategy-providers-header-text > h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
 }
 .top-navigation #page-wrapper {
   width: 100%;
