@@ -20,7 +20,7 @@
 <body>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
+            <div class="sidebar-collapse d-flex flex-column justify-content-between">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="logo">
                         <img alt="image" src="img/company_logo.svg" class="full-logo-element"/>
@@ -28,7 +28,7 @@
                             <img alt="image" src="img/company_logo_cp.svg" />
                         </div>
                     </li>
-                    <li class="nav-header">
+                    <li class="nav-header position-relative">
                         <div class="dropdown profile-element">
                             <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
                             <div class="details">
@@ -36,8 +36,16 @@
                                 <span class="text-xs text-light-white">Strategy Follower</span>
                             </div>
                         </div>
+                        <div class="card role-card d-none">
+                            <h3 class="pl-3 pt-2">KS Tan</h3>
+                            <div class="divider"></div>
+                            <div class="p-3 role-list">
+                                <p class="active">Strategy Follower <i class="fa fa-check"></i></p> 
+                                <p>Strategy Provider <i class="fa fa-check"></i></p>
+                            </div>
+                        </div>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="my-portfolio.html"> <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
                     </li>
                     <li>
@@ -49,7 +57,8 @@
                     <li>
                         <a href="watchlist.html"> <span class="nav-icon watchlist"></span> <span class="nav-label">Watchlist</span></a>
                     </li>
-                    <li class="active">
+                    <li class="divider"></li>
+                    <li>
                         <a href="copy-traders.html"><span class="nav-icon copy-traders"></span> <span class="nav-label">Copy Traders</span></a>
                     </li>
                     <li>
@@ -62,7 +71,18 @@
                         <a href="news-feed.html"><span class="nav-icon news-feed"></span> <span class="nav-label">News Feed</span></a>
                     </li>
                 </ul>
-
+                <ul class="nav metismenu" id="side-menu-bottom">
+                    <li class="divider"></li>
+                    <li>
+                        <a href="help.html"><span class="nav-icon help"></span> <span class="nav-label">Help</span></a>
+                    </li>
+                    <li>
+                        <a href="refer-a-friend.html"><span class="nav-icon refer-a-friend"></span> <span class="nav-label">Refer a Friend</span></a>
+                    </li>
+                    <li>
+                        <a href="settings.html"><span class="nav-icon settings"></span> <span class="nav-label">Settings</span></a>
+                    </li>
+                </ul>
             </div>
         </nav>
 
@@ -71,7 +91,7 @@
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle" href="#"><span class="nav-menu-toggle-arrow"></span> </a>
-            <h3 class="title">Copy Traders </h3>
+            <h3 class="title">Copy Traders</h3>
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
@@ -179,7 +199,16 @@
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
-
+<script>
+            $(document).ready(function() {
+                $('.nav-header').mouseenter(() => {
+                    if($('.mini-navbar').is(':visible')) {
+                        $(this).find('.role-card').removeClass('d-none');
+                    }
+                }).mouseleave(() => {
+                    $(this).find('.role-card').addClass('d-none');
+                })
+            })
+    </script>
 </body>
-
 </html>
