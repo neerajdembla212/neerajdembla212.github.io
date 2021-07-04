@@ -214,7 +214,7 @@
             </ul>
           </nav>
         </div>
-        <div class="row wrapper border-bottom page-heading">
+        <div class="row wrapper">
           <div class="col-sm-12 strategy-providers-header">
             <div class="strategy-providers-header-text">
               <h2>Strategy Providers</h2>
@@ -241,15 +241,77 @@
         </div>
 
         <div class="wrapper wrapper-content">
-          <div class="middle-box text-center animated fadeInRightBig">
-            <h3 class="font-bold">This is page content</h3>
-            <div class="error-desc">
-              You can create here any grid layout you want. And any variation
-              layout you imagine:) Check out main dashboard and other site. It
-              use many different layout.
-              <br /><a href="index.html" class="btn btn-primary m-t"
-                >Dashboard</a
-              >
+          <div class="tabs-container">
+            <ul class="nav nav-tabs" role="tablist">
+              <li>
+                <a
+                  class="nav-link active"
+                  data-toggle="tab"
+                  href="#rising-stars"
+                  >Rising Stars</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" data-toggle="tab" href="#top-rated"
+                  >Top Rated</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" data-toggle="tab" href="#top-growth"
+                  >Top Growth</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" id="rising-stars" class="tab-pane active">
+                <div class="panel-body row">
+                  <div class="col-lg-4">
+                    <div class="contact-box d-flex flex-column">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img
+                            alt="image"
+                            class="rounded-circle img-fluid small-image"
+                            src="img/a2.jpg"
+                          />
+                          <div class="d-flex flex-column ml-3">
+                            <span>SureWin888</span>
+                            <span>Chun Eng Lee</span>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-danger btn-circle btn-outline"
+                          type="button"
+                        >
+                          <i class="fa fa-heart"></i>
+                        </button>
+                      </div>
+                      <!-- <div>
+                        <h3><strong>John Smith</strong></h3>
+                        <p>
+                          <i class="fa fa-map-marker"></i> Riviera State 32/106
+                        </p>
+                        <address>
+                          <strong>Twitter, Inc.</strong><br />
+                          795 Folsom Ave, Suite 600<br />
+                          San Francisco, CA 94107<br />
+                          <abbr title="Phone">P:</abbr> (123) 456-7890
+                        </address>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" id="top-rated" class="tab-pane">
+                <div class="panel-body">
+                  <p>Top Rated Content</p>
+                </div>
+              </div>
+              <div role="tabpanel" id="top-growth" class="tab-pane">
+                <div class="panel-body">
+                  <p>Top Growth Content</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
