@@ -149,4 +149,34 @@ body.mini-navbar .nav.metismenu > li.logo {
   padding: 1em;
   margin-bottom: 1em;
   width: 300px;
+  margin-right: 3em;
+  .favourite-icon {
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .favourite-icon.active {
+    color: @orange;
+  }
+  .return-percentage {
+    font-size: 24px;
+    color: @dark-green;
+  }
 }
+
+.text-light-gray {
+  color: @text-light-gray;
+  font-weight: 400;
+}
+
+.small-font {
+  font-size: @small-font
+}
+.ratings {
+  .fa-star:not(.active) {
+    color: @background-light-gray;
+  }
+  .fa-star.active {
+    color: @orange;
+  }
+}
+
