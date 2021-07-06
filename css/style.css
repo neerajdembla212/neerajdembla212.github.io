@@ -5346,6 +5346,12 @@ table.table-mail tr td {
 .text-dark-green {
   color: #339A4A;
 }
+.text-light-black {
+  color: #9a9d9f;
+}
+.text-light-gray {
+  color: #5B5B5B;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;
