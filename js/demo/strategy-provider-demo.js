@@ -1,10 +1,11 @@
 $(function () {
-  function plotLineChart(lineChartCanvas) {
-    lineChartCanvas.height = 50;
+  function plotLineChart(lineChartCanvas, lineData) {
+    lineChartCanvas.height = 40;
     const ctx = lineChartCanvas.getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, "rgba(241, 235, 255, 1)");
-    gradient.addColorStop(1, "rgba(182, 163, 229, 1)");
+    var gradient = ctx.createLinearGradient(0, 0, 0, Math.max(...lineData));
+    gradient.addColorStop(0, "#B6A3E6");
+    gradient.addColorStop(0.2, "#B6A3E6");
+    gradient.addColorStop(1, "#F1EBFF");
 
     const labels = ["", "", "", "", "", "", "", "", ""];
     const data = {
@@ -17,7 +18,7 @@ $(function () {
           pointBackgroundColor: gradient,
           pointBorderColor: gradient,
           gradient: gradient,
-          data: [0, 13, 12, 20, 19, 17, 15, 11, 18],
+          data: lineData,
         },
       ],
     };
@@ -32,6 +33,7 @@ $(function () {
             {
               gridLines: {
                 display: false,
+                tickMarkLength: 0,
               },
             },
           ],
@@ -42,6 +44,7 @@ $(function () {
               },
               ticks: {
                 display: false,
+                tickMarkLength: 0,
               },
             },
           ],
@@ -58,6 +61,12 @@ $(function () {
             borderWidth: 1,
           },
         },
+        layout: {
+          padding: {
+            bottom: -10,
+            left: -10
+          }
+        }
       },
     };
 
@@ -66,8 +75,9 @@ $(function () {
 
   function plotAllLineCharts() {
     const canvasArray = document.querySelectorAll(".contact-box .lineChart");
+    const data = [0, 13, 12, 20, 19, 17, 15, 11, 18];
     canvasArray.forEach((canvas) => {
-      plotLineChart(canvas);
+      plotLineChart(canvas, data);
     });
   }
 
