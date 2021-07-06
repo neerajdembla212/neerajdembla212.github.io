@@ -63,11 +63,53 @@ $(function () {
 
     new Chart(ctx, config);
   }
+
   function plotAllLineCharts() {
-      const canvasArray = document.querySelectorAll('.contact-box .lineChart');
-      canvasArray.forEach(canvas => {
-          plotLineChart(canvas);
-      })
+    const canvasArray = document.querySelectorAll(".contact-box .lineChart");
+    canvasArray.forEach((canvas) => {
+      plotLineChart(canvas);
+    });
   }
+
+  function plotTriangleChart(canvas, riskFactor) {
+    const containerTriangleSide = 25;
+    canvas.height = containerTriangleSide;
+    canvas.width = containerTriangleSide;
+    const ctx = canvas.getContext("2d");
+
+    // plot container triangle
+    ctx.beginPath();
+    ctx.moveTo(containerTriangleSide, 0);
+    ctx.lineTo(containerTriangleSide, containerTriangleSide);
+    ctx.lineTo(0, containerTriangleSide);
+    ctx.fillStyle = "rgba(229, 229, 229, 1)";
+    ctx.fill();
+
+    // plot risk triangle
+    // assuming risk factor is in percentage
+    const riskTriangleSide = Math.ceil(
+      (riskFactor / 100) * containerTriangleSide
+    );
+    ctx.beginPath();
+    ctx.moveTo(0, containerTriangleSide);
+    ctx.lineTo(riskTriangleSide, containerTriangleSide);
+    ctx.lineTo(riskTriangleSide, containerTriangleSide - riskTriangleSide);
+
+    ctx.fillStyle = "rgba(54, 152, 243, 1)";
+    ctx.fill();
+  }
+
+  function plotAllTriangleCharts() {
+    const canvasArray = document.querySelectorAll(".triangle");
+    canvasArray.forEach((canvas) => {
+      plotTriangleChart(canvas, getRandomNumberBetween(10, 100));
+    });
+  }
+
   plotAllLineCharts();
+  plotAllTriangleCharts();
 });
+
+function getRandomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
