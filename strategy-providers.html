@@ -214,29 +214,20 @@
             </ul>
           </nav>
         </div>
-        <div class="row wrapper">
-          <div class="col-sm-12 strategy-providers-header">
-            <div class="strategy-providers-header-text">
-              <h2>Strategy Providers</h2>
-            </div>
-            <div class="col-sm-4 startegy-providers-filters">
-              <div class="startegy-providers-input">
+        <div class="d-flex justify-content-between align-items-center p-2">
+          <h2 class="font-bold">Strategy Providers</h2>
+          <div class="col-sm-4 d-flex">
+            <form role="form" class="w-300">
+              <div class="position-relative">
+                <span class="startegy-providers-search-icon fa fa-search"></span>
                 <input
                   type="text"
-                  placeholder="Search Startegy Providers"
-                  class="startegy-providers-input-box"
+                  placeholder="Search Strategy Providers"
+                  id="search-strategy-provider"
+                  class="form-control search-input-padding"
                 />
-                <span class="startegy-providers-search-icon"></span>
               </div>
-              <div class="startegy-providers-view-filters">
-                <div class="startegy-providers-grid">
-                  <span></span>
-                </div>
-                <div class="startegy-providers-list">
-                  <span></span>
-                </div>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
 
@@ -265,377 +256,377 @@
             <div class="tab-content">
               <div role="tabpanel" id="rising-stars" class="tab-pane active">
                 <div class="panel-body row d-flex flex-wrap">
-                    <!-- Card start -->
-                    <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a1.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a1.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                    <!-- Card start -->
-                    <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a2.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a2.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                     <!-- Card start -->
-                     <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a3.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span>Chun Eng Lee</span>
-                          </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a3.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span>Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <!-- risk chart start-->
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <!-- risk chart start-->
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <!-- line chart start-->
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <!-- line chart end-->
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                     <!-- Card start -->
-                     <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a4.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                    <!-- risk chart start-->
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <!-- risk chart start-->
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <!-- line chart start-->
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <!-- line chart end-->
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a4.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                    <!-- Card start -->
-                    <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a5.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a5.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                    <!-- Card start -->
-                    <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a6.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a6.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                     <!-- Card start -->
-                     <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a7.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a7.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
-                     <!-- Card start -->
-                     <div class="contact-box d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                          <img
-                            alt="image"
-                            class="rounded-circle img-fluid img-sm"
-                            src="img/a8.jpg"
-                          />
-                          <div class="d-flex flex-column ml-3">
-                            <span class="font-bold">SureWin888</span>
-                            <span class="text-light-black">Chun Eng Lee</span>
-                          </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
+                  <!-- Card start -->
+                  <div class="contact-box d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex">
+                        <img
+                          alt="image"
+                          class="rounded-circle img-fluid img-sm"
+                          src="img/a8.jpg"
+                        />
+                        <div class="d-flex flex-column ml-3">
+                          <span class="font-bold">SureWin888</span>
+                          <span class="text-light-black">Chun Eng Lee</span>
                         </div>
-                        <span class="fa fa-bookmark-o favourite-icon"></span>
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="return-percentage font-bold">82.47%</span>
-                        <canvas class="triangle"></canvas>
-                      </div>
-                      <div class="d-flex justify-content-between mb-2">
-                        <span class="text-uppercase text-light-gray small-font">
-                          Return over last 2 yr
-                        </span>
-                        <span class="text-uppercase small-font">risk</span>
-                      </div>
-                      <canvas class="lineChart" class="mt-2"></canvas>
-                      <button class="btn btn-primary btn-block">
-                        Copy Trader
-                      </button>
-                      <!-- area chart here-->
-                      <div class="d-flex mt-2 justify-content-between">
-                        <span class="text-light-gray">230 Copiers</span>
-                        <span class="text-dark-green">
-                          <i class="fa fa-play fa-rotate-270"></i> 23.4%
-                        </span>
-                        <span class="ratings">
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star active"></i>
-                          <i class="fa fa-star"></i>
-                        </span>
-                      </div>
+                      <span class="fa fa-bookmark-o favourite-icon"></span>
                     </div>
-                    <!-- Card End -->
+                    <div class="d-flex justify-content-between">
+                      <span class="return-percentage font-bold">82.47%</span>
+                      <canvas class="triangle"></canvas>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="text-uppercase text-light-gray small-font">
+                        Return over last 2 yr
+                      </span>
+                      <span class="text-uppercase small-font">risk</span>
+                    </div>
+                    <canvas class="lineChart" class="mt-2"></canvas>
+                    <button class="btn btn-primary btn-block">
+                      Copy Trader
+                    </button>
+                    <!-- area chart here-->
+                    <div class="d-flex mt-2 justify-content-between">
+                      <span class="text-light-gray">230 Copiers</span>
+                      <span class="text-dark-green">
+                        <i class="fa fa-play fa-rotate-270"></i> 23.4%
+                      </span>
+                      <span class="ratings">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Card End -->
                 </div>
               </div>
               <div role="tabpanel" id="top-rated" class="tab-pane">
