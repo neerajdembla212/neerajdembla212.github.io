@@ -1531,9 +1531,6 @@ input.startegy-providers-input-box {
   font-weight: 600;
   margin: 0;
 }
-.ibox-content .table .return-percentage {
-  color: #339A4A;
-}
 .font-size-12 {
   font-size: 12px;
 }
@@ -10210,6 +10207,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .ratings .fa-star.active {
   color: #EDA323;
+}
+.ibox-content .table .return-percentage {
+  color: #339A4A;
 }
 @media print {
   nav.navbar-static-side {
