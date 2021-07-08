@@ -238,21 +238,21 @@ function animationHover(element, animation) {
 function SmoothlyMenu() {
     if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
         // Hide menu in order to smoothly turn on when maximize menu
-        $('#side-menu').hide();
+        $('nav ul.nav.metismenu').hide();
         // For smoothly turn on menu
         setTimeout(
             function () {
-                $('#side-menu').fadeIn(400);
+                $('nav ul.nav.metismenu').fadeIn(400);
             }, 200);
     } else if ($('body').hasClass('fixed-sidebar')) {
-        $('#side-menu').hide();
+        $('nav ul.nav.metismenu').hide();
         setTimeout(
             function () {
-                $('#side-menu').fadeIn(400);
+                $('nav ul.nav.metismenu').fadeIn(400);
             }, 100);
     } else {
         // Remove all inline style from jquery fadeIn function to reset menu state
-        $('#side-menu').removeAttr('style');
+        $('nav ul.nav.metismenu').removeAttr('style');
     }
 }
 
