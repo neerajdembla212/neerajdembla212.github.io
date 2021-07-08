@@ -64,9 +64,9 @@ $(function () {
         layout: {
           padding: {
             bottom: -10,
-            left: -10
-          }
-        }
+            left: -10,
+          },
+        },
       },
     };
 
@@ -118,14 +118,19 @@ $(function () {
 
   plotAllLineCharts();
   plotAllTriangleCharts();
-  
+
   // subheader - toggling active class on grid and list icons
-  $('.subheader .btn-group button').click(event => {
-    const viewType = $(event.currentTarget).data('viewType');
-    $('.subheader .btn-group button').removeClass('active');
-    $(event.currentTarget).addClass('active');
-  })
-  
+  $(".subheader .btn-group button").click((event) => {
+    const viewType = $(event.currentTarget).data("viewType");
+    $(".subheader .btn-group button").removeClass("active");
+    $(event.currentTarget).addClass("active");
+    if (viewType === "list") {
+      window.location.href = "strategy-providers-list.html";
+    } else if (viewType === "grid") {
+      window.location.href = "strategy-providers-grid.html";
+    }
+  });
+
   // Grid View - toggling active class on follow icon in grid and list view
   const favIcon = $(".favourite-icon");
   favIcon.click(() => {
