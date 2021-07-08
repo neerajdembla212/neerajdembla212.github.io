@@ -10221,6 +10221,15 @@ body.mini-navbar .nav.metismenu > li.logo {
 .form-control::-ms-input-placeholder {
   color: #768496;
 }
+.ibox-content .table .return-percentage {
+  color: #339A4A;
+}
+.tabs-container .nav-tabs {
+  border-bottom: none;
+}
+.tabs-container .tabs-header {
+  border-bottom: 1px solid #e7eaec;
+}
 .subheader .btn-group .fa {
   color: #b7c0cb;
   font-size: 16px;
@@ -10234,15 +10243,6 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .subheader {
   padding: 40px 10px 0px;
-}
-.ibox-content .table .return-percentage {
-  color: #339A4A;
-}
-.tabs-container .nav-tabs {
-  border-bottom: none;
-}
-.tabs-container .tabs-header {
-  border-bottom: 1px solid #e7eaec;
 }
 @media print {
   nav.navbar-static-side {
