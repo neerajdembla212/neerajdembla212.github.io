@@ -9908,12 +9908,6 @@ body.md-skin {
   .navbar-top-links .dropdown-alerts {
     margin-left: auto;
   }
-  .form-control::placeholder,
-  .form-control:-ms-input-placeholder,
-  .form-control::-ms-input-placeholder {
-    color: #768496;
-    font-size: 8px;
-  }
   .subheader form {
     width: 300px;
   }
@@ -10222,16 +10216,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 .search-input-padding {
   padding-left: 30px;
 }
-.form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #768496;
-}
-.form-control:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #768496;
-}
+.form-control::placeholder,
+.form-control:-ms-input-placeholder,
 .form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: #768496;
 }
 .subheader .btn-group .fa {

@@ -196,18 +196,9 @@ body.mini-navbar .nav.metismenu > li.logo {
   padding-left: 30px;
 }
 
-.form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: @placeholder-color;
-}
-
-.form-control:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: @placeholder-color;
-}
-
+.form-control::placeholder,
+.form-control:-ms-input-placeholder,
 .form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: @placeholder-color;
 }
 
