@@ -214,10 +214,17 @@
             </ul>
           </nav>
         </div>
-        <div class="d-flex justify-content-between align-items-center p-2">
-          <h2 class="font-bold">Strategy Providers</h2>
-          <div class="col-sm-4 d-flex">
-            <form role="form" class="w-300">
+        <div
+          class="
+            d-flex
+            justify-content-between
+            subheader
+            flex-wrap
+          "
+        >
+          <h2 class="font-bold my-2">Strategy Providers</h2>
+          <div class="d-flex my-2">
+            <form role="form" class="mr-4">
               <div class="position-relative">
                 <span
                   class="startegy-providers-search-icon fa fa-search"
@@ -230,6 +237,14 @@
                 />
               </div>
             </form>
+            <div class="btn-group" role="group">
+              <button class="btn btn-default" type="button" data-view-type="grid">
+                <i class="fa fa-th grid-icon"></i>
+              </button>
+              <button class="btn btn-default" type="button" data-view-type="list">
+                <i class="fa fa-list list-icon"></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -693,31 +708,7 @@
 
     <!-- ChartJS-->
     <script src="js/plugins/chartJs/Chart.min.js"></script>
-    <script src="js/demo/strategy-provider-demo.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        $(".nav-header")
-          .mouseenter(() => {
-            if ($(".mini-navbar").is(":visible")) {
-              $(this).find(".role-card").removeClass("d-none");
-            }
-          })
-          .mouseleave(() => {
-            $(this).find(".role-card").addClass("d-none");
-          });
-
-        // strategic provider card icon
-        const favIcon = $(".favourite-icon");
-        favIcon.click(() => {
-          favIcon.toggleClass("active");
-          if (favIcon.hasClass("active")) {
-            favIcon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
-          } else {
-            favIcon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
-          }
-        });
-      });
-    </script>
+    <script src="js/navigation.js"></script>
+    <script src="js/strategy-provider-demo.js"></script>
   </body>
 </html>

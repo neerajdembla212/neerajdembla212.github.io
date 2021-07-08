@@ -9908,6 +9908,25 @@ body.md-skin {
   .navbar-top-links .dropdown-alerts {
     margin-left: auto;
   }
+  .form-control::placeholder,
+  .form-control:-ms-input-placeholder,
+  .form-control::-ms-input-placeholder {
+    color: #768496;
+    font-size: 8px;
+  }
+  .subheader form {
+    width: 300px;
+  }
+}
+@media (min-width: 350px) and (max-width: 450px) {
+  .subheader form {
+    width: 220px;
+  }
+}
+@media (min-width: 450px) {
+  .subheader form {
+    width: 300px;
+  }
 }
 @media (max-width: 768px) {
   #page-wrapper {
@@ -10215,8 +10234,19 @@ body.mini-navbar .nav.metismenu > li.logo {
   /* Microsoft Edge */
   color: #768496;
 }
-.grid-icon {
-  background-image: url('/img/ic_viewCards.svg');
+.subheader .btn-group .fa {
+  color: #b7c0cb;
+  font-size: 16px;
+}
+.subheader .btn-group .btn.active .fa {
+  color: #22D091;
+}
+.subheader .btn-group .btn.active {
+  background-color: #E2E7FB;
+  box-shadow: none;
+}
+.subheader {
+  padding: 40px 10px 0px;
 }
 .ibox-content .table .return-percentage {
   color: #339A4A;

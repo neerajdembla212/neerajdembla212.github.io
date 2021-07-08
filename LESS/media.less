@@ -14,10 +14,29 @@
   .navbar-top-links .dropdown-alerts {
     margin-left: auto;
   }
+  .form-control::placeholder,
+  .form-control:-ms-input-placeholder,
+  .form-control::-ms-input-placeholder {
+    color: @placeholder-color;
+    font-size: 8px;
+  }
+  .subheader form {
+    width: 300px;
+  }
+}
+@media (min-width: 350px) and (max-width: 450px) {
+  .subheader form {
+    width: 220px;
+  }
+}
+
+@media (min-width: 450px) {
+  .subheader form {
+    width: 300px;
+  }
 }
 
 @media (max-width: 768px) {
-
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 0;
@@ -89,13 +108,11 @@
     -o-transition: background-color 500ms linear;
     -ms-transition: background-color 500ms linear;
     transition: background-color 500ms linear;
-    background-color: #f3f3f4
+    background-color: #f3f3f4;
   }
-
 }
 
 @media (max-width: 350px) {
-
   .timeline-item .date {
     text-align: left;
     width: 110px;
@@ -130,6 +147,4 @@
     text-align: left;
     display: inline-block;
   }
-
 }
-
