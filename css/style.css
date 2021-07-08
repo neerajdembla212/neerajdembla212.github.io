@@ -9908,6 +9908,19 @@ body.md-skin {
   .navbar-top-links .dropdown-alerts {
     margin-left: auto;
   }
+  .subheader form {
+    width: 300px;
+  }
+}
+@media (min-width: 350px) and (max-width: 450px) {
+  .subheader form {
+    width: 220px;
+  }
+}
+@media (min-width: 450px) {
+  .subheader form {
+    width: 300px;
+  }
 }
 @media (max-width: 768px) {
   #page-wrapper {
@@ -10203,20 +10216,10 @@ body.mini-navbar .nav.metismenu > li.logo {
 .search-input-padding {
   padding-left: 30px;
 }
-.form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #768496;
-}
-.form-control:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #768496;
-}
+.form-control::placeholder,
+.form-control:-ms-input-placeholder,
 .form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: #768496;
-}
-.grid-icon {
-  background-image: url('/img/ic_viewCards.svg');
 }
 .ibox-content .table .return-percentage {
   color: #339A4A;
@@ -10226,6 +10229,20 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .tabs-container .tabs-header {
   border-bottom: 1px solid #e7eaec;
+}
+.subheader .btn-group .fa {
+  color: #b7c0cb;
+  font-size: 16px;
+}
+.subheader .btn-group .btn.active .fa {
+  color: #22D091;
+}
+.subheader .btn-group .btn.active {
+  background-color: #E2E7FB;
+  box-shadow: none;
+}
+.subheader {
+  padding: 40px 10px 0px;
 }
 @media print {
   nav.navbar-static-side {

@@ -118,6 +118,24 @@ $(function () {
 
   plotAllLineCharts();
   plotAllTriangleCharts();
+  
+  // subheader - toggling active class on grid and list icons
+  $('.subheader .btn-group button').click(event => {
+    const viewType = $(event.currentTarget).data('viewType');
+    $('.subheader .btn-group button').removeClass('active');
+    $(event.currentTarget).addClass('active');
+  })
+  
+  // Grid View - toggling active class on follow icon in grid and list view
+  const favIcon = $(".favourite-icon");
+  favIcon.click(() => {
+    favIcon.toggleClass("active");
+    if (favIcon.hasClass("active")) {
+      favIcon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
+    } else {
+      favIcon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
+    }
+  });
 });
 
 function getRandomNumberBetween(min, max) {

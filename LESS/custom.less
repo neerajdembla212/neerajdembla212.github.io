@@ -169,7 +169,7 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 
 .small-font {
-  font-size: @small-font
+  font-size: @small-font;
 }
 .ratings {
   .fa-star:not(.active) {
@@ -196,21 +196,12 @@ body.mini-navbar .nav.metismenu > li.logo {
   padding-left: 30px;
 }
 
-.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.form-control::placeholder,
+.form-control:-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
   color: @placeholder-color;
 }
 
-.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: @placeholder-color
-}
-
-.form-control::-ms-input-placeholder { /* Microsoft Edge */
-  color: @placeholder-color
-}
-
-.grid-icon {
-  background-image: url('/img/ic_viewCards.svg');
-}
 .ibox-content .table .return-percentage {
   color: #339A4A;
 }
@@ -221,4 +212,18 @@ body.mini-navbar .nav.metismenu > li.logo {
   .tabs-header {
     border-bottom: 1px solid @border-color;
   }
+}
+.subheader .btn-group .fa {
+  color: @subheader-icon-color;
+  font-size: 16px;
+}
+.subheader .btn-group .btn.active .fa {
+  color: @navy;
+}
+.subheader .btn-group .btn.active {
+  background-color: @subheader-icon-bg;
+  box-shadow: none;
+}
+.subheader {
+  padding: 40px 10px 0px;
 }
