@@ -74,7 +74,7 @@ $(function () {
   }
 
   function plotAllLineCharts() {
-    const canvasArray = document.querySelectorAll(".contact-box .lineChart");
+    const canvasArray = document.querySelectorAll(".lineChart");
     const data = [0, 13, 12, 20, 19, 17, 15, 11, 18];
     canvasArray.forEach((canvas) => {
       plotLineChart(canvas, data);

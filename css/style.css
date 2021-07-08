@@ -1511,6 +1511,32 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   font-weight: 600;
   margin: 0;
 }
+.font-size-12 {
+  font-size: 12px;
+}
+.font-size-16 {
+  font-size: 16px;
+}
+.canvas-max-width-180 {
+  max-width: 180px;
+}
+.table .pt-pb-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.table .btn-width-90 {
+  width: 90%;
+}
+.table .border-box {
+  width: 50%;
+  border: 1px solid #E7EDF4;
+  padding: 10% 16%;
+  font-size: 1rem;
+  line-height: 1.2;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-align: center;
+}
 .top-navigation #page-wrapper {
   width: 100%;
 }
@@ -10191,6 +10217,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .grid-icon {
   background-image: url('/img/ic_viewCards.svg');
+}
+.ibox-content .table .return-percentage {
+  color: #339A4A;
 }
 @media print {
   nav.navbar-static-side {
