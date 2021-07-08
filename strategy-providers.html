@@ -219,7 +219,9 @@
           <div class="col-sm-4 d-flex">
             <form role="form" class="w-300">
               <div class="position-relative">
-                <span class="startegy-providers-search-icon fa fa-search"></span>
+                <span
+                  class="startegy-providers-search-icon fa fa-search"
+                ></span>
                 <input
                   type="text"
                   placeholder="Search Strategy Providers"
@@ -233,26 +235,52 @@
 
         <div class="wrapper wrapper-content">
           <div class="tabs-container">
-            <ul class="nav nav-tabs" role="tablist">
-              <li>
-                <a
-                  class="nav-link active"
-                  data-toggle="tab"
-                  href="#rising-stars"
-                  >Rising Stars</a
-                >
-              </li>
-              <li>
-                <a class="nav-link" data-toggle="tab" href="#top-rated"
-                  >Top Rated</a
-                >
-              </li>
-              <li>
-                <a class="nav-link" data-toggle="tab" href="#top-growth"
-                  >Top Growth</a
-                >
-              </li>
-            </ul>
+            <div class="d-flex justify-content-between tabs-header">
+              <ul class="nav nav-tabs" role="tablist">
+                <li>
+                  <a
+                    class="nav-link active"
+                    data-toggle="tab"
+                    href="#rising-stars"
+                    >Rising Stars</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link" data-toggle="tab" href="#top-rated"
+                    >Top Rated</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link" data-toggle="tab" href="#top-growth"
+                    >Top Growth</a
+                  >
+                </li>
+              </ul>
+              <div>
+                <div class="btn-group">
+                  <button
+                    data-toggle="dropdown"
+                    class="btn btn-default dropdown-toggle"
+                  >
+                    Returns over 2 Yrs
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Separated link</a>
+                    </li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-w-m btn-default">More Filters</button>
+              </div>
+            </div>
             <div class="tab-content">
               <div role="tabpanel" id="rising-stars" class="tab-pane active">
                 <div class="panel-body row d-flex flex-wrap">
