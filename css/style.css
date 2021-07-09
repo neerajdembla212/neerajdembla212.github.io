@@ -1540,10 +1540,6 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .tab-content .ibox-content {
   width: 100%;
 }
-.table-header-cell {
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.4);
-}
 .top-navigation #page-wrapper {
   width: 100%;
 }
@@ -10256,6 +10252,10 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .subheader {
   padding: 40px 10px 0px;
+}
+table thead th {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
 }
 @media print {
   nav.navbar-static-side {
