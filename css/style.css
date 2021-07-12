@@ -1517,8 +1517,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .font-size-16 {
   font-size: 16px;
 }
-.canvas-max-width-180 {
-  max-width: 180px;
+.canvas-max-width-trendline {
+  max-width: 150px;
 }
 .table .pt-pb-20 {
   padding-top: 20px;
@@ -1536,6 +1536,9 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   box-sizing: border-box;
   border-radius: 4px;
   text-align: center;
+}
+.tab-content .ibox-content {
+  width: 100%;
 }
 .top-navigation #page-wrapper {
   width: 100%;
@@ -9921,6 +9924,9 @@ body.md-skin {
   .subheader form {
     width: 300px;
   }
+  .canvas-max-width-trendline {
+    width: 90px;
+  }
 }
 @media (max-width: 768px) {
   #page-wrapper {
@@ -10015,6 +10021,9 @@ body.md-skin {
     float: none;
     text-align: left;
     display: inline-block;
+  }
+  .canvas-max-width-trendline {
+    width: 80px;
   }
 }
 .nav-tabs .nav-item.show .nav-link,
@@ -10243,6 +10252,10 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .subheader {
   padding: 40px 10px 0px;
+}
+table thead th {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
 }
 @media print {
   nav.navbar-static-side {
