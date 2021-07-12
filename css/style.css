@@ -1517,15 +1517,9 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .font-size-16 {
   font-size: 16px;
 }
-.canvas-max-width-trendline {
-  max-width: 150px;
-}
 .table .pt-pb-20 {
   padding-top: 20px;
   padding-bottom: 20px;
-}
-.table .btn-width-90 {
-  width: 90%;
 }
 .table .border-box {
   width: 50%;
@@ -1693,7 +1687,7 @@ button:focus {
   color: #f8ac59;
 }
 .btn-danger.btn-outline {
-  color: #ED5565;
+  color: #E00039;
 }
 .btn-primary.btn-outline:hover,
 .btn-success.btn-outline:hover,
@@ -1874,28 +1868,28 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-danger {
   color: #fff;
-  background-color: #ED5565;
-  border-color: #ED5565;
+  background-color: #E00039;
+  border-color: #E00039;
 }
 .btn-danger:hover,
 .btn-danger:focus,
 .btn-danger.focus {
   color: #fff;
-  background-color: #ec4758;
-  border-color: #ec4758;
+  background-color: #d10035;
+  border-color: #d10035;
 }
 .btn-danger.disabled,
 .btn-danger:disabled {
   color: #fff;
-  background-color: #ec4758;
-  border-color: #ec4758;
+  background-color: #d10035;
+  border-color: #d10035;
 }
 .btn-danger:not(:disabled):not(.disabled):active,
 .btn-danger:not(:disabled):not(.disabled).active,
 .show > .btn-danger.dropdown-toggle {
   color: #fff;
-  background-color: #ec4758;
-  border-color: #ec4758;
+  background-color: #d10035;
+  border-color: #d10035;
 }
 .btn-danger:not(:disabled):not(.disabled):active:focus,
 .btn-danger:not(:disabled):not(.disabled).active:focus,
@@ -2056,10 +2050,10 @@ button.btn-success.dim:active {
   box-shadow: inset 0 0 0 #1872ab, 0 2px 0 0 #1872ab, 0 5px 3px #999 !important;
 }
 button.btn-danger.dim {
-  box-shadow: inset 0 0 0 #ea394c, 0 5px 0 0 #ea394c, 0 10px 5px #999 !important;
+  box-shadow: inset 0 0 0 #c10031, 0 5px 0 0 #c10031, 0 10px 5px #999 !important;
 }
 button.btn-danger.dim:active {
-  box-shadow: inset 0 0 0 #ea394c, 0 2px 0 0 #ea394c, 0 5px 3px #999 !important;
+  box-shadow: inset 0 0 0 #c10031, 0 2px 0 0 #c10031, 0 5px 3px #999 !important;
 }
 button.dim:before {
   font-size: 50px;
@@ -2124,7 +2118,7 @@ button.dim:active:before {
 }
 .label-danger,
 .badge-danger {
-  background-color: #ED5565;
+  background-color: #E00039;
   color: #FFFFFF;
 }
 .label-info,
@@ -2971,7 +2965,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .has-error .form-control,
 .has-error .form-control:focus {
-  border-color: #ED5565;
+  border-color: #E00039;
 }
 .has-success .control-label {
   color: #22D091;
@@ -2980,7 +2974,7 @@ select.form-control:not([size]):not([multiple]) {
   color: #f8ac59;
 }
 .has-error .control-label {
-  color: #ED5565;
+  color: #E00039;
 }
 .input-group-addon {
   background-color: #fff;
@@ -3010,7 +3004,7 @@ select.form-control:not([size]):not([multiple]) {
   box-shadow: none;
 }
 .slider_red .noUi-connect {
-  background: none repeat scroll 0 0 #ED5565;
+  background: none repeat scroll 0 0 #E00039;
   box-shadow: none;
 }
 /* UI Sortable */
@@ -3546,7 +3540,7 @@ label.error {
   background-color: #22D091;
 }
 .toast-error {
-  background-color: #ED5565;
+  background-color: #E00039;
 }
 .toast-info {
   background-color: #23c6c8;
@@ -3588,7 +3582,7 @@ label.error {
   border-left: 6px solid #1c84c6;
 }
 .inspinia-notify.alert-danger {
-  border-left: 6px solid #ED5565;
+  border-left: 6px solid #E00039;
 }
 .inspinia-notify.alert-info {
   border-left: 6px solid #22D091;
@@ -4362,8 +4356,8 @@ body.tour-open .animated {
 }
 .stream .stream-badge i.bg-danger {
   color: #ffffff;
-  background-color: #ED5565;
-  border-color: #ED5565;
+  background-color: #E00039;
+  border-color: #E00039;
 }
 .stream .stream-badge:before {
   content: '';
@@ -5241,7 +5235,7 @@ table.table-mail tr td {
 }
 .red-bg,
 .bg-danger {
-  background-color: #ED5565 !important;
+  background-color: #E00039 !important;
   color: #ffffff;
 }
 .black-bg {
@@ -5279,11 +5273,11 @@ table.table-mail tr td {
   color: #ffffff;
 }
 .panel-danger {
-  border-color: #ED5565;
+  border-color: #E00039;
 }
 .panel-danger > .panel-heading {
-  background-color: #ED5565;
-  border-color: #ED5565;
+  background-color: #E00039;
+  border-color: #E00039;
   color: #ffffff;
 }
 .progress-bar {
@@ -5315,7 +5309,7 @@ table.table-mail tr td {
   background-color: #f8ac59;
 }
 .progress-bar-danger {
-  background-color: #ED5565;
+  background-color: #E00039;
 }
 .panel-title {
   font-size: inherit;
@@ -5344,7 +5338,7 @@ table.table-mail tr td {
   color: #f8ac59 !important;
 }
 .text-danger {
-  color: #ED5565 !important;
+  color: #E00039 !important;
 }
 .text-muted {
   color: #888888 !important;
@@ -6677,7 +6671,7 @@ table.issue-tracker tbody tr td {
   border-left: 3px solid #f8ac59;
 }
 .agile-list li.danger-element {
-  border-left: 3px solid #ED5565;
+  border-left: 3px solid #E00039;
 }
 .agile-list li.info-element {
   border-left: 3px solid #1c84c6;
@@ -10190,12 +10184,12 @@ body.mini-navbar .nav.metismenu > li.logo {
   cursor: pointer;
   font-size: 18px;
 }
-.contact-box .favourite-icon.active {
-  color: #EDA323;
-}
 .contact-box .return-percentage {
   font-size: 24px;
   color: #339A4A;
+}
+.favourite-icon.active {
+  color: #EDA323;
 }
 .text-light-gray {
   color: #5B5B5B;
@@ -10256,6 +10250,17 @@ body.mini-navbar .nav.metismenu > li.logo {
 table thead th {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+}
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 15px 0;
+}
+.canvas-max-width-trendline {
+  width: 17%;
 }
 @media print {
   nav.navbar-static-side {

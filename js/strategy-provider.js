@@ -1,4 +1,5 @@
 $(function () {
+  const lineChartBorderColor = "#501EC6";
   function plotLineChart(lineChartCanvas, lineData) {
     lineChartCanvas.height = 40;
     const ctx = lineChartCanvas.getContext("2d");
@@ -14,7 +15,7 @@ $(function () {
         {
           label: "",
           backgroundColor: gradient,
-          borderColor: "#501EC6",
+          borderColor: lineChartBorderColor,
           pointBackgroundColor: gradient,
           pointBorderColor: gradient,
           gradient: gradient,
@@ -74,10 +75,18 @@ $(function () {
   }
 
   function plotAllLineCharts() {
-    const canvasArray = document.querySelectorAll(".lineChart");
+    const canvasArray = document.querySelectorAll(".contact-box .lineChart");
     const data = [0, 13, 12, 20, 19, 17, 15, 11, 18];
     canvasArray.forEach((canvas) => {
       plotLineChart(canvas, data);
+    });
+  }
+
+  function plotAllTableLineCharts() {
+    const lineChartHolders = document.querySelectorAll("table td .line-chart");
+    const data = [0, 13, 12, 20, 19, 17, 15, 11, 18];
+    lineChartHolders.forEach((lineChart) => {
+      plotTableLineChart(lineChart, data);
     });
   }
 
@@ -116,8 +125,17 @@ $(function () {
     });
   }
 
+  function plotTableLineChart(lineChartHolder, data) {
+    $(lineChartHolder).text(data.join(",")).peity("line", {
+      fill: "#B6A3E6",
+      stroke: lineChartBorderColor,
+      width: "100%",
+      height: 25,
+    });
+  }
   plotAllLineCharts();
   plotAllTriangleCharts();
+  plotAllTableLineCharts();
 
   // subheader - toggling active class on grid and list icons
   $(".subheader .btn-group button").click((event) => {
@@ -132,17 +150,44 @@ $(function () {
   });
 
   // Grid View - toggling active class on follow icon in grid and list view
-  const favIcon = $(".favourite-icon");
-  favIcon.click(() => {
-    favIcon.toggleClass("active");
-    if (favIcon.hasClass("active")) {
-      favIcon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
+  const gridfavIcon = $(".contact-box .favourite-icon");
+  gridfavIcon.click(() => {
+    gridfavIcon.toggleClass("active");
+    if (gridfavIcon.hasClass("active")) {
+      gridfavIcon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
     } else {
-      favIcon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
+      gridfavIcon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
     }
   });
+
+  // List view - Toggle follow button
+  const listFavIcon = $('table td > .btn.btn-action');
+  listFavIcon.click(ele => {
+    const icon = $(ele.currentTarget).find('.favourite-icon');
+    icon.toggleClass('active')
+    if (icon.hasClass("active")) {
+      icon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
+    } else {
+      icon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
+    }
+  })
+
+  // List View - format numbers using comma
+  $(".format-us").each((i, ele) => {
+    const number = ele.textContent;
+    if (!isNaN(number)) {
+      $(ele).text(formatWithCommas(+number));
+    }
+  });
+
+  
 });
 
 function getRandomNumberBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function formatWithCommas(number) {
+  internationalNumberFormat = new Intl.NumberFormat("en-US");
+  return internationalNumberFormat.format(number);
 }
