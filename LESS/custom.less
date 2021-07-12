@@ -154,15 +154,15 @@ body.mini-navbar .nav.metismenu > li.logo {
     cursor: pointer;
     font-size: 18px;
   }
-  .favourite-icon.active {
-    color: @orange;
-  }
   .return-percentage {
     font-size: 24px;
     color: @dark-green;
   }
 }
-
+// we are placing this style out of .contact-box to reuse it in grid and list view
+.favourite-icon.active {
+  color: @orange;
+}
 .text-light-gray {
   color: @text-light-gray;
   font-weight: 400;
@@ -230,4 +230,12 @@ body.mini-navbar .nav.metismenu > li.logo {
 table thead th {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+}
+
+.table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+padding: 15px 0;
+}
+.canvas-max-width-trendline {
+  width: 17%;
 }
