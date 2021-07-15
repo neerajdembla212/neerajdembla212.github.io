@@ -895,7 +895,7 @@ h5 {
 .nav > li.sm .dropdown-toggle.active {
   background: rgba(34, 208, 145, 0.2);
   color: #22D091;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
 }
 .nav.metismenu > li {
   display: block;
@@ -1174,10 +1174,6 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav li:hover > .nav-seco
   min-width: 160px;
   height: auto;
 }
-body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
-  font-size: 12px;
-  border-radius: 3px;
-}
 .fixed-nav .slimScrollDiv #side-menu {
   padding-bottom: 60px;
 }
@@ -1313,46 +1309,58 @@ body.fixed-nav.fixed-nav-basic.fixed-sidebar.mini-navbar.body-small .navbar-fixe
 .body-small .navbar-fixed-top {
   margin-left: 0;
 }
-body.mini-navbar .navbar-static-side {
-  width: 70px;
-}
-body.mini-navbar .profile-element .details,
-body.mini-navbar .nav-label {
-  display: none;
-}
-body.mini-navbar .navbar-default .nav li > a {
-  padding: 14px 20px 30px 22px;
-}
 body.canvas-menu .profile-element {
   display: block;
 }
 body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav-second-level {
   display: none;
 }
-body.mini-navbar .logo-element {
-  display: block;
-}
-body.canvas-menu .logo-element {
-  display: none;
-}
 body.mini-navbar .full-logo-element {
   display: none;
 }
-body.canvas-menu .full-logo-element {
+body.mini-navbar .logo-elemen {
   display: block;
 }
 body.mini-navbar .nav-header {
   padding: 0;
   background-color: #22D091;
 }
+body.mini-navbar #page-wrapper {
+  width: calc(100% - 70px);
+}
+body.mini-navbar .navbar-default .nav li > a {
+  padding: 14px 20px 30px 22px;
+}
+body.mini-navbar .navbar-default .nav li.sm a {
+  padding: 3px 20px;
+}
+body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
+  font-size: 12px;
+  border-radius: 3px;
+}
+body.mini-navbar .navbar-static-side {
+  width: 70px;
+}
+body.mini-navbar .nav-label {
+  display: none;
+}
+body.mini-navbar .trade-label {
+  display: none;
+}
+body.mini-navbar .profile-element .details {
+  display: none;
+}
+body.mini-navbar .nav > li.sm {
+  padding: 0px 0px 10px 5px;
+}
+body.canvas-menu .full-logo-element {
+  display: block;
+}
 body.canvas-menu .nav-header {
   padding: 33px 25px;
 }
 body.canvas-menu .sidebar-collapse li {
   width: 100%;
-}
-body.mini-navbar #page-wrapper {
-  width: calc(100% - 70px);
 }
 body.canvas-menu.mini-navbar #page-wrapper,
 body.canvas-menu.mini-navbar .footer {
