@@ -150,27 +150,27 @@ $(function () {
   });
 
   // Grid View - toggling active class on follow icon in grid and list view
-  const gridfavIcon = $(".contact-box .favourite-icon");
-  gridfavIcon.click(() => {
-    gridfavIcon.toggleClass("active");
-    if (gridfavIcon.hasClass("active")) {
-      gridfavIcon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
+  $(".contact-box .favourite-icon").click((ele) => {
+    const currentTarget = $(ele.currentTarget);
+    currentTarget.toggleClass("active");
+    if (currentTarget.hasClass("active")) {
+      currentTarget.removeClass("fa-bookmark-o").addClass("fa-bookmark");
     } else {
-      gridfavIcon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
+      currentTarget.removeClass("fa-bookmark").addClass("fa-bookmark-o");
     }
   });
 
   // List view - Toggle follow button
-  const listFavIcon = $('table td > .btn.btn-action');
-  listFavIcon.click(ele => {
-    const icon = $(ele.currentTarget).find('.favourite-icon');
-    icon.toggleClass('active')
+  const listFavIcon = $("table td > .btn.btn-action");
+  listFavIcon.click((ele) => {
+    const icon = $(ele.currentTarget).find(".favourite-icon");
+    icon.toggleClass("active");
     if (icon.hasClass("active")) {
       icon.removeClass("fa-bookmark-o").addClass("fa-bookmark");
     } else {
       icon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
     }
-  })
+  });
 
   // List View - format numbers using comma
   $(".format-us").each((i, ele) => {
@@ -179,8 +179,6 @@ $(function () {
       $(ele).text(formatWithCommas(+number));
     }
   });
-
-  
 });
 
 function getRandomNumberBetween(min, max) {
