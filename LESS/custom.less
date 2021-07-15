@@ -1,5 +1,5 @@
 @nav-bg: #754ef7;
-@red: #E00039;
+@red: #e00039;
 @nav-text-color: rgba(255, 255, 255, 0.5);
 @nav-profile-pattern: ~"";
 @nav-bg-pattern: linear-gradient(180deg, #754ef7 0%, #4510b7 100%);
@@ -146,11 +146,16 @@ body.mini-navbar .nav.metismenu > li.logo {
 .sidebar-collapse {
   height: 100vh;
 }
+.panel-body {
+  animation: bounceInRight;
+  animation-duration: 1.5s;
+}
 .contact-box {
   padding: 1em;
   margin-bottom: 1em;
   width: 296px;
   margin-right: 2em;
+
   .favourite-icon {
     cursor: pointer;
     font-size: 18px;
@@ -204,11 +209,11 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 
 .ibox-content .table .return-percentage {
-  color: #339A4A;
+  color: #339a4a;
 }
 .tabs-container {
   .nav-tabs {
-  border-bottom: none;
+    border-bottom: none;
   }
   .tabs-header {
     border-bottom: 1px solid @border-color;
@@ -234,8 +239,12 @@ table thead th {
   font-size: 12px;
 }
 
-.table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-padding: 15px 0;
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 15px 0;
 }
 .canvas-max-width-trendline {
   width: 17%;
