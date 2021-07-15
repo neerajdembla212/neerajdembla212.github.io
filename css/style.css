@@ -4503,6 +4503,7 @@ samp {
 }
 #right-sidebar.sidebar-open {
   right: 0;
+  top: 0;
 }
 #right-sidebar.sidebar-open.sidebar-top {
   top: 0;
@@ -4553,7 +4554,7 @@ samp {
   list-style: none;
   font-size: 12px;
 }
-.sidebar-container .sidebar-message:nth-child(2n+2) {
+.sidebar-container .sidebar-message:nth-child(2n + 2) {
   background: #f9f9f9;
 }
 .sidebar-container ul.sidebar-list li a {
@@ -10062,6 +10063,9 @@ body.md-skin {
 .small-image {
   height: 50px;
 }
+#page-container {
+  padding-right: 20px;
+}
 .nav > li.active {
   border-right: 4px solid #21c78b;
   border-left: none;
@@ -10292,6 +10296,12 @@ table thead th {
 }
 .canvas-max-width-trendline {
   width: 17%;
+}
+.btn-followers {
+  position: fixed;
+  right: 0;
+  top: 20vh;
+  border-radius: 4px 0 0 4px;
 }
 @media print {
   nav.navbar-static-side {
