@@ -4,6 +4,25 @@
   padding: 14px 20px 14px 25px;
   display: block;
 }
+.nav > li.sm {
+  color: @white;
+  padding: 0px 14px 10px 25px;
+  font-weight: 600;
+  .dropdown-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    border: none;
+    padding: 2px 7px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .dropdown-toggle.active {
+    background: rgba(34, 208, 145, 0.2);
+    color: @navy;
+    letter-spacing: 0.2em;
+  }
+}
 
 .nav.metismenu > li {
   display: block;
@@ -546,7 +565,7 @@ body.mini-navbar .logo-element {
   display: block;
 }
 
-body.canvas-menu .logo-element{
+body.canvas-menu .logo-element {
   display: none;
 }
 
@@ -710,17 +729,19 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   align-items: center;
 }
 .nav-menu-toggle-arrow {
-  width: 0; height: 0; 
-  border-top: 5px solid transparent; 
-  border-right: 7px solid #734CF5;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-right: 7px solid #734cf5;
   border-bottom: 5px solid transparent;
   display: block;
   margin: 0 2px 0 0;
 }
 .mini-navbar .nav-menu-toggle-arrow {
-  width: 0; height: 0; 
-  border-top: 5px solid transparent; 
-  border-left: 7px solid #734CF5;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 7px solid #734cf5;
   border-bottom: 5px solid transparent;
   border-right: 0;
   display: block;
@@ -749,7 +770,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 .startegy-providers-grid {
   width: 50%;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 4px 0px 0px 4px;
   display: flex;
   justify-content: center;
@@ -757,14 +778,14 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   cursor: pointer;
 }
 .startegy-providers-grid > span {
-  background-image: url('../img/ic_viewCards.svg');
+  background-image: url("../img/ic_viewCards.svg");
   height: 24px;
   width: 24px;
   display: block;
 }
 .startegy-providers-list {
   width: 50%;
-  background: #E2E7FB;
+  background: #e2e7fb;
   border-radius: 0px 4px 4px 0px;
   display: flex;
   justify-content: center;
@@ -772,7 +793,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   cursor: pointer;
 }
 .startegy-providers-list > span {
-  background-image: url('../img/ic_viewList.svg');
+  background-image: url("../img/ic_viewList.svg");
   height: 24px;
   width: 24px;
   display: block;
