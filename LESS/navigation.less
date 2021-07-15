@@ -369,11 +369,6 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar
   height: auto;
 }
 
-body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
-  font-size: 12px;
-  border-radius: 3px;
-}
-
 .fixed-nav .slimScrollDiv #side-menu {
   padding-bottom: 60px;
 }
@@ -540,19 +535,6 @@ body.fixed-nav.fixed-nav-basic.fixed-sidebar.mini-navbar.body-small
   margin-left: 0;
 }
 
-body.mini-navbar .navbar-static-side {
-  width: 70px;
-}
-
-body.mini-navbar .profile-element .details,
-body.mini-navbar .nav-label {
-  display: none;
-}
-
-body.mini-navbar .navbar-default .nav li > a {
-  padding: 14px 20px 30px 22px;
-}
-
 body.canvas-menu .profile-element {
   display: block;
 }
@@ -560,26 +542,50 @@ body.canvas-menu .profile-element {
 body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav-second-level {
   display: none;
 }
-
-body.mini-navbar .logo-element {
-  display: block;
-}
-
-body.canvas-menu .logo-element {
-  display: none;
-}
-
-body.mini-navbar .full-logo-element {
-  display: none;
+// retracted menu navigation changes
+body.mini-navbar {
+  .full-logo-element {
+    display: none;
+  }
+  .logo-elemen {
+    display: block;
+  }
+  .nav-header {
+    padding: 0;
+    background-color: @navy;
+  }
+  #page-wrapper {
+    width: calc(~"100% - 70px");
+  }
+  .navbar-default .nav li > a {
+    padding: 14px 20px 30px 22px;
+  }
+  .navbar-default .nav li.sm a {
+    padding: 3px 20px;
+  }
+  .navbar-default .nav > li > .nav-second-level li a {
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  .navbar-static-side {
+    width: 70px;
+  }
+  .nav-label {
+    display: none;
+  }
+  .trade-label {
+    display: none;
+  }
+  .profile-element .details {
+    display: none;
+  }
+  .nav > li.sm {
+    padding: 0px 0px 10px 5px;
+  }
 }
 
 body.canvas-menu .full-logo-element {
   display: block;
-}
-
-body.mini-navbar .nav-header {
-  padding: 0;
-  background-color: @navy;
 }
 
 body.canvas-menu .nav-header {
@@ -588,10 +594,6 @@ body.canvas-menu .nav-header {
 
 body.canvas-menu .sidebar-collapse li {
   width: 100%;
-}
-
-body.mini-navbar #page-wrapper {
-  width: calc(~"100% - 70px");
 }
 
 body.canvas-menu.mini-navbar #page-wrapper,
