@@ -55,6 +55,23 @@
                 </div>
               </div>
             </li>
+            <li class="sm d-flex justify-content-between">
+              <div>Trade</div>
+              <div class="btn-group">
+                <button
+                  data-toggle="dropdown"
+                  class="btn btn-default dropdown-toggle dropdown-select"
+                >
+                  Demo
+                </button>
+                <ul class="dropdown-menu dropdown-select-menu">
+                  <li><a class="dropdown-item" href="javascript:;">Demo&nbsp;</a></li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:;">Live&nbsp;</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li>
               <a href="my-portfolio.html">
                 <span class="nav-icon my-portfolio"></span
@@ -214,14 +231,7 @@
             </ul>
           </nav>
         </div>
-        <div
-          class="
-            d-flex
-            justify-content-between
-            subheader
-            flex-wrap
-          "
-        >
+        <div class="d-flex justify-content-between subheader flex-wrap">
           <h2 class="font-bold my-2">Strategy Providers</h2>
           <div class="d-flex my-2">
             <form role="form" class="mr-4">
@@ -238,10 +248,18 @@
               </div>
             </form>
             <div class="btn-group" role="group">
-              <button class="btn btn-default active" type="button" data-view-type="grid">
+              <button
+                class="btn btn-default active"
+                type="button"
+                data-view-type="grid"
+              >
                 <i class="fa fa-th grid-icon mt-1"></i>
               </button>
-              <button class="btn btn-default" type="button" data-view-type="list">
+              <button
+                class="btn btn-default"
+                type="button"
+                data-view-type="list"
+              >
                 <i class="fa fa-list list-icon mt-1"></i>
               </button>
             </div>
@@ -293,7 +311,9 @@
                     </li>
                   </ul>
                 </div>
-                <button type="button" class="btn btn-w-m btn-default">More Filters</button>
+                <button type="button" class="btn btn-w-m btn-default">
+                  More Filters
+                </button>
               </div>
             </div>
             <div class="tab-content">
@@ -702,10 +722,10 @@
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/inspinia_custom.js"></script>
 
     <!-- ChartJS-->
     <script src="js/plugins/chartJs/Chart.min.js"></script>
-    <script src="js/navigation.js"></script>
     <script src="js/strategy-provider.js"></script>
   </body>
 </html>

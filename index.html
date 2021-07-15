@@ -33,72 +33,135 @@
 <body>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse d-flex flex-column justify-content-between">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="logo">
-                        <img alt="image" src="img/company_logo.svg" class="full-logo-element"/>
-                        <div class="logo-element">
-                            <img alt="image" src="img/company_logo_cp.svg" />
-                        </div>
-                    </li>
-                    <li class="nav-header position-relative">
-                        <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
-                            <div class="details">
-                                <span class="block m-t-xs font-bold text-white">KS Tan</span>
-                                <span class="text-xs text-light-white">Strategy Follower</span>
-                            </div>
-                        </div>
-                        <div class="card role-card d-none">
-                            <h3 class="pl-3 pt-2">KS Tan</h3>
-                            <div class="divider"></div>
-                            <div class="p-3 role-list">
-                                <p class="active">Strategy Follower <i class="fa fa-check"></i></p> 
-                                <p>Strategy Provider <i class="fa fa-check"></i></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="active">
-                        <a href="my-portfolio.html"> <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
-                    </li>
-                    <li>
-                        <a href="trade-terminal.html"><span class="nav-icon trade-terminal"></span> <span class="nav-label">Trade Terminal</span></a>
-                    </li>
-                    <li>
-                        <a href="strategy-providers-grid.html"><span class="nav-icon strategy-providers"></span> <span class="nav-label">Strategy Providers</span></a>
-                    </li>
-                    <li>
-                        <a href="watchlist.html"> <span class="nav-icon watchlist"></span> <span class="nav-label">Watchlist</span></a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="copy-traders.html"><span class="nav-icon copy-traders"></span> <span class="nav-label">Copy Traders</span></a>
-                    </li>
-                    <li>
-                        <a href="copypip-academy.html"><span class="nav-icon copypip-academy"></span> <span class="nav-label">CopyPip Academy</span></a>
-                    </li>
-                    <li>
-                        <a href="simulation.html"><span class="nav-icon simulation"></span> <span class="nav-label">Simulation</span></a>
-                    </li>
-                    <li>
-                        <a href="news-feed.html"><span class="nav-icon news-feed"></span> <span class="nav-label">News Feed</span></a>
-                    </li>
-                </ul>
-                <ul class="nav metismenu" id="side-menu-bottom">
-                    <li class="divider"></li>
-                    <li>
-                        <a href="help.html"><span class="nav-icon help"></span> <span class="nav-label">Help</span></a>
-                    </li>
-                    <li>
-                        <a href="refer-a-friend.html"><span class="nav-icon refer-a-friend"></span> <span class="nav-label">Refer a Friend</span></a>
-                    </li>
-                    <li>
-                        <a href="settings.html"><span class="nav-icon settings"></span> <span class="nav-label">Settings</span></a>
-                    </li>
-                </ul>
+            <div
+              class="sidebar-collapse d-flex flex-column justify-content-between"
+            >
+              <ul class="nav metismenu" id="side-menu">
+                <li class="logo">
+                  <img
+                    alt="image"
+                    src="img/company_logo.svg"
+                    class="full-logo-element"
+                  />
+                  <div class="logo-element">
+                    <img alt="image" src="img/company_logo_cp.svg" />
+                  </div>
+                </li>
+                <li class="nav-header position-relative">
+                  <div class="dropdown profile-element">
+                    <img
+                      alt="image"
+                      class="rounded-circle"
+                      src="img/profile_small.jpg"
+                    />
+                    <div class="details">
+                      <span class="block m-t-xs font-bold text-white">KS Tan</span>
+                      <span class="text-xs text-light-white"
+                        >Strategy Follower</span
+                      >
+                    </div>
+                  </div>
+                  <div class="card role-card d-none">
+                    <h3 class="pl-3 pt-2">KS Tan</h3>
+                    <div class="divider"></div>
+                    <div class="p-3 role-list">
+                      <p class="active">
+                        Strategy Follower <i class="fa fa-check"></i>
+                      </p>
+                      <p>Strategy Provider <i class="fa fa-check"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li class="sm d-flex justify-content-between">
+                  <div>Trade</div>
+                  <div class="btn-group">
+                    <button
+                      data-toggle="dropdown"
+                      class="btn btn-default dropdown-toggle dropdown-select"
+                    >
+                      Demo
+                    </button>
+                    <ul class="dropdown-menu dropdown-select-menu">
+                      <li><a class="dropdown-item" href="javascript:;">Demo&nbsp;</a></li>
+                      <li>
+                        <a class="dropdown-item" href="javascript:;">Live&nbsp;</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="my-portfolio.html">
+                    <span class="nav-icon my-portfolio"></span
+                    ><span class="nav-label">My Portfolio</span></a
+                  >
+                </li>
+                <li>
+                  <a href="trade-terminal.html"
+                    ><span class="nav-icon trade-terminal"></span>
+                    <span class="nav-label">Trade Terminal</span></a
+                  >
+                </li>
+                <li>
+                  <a href="strategy-providers-grid.html" class="active"
+                    ><span class="nav-icon strategy-providers"></span>
+                    <span class="nav-label">Strategy Providers</span></a
+                  >
+                </li>
+                <li>
+                  <a href="watchlist.html">
+                    <span class="nav-icon watchlist"></span>
+                    <span class="nav-label">Watchlist</span></a
+                  >
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="copy-traders.html"
+                    ><span class="nav-icon copy-traders"></span>
+                    <span class="nav-label">Copy Traders</span></a
+                  >
+                </li>
+                <li>
+                  <a href="copypip-academy.html"
+                    ><span class="nav-icon copypip-academy"></span>
+                    <span class="nav-label">CopyPip Academy</span></a
+                  >
+                </li>
+                <li>
+                  <a href="simulation.html"
+                    ><span class="nav-icon simulation"></span>
+                    <span class="nav-label">Simulation</span></a
+                  >
+                </li>
+                <li>
+                  <a href="news-feed.html"
+                    ><span class="nav-icon news-feed"></span>
+                    <span class="nav-label">News Feed</span></a
+                  >
+                </li>
+              </ul>
+              <ul class="nav metismenu" id="side-menu-bottom">
+                <li class="divider"></li>
+                <li>
+                  <a href="help.html"
+                    ><span class="nav-icon help"></span>
+                    <span class="nav-label">Help</span></a
+                  >
+                </li>
+                <li>
+                  <a href="refer-a-friend.html"
+                    ><span class="nav-icon refer-a-friend"></span>
+                    <span class="nav-label">Refer a Friend</span></a
+                  >
+                </li>
+                <li>
+                  <a href="settings.html"
+                    ><span class="nav-icon settings"></span>
+                    <span class="nav-label">Settings</span></a
+                  >
+                </li>
+              </ul>
             </div>
-        </nav>
-
+          </nav>
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -212,6 +275,7 @@
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/inspinia_custom.js"></script>
 <script>
             $(document).ready(function() {
                 $('.nav-header').mouseenter(() => {
