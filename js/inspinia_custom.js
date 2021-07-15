@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  // dropdown in navigation panel to switch accounts 
-    $(".dropdown-select-menu").click((event) => {
+  // dropdown in navigation panel to switch accounts
+  $(".dropdown-select-menu").click((event) => {
     const selectedItem = event.target.innerText.trim();
     const selectButton = $("button.dropdown-toggle.dropdown-select");
     if (selectedItem.toUpperCase() === "LIVE") {
@@ -11,7 +11,7 @@ $(document).ready(function () {
     selectButton.text(selectedItem);
   });
 
-// to display role card on hover of profile image on retracted menu
+  // to display role card on hover of profile image on retracted menu
   $(".nav-header")
     .mouseenter(() => {
       if ($(".mini-navbar").is(":visible")) {
@@ -21,4 +21,15 @@ $(document).ready(function () {
     .mouseleave(() => {
       $(this).find(".role-card").addClass("d-none");
     });
+});
+
+// Open close Buy/Sell right sidebar
+$(".buy-sell-right-sidebar-toggle").on("click", function (e) {
+  e.preventDefault();
+  $("#right-sidebar.buy-sell-right-sidebar").toggleClass("sidebar-open");
+});
+
+$("#right-sidebar .fa-close").on("click", function (e) {
+  e.preventDefault();
+  $("#right-sidebar").removeClass("sidebar-open");
 });
