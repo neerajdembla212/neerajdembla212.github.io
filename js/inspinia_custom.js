@@ -21,15 +21,21 @@ $(document).ready(function () {
     .mouseleave(() => {
       $(this).find(".role-card").addClass("d-none");
     });
-});
 
-// Open close Buy/Sell right sidebar
-$(".buy-sell-right-sidebar-toggle").on("click", function (e) {
-  e.preventDefault();
-  $("#right-sidebar.buy-sell-right-sidebar").toggleClass("sidebar-open");
-});
+  // Open close Buy/Sell right sidebar
+  $(".buy-sell-right-sidebar-toggle").on("click", function (e) {
+    e.preventDefault();
+    $(".right-sidebar.buy-sell-right-sidebar").addClass("sidebar-open");
+  });
 
-$("#right-sidebar .fa-close").on("click", function (e) {
-  e.preventDefault();
-  $("#right-sidebar").removeClass("sidebar-open");
+  $(".right-sidebar .fa-close").on("click", function (e) {
+    e.preventDefault();
+    $(".right-sidebar").removeClass("sidebar-open");
+  });
+
+  // follower sidebar right
+  $(".follower-sidebar-toggle").on("click", function (e) {
+    e.preventDefault();
+    $(".follower-sidebar-container").toggleClass("sidebar-open");
+  });
 });
