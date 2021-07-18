@@ -74,7 +74,7 @@ $(document).ready(function () {
     // Open close right sidebar
     $('.right-sidebar-toggle').on('click', function (e) {
         e.preventDefault();
-        $('#right-sidebar').toggleClass('sidebar-open');
+        $('.right-sidebar').toggleClass('sidebar-open');
     });
 
     // Initialize slimscroll for right sidebar
@@ -131,9 +131,9 @@ $(document).ready(function () {
     // Move right sidebar top after scroll
     $(window).scroll(function () {
         if ($(window).scrollTop() > 0 && !$('body').hasClass('fixed-nav')) {
-            $('#right-sidebar').addClass('sidebar-top');
+            $('.right-sidebar').addClass('sidebar-top');
         } else {
-            $('#right-sidebar').removeClass('sidebar-top');
+            $('.right-sidebar').removeClass('sidebar-top');
         }
     });
 

@@ -4489,7 +4489,7 @@ samp {
 .body-small .wrapper.sidebar-content {
   padding-right: 20px !important;
 }
-#right-sidebar {
+.right-sidebar {
   background-color: #fff;
   border-left: 1px solid #e7eaec;
   border-top: 1px solid #e7eaec;
@@ -4501,65 +4501,34 @@ samp {
   bottom: 0;
   right: -260px;
 }
-#right-sidebar.sidebar-open {
+.right-sidebar.sidebar-open {
   right: 0;
   top: 0;
 }
-#right-sidebar.sidebar-open.sidebar-top {
+.right-sidebar.sidebar-open.sidebar-top {
   top: 0;
   border-top: none;
 }
-.sidebar-container ul.nav-tabs {
-  border: none;
+.follower-sidebar-container {
+  width: 300px !important;
+  height: 80vh;
+  top: 20vh;
+  right: -264px;
+  z-index: 2147483647;
 }
-.sidebar-container ul.nav-tabs.navs-4 li {
-  width: 25%;
+.follower-sidebar {
+  background-color: #fff;
+  border-left: 1px solid #e7eaec;
+  border-top: 1px solid #e7eaec;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
 }
-.sidebar-container ul.nav-tabs.navs-3 li {
-  width: 33.3333%;
+.follower-sidebar-container.sidebar-open {
+  right: 0;
 }
-.sidebar-container ul.nav-tabs.navs-2 li {
-  width: 50%;
-}
-.sidebar-container ul.nav-tabs li {
-  border: none;
-}
-.sidebar-container ul.nav-tabs li a {
-  border: none;
-  padding: 12px 10px;
-  margin: 0;
-  border-radius: 0;
-  background: #754ef7;
-  color: #fff;
-  text-align: center;
-  border-right: 1px solid #7d58f7;
-}
-.sidebar-container ul.nav-tabs li.active a {
-  border: none;
-  background: #f9f9f9;
-  color: #676a6c;
-  font-weight: bold;
-}
-.sidebar-container .nav-tabs > li.active > a:hover,
-.sidebar-container .nav-tabs > li.active > a:focus {
-  border: none;
-}
-.sidebar-container ul.sidebar-list {
-  margin: 0;
-  padding: 0;
-}
-.sidebar-container ul.sidebar-list li {
-  border-bottom: 1px solid #e7eaec;
-  padding: 15px 20px;
-  list-style: none;
-  font-size: 12px;
-}
-.sidebar-container .sidebar-message:nth-child(2n + 2) {
-  background: #f9f9f9;
-}
-.sidebar-container ul.sidebar-list li a {
-  text-decoration: none;
-  color: inherit;
+.sidebar-container .fa-close {
+  font-size: 18px;
 }
 .sidebar-container .sidebar-content {
   padding: 15px 20px;
@@ -8916,11 +8885,11 @@ body.rtls.top-navigation .footer.fixed {
   left: auto;
   right: 70px;
 }
-.rtls #right-sidebar {
+.rtls .right-sidebar {
   left: -260px;
   right: auto;
 }
-.rtls #right-sidebar.sidebar-open {
+.rtls .right-sidebar.sidebar-open {
   left: 0;
 }
 /*
@@ -9777,7 +9746,7 @@ body.md-skin {
 .md-skin .navbar-static-side {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.md-skin #right-sidebar {
+.md-skin .right-sidebar {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border: none;
   z-index: 900;
@@ -10206,8 +10175,8 @@ body.mini-navbar .nav.metismenu > li.logo {
   height: 100vh;
 }
 .panel-body {
-  animation: bounceInRight;
-  animation-duration: 1.5s;
+  animation: fadeInRightBig;
+  animation-duration: 1.3s;
 }
 .contact-box {
   padding: 1em;
@@ -10298,10 +10267,8 @@ table thead th {
   width: 17%;
 }
 .btn-followers {
-  position: fixed;
-  right: 0;
-  top: 20vh;
   border-radius: 4px 0 0 4px;
+  height: 33px;
 }
 @media print {
   nav.navbar-static-side {

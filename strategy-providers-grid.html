@@ -165,7 +165,10 @@
             </div>
             <ul class="nav navbar-top-links navbar-right">
               <li>
-                <button type="button" class="btn btn-w-m btn-primary buy-sell-right-sidebar-toggle">
+                <button
+                  type="button"
+                  class="btn btn-w-m btn-primary buy-sell-right-sidebar-toggle"
+                >
                   Buy/Sell
                 </button>
               </li>
@@ -267,12 +270,6 @@
                 </button>
               </div>
             </div>
-            <button
-              class="btn btn-warning right-sidebar-toggle btn-followers"
-              type="button"
-            >
-              <i class="fa fa-bookmark"></i>
-            </button>
           </div>
 
           <div class="wrapper wrapper-content">
@@ -724,10 +721,26 @@
           </div>
         </div>
         <!-- Buy/Sell right sidebar -->
-        <div id="right-sidebar" class="buy-sell-right-sidebar" class="animated">
+        <div class="animated right-sidebar buy-sell-right-sidebar">
           <div class="sidebar-container">
-            <button class="btn btn-default btn-lg border-0" type="button"><i class="fa fa-close"></i>
+            <button class="btn btn-default btn-lg border-0" type="button">
+              <i class="fa fa-close"></i>
             </button>
+          </div>
+        </div>
+
+        <!-- Followers right sidebar -->
+        <div class="follower-sidebar-container position-fixed d-flex">
+          <button
+            class="btn btn-warning btn-followers follower-sidebar-toggle"
+            type="button"
+          >
+            <i class="fa fa-bookmark"></i>
+          </button>
+          <div class="follower-sidebar animate p-3">
+            <div class="sidebar-container">
+              <p>Test Content</p>
+            </div>
           </div>
         </div>
       </div>
