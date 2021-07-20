@@ -71,11 +71,12 @@
 // Follower right sidebar
 
 .follower-sidebar-container {
-  width: 300px !important;
+  width: 317px !important;
   height: 80vh;
   top: 20vh;
-  right: -264px;
+  right: -282px;
   z-index: 2147483647;
+  transition-duration: 0.5s;
 }
 
 .follower-sidebar {
@@ -88,70 +89,17 @@
 }
 
 .follower-sidebar-container.sidebar-open {
-  right: 0;
+  transform: translate(-282px, 0);
 }
-
-// .follower-sidebar.sidebar-open.sidebar-top {
-//   top: 0;
-//   border-top: none;
-// }
 
 .sidebar-container {
   .fa-close {
     font-size: 18px;
   }
   .sidebar-content {
-    padding: 15px 20px;
-    font-size: 12px;
   }
 
   .sidebar-title {
-    background: #f9f9f9;
-    padding: 20px;
-    border-bottom: 1px solid @border-color;
-
-    h3 {
-      margin-bottom: 3px;
-      padding-left: 2px;
-    }
-  }
-
-  .tab-content {
-    h4 {
-      margin-bottom: 5px;
-    }
-  }
-
-  .sidebar-message > a > .float-left {
-    margin-right: 10px;
-  }
-
-  .sidebar-message > a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .sidebar-message {
-    padding: 15px 20px;
-  }
-
-  .sidebar-message .media-body {
-    display: block;
-    width: auto;
-  }
-
-  .sidebar-message:hover {
-    //    background: #f9f9f9;
-  }
-
-  .sidebar-message .message-avatar {
-    height: 38px;
-    width: 38px;
-    border-radius: 50%;
-  }
-
-  .setings-item {
-    padding: 15px 20px;
     border-bottom: 1px solid @border-color;
   }
 }
