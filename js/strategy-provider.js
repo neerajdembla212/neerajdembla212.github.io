@@ -1,7 +1,11 @@
 $(function () {
   const lineChartBorderColor = "#501EC6";
   function plotLineChart(lineChartCanvas, lineData) {
-    lineChartCanvas.height = 40;
+    if ($(lineChartCanvas).hasClass("sm")) {
+      lineChartCanvas.height = 30;
+    } else {
+      lineChartCanvas.height = 40;
+    }
     const ctx = lineChartCanvas.getContext("2d");
     var gradient = ctx.createLinearGradient(0, 0, 0, Math.max(...lineData));
     gradient.addColorStop(0, "#B6A3E6");
