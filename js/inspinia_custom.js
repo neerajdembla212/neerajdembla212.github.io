@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  eventHandlers();
+});
+
+function eventHandlers() {
   // dropdown in navigation panel to switch accounts
   $(".dropdown-select-menu").click((event) => {
     const selectedItem = event.target.innerText.trim();
@@ -33,9 +37,38 @@ $(document).ready(function () {
     $(".right-sidebar").removeClass("sidebar-open");
   });
 
-  // follower sidebar right
-  $(".follower-sidebar-toggle").on("click", function (e) {
-    e.preventDefault();
-    $(".follower-sidebar-container").toggleClass("sidebar-open");
-  });
-});
+}
+
+//generic ajax function
+function callAjaxMethod({
+  url,
+  method = "GET",
+  parameters = {},
+  successCallback,
+}) {
+  try {
+    $.ajax({
+      type: method,
+      url: url,
+      data: parameters,
+      cache: false,
+      beforeSend: function () {
+        //enable loader
+        console.log("sending request");
+        // $(".loader").fadeIn();
+      },
+      success: successCallback,
+      error: function (xhr, textStatus, errorThrown) {
+        console.log(errorThrown);
+        // $(".loader").fadeOut();
+      },
+      complete: function () {
+        //disable loader
+        console.log("request complete");
+        // $(".loader").fadeOut();
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
