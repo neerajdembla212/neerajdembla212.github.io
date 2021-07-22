@@ -1,5 +1,52 @@
 (function () {
+  class State {
+    risingStars = [];
+    topRated = [];
+    topGrowth = [];
+    followers = [];
+
+    getState() {
+      return {
+        risingStars: this.risingStars,
+        topRated: this.topRated,
+        topGrowth: this.topGrowth,
+        followers: this.followers
+      }
+    }
+
+    setRisingStars(data) {
+      if(!data || !Array.isArray(data)) {
+        return
+      }
+      this.risingStars = data;
+    }
+    
+    setTopRated(data) {
+      if(!data || !Array.isArray(data)) {
+        return
+      }
+      this.topRated = data;
+    }
+    
+    setTopGrowth(data) {
+      if(!data || !Array.isArray(data)) {
+        return
+      }
+      this.topGrowth = data;
+    }
+
+    setFollowers(data) {
+      if(!data || !Array.isArray(data)) {
+        return
+      }
+      this.followers = data;
+    }
+  }
+
+  const STATE = new State();
+
   $(function () {
+
     const lineChartBorderColor = "#501EC6";
     // Plot single Line chart (trendline)
     function plotLineChart(lineChartCanvas, lineData) {
@@ -179,33 +226,62 @@
       });
       container.append(containerHTML);
     }
+    
+    function plotListView() {
+      const activeId = getActiveTab().attr('href');
+      switch(activeId) {
+        case '#rising-stars-grid' : 
+        const risingStars = STATE.getState().risingStars;
+      }
+    }
 
+    function plotGridView() {
+      const activeId = getActiveTab().attr('href');
+      switch(activeId) {
+        case '#rising-stars-grid' : 
+        const risingStars = STATE.getState().risingStars;
+        plotRisingStarCard(risingStars);
+        plotGridLineCharts(risingStars);
+        plotGridTriangleCharts(risingStars); 
+        registerGridViewEvents();
+        break;
+      }
+    }
+    registerGlobalEvents();
     // fetch rising stars
     callAjaxMethod({
       url: "http://demo6418683.mockable.io/users/rising-stars",
       successCallback: (data) => {
-        console.log("data ", data);
-        plotRisingStarCard(data.data);
-        plotGridLineCharts(data.data);
-        plotGridTriangleCharts(data.data);
-        registerEvents();
+        STATE.setRisingStars(data.data);
+        const risingStars = STATE.getState().risingStars;
+        const viewType = getCurrentViewType();
+        switch(viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
       },
     });
   });
 
-  function registerEvents() {
+  // register events on static content i.e content which is not changing dynamically. such events are global for this page
+  function registerGlobalEvents() {
     // subheader - toggling active class on grid and list icons
     $(".subheader .btn-group button").click((event) => {
       const viewType = $(event.currentTarget).data("viewType");
       $(".subheader .btn-group button").removeClass("active");
       $(event.currentTarget).addClass("active");
       if (viewType === "list") {
-        window.location.href = "strategy-providers-list.html";
+        // plot list view for current active tab content
+        plotListView();
+        
       } else if (viewType === "grid") {
-        window.location.href = "strategy-providers-grid.html";
+        // plot grid view for current active tab content
+        plotGridView();
       }
     });
+  }
 
+  function registerGridViewEvents() {
     // Grid View - toggling active class on follow icon in grid and list view
     $(".contact-box .favourite-icon").click((ele) => {
       const currentTarget = $(ele.currentTarget);
@@ -216,7 +292,9 @@
         currentTarget.removeClass("fa-bookmark").addClass("fa-bookmark-o");
       }
     });
+  }
 
+  function registerListViewEvents() {
     // List view - Toggle follow button
     const listFavIcon = $("table td > .btn.btn-action");
     listFavIcon.click((ele) => {
@@ -238,6 +316,14 @@
     });
   }
 
+  function getActiveTab() {
+    return $('.nav.nav-tabs .active')
+  }
+
+  // return view type as "grid" or "list"
+  function getCurrentViewType() {
+    return $(".subheader .btn-group button.active").data("viewType")
+  }
   function formatWithCommas(number) {
     internationalNumberFormat = new Intl.NumberFormat("en-US");
     return internationalNumberFormat.format(number);
