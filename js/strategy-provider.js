@@ -53,7 +53,7 @@
     registerGlobalEvents();
     // fetch rising stars
     callAjaxMethod({
-      url: "http://demo6418683.mockable.io/users/rising-stars",
+      url: "https://copypip.free.beeceptor.com/users/rising-stars",
       successCallback: (data) => {
         STATE.setRisingStars(data.data);
         const risingStars = STATE.getState().risingStars;
