@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  eventHandlers();
+  registerEventHandlers();
 });
 
-function eventHandlers() {
+function registerEventHandlers() {
   // dropdown in navigation panel to switch accounts
   $(".dropdown-select-menu").click((event) => {
     const selectedItem = event.target.innerText.trim();
