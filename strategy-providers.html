@@ -233,12 +233,31 @@
                   </li>
                 </ul>
               </li>
+              <li class="dropdown">
+                <a
+                  class="dropdown-toggle count-info"
+                  data-toggle="dropdown"
+                  href="#"
+                >
+                  <i class="fa fa-globe"></i>
+                  <span class="i18container">
+                    <span data-i18n="topnav.languageSelected"></span>
+                  </span>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts i8List">
+                  <li data-id="EN" class="i18Options i18SelectEnglish selected">English</li>
+                  <li data-id="ES" class="i18Options i18SelectSpanish">Spanish</li>
+              </li>
             </ul>
           </nav>
         </div>
         <div id="page-container">
           <div class="d-flex justify-content-between subheader flex-wrap">
-            <h2 class="font-bold my-2">Strategy Providers</h2>
+            <h2 class="font-bold my-2">
+              <span class="i18container">
+                <span data-i18n="body.strategyProvider"></span>
+              </span>
+            </h2>
             <div class="d-flex my-2">
               <form role="form" class="mr-4">
                 <div class="position-relative">
@@ -281,18 +300,26 @@
                       class="nav-link active"
                       data-toggle="tab"
                       href="#rising-stars"
-                      >Rising Stars</a
+                      >
+                        <span class="i18container">
+                          <span data-i18n="body.risingStars"></span>
+                        </span>
+                      </a
                     >
                   </li>
                   <li>
-                    <a class="nav-link" data-toggle="tab" href="#top-rated"
-                      >Top Rated</a
-                    >
+                    <a class="nav-link" data-toggle="tab" href="#top-rated">
+                      <span class="i18container">
+                        <span data-i18n="body.topRated"></span>
+                      </span>  
+                    </a>
                   </li>
                   <li>
-                    <a class="nav-link" data-toggle="tab" href="#top-growth"
-                      >Top Growth</a
-                    >
+                    <a class="nav-link" data-toggle="tab" href="#top-growth">
+                      <span class="i18container">
+                        <span data-i18n="body.topGrowth"></span>
+                      </span>
+                    </a>
                   </li>
                 </ul>
                 <div>
@@ -301,26 +328,42 @@
                       data-toggle="dropdown"
                       class="btn btn-default dropdown-toggle"
                     >
-                      Returns over 2 Yrs
+                    <span class="i18container">
+                      <span data-i18n="body.returnsOver"></span>
+                    </span>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">
+                        <span class="i18container">
+                          <span data-i18n="body.action"></span>
+                        </span>
+                      </a></li>
                       <li>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">
+                          <span class="i18container">
+                            <span data-i18n="body.anotherAction"></span>
+                          </span>
+                        </a>
                       </li>
                       <li>
                         <a class="dropdown-item" href="#"
-                          >Something else here</a
+                          ><span class="i18container">
+                            <span data-i18n="body.somethingElse"></span>
+                          </span></a
                         >
                       </li>
                       <li class="dropdown-divider"></li>
                       <li>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#"><span class="i18container">
+                          <span data-i18n="body.separatedLink"></span>
+                        </span></a>
                       </li>
                     </ul>
                   </div>
                   <button type="button" class="btn btn-w-m btn-default">
-                    More Filters
+                    <span class="i18container">
+                      <span data-i18n="body.moreFilters"></span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -372,6 +415,7 @@
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
+    <script src="js/plugins/i18next/i18next.min.js"></script>
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
     <script src="js/inspinia_custom.js"></script>

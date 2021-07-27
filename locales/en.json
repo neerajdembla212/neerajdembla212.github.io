@@ -24,7 +24,25 @@
     "package": "Packages"
   },
   "body":{
-    "welcome": "Welcome Amelia"
+    "welcome": "Welcome Amelia",
+    "strategyProvider": "Strategy Providers",
+    "risingStars": "Rising Stars",
+    "topRated": "Top Rated",
+    "topGrowth": "Top Growth",
+    "moreFilters": "More Filters",
+    "returnsOver": "Returns over 2 Yrs",
+    "action": "Action",
+    "anotherAction": "Another action",
+    "somethingElse": "Something else here",
+    "separatedLink": "Separated link",
+    "provider": "PROVIDER",
+    "returnCaps": "RETURN",
+    "riskCaps": "RISK",
+    "trendline": "TRENDLINE",
+    "copier": "COPIER",
+    "rating": "RATING",
+    "copy": "COPY",
+    "watch": "WATCH"
 
   },
   "topnav":{
@@ -33,7 +51,8 @@
     "search": "Search for something...",
     "logout": "Log out",
     "welcometext": "Welcome to INSPINIA+ Admin Theme.",
-    "language": "Language"
+    "language": "Language",
+    "languageSelected": "EN"
   },
   "demo":{
     "text1": "Internationalization (sometimes shortened to \"I18N , meaning \"I - eighteen letters -N\") is the process of planning and implementing products and services so that they can easily be adapted to specific local languages and cultures, a process called localization . The internationalization process is sometimes called translation or localization enablement ."

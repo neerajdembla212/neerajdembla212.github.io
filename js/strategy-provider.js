@@ -431,14 +431,46 @@
     return `
     <thead>
       <tr>
-        <th>PROVIDER</th>
-        <th>RETURN</th>
-        <th>RISK</th>
-        <th>TRENDLINE</th>
-        <th>COPIER</th>
-        <th>RATING</th>
-        <th>COPY</th>
-        <th>WATCH</th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.provider"></span>
+          </span>
+        </th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.returnCaps"></span>
+          </span>
+        </th>
+        <th>
+        <span class="i18container">
+          <span data-i18n="body.riskCaps"></span>
+        </span>
+        </th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.trendline"></span>
+          </span>
+        </th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.copier"></span>
+          </span>
+        </th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.rating"></span>
+          </span>
+        </th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.copy"></span>
+          </span>
+        </th>
+        <th>
+          <span class="i18container">
+            <span data-i18n="body.watch"></span>
+          </span>
+        </th>
       </tr>
     </thead>`
   }

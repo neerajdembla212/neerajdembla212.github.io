@@ -1561,6 +1561,16 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .tab-content .ibox-content {
   width: 100%;
 }
+.i8List .i18Options {
+  cursor: pointer;
+  padding: 2px;
+  text-align: center;
+}
+.i8List .i18Options:hover,
+.i8List .i18Options.selected {
+  background-color: #17987e;
+  color: #ffffff;
+}
 .top-navigation #page-wrapper {
   width: 100%;
 }
@@ -9987,7 +9997,7 @@ body.md-skin {
   background: rgba(255, 255, 255, 0.3);
 }
 .navbar-default .nav > li:not(:active) > a:hover,
-.navbar-default .nav > li > a.active:focus {
+.navbar-default .nav > li:not(:active) > a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid #21c78b;
