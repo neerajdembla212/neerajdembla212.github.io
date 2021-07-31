@@ -54,7 +54,9 @@
                 Demo
               </button>
               <ul class="dropdown-menu dropdown-select-menu">
-                <li><a class="dropdown-item" href="javascript:;">Demo&nbsp;</a></li>
+                <li>
+                  <a class="dropdown-item" href="javascript:;">Demo&nbsp;</a>
+                </li>
                 <li>
                   <a class="dropdown-item" href="javascript:;">Live&nbsp;</a>
                 </li>
@@ -70,7 +72,7 @@
               <span class="nav-label">Trade Terminal</span></a>
           </li>
           <li>
-            <a href="strategy-providers.html" class="active"><span class="nav-icon strategy-providers"></span>
+            <a href="strategy-providers.html"><span class="nav-icon strategy-providers"></span>
               <span class="nav-label">Strategy Providers</span></a>
           </li>
           <li>
@@ -113,32 +115,40 @@
         </ul>
       </div>
     </nav>
+
     <div id="page-wrapper" class="gray-bg dashbard-1">
       <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
           <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle" href="#"><span
-                class="nav-menu-toggle-arrow"></span> </a>
+                class="nav-menu-toggle-arrow"></span>
+            </a>
             <h3 class="title">Copy Traders</h3>
           </div>
           <ul class="nav navbar-top-links navbar-right">
             <li>
-              <button type="button" class="btn btn-w-m btn-primary">Buy/Sell</button>
+              <button type="button" class="btn btn-w-m btn-primary buy-sell-right-sidebar-toggle">
+                Buy/Sell
+              </button>
             </li>
             <li class="dropdown-divider"></li>
             <li class="button">
-              <button type="button" class="btn btn-outline btn-primary">Deposit</button>
+              <button type="button" class="btn btn-outline btn-primary">
+                Deposit
+              </button>
             </li>
             <li class="dropdown-divider"></li>
             <li class="dropdown">
               <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                <i class="fa fa-bell"></i>
+                <span class="label label-primary">8</span>
               </a>
               <ul class="dropdown-menu dropdown-alerts">
                 <li>
                   <a href="mailbox.html" class="dropdown-item">
                     <div>
-                      <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                      <i class="fa fa-envelope fa-fw"></i> You have 16
+                      messages
                       <span class="float-right text-muted small">4 minutes ago</span>
                     </div>
                   </a>
@@ -173,47 +183,95 @@
               </ul>
             </li>
           </ul>
-
         </nav>
       </div>
-      <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-sm-4">
-          <h2>This is main title</h2>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">This is</a>
-            </li>
-            <li class="breadcrumb-item active">
-              <strong>Breadcrumb</strong>
-            </li>
-          </ol>
+      <div id="page-container">
+        <div class="d-flex justify-content-between subheader flex-wrap">
+          <h2 class="font-bold my-2 d-flex">My Portfolio <span class="role-chip py-1 px-2 ml-2">Follower</span></h2>
+          <div class="btn-group returns-filter">
+            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+              Returns over 2 Yrs
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Returns MTD</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Returns QTD</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Returns YTD</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Returns over 2 Yrs</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Returns from Inception</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-sm-8">
-          <div class="title-action">
-            <a href="" class="btn btn-primary">This is action area</a>
+
+        <div class="wrapper wrapper-content">
+          <div class="sparkline-container mt-2 d-flex p-2">
+            <div class="d-flex">
+              <div class="sparkline ">
+                <div class="key">Cumulative returns</div>
+                <div class="d-flex justify-content-between">
+                  <div class="value green highlight">44.8<sup class="ml-1 font-weight-normal">%</sup></div>
+                  <div class="ml-3 mt-2 light-white">since Inception
+                    1 Jul 2021</div>
+                </div>
+              </div>
+              <div class="divider mx-2"></div>
+            </div>
+            <div class="d-flex w-60">
+              <div class="sparkline">
+                <div class="key">Current Balance</div>
+                <div class="value white">SGD20,000</div>
+              </div>
+              <div class="sparkline">
+                <div class="key">Deposits</div>
+                <div class="value white">SGD20,000</div>
+              </div>
+              <div class="sparkline">
+                <div class="key">Withdrawals</div>
+                <div class="value white">SGD20,000</div>
+              </div>
+              <div class="sparkline">
+                <div>
+                  <div class="key">Total Paid</div>
+                  <div class="sub-key">Fees + Profit Shared</div>
+                </div>
+                <div class="value white">SGD20,000</div>
+              </div>
+            </div>
+            <div class="divider mx-2"></div>
+            <div class="d-flex">
+              <div class="sparkline">
+                <div class="key">Trades</div>
+                <div class="value green">2355</div>
+              </div>
+              <div class="sparkline">
+                <div class="key">Max Drawdown</div>
+                <div class="value green">44%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="float-right">10GB of <strong>250GB</strong> Free.</div>
+          <div>
+            <strong>Copyright</strong> Example Company &copy; 2014-2018
           </div>
         </div>
       </div>
-
-      <div class="wrapper wrapper-content">
-        <div class="middle-box text-center animated fadeInRightBig">
-          <h3 class="font-bold">This is page content</h3>
-          <div class="error-desc">
-            You can create here any grid layout you want. And any variation layout you imagine:) Check out
-            main dashboard and other site. It use many different layout.
-            <br /><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
-          </div>
+      <!-- Buy/Sell right sidebar -->
+      <div class="animated right-sidebar buy-sell-right-sidebar">
+        <div class="sidebar-container">
+          <button class="btn btn-default btn-lg border-0" type="button">
+            <i class="fa fa-close"></i>
+          </button>
         </div>
       </div>
-      <div class="footer">
-        <div class="float-right">
-          10GB of <strong>250GB</strong> Free.
-        </div>
-        <div>
-          <strong>Copyright</strong> Example Company &copy; 2014-2018
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -228,6 +286,9 @@
   <script src="js/inspinia.js"></script>
   <script src="js/plugins/pace/pace.min.js"></script>
   <script src="js/inspinia_custom.js"></script>
+
+  <!-- ChartJS-->
+  <script src="js/plugins/chartJs/Chart.min.js"></script>
 </body>
 
 </html>

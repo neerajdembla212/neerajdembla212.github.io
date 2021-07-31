@@ -4,22 +4,35 @@
 @nav-profile-pattern: ~"";
 @nav-bg-pattern: linear-gradient(180deg, #754ef7 0%, #4510b7 100%);
 
-#page-container {
-  padding-right: 20px;
+img,
+embed,
+object,
+video {
+  max-width: 100%;
 }
 
-.nav > li.active {
+#page-container {
+  padding: 20px;
+}
+
+.wrapper {
+  padding: 0;
+}
+
+.nav>li.active {
   border-right: 4px solid darken(@navy, 2%);
   border-left: none;
   background: rgba(255, 255, 255, 0.3);
 }
-.navbar-default .nav > li:not(:active) > a:hover,
-.navbar-default .nav > li:not(:active) > a:focus {
+
+.navbar-default .nav>li:not(:active)>a:hover,
+.navbar-default .nav>li:not(:active)>a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid darken(@navy, 2%);
 }
-.nav li > a > .nav-icon {
+
+.nav li>a>.nav-icon {
   height: 20px;
   width: 20px;
   float: left;
@@ -33,9 +46,11 @@
   display: flex;
   justify-content: space-between;
 }
-.mini-navbar > .profile-element {
+
+.mini-navbar>.profile-element {
   display: block;
 }
+
 .text-light-white {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -44,78 +59,103 @@ body.mini-navbar .nav-header {
   background-color: transparent;
   padding: 20px 10px;
 }
-body.mini-navbar .nav.metismenu > li.logo {
+
+body.mini-navbar .nav.metismenu>li.logo {
   padding: 20px 20px 0 20px;
 }
-.nav li > a > .nav-icon.my-portfolio {
+
+.nav li>a>.nav-icon.my-portfolio {
   background-image: url("/img/ic_myPortfolio.svg");
 }
-.nav li > a > .nav-icon.trade-terminal {
+
+.nav li>a>.nav-icon.trade-terminal {
   background-image: url("/img/ic_tradeTerminal.svg");
 }
-.nav li > a > .nav-icon.strategy-providers {
+
+.nav li>a>.nav-icon.strategy-providers {
   background-image: url("/img/ic_tradeTerminal.svg");
 }
-.nav li > a > .nav-icon.watchlist {
+
+.nav li>a>.nav-icon.watchlist {
   background-image: url("/img/ic_watchlist.svg");
 }
-.nav li > a > .nav-icon.copy-traders {
+
+.nav li>a>.nav-icon.copy-traders {
   background-image: url("/img/ic_copyTraders.svg");
 }
-.nav li > a > .nav-icon.copypip-academy {
+
+.nav li>a>.nav-icon.copypip-academy {
   background-image: url("/img/ic_copypip-academy.svg");
 }
-.nav li > a > .nav-icon.simulation {
+
+.nav li>a>.nav-icon.simulation {
   background-image: url("/img/ic_simulation.svg");
 }
-.nav li > a > .nav-icon.news-feed {
+
+.nav li>a>.nav-icon.news-feed {
   background-image: url("/img/ic_newsFeed.svg");
 }
-.nav li > a > .nav-icon.help {
+
+.nav li>a>.nav-icon.help {
   background-image: url("/img/ic_help.svg");
 }
-.nav li > a > .nav-icon.refer-a-friend {
+
+.nav li>a>.nav-icon.refer-a-friend {
   background-image: url("/img/ic_referFriend.svg");
 }
-.nav li > a > .nav-icon.settings {
+
+.nav li>a>.nav-icon.settings {
   background-image: url("/img/ic_settings.svg");
 }
-.nav > li.active > a > .nav-icon.my-portfolio {
+
+.nav>li.active>a>.nav-icon.my-portfolio {
   background-image: url("/img/ic_myPortfolio_active.svg");
 }
-.nav > li.active > a > .nav-icon.trade-terminal {
+
+.nav>li.active>a>.nav-icon.trade-terminal {
   background-image: url("/img/ic_tradeTerminal_active.svg");
 }
-.nav li.active > a > .nav-icon.strategy-providers {
+
+.nav li.active>a>.nav-icon.strategy-providers {
   background-image: url("/img/ic_tradeTerminal_active.svg");
 }
-.nav li.active > a > .nav-icon.watchlist {
+
+.nav li.active>a>.nav-icon.watchlist {
   background-image: url("/img/ic_watchlist_active.svg");
 }
-.nav li.active > a > .nav-icon.copy-traders {
+
+.nav li.active>a>.nav-icon.copy-traders {
   background-image: url("/img/ic_copyTraders_active.svg");
 }
-.nav li.active > a > .nav-icon.copypip-academy {
+
+.nav li.active>a>.nav-icon.copypip-academy {
   background-image: url("/img/ic_copypipAcademy_active.svg");
 }
-.nav li.active > a > .nav-icon.simulation {
+
+.nav li.active>a>.nav-icon.simulation {
   background-image: url("/img/ic_simulation_active.svg");
 }
-.nav li.active > a > .nav-icon.news-feed {
+
+.nav li.active>a>.nav-icon.news-feed {
   background-image: url("/img/ic_newsFeed_active.svg");
 }
-.nav li.active > a > .nav-icon.help {
+
+.nav li.active>a>.nav-icon.help {
   background-image: url("/img/ic_help_active.svg");
 }
-.nav li.active > a > .nav-icon.refer-a-friend {
+
+.nav li.active>a>.nav-icon.refer-a-friend {
   background-image: url("/img/ic_referFriend_active.svg");
 }
-.nav li.active > a > .nav-icon.settings {
+
+.nav li.active>a>.nav-icon.settings {
   background-image: url("/img/ic_settings_active.svg");
 }
+
 .divider {
   border-bottom: 1px solid #eeeeee;
 }
+
 .nav-header .role-card {
   width: 200px;
   border-radius: 6px;
@@ -124,23 +164,29 @@ body.mini-navbar .nav.metismenu > li.logo {
   top: 31px;
   left: 64px;
 }
+
 .role-card .fa-check {
   color: #339a4a;
   font-size: 1vw;
 }
-.role-card .role-list > p {
+
+.role-card .role-list>p {
   display: flex;
   justify-content: space-between;
 }
-.role-card .role-list > p:last-child {
+
+.role-card .role-list>p:last-child {
   margin-bottom: 0;
 }
-.role-card .role-list > p.active > .fa {
+
+.role-card .role-list>p.active>.fa {
   display: block;
 }
-.role-card .role-list > p > .fa {
+
+.role-card .role-list>p>.fa {
   display: none;
 }
+
 .nav li.divider {
   width: 80%;
   margin: auto;
@@ -150,6 +196,7 @@ body.mini-navbar .nav.metismenu > li.logo {
 .sidebar-collapse {
   height: 100vh;
 }
+
 .contact-box {
   padding: 1em;
   margin-bottom: 1em;
@@ -160,18 +207,22 @@ body.mini-navbar .nav.metismenu > li.logo {
     cursor: pointer;
     font-size: 18px;
   }
+
   .return-percentage {
     font-size: 24px;
     color: @dark-green;
   }
 }
+
 .contact-box.sm {
   width: 250px;
 }
+
 // we are placing this style out of .contact-box to reuse it in grid and list view
 .favourite-icon.active {
   color: @orange;
 }
+
 .text-light-gray {
   color: @text-light-gray;
   font-weight: 400;
@@ -180,14 +231,17 @@ body.mini-navbar .nav.metismenu > li.logo {
 .small-font {
   font-size: @small-font;
 }
+
 .ratings {
   .fa-star:not(.active) {
     color: @background-light-gray;
   }
+
   .fa-star.active {
     color: @orange;
   }
 }
+
 .w-300 {
   width: 300px;
 }
@@ -201,6 +255,7 @@ body.mini-navbar .nav.metismenu > li.logo {
   color: @search-icon-color;
   font-size: 14px;
 }
+
 .search-input-padding {
   padding-left: 30px;
 }
@@ -214,41 +269,52 @@ body.mini-navbar .nav.metismenu > li.logo {
 .ibox-content .table .return-percentage {
   color: #339a4a;
 }
+
 .tabs-container {
   .nav-tabs {
     border-bottom: none;
   }
+
   .tabs-header {
     border-bottom: 1px solid @border-color;
   }
 }
+
 .subheader .btn-group .fa {
   color: @subheader-icon-color;
   font-size: 16px;
 }
+
 .subheader .btn-group .btn.active .fa {
   color: @navy;
 }
+
 .subheader .btn-group .btn.active {
   background-color: @subheader-icon-bg;
   box-shadow: none;
 }
+
 .subheader {
-  padding: 40px 10px 0px;
+  .returns-filter {
+    height: 40px;
+    align-self: center;
+  }
 }
+
 table thead th {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
   font-size: 12px;
 }
 
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
   padding: 15px 0;
 }
+
 .canvas-max-width-trendline {
   width: 17%;
 }
@@ -256,4 +322,74 @@ table thead th {
 .btn-followers {
   border-radius: 4px 0 0 4px;
   height: 33px;
+}
+
+.role-chip {
+  background: #D2E7FF;
+  border-radius: 4px;
+  color: #487FD9;
+  font-size: 10px;
+  text-transform: uppercase;
+  height: 20px;
+  align-self: center;
+  font-weight: bold;
+}
+
+.sparkline-container {
+  width: 100%;
+  background-color: @black;
+  border-radius: 6px;
+  height: 100px;
+
+
+  .sparkline {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 200px;
+    margin-right: 2em;
+
+    .value {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .green {
+      color: @navy;
+    }
+
+    .white {
+      color: @white;
+    }
+
+    .light-white {
+      color: @lighter-gray;
+    }
+
+    .highlight {
+      font-size: 30px;
+    }
+
+    .key {
+      color: @lighter-gray;
+      font-size: 14px;
+    }
+
+    .sub-key {
+      font-size: 12px;
+      color: @lighter-gray;
+    }
+  }
+
+  .divider {
+    width: 1px;
+    border: none;
+    height: 100%;
+    width: 1px;
+    background-color: #000000;
+  }
+
+  .w-60 {
+    width: 60%
+  }
 }

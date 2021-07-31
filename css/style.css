@@ -9978,8 +9978,17 @@ body.md-skin {
 .small-image {
   height: 50px;
 }
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
 #page-container {
-  padding-right: 20px;
+  padding: 20px;
+}
+.wrapper {
+  padding: 0;
 }
 .nav > li.active {
   border-right: 4px solid #21c78b;
@@ -9987,7 +9996,7 @@ body.md-skin {
   background: rgba(255, 255, 255, 0.3);
 }
 .navbar-default .nav > li:not(:active) > a:hover,
-.navbar-default .nav > li > a.active:focus {
+.navbar-default .nav > li:not(:active) > a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid #21c78b;
@@ -10193,8 +10202,9 @@ body.mini-navbar .nav.metismenu > li.logo {
   background-color: #E2E7FB;
   box-shadow: none;
 }
-.subheader {
-  padding: 40px 10px 0px;
+.subheader .returns-filter {
+  height: 40px;
+  align-self: center;
 }
 table thead th {
   font-weight: 400;
@@ -10214,6 +10224,62 @@ table thead th {
 .btn-followers {
   border-radius: 4px 0 0 4px;
   height: 33px;
+}
+.role-chip {
+  background: #D2E7FF;
+  border-radius: 4px;
+  color: #487FD9;
+  font-size: 10px;
+  text-transform: uppercase;
+  height: 20px;
+  align-self: center;
+  font-weight: bold;
+}
+.sparkline-container {
+  width: 100%;
+  background-color: #1F1F25;
+  border-radius: 6px;
+  height: 100px;
+}
+.sparkline-container .sparkline {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 200px;
+  margin-right: 2em;
+}
+.sparkline-container .sparkline .value {
+  font-size: 16px;
+  font-weight: bold;
+}
+.sparkline-container .sparkline .green {
+  color: #22D091;
+}
+.sparkline-container .sparkline .white {
+  color: #ffffff;
+}
+.sparkline-container .sparkline .light-white {
+  color: #DCDCDC;
+}
+.sparkline-container .sparkline .highlight {
+  font-size: 30px;
+}
+.sparkline-container .sparkline .key {
+  color: #DCDCDC;
+  font-size: 14px;
+}
+.sparkline-container .sparkline .sub-key {
+  font-size: 12px;
+  color: #DCDCDC;
+}
+.sparkline-container .divider {
+  border: none;
+  height: 100%;
+  width: 1px;
+  background-color: #000000;
+}
+.sparkline-container .w-60 {
+  width: 60%;
 }
 @media print {
   nav.navbar-static-side {
