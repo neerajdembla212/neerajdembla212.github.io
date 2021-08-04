@@ -45,6 +45,7 @@ function callAjaxMethod({
   method = "GET",
   parameters = {},
   successCallback,
+  beforeSend
 }) {
   try {
     $.ajax({
@@ -52,7 +53,7 @@ function callAjaxMethod({
       url: url,
       data: parameters,
       cache: false,
-      beforeSend: function () {
+      beforeSend: beforeSend ? beforeSend : function () {
         //enable loader
         console.log("sending request");
         // $(".loader").fadeIn();

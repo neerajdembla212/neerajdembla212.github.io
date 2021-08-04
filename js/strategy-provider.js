@@ -56,13 +56,13 @@
       url: "https://copypip.free.beeceptor.com/users/rising-stars",
       successCallback: (data) => {
         STATE.setRisingStars(data.data);
-        const risingStars = STATE.getState().risingStars;
         const viewType = getCurrentViewType();
         switch (viewType) {
           case 'grid': plotGridView(); break;
           case 'list': plotListView(); break;
         }
       },
+      beforeSend: plotGridLoadingState
     });
   });
 
@@ -156,6 +156,9 @@
   }
   // Plot single trinagle chart (risk)
   function plotTriangleChart(canvas, riskFactor) {
+    if (!canvas) {
+      return;
+    }
     const containerTriangleSide = 25;
     canvas.height = containerTriangleSide;
     canvas.width = containerTriangleSide;
@@ -283,13 +286,19 @@
     switch (activeId) {
       case '#rising-stars':
         const risingStars = STATE.getState().risingStars;
+        // const risingStars = {}
         plotRisingStarCard(risingStars);
         plotGridLineCharts(risingStars);
-        plotGridTriangleCharts(risingStars);
         registerGridViewEvents();
         formatDisplayedNumbers();
         break;
     }
+  }
+
+  function plotGridLoadingState() {
+    const loadingContactBoxes = $('.grid-loading-state .contact-box');
+    const container = $("#rising-stars .panel-body");
+    container.empty().append(loadingContactBoxes);
   }
   // register events on static content i.e content which is not changing dynamically. such events are global for this page
   function registerGlobalEvents() {
@@ -367,14 +376,17 @@
       return "";
     }
     const {
+      id,
       profile_image,
       username,
       name,
       return_percentage,
       copiers_count,
-      risk_percentage,
-      id,
+      drawPercentage,
+      return_duration,
+      risk_amount
     } = user;
+
     return `<div class="contact-box d-flex flex-column" id="contact-box-${id}">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
@@ -391,14 +403,14 @@
       <span class="fa fa-bookmark-o favourite-icon"></span>
     </div>
     <div class="d-flex justify-content-between">
-      <span class="return-percentage font-bold">${return_percentage}%</span>
-      <canvas class="triangle"></canvas>
+      <span class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</span>
+      <span class="risk_amount h4 align-self-center m-0">$${risk_amount}</span>
     </div>
     <div class="d-flex justify-content-between mb-2">
       <span class="text-uppercase text-light-gray small-font">
-        Return over last 2 yr
+        ${return_duration}
       </span>
-      <span class="text-uppercase small-font">risk</span>
+      <span class="text-capitalize small-font text-blue">low risk</span>
     </div>
     <canvas class="lineChart" class="mt-2"></canvas>
     <button class="btn btn-primary btn-block">
@@ -406,12 +418,9 @@
     </button>
     <!-- area chart here-->
     <div class="d-flex mt-2 justify-content-between">
-      <span class="text-light-gray"><span class="format-us">${copiers_count}</span> Copiers</span>
-      <span class="text-dark-green">
-        <i class="fa fa-play fa-rotate-270"></i> ${risk_percentage}%
-      </span>
-      <span class="ratings">
-        ${getRatingsHTML(user.ratings)}
+      <span class="text-light-gray"><span class="format-us">${copiers_count}</span> Followers</span>
+      <span class="font-bold">
+        Drawdown <span class="${drawPercentage > 0 ? 'text-green' : 'text-danger'}">${drawPercentage}%</span>
       </span>
     </div>
   </div>`;
