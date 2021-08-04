@@ -15,6 +15,19 @@ video {
   padding: 20px;
 }
 
+#wrapper {
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+}
+
+#page-container {
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
 .wrapper {
   padding: 0;
 }
@@ -200,7 +213,7 @@ body.mini-navbar .nav.metismenu>li.logo {
 .contact-box {
   padding: 1em;
   margin-bottom: 1em;
-  width: 296px;
+  width: 290px;
   margin-right: 2em;
 
   .favourite-icon {
@@ -333,63 +346,4 @@ table thead th {
   height: 20px;
   align-self: center;
   font-weight: bold;
-}
-
-.sparkline-container {
-  width: 100%;
-  background-color: @black;
-  border-radius: 6px;
-  height: 100px;
-
-
-  .sparkline {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    max-width: 200px;
-    margin-right: 2em;
-
-    .value {
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .green {
-      color: @navy;
-    }
-
-    .white {
-      color: @white;
-    }
-
-    .light-white {
-      color: @lighter-gray;
-    }
-
-    .highlight {
-      font-size: 30px;
-    }
-
-    .key {
-      color: @lighter-gray;
-      font-size: 14px;
-    }
-
-    .sub-key {
-      font-size: 12px;
-      color: @lighter-gray;
-    }
-  }
-
-  .divider {
-    width: 1px;
-    border: none;
-    height: 100%;
-    width: 1px;
-    background-color: #000000;
-  }
-
-  .w-60 {
-    width: 60%
-  }
 }

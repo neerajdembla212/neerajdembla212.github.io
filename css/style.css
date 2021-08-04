@@ -9987,6 +9987,16 @@ video {
 #page-container {
   padding: 20px;
 }
+#wrapper {
+  overflow: hidden;
+}
+body {
+  overflow: hidden;
+}
+#page-container {
+  overflow-y: auto;
+  max-height: 90vh;
+}
 .wrapper {
   padding: 0;
 }
@@ -10132,7 +10142,7 @@ body.mini-navbar .nav.metismenu > li.logo {
 .contact-box {
   padding: 1em;
   margin-bottom: 1em;
-  width: 296px;
+  width: 290px;
   margin-right: 2em;
 }
 .contact-box .favourite-icon {
@@ -10244,8 +10254,8 @@ table thead th {
 .sparkline-container .sparkline {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  max-width: 200px;
+  justify-content: space-between;
+  padding: 10px;
   margin-right: 2em;
 }
 .sparkline-container .sparkline .value {
@@ -10272,6 +10282,9 @@ table thead th {
   font-size: 12px;
   color: #DCDCDC;
 }
+.sparkline-container .sparkline-container .sparkline:first-of-type {
+  margin-right: 0;
+}
 .sparkline-container .divider {
   border: none;
   height: 100%;
@@ -10280,6 +10293,40 @@ table thead th {
 }
 .sparkline-container .w-60 {
   width: 60%;
+}
+.portfolio-line-chart {
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  height: 300px;
+  position: relative;
+  margin: auto;
+  height: 23vw;
+  width: 100%;
+}
+.portfolio-following-users {
+  min-height: 250px;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+}
+.portfolio-following-users .header-text {
+  color: #4D4D4E;
+  font-weight: 600;
+  font-size: 16px;
+}
+.portfolio-following-users .action-tools {
+  color: #b7c0cb;
+}
+.portfolio-following-users thead {
+  background: #F9F9FB;
+  color: #8E8FA3;
+  border-top: 1px solid #EEEEEE;
+}
+.portfolio-following-users tr > td:first-child,
+.portfolio-following-users tr > th:first-child {
+  padding-left: 1rem;
+}
+.portfolio-following-users .table > thead > tr > th {
+  border-bottom-color: #EEEEEE;
 }
 @media print {
   nav.navbar-static-side {

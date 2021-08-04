@@ -211,9 +211,9 @@
         </div>
 
         <div class="wrapper wrapper-content">
-          <div class="sparkline-container mt-2 d-flex p-2">
-            <div class="d-flex">
-              <div class="sparkline ">
+          <div class="sparkline-container mt-2 d-flex">
+            <div class="d-flex w-25">
+              <div class="sparkline mr-0">
                 <div class="key">Cumulative returns</div>
                 <div class="d-flex justify-content-between">
                   <div class="value green highlight">44.8<sup class="ml-1 font-weight-normal">%</sup></div>
@@ -256,12 +256,209 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="footer">
-          <div class="float-right">10GB of <strong>250GB</strong> Free.</div>
-          <div>
-            <strong>Copyright</strong> Example Company &copy; 2014-2018
+          <!-- Line chart here-->
+          <div class="mt-3 portfolio-line-chart card p-3">
+            <canvas id="line-chart"></canvas>
           </div>
+          <!--Following users-->
+          <div class="my-3 portfolio-following-users ibox card">
+            <div class="d-flex justify-content-between p-3">
+              <h3>Following</h3>
+              <button type="button" class="btn btn-default btn-sm">More Filters</button>
+            </div>
+            <div class="">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Provider</th>
+                    <th class="text-center">NET P/L</th>
+                    <th class="text-center">Total Returns</th>
+                    <th class="text-center">Max DD</th>
+                    <th class="text-center">Trades</th>
+                    <th class="text-center">Subscription FEEs</th>
+                    <th class="text-center">P share %</th>
+                    <th class="text-center">TOTAL FEEs</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="table-user-1">
+                    <td>
+                      <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="img/a1.jpg" />
+                      <div class="ml-2 float-left">
+                        <p class="font-bold font-size-12 mb-0">
+                          SureWin88
+                        </p>
+                        <p class="text-light-black font-size-12 mb-0">
+                          Chun Eng Lee
+                          <img class="ml-1" src="img/flags/16/United-States.png" />
+                        </p>
+                      </div>
+                    </td>
+                    <td class="font-bold font-size-16 text-center">
+                      S$2,503
+                    </td>
+                    <td class="text-center">
+                      <span class="text-dark-green font-weight-bold">
+                        <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+                        10.43%
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      12%
+                    </td>
+                    <td class="text-center">
+                      85
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$400
+                    </td>
+                    <td class="text-center">
+                      10%
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$800
+                    </td>
+                    <td class="action-tools text-center">
+                      <i class="fa fa-pause mr-1"></i>
+                      <i class="fa fa-stop mr-1"></i>
+                      <i class="fa fa-gear mr-1"></i>
+                    </td>
+                  </tr>
+                  <tr id="table-user-2">
+                    <td>
+                      <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="img/a1.jpg" />
+                      <div class="ml-2 float-left">
+                        <p class="font-bold font-size-12 mb-0">
+                          SureWin88
+                        </p>
+                        <p class="text-light-black font-size-12 mb-0">
+                          Chun Eng Lee
+                          <img class="ml-1" src="img/flags/16/United-States.png" />
+                        </p>
+                      </div>
+                    </td>
+                    <td class="font-bold font-size-16 text-center">
+                      S$2,503
+                    </td>
+                    <td class="text-center">
+                      <span class="text-dark-green font-weight-bold">
+                        <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+                        10.43%
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      12%
+                    </td>
+                    <td class="text-center">
+                      85
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$400
+                    </td>
+                    <td class="text-center">
+                      10%
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$800
+                    </td>
+                    <td class="action-tools text-center">
+                      <i class="fa fa-pause mr-1"></i>
+                      <i class="fa fa-stop mr-1"></i>
+                      <i class="fa fa-gear mr-1"></i>
+                    </td>
+                  </tr>
+                  <tr id="table-user-3">
+                    <td>
+                      <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="img/a1.jpg" />
+                      <div class="ml-2 float-left">
+                        <p class="font-bold font-size-12 mb-0">
+                          SureWin88
+                        </p>
+                        <p class="text-light-black font-size-12 mb-0">
+                          Chun Eng Lee
+                          <img class="ml-1" src="img/flags/16/United-States.png" />
+                        </p>
+                      </div>
+                    </td>
+                    <td class="font-bold font-size-16 text-center">
+                      S$2,503
+                    </td>
+                    <td class="text-center">
+                      <span class="text-dark-green font-weight-bold">
+                        <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+                        10.43%
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      12%
+                    </td>
+                    <td class="text-center">
+                      85
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$400
+                    </td>
+                    <td class="text-center">
+                      10%
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$800
+                    </td>
+                    <td class="action-tools text-center">
+                      <i class="fa fa-pause mr-1"></i>
+                      <i class="fa fa-stop mr-1"></i>
+                      <i class="fa fa-gear mr-1"></i>
+                    </td>
+                  </tr>
+                  <tr id="table-user-4">
+                    <td>
+                      <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="img/a1.jpg" />
+                      <div class="ml-2 float-left">
+                        <p class="font-bold font-size-12 mb-0">
+                          SureWin88
+                        </p>
+                        <p class="text-light-black font-size-12 mb-0">
+                          Chun Eng Lee
+                          <img class="ml-1" src="img/flags/16/United-States.png" />
+                        </p>
+                      </div>
+                    </td>
+                    <td class="font-bold font-size-16 text-center">
+                      S$2,503
+                    </td>
+                    <td class="text-center">
+                      <span class="text-dark-green font-weight-bold">
+                        <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+                        10.43%
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      12%
+                    </td>
+                    <td class="text-center">
+                      85
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$400
+                    </td>
+                    <td class="text-center">
+                      10%
+                    </td>
+                    <td class="text-center font-weight-bold">
+                      S$800
+                    </td>
+                    <td class="action-tools text-center">
+                      <i class="fa fa-pause mr-1"></i>
+                      <i class="fa fa-stop mr-1"></i>
+                      <i class="fa fa-gear mr-1"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div></div>
         </div>
       </div>
       <!-- Buy/Sell right sidebar -->
@@ -286,6 +483,7 @@
   <script src="js/inspinia.js"></script>
   <script src="js/plugins/pace/pace.min.js"></script>
   <script src="js/inspinia_custom.js"></script>
+  <script src="js/my_portfolio.js"></script>
 
   <!-- ChartJS-->
   <script src="js/plugins/chartJs/Chart.min.js"></script>
