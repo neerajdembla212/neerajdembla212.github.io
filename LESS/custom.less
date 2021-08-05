@@ -12,7 +12,9 @@ video {
 }
 
 #page-container {
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
 #wrapper {
@@ -21,11 +23,6 @@ video {
 
 body {
   overflow: hidden;
-}
-
-#page-container {
-  overflow-y: auto;
-  max-height: 90vh;
 }
 
 .wrapper {
@@ -86,7 +83,7 @@ body.mini-navbar .nav.metismenu>li.logo {
 }
 
 .nav li>a>.nav-icon.strategy-providers {
-  background-image: url("/img/ic_tradeTerminal.svg");
+  background-image: url("/img/ic_strategicProvider.svg");
 }
 
 .nav li>a>.nav-icon.watchlist {
@@ -130,7 +127,7 @@ body.mini-navbar .nav.metismenu>li.logo {
 }
 
 .nav li.active>a>.nav-icon.strategy-providers {
-  background-image: url("/img/ic_tradeTerminal_active.svg");
+  background-image: url("/img/ic_strategicProvider_active.svg");
 }
 
 .nav li.active>a>.nav-icon.watchlist {
@@ -259,7 +256,7 @@ body.mini-navbar .nav.metismenu>li.logo {
   width: 300px;
 }
 
-.startegy-providers-search-icon {
+.inline-search-icon {
   position: absolute;
   top: 11px;
   left: 11px;
@@ -269,9 +266,10 @@ body.mini-navbar .nav.metismenu>li.logo {
   font-size: 14px;
 }
 
-.search-input-padding {
+.inline-search-icon+.form-control {
   padding-left: 30px;
 }
+
 
 .form-control::placeholder,
 .form-control:-ms-input-placeholder,
@@ -466,5 +464,21 @@ table thead th {
       234px 95px,
       15px 180px,
       215px 180px;
+  }
+}
+
+/* My portfolio page */
+
+.table tfoot {
+  .pagination .fa {
+    height: 20px;
+    width: 20px;
+    font-size: 16px;
+    color: @tfoot-pagination-action;
+    cursor: pointer;
+  }
+
+  .rows-per-page {
+    width: 165px;
   }
 }

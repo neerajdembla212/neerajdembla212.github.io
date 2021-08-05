@@ -19,11 +19,11 @@ function registerEventHandlers() {
   $(".nav-header")
     .mouseenter(() => {
       if ($(".mini-navbar").is(":visible")) {
-        $(this).find(".role-card").removeClass("d-none");
+        $(".role-card").removeClass("d-none");
       }
     })
     .mouseleave(() => {
-      $(this).find(".role-card").addClass("d-none");
+      $(".role-card").addClass("d-none");
     });
 
   // Open close Buy/Sell right sidebar
