@@ -98,6 +98,26 @@
   padding: 20px 10px;
 }
 
+.navbar-top-links {
+  height: 35px;
+
+  * {
+    margin-right: 10px;
+    margin-left: 10px;
+    align-self: center;
+  }
+
+  .fa {
+    color: @subheader-icon-color;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .welcome-message {
+    color: @placeholder-color;
+  }
+}
+
 .dropdown-menu {
   border: medium none;
   border-radius: 3px;
@@ -264,9 +284,8 @@ ul.nav-second-level {
 
 .navbar-form-custom {
   float: left;
-  height: 50px;
+  height: 40px;
   padding: 0;
-  width: 200px;
   display: block;
 }
 
@@ -279,12 +298,13 @@ ul.nav-second-level {
 }
 
 .navbar-form-custom .form-control {
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-  border: medium none;
+  background: @gray;
   font-size: 14px;
-  height: 60px;
+  height: 40px;
   margin: 0;
   z-index: 2000;
+  width: 300px;
+  border-radius: 4px;
 }
 
 .nav.navbar-top-links .dropdown-toggle::after {
@@ -292,9 +312,15 @@ ul.nav-second-level {
 }
 
 .navbar.navbar-static-top {
-  padding: 0;
+  padding: 0 15px 0 0;
   width: 100%;
   align-items: inherit;
+  height: 60px;
+
+  .inline-search-icon {
+    color: @placeholder-color;
+    top: 13px;
+  }
 }
 
 .navbar-static-top .dropdown-menu {
@@ -304,6 +330,7 @@ ul.nav-second-level {
 
 .navbar-static-top .navbar-header {
   width: 220px;
+  height: 60px;
 }
 
 .navbar-static-top .navbar-header .title {
@@ -723,9 +750,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 
 .navbar-menu-toggle {
-  margin: 12px 0 0 0;
-  width: 16px;
-  height: 50px;
+  width: 1px;
+  height: 40px;
   border-radius: 0px 4px 4px 0px;
   background: rgba(113, 73, 242, 0.19);
   border: none;
@@ -733,6 +759,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px 12px 5px 8px;
 }
 
 .nav-menu-toggle-arrow {

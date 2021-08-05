@@ -68,23 +68,10 @@
             <a href="trade-terminal.html"><span class="nav-icon trade-terminal"></span>
               <span class="nav-label">Trade Terminal</span></a>
           </li>
+          <li class="divider"></li>
           <li>
             <a href="strategy-providers.html" class="active"><span class="nav-icon strategy-providers"></span>
               <span class="nav-label">Strategy Providers</span></a>
-          </li>
-          <li>
-            <a href="watchlist.html">
-              <span class="nav-icon watchlist"></span>
-              <span class="nav-label">Watchlist</span></a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="copy-traders.html"><span class="nav-icon copy-traders"></span>
-              <span class="nav-label">Copy Traders</span></a>
-          </li>
-          <li>
-            <a href="copypip-academy.html"><span class="nav-icon copypip-academy"></span>
-              <span class="nav-label">CopyPip Academy</span></a>
           </li>
           <li>
             <a href="simulation.html"><span class="nav-icon simulation"></span>
@@ -92,7 +79,7 @@
           </li>
           <li>
             <a href="news-feed.html"><span class="nav-icon news-feed"></span>
-              <span class="nav-label">News Feed</span></a>
+              <span class="nav-label">Economic Calendar</span></a>
           </li>
         </ul>
         <ul class="nav metismenu" id="side-menu-bottom">
@@ -116,64 +103,24 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
       <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-          <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle" href="#"><span
-                class="nav-menu-toggle-arrow"></span> </a>
-            <h3 class="title">Copy Traders</h3>
+          <div class="navbar-header d-flex align-items-center">
+            <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle m-0" href="#"><span
+                class="nav-menu-toggle-arrow"></span>
+            </a>
+            <form role="search" class="navbar-form-custom ml-3" action="search_results.html">
+              <div class="form-group position-relative">
+                <span class="inline-search-icon fa fa-search"></span>
+                <input type="text" placeholder="Search CopyPip" class="form-control" name="top-search" id="top-search">
+              </div>
+            </form>
           </div>
-          <ul class="nav navbar-top-links navbar-right">
-            <li>
-              <button type="button" class="btn btn-w-m btn-primary">Buy/Sell</button>
-            </li>
-            <li class="dropdown-divider"></li>
-            <li class="button">
-              <button type="button" class="btn btn-outline btn-primary">Deposit</button>
-            </li>
-            <li class="dropdown-divider"></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
-              </a>
-              <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                  <a href="mailbox.html" class="dropdown-item">
-                    <div>
-                      <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                      <span class="float-right text-muted small">4 minutes ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                  <a href="profile.html" class="dropdown-item">
-                    <div>
-                      <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                      <span class="float-right text-muted small">12 minutes ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                  <a href="grid_options.html" class="dropdown-item">
-                    <div>
-                      <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                      <span class="float-right text-muted small">4 minutes ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                  <div class="text-center link-block">
-                    <a href="notifications.html" class="dropdown-item">
-                      <strong>See All Alerts</strong>
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-
+          <div class="nav navbar-top-links navbar-right d-flex align-self-center">
+            <span class="welcome-message">Welcome KS Tan</span>
+            <i class="fa fa-bell"></i>
+            <button type="button" class="btn btn-w-m btn-primary buy-sell-right-sidebar-toggle">
+              Buy/Sell
+            </button>
+          </div>
         </nav>
       </div>
       <div class="row wrapper border-bottom white-bg page-heading">
