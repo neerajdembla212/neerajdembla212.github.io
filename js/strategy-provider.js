@@ -529,12 +529,7 @@
     </tr>`
   }
 
-  function getCountryFlags(country) {
-    switch (country) {
-      case 'us': return 'img/flags/16/United-States.png'
-      default: return '';
-    }
-  }
+
 
   function getRatingsHTML(rating) {
     if (!rating || isNaN(rating)) {
