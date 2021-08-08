@@ -1,5 +1,6 @@
 @nav-bg: #754ef7;
 @red: #e00039;
+@yellow: #f1913a; // Warning color
 @nav-text-color: rgba(255, 255, 255, 0.5);
 @nav-profile-pattern: ~"";
 @nav-bg-pattern: linear-gradient(180deg, #754ef7 0%, #4510b7 100%);
@@ -336,14 +337,25 @@ table thead th {
 }
 
 .role-chip {
-  background: #D2E7FF;
+
   border-radius: 4px;
-  color: #487FD9;
+
   font-size: 10px;
   text-transform: uppercase;
   height: 20px;
   align-self: center;
   font-weight: bold;
+
+  &-follower {
+    color: #487FD9;
+    background: #D2E7FF;
+  }
+
+  &-provider {
+    background: #FFEDAE;
+    color: #BA8C16;
+
+  }
 }
 
 /* Loader state for rising cards */

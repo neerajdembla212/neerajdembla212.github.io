@@ -1,8 +1,42 @@
 (() => {
+    class State {
+        strategyDetails = {};
+        userDetails = {};
+
+        getStrategyDetails() {
+            return this.strategyDetails;
+        }
+
+        setStrategyDetails(data) {
+            this.strategyDetails = data;
+        }
+
+        getUserDetails() {
+            return this.userDetails;
+        }
+
+        setUserDetails(data) {
+            this.userDetails = data;
+        }
+    }
+    const STATE = new State();
     // document ready function
     $(function () {
+        callAjaxMethod({
+            url: 'https://copypip.free.beeceptor.com/get-strategy-details',
+            successCallback: (data) => {
+                STATE.setStrategyDetails(data.data);
+                renderStrategyDetails();
+            }
+        })
+        callAjaxMethod({
+            url: "https://copypip.free.beeceptor.com/user-details/provider",
+            successCallback: (data) => {
+                STATE.setUserDetails(data.data);
+                showRoleWiseElements();
+            }
+        });
         const linechartCanvas = document.getElementById("line-chart");
-
 
         const data = [{
             time: "9:20",
@@ -55,7 +89,24 @@
         }]
         plotLineChart(linechartCanvas, data)
     })
+    // function to display role chip in sub header
+    function showRoleWiseElements() {
+        const user = STATE.getUserDetails()
+        if (user.role === 'Strategy Provider') {
+            $('.role-chip-follower').addClass('d-none');
+            $('.role-chip-provider').removeClass('d-none');
 
+            $('#stop-strategy').removeClass('d-none');
+            $('#strategy').removeClass('d-none');
+        }
+        else if (user.role === 'Strategy Follower') {
+            $('.role-chip-follower').removeClass('d-none');
+            $('.role-chip-provider').addClass('d-none');
+
+            $('#stop-strategy').addClass('d-none');
+            $('#strategy').addClass('d-none');
+        }
+    }
     // Plot Line chart 
     function plotLineChart(lineChartCanvas, lineData) {
         if (!lineData || !Array.isArray(lineData)) {
@@ -170,5 +221,62 @@
             },
         };
         new Chart(ctx, config);
+    }
+
+    // render strategy details from api data
+    function renderStrategyDetails() {
+        const strategy = STATE.getStrategyDetails();
+        const container = $('.sparkline-container');
+        container.empty().append(getStrategyDetailsHTML(strategy));
+    }
+
+    function getStrategyDetailsHTML(strategy) {
+        const { cumulative_returns,
+            strategy_age,
+            deposits,
+            current_balance,
+            withdrawals,
+            fees_earned,
+            followers,
+            trades,
+            max_drawdown } = strategy;
+        return `
+        <div class="sparkline mr-0">
+          <div class="key">Cumulative returns</div>
+          <div class="d-flex justify-content-between">
+            <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
+            <div class="ml-3 mt-2 light-white">Strategy Age
+              ${strategy_age}</div>
+          </div>
+          </div>
+          <div class="divider mx-2"></div>
+        <div class="sparkline">
+          <div class="key">Current Balance</div>
+          <div class="value white">SGD${formatWithCommas(current_balance)}</div>
+        </div>
+        <div class="sparkline">
+          <div class="key">Deposits</div>
+          <div class="value white">SGD${formatWithCommas(deposits)}</div>
+        </div>
+        <div class="sparkline">
+          <div class="key">Withdrawals</div>
+          <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
+        </div>
+        <div class="sparkline">
+            <div class="key">Fees Earned</div>
+          <div class="value white">SGD${formatWithCommas(fees_earned)}</div>
+        </div>
+        <div class="sparkline">
+            <div class="key">Followers</div>
+          <div class="value white">SGD${formatWithCommas(followers)}</div>
+        </div>
+        <div class="sparkline">
+          <div class="key">Trades</div>
+          <div class="value green">${formatWithCommas(trades)}</div>
+        </div>
+        <div class="sparkline">
+          <div class="key">Max Drawdown</div>
+          <div class="value dark-red">${max_drawdown}</div>
+      </div>`
     }
 })();

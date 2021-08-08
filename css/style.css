@@ -8,25 +8,25 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/opensans/v21/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/opensans/v21/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v22/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: url(https://fonts.gstatic.com/s/opensans/v21/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/opensans/v21/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -1733,7 +1733,7 @@ button:focus {
   color: #23c6c8;
 }
 .btn-warning.btn-outline {
-  color: #f8ac59;
+  color: #f1913a;
 }
 .btn-danger.btn-outline {
   color: #e00039;
@@ -1886,28 +1886,28 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-warning {
   color: #ffffff;
-  background-color: #f8ac59;
-  border-color: #f8ac59;
+  background-color: #f1913a;
+  border-color: #f1913a;
 }
 .btn-warning:hover,
 .btn-warning:focus,
 .btn-warning.focus {
   color: #ffffff;
-  background-color: #f7a54a;
-  border-color: #f7a54a;
+  background-color: #f0892c;
+  border-color: #f0892c;
 }
 .btn-warning.disabled,
 .btn-warning:disabled {
   color: #ffffff;
-  background-color: #f7a54a;
-  border-color: #f7a54a;
+  background-color: #f0892c;
+  border-color: #f0892c;
 }
 .btn-warning:not(:disabled):not(.disabled):active,
 .btn-warning:not(:disabled):not(.disabled).active,
 .show > .btn-warning.dropdown-toggle {
   color: #ffffff;
-  background-color: #f7a54a;
-  border-color: #f7a54a;
+  background-color: #f0892c;
+  border-color: #f0892c;
 }
 .btn-warning:not(:disabled):not(.disabled):active:focus,
 .btn-warning:not(:disabled):not(.disabled).active:focus,
@@ -2081,10 +2081,10 @@ button.btn-default.dim:active {
   box-shadow: inset 0 0 0 #b3b3b3, 0 2px 0 0 #b3b3b3, 0 5px 3px #999 !important;
 }
 button.btn-warning.dim {
-  box-shadow: inset 0 0 0 #f79d3c, 0 5px 0 0 #f79d3c, 0 10px 5px #999 !important;
+  box-shadow: inset 0 0 0 #ef811d, 0 5px 0 0 #ef811d, 0 10px 5px #999 !important;
 }
 button.btn-warning.dim:active {
-  box-shadow: inset 0 0 0 #f79d3c, 0 2px 0 0 #f79d3c, 0 5px 3px #999 !important;
+  box-shadow: inset 0 0 0 #ef811d, 0 2px 0 0 #ef811d, 0 5px 3px #999 !important;
 }
 button.btn-info.dim {
   box-shadow: inset 0 0 0 #1eacae, 0 5px 0 0 #1eacae, 0 10px 5px #999 !important;
@@ -2157,12 +2157,12 @@ button.dim:active:before {
 }
 .label-warning,
 .badge-warning {
-  background-color: #f8ac59;
+  background-color: #f1913a;
   color: #FFFFFF;
 }
 .label-warning-light,
 .badge-warning-light {
-  background-color: #f8ac59;
+  background-color: #f1913a;
   color: #ffffff;
 }
 .label-danger,
@@ -3010,7 +3010,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .has-warning .form-control,
 .has-warning .form-control:focus {
-  border-color: #f8ac59;
+  border-color: #f1913a;
 }
 .has-error .form-control,
 .has-error .form-control:focus {
@@ -3020,7 +3020,7 @@ select.form-control:not([size]):not([multiple]) {
   color: #22D091;
 }
 .has-warning .control-label {
-  color: #f8ac59;
+  color: #f1913a;
 }
 .has-error .control-label {
   color: #e00039;
@@ -3595,7 +3595,7 @@ label.error {
   background-color: #23c6c8;
 }
 .toast-warning {
-  background-color: #f8ac59;
+  background-color: #f1913a;
 }
 .toast-top-full-width {
   margin-top: 20px;
@@ -3625,7 +3625,7 @@ label.error {
   color: inherit;
 }
 .inspinia-notify.alert-warning {
-  border-left: 6px solid #f8ac59;
+  border-left: 6px solid #f1913a;
 }
 .inspinia-notify.alert-success {
   border-left: 6px solid #2B99FF;
@@ -4395,8 +4395,8 @@ body.tour-open .animated {
 }
 .stream .stream-badge i.bg-warning {
   color: #ffffff;
-  background-color: #f8ac59;
-  border-color: #f8ac59;
+  background-color: #f1913a;
+  border-color: #f1913a;
 }
 .stream .stream-badge i.bg-info {
   color: #ffffff;
@@ -5195,7 +5195,7 @@ table.table-mail tr td {
 }
 .yellow-bg,
 .bg-warning {
-  background-color: #f8ac59 !important;
+  background-color: #f1913a !important;
   color: #ffffff;
 }
 .red-bg,
@@ -5230,11 +5230,11 @@ table.table-mail tr td {
   color: #ffffff;
 }
 .panel-warning {
-  border-color: #f8ac59;
+  border-color: #f1913a;
 }
 .panel-warning > .panel-heading {
-  background-color: #f8ac59;
-  border-color: #f8ac59;
+  background-color: #f1913a;
+  border-color: #f1913a;
   color: #ffffff;
 }
 .panel-danger {
@@ -5271,7 +5271,7 @@ table.table-mail tr td {
   background-color: #23c6c8;
 }
 .progress-bar-warning {
-  background-color: #f8ac59;
+  background-color: #f1913a;
 }
 .progress-bar-danger {
   background-color: #e00039;
@@ -5300,7 +5300,7 @@ table.table-mail tr td {
   color: #23c6c8 !important;
 }
 .text-warning {
-  color: #f8ac59 !important;
+  color: #f1913a !important;
 }
 .text-danger {
   color: #e00039 !important;
@@ -6636,7 +6636,7 @@ table.issue-tracker tbody tr td {
   background: #fff;
 }
 .agile-list li.warning-element {
-  border-left: 3px solid #f8ac59;
+  border-left: 3px solid #f1913a;
 }
 .agile-list li.danger-element {
   border-left: 3px solid #e00039;
@@ -6699,7 +6699,7 @@ del {
   color: #D1DADE;
 }
 .ecommerce .fa-star.active {
-  color: #f8ac59;
+  color: #f1913a;
 }
 .ecommerce .note-editor {
   border: 1px solid #e7eaec;
@@ -10259,14 +10259,20 @@ table thead th {
   height: 33px;
 }
 .role-chip {
-  background: #D2E7FF;
   border-radius: 4px;
-  color: #487FD9;
   font-size: 10px;
   text-transform: uppercase;
   height: 20px;
   align-self: center;
   font-weight: bold;
+}
+.role-chip-follower {
+  color: #487FD9;
+  background: #D2E7FF;
+}
+.role-chip-provider {
+  background: #FFEDAE;
+  color: #BA8C16;
 }
 /* Loader state for rising cards */
 #rising-stars .panel-body .contact-box.loading {
@@ -10319,7 +10325,7 @@ table thead th {
   width: 100%;
   background-color: #1F1F25;
   border-radius: 6px;
-  height: 100px;
+  min-height: 100px;
 }
 .sparkline-container .sparkline {
   display: flex;
@@ -10337,6 +10343,9 @@ table thead th {
 }
 .sparkline-container .sparkline .white {
   color: #ffffff;
+}
+.sparkline-container .sparkline .dark-red {
+  color: #F46D7D;
 }
 .sparkline-container .sparkline .light-white {
   color: #DCDCDC;

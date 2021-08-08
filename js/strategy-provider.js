@@ -276,7 +276,6 @@
         plotListLineCharts(risingStars);
         plotListTriangleCharts(risingStars);
         registerListViewEvents();
-        formatDisplayedNumbers();
         break;
     }
   }
@@ -290,7 +289,6 @@
         plotRisingStarCard(risingStars);
         plotGridLineCharts(risingStars);
         registerGridViewEvents();
-        formatDisplayedNumbers();
         break;
     }
   }
@@ -345,16 +343,6 @@
     });
   }
 
-  // format numbers using comma
-  function formatDisplayedNumbers() {
-    $(".format-us").each((i, ele) => {
-      const number = ele.textContent;
-      if (!isNaN(number)) {
-        $(ele).text(formatWithCommas(+number));
-      }
-    });
-  }
-
 
   // Helper methods : in below section we will place all the helper functions used on dom ready
 
@@ -365,10 +353,6 @@
   // return view type as "grid" or "list"
   function getCurrentViewType() {
     return $(".subheader .btn-group button.active").data("viewType")
-  }
-  function formatWithCommas(number) {
-    internationalNumberFormat = new Intl.NumberFormat("en-US");
-    return internationalNumberFormat.format(number);
   }
 
   function getUserCardHTML(user) {
@@ -418,7 +402,7 @@
     </button>
     <!-- area chart here-->
     <div class="d-flex mt-2 justify-content-between">
-      <span class="text-light-gray"><span class="format-us">${copiers_count}</span> Followers</span>
+      <span class="text-light-gray"><span class="format-us">${formatWithCommas(copiers_count)}</span> Followers</span>
       <span class="font-bold">
         Drawdown <span class="${drawPercentage > 0 ? 'text-green' : 'text-danger'}">${drawPercentage}%</span>
       </span>
@@ -509,7 +493,7 @@
             mr-2
             format-us
           "
-          >${copiers_count}</span
+          >${formatWithCommas(copiers_count)}</span
         >
         <span class="text-dark-green">
           <i
