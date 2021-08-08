@@ -3,6 +3,7 @@
         strategyDetails = {};
         userDetails = {};
         lineChartData = {};
+        userList = {}; // this will store followers or providers depending on user's role
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -27,11 +28,29 @@
         setLineChartData(data) {
             this.lineChartData = data;
         }
+
+        getUserList() {
+            return this.userList;
+        }
+
+        setUserList(data) {
+            if (!data || !Array.isArray(data)) {
+                return
+            }
+            this.userList = data;
+        }
     }
     const STATE = new State();
     // document ready function
     $(function () {
         registerEvents();
+        fetchStrategyDetails();
+        fetchUserDetails(fetchListOfUsers);
+        fetchLineData();
+    })
+
+    // This function fetch strategy details and render sparkline
+    function fetchStrategyDetails() {
         callAjaxMethod({
             url: 'https://copypip.free.beeceptor.com/get-strategy-details',
             successCallback: (data) => {
@@ -39,15 +58,25 @@
                 renderStrategyDetails();
             }
         })
+    }
 
+    // This function will fetch user details and show role specific elements
+    function fetchUserDetails(cb) {
+        const role = 'provider'; // provider or follower
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/user-details/provider",
+            url: `https://copypip.free.beeceptor.com/user-details/${role}`,
             successCallback: (data) => {
                 STATE.setUserDetails(data.data);
                 showRoleWiseElements();
+                if (cb && typeof cb === 'function') {
+                    cb();
+                }
             }
         });
+    }
 
+    // This function will fetch line data and plot line chart
+    function fetchLineData() {
         callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/portfolio-line-data",
             successCallback: (data) => {
@@ -55,7 +84,293 @@
                 plotLineChart()
             }
         });
-    })
+    }
+
+    // this function will fetch strategy providers or followers based on user's role and render the table accordingly
+    function fetchListOfUsers() {
+        const userRole = STATE.getUserDetails().role;
+        if (userRole === 'Strategy Provider') {
+            // fetch followers and render followers table
+            fetchStrategyFollowers();
+        } else if (userRole === 'Strategy Follower') {
+            // fetch providers and render providers table
+            fetchStrategyProviders();
+        }
+    }
+
+    function fetchStrategyProviders() {
+        callAjaxMethod({
+            url: 'https://copypip.free.beeceptor.com/get-portfolio-users/providers',
+            successCallback: (data) => {
+                STATE.setUserList(data.data);
+                renderStrategyProviders();
+            }
+        })
+    }
+
+    function renderStrategyProviders() {
+        const users = STATE.getUserList();
+        const container = $('.portfolio-users-table');
+        container.append(getStrategyProvidersTableHTML(users));
+    }
+
+    function fetchStrategyFollowers() {
+        callAjaxMethod({
+            url: 'https://copypip.free.beeceptor.com/get-portfolio-users/followers',
+            successCallback: (data) => {
+                STATE.setUserList(data.data);
+                renderStrategyFollowers();
+            }
+        })
+    }
+
+    function renderStrategyFollowers() {
+        const users = STATE.getUserList();
+        const container = $('.portfolio-users-table');
+        container.append(getStrategyFollowersTableHTML(users));
+    }
+
+    function getStrategyProvidersTableHTML(data) {
+        return `<table class="table">
+            ${getStrategyProvidersTableHeaders()}
+            ${getStrategyProvidersTableBody(data)}
+            ${getStrategyProvidersTableFooter()}
+        </table>`
+    }
+
+    function getStrategyProvidersTableHeaders() {
+        return `
+        <thead>
+            <tr>
+            <th>Provider</th>
+            <th class="text-center">NET P/L</th>
+            <th class="text-center">Total Returns</th>
+            <th class="text-center">Max DD</th>
+            <th class="text-center">Trades</th>
+            <th class="text-center">Subscription FEEs</th>
+            <th class="text-center">P share %</th>
+            <th class="text-center">TOTAL FEEs</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        `
+    }
+
+    function getStrategyProvidersTableBody(data) {
+        if (!data || !Array.isArray(data)) {
+            return
+        }
+        const rowsHTML = [];
+        data.forEach(user => {
+            rowsHTML.push(getStrategyProvidersTableRow(user));
+        })
+        return `
+          <tbody>
+            ${rowsHTML.join('')}
+          </tbody>
+          `
+    }
+
+    function getStrategyProvidersTableRow(user) {
+        if (!user) {
+            return '';
+        }
+        const { id,
+            profile_image,
+            name,
+            username,
+            country,
+            total_profit_loss,
+            total_returns,
+            max_drawdown,
+            trades,
+            subscription_fee,
+            profit_share,
+            total_fee } = user;
+        return `<tr id="table-user-${id}">
+        <td>
+          <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
+          <div class="ml-2 float-left">
+            <p class="font-bold font-size-12 mb-0">
+              ${username}
+            </p>
+            <p class="text-light-black font-size-12 mb-0">
+              ${name}
+              <img class="ml-1" src="${getCountryFlags(country)}" />
+            </p>
+          </div>
+        </td>
+        <td class="font-bold font-size-16 text-center">
+          $${formatWithCommas(total_profit_loss)}
+        </td>
+        <td class="text-center">
+          <span class="text-dark-green font-weight-bold">
+            <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+            ${total_returns}
+          </span>
+        </td>
+        <td class="text-center">
+          ${max_drawdown}
+        </td>
+        <td class="text-center">
+          ${formatWithCommas(trades)}
+        </td>
+        <td class="text-center font-weight-bold">
+          $${formatWithCommas(subscription_fee)}
+        </td>
+        <td class="text-center">
+          ${profit_share}
+        </td>
+        <td class="text-center font-weight-bold">
+          $${formatWithCommas(total_fee)}
+        </td>
+        <td class="action-tools text-center">
+          <i class="fa fa-pause mr-1"></i>
+          <i class="fa fa-stop mr-1"></i>
+          <i class="fa fa-gear mr-1"></i>
+        </td>
+      </tr>`
+    }
+
+    function getStrategyProvidersTableFooter() {
+        return `<tfoot>
+        <tr>
+          <td colspan="9" class="pb-0">
+            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
+              <select class="form-control rows-per-page mr-2" name="rows-per-page">
+                <option>10 Rows per page</option>
+                <option>20 Rows per page</option>
+                <option>30 Rows per page</option>
+                <option>40 Rows per page</option>
+              </select>
+              <i class="fa fa-angle-left mx-2"></i>
+              <i class="fa fa-angle-right mx-2"></i>
+            </ul>
+          </td>
+        </tr>
+      </tfoot>`
+    }
+
+    function getStrategyFollowersTableHTML(data) {
+        return `<table class="table">
+            ${getStrategyFollowersTableHeaders()}
+            ${getStrategyFollowersTableBody(data)}
+            ${getStrategyFollowersTableFooter()}
+        </table>`
+    }
+
+    function getStrategyFollowersTableHeaders() {
+        return `
+        <thead>
+            <tr>
+            <th>Provider</th>
+            <th class="text-center">joined</th>
+            <th class="text-center">Period</th>
+            <th class="text-center">P/L</th>
+            <th class="text-center">HWM Difference</th>
+            <th class="text-center">BALANCE</th>
+            <th class="text-center">FEE earned</th>
+            <th class="text-center">com earned</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        `
+    }
+
+    function getStrategyFollowersTableBody(data) {
+        if (!data || !Array.isArray(data)) {
+            return
+        }
+        const rowsHTML = [];
+        data.forEach(user => {
+            rowsHTML.push(getStrategyFollowersTableRow(user));
+        })
+        return `
+          <tbody>
+            ${rowsHTML.join('')}
+          </tbody>
+          `
+    }
+
+    function getStrategyFollowersTableRow(user) {
+        if (!user) {
+            return '';
+        }
+        const { id,
+            profile_image,
+            name,
+            username,
+            country,
+            joined_on,
+            hwm_diff,
+            profit_or_loss,
+            balance,
+            com_earned,
+            fee_earned
+        } = user;
+        return `<tr id="table-user-${id}">
+        <td>
+          <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
+          <div class="ml-2 float-left">
+            <p class="font-bold font-size-12 mb-0">
+              ${username}
+            </p>
+            <p class="text-light-black font-size-12 mb-0">
+              ${name}
+              <img class="ml-1" src="${getCountryFlags(country)}" />
+            </p>
+          </div>
+        </td>
+        <td class="font-bold text-center">
+          ${joined_on}
+        </td>
+        <td class="text-center">
+          4 months
+        </td>
+        <td class="text-center text-dark-green">
+        ${profit_or_loss}
+        </td>
+        <td class="text-center">
+        ${hwm_diff}
+        </td>
+        <td class="text-center">
+        ${balance}
+        </td>
+        <td class="text-center">
+        ${fee_earned}
+        </td>
+        <td class="text-center">
+        ${com_earned}
+        </td>
+      
+        <td class="action-tools text-center">
+          <i class="fa fa-pause mr-1"></i>
+          <i class="fa fa-stop mr-1"></i>
+          <i class="fa fa-gear mr-1"></i>
+        </td>
+      </tr>`
+    }
+
+    function getStrategyFollowersTableFooter() {
+        return `<tfoot>
+        <tr>
+          <td colspan="9" class="pb-0">
+            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
+              <select class="form-control rows-per-page mr-2" name="rows-per-page">
+                <option>10 Rows per page</option>
+                <option>20 Rows per page</option>
+                <option>30 Rows per page</option>
+                <option>40 Rows per page</option>
+              </select>
+              <i class="fa fa-angle-left mx-2"></i>
+              <i class="fa fa-angle-right mx-2"></i>
+            </ul>
+          </td>
+        </tr>
+      </tfoot>`
+    }
+
+
     // function to display role chip in sub header
     function showRoleWiseElements() {
         const user = STATE.getUserDetails()

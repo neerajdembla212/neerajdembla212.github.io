@@ -78,3 +78,11 @@ function formatWithCommas(number) {
   internationalNumberFormat = new Intl.NumberFormat("en-US");
   return internationalNumberFormat.format(number);
 }
+
+// utility method to get country flag using country code
+function getCountryFlags(country) {
+  switch (country) {
+    case 'us': return 'img/flags/16/United-States.png'
+    default: return '';
+  }
+}

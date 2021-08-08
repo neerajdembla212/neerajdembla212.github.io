@@ -10388,29 +10388,29 @@ table thead th {
   color: #22D091;
   box-shadow: none;
 }
-.portfolio-following-users {
+.portfolio-users-table {
   min-height: 250px;
   border: 1px solid #E5E5E5;
   border-radius: 6px;
 }
-.portfolio-following-users .header-text {
+.portfolio-users-table .header-text {
   color: #4D4D4E;
   font-weight: 600;
   font-size: 16px;
 }
-.portfolio-following-users .action-tools {
+.portfolio-users-table .action-tools {
   color: #b7c0cb;
 }
-.portfolio-following-users thead {
+.portfolio-users-table thead {
   background: #F9F9FB;
   color: #8E8FA3;
   border-top: 1px solid #EEEEEE;
 }
-.portfolio-following-users tr > td:first-child,
-.portfolio-following-users tr > th:first-child {
+.portfolio-users-table tr > td:first-child,
+.portfolio-users-table tr > th:first-child {
   padding-left: 1rem;
 }
-.portfolio-following-users .table > thead > tr > th {
+.portfolio-users-table .table > thead > tr > th {
   border-bottom-color: #EEEEEE;
 }
 @media print {
