@@ -36,7 +36,6 @@ function registerEventHandlers() {
     e.preventDefault();
     $(".right-sidebar").removeClass("sidebar-open");
   });
-
 }
 
 //generic ajax function
@@ -72,4 +71,10 @@ function callAjaxMethod({
   } catch (e) {
     console.log(e);
   }
+}
+
+// utility method to format number with commas before displaying
+function formatWithCommas(number) {
+  internationalNumberFormat = new Intl.NumberFormat("en-US");
+  return internationalNumberFormat.format(number);
 }
