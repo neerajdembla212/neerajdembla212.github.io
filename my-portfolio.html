@@ -160,11 +160,20 @@
         </div>
 
         <div class="wrapper wrapper-content">
+          <!-- Sparkline data will be displayed here from api-->
           <div class="sparkline-container mt-2 d-flex flex-wrap">
 
           </div>
           <!-- Line chart here-->
           <div class="mt-3 portfolio-line-chart card p-3">
+            <div class="mb-3 chart-filter">
+              <button class="btn btn-white">1H</button>
+              <button class="btn btn-white active">24H</button>
+              <button class="btn btn-white">1W</button>
+              <button class="btn btn-white">1M</button>
+              <button class="btn btn-white">3M</button>
+              <button class="btn btn-white">1Y</button>
+            </div>
             <canvas id="line-chart"></canvas>
           </div>
           <!--Following users-->

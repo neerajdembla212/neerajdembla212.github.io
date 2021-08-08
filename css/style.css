@@ -10378,8 +10378,15 @@ table thead th {
   border-radius: 6px;
   position: relative;
   margin: auto;
-  height: 23vw;
+  height: 26vw;
   width: 100%;
+}
+.portfolio-line-chart .chart-filter .btn {
+  border: none;
+}
+.portfolio-line-chart .chart-filter .active {
+  color: #22D091;
+  box-shadow: none;
 }
 .portfolio-following-users {
   min-height: 250px;

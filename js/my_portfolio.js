@@ -2,6 +2,7 @@
     class State {
         strategyDetails = {};
         userDetails = {};
+        lineChartData = {};
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -18,10 +19,19 @@
         setUserDetails(data) {
             this.userDetails = data;
         }
+
+        getLineChartData() {
+            return this.lineChartData;
+        }
+
+        setLineChartData(data) {
+            this.lineChartData = data;
+        }
     }
     const STATE = new State();
     // document ready function
     $(function () {
+        registerEvents();
         callAjaxMethod({
             url: 'https://copypip.free.beeceptor.com/get-strategy-details',
             successCallback: (data) => {
@@ -29,6 +39,7 @@
                 renderStrategyDetails();
             }
         })
+
         callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/user-details/provider",
             successCallback: (data) => {
@@ -36,58 +47,14 @@
                 showRoleWiseElements();
             }
         });
-        const linechartCanvas = document.getElementById("line-chart");
 
-        const data = [{
-            time: "9:20",
-            data: 0
-        }, {
-            time: "9:21",
-            data: -13
-        },
-        {
-            time: "9:22",
-            data: 0
-        },
-        {
-            time: "9:22",
-            data: 16
-        }, {
-            time: "9:22",
-            data: 20
-        },
-        {
-            time: "9:22",
-            data: 18
-        }, {
-            time: "9:22",
-            data: 30
-        },
-        {
-            time: "9:22",
-            data: 26
-        },
-        {
-            time: "9:22",
-            data: 28
-        },
-        {
-            time: "9:22",
-            data: 40
-        },
-        {
-            time: "9:22",
-            data: 32
-        },
-        {
-            time: "9:22",
-            data: 37
-        },
-        {
-            time: "9:22",
-            data: 25
-        }]
-        plotLineChart(linechartCanvas, data)
+        callAjaxMethod({
+            url: "https://copypip.free.beeceptor.com/portfolio-line-data",
+            successCallback: (data) => {
+                STATE.setLineChartData(data.data);
+                plotLineChart()
+            }
+        });
     })
     // function to display role chip in sub header
     function showRoleWiseElements() {
@@ -108,8 +75,10 @@
         }
     }
     // Plot Line chart 
-    function plotLineChart(lineChartCanvas, lineData) {
-        if (!lineData || !Array.isArray(lineData)) {
+    function plotLineChart() {
+        const canvas = document.getElementById("line-chart");
+        const lineData = STATE.getLineChartData();
+        if (!lineData || !Array.isArray(lineData) || !canvas) {
             return;
         }
         const lineDataPoints = lineData.reduce((acc, curr) => {
@@ -117,8 +86,8 @@
             return acc;
         }, []);
         const positiveLineDataPoints = lineDataPoints.filter(d => d > 0)
-        lineChartCanvas.height = 300;
-        const ctx = lineChartCanvas.getContext("2d");
+        canvas.height = 300;
+        const ctx = canvas.getContext("2d");
         var positiveGradient = ctx.createLinearGradient(
             0,
             0,
@@ -278,5 +247,15 @@
           <div class="key">Max Drawdown</div>
           <div class="value dark-red">${max_drawdown}</div>
       </div>`
+    }
+
+    function registerEvents() {
+        $('.chart-filter .btn').click(event => {
+            const target = $(event.currentTarget);
+            $('.chart-filter .btn').removeClass('active');
+            target.addClass('active');
+            const value = target.text();
+            console.log(value);
+        })
     }
 })();
