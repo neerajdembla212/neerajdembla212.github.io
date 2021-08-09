@@ -128,33 +128,95 @@
       </div>
       <div id="page-container">
         <div class="d-flex justify-content-between subheader flex-wrap">
-          <h2 class="font-bold my-2">Trading Terminal</h2>
+          <h2 class="font-weight-bold my-2">Trade Terminal</h2>
           <div class="d-flex my-2">
-            <form role="form" class="mr-4">
-              <div class="position-relative">
-                <span class="inline-search-icon fa fa-search"></span>
-                <input type="text" placeholder="Search Strategy Providers" id="search-strategy-provider"
-                  class="form-control" />
-              </div>
-            </form>
-            <div class="btn-group" role="group">
-              <button class="btn btn-default active" type="button" data-view-type="grid">
-                <i class="fa fa-th grid-icon mt-1"></i>
-              </button>
-              <button class="btn btn-default" type="button" data-view-type="list">
-                <i class="fa fa-list list-icon mt-1"></i>
-              </button>
-            </div>
+            <div class="currency-chip">EURUSD &nbsp;<img src="img/ic_cross.svg" /></div>
+            <div class="currency-chip">EURUSD &nbsp;<img src="img/ic_cross.svg" /></div>
+            <div class="currency-chip">EURUSD &nbsp;<img src="img/ic_cross.svg" /></div>
+            <button type="button" class="btn btn-default btn-sm btn-watchlist">
+              <i class="fa fa-bookmark mr-2"></i>
+              My Watchlist&nbsp;<i id="watchlist-number"></i>
+            </button>
           </div>
         </div>
 
         <div class="wrapper wrapper-content">
-          TT content here
-        </div>
-        <div class="footer">
-          <div class="float-right">10GB of <strong>250GB</strong> Free.</div>
-          <div>
-            <strong>Copyright</strong> Example Company &copy; 2014-2018
+          <!-- trade terminal chart here -->
+          <section class="card trade-terminal-chart"></section>
+          <div class="d-flex justify-content-between mt-3">
+            <section class="card buy-sell-section"></section>
+            <section class="card trade-section">
+              <div class="tabs-container">
+                <div class="d-flex justify-content-between tabs-header">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li>
+                      <a class="nav-link active" data-toggle="tab" href="#open-trades">Open Trades</a>
+                    </li>
+                    <li>
+                      <a class="nav-link" data-toggle="tab" href="#pending-orders">Pending Orders</a>
+                    </li>
+                    <li>
+                      <a class="nav-link" data-toggle="tab" href="#closed-trades">Closed Trades</a>
+                    </li>
+                  </ul>
+                  <button type="button" class="btn btn-default btn-sm">
+                    More Filters
+                  </button>
+                </div>
+                <div class="tab-content">
+                  <div role="tabpanel" id="open-trades" class="tab-pane active">
+                    <!-- content will be loaded in this div dynamically -->
+                    <div class="panel-body row d-flex flex-wrap">
+                      <table class="table copypip-table">
+                        <thead>
+                          <tr>
+                            <th>Symbol</th>
+                            <th>Trader</th>
+                            <th>Type</th>
+                            <th>Volume</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>SL</th>
+                            <th>TP</th>
+                            <th>Current</th>
+                            <th>Swap</th>
+                            <th>Profit</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                          <tr>
+                            <td colspan="11" class="pb-0">
+                              <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
+                                <select class="form-control rows-per-page mr-2" name="rows-per-page">
+                                  <option>10 Rows per page</option>
+                                  <option>20 Rows per page</option>
+                                  <option>30 Rows per page</option>
+                                  <option>40 Rows per page</option>
+                                </select>
+                                <i class="fa fa-angle-left mx-2"></i>
+                                <i class="fa fa-angle-right mx-2"></i>
+                              </ul>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </div>
+                  <div role="tabpanel" id="pending-orders" class="tab-pane">
+                    <div class="panel-body">
+                      <p>pending orders Content</p>
+                    </div>
+                  </div>
+                  <div role="tabpanel" id="closed-trades" class="tab-pane">
+                    <div class="panel-body">
+                      <p>closed-trades Content</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
           </div>
         </div>
       </div>
