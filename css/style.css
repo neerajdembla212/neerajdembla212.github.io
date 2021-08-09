@@ -5323,6 +5323,9 @@ table.table-mail tr td {
 .text-blue {
   color: #2B99FF;
 }
+.text-bleed-red {
+  color: #D0226B;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;
@@ -10400,6 +10403,13 @@ table thead th {
 }
 .portfolio-users-table .action-tools {
   color: #b7c0cb;
+  font-size: 14px;
+}
+.portfolio-users-table .action-tools .btn.text-dark-green:hover {
+  color: #339A4A;
+}
+.portfolio-users-table .action-tools .btn.text-bleed-red:hover {
+  color: #D0226B;
 }
 .portfolio-users-table thead {
   background: #F9F9FB;
@@ -10412,6 +10422,16 @@ table thead th {
 }
 .portfolio-users-table .table > thead > tr > th {
   border-bottom-color: #EEEEEE;
+  text-transform: uppercase;
+}
+.portfolio-users-table .new-chip {
+  color: #ffffff;
+  background: #487FD9;
+  border-radius: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 @media print {
   nav.navbar-static-side {

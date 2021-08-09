@@ -98,7 +98,16 @@
     }
 
     .action-tools {
-        color: @subheader-icon-color
+        color: @subheader-icon-color;
+        font-size: 14px;
+
+        .btn.text-dark-green:hover {
+            color: @dark-green;
+        }
+
+        .btn.text-bleed-red:hover {
+            color: @bleed-red;
+        }
     }
 
     thead {
@@ -113,6 +122,17 @@
     }
 
     .table>thead>tr>th {
-        border-bottom-color: #EEEEEE
+        border-bottom-color: #EEEEEE;
+        text-transform: uppercase;
+    }
+
+    .new-chip {
+        color: @white;
+        background: @dark-blue;
+        border-radius: 4px;
+        font-size: 10px;
+        text-transform: uppercase;
+        padding-top: 1px;
+        padding-bottom: 1px;
     }
 }

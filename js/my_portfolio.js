@@ -62,7 +62,7 @@
 
     // This function will fetch user details and show role specific elements
     function fetchUserDetails(cb) {
-        const role = 'provider'; // provider or follower
+        const role = 'follower'; // provider or follower
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/user-details/${role}`,
             successCallback: (data) => {
@@ -306,8 +306,11 @@
             profit_or_loss,
             balance,
             com_earned,
-            fee_earned
+            fee_earned,
+            is_new
         } = user;
+        const newUSerChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
+
         return `<tr id="table-user-${id}">
         <td>
           <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
@@ -320,35 +323,45 @@
               <img class="ml-1" src="${getCountryFlags(country)}" />
             </p>
           </div>
+          ${newUSerChip}
         </td>
         <td class="font-bold text-center">
-          ${joined_on}
+          ${formatDate(new Date(+joined_on))}
         </td>
         <td class="text-center">
-          4 months
+          ${calculateDateDiff(new Date(+joined_on), new Date())}
         </td>
-        <td class="text-center text-dark-green">
-        ${profit_or_loss}
-        </td>
-        <td class="text-center">
-        ${hwm_diff}
+        <td class="text-center font-bold text-dark-green">
+        $${formatWithCommas(profit_or_loss)}
         </td>
         <td class="text-center">
-        ${balance}
+        $${formatWithCommas(hwm_diff)}
+        </td>
+        <td class="font-bold text-center">
+        $${formatWithCommas(balance)}
         </td>
         <td class="text-center">
-        ${fee_earned}
+        $${fee_earned}
         </td>
-        <td class="text-center">
-        ${com_earned}
+        <td class="font-bold text-center">
+        $${formatWithCommas(com_earned)}
         </td>
       
         <td class="action-tools text-center">
-          <i class="fa fa-pause mr-1"></i>
-          <i class="fa fa-stop mr-1"></i>
-          <i class="fa fa-gear mr-1"></i>
+         ${getStrategyFollowersActionColumn(id, is_new)}
         </td>
       </tr>`
+    }
+
+    function getStrategyFollowersActionColumn(id, isNew) {
+        if (isNew === "true") {
+            return `<button class="btn btn-white text-dark-green font-bold px-1" type="button" data-id="${id}">Accept</button> 
+            <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>`
+        } else if (isNew === "false") {
+            return ` <i class="fa fa-pause mr-1" data-id="${id}"></i>
+            <i class="fa fa-stop mr-1" data-id="${id}"></i>
+            <i class="fa fa-gear mr-1" data-id="${id}"></i>`
+        }
     }
 
     function getStrategyFollowersTableFooter() {
@@ -380,6 +393,7 @@
 
             $('#stop-strategy').removeClass('d-none');
             $('#strategy').removeClass('d-none');
+            $('.portfolio-users-table .table-title').text('Followers')
         }
         else if (user.role === 'Strategy Follower') {
             $('.role-chip-follower').removeClass('d-none');
@@ -387,6 +401,7 @@
 
             $('#stop-strategy').addClass('d-none');
             $('#strategy').addClass('d-none');
+            $('.portfolio-users-table .table-title').text('Following')
         }
     }
     // Plot Line chart 
