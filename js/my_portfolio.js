@@ -216,13 +216,13 @@
           ${formatWithCommas(trades)}
         </td>
         <td class="text-center font-weight-bold">
-          $${formatWithCommas(subscription_fee)}
+          S$${formatWithCommas(subscription_fee)}
         </td>
         <td class="text-center">
           ${profit_share}
         </td>
         <td class="text-center font-weight-bold">
-          $${formatWithCommas(total_fee)}
+          S$${formatWithCommas(total_fee)}
         </td>
         <td class="action-tools text-center">
           <i class="fa fa-pause mr-1"></i>
@@ -332,19 +332,19 @@
           ${calculateDateDiff(new Date(+joined_on), new Date())}
         </td>
         <td class="text-center font-bold text-dark-green">
-        $${formatWithCommas(profit_or_loss)}
+        S$${formatWithCommas(profit_or_loss)}
         </td>
         <td class="text-center">
-        $${formatWithCommas(hwm_diff)}
+        S$${formatWithCommas(hwm_diff)}
         </td>
         <td class="font-bold text-center">
-        $${formatWithCommas(balance)}
+        S$${formatWithCommas(balance)}
         </td>
         <td class="text-center">
-        $${fee_earned}
+        S$${fee_earned}
         </td>
         <td class="font-bold text-center">
-        $${formatWithCommas(com_earned)}
+        S$${formatWithCommas(com_earned)}
         </td>
       
         <td class="action-tools text-center">
@@ -415,70 +415,35 @@
             acc.push(curr.data);
             return acc;
         }, []);
-        const positiveLineDataPoints = lineDataPoints.filter(d => d > 0)
-        canvas.height = 300;
+        canvas.height = 330;
         const ctx = canvas.getContext("2d");
-        var positiveGradient = ctx.createLinearGradient(
-            0,
-            0,
-            0,
-            Math.max(...positiveLineDataPoints)
-        );
-        const borderColor = "#22D091";
-        const negativeBorderColor = "#C00000"
-        // positiveGradient.addColorStop(0, "rgba(34, 208, 145, 0)");
-        // positiveGradient.addColorStop(0.2, "rgba(34, 208, 145, 0.5)");
-
-
+        const positiveColor = "#22D091";
+        const negativColor = "#C00000"
         const labels = lineData.map(d => d.time);
-
-        const datasetNeg25 = lineData.filter(d => d.data <= 0 && d.data >= -25
-        )
-
-        const negative25LinePoints = datasetNeg25.reduce((acc, curr) => {
-            acc.push(curr.data);
-            return acc;
-        }, []);
-
         const data = {
             labels: labels,
-            datasets: [
-                {
-                    label: "",
-                    backgroundColor: positiveGradient,
-                    borderColor: negativeBorderColor,
-                    pointBackgroundColor: negativeBorderColor,
-                    pointBorderColor: negativeBorderColor,
-                    gradient: positiveGradient,
-                    data: negative25LinePoints,
-                    cubicInterpolationMode: 'monotone',
-                    tension: 0.1
-                },
-                {
-                    label: "",
-                    backgroundColor: positiveGradient,
-                    borderColor: borderColor,
-                    pointBackgroundColor: borderColor,
-                    pointBorderColor: borderColor,
-                    gradient: positiveGradient,
-                    data: lineDataPoints,
-                    cubicInterpolationMode: 'monotone',
-                    tension: 0.1
-                },
-            ],
+            datasets: [{
+                label: "",
+                data: lineDataPoints,
+                cubicInterpolationMode: 'monotone',
+                tension: 0.1
+            }]
         };
         const config = {
             type: "line",
             data,
             options: {
-                spanGaps: true,
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     xAxes: [
                         {
                             gridLines: {
                                 display: false,
                                 tickMarkLength: 0,
+                            },
+                            ticks: {
+                                maxTicksLimit: 10,
                             },
                         },
                     ],
@@ -487,11 +452,12 @@
                             gridLines: {
                                 display: true,
                                 tickMarkLength: 0,
+                                drawBorder: false,
                             },
                             ticks: {
                                 display: true,
-                                tickMarkLength: 0,
-                                maxTicksLimit: 4,
+                                tickMarkLength: 1,
+                                maxTicksLimit: 5,
                                 callback: function (value) {
                                     return value + '%'
                                 }
@@ -513,11 +479,27 @@
                 },
                 layout: {
                     padding: {
-                        bottom: 0,
+                        bottom: 20,
                         left: 10,
                     },
                 },
             },
+            plugins: [{
+                beforeRender: function (c) {
+                    const dataset = c.data.datasets[0];
+                    const yScale = c.scales['y-axis-0'];
+                    const yPos = yScale.getPixelForValue(0);
+
+                    const gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
+                    gradientFill.addColorStop(0, positiveColor);
+                    gradientFill.addColorStop(yPos / c.height, "#D9F7E6");
+                    gradientFill.addColorStop(yPos / c.height, "#F1C7C7");
+                    gradientFill.addColorStop(1, negativColor);
+
+                    const model = c.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].$filler.el._model;
+                    model.backgroundColor = gradientFill;
+                }
+            }]
         };
         new Chart(ctx, config);
     }
