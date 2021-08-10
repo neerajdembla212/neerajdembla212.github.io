@@ -10274,7 +10274,7 @@ table thead th {
   color: #BA8C16;
 }
 /* Loader state for rising cards */
-#rising-stars .panel-body .contact-box.loading {
+#top-growth .panel-body .contact-box.loading {
   /* avatar specs */
   /* username specs */
   /* Fullname specs */
@@ -10292,7 +10292,7 @@ table thead th {
   background-position: 15px 15px, 0 0, 64px 19px, 64px 38px, 15px 70px, 225px 70px, 15px 95px, 234px 95px, 15px 180px, 215px 180px;
   animation: shine 1s infinite;
 }
-#rising-stars .panel-body .contact-box.loading .btn-primary.btn-block {
+#top-growth .panel-body .contact-box.loading .btn-primary.btn-block {
   margin-top: 127px;
 }
 @keyframes shine {
@@ -10322,6 +10322,7 @@ table thead th {
 }
 .nav-tabs > li > a {
   color: #4D4D4E;
+  padding: 6px 15px 6px 20px;
 }
 .copypip-table .header-text {
   color: #4D4D4E;
@@ -10498,6 +10499,15 @@ table thead th {
 }
 .trade-section .panel-body {
   padding: 15px;
+}
+.strategy-provider-section .tabs-header {
+  background: #ffffff;
+  height: 52px;
+  align-items: center;
+  padding: 10px;
+}
+.strategy-provider-section .panel-body {
+  padding: 20px 20px 20px 14px;
 }
 @media print {
   nav.navbar-static-side {
