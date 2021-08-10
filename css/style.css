@@ -10509,6 +10509,12 @@ table thead th {
 .strategy-provider-section .panel-body {
   padding: 20px 20px 20px 14px;
 }
+.strategy-provider-section .nav-tabs .nav-link > img {
+  margin-right: 0.5rem;
+  height: 13px;
+  width: auto;
+  margin-bottom: 2px;
+}
 @media print {
   nav.navbar-static-side {
     display: none;
