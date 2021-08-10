@@ -246,7 +246,7 @@
     if (!data || !Array.isArray(data)) {
       return;
     }
-    const container = $("#rising-stars .panel-body");
+    const container = $("#top-growth .panel-body");
     const containerHTML = [];
     data.forEach((user) => {
       const userCard = getUserCardHTML(user);
@@ -259,7 +259,7 @@
     if (!data || !Array.isArray(data)) {
       return;
     }
-    const container = $("#rising-stars .panel-body");
+    const container = $("#top-growth .panel-body");
 
     container.empty().append(`<div class="ibox-content table-responsive">
     ${getUserTableHTML(data)}
@@ -270,7 +270,7 @@
   function plotListView() {
     const activeId = getActiveTab().attr('href');
     switch (activeId) {
-      case '#rising-stars':
+      case '#top-growth':
         const risingStars = STATE.getState().risingStars;
         plotRisingStarTable(risingStars);
         plotListLineCharts(risingStars);
@@ -283,7 +283,7 @@
   function plotGridView() {
     const activeId = getActiveTab().attr('href');
     switch (activeId) {
-      case '#rising-stars':
+      case '#top-growth':
         const risingStars = STATE.getState().risingStars;
         // const risingStars = {}
         plotRisingStarCard(risingStars);
@@ -295,7 +295,7 @@
 
   function plotGridLoadingState() {
     const loadingContactBoxes = $('.grid-loading-state .contact-box');
-    const container = $("#rising-stars .panel-body");
+    const container = $("#top-growth .panel-body");
     container.empty().append(loadingContactBoxes);
   }
   // register events on static content i.e content which is not changing dynamically. such events are global for this page
