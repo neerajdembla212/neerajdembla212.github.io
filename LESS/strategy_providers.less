@@ -1,9 +1,15 @@
 .strategy-provider-section {
     .tabs-header {
         background: @white;
-        height: 52px;
+        min-height: 52px;
         align-items: center;
         padding: 10px;
+
+        .actions-container {
+            @media screen and (max-width: 1000px) {
+                margin-top: 0.5rem;
+            }
+        }
     }
 
     .panel-body {
@@ -15,5 +21,40 @@
         height: 13px;
         width: auto;
         margin-bottom: 2px;
+    }
+
+    .philosophy-text {
+        color: @tfoot-pagination-action;
+        max-height: 44px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-size: 12px;
+    }
+
+    .joined-date {
+        color: @tfoot-pagination-action;
+        font-size: 12px;
+    }
+
+    .text-gray {
+        color: @tfoot-pagination-action;
+    }
+
+    .text-red {
+        color: @light-red;
+    }
+
+    .text-green {
+        color: @dark-green;
+    }
+
+    #featured {
+        .contact-box {
+            width: 350px
+        }
+
+        .follow-provider {
+            width: 40%;
+        }
     }
 }

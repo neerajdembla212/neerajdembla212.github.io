@@ -1,31 +1,12 @@
 (function () {
   class State {
-    risingStars = [];
-    topRated = [];
     topGrowth = [];
-    followers = [];
-
+    featuredProviders = [];
     getState() {
       return {
-        risingStars: this.risingStars,
-        topRated: this.topRated,
         topGrowth: this.topGrowth,
-        followers: this.followers
+        featuredProviders: this.featuredProviders
       }
-    }
-
-    setRisingStars(data) {
-      if (!data || !Array.isArray(data)) {
-        return
-      }
-      this.risingStars = data;
-    }
-
-    setTopRated(data) {
-      if (!data || !Array.isArray(data)) {
-        return
-      }
-      this.topRated = data;
     }
 
     setTopGrowth(data) {
@@ -35,11 +16,11 @@
       this.topGrowth = data;
     }
 
-    setFollowers(data) {
+    setFeaturedProviders(data) {
       if (!data || !Array.isArray(data)) {
         return
       }
-      this.followers = data;
+      this.featuredProviders = data;
     }
   }
 
@@ -51,11 +32,15 @@
 
   $(function () {
     registerGlobalEvents();
-    // fetch rising stars
+    const activeId = getActiveTab().attr('href');
+    onTabChange(activeId);
+  });
+
+  function fetchTopGrowthProviders() {
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/rising-stars",
       successCallback: (data) => {
-        STATE.setRisingStars(data.data);
+        STATE.setTopGrowth(data.data);
         const viewType = getCurrentViewType();
         switch (viewType) {
           case 'grid': plotGridView(); break;
@@ -64,7 +49,22 @@
       },
       beforeSend: plotGridLoadingState
     });
-  });
+  }
+
+  function fetchFeaturedProviders() {
+    callAjaxMethod({
+      url: "https://copypip.free.beeceptor.com/users/featured-providers",
+      successCallback: (data) => {
+        STATE.setFeaturedProviders(data.data);
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
+      },
+      // beforeSend: plotGridLoadingState
+    });
+  }
 
   // Plot single Line chart (trendline) 
   function plotLineChart(lineChartCanvas, lineData, viewType) {
@@ -85,9 +85,9 @@
       Math.max(...lineDataPoints)
     );
     const borderColor = "#501EC6";
-    gradient.addColorStop(0, "#B6A3E6");
-    gradient.addColorStop(0.2, "#B6A3E6");
-    gradient.addColorStop(1, "#F1EBFF");
+    gradient.addColorStop(0, "#AABCE9");
+    gradient.addColorStop(0.5, "#C8D4F4");
+    gradient.addColorStop(1, "#E3EAFC");
 
     const labels = ["", "", "", "", "", "", "", "", ""];
     const data = {
@@ -242,20 +242,20 @@
     });
   }
 
-  function plotRisingStarCard(data) {
+  function plotTopGrowthCard(data) {
     if (!data || !Array.isArray(data)) {
       return;
     }
     const container = $("#top-growth .panel-body");
     const containerHTML = [];
-    data.forEach((user) => {
-      const userCard = getUserCardHTML(user);
-      containerHTML.push(userCard);
+    data.forEach((provider) => {
+      const providerCard = getTopGrowthCardHTML(provider);
+      containerHTML.push(providerCard);
     });
     container.empty().append(containerHTML);
   }
 
-  function plotRisingStarTable(data) {
+  function plotTopGrowthTable(data) {
     if (!data || !Array.isArray(data)) {
       return;
     }
@@ -271,10 +271,10 @@
     const activeId = getActiveTab().attr('href');
     switch (activeId) {
       case '#top-growth':
-        const risingStars = STATE.getState().risingStars;
-        plotRisingStarTable(risingStars);
-        plotListLineCharts(risingStars);
-        plotListTriangleCharts(risingStars);
+        const topGrowth = STATE.getState().topGrowth;
+        plotTopGrowthTable(topGrowth);
+        plotListLineCharts(topGrowth);
+        plotListTriangleCharts(topGrowth);
         registerListViewEvents();
         break;
     }
@@ -284,11 +284,15 @@
     const activeId = getActiveTab().attr('href');
     switch (activeId) {
       case '#top-growth':
-        const risingStars = STATE.getState().risingStars;
-        // const risingStars = {}
-        plotRisingStarCard(risingStars);
-        plotGridLineCharts(risingStars);
+        const topGrowth = STATE.getState().topGrowth;
+        plotTopGrowthCard(topGrowth);
+        plotGridLineCharts(topGrowth);
         registerGridViewEvents();
+        break;
+      case "#featured":
+        const featuredProviders = STATE.getState().featuredProviders;
+        plotFeaturedProviersCard(featuredProviders);
+        plotGridLineCharts(featuredProviders);
         break;
     }
   }
@@ -314,6 +318,32 @@
         plotGridView();
       }
     });
+
+    // tabs change event listener
+    $(".tabs-container .nav-tabs > li").click(event => {
+      onTabChange($(event.target).attr('href'))
+    })
+    document.addEventListener("DOMContentLoaded", () => {
+      let wrapper = document.querySelector(".philosophy-text");
+      let options = {
+        callback: function (isTruncated) {
+          debugger
+        },
+        ellipsis: "\u2026 ",
+      };
+      new Dotdotdot(wrapper, options);
+    });
+  }
+
+  function onTabChange(tabId) {
+    if (!tabId) {
+      return
+    }
+    switch (tabId) {
+      case '#top-growth': fetchTopGrowthProviders(); break;
+      case '#featured': fetchFeaturedProviders(); break;
+
+    }
   }
 
   function registerGridViewEvents() {
@@ -355,8 +385,8 @@
     return $(".subheader .btn-group button.active").data("viewType")
   }
 
-  function getUserCardHTML(user) {
-    if (!user) {
+  function getTopGrowthCardHTML(provider) {
+    if (!provider) {
       return "";
     }
     const {
@@ -369,7 +399,7 @@
       drawPercentage,
       return_duration,
       risk_amount
-    } = user;
+    } = provider;
 
     return `<div class="contact-box d-flex flex-column" id="contact-box-${id}">
     <div class="d-flex justify-content-between">
@@ -387,18 +417,18 @@
       <span class="fa fa-bookmark-o favourite-icon"></span>
     </div>
     <div class="d-flex justify-content-between">
-      <span class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</span>
-      <span class="risk_amount h4 align-self-center m-0">$${risk_amount}</span>
-    </div>
-    <div class="d-flex justify-content-between mb-2">
-      <span class="text-uppercase text-light-gray small-font">
-        ${return_duration}
-      </span>
-      <span class="text-capitalize small-font text-blue">low risk</span>
+      <div class=" align-self-center m-0 font-bold d-flex flex-column">
+        <p class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</p>
+        <p class="text-uppercase text-light-gray small-font">${return_duration}</p>
+      </div>
+      <div class=" align-self-center m-0 d-flex flex-column">
+        <p class="risk_amount h4 align-self-center text-light-gray m-0">$${risk_amount}</p>
+        <p class="text-capitalize small-font text-blue text-center">low risk</p>
+      </div>
     </div>
     <canvas class="lineChart" class="mt-2"></canvas>
     <button class="btn btn-primary btn-block">
-      Copy Trader
+      Follow Provider
     </button>
     <!-- area chart here-->
     <div class="d-flex mt-2 justify-content-between">
@@ -529,22 +559,100 @@
     </tr>`
   }
 
-
-
-  function getRatingsHTML(rating) {
-    if (!rating || isNaN(rating)) {
-      return '';
+  function plotFeaturedProviersCard(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
     }
-    const maxRating = 5;
-    const ratingsHTML = [];
-    const ratingNum = Number(rating);
-    for (let i = 0; i < maxRating; i++) {
-      if (i < ratingNum) {
-        ratingsHTML.push('<i class="fa fa-star active"></i>')
-      } else {
-        ratingsHTML.push('<i class="fa fa-star"></i>')
-      }
-    }
-    return ratingsHTML.join('')
+    const container = $("#featured .panel-body");
+    const containerHTML = [];
+    data.forEach((provider) => {
+      const providerCard = getFeaturedProviderCardHTML(provider);
+      containerHTML.push(providerCard);
+    });
+    container.empty().append(containerHTML);
   }
+
+  function getFeaturedProviderCardHTML(provider) {
+    if (!provider) {
+      return "";
+    }
+    const {
+      id,
+      profile_image,
+      username,
+      name,
+      return_percentage,
+      followers_count,
+      drawPercentage,
+      return_duration,
+      risk_amount,
+      age,
+      avg_per_month,
+      avg_pips,
+      trades,
+      strategy_philosophy,
+      joining_date
+    } = provider;
+
+    return `<div class="contact-box d-flex flex-column" id="contact-box-${id}">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <img
+          alt="image"
+          class="rounded-circle img-fluid img-sm"
+          src="${profile_image}"
+        />
+        <div class="d-flex flex-column ml-3">
+          <span class="font-bold">${username}</span>
+          <span class="text-light-black">${name}</span>
+        </div>
+      </div>
+      <span class="fa fa-bookmark-o favourite-icon"></span>
+    </div>
+    <div class="d-flex justify-content-between mt-2">
+      <div class="d-flex flex-column">
+        <p class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</p>
+        <p class="text-uppercase text-light-gray small-font">${return_duration}</p>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="risk_amount h4 align-self-center m-0">$${followers_count}</p>
+        <p class="text-capitalize small-font text-light-gray text-center">Followers</p>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="risk_amount h4 align-self-center m-0">$${risk_amount}</p>
+        <p class="text-capitalize small-font text-blue text-center">low risk</p>
+      </div>
+    </div>
+    <canvas class="lineChart" class="mt-2"></canvas>
+    <p class="font-bold mb-2">Strategy Philosophy</p>
+    <p class="philosophy-text mb-2">${strategy_philosophy}</p>
+    <p class="joined-date mb-3">Joined ${formatDate(new Date(joining_date))}</p>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-column">
+        <p class="text-gray medium-font">AGE</p>
+        <p class="font-bold">${age}</p>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="text-gray medium-font">MAX DD</p>
+        <p class="text-red font-bold text-center">${drawPercentage}</p>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="text-gray medium-font">AVG / MTH</p>
+        <p class="text-green font-bold text-center">${avg_per_month}</p>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="text-gray medium-font">AVG PIPS</p>
+        <p class="font-bold text-center">${avg_pips}</p>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="text-gray medium-font">TRADES</p>
+        <p class="font-bold text-center">${trades}</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block follow-provider">
+      Follow Provider
+    </button>
+  </div>`;
+  }
+
 })();
