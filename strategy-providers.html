@@ -125,15 +125,8 @@
       </div>
       <div id="page-container">
         <div class="d-flex justify-content-between subheader flex-wrap">
-          <h2 class="font-bold my-2">Strategy Providers</h2>
+          <h2 class="font-bold my-2 page-title">Strategy Providers</h2>
           <div class="d-flex my-2">
-            <form role="form" class="mr-4">
-              <div class="position-relative">
-                <span class="inline-search-icon fa fa-search"></span>
-                <input type="text" placeholder="Search Strategy Providers" id="search-strategy-provider"
-                  class="form-control" />
-              </div>
-            </form>
             <div class="btn-group" role="group">
               <button class="btn btn-default active" type="button" data-view-type="grid">
                 <i class="fa fa-th grid-icon mt-1"></i>
@@ -147,8 +140,8 @@
 
         <div class="wrapper wrapper-content">
           <section class="tabs-container strategy-provider-section">
-            <div class="d-flex justify-content-between tabs-header">
-              <ul class="nav nav-tabs" role="tablist">
+            <div class="d-flex justify-content-between tabs-header flex-wrap">
+              <ul class="nav nav-tabs flex-nowrap" role="tablist">
                 <li>
                   <a class="nav-link active" data-toggle="tab" href="#top-growth">Top Growth</a>
                 </li>
@@ -163,7 +156,7 @@
                       src="img/ic_bookmark.svg" />Favourites</a>
                 </li>
               </ul>
-              <div>
+              <div class="actions-container">
                 <div class="btn-group">
                   <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
                     Returns over 2 Yrs
@@ -193,12 +186,12 @@
                 <div class="panel-body row d-flex flex-wrap"></div>
               </div>
               <div role="tabpanel" id="featured" class="tab-pane">
-                <div class="panel-body">
-                  <p>Top Rated Content</p>
+                <div class="panel-body row d-flex flex-wrap">
+                  
                 </div>
               </div>
               <div role="tabpanel" id="following" class="tab-pane">
-                <div class="panel-body">
+                <div class="panel-body row d-flex flex-wrap">
                   <p>Following Content</p>
                 </div>
               </div>

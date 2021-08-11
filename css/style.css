@@ -8,25 +8,25 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -1140,7 +1140,6 @@ ul.nav-second-level {
   left: auto;
 }
 .navbar-static-top .navbar-header {
-  width: 220px;
   height: 60px;
 }
 .navbar-static-top .navbar-header .title {
@@ -10191,6 +10190,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 .small-font {
   font-size: 10px;
 }
+.medium-font {
+  font-size: 12px;
+}
 .ratings .fa-star:not(.active) {
   color: #BFBFBF;
 }
@@ -10222,16 +10224,22 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .tabs-container .nav-tabs {
   border-bottom: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.tabs-container .nav-tabs li {
+  white-space: nowrap;
 }
 .subheader .btn-group .fa {
   color: #b7c0cb;
   font-size: 16px;
 }
 .subheader .btn-group .btn.active .fa {
-  color: #22D091;
+  color: #6D788F;
 }
 .subheader .btn-group .btn.active {
-  background-color: #E2E7FB;
+  background-color: #DCE3EC;
   box-shadow: none;
 }
 .subheader .returns-filter {
@@ -10351,6 +10359,12 @@ table thead th {
 .copypip-table .table > thead > tr > th {
   border-bottom-color: #EEEEEE;
   text-transform: uppercase;
+}
+.page-title {
+  font-size: 20px;
+}
+.navbar-form-custom .form-control {
+  width: 234px;
 }
 .sparkline-container {
   width: 100%;
@@ -10502,9 +10516,14 @@ table thead th {
 }
 .strategy-provider-section .tabs-header {
   background: #ffffff;
-  height: 52px;
+  min-height: 52px;
   align-items: center;
   padding: 10px;
+}
+@media screen and (max-width: 1000px) {
+  .strategy-provider-section .tabs-header .actions-container {
+    margin-top: 0.5rem;
+  }
 }
 .strategy-provider-section .panel-body {
   padding: 20px 20px 20px 14px;
@@ -10514,6 +10533,32 @@ table thead th {
   height: 13px;
   width: auto;
   margin-bottom: 2px;
+}
+.strategy-provider-section .philosophy-text {
+  color: #6D788F;
+  max-height: 44px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 12px;
+}
+.strategy-provider-section .joined-date {
+  color: #6D788F;
+  font-size: 12px;
+}
+.strategy-provider-section .text-gray {
+  color: #6D788F;
+}
+.strategy-provider-section .text-red {
+  color: #E00039;
+}
+.strategy-provider-section .text-green {
+  color: #339A4A;
+}
+.strategy-provider-section #featured .contact-box {
+  width: 350px;
+}
+.strategy-provider-section #featured .follow-provider {
+  width: 40%;
 }
 @media print {
   nav.navbar-static-side {
