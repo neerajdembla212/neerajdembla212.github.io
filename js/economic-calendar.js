@@ -44,6 +44,7 @@
         $('#tab-link-tomorrow').click(function(){
             loadEconomicCalendar('tomorrow')
         })
+        getCurrentTime();
     })
 
     function loadEconomicCalendar(day) {
@@ -296,6 +297,19 @@
         }
     }
 
+    function getCurrentTime() {
+        $('#timeBlock').empty().append(`
+            <span  class="current-time font-bold">${getECTableTime(new Date())} <span class="current-time-zone">(GMT ${getTimezoneOffset()})</span></span>
+        `)
+    }
+    function getTimezoneOffset() {
+        function z(n){return (n<10? '0' : '') + n}
+        var offset = new Date().getTimezoneOffset();
+        var sign = offset < 0? '+' : '-';
+        offset = Math.abs(offset);
+        return sign + z(offset/60 | 0) + z(offset%60);
+      }
+
     function getFormattedECRowDate(date) {
         const curDate = new Date(date);
         const weekdays = ['Sunday', 'Monday', 'Teusday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -304,9 +318,7 @@
     }
 
     function getECTableTime(time) {
-        console.log("recieved", typeof time)
         const currentTime = new Date(+time);
-        console.log("cur time", currentTime);
         const currentHour = currentTime.getHours() < 10 ? `0${currentTime.getHours()}` : `${currentTime.getHours()}`;
         const currentMin = currentTime.getMinutes() < 10 ? `0${currentTime.getMinutes()}` : `${currentTime.getMinutes()}`;
         return `${currentHour}:${currentMin}`;

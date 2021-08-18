@@ -10518,6 +10518,7 @@ table thead th {
 .ec-page-header .page-title.page-text .page-sub-title {
   margin-left: 1rem;
   font-size: 16px;
+  display: flex;
 }
 .ec-page-header .page-sub-header {
   font-size: 12px;
