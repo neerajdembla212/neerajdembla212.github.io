@@ -534,7 +534,7 @@
       </td>
       <td>
         <span class="ratings">
-        ${getRatingsHTML(ratings)}
+      
         </span>
       </td>
       <td>

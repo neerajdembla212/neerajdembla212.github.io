@@ -10014,6 +10014,7 @@ video {
   padding: 20px 10px 20px 20px;
   overflow-y: auto;
   max-height: 90vh;
+  overflow-x: hidden;
 }
 #wrapper {
   overflow: hidden;
