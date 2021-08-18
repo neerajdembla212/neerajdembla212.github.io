@@ -8,25 +8,25 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/opensans/v22/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -10498,6 +10498,68 @@ table thead th {
 }
 .trade-section .panel-body {
   padding: 15px;
+}
+.ec-page-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+}
+.ec-page-header .page-title.page-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ec-page-header .page-title.page-text h1 {
+  margin: 0;
+  color: #3C3C3C;
+  font-size: 24px;
+  font-weight: 600;
+}
+.ec-page-header .page-title.page-text .page-sub-title {
+  margin-left: 1rem;
+  font-size: 16px;
+}
+.ec-page-header .page-sub-header {
+  font-size: 12px;
+}
+.tabs-container .tabs-header {
+  background: #fff;
+  border: 1px solid #E5E5E5;
+}
+.tabs-container .table-row-date {
+  text-align: center;
+  background: #FFF9E3;
+  font-size: 14px;
+  color: #999183;
+  font-weight: 600;
+}
+.tabs-container #economic-calendar-table-today {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+.wrapper.wrapper-content #forex-container,
+.wrapper.wrapper-content #bank-rates {
+  max-height: 320px;
+  overflow-y: auto;
+  background: #fff;
+  padding: 1rem;
+}
+.wrapper.wrapper-content #forex-container .forex-header,
+.wrapper.wrapper-content #bank-rates .forex-header,
+.wrapper.wrapper-content #forex-container .cbr-header,
+.wrapper.wrapper-content #bank-rates .cbr-header {
+  color: #3C3C3C;
+  font-size: 18px;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+.wrapper.wrapper-content .bank-rates-header-bar th {
+  font-size: 10px;
+  color: #8E8FA3;
+}
+.wrapper.wrapper-content .table-user-bank-rates .padding-left-right-8 {
+  padding-left: 8px;
+  padding-right: 8px;
 }
 @media print {
   nav.navbar-static-side {
