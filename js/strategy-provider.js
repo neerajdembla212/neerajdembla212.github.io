@@ -154,37 +154,6 @@
 
     new Chart(ctx, config);
   }
-  // Plot single trinagle chart (risk)
-  function plotTriangleChart(canvas, riskFactor) {
-    if (!canvas) {
-      return;
-    }
-    const containerTriangleSide = 25;
-    canvas.height = containerTriangleSide;
-    canvas.width = containerTriangleSide;
-    const ctx = canvas.getContext("2d");
-
-    // plot container triangle
-    ctx.beginPath();
-    ctx.moveTo(containerTriangleSide, 0);
-    ctx.lineTo(containerTriangleSide, containerTriangleSide);
-    ctx.lineTo(0, containerTriangleSide);
-    ctx.fillStyle = "rgba(229, 229, 229, 1)";
-    ctx.fill();
-
-    // plot risk triangle
-    // assuming risk factor is in percentage
-    const riskTriangleSide = Math.ceil(
-      (riskFactor / 100) * containerTriangleSide
-    );
-    ctx.beginPath();
-    ctx.moveTo(0, containerTriangleSide);
-    ctx.lineTo(riskTriangleSide, containerTriangleSide);
-    ctx.lineTo(riskTriangleSide, containerTriangleSide - riskTriangleSide);
-
-    ctx.fillStyle = "rgba(54, 152, 243, 1)";
-    ctx.fill();
-  }
 
   // plot all line charts in grid view
   function plotGridLineCharts(data) {
@@ -201,30 +170,6 @@
     });
   }
 
-  // plot all triangle charts (risk charts) in grid view
-  function plotGridTriangleCharts(data) {
-    if (!data || !Array.isArray(data)) {
-      return;
-    }
-    data.forEach((user) => {
-      const triangleCanvas = document.querySelector(
-        `#contact-box-${user.id} .triangle`
-      );
-      plotTriangleChart(triangleCanvas, user.risk_percentage);
-    });
-  }
-
-  function plotListTriangleCharts(data) {
-    if (!data || !Array.isArray(data)) {
-      return;
-    }
-    data.forEach((user) => {
-      const triangleCanvas = document.querySelector(
-        `#table-user-${user.id} .triangle`
-      );
-      plotTriangleChart(triangleCanvas, user.risk_percentage);
-    });
-  }
 
   function plotListLineCharts(data) {
     if (!data || !Array.isArray(data)) {
@@ -274,7 +219,6 @@
         const topGrowth = STATE.getState().topGrowth;
         plotTopGrowthTable(topGrowth);
         plotListLineCharts(topGrowth);
-        plotListTriangleCharts(topGrowth);
         registerListViewEvents();
         break;
     }
@@ -401,7 +345,7 @@
       risk_amount
     } = provider;
 
-    return `<div class="contact-box d-flex flex-column" id="contact-box-${id}">
+    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <img
@@ -508,9 +452,6 @@
       </td>
       <td class="return-percentage font-bold font-size-16">
         ${return_percentage}%
-      </td>
-      <td>
-        <canvas class="triangle"></canvas>
       </td>
       <td class="canvas-max-width-trendline pr-3">
         <canvas class="line-chart" class="mt-2"></canvas>
