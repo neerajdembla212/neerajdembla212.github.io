@@ -182,7 +182,7 @@
       );
 
       if (canvas) {
-        plotLineChart(canvas, user.trendline, 'list');
+        plotLineChart(canvas, user.trendline, 'line');
       }
     });
   }
@@ -267,16 +267,6 @@
     $(".tabs-container .nav-tabs > li").click(event => {
       onTabChange($(event.target).attr('href'))
     })
-    document.addEventListener("DOMContentLoaded", () => {
-      let wrapper = document.querySelector(".philosophy-text");
-      let options = {
-        callback: function (isTruncated) {
-          debugger
-        },
-        ellipsis: "\u2026 ",
-      };
-      new Dotdotdot(wrapper, options);
-    });
   }
 
   function onTabChange(tabId) {
@@ -339,10 +329,11 @@
       username,
       name,
       return_percentage,
-      copiers_count,
-      drawPercentage,
+      follower_count,
+      drawDown,
       return_duration,
-      risk_amount
+      risk_amount,
+      favourite
     } = provider;
 
     return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}">
@@ -358,7 +349,7 @@
           <span class="text-light-black">${name}</span>
         </div>
       </div>
-      <span class="fa fa-bookmark-o favourite-icon"></span>
+      <span class="fa favourite-icon ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}"></span>
     </div>
     <div class="d-flex justify-content-between">
       <div class=" align-self-center m-0 font-bold d-flex flex-column">
@@ -376,9 +367,9 @@
     </button>
     <!-- area chart here-->
     <div class="d-flex mt-2 justify-content-between">
-      <span class="text-light-gray"><span class="format-us">${formatWithCommas(copiers_count)}</span> Followers</span>
+      <span class="text-light-gray"><span class="format-us">${formatWithCommas(follower_count)}</span> Followers</span>
       <span class="font-bold">
-        Drawdown <span class="${drawPercentage > 0 ? 'text-green' : 'text-danger'}">${drawPercentage}%</span>
+        Drawdown <span class="${drawDown > 0 ? 'text-green' : 'text-danger'}">${drawDown}%</span>
       </span>
     </div>
   </div>`;
@@ -399,12 +390,15 @@
     <thead>
       <tr>
         <th>PROVIDER</th>
-        <th>RETURN</th>
-        <th>RISK</th>
-        <th>TRENDLINE</th>
-        <th>COPIER</th>
-        <th>RATING</th>
-        <th>COPY</th>
+        <th>AGE</th>
+        <th>Total Returns / equity growth</th>
+        <th>DD</th>
+        <th>avg / mth</th>
+        <th>Avg Pips</th>
+        <th>follower funds</th>
+        <th>followers</th>
+        <th>advised min</th>
+        <th>Follow</th>
         <th>WATCH</th>
       </tr>
     </thead>`
@@ -429,9 +423,23 @@
     if (!user) {
       return '';
     }
-    const { id, profile_image, name, username, country, copiers_percentage, copiers_count, return_percentage, ratings } = user;
+    const { id,
+      profile_image,
+      name,
+      username,
+      country,
+      return_percentage,
+      return_duration,
+      drawDown,
+      follower_count,
+      average_per_month,
+      follower_funds,
+      average_pips,
+      advised_min,
+      favourite
+    } = user;
     return ` <tr id="table-user-${id}">
-      <td>
+      <td class=-"mr-2">
         <img
           alt="image"
           class="rounded-circle img-fluid img-sm float-left"
@@ -450,37 +458,26 @@
           </p>
         </div>
       </td>
-      <td class="return-percentage font-bold font-size-16">
-        ${return_percentage}%
+      <td class="text-center">
+      ${return_duration}
       </td>
-      <td class="canvas-max-width-trendline pr-3">
+      <td class="px-3 d-flex">
+        <span class="mr-3 return-percentage font-bold font-size-16">${return_percentage}%</span>
+        <div class="canvas-max-width-trendline-table">
         <canvas class="line-chart" class="mt-2"></canvas>
+        </div>
       </td>
-      <td>
-        <span
-          class="
-            text-light-gray
-            font-size-12
-            mr-2
-            format-us
-          "
-          >${formatWithCommas(copiers_count)}</span
-        >
-        <span class="text-dark-green">
-          <i
-            class="fa fa-play fa-rotate-270 font-size-12"
-          ></i>
-          ${copiers_percentage}%
-        </span>
+      <td class="text-red text-center">
+      ${drawDown}
       </td>
-      <td>
-        <span class="ratings">
-      
-        </span>
-      </td>
+      <td class="font-bold text-green text-center">${average_per_month}%</td>
+      <td class="font-bold text-center">${average_pips}</td>
+      <td class="font-bold text-center">${follower_funds}</td>
+      <td class="font-bold text-center">${formatWithCommas(follower_count)}</td>
+      <td class="font-bold text-center">${advised_min}</td>
       <td>
         <button class="btn btn-primary font-size-12">
-          Copy Trader
+          Follow Provider
         </button>
       </td>
       <td>
@@ -492,9 +489,10 @@
             btn-outline
             btn-action
             mx-2
+            border-0
           "
         >
-          <i class="fa fa-bookmark-o favourite-icon"></i>
+          <i class="fa favourite-icon extra-large-font border-0 ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}"></i>
         </button>
       </td>
     </tr>`
@@ -597,3 +595,4 @@
   }
 
 })();
+
