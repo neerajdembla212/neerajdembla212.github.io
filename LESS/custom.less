@@ -214,6 +214,7 @@ body.mini-navbar .nav.metismenu>li.logo {
   width: 270px;
   min-height: 200px;
   margin-bottom: 0;
+  max-width: 276px;
 
   .favourite-icon {
     cursor: pointer;
@@ -245,6 +246,14 @@ body.mini-navbar .nav.metismenu>li.logo {
 
 .medium-font {
   font-size: @medium-font;
+}
+
+.large-font {
+  font-size: @large-font;
+}
+
+.extra-large-font {
+  font-size: @extra-large-font;
 }
 
 .ratings {
@@ -336,6 +345,11 @@ table thead th {
 
 .canvas-max-width-trendline {
   width: 17%;
+}
+
+.canvas-max-width-trendline-table {
+  width: 60%;
+  height: 30px;
 }
 
 .btn-followers {
@@ -528,21 +542,6 @@ table thead th {
     }
   }
 
-  thead {
-    background: @thead-background;
-    color: @thead-color;
-    border-top: 1px solid #EEEEEE;
-  }
-
-  tr>td:first-child,
-  tr>th:first-child {
-    padding-left: 1rem;
-  }
-
-  .table>thead>tr>th {
-    border-bottom-color: #EEEEEE;
-    text-transform: uppercase;
-  }
 }
 
 .page-title {
@@ -551,4 +550,20 @@ table thead th {
 
 .navbar-form-custom .form-control {
   width: 234px;
+}
+
+thead {
+  background: @thead-background;
+  color: @thead-color;
+  border-top: 1px solid #EEEEEE;
+}
+
+tr>td:first-child,
+tr>th:first-child {
+  padding-left: 1rem;
+}
+
+.table>thead>tr>th {
+  border-bottom-color: #EEEEEE;
+  text-transform: uppercase;
 }

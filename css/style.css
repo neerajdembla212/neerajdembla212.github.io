@@ -10169,6 +10169,7 @@ body.mini-navbar .nav.metismenu > li.logo {
   width: 270px;
   min-height: 200px;
   margin-bottom: 0;
+  max-width: 276px;
 }
 .contact-box .favourite-icon {
   cursor: pointer;
@@ -10192,6 +10193,12 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .medium-font {
   font-size: 12px;
+}
+.large-font {
+  font-size: 16px;
+}
+.extra-large-font {
+  font-size: 18px;
 }
 .ratings .fa-star:not(.active) {
   color: #BFBFBF;
@@ -10260,6 +10267,10 @@ table thead th {
 }
 .canvas-max-width-trendline {
   width: 17%;
+}
+.canvas-max-width-trendline-table {
+  width: 60%;
+  height: 30px;
 }
 .btn-followers {
   border-radius: 4px 0 0 4px;
@@ -10347,24 +10358,24 @@ table thead th {
 .copypip-table .action-tools .btn.text-bleed-red:hover {
   color: #D0226B;
 }
-.copypip-table thead {
-  background: #F9F9FB;
-  color: #8E8FA3;
-  border-top: 1px solid #EEEEEE;
-}
-.copypip-table tr > td:first-child,
-.copypip-table tr > th:first-child {
-  padding-left: 1rem;
-}
-.copypip-table .table > thead > tr > th {
-  border-bottom-color: #EEEEEE;
-  text-transform: uppercase;
-}
 .page-title {
   font-size: 20px;
 }
 .navbar-form-custom .form-control {
   width: 234px;
+}
+thead {
+  background: #F9F9FB;
+  color: #8E8FA3;
+  border-top: 1px solid #EEEEEE;
+}
+tr > td:first-child,
+tr > th:first-child {
+  padding-left: 1rem;
+}
+.table > thead > tr > th {
+  border-bottom-color: #EEEEEE;
+  text-transform: uppercase;
 }
 .sparkline-container {
   width: 100%;
@@ -10452,11 +10463,6 @@ table thead th {
 }
 .portfolio-users-table .action-tools .btn.text-bleed-red:hover {
   color: #D0226B;
-}
-.portfolio-users-table thead {
-  background: #F9F9FB;
-  color: #8E8FA3;
-  border-top: 1px solid #EEEEEE;
 }
 .portfolio-users-table tr > td:first-child,
 .portfolio-users-table tr > th:first-child {
@@ -10561,6 +10567,9 @@ table thead th {
 }
 .strategy-provider-section #featured .follow-provider {
   width: 40%;
+}
+.strategy-provider-section .table > thead > tr > th {
+  font-size: 11px;
 }
 @media print {
   nav.navbar-static-side {
