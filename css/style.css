@@ -10166,10 +10166,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 }
 .contact-box {
   padding: 1em;
-  margin-bottom: 1em;
-  width: 290px;
-  margin-right: 2em;
+  width: 270px;
   min-height: 200px;
+  margin-bottom: 0;
 }
 .contact-box .favourite-icon {
   cursor: pointer;
@@ -10527,7 +10526,9 @@ table thead th {
   }
 }
 .strategy-provider-section .panel-body {
-  padding: 20px 20px 20px 14px;
+  column-gap: 1em;
+  row-gap: 1em;
+  width: 100%;
 }
 .strategy-provider-section .nav-tabs .nav-link > img {
   margin-right: 0.5rem;
