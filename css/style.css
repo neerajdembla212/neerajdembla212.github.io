@@ -10562,6 +10562,9 @@ table thead th {
   padding-left: 8px;
   padding-right: 8px;
 }
+.color-golden {
+  color: #F3C837;
+}
 @media print {
   nav.navbar-static-side {
     display: none;

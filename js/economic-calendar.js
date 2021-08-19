@@ -149,7 +149,7 @@
           ${currency}
         </td>
         <td class="padding-left-right-8">
-          ${impt}
+          ${getStarRating(impt)}
         </td>
         <td class="padding-left-right-8">
           ${event_name}
@@ -322,5 +322,32 @@
         const currentHour = currentTime.getHours() < 10 ? `0${currentTime.getHours()}` : `${currentTime.getHours()}`;
         const currentMin = currentTime.getMinutes() < 10 ? `0${currentTime.getMinutes()}` : `${currentTime.getMinutes()}`;
         return `${currentHour}:${currentMin}`;
+    }
+    function getStarRating(count) {
+        const emptyStars = 3 - count;
+        const completeStars = 3 - emptyStars;
+        return getCompleteStars(completeStars, emptyStars)
+        
+    }
+    function getCompleteStars(completeStarsCount, emptyStarsCount) {
+        const completeStarsSpan =[];
+        const emptyStarsSpan = []
+        if(completeStarsCount > 0) {
+            for(let i=0; i<completeStarsCount; i++) {
+                completeStarsSpan.push(`<i class="fa fa-star color-golden"></i>`);
+            }
+        }
+         
+        if(emptyStarsCount > 0) {
+            for(let i=0; i<emptyStarsCount; i++) {
+                emptyStarsSpan.push(`<i class="fa fa-star-o"></i>`);
+            }
+        }
+        return `
+          <span>
+            ${completeStarsSpan.join('')}
+            ${emptyStarsSpan.join('')}
+          </span>
+          `
     }
 })();
