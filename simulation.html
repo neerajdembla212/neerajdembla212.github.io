@@ -145,12 +145,25 @@
 
       <div class="wrapper wrapper-content">
         <div class="middle-box text-center animated fadeInRightBig">
-          <h3 class="font-bold">This is page content</h3>
-          <div class="error-desc">
-            You can create here any grid layout you want. And any variation layout you imagine:) Check out
-            main dashboard and other site. It use many different layout.
-            <br /><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"><a
+                href="https://www.tradingview.com/markets/currencies/economic-calendar/" rel="noopener"
+                target="_blank"><span class="blue-text">Economic Calendar</span></a> by TradingView</div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
+              async>
+                {
+                  "colorTheme": "light",
+                    "isTransparent": false,
+                      "width": "510",
+                        "height": "600",
+                          "locale": "en",
+                            "importanceFilter": "-1,0,1"
+                }
+              </script>
           </div>
+          <!-- TradingView Widget END -->
         </div>
       </div>
       <div class="footer">
