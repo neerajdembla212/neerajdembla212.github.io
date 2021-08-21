@@ -10184,7 +10184,6 @@ body.mini-navbar .nav.metismenu > li.logo {
   width: 270px;
   min-height: 200px;
   margin-bottom: 0;
-  max-width: 276px;
 }
 .contact-box .favourite-icon {
   cursor: pointer;
@@ -10589,6 +10588,9 @@ tr > th:first-child {
 }
 .strategy-provider-section .text-green {
   color: #339A4A;
+}
+.strategy-provider-section #top-growth .contact-box {
+  max-width: 276px;
 }
 .strategy-provider-section #featured .contact-box {
   width: 350px;

@@ -538,7 +538,7 @@
       joining_date
     } = provider;
 
-    return `<div class="contact-box d-flex flex-column" id="contact-box-${id}">
+    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <img
