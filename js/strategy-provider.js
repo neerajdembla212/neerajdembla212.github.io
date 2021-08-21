@@ -267,6 +267,11 @@
     $(".tabs-container .nav-tabs > li").click(event => {
       onTabChange($(event.target).attr('href'))
     })
+    // Follow provider api call on click of CTA from modal
+    $('#follow-provider-modal #follow-provider').click(() => {
+      console.log('clicked')
+      $('#follow-provider-modal #close-modal').click();
+    })
   }
 
   function onTabChange(tabId) {
@@ -362,7 +367,7 @@
       </div>
     </div>
     <canvas class="lineChart" class="mt-2"></canvas>
-    <button class="btn btn-primary btn-block">
+    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#follow-provider-modal">
       Follow Provider
     </button>
     <!-- area chart here-->
@@ -467,7 +472,7 @@
         <canvas class="line-chart" class="mt-2"></canvas>
         </div>
       </td>
-      <td class="text-red text-center">
+      <td class="text-light-red text-center">
       ${drawDown}
       </td>
       <td class="font-bold text-green text-center">${average_per_month}%</td>
@@ -476,7 +481,7 @@
       <td class="font-bold text-center">${formatWithCommas(follower_count)}</td>
       <td class="font-bold text-center">${advised_min}</td>
       <td>
-        <button class="btn btn-primary font-size-12">
+        <button class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal"">
           Follow Provider
         </button>
       </td>
@@ -568,27 +573,27 @@
     <p class="joined-date mb-3">Joined ${formatDate(new Date(joining_date))}</p>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column">
-        <p class="text-gray medium-font">AGE</p>
+        <p class="text-gray small-font">AGE</p>
         <p class="font-bold">${age}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray medium-font">MAX DD</p>
-        <p class="text-red font-bold text-center">${drawPercentage}</p>
+        <p class="text-gray small-font">MAX DD</p>
+        <p class="text-light-red font-bold text-center">${drawPercentage}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray medium-font">AVG / MTH</p>
+        <p class="text-gray small-font">AVG / MTH</p>
         <p class="text-green font-bold text-center">${avg_per_month}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray medium-font">AVG PIPS</p>
+        <p class="text-gray small-font">AVG PIPS</p>
         <p class="font-bold text-center">${avg_pips}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray medium-font">TRADES</p>
+        <p class="text-gray small-font">TRADES</p>
         <p class="font-bold text-center">${trades}</p>
       </div>
     </div>
-    <button class="btn btn-primary btn-block follow-provider">
+    <button class="btn btn-primary btn-block follow-provider" data-toggle="modal" data-target="#follow-provider-modal">
       Follow Provider
     </button>
   </div>`;
