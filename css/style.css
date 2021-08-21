@@ -10620,6 +10620,7 @@ tr > th:first-child {
   max-height: 680px;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-bottom: 0 !important;
 }
 #follow-provider-modal .account-number {
   background-color: rgba(34, 208, 145, 0.2);
@@ -10627,6 +10628,14 @@ tr > th:first-child {
 }
 #follow-provider-modal .live {
   letter-spacing: 0.35em;
+}
+#follow-provider-modal .modal-content {
+  height: 640px;
+}
+#follow-provider-modal .scrollable-content {
+  max-height: 280px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 @media print {
   nav.navbar-static-side {

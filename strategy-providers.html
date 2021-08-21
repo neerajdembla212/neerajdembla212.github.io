@@ -341,192 +341,198 @@
                   </li>
                 </ul>
               </div>
-              <div class="tab-content py-3">
-                <!-- Automatic Tab content -->
-                <!-- For Read more/less to function the parent must have "read-more-less" class -->
-                <div role="tabpanel" id="automatic" class="tab-pane active read-more-less">
-                  <p class="font-bold medium-font text-modal-black mb-2">Automatic Settings Adjustment Fund Allocation
-                  </p>
-                  <p class="text-modal-gray extra-large-font mb-2">This process is automatic.</p>
-                  <p class="small-font read-less-text mb-0"><button type="button"
-                      class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-                    <b>Automatic
-                      Setting
-                      Adjustments</b>
-                  </p>
-                  <div class="read-more-text d-none m-0">
-                    <p class="m-0">The system will choose the favourable lot size for your trading
-                      account
-                      based on your account usage and available funds. No input from you is necessary.</p>
-                    <p class="d-flex justify-content-end m-0">
-                      <button type="button"
-                        class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                        Less</button>
+              <div class="scrollable-content">
+                <div class="tab-content py-3">
+                  <!-- Automatic Tab content -->
+                  <!-- For Read more/less to function the parent must have "read-more-less" class -->
+                  <div role="tabpanel" id="automatic" class="tab-pane active read-more-less">
+                    <p class="font-bold medium-font text-modal-black mb-2">Automatic Settings Adjustment Fund Allocation
                     </p>
-                  </div>
-                </div>
-                <!-- Percentage Tab content -->
-                <div role="tabpanel" id="percentage" class="tab-pane read-more-less">
-                  <p class="font-bold medium-font text-modal-black mb-2">Percentage of Total Balance Fund Allocation
-                  </p>
-                  <p class="mb-2 text-light-red">Set a percentage or fixed value for this Strategy Provider.</p>
-                  <div class="d-flex align-items-center mb-2">
-                    <div class="btn-group mr-3">
-                      <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                        Percentage
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li>
-                          <a class="dropdown-item" href="#">Another action</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                      </ul>
+                    <p class="text-modal-gray extra-large-font mb-2">This process is automatic.</p>
+                    <p class="small-font read-less-text mb-0"><button type="button"
+                        class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
+                      <b>Automatic
+                        Setting
+                        Adjustments</b>
+                    </p>
+                    <div class="read-more-text d-none m-0">
+                      <p class="m-0">The system will choose the favourable lot size for your trading
+                        account
+                        based on your account usage and available funds. No input from you is necessary.</p>
+                      <p class="d-flex justify-content-end m-0">
+                        <button type="button"
+                          class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
+                          Less</button>
+                      </p>
                     </div>
-                    <input type="text" class="form-control w-25 mr-3">
-                    <span class="font-bold medium-font text-dark-black">%</span>
                   </div>
-                  <p class="small-font read-less-text mb-0"><button type="button"
-                      class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-                    <b>Percentage of Total Balance</b>
-                  </p>
-                  <div class="read-more-text d-none m-0">
-                    <p class="m-0">Enter a percentage of the total balance that you want to allocate to this trading
-                      strategy. E.g. if you enter “10%”, this means that 1/10 of your balance will be used to trade
-                      according to this strategy. You may also set the value higher than 100% depending on your risk
-                      tolerance.
-
-                      You can also set absolute values in which case the system will calculate the percentage depending
-                      on your balance. E.g. if you enter “USD 1000” with a balance of “USD 3000”, our trading server
-                      will execute a trade size 3 times smaller.
-
-                      The trade size (no. of lots) will be calculated automatically. Please note that this allocation
-                      does not limit your losses to the percentage of your account chosen. This only affects the size
-                      that is opened.</p>
-                    <p class="d-flex justify-content-end m-0">
-                      <button type="button"
-                        class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                        Less</button>
+                  <!-- Percentage Tab content -->
+                  <div role="tabpanel" id="percentage" class="tab-pane read-more-less">
+                    <p class="font-bold medium-font text-modal-black mb-2">Percentage of Total Balance Fund Allocation
                     </p>
+                    <p class="mb-2 text-light-red">Set a percentage or fixed value for this Strategy Provider.</p>
+                    <div class="d-flex align-items-center mb-2">
+                      <div class="btn-group mr-3">
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                          Percentage
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li>
+                            <a class="dropdown-item" href="#">Another action</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </li>
+                          <li class="dropdown-divider"></li>
+                        </ul>
+                      </div>
+                      <input type="text" class="form-control w-25 mr-3">
+                      <span class="font-bold medium-font text-dark-black">%</span>
+                    </div>
+                    <p class="small-font read-less-text mb-0"><button type="button"
+                        class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
+                      <b>Percentage of Total Balance</b>
+                    </p>
+                    <div class="read-more-text d-none m-0">
+                      <p class="m-0">Enter a percentage of the total balance that you want to allocate to this trading
+                        strategy. E.g. if you enter “10%”, this means that 1/10 of your balance will be used to trade
+                        according to this strategy. You may also set the value higher than 100% depending on your risk
+                        tolerance.
+
+                        You can also set absolute values in which case the system will calculate the percentage
+                        depending
+                        on your balance. E.g. if you enter “USD 1000” with a balance of “USD 3000”, our trading server
+                        will execute a trade size 3 times smaller.
+
+                        The trade size (no. of lots) will be calculated automatically. Please note that this allocation
+                        does not limit your losses to the percentage of your account chosen. This only affects the size
+                        that is opened.</p>
+                      <p class="d-flex justify-content-end m-0">
+                        <button type="button"
+                          class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
+                          Less</button>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- fixed Tab content -->
+                  <div role="tabpanel" id="fixed" class="tab-pane read-more-less">
+                    <p class="font-bold medium-font text-modal-black mb-2">Fixed Lot Size Fund Allocation
+                    </p>
+                    <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
+                      Provider.</p>
+                    <div class="d-flex align-items-center mb-2">
+                      <label class="col-form-label mr-3 font-bold text-dark-black">Fixed Trade Size</label>
+                      <input type="text" class="form-control w-25 mr-3" placeholder="0.01 - 100">
+                      <span class="font-bold medium-font text-dark-black">LOT</span>
+                    </div>
+                    <p class="small-font read-less-text mb-0"><button type="button"
+                        class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
+                      <b>Fixed Lot Size</b>
+                    </p>
+                    <div class="read-more-text d-none m-0">
+                      <p class="m-0">Enter the fixed trade size that you want to execute in your brokerage account.
+                        Please
+                        note that if a strategy provider works with a dynamic/floating trade size, your trading results
+                        may differ.
+
+                        It is recommended to use this option only if you can see two increasing parallel lines on the
+                        chart “Percentage vs Pips” of the trading strategy statistics page. In other words, this option
+                        can be effectively used if a trading strategy generates profits in Pips. E.g. “0.10” means that
+                        our trading server will always execute trades of a fixed size of 0.1 lot (10 000 units of the
+                        base
+                        currency) in your account.</p>
+                      <p class="d-flex justify-content-end m-0">
+                        <button type="button"
+                          class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
+                          Less</button>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Proportional tab content -->
+                  <div role="tabpanel" id="proportional" class="tab-pane read-more-less">
+                    <p class="font-bold medium-font text-modal-black mb-2">Proportional Trade Size Fund Allocation
+                    </p>
+                    <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
+                      Provider.</p>
+                    <div class="d-flex align-items-center mb-2">
+                      <label class="col-form-label mr-3 font-bold text-dark-black">Ratio of Trade Size</label>
+                      <input type="text" class="form-control w-25 mr-3" placeholder="0.01 - 100">
+                      <span class="font-bold medium-font text-dark-black">Ratio</span>
+                    </div>
+                    <p class="small-font read-less-text mb-0"><button type="button"
+                        class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
+                      <b>Proportional Trade Size</b>
+                    </p>
+                    <div class="read-more-text d-none m-0">
+                      <p class="m-0">This feature allows setting up dynamic, proportional trade size coefficient in
+                        percentage relation.
+
+                        If you want to open positions 5 times smaller than the strategy provider, you need to input
+                        “0.20”.
+
+                        If you want to open positions 5 times bigger than the strategy provider, input “5.00”.
+
+                        To meet the lot quantity values of the strategy provider input “1.00”.</p>
+                      <p class="d-flex justify-content-end m-0">
+                        <button type="button"
+                          class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
+                          Less</button>
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                <!-- fixed Tab content -->
-                <div role="tabpanel" id="fixed" class="tab-pane read-more-less">
-                  <p class="font-bold medium-font text-modal-black mb-2">Fixed Lot Size Fund Allocation
-                  </p>
-                  <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
-                    Provider.</p>
-                  <div class="d-flex align-items-center mb-2">
-                    <label class="col-form-label mr-3 font-bold text-dark-black">Fixed Trade Size</label>
-                    <input type="text" class="form-control w-25 mr-3" placeholder="0.01 - 100">
-                    <span class="font-bold medium-font text-dark-black">LOT</span>
+                <section class="risk-mangement py-3">
+                  <p class="font-bold medium-font">Risk Management </p>
+                  <!-- Lot size input start -->
+                  <div class="d-flex justify-content-between mb-3">
+                    <div class="w-75 mr-3">
+                      <p class="text-gray medium-font mb-1">Minimum Lot Size</p>
+                      <div class="d-flex align-items-center">
+                        <input type="text" class="form-control w-50 mr-3" placeholder="0.01 - 100">
+                        <span class="font-bold medium-font text-dark-black">LOT</span>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="text-gray medium-font mb-1">Maximum Lot Size</p>
+                      <div class="d-flex align-items-center">
+                        <input type="text" class="form-control w-50 mr-3" placeholder="0.01 - 100">
+                        <span class="font-bold medium-font text-dark-black">LOT</span>
+                      </div>
+                    </div>
                   </div>
-                  <p class="small-font read-less-text mb-0"><button type="button"
-                      class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-                    <b>Fixed Lot Size</b>
-                  </p>
-                  <div class="read-more-text d-none m-0">
-                    <p class="m-0">Enter the fixed trade size that you want to execute in your brokerage account. Please
-                      note that if a strategy provider works with a dynamic/floating trade size, your trading results
-                      may differ.
-
-                      It is recommended to use this option only if you can see two increasing parallel lines on the
-                      chart “Percentage vs Pips” of the trading strategy statistics page. In other words, this option
-                      can be effectively used if a trading strategy generates profits in Pips. E.g. “0.10” means that
-                      our trading server will always execute trades of a fixed size of 0.1 lot (10 000 units of the base
-                      currency) in your account.</p>
-                    <p class="d-flex justify-content-end m-0">
-                      <button type="button"
-                        class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                        Less</button>
-                    </p>
+                  <!-- Lot size input end -->
+                  <!-- Fix profit/loss input start -->
+                  <div class="d-flex justify-content-between mb-3">
+                    <div class="w-75 mr-3">
+                      <p class="text-gray medium-font mb-1">Fix Take Profit</p>
+                      <div class="d-flex align-items-center">
+                        <input type="text" class="form-control w-50 mr-3" placeholder="100">
+                        <span class="font-bold medium-font text-dark-black">Pips</span>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="text-gray medium-font mb-1">Fix Stop Loss</p>
+                      <div class="d-flex align-items-center">
+                        <input type="text" class="form-control w-50 mr-3" placeholder="100">
+                        <span class="font-bold medium-font text-dark-black">Pips</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                <!-- Proportional tab content -->
-                <div role="tabpanel" id="proportional" class="tab-pane read-more-less">
-                  <p class="font-bold medium-font text-modal-black mb-2">Proportional Trade Size Fund Allocation
-                  </p>
-                  <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
-                    Provider.</p>
-                  <div class="d-flex align-items-center mb-2">
-                    <label class="col-form-label mr-3 font-bold text-dark-black">Ratio of Trade Size</label>
-                    <input type="text" class="form-control w-25 mr-3" placeholder="0.01 - 100">
-                    <span class="font-bold medium-font text-dark-black">Ratio</span>
+                  <!-- Fix profit/loss input end -->
+                  <div class="form-check abc-checkbox form-check-inline mb-2">
+                    <input class="form-check-input mr-3" type="checkbox" value="option1">
+                    <label class="form-check-label text-gray medium-font"> Copy Open Trades & Pending Orders </label>
                   </div>
-                  <p class="small-font read-less-text mb-0"><button type="button"
-                      class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-                    <b>Proportional Trade Size</b>
-                  </p>
-                  <div class="read-more-text d-none m-0">
-                    <p class="m-0">This feature allows setting up dynamic, proportional trade size coefficient in
-                      percentage relation.
-
-                      If you want to open positions 5 times smaller than the strategy provider, you need to input
-                      “0.20”.
-
-                      If you want to open positions 5 times bigger than the strategy provider, input “5.00”.
-
-                      To meet the lot quantity values of the strategy provider input “1.00”.</p>
-                    <p class="d-flex justify-content-end m-0">
-                      <button type="button"
-                        class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                        Less</button>
-                    </p>
+                  <div class="form-check abc-checkbox form-check-inline">
+                    <input class="form-check-input mr-3" type="checkbox" value="option1">
+                    <label class="form-check-label text-gray medium-font"> Limit Quantity of Simultaneous Trades
+                    </label>
                   </div>
-                </div>
+                </section>
               </div>
-              <section class="risk-mangement py-3">
-                <p class="font-bold medium-font">Risk Management </p>
-                <!-- Lot size input start -->
-                <div class="d-flex justify-content-between mb-3">
-                  <div class="w-75 mr-3">
-                    <p class="text-gray medium-font mb-1">Minimum Lot Size</p>
-                    <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="0.01 - 100">
-                      <span class="font-bold medium-font text-dark-black">LOT</span>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="text-gray medium-font mb-1">Maximum Lot Size</p>
-                    <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="0.01 - 100">
-                      <span class="font-bold medium-font text-dark-black">LOT</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Lot size input end -->
-                <!-- Fix profit/loss input start -->
-                <div class="d-flex justify-content-between mb-3">
-                  <div class="w-75 mr-3">
-                    <p class="text-gray medium-font mb-1">Fix Take Profit</p>
-                    <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="100">
-                      <span class="font-bold medium-font text-dark-black">Pips</span>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="text-gray medium-font mb-1">Fix Stop Loss</p>
-                    <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="100">
-                      <span class="font-bold medium-font text-dark-black">Pips</span>
-                    </div>
-                  </div>
-                </div>
-                <!-- Fix profit/loss input end -->
-                <div class="form-check abc-checkbox form-check-inline mb-2">
-                  <input class="form-check-input mr-3" type="checkbox" value="option1">
-                  <label class="form-check-label text-gray medium-font"> Copy Open Trades & Pending Orders </label>
-                </div>
-                <div class="form-check abc-checkbox form-check-inline">
-                  <input class="form-check-input mr-3" type="checkbox" value="option1">
-                  <label class="form-check-label text-gray medium-font"> Limit Quantity of Simultaneous Trades </label>
-                </div>
-              </section>
             </div>
             <div class="modal-footer w-100 d-flex justify-content-between">
               <div class="account-number p-1"><span class="mr-1 text-navy live">LIVE</span><span
