@@ -957,7 +957,7 @@ h5 {
   height: 35px;
 }
 .navbar-top-links * {
-  margin-right: 10px;
+  margin-right: 20px;
   margin-left: 10px;
   align-self: center;
 }
@@ -10010,6 +10010,7 @@ body.md-skin {
   color: #4D4D4E;
   background-color: #D4F6EA;
   border-color: transparent;
+  border-radius: 4px;
 }
 .tabs-container .panel-body {
   background: transparent;
@@ -10026,7 +10027,7 @@ video {
   max-width: 100%;
 }
 #page-container {
-  padding: 20px 10px 20px 20px;
+  padding: 20px 20px 0 20px;
   overflow-y: auto;
   max-height: 90vh;
   overflow-x: hidden;
@@ -10034,11 +10035,17 @@ video {
 #wrapper {
   overflow: hidden;
 }
+#page-wrapper {
+  padding: 0 0 0 15px;
+}
 body {
   overflow: hidden;
 }
 .wrapper {
   padding: 0;
+}
+.table {
+  margin-bottom: 0 !important;
 }
 .nav > li.active {
   border-right: 4px solid #21c78b;
@@ -10180,10 +10187,11 @@ body.mini-navbar .nav.metismenu > li.logo {
   height: 100vh;
 }
 .contact-box {
-  padding: 1em;
+  padding: 1.5em;
   width: 270px;
   min-height: 200px;
   margin-bottom: 0;
+  border-radius: 6px;
 }
 .contact-box .favourite-icon {
   cursor: pointer;
@@ -10358,7 +10366,8 @@ table thead th {
 }
 .nav-tabs > li > a {
   color: #4D4D4E;
-  padding: 6px 15px 6px 20px;
+  padding: 8px;
+  border-radius: 4px;
 }
 .copypip-table .header-text {
   color: #4D4D4E;
@@ -10555,11 +10564,15 @@ tr > th:first-child {
   min-height: 52px;
   align-items: center;
   padding: 10px;
+  border-radius: 6px;
 }
 @media screen and (max-width: 1000px) {
   .strategy-provider-section .tabs-header .actions-container {
     margin-top: 0.5rem;
   }
+}
+.strategy-provider-section .nav.nav-tabs li {
+  margin-right: 1rem;
 }
 .strategy-provider-section .panel-body {
   column-gap: 1em;
@@ -10589,9 +10602,6 @@ tr > th:first-child {
 .strategy-provider-section .text-green {
   color: #339A4A;
 }
-.strategy-provider-section #top-growth .contact-box {
-  max-width: 276px;
-}
 .strategy-provider-section #featured .contact-box {
   width: 350px;
 }
@@ -10600,6 +10610,10 @@ tr > th:first-child {
 }
 .strategy-provider-section .table > thead > tr > th {
   font-size: 11px;
+}
+.strategy-provider-section .table-responsive {
+  margin-top: -1rem !important;
+  border-radius: 0 0 6px 6px;
 }
 #follow-provider-modal .username-container {
   margin-left: 2.5rem !important;
