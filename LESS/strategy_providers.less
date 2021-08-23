@@ -4,12 +4,17 @@
         min-height: 52px;
         align-items: center;
         padding: 10px;
+        border-radius: 6px;
 
         .actions-container {
             @media screen and (max-width: 1000px) {
                 margin-top: 0.5rem;
             }
         }
+    }
+
+    .nav.nav-tabs li {
+        margin-right: 1rem;
     }
 
     .panel-body {
@@ -46,12 +51,6 @@
         color: @dark-green;
     }
 
-    #top-growth {
-        .contact-box {
-            max-width: 276px;
-        }
-    }
-
     #featured {
         .contact-box {
             width: 350px
@@ -64,6 +63,11 @@
 
     .table>thead>tr>th {
         font-size: 11px;
+    }
+
+    .table-responsive {
+        margin-top: -1rem !important;
+        border-radius: 0 0 6px 6px;
     }
 }
 

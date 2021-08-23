@@ -206,7 +206,7 @@
     }
     const container = $("#top-growth .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive">
+    container.empty().append(`<div class="ibox-content table-responsive p-0">
     ${getUserTableHTML(data)}
     </div>`)
 
@@ -214,6 +214,9 @@
 
   function plotListView() {
     const activeId = getActiveTab().attr('href');
+    $('.strategy-provider-section .tabs-header').css({
+      borderRadius: '6px 6px 0 0'
+    });
     switch (activeId) {
       case '#top-growth':
         const topGrowth = STATE.getState().topGrowth;
@@ -384,7 +387,7 @@
     if (!data || !Array.isArray(data)) {
       return;
     }
-    return `<table class="table">
+    return `<table class="table mb-0">
     ${getUserTableHeaders()}
     ${getUserTableBody(data)}
     </table>`
@@ -394,7 +397,7 @@
     return `
     <thead>
       <tr>
-        <th>PROVIDER</th>
+        <th class="pl-3">PROVIDER</th>
         <th>AGE</th>
         <th>Total Returns / equity growth</th>
         <th>DD</th>
@@ -404,7 +407,7 @@
         <th>followers</th>
         <th>advised min</th>
         <th>Follow</th>
-        <th>WATCH</th>
+        <th class="pr-3">WATCH</th>
       </tr>
     </thead>`
   }
@@ -444,7 +447,7 @@
       favourite
     } = user;
     return ` <tr id="table-user-${id}">
-      <td class=-"mr-2">
+      <td class="mr-2 pl-3">
         <img
           alt="image"
           class="rounded-circle img-fluid img-sm float-left"
@@ -463,29 +466,34 @@
           </p>
         </div>
       </td>
-      <td class="text-center">
+      <td class="text-center align-middle">
       ${return_duration}
       </td>
       <td class="px-3 d-flex">
-        <span class="mr-3 return-percentage font-bold font-size-16">${return_percentage}%</span>
-        <div class="canvas-max-width-trendline-table">
+        <span class="mr-3 return-percentage font-bold font-size-16 pt-1">${return_percentage}%</span>
+        <div class="canvas-max-width-trendline-table pt-2">
         <canvas class="line-chart" class="mt-2"></canvas>
         </div>
       </td>
-      <td class="text-light-red text-center">
+      <td class="text-light-red text-center align-middle">
       ${drawDown}
       </td>
-      <td class="font-bold text-green text-center">${average_per_month}%</td>
-      <td class="font-bold text-center">${average_pips}</td>
-      <td class="font-bold text-center">${follower_funds}</td>
-      <td class="font-bold text-center">${formatWithCommas(follower_count)}</td>
-      <td class="font-bold text-center">${advised_min}</td>
+      <td class="font-bold text-green text-center align-middle">${average_per_month}%</td>
+      <td class="font-bold text-center align-middle">${average_pips}</td>
+      <td class="font-bold text-center align-middle">${follower_funds}</td>
+      <td class="font-bold text-center align-middle">${formatWithCommas(follower_count)}</td>
+      <td class="font-bold text-center align-middle">
+      <div>
+        <p class="m-0">$${formatWithCommas(advised_min)}</p>
+        <p class="small-font text-capitalize text-blue m-0 font-weight-normal">Low Risk</p>
+      </div>
+      </td>
       <td>
         <button class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal"">
           Follow Provider
         </button>
       </td>
-      <td>
+      <td class="pr-3">
         <button
           class="
             btn

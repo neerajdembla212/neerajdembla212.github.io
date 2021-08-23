@@ -62,7 +62,7 @@
 
     // This function will fetch user details and show role specific elements
     function fetchUserDetails(cb) {
-        const role = 'follower'; // provider or follower
+        const role = 'provider'; // provider or follower
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/user-details/${role}`,
             successCallback: (data) => {

@@ -13,7 +13,7 @@ video {
 }
 
 #page-container {
-  padding: 20px 10px 20px 20px;
+  padding: 20px 20px 0 20px;
   overflow-y: auto;
   max-height: 90vh;
   overflow-x: hidden;
@@ -23,12 +23,20 @@ video {
   overflow: hidden;
 }
 
+#page-wrapper {
+  padding: 0 0 0 15px;
+}
+
 body {
   overflow: hidden;
 }
 
 .wrapper {
   padding: 0;
+}
+
+.table {
+  margin-bottom: 0 !important;
 }
 
 .nav>li.active {
@@ -210,10 +218,11 @@ body.mini-navbar .nav.metismenu>li.logo {
 }
 
 .contact-box {
-  padding: 1em;
+  padding: 1.5em;
   width: 270px;
   min-height: 200px;
   margin-bottom: 0;
+  border-radius: 6px;
 
   .favourite-icon {
     cursor: pointer;
@@ -307,6 +316,7 @@ body.mini-navbar .nav.metismenu>li.logo {
 
     li {
       white-space: nowrap;
+      // margin-right: 1rem;
     }
   }
 }
@@ -521,7 +531,8 @@ table thead th {
 
 .nav-tabs>li>a {
   color: @bold-black;
-  padding: 6px 15px 6px 20px;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 .copypip-table {
