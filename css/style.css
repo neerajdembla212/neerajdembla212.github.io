@@ -10416,6 +10416,9 @@ tr > th:first-child {
   display: block;
   transform: rotate(90deg);
 }
+.inmodal .modal-body {
+  background: #ffffff;
+}
 .sparkline-container {
   width: 100%;
   background-color: #1F1F25;
