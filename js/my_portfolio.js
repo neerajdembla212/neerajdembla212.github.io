@@ -4,7 +4,7 @@
         userDetails = {};
         lineChartData = {};
         userList = {}; // this will store followers or providers depending on user's role
-
+        role = ''; // provider or follower
         getStrategyDetails() {
             return this.strategyDetails;
         }
@@ -39,11 +39,19 @@
             }
             this.userList = data;
         }
+
+        getRole() {
+            return this.role;
+        }
+        setRole(role) {
+            this.role = role;
+        }
     }
     const STATE = new State();
     // document ready function
     $(function () {
         registerEvents();
+        STATE.setRole('follower'); // provider or follower
         fetchStrategyDetails();
         fetchUserDetails(fetchListOfUsers);
         fetchLineData();
@@ -52,19 +60,18 @@
     // This function fetch strategy details and render sparkline
     function fetchStrategyDetails() {
         callAjaxMethod({
-            url: 'https://copypip.free.beeceptor.com/get-strategy-details',
+            url: `https://copypip.free.beeceptor.com/get-strategy-details/${STATE.getRole()}`,
             successCallback: (data) => {
                 STATE.setStrategyDetails(data.data);
-                renderStrategyDetails();
+                renderStrategyDetails(STATE.getRole());
             }
         })
     }
 
     // This function will fetch user details and show role specific elements
     function fetchUserDetails(cb) {
-        const role = 'provider'; // provider or follower
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/user-details/${role}`,
+            url: `https://copypip.free.beeceptor.com/user-details/${STATE.getRole()}`,
             successCallback: (data) => {
                 STATE.setUserDetails(data.data);
                 showRoleWiseElements();
@@ -200,10 +207,10 @@
             </p>
           </div>
         </td>
-        <td class="font-bold font-size-16 text-center">
+        <td class="font-bold font-size-16 text-center align-middle">
           $${formatWithCommas(total_profit_loss)}
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle">
           <span class="text-dark-green font-weight-bold">
             <i class="fa fa-play fa-rotate-270 font-size-12"></i>
             ${total_returns}
@@ -317,37 +324,37 @@
           <div class="ml-2 float-left">
             <p class="font-bold font-size-12 mb-0">
               ${username}
+              ${newUSerChip}
             </p>
             <p class="text-light-black font-size-12 mb-0">
               ${name}
               <img class="ml-1" src="${getCountryFlags(country)}" />
             </p>
           </div>
-          ${newUSerChip}
         </td>
-        <td class="font-bold text-center">
+        <td class="font-bold text-center align-middle">
           ${formatDate(new Date(+joined_on))}
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle">
           ${calculateDateDiff(new Date(+joined_on), new Date())}
         </td>
-        <td class="text-center font-bold text-dark-green">
+        <td class="text-center font-bold text-dark-green align-middle">
         S$${formatWithCommas(profit_or_loss)}
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle">
         S$${formatWithCommas(hwm_diff)}
         </td>
-        <td class="font-bold text-center">
+        <td class="font-bold text-center align-middle">
         S$${formatWithCommas(balance)}
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle">
         S$${fee_earned}
         </td>
-        <td class="font-bold text-center">
+        <td class="font-bold text-center align-middle">
         S$${formatWithCommas(com_earned)}
         </td>
       
-        <td class="action-tools text-center">
+        <td class="action-tools ">
          ${getStrategyFollowersActionColumn(id, is_new)}
         </td>
       </tr>`
@@ -505,13 +512,13 @@
     }
 
     // render strategy details from api data
-    function renderStrategyDetails() {
+    function renderStrategyDetails(role) {
         const strategy = STATE.getStrategyDetails();
         const container = $('.sparkline-container');
-        container.empty().append(getStrategyDetailsHTML(strategy));
+        container.empty().append(getStrategyDetailsHTML(strategy, role));
     }
 
-    function getStrategyDetailsHTML(strategy) {
+    function getStrategyDetailsHTML(strategy, role) {
         const { cumulative_returns,
             strategy_age,
             deposits,
@@ -520,14 +527,35 @@
             fees_earned,
             followers,
             trades,
-            max_drawdown } = strategy;
+            max_drawdown,
+            amount_paid } = strategy;
+
+        let roleSpecificData;
+        if (role === 'provider') {
+            roleSpecificData = ` <div class="sparkline">
+                <div class="key">Fees Earned</div>
+                <div class="value white">SGD${formatWithCommas(fees_earned)}</div>
+            </div>`
+        } else if (role === 'follower') {
+            roleSpecificData = `<div class="sparkline">
+            <div class="key">
+            <div>
+                <p class="mb-0">Total Paid</p>
+                <p class="mb-0 small-font">Fees + Profit Shared</p>
+                </div>
+                <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
+            </div>
+        </div>`
+        }
         return `
         <div class="sparkline mr-0">
           <div class="key">Cumulative returns</div>
           <div class="d-flex justify-content-between">
             <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
-            <div class="ml-3 mt-2 light-white">Strategy Age
-              ${strategy_age}</div>
+            <div class="ml-3 mt-2 light-white">
+                <p class="mb-0 font-weight-light">${role === 'follower' ? 'Strategy Age' : 'Since Inception'}</p>
+                <p class="mb-0 font-weight-light">${strategy_age}</p>
+            </div>
           </div>
           </div>
           <div class="divider mx-2"></div>
@@ -543,10 +571,7 @@
           <div class="key">Withdrawals</div>
           <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
         </div>
-        <div class="sparkline">
-            <div class="key">Fees Earned</div>
-          <div class="value white">SGD${formatWithCommas(fees_earned)}</div>
-        </div>
+       ${roleSpecificData}
         <div class="sparkline">
             <div class="key">Followers</div>
           <div class="value white">SGD${formatWithCommas(followers)}</div>
