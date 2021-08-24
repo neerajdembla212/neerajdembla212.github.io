@@ -2,15 +2,18 @@
     width: 100%;
     background-color: @black;
     border-radius: 6px;
-    min-height: 100px;
+    min-height: 80px;
 
+    @media screen and (max-width: 480px) {
+        display: none;
+    }
 
     .sparkline {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
-        margin-right: 2em;
+        margin-right: 1em;
 
         .value {
             font-size: 16px;
