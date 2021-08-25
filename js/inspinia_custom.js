@@ -39,16 +39,23 @@ function registerEventHandlers() {
     selectButton.text(selectedItem);
   });
 
-  // to display role card on hover of profile image on retracted menu
-  $(".nav-header")
-    .mouseenter(() => {
-      if ($(".mini-navbar").is(":visible")) {
-        $(".role-card").removeClass("d-none");
-      }
-    })
-    .mouseleave(() => {
-      $(".role-card").addClass("d-none");
-    });
+  $('.nav-header .dropdown-menu').click(function (e) {
+    const role = e.target.innerText;
+    if (role === 'Strategy Provider') {
+      localStorage.setItem('currentRole', 'provider');
+      window.location.reload();
+    } else if (role === 'Strategy Follower') {
+      localStorage.setItem('currentRole', 'follower');
+      window.location.reload();
+    }
+  })
+  // display selected role on nav header
+  const storedRole = localStorage.getItem('currentRole');
+  if (storedRole === 'provider') {
+    $('.nav-header .role').text('Strategy Provider');
+  } else {
+    $('.nav-header .role').text('Strategy Follower');
+  }
 
   // Open close Buy/Sell right sidebar
   $(".buy-sell-right-sidebar-toggle").on("click", function (e) {
