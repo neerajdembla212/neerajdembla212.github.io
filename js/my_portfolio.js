@@ -51,7 +51,7 @@
     // document ready function
     $(function () {
         registerEvents();
-        STATE.setRole('follower'); // provider or follower
+        STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
         fetchStrategyDetails();
         fetchUserDetails(fetchListOfUsers);
         fetchLineData();

@@ -42,23 +42,21 @@
             </div>
           </li>
           <li class="nav-header position-relative">
-            <div class="dropdown profile-element">
-              <img alt="image" class="rounded-circle" src="img/profile_small.jpg" />
-              <div class="details">
-                <span class="block m-t-xs font-bold text-white">KS Tan</span>
-                <span class="text-xs text-light-white">Strategy Follower</span>
+            <a data-toggle="dropdown" class="dropdown-toggle p-0" href="#">
+              <div class="dropdown profile-element">
+                <img alt="image" class="rounded-circle" src="img/profile_small.jpg" />
+                <div class="details">
+                  <span class="block m-t-xs font-bold text-white">KS Tan</span>
+                  <span class="text-xs text-light-white role"></span>
+                </div>
               </div>
-            </div>
-            <div class="card role-card d-none">
+            </a>
+            <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <h3 class="pl-3 pt-2">KS Tan</h3>
-              <div class="divider"></div>
-              <div class="p-3 role-list">
-                <p class="active">
-                  Strategy Follower <i class="fa fa-check"></i>
-                </p>
-                <p>Strategy Provider <i class="fa fa-check"></i></p>
-              </div>
-            </div>
+              <li class="dropdown-item pl-3">Strategy Follower</li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item pl-3 mb-2">Strategy Provider</li>
+            </ul>
           </li>
           <li class="sm d-flex justify-content-between">
             <div class="trade-label">Trade</div>

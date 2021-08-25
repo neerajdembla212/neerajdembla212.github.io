@@ -10048,15 +10048,22 @@ body {
   margin-bottom: 0 !important;
 }
 .nav > li.active {
-  border-right: 4px solid #21c78b;
   border-left: none;
+  background: transparent;
+}
+.nav > li:not(.nav-header).active {
+  border-right: 4px solid #21c78b;
   background: rgba(255, 255, 255, 0.3);
 }
-.navbar-default .nav > li:not(:active) > a:hover,
-.navbar-default .nav > li:not(:active) > a:focus {
+.navbar-default .nav > li:not(.nav-header) > a:hover,
+.navbar-default .nav > li:not(.nav-header) > a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid #21c78b;
+}
+.navbar-default .nav > li.nav-header > a:hover,
+.navbar-default .nav > li.nav-header > a:focus {
+  background-color: transparent;
 }
 .nav li > a > .nav-icon {
   height: 20px;
@@ -10418,6 +10425,9 @@ tr > th:first-child {
 }
 .inmodal .modal-body {
   background: #ffffff;
+}
+.navbar-default .dropdown-toggle::after {
+  display: none;
 }
 .sparkline-container {
   width: 100%;

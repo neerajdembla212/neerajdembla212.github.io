@@ -40,16 +40,25 @@ body {
 }
 
 .nav>li.active {
-  border-right: 4px solid darken(@navy, 2%);
   border-left: none;
+  background: transparent;
+}
+
+.nav>li:not(.nav-header).active {
+  border-right: 4px solid darken(@navy, 2%);
   background: rgba(255, 255, 255, 0.3);
 }
 
-.navbar-default .nav>li:not(:active)>a:hover,
-.navbar-default .nav>li:not(:active)>a:focus {
+.navbar-default .nav>li:not(.nav-header)>a:hover,
+.navbar-default .nav>li:not(.nav-header)>a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-right: 4px solid darken(@navy, 2%);
+}
+
+.navbar-default .nav>li.nav-header>a:hover,
+.navbar-default .nav>li.nav-header>a:focus {
+  background-color: transparent;
 }
 
 .nav li>a>.nav-icon {
@@ -599,4 +608,8 @@ tr>th:first-child {
 
 .inmodal .modal-body {
   background: @white;
+}
+
+.navbar-default .dropdown-toggle::after {
+  display: none;
 }
