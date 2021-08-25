@@ -2,10 +2,15 @@
   class State {
     topGrowth = [];
     featuredProviders = [];
+    followingUsers = [];
+    favouriteUsers = [];
+
     getState() {
       return {
         topGrowth: this.topGrowth,
-        featuredProviders: this.featuredProviders
+        featuredProviders: this.featuredProviders,
+        followingUsers: this.followingUsers,
+        favouriteUsers: this.favouriteUsers
       }
     }
 
@@ -21,6 +26,20 @@
         return
       }
       this.featuredProviders = data;
+    }
+
+    setFollowingUsers(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.followingUsers = data;
+    }
+
+    setFavouriteUsers(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.favouriteUsers = data;
     }
   }
 
@@ -38,7 +57,7 @@
 
   function fetchTopGrowthProviders() {
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/users/rising-stars",
+      url: "https://copypip.free.beeceptor.com/users/top-growth",
       successCallback: (data) => {
         STATE.setTopGrowth(data.data);
         const viewType = getCurrentViewType();
@@ -56,6 +75,36 @@
       url: "https://copypip.free.beeceptor.com/users/featured-providers",
       successCallback: (data) => {
         STATE.setFeaturedProviders(data.data);
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
+      },
+      // beforeSend: plotGridLoadingState
+    });
+  }
+
+  function fetchFollowingUsers() {
+    callAjaxMethod({
+      url: "https://copypip.free.beeceptor.com/users/following",
+      successCallback: (data) => {
+        STATE.setFollowingUsers(data.data);
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
+      },
+      // beforeSend: plotGridLoadingState
+    });
+  }
+
+  function fetchFavouriteUsers() {
+    callAjaxMethod({
+      url: "https://copypip.free.beeceptor.com/users/favourites",
+      successCallback: (data) => {
+        STATE.setFavouriteUsers(data.data);
         const viewType = getCurrentViewType();
         switch (viewType) {
           case 'grid': plotGridView(); break;
@@ -224,6 +273,20 @@
         plotListLineCharts(topGrowth);
         registerListViewEvents();
         break;
+
+      case '#following':
+        const followingUsers = STATE.getState().followingUsers;
+        plotFollowingUsersTable(followingUsers);
+        plotListLineCharts(followingUsers);
+        registerListViewEvents();
+        break;
+
+      case '#favourites':
+        const favouriteUsers = STATE.getState().favouriteUsers;
+        plotFavouriteUsersTable(favouriteUsers);
+        plotListLineCharts(favouriteUsers);
+        registerListViewEvents();
+        break;
     }
   }
 
@@ -236,10 +299,25 @@
         plotGridLineCharts(topGrowth);
         registerGridViewEvents();
         break;
+
       case "#featured":
         const featuredProviders = STATE.getState().featuredProviders;
         plotFeaturedProviersCard(featuredProviders);
         plotGridLineCharts(featuredProviders);
+        break;
+
+      case '#following':
+        const followingUsers = STATE.getState().followingUsers;
+        plotFollowingUsersCard(followingUsers);
+        plotGridLineCharts(followingUsers);
+        registerGridViewEvents();
+        break;
+
+      case '#favourites':
+        const favouriteUsers = STATE.getState().favouriteUsers;
+        plotFavouriteUsersCard(favouriteUsers);
+        plotGridLineCharts(favouriteUsers);
+        registerGridViewEvents();
         break;
     }
   }
@@ -284,6 +362,8 @@
     switch (tabId) {
       case '#top-growth': fetchTopGrowthProviders(); break;
       case '#featured': fetchFeaturedProviders(); break;
+      case '#following': fetchFollowingUsers(); break;
+      case '#favourites': fetchFavouriteUsers(); break;
 
     }
   }
@@ -607,5 +687,53 @@
   </div>`;
   }
 
+  function plotFollowingUsersCard(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#following .panel-body");
+    const containerHTML = [];
+    data.forEach((provider) => {
+      const providerCard = getTopGrowthCardHTML(provider);
+      containerHTML.push(providerCard);
+    });
+    container.empty().append(containerHTML);
+  }
+
+  function plotFollowingUsersTable(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#following .panel-body");
+
+    container.empty().append(`<div class="ibox-content table-responsive p-0">
+    ${getUserTableHTML(data)}
+    </div>`)
+
+  }
+
+  function plotFavouriteUsersCard(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#favourites .panel-body");
+    const containerHTML = [];
+    data.forEach((provider) => {
+      const providerCard = getTopGrowthCardHTML(provider);
+      containerHTML.push(providerCard);
+    });
+    container.empty().append(containerHTML);
+  }
+
+  function plotFavouriteUsersTable(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#favourites .panel-body");
+
+    container.empty().append(`<div class="ibox-content table-responsive p-0">
+    ${getUserTableHTML(data)}
+    </div>`)
+  }
 })();
 
