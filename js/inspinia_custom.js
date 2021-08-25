@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  if (!checkUserLogin()) {
-    window.location.href = window.origin + '/login.html'
-  }
-  registerEventHandlers();
+  // if (!checkUserLogin()) {
+  //   window.location.href = window.origin + '/login.html'
+  // }
+  // registerEventHandlers();
 });
 function checkUserLogin() {
   return getCookie('accessToken')
