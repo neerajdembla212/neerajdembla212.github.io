@@ -115,11 +115,7 @@
         })
     }
 
-    function renderStrategyProviders() {
-        const users = STATE.getUserList();
-        const container = $('.portfolio-users-table');
-        container.append(getStrategyProvidersTableHTML(users));
-    }
+
 
     function fetchStrategyFollowers() {
         callAjaxMethod({
@@ -131,10 +127,12 @@
         })
     }
 
-    function renderStrategyFollowers() {
+    // render Strategy provider table HTML start
+    function renderStrategyProviders() {
         const users = STATE.getUserList();
         const container = $('.portfolio-users-table');
-        container.append(getStrategyFollowersTableHTML(users));
+        container.append(getStrategyProvidersTableHTML(users));
+        container.append(getStrategyProviderResponsiveHTML(users));
     }
 
     function getStrategyProvidersTableHTML(data) {
@@ -150,11 +148,11 @@
         <thead>
             <tr>
             <th>Provider</th>
-            <th class="text-center">NET P/L</th>
+            <th class="text-center">equity growth</th>
             <th class="text-center">Total Returns</th>
             <th class="text-center">Max DD</th>
             <th class="text-center">Trades</th>
-            <th class="text-center">Subscription FEEs</th>
+            <th class="text-center">Management FEEs</th>
             <th class="text-center">P share %</th>
             <th class="text-center">TOTAL FEEs</th>
             <th>Actions</th>
@@ -195,7 +193,7 @@
             profit_share,
             total_fee } = user;
         return `<tr id="table-user-${id}">
-        <td>
+        <td class="d-flex">
           <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
           <div class="ml-2 float-left">
             <p class="font-bold font-size-12 mb-0">
@@ -216,22 +214,22 @@
             ${total_returns}
           </span>
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle text-light-red">
           ${max_drawdown}
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle">
           ${formatWithCommas(trades)}
         </td>
-        <td class="text-center font-weight-bold">
+        <td class="text-center font-weight-bold align-middle">
           S$${formatWithCommas(subscription_fee)}
         </td>
-        <td class="text-center">
+        <td class="text-center align-middle">
           ${profit_share}
         </td>
-        <td class="text-center font-weight-bold">
+        <td class="text-center font-weight-bold align-middle">
           S$${formatWithCommas(total_fee)}
         </td>
-        <td class="action-tools text-center">
+        <td class="action-tools text-center align-middle">
           <i class="fa fa-pause mr-1"></i>
           <i class="fa fa-stop mr-1"></i>
           <i class="fa fa-gear mr-1"></i>
@@ -256,6 +254,93 @@
           </td>
         </tr>
       </tfoot>`
+    }
+    // render Strategy provider table HTML end
+
+    // render Strategy provider responsive HTML start
+    function getStrategyProviderResponsiveHTML(data) {
+        const rowsHTML = [];
+        data.forEach(user => {
+            rowsHTML.push(getStrategyProviderResponsiveRow(user))
+        })
+        return `<div class="responsive-providers">
+            ${rowsHTML.join('')}
+        </div>`
+    }
+
+    function getStrategyProviderResponsiveRow(user) {
+        const { id,
+            profile_image,
+            name,
+            username,
+            country,
+            total_profit_loss,
+            total_returns,
+            max_drawdown,
+            trades,
+            subscription_fee,
+            profit_share,
+            total_fee } = user;
+
+        return `<div class="p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
+                            <div class="ml-2 float-left">
+                                <p class="font-bold font-size-12 mb-0">
+                                    ${username}
+                                </p>
+                                <p class="text-light-black font-size-12 mb-0">
+                                    ${name}
+                                    <img class="ml-1" src="${getCountryFlags(country)}" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="text-dark-green font-weight-bold mr-3">
+                                <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+                                ${total_returns}
+                            </span>
+                            <i class="fa fa-pause mr-2 action-tools large-font"></i>
+                            <i class="fa fa-stop mr-2 action-tools large-font"></i>
+                            <i class="fa fa-gear mr-2 action-tools large-font"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">EQ growth</p>
+                            <p class="mb-0 font-bold responsive-value">$${formatWithCommas(total_profit_loss)}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">Max DD</p>
+                            <p class="mb-0 font-bold responsive-value text-light-red">${max_drawdown}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">Trades</p>
+                            <p class="mb-0 font-bold responsive-value">${formatWithCommas(trades)}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">M Fees</p>
+                            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(subscription_fee)}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">P share</p>
+                            <p class="mb-0 font-bold responsive-value">${profit_share}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">Total fees</p>
+                            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(total_fee)}</p>
+                        </div>
+                    </div>
+                </div>`
+    }
+
+    // render Strategy Follower table HTML start
+
+    function renderStrategyFollowers() {
+        const users = STATE.getUserList();
+        const container = $('.portfolio-users-table');
+        container.append(getStrategyFollowersTableHTML(users));
     }
 
     function getStrategyFollowersTableHTML(data) {
@@ -389,7 +474,7 @@
         </tr>
       </tfoot>`
     }
-
+    // render Strategy Follower table HTML end
 
     // function to display role chip in sub header
     function showRoleWiseElements() {
@@ -411,6 +496,7 @@
             $('.portfolio-users-table .table-title').text('Following')
         }
     }
+
     // Plot Line chart 
     function plotLineChart() {
         const canvas = document.getElementById("line-chart");
@@ -511,7 +597,7 @@
         new Chart(ctx, config);
     }
 
-    // render strategy details from api data
+    // render strategy details sparkline start
     function renderStrategyDetails(role) {
         const strategy = STATE.getStrategyDetails();
         const container = $('.sparkline-container');
@@ -585,7 +671,9 @@
           <div class="value dark-red">${max_drawdown}</div>
       </div>`
     }
+    // render strategy details sparkline end
 
+    // register events on the page i.e click of time filter on line chart
     function registerEvents() {
         $('.chart-filter .btn').click(event => {
             const target = $(event.currentTarget);
