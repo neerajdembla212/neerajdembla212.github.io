@@ -55,6 +55,7 @@ function registerEventHandlers() {
     $('.nav-header .role').text('Strategy Provider');
   } else {
     $('.nav-header .role').text('Strategy Follower');
+    localStorage.setItem('currentRole', 'follower');
   }
 
   // Open close Buy/Sell right sidebar
