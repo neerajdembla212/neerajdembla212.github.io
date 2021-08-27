@@ -147,15 +147,15 @@
         return `
         <thead>
             <tr>
-            <th>Provider</th>
-            <th class="text-center">equity growth</th>
-            <th class="text-center">Total Returns</th>
-            <th class="text-center">Max DD</th>
-            <th class="text-center">Trades</th>
-            <th class="text-center">Management FEEs</th>
-            <th class="text-center">P share %</th>
-            <th class="text-center">TOTAL FEEs</th>
-            <th>Actions</th>
+            <th class="align-middle">Provider</th>
+            <th class="text-center align-middle">equity growth</th>
+            <th class="text-center align-middle">Total Returns</th>
+            <th class="text-center align-middle">Max DD</th>
+            <th class="text-center align-middle">Trades</th>
+            <th class="text-center align-middle">Management FEEs</th>
+            <th class="text-center align-middle">P share %</th>
+            <th class="text-center align-middle">TOTAL FEEs</th>
+            <th class="align-middle">Actions</th>
             </tr>
         </thead>
         `
@@ -335,12 +335,14 @@
                 </div>`
     }
 
-    // render Strategy Follower table HTML start
+    // render Strategy provider responsive HTML end
 
+    // render Strategy Follower table HTML start
     function renderStrategyFollowers() {
         const users = STATE.getUserList();
         const container = $('.portfolio-users-table');
         container.append(getStrategyFollowersTableHTML(users));
+        container.append(getStrategyFollowersResponsiveHTML(users));
     }
 
     function getStrategyFollowersTableHTML(data) {
@@ -355,15 +357,15 @@
         return `
         <thead>
             <tr>
-            <th>Provider</th>
-            <th class="text-center">joined</th>
-            <th class="text-center">Period</th>
-            <th class="text-center">P/L</th>
-            <th class="text-center">HWM Difference</th>
-            <th class="text-center">BALANCE</th>
-            <th class="text-center">FEE earned</th>
-            <th class="text-center">com earned</th>
-            <th>Actions</th>
+            <th class="align-middle">Provider</th>
+            <th class="text-center align-middle">joined</th>
+            <th class="text-center align-middle">Period</th>
+            <th class="text-center align-middle">P/L</th>
+            <th class="text-center align-middle">HWM Difference</th>
+            <th class="text-center align-middle">BALANCE</th>
+            <th class="text-center align-middle">FEE earned</th>
+            <th class="text-center align-middle">com earned</th>
+            <th class="align-middle">Actions</th>
             </tr>
         </thead>
         `
@@ -475,6 +477,89 @@
       </tfoot>`
     }
     // render Strategy Follower table HTML end
+
+    // render Strategy Follower responsive HTML start
+    function getStrategyFollowersResponsiveHTML(data) {
+        const rowsHTML = [];
+        data.forEach(user => {
+            rowsHTML.push(getStrategyFollowerResponsiveRow(user))
+        })
+        return `<div class="responsive-providers">
+            ${rowsHTML.join('')}
+        </div>`
+    }
+
+    function getStrategyFollowerResponsiveRow(user) {
+        if (!user) {
+            return '';
+        }
+        const { id,
+            profile_image,
+            name,
+            username,
+            country,
+            joined_on,
+            hwm_diff,
+            profit_or_loss,
+            balance,
+            com_earned,
+            fee_earned,
+            is_new
+        } = user;
+
+        return `<div class="p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
+                            <div class="ml-2 float-left">
+                                <p class="font-bold font-size-12 mb-0">
+                                    ${username}
+                                </p>
+                                <p class="text-light-black font-size-12 mb-0">
+                                    ${name}
+                                    <img class="ml-1" src="${getCountryFlags(country)}" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="text-dark-green font-weight-bold mr-3">
+                                <i class="fa fa-play fa-rotate-270 font-size-12"></i>
+                                S$${formatWithCommas(profit_or_loss)}
+                            </span>
+                            <i class="fa fa-pause mr-2 action-tools large-font"></i>
+                            <i class="fa fa-stop mr-2 action-tools large-font"></i>
+                            <i class="fa fa-gear mr-2 action-tools large-font"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">Joined</p>
+                            <p class="mb-0 font-bold responsive-value">${formatDate(new Date(+joined_on))}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">Period</p>
+                            <p class="mb-0 font-bold responsive-value">${calculateDateDiff(new Date(+joined_on), new Date())}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">HWM Diff</p>
+                            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(hwm_diff)}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">Balance</p>
+                            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(balance)}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">FEE</p>
+                            <p class="mb-0 font-bold responsive-value">S$${fee_earned}</p>
+                        </div>
+                        <div class="mr-3">
+                            <p class="mb-0 responsive-label">COM</p>
+                            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(com_earned)}</p>
+                        </div>
+                    </div>
+                </div>`
+    }
+    // render Strategy Follower responsive HTML end
 
     // function to display role chip in sub header
     function showRoleWiseElements() {
