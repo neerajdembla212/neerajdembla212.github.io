@@ -63,7 +63,7 @@
             url: `https://copypip.free.beeceptor.com/get-strategy-details/${STATE.getRole()}`,
             successCallback: (data) => {
                 STATE.setStrategyDetails(data.data);
-                renderStrategyDetails(STATE.getRole());
+                renderSparkline(STATE.getRole());
             }
         })
     }
@@ -506,7 +506,7 @@
             fee_earned,
             is_new
         } = user;
-
+        const newUSerChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
         return `<div class="p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
@@ -514,6 +514,7 @@
                             <div class="ml-2 float-left">
                                 <p class="font-bold font-size-12 mb-0">
                                     ${username}
+                                    ${newUSerChip}
                                 </p>
                                 <p class="text-light-black font-size-12 mb-0">
                                     ${name}
@@ -683,13 +684,14 @@
     }
 
     // render strategy details sparkline start
-    function renderStrategyDetails(role) {
+    function renderSparkline(role) {
         const strategy = STATE.getStrategyDetails();
         const container = $('.sparkline-container');
-        container.empty().append(getStrategyDetailsHTML(strategy, role));
+        container.empty().append(getSparklineHTML(strategy, role));
+        container.append(getSparklineResponsiveHTML(strategy, role));
     }
 
-    function getStrategyDetailsHTML(strategy, role) {
+    function getSparklineHTML(strategy, role) {
         const { cumulative_returns,
             strategy_age,
             deposits,
@@ -719,42 +721,111 @@
         </div>`
         }
         return `
-        <div class="sparkline mr-0">
-          <div class="key">Cumulative returns</div>
-          <div class="d-flex justify-content-between">
-            <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
-            <div class="ml-3 mt-2 light-white">
-                <p class="mb-0 font-weight-light">${role === 'follower' ? 'Strategy Age' : 'Since Inception'}</p>
-                <p class="mb-0 font-weight-light">${strategy_age}</p>
+        <div class="d-flex flex-wrap justify-content-between desktop-content">
+            <div class="sparkline mr-0">
+            <div class="key">Cumulative returns</div>
+            <div class="d-flex justify-content-between">
+                <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
+                <div class="ml-3 mt-2 light-white">
+                    <p class="mb-0 font-weight-light">${role === 'follower' ? 'Strategy Age' : 'Since Inception'}</p>
+                    <p class="mb-0 font-weight-light">${strategy_age}</p>
+                </div>
             </div>
-          </div>
-          </div>
-          <div class="divider mx-2"></div>
-        <div class="sparkline">
-          <div class="key">Current Balance</div>
-          <div class="value white">SGD${formatWithCommas(current_balance)}</div>
+            </div>
+            <div class="divider mx-2"></div>
+            <div class="sparkline">
+            <div class="key">Current Balance</div>
+            <div class="value white">SGD${formatWithCommas(current_balance)}</div>
+            </div>
+            <div class="sparkline">
+            <div class="key">Deposits</div>
+            <div class="value white">SGD${formatWithCommas(deposits)}</div>
+            </div>
+            <div class="sparkline">
+            <div class="key">Withdrawals</div>
+            <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
+            </div>
+        ${roleSpecificData}
+            <div class="sparkline">
+                <div class="key">Followers</div>
+            <div class="value white">SGD${formatWithCommas(followers)}</div>
+            </div>
+            <div class="sparkline">
+            <div class="key">Trades</div>
+            <div class="value green">${formatWithCommas(trades)}</div>
+            </div>
+            <div class="sparkline">
+            <div class="key">Max Drawdown</div>
+            <div class="value dark-red">${max_drawdown}</div>
         </div>
-        <div class="sparkline">
-          <div class="key">Deposits</div>
-          <div class="value white">SGD${formatWithCommas(deposits)}</div>
-        </div>
-        <div class="sparkline">
-          <div class="key">Withdrawals</div>
-          <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
-        </div>
-       ${roleSpecificData}
-        <div class="sparkline">
-            <div class="key">Followers</div>
-          <div class="value white">SGD${formatWithCommas(followers)}</div>
-        </div>
-        <div class="sparkline">
-          <div class="key">Trades</div>
-          <div class="value green">${formatWithCommas(trades)}</div>
-        </div>
-        <div class="sparkline">
-          <div class="key">Max Drawdown</div>
-          <div class="value dark-red">${max_drawdown}</div>
       </div>`
+    }
+
+    function getSparklineResponsiveHTML(strategy, role) {
+        const { cumulative_returns,
+            strategy_age,
+            deposits,
+            current_balance,
+            withdrawals,
+            fees_earned,
+            followers,
+            trades,
+            max_drawdown,
+            amount_paid } = strategy;
+
+        let roleSpecificData;
+        if (role === 'provider') {
+            roleSpecificData = ` <div class="d-flex justify-content-between align-items-center p-3">
+                    <div class="key">Fees Earned</div>
+                    <div class="value white">SGD${formatWithCommas(fees_earned)}</div>
+                </div>`
+        } else if (role === 'follower') {
+            roleSpecificData = `<div class="d-flex justify-content-between align-items-center p-3">
+                <div class="key">
+                    <p class="mb-0">Total Paid</p>
+                    <p class="mb-0 small-font font-weight-light">Fees + Profit Shared</p>
+                </div>
+                <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
+            </div>`
+        }
+        return `<div class="responsive-content">
+                    <div class="d-flex justify-content-between align-items-center p-3">
+                        <div class="key">
+                            <p class="mb-0">Cumulative returns</p>
+                            <p class="mb-0 font-weight-light">${role === 'follower' ? 'Since Inception' : 'Strategy Age'} ${strategy_age}</p>
+                        </div>
+                        <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
+                    </div>
+                    <div class="horizontal-divider mx-2"></div>
+                    <div class="d-flex justify-content-between align-items-center p-3">
+                        <div class="key">Current Balance</div>
+                        <div class="value white">SGD${formatWithCommas(current_balance)}</div>
+                    </div>
+                    <div class="horizontal-divider mx-2"></div>
+                    <div class="d-flex justify-content-between align-items-center p-3">
+                        <div class="key">Deposits</div>
+                        <div class="value white">SGD${formatWithCommas(deposits)}</div>
+                    </div>
+                    <div class="horizontal-divider mx-2"></div>
+                    <div class="d-flex justify-content-between align-items-center p-3">
+                        <div class="key">Withdrawals</div>
+                        <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
+                    </div>
+                    <div class="horizontal-divider mx-2"></div>
+                    ${roleSpecificData}
+                    <div class="horizontal-divider mx-2"></div>
+                    <div class="row px-3">
+                        <div class="p-3 col d-flex justify-content-between border-right">
+                            <div class="key">Trades</div>
+                            <div class="value green">${formatWithCommas(trades)}</div>
+                        </div>
+                        <div class="p-3 col d-flex justify-content-between">
+                            <div class="key">Max Drawdown</div>
+                            <div class="value dark-red">${max_drawdown}</div>
+                        </div>
+                    </div>
+            </div>`
+
     }
     // render strategy details sparkline end
 

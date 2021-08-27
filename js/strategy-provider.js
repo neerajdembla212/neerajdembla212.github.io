@@ -62,8 +62,8 @@
         STATE.setTopGrowth(data.data);
         const viewType = getCurrentViewType();
         switch (viewType) {
-          // case 'grid': plotGridView(); break;
-          // case 'list': plotListView(); break;
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
         }
       },
       beforeSend: plotGridLoadingState
