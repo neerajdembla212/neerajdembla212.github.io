@@ -4,8 +4,28 @@
     border-radius: 6px;
     min-height: 80px;
 
-    @media screen and (max-width: 480px) {
-        display: none;
+    .desktop-content {
+        @media screen and (max-width: 480px) {
+            display: none !important;
+        }
+    }
+
+    .responsive-content {
+        display: none !important;
+
+        @media screen and (max-width: 480px) {
+            display: block !important;
+        }
+
+        .key,
+        .key>p {
+            color: @lighter-gray;
+            font-size: 14px;
+        }
+
+        .value {
+            font-weight: bold;
+        }
     }
 
     .sparkline {
@@ -18,26 +38,6 @@
         .value {
             font-size: 16px;
             font-weight: bold;
-        }
-
-        .green {
-            color: @navy;
-        }
-
-        .white {
-            color: @white;
-        }
-
-        .dark-red {
-            color: @dark-red;
-        }
-
-        .light-white {
-            color: @lighter-gray;
-        }
-
-        .highlight {
-            font-size: 30px;
         }
 
         .key {
@@ -63,8 +63,39 @@
         background-color: #000000;
     }
 
+    .horizontal-divider {
+        width: 100%;
+        border: none;
+        background-color: #000000;
+        height: 2px;
+    }
+
     .w-60 {
         width: 60%
+    }
+
+    .green {
+        color: @navy;
+    }
+
+    .white {
+        color: @white;
+    }
+
+    .dark-red {
+        color: @dark-red;
+    }
+
+    .light-white {
+        color: @lighter-gray;
+    }
+
+    .highlight {
+        font-size: 1.75rem !important;
+    }
+
+    .border-right {
+        border-right: 2px solid #000000 !important;
     }
 }
 
@@ -158,6 +189,7 @@
 
         .responsive-value {
             font-size: 14px;
+            word-break: break-word;
         }
     }
 }
