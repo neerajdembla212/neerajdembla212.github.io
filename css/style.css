@@ -10531,7 +10531,7 @@ tr > th:first-child {
   border-radius: 6px;
   position: relative;
   margin: auto;
-  height: 28vw;
+  max-height: 360px;
   width: 100%;
 }
 .portfolio-line-chart .chart-filter .btn {
