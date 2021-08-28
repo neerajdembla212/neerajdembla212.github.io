@@ -10046,6 +10046,7 @@ video {
 @media screen and (max-width: 768px) {
   #page-wrapper {
     padding: 0;
+    width: 100% !important;
   }
 }
 body {
@@ -10443,6 +10444,29 @@ tr > th:first-child {
 }
 .navbar-default .dropdown-toggle::after {
   display: none;
+}
+@media screen and (max-width: 768px) {
+  body.body-small .navbar-minimalize {
+    display: none;
+  }
+}
+.responsive-navbar-cta {
+  display: none !important;
+  background: linear-gradient(180deg, #754EF7 0%, #4510B7 100%);
+  width: 60px;
+  height: 100%;
+}
+.responsive-navbar-cta img {
+  height: 20px;
+  margin: auto;
+}
+body.body-small .responsive-navbar-cta {
+  display: flex !important;
+}
+@media screen and (max-width: 768px) {
+  .navbar.navbar-static-top {
+    padding-left: 15px;
+  }
 }
 .sparkline-container {
   width: 100%;

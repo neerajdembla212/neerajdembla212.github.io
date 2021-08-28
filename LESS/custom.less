@@ -32,6 +32,7 @@ video {
 
   @media screen and (max-width: 768px) {
     padding: 0;
+    width: 100% !important;
   }
 }
 
@@ -624,4 +625,32 @@ tr>th:first-child {
 
 .navbar-default .dropdown-toggle::after {
   display: none;
+}
+
+body.body-small .navbar-minimalize {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.responsive-navbar-cta {
+  display: none !important;
+  background: linear-gradient(180deg, #754EF7 0%, #4510B7 100%);
+  width: 60px;
+  height: 100%;
+
+  img {
+    height: 20px;
+    margin: auto;
+  }
+}
+
+body.body-small .responsive-navbar-cta {
+  display: flex !important;
+}
+
+.navbar.navbar-static-top {
+  @media screen and (max-width: 768px) {
+    padding-left: 15px;
+  }
 }
