@@ -574,54 +574,56 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav-second-level {
 
 // retracted menu navigation changes
 body.mini-navbar {
-  .full-logo-element {
-    display: none;
-  }
+  @media screen and (min-width: 768px) {
+    .full-logo-element {
+      display: none;
+    }
 
-  .logo-element {
-    display: block;
-  }
+    .logo-element {
+      display: block;
+    }
 
-  .nav-header {
-    padding: 0;
-    background-color: @navy;
-  }
+    .nav-header {
+      padding: 0;
+      background-color: @navy;
+    }
 
-  #page-wrapper {
-    width: calc(~"100% - 70px");
-  }
+    #page-wrapper {
+      width: calc(~"100% - 70px");
+    }
 
-  .navbar-default .nav li>a {
-    padding: 14px 20px 30px 22px;
-  }
+    .navbar-default .nav li>a {
+      padding: 14px 20px 30px 22px;
+    }
 
-  .navbar-default .nav li.sm a {
-    padding: 3px 20px;
-  }
+    .navbar-default .nav li.sm a {
+      padding: 3px 20px;
+    }
 
-  .navbar-default .nav>li>.nav-second-level li a {
-    font-size: 12px;
-    border-radius: 3px;
-  }
+    .navbar-default .nav>li>.nav-second-level li a {
+      font-size: 12px;
+      border-radius: 3px;
+    }
 
-  .navbar-static-side {
-    width: 70px;
-  }
+    .navbar-static-side {
+      width: 70px;
+    }
 
-  .nav-label {
-    display: none;
-  }
+    .nav-label {
+      display: none;
+    }
 
-  .trade-label {
-    display: none;
-  }
+    .trade-label {
+      display: none;
+    }
 
-  .profile-element .details {
-    display: none;
-  }
+    .profile-element .details {
+      display: none;
+    }
 
-  .nav>li.sm {
-    padding: 0px 0px 10px 5px;
+    .nav>li.sm {
+      padding: 0px 0px 10px 5px;
+    }
   }
 }
 

@@ -1336,43 +1336,45 @@ body.canvas-menu .profile-element {
 body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav-second-level {
   display: none;
 }
-body.mini-navbar .full-logo-element {
-  display: none;
-}
-body.mini-navbar .logo-element {
-  display: block;
-}
-body.mini-navbar .nav-header {
-  padding: 0;
-  background-color: #22D091;
-}
-body.mini-navbar #page-wrapper {
-  width: calc(100% - 70px);
-}
-body.mini-navbar .navbar-default .nav li > a {
-  padding: 14px 20px 30px 22px;
-}
-body.mini-navbar .navbar-default .nav li.sm a {
-  padding: 3px 20px;
-}
-body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
-  font-size: 12px;
-  border-radius: 3px;
-}
-body.mini-navbar .navbar-static-side {
-  width: 70px;
-}
-body.mini-navbar .nav-label {
-  display: none;
-}
-body.mini-navbar .trade-label {
-  display: none;
-}
-body.mini-navbar .profile-element .details {
-  display: none;
-}
-body.mini-navbar .nav > li.sm {
-  padding: 0px 0px 10px 5px;
+@media screen and (min-width: 768px) {
+  body.mini-navbar .full-logo-element {
+    display: none;
+  }
+  body.mini-navbar .logo-element {
+    display: block;
+  }
+  body.mini-navbar .nav-header {
+    padding: 0;
+    background-color: #22D091;
+  }
+  body.mini-navbar #page-wrapper {
+    width: calc(100% - 70px);
+  }
+  body.mini-navbar .navbar-default .nav li > a {
+    padding: 14px 20px 30px 22px;
+  }
+  body.mini-navbar .navbar-default .nav li.sm a {
+    padding: 3px 20px;
+  }
+  body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  body.mini-navbar .navbar-static-side {
+    width: 70px;
+  }
+  body.mini-navbar .nav-label {
+    display: none;
+  }
+  body.mini-navbar .trade-label {
+    display: none;
+  }
+  body.mini-navbar .profile-element .details {
+    display: none;
+  }
+  body.mini-navbar .nav > li.sm {
+    padding: 0px 0px 10px 5px;
+  }
 }
 body.canvas-menu .full-logo-element {
   display: block;
@@ -8861,9 +8863,6 @@ body.rtls.top-navigation .footer.fixed {
     position: fixed;
     width: 220px;
   }
-  .rtls.fixed-sidebar.body-small.mini-navbar .navbar-static-side {
-    display: block;
-  }
 }
 .rtls .ltr-support {
   direction: ltr;
@@ -9922,7 +9921,7 @@ body.md-skin {
   }
   .body-small.mini-navbar .navbar-static-side {
     display: block;
-    overflow: visible;
+    overflow: hidden;
   }
   .lock-word {
     display: none;
@@ -9949,9 +9948,6 @@ body.md-skin {
     z-index: 2001;
     position: fixed;
     width: 220px;
-  }
-  .fixed-sidebar.body-small.mini-navbar .navbar-static-side {
-    display: block;
   }
   .ibox-tools {
     float: none;
