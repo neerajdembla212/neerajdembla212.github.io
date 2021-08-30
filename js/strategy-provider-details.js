@@ -1,6 +1,7 @@
 (() => {
     class State {
         lineChartData = [];
+        providerId = '';
         getLineChartData() {
             return this.lineChartData;
         }
@@ -10,10 +11,22 @@
             }
             this.lineChartData = data;
         }
+
+        getProviderId() {
+            this.providerId;
+        }
+        setProviderId(data) {
+            if (!data) {
+                return
+            }
+            this.providerId = data;
+        }
     }
     const STATE = new State();
     // document ready function
     $(function () {
+        const providerId = localStorage.getItem('selectedProviderId');
+        STATE.setProviderId(providerId);
         registerEvents();
         fetchLineData();
     })
