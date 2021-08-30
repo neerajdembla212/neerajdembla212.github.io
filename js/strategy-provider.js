@@ -378,6 +378,13 @@
         currentTarget.removeClass("fa-bookmark").addClass("fa-bookmark-o");
       }
     });
+
+    // redirect on click of contact box
+    $('.strategy-provider-section .contact-box').click((ele) => {
+      console.log(ele.currentTarget,)
+      localStorage.setItem('selectedProviderId', $(ele.currentTarget).data('id'))
+      window.location.href = window.location.origin + '/strategy-provider-details.html';
+    })
   }
 
   function registerListViewEvents() {
@@ -423,7 +430,7 @@
       favourite
     } = provider;
 
-    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}">
+    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}" data-id="${id}">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <img
@@ -625,7 +632,7 @@
       joining_date
     } = provider;
 
-    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}">
+    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}" data-id="${id}">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <img

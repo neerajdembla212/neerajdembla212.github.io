@@ -10781,6 +10781,9 @@ body.body-small .responsive-navbar-cta {
   margin-top: -1rem !important;
   border-radius: 0 0 6px 6px;
 }
+.strategy-provider-section .contact-box {
+  cursor: pointer;
+}
 #follow-provider-modal .username-container {
   margin-left: 2.5rem !important;
 }
