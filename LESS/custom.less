@@ -191,7 +191,7 @@ body.mini-navbar .nav.metismenu>li.logo {
 }
 
 .divider {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .nav-header .role-card {
@@ -653,4 +653,75 @@ body.body-small .responsive-navbar-cta {
   @media screen and (max-width: 768px) {
     padding-left: 15px;
   }
+}
+
+.account-number {
+  background-color: rgba(34, 208, 145, 0.2);
+  border-radius: 4px;
+}
+
+.modal.inmodal {
+  .uppercase-label {
+    color: @thead-color;
+    text-transform: uppercase;
+    font-size: @extra-small-font;
+  }
+
+  .modal-body {
+    max-height: 680px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 0 !important;
+  }
+
+  .form-control {
+    border: 1.5px solid #E7EDF4;
+    border-radius: 6px;
+    padding: 6px !important;
+  }
+
+  .form-check-input {
+    width: 18px;
+    height: 18px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .scrollable-content {
+    overflow-x: hidden;
+    overflow-y: auto
+  }
+
+  .modal-content {
+    height: 640px;
+  }
+}
+
+// Switchery Css
+.switchery {
+  background-color: @lightest-gray;
+  // border: 1px solid #dfdfdf;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  height: 12px;
+  position: relative;
+  vertical-align: middle;
+  width: 32px;
+
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.switchery>small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  height: 20px;
+  position: absolute;
+  top: -5px;
+  width: 20px;
 }

@@ -1,7 +1,6 @@
 (() => {
     class State {
         strategyDetails = {};
-        userDetails = {};
         lineChartData = {};
         userList = {}; // this will store followers or providers depending on user's role
         role = ''; // provider or follower
@@ -11,14 +10,6 @@
 
         setStrategyDetails(data) {
             this.strategyDetails = data;
-        }
-
-        getUserDetails() {
-            return this.userDetails;
-        }
-
-        setUserDetails(data) {
-            this.userDetails = data;
         }
 
         getLineChartData() {
@@ -50,10 +41,16 @@
     const STATE = new State();
     // document ready function
     $(function () {
-        registerEvents();
+        // role has to be set first before callig other methods as they depend upon this value
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
+        showRoleWiseElements();
+        // register events must be called after showRoleWiseElements() as few elements need to be present in dom before add event listeners on them
+        registerEvents();
+        // role wise elements on sub header
+        // sparkline section
         fetchStrategyDetails();
-        fetchUserDetails(fetchListOfUsers);
+        // render table section based on role
+        fetchListOfUsers();
         fetchLineData();
     })
 
@@ -66,20 +63,6 @@
                 renderSparkline(STATE.getRole());
             }
         })
-    }
-
-    // This function will fetch user details and show role specific elements
-    function fetchUserDetails(cb) {
-        callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/user-details/${STATE.getRole()}`,
-            successCallback: (data) => {
-                STATE.setUserDetails(data.data);
-                showRoleWiseElements();
-                if (cb && typeof cb === 'function') {
-                    cb();
-                }
-            }
-        });
     }
 
     // This function will fetch line data and plot line chart
@@ -95,11 +78,11 @@
 
     // this function will fetch strategy providers or followers based on user's role and render the table accordingly
     function fetchListOfUsers() {
-        const userRole = STATE.getUserDetails().role;
-        if (userRole === 'Strategy Provider') {
+        const userRole = STATE.getRole()
+        if (userRole.toLowerCase() === 'provider') {
             // fetch followers and render followers table
             fetchStrategyFollowers();
-        } else if (userRole === 'Strategy Follower') {
+        } else if (userRole === 'follower') {
             // fetch providers and render providers table
             fetchStrategyProviders();
         }
@@ -564,8 +547,8 @@
 
     // function to display role chip in sub header
     function showRoleWiseElements() {
-        const user = STATE.getUserDetails()
-        if (user.role === 'Strategy Provider') {
+        const role = STATE.getRole()
+        if (role.toLowerCase() === 'provider') {
             $('.role-chip-follower').addClass('d-none');
             $('.role-chip-provider').removeClass('d-none');
 
@@ -573,7 +556,7 @@
             $('#strategy').removeClass('d-none');
             $('.portfolio-users-table .table-title').text('Followers')
         }
-        else if (user.role === 'Strategy Follower') {
+        else if (role.toLowerCase() === 'follower') {
             $('.role-chip-follower').removeClass('d-none');
             $('.role-chip-provider').addClass('d-none');
 
@@ -838,5 +821,12 @@
             const value = target.text();
             console.log(value);
         })
+        var elem = document.querySelector('.js-switch');
+        new Switchery(elem, {
+            color: '#E5E5E5',
+            secondaryColor: '#E5E5E5',
+            jackColor: '#22D091',
+            jackSecondaryColor: "#FFFFFF",
+        });
     }
 })();

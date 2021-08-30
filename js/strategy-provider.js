@@ -350,7 +350,6 @@
     })
     // Follow provider api call on click of CTA from modal
     $('#follow-provider-modal #follow-provider').click(() => {
-      console.log('clicked')
       $('#follow-provider-modal #close-modal').click();
     })
   }

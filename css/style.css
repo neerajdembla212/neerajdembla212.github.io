@@ -5321,6 +5321,9 @@ table.table-mail tr td {
 .text-light-gray {
   color: #5B5B5B;
 }
+.text-dark-gray {
+  color: #6D788F;
+}
 .text-blue {
   color: #2B99FF;
 }
@@ -10165,7 +10168,7 @@ body.mini-navbar .nav.metismenu > li.logo {
   background-image: url("/img/ic_settings_active.svg");
 }
 .divider {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #e5e5e5;
 }
 .nav-header .role-card {
   width: 200px;
@@ -10464,6 +10467,62 @@ body.body-small .responsive-navbar-cta {
     padding-left: 15px;
   }
 }
+.account-number {
+  background-color: rgba(34, 208, 145, 0.2);
+  border-radius: 4px;
+}
+.modal.inmodal .uppercase-label {
+  color: #8E8FA3;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.modal.inmodal .modal-body {
+  max-height: 680px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 0 !important;
+}
+.modal.inmodal .form-control {
+  border: 1.5px solid #E7EDF4;
+  border-radius: 6px;
+  padding: 6px !important;
+}
+.modal.inmodal .form-check-input {
+  width: 18px;
+  height: 18px;
+}
+.modal.inmodal textarea {
+  resize: none;
+}
+.modal.inmodal .scrollable-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.modal.inmodal .modal-content {
+  height: 640px;
+}
+.switchery {
+  background-color: #E5E5E5;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  height: 12px;
+  position: relative;
+  vertical-align: middle;
+  width: 32px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.switchery > small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  height: 20px;
+  position: absolute;
+  top: -5px;
+  width: 20px;
+}
 .sparkline-container {
   width: 100%;
   background-color: #1F1F25;
@@ -10621,6 +10680,9 @@ body.body-small .responsive-navbar-cta {
   font-size: 14px;
   word-break: break-word;
 }
+#strategy-settings-modal .username-container {
+  margin-left: 2.5rem !important;
+}
 .btn-watchlist {
   color: #4D4D4E;
   padding: 8px;
@@ -10719,11 +10781,6 @@ body.body-small .responsive-navbar-cta {
 #follow-provider-modal .username-container {
   margin-left: 2.5rem !important;
 }
-#follow-provider-modal .uppercase-label {
-  color: #8E8FA3;
-  text-transform: uppercase;
-  font-size: 10px;
-}
 #follow-provider-modal .risk-mangement {
   border-top: 1px solid #dee2e6;
 }
@@ -10731,25 +10788,8 @@ body.body-small .responsive-navbar-cta {
   width: 18px;
   height: 18px;
 }
-#follow-provider-modal .modal-body {
-  max-height: 680px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-bottom: 0 !important;
-}
-#follow-provider-modal .account-number {
-  background-color: rgba(34, 208, 145, 0.2);
-  border-radius: 4px;
-}
 #follow-provider-modal .live {
   letter-spacing: 0.35em;
-}
-#follow-provider-modal .modal-content {
-  height: 640px;
-}
-#follow-provider-modal .scrollable-content {
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 @media print {
   nav.navbar-static-side {

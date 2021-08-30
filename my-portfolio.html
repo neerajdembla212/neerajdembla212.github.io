@@ -136,8 +136,8 @@
           <div>
             <button id="stop-strategy" class="btn btn-default btn-warning d-none" type="button">Stop Providing
               Strategy</button>
-            <button id="strategy" class="btn btn-default d-none" type="button"><i
-                class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>
+            <button id="strategy" class="btn btn-default d-none" type="button" data-toggle="modal"
+              data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>
             <div class="btn-group">
               <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
                 Returns over 2 Yrs
@@ -187,6 +187,147 @@
           </div>
         </div>
       </div>
+      <!-- Strategy Settings Modal -->
+      <div class="modal inmodal" id="strategy-settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content animated fadeIn">
+            <div class="d-flex justify-content-between p-3">
+              <h4 class="modal-title">Strategy Provider Settings</h4>
+              <button id="close-modal" class="btn
+            btn-default
+            btn-outline
+            btn-action
+            border-0
+          " data-dismiss="modal">
+                <img src="img/ic_cross.svg">
+              </button>
+            </div>
+            <div class="modal-body p-3 scrollable-content">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="img/a1.jpg">
+                  <div class="username-container">
+                    <p class="font-bold font-size-12 mb-0">
+                      SureWin888
+                    </p>
+                    <p class="text-light-black font-size-12 mb-0">
+                      Kariane Little
+                      <img class="ml-1" src="img/flags/16/United-States.png">
+                    </p>
+                  </div>
+                </div>
+                <div class="account-number p-1"><span class="mr-1 text-navy live">LIVE</span><span
+                    class="medium-font font-bold">TA
+                    209761M</span>
+                </div>
+              </div>
+              <!-- Data display Row 1 start -->
+              <div class="d-flex justify-content-between my-2">
+                <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
+                  <div class="uppercase-label">TOTAL RETURNS</div>
+                  <div class="text-dark-green d-flex align-items-center"><span class="up-arrow-green mr-1"></span><span
+                      class="font-bold">10.43%</span></div>
+                </div>
+                <div class="w-50 d-flex justify-content-between align-items-center">
+                  <div class="uppercase-label">advised min</div>
+                  <div class="text-light-gray medium-font font-bold">$1000</div>
+                </div>
+              </div>
+              <!-- Data display Row 1 end -->
+              <!-- Data display Row 2 start -->
+              <div class="d-flex justify-content-between mb-2">
+                <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
+                  <div class="uppercase-label">Avg Lot Size</div>
+                  <div class="font-bold medium-font">0.05</div>
+                </div>
+                <div class="w-50 d-flex justify-content-between align-items-center">
+                  <div class="uppercase-label">draw down</div>
+                  <div class="text-light-red medium-font">-40%</div>
+                </div>
+              </div>
+              <!-- Data display Row 2 end -->
+              <!-- Data display Row 3 start -->
+              <div class="d-flex justify-content-between mb-3">
+                <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
+                  <div class="uppercase-label">Age</div>
+                  <div class="font-bold medium-font">1 Yr 2 Mths</div>
+                </div>
+                <div class="w-50 d-flex justify-content-between align-items-center">
+                  <div class="uppercase-label">P share %</div>
+                  <div class="medium-font font-bold">10%</div>
+                </div>
+              </div>
+              <!-- Data display Row 3 end -->
+              <div class="divider"></div>
+              <section class="strategy-details py-3">
+                <div class="d-flex align-items-center mb-3 justify-content-between">
+                  <label class="col-form-label mr-3 font-bold text-dark-gray w-50">Strategy Name</label>
+                  <input type="text" class="form-control w-50" value="SureWin888">
+                </div>
+                <!-- Fee input start -->
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="w-50 mr-3">
+                    <p class="text-modal-gray medium-font mb-1">Management Fee</p>
+                    <div class="d-flex align-items-center ">
+                      <input type="text" class="form-control w-75 mr-3" value="20">
+                      <span class="font-bold medium-font text-dark-black">USD/m</span>
+                    </div>
+                  </div>
+                  <div class="w-50">
+                    <p class="text-modal-gray medium-font mb-1">Profit Sharing Fee</p>
+                    <div class="d-flex align-items-center">
+                      <input type="text" class="form-control w-50 mr-3" value="10">
+                      <span class="font-bold medium-font text-dark-black">%</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Fee input end -->
+                <!-- Auto approval input start -->
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                  <p class="mb-0">Auto Approval for Followers</p>
+                  <input type="checkbox" class="js-switch" checked />
+                </div>
+                <!-- Auto approval input end -->
+                <div class="divider"></div>
+              </section>
+              <!-- Trading method section start -->
+              <section class="py-3">
+                <p class="font-bold medium-font">Trading Method</p>
+                <div class="d-flex justify-content-between">
+                  <div class="form-check abc-checkbox form-check-inline">
+                    <input class="form-check-input mr-2" type="checkbox" value="option1">
+                    <label class="form-check-label text-gray medium-font">Manual</label>
+                  </div>
+                  <div class="form-check abc-checkbox form-check-inline">
+                    <input class="form-check-input mr-2" type="checkbox" value="option1">
+                    <label class="form-check-label text-gray medium-font">Automated</label>
+                  </div>
+                  <div class="form-check abc-checkbox form-check-inline">
+                    <input class="form-check-input mr-2" type="checkbox" value="option1">
+                    <label class="form-check-label text-gray medium-font">Combined</label>
+                  </div>
+                </div>
+              </section>
+              <!-- Trading method section end -->
+              <div class="divider"></div>
+              <!-- Description input start-->
+              <section class="py-3">
+                <p class="mb-3 font-bold medium-font">Description</p>
+                <textarea class="form-control mb-3" placeholder="Tell us about your trading strategy"
+                  rows="3"></textarea>
+                <p class="small-font text-dark-black">Any changes to the "Management Fee" or "Profit Sharing Fees"
+                  will
+                  only be
+                  reflected on a new trading month.</p>
+              </section>
+              <!-- Description input end-->
+            </div>
+            <div class="modal-footer w-100 d-flex justify-content-end">
+              <button type="button" class="btn btn-primary w-50" id="update-strategy-settings">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -205,6 +346,9 @@
 
   <!-- ChartJS-->
   <script src="js/plugins/chartJs/Chart.min.js"></script>
+
+  <!-- Switchery -->
+  <script src="js/plugins/switchery/switchery.js"></script>
 </body>
 
 </html>
