@@ -10242,6 +10242,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 .extra-large-font {
   font-size: 18px;
 }
+.super-large-font {
+  font-size: 24px;
+}
 .ratings .fa-star:not(.active) {
   color: #BFBFBF;
 }
@@ -10790,6 +10793,25 @@ body.body-small .responsive-navbar-cta {
 }
 #follow-provider-modal .live {
   letter-spacing: 0.35em;
+}
+.provider-details-section {
+  border-radius: 6px;
+  width: 30%;
+}
+.followers-section {
+  border-radius: 6px;
+  width: 30%;
+}
+.strategy-provider-line-chart-section {
+  width: 70%;
+  max-height: 360px;
+}
+.strategy-provider-line-chart-section .chart-filter .btn {
+  border: none;
+}
+.strategy-provider-line-chart-section .chart-filter .active {
+  color: #22D091;
+  box-shadow: none;
 }
 @media print {
   nav.navbar-static-side {
