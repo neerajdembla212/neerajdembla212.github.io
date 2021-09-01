@@ -1,16 +1,31 @@
+.strategy-provider-details-section {
+    display: grid;
+    grid-template-columns: 350px;
+    grid-template-rows: 500px;
+    grid-gap: 1rem 2rem;
+}
+
 .provider-details-section {
     border-radius: 6px;
-    width: 30%;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    max-height: 550px;
 }
 
 .followers-section {
     border-radius: 6px;
-    width: 30%;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 .strategy-provider-line-chart-section {
-    width: 70%;
-    max-height: 360px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
 
     .chart-filter {
         .btn {
@@ -21,5 +36,48 @@
             color: @navy;
             box-shadow: none;
         }
+    }
+}
+
+.trade-history-section {
+    border-radius: 6px;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 2;
+
+    @media screen and (max-width: 1250px) {
+        .table {
+            display: none;
+        }
+
+        .responsive-trade-history {
+            display: block !important;
+        }
+    }
+
+    tr>td:first-child,
+    tr>th:first-child {
+        padding-left: 1rem;
+    }
+
+    .responsive-trade-history {
+        display: none;
+
+        >* {
+            border-top: 1px solid @table-border;
+        }
+
+        .responsive-label {
+            text-transform: uppercase;
+            color: @thead-color;
+            font-size: 10px;
+            line-height: 20px;
+        }
+
+        .responsive-value {
+            font-size: 14px;
+            word-break: break-word;
+        }
+
     }
 }
