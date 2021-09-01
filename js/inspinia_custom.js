@@ -130,14 +130,26 @@ function getCountryFlags(country) {
 }
 
 // utility method to format date eg output : 1 Feb 2021
-function formatDate(date) {
+function formatDate(date, format = "DD MMM YYYY") {
   if (!isDateValid(date)) {
     return '';
   }
-  let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
-  let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
-  let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
-  return `${da} ${mo} ${ye}`;
+  if (format === "DD MMM YYYY") {
+    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
+    const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
+    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
+    return `${da} ${mo} ${ye}`;
+  }
+  if (format === "DD/MM/YYYY HH:mm") {
+    return new Intl.DateTimeFormat('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).format(date)
+  }
 }
 
 // utility function to check valid date object
