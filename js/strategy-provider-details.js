@@ -1,8 +1,10 @@
 (() => {
     class State {
         lineChartData = [];
-        providerId = '';
+        providerId;
         tradeHistory = [];
+        providerDetails = {};
+
         getLineChartData() {
             return this.lineChartData;
         }
@@ -14,7 +16,7 @@
         }
 
         getProviderId() {
-            this.providerId;
+            return this.providerId;
         }
         setProviderId(data) {
             if (!data) {
@@ -32,6 +34,15 @@
             }
             this.tradeHistory = data;
         }
+        getProviderDetails() {
+            return this.providerDetails;
+        }
+        setProviderDetails(data) {
+            if (!data) {
+                return;
+            }
+            this.providerDetails = data;
+        }
     }
     const STATE = new State();
     // document ready function
@@ -41,6 +52,7 @@
         registerEvents();
         fetchLineData();
         fetchTradeHistory();
+        fetchProviderDetails();
     })
 
     function fetchLineData() {
@@ -58,7 +70,18 @@
             url: "https://copypip.free.beeceptor.com/strategy-provider-trade-history",
             successCallback: (data) => {
                 STATE.setTradeHistory(data.data);
-                renderTradeHistory();
+                renderTradeHistorySection();
+            }
+        })
+    }
+
+    function fetchProviderDetails() {
+        callAjaxMethod({
+            url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${STATE.getProviderId()}`,
+            successCallback: (data) => {
+                STATE.setProviderDetails(data.data);
+                renderProviderDetailsSection();
+                renderFollowersSection();
             }
         })
     }
@@ -174,7 +197,7 @@
     }
 
     // Render trade history table start
-    function renderTradeHistory() {
+    function renderTradeHistorySection() {
         const tradeHistory = STATE.getTradeHistory();
         const container = $('.trade-history-section');
         container.append(getTradeHistoryTableHTML(tradeHistory));
@@ -282,7 +305,7 @@
     function getTradeHistoryTableFooter() {
         return `<tfoot>
         <tr>
-          <td colspan="9" class="pb-0">
+          <td colspan="10" class="pb-0">
             <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page">
                 <option>10 Rows per page</option>
@@ -368,5 +391,170 @@
                         </div>
                     </div>
                 </div>`
+    }
+    // render trade history responsive html end
+
+    // render provider details section html start
+    function renderProviderDetailsSection() {
+        const providerDetails = STATE.getProviderDetails();
+        const container = $('.strategy-provider-details-section .provider-details-section');
+        container.append(getProviderDetailsHTML(providerDetails));
+    }
+    function getProviderDetailsHTML(data) {
+        if (!data) {
+            return
+        }
+        const { profile_image,
+            username,
+            name,
+            country,
+            strategy_philosophy,
+            joined_date,
+            strategy_age,
+            cumulative_returns,
+            avg_growth_per_month,
+            avg_pips,
+            trade_count,
+            max_drawdown
+        } = data;
+
+        return `
+        <div class="mb-3">
+            <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
+            <div class="ml-2 float-left">
+                <p class="font-bold font-size-12 mb-0">
+                    ${username}
+                </p>
+                <p class="text-light-black font-size-12 mb-0">
+                    ${name}
+                    <img class="ml-1" src="${getCountryFlags(country)}">
+                </p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <!-- strategy philosophy start -->
+        <div class="py-3">
+            <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
+            <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
+            <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(+joined_date)}
+        </div>
+        <!-- strategy philosophy end -->
+        <div class="divider"></div>
+        <!-- strategy age start -->
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <p class="mb-0 font-bold small-font text-dark-black">Strategy Age</p>
+            <p class="mb-0 medium-font font-bold text-dark-black">${strategy_age}</p>
+        </div>
+        <!-- strategy age end -->
+        <div class="divider"></div>
+        <!-- Cumulative returns start -->
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-0 font-bold mall-font text-dark-black">Cumulative returns </p>
+                <p class="mb-0 small-font text-dark-black font-weight-light">since Inception 1
+                    Jul 2021</p>
+            </div>
+            <p class="mb-0 super-large-font text-dark-green font-bold">${cumulative_returns}%</p>
+        </div>
+        <!-- Cumulative returns end -->
+        <div class="divider"></div>
+        <!-- Average growth start -->
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-0 font-bold small-font text-dark-black">Average Growth per Month
+                </p>
+            </div>
+            <p class="mb-0 extra-large-font text-dark-green font-bold">${avg_growth_per_month}%</p>
+        </div>
+        <!-- Average growth end -->
+        <div class="divider"></div>
+        <!-- Average pips start -->
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-0 font-bold small-font text-dark-black">Average Pips </p>
+            </div>
+            <p class="mb-0 extra-large-font text-dark-black font-bold">${avg_pips}</p>
+        </div>
+        <!-- Average pips end -->
+        <div class="divider"></div>
+        <!-- Trades start -->
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-0 font-bold small-font text-dark-black">Trades </p>
+            </div>
+            <p class="mb-0 extra-large-font text-dark-black font-bold">${trade_count}</p>
+        </div>
+        <!-- Trades end -->
+        <div class="divider"></div>
+        <!-- Max Drawdown start -->
+        <div class="pt-3 d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-0 font-bold small-font text-dark-black">Max Drawdown </p>
+            </div>
+            <p class="mb-0 extra-large-font text-light-red font-bold">${max_drawdown}%</p>
+        </div>
+        <!-- Max Drawdown end -->
+        `
+    }
+    // render provider details section html end
+
+    // render followers section html start
+    function renderFollowersSection() {
+        const providerDetails = STATE.getProviderDetails();
+        const container = $('.strategy-provider-details-section .followers-section');
+        container.append(getFollowerDetailsHTML(providerDetails));
+    }
+
+    function getFollowerDetailsHTML(data) {
+        if (!data) {
+            return '';
+        }
+
+        const {
+            follower_count,
+            follower_funds,
+            monthly_subscription_fee,
+            profit_sharing
+        } = data;
+
+        return `
+                <p class="mb-0 font-bold extra-large-font text-modal-black">Followers</p>
+                <!--Number of followers start -->
+                <div class="py-3 d-flex justify-content-between align-items-center">
+                    <p class="mb-0 small-font font-bold">Number of Followers</p>
+                    <p class="mb-0 large-font font-bold">${follower_count}</p>
+                </div>
+                <!--Number of followers end -->
+                <div class="divider"></div>
+                <!--follower fund start -->
+                <div class="py-3 d-flex justify-content-between align-items-center">
+                    <p class="mb-0 small-font font-bold">Follower Funds</p>
+                    <p class="mb-0 large-font font-bold">$${formatWithCommas(follower_funds)}</p>
+                </div>
+                <!-- follower fund end -->
+                <div class="divider"></div>
+
+                <div class="divider"></div>
+                <!-- monthly subscription start -->
+                <div class="py-3 d-flex justify-content-between align-items-center">
+                    <p class="mb-0 small-font font-bold">Monthly Subscription Fee</p>
+                    <p class="mb-0 large-font font-bold">$${monthly_subscription_fee}</p>
+                </div>
+                <!-- monthly subscription end -->
+                <div class="divider"></div>
+                <!-- profit start -->
+                <div class="py-3 d-flex justify-content-between align-items-center">
+                    <p class="mb-0 small-font font-bold">Profit Sharing Percentage</p>
+                    <p class="mb-0 large-font font-bold">${profit_sharing}%</p>
+                </div>
+                <!-- profit end -->
+                <div class="divider"></div>
+                <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-w-m btn-default text-navy">
+                        Follow Provider
+                    </button>
+                </div>
+        `
+
     }
 })()
