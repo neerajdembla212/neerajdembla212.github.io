@@ -868,6 +868,7 @@
 
     container.empty().append(`<div class="ibox-content table-responsive p-0">
     ${getUserTableHTML(data)}
+    ${getUserTableResponsiveHTML(data)}
     </div>`)
 
   }
@@ -896,6 +897,7 @@
 
     container.empty().append(`<div class="ibox-content table-responsive p-0">
     ${getUserTableHTML(data)}
+    ${getUserTableResponsiveHTML(data)}
     </div>`)
   }
   function getProxyCardHTML() {
