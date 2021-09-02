@@ -159,6 +159,7 @@
       options: {
         spanGaps: true,
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           xAxes: [
             {
@@ -463,7 +464,9 @@
         <p class="text-capitalize small-font text-blue text-center">low risk</p>
       </div>
     </div>
-    <canvas class="lineChart" class="mt-2"></canvas>
+    <div class="line-chart-container">
+      <canvas class="lineChart" class="mt-2"></canvas>
+    </div>
     <button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
       Follow Provider
     </button>
@@ -489,11 +492,11 @@
 
   function getUserTableHeaders() {
     return `
-    <thead>
+    <thead class="border-top-none">
       <tr>
         <th class="pl-3">PROVIDER</th>
         <th>AGE</th>
-        <th>Total Returns / equity growth</th>
+        <th style="height:32px" class="border-bottom-transparent">Total Returns / equity growth</th>
         <th>DD</th>
         <th>avg / mth</th>
         <th>Avg Pips</th>
@@ -564,9 +567,9 @@
       ${return_duration}
       </td>
       <td class="px-3 d-flex">
-        <span class="mr-3 return-percentage font-bold font-size-16 pt-1">${return_percentage}%</span>
+        <span class="mr-3 return-percentage font-bold font-size-16 pt-1 align-self-center" style="height:30px">${return_percentage}%</span>
         <div class="canvas-max-width-trendline-table pt-2">
-        <canvas class="line-chart" class="mt-2"></canvas>
+          <canvas class="line-chart" class="mt-2"></canvas>
         </div>
       </td>
       <td class="text-light-red text-center align-middle">
@@ -582,12 +585,12 @@
         <p class="small-font text-capitalize text-blue m-0 font-weight-normal">Low Risk</p>
       </div>
       </td>
-      <td>
+      <td class="align-middle">
         <button id="follow-provider-cta" class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
           Follow Provider
         </button>
       </td>
-      <td class="pr-3">
+      <td class="pr-3 align-middle">
         <button
           class="
             btn
