@@ -10223,6 +10223,11 @@ body.mini-navbar .nav.metismenu > li.logo {
 .contact-box .return-percentage {
   color: #339A4A;
 }
+@media screen and (max-width: 768px) {
+  .contact-box {
+    border-radius: 0;
+  }
+}
 .contact-box.sm {
   width: 250px;
 }
@@ -10549,11 +10554,19 @@ body.body-small .responsive-navbar-cta {
 .border-bottom-transparent {
   border-bottom: transparent !important;
 }
+.tooltip-inner {
+  background-color: #754ef7;
+}
 .sparkline-container {
   width: 100%;
   background-color: #1F1F25;
   border-radius: 6px;
   min-height: 80px;
+}
+@media screen and (max-width: 768px) {
+  .sparkline-container {
+    border-radius: 0;
+  }
 }
 @media screen and (max-width: 480px) {
   .sparkline-container .desktop-content {
@@ -10639,6 +10652,11 @@ body.body-small .responsive-navbar-cta {
   max-height: 360px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .portfolio-line-chart {
+    border-radius: 0;
+  }
+}
 .portfolio-line-chart .chart-filter .btn {
   border: none;
 }
@@ -10657,6 +10675,11 @@ body.body-small .responsive-navbar-cta {
   }
   .portfolio-users-table .responsive-providers {
     display: block !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .portfolio-users-table {
+    border-radius: 0;
   }
 }
 .portfolio-users-table .header-text {
@@ -10754,6 +10777,11 @@ body.body-small .responsive-navbar-cta {
 @media screen and (max-width: 1000px) {
   .strategy-provider-section .tabs-header .actions-container {
     margin-top: 0.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .strategy-provider-section .tabs-header {
+    border-radius: 0;
   }
 }
 .strategy-provider-section .nav.nav-tabs li {

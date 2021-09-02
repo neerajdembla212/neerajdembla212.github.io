@@ -680,7 +680,9 @@
         <p class="text-capitalize small-font text-blue text-center">low risk</p>
       </div>
     </div>
-    <canvas class="lineChart" class="mt-2"></canvas>
+    <div class="line-chart-container">
+      <canvas class="lineChart" class="mt-2"></canvas>
+    </div>
     <p class="font-bold mb-2">Strategy Philosophy</p>
     <p class="philosophy-text mb-2">${strategy_philosophy}</p>
     <p class="joined-date mb-3">Joined ${formatDate(new Date(joining_date))}</p>
