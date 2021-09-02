@@ -77,6 +77,16 @@
     .table-responsive {
         margin-top: -1rem !important;
         border-radius: 0 0 6px 6px;
+
+        @media screen and (max-width: 1024px) {
+            .table {
+                display: none;
+            }
+
+            .responsive-users {
+                display: block !important;
+            }
+        }
     }
 
     .contact-box {
@@ -85,6 +95,33 @@
 
     .line-chart-container {
         height: 40px;
+    }
+
+    .responsive-users {
+        display: none;
+
+        .hide-m {
+            display: block;
+
+            @media screen and (max-width: 480px) {
+                display: none;
+            }
+        }
+
+        >* {
+            border-top: 1px solid @table-border;
+        }
+
+        .responsive-label {
+            text-transform: uppercase;
+            color: @thead-color;
+            font-size: 10px;
+        }
+
+        .responsive-value {
+            font-size: 14px;
+            word-break: break-word;
+        }
     }
 }
 
