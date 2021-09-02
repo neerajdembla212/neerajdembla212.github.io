@@ -10226,6 +10226,10 @@ body.mini-navbar .nav.metismenu > li.logo {
 .contact-box.sm {
   width: 250px;
 }
+.contact-box.proxy {
+  background-color: transparent !important;
+  border: none;
+}
 .favourite-icon.active {
   color: #EDA323;
 }

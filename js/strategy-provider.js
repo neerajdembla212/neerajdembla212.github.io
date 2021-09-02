@@ -246,6 +246,9 @@
       const providerCard = getTopGrowthCardHTML(provider);
       containerHTML.push(providerCard);
     });
+    if (data.length % 2 !== 0) {
+      containerHTML.push(getProxyCardHTML())
+    }
     container.empty().append(containerHTML);
   }
 
@@ -607,6 +610,13 @@
       const providerCard = getFeaturedProviderCardHTML(provider);
       containerHTML.push(providerCard);
     });
+    // since in case of featured we have 3 column grid hence we need to add proxy element on even number of elements
+    if (data.length % 3 !== 0) {
+      const numberOfProxyCards = data.length % 3;
+      for (let i = 0; i < 3 - numberOfProxyCards; i++) {
+        containerHTML.push(getProxyCardHTML())
+      }
+    }
     container.empty().append(containerHTML);
   }
 
@@ -703,6 +713,9 @@
       const providerCard = getTopGrowthCardHTML(provider);
       containerHTML.push(providerCard);
     });
+    if (data.length % 2 !== 0) {
+      containerHTML.push(getProxyCardHTML())
+    }
     container.empty().append(containerHTML);
   }
 
@@ -740,6 +753,9 @@
     container.empty().append(`<div class="ibox-content table-responsive p-0">
     ${getUserTableHTML(data)}
     </div>`)
+  }
+  function getProxyCardHTML() {
+    return `<div class="contact-box proxy d-flex flex-column col" id="contact-box-proxy"></div>`
   }
 })();
 
