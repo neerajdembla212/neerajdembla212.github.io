@@ -608,6 +608,7 @@
                             },
                             ticks: {
                                 maxTicksLimit: 10,
+                                padding: 10
                             },
                         },
                     ],
@@ -666,6 +667,7 @@
             }]
         };
         new Chart(ctx, config);
+        ctx.globalCompositeOperation = 'destination-over';
     }
 
     // render strategy details sparkline start
