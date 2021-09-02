@@ -383,11 +383,7 @@
     });
 
     // redirect on click of contact box
-    $('.strategy-provider-section .contact-box').click((ele) => {
-      console.log(ele.currentTarget,)
-      localStorage.setItem('selectedProviderId', $(ele.currentTarget).data('id'))
-      window.location.href = window.location.origin + '/strategy-provider-details.html';
-    })
+    $('.strategy-provider-section .contact-box').click(showStrategyProviderDetailsPage)
   }
 
   function registerListViewEvents() {
@@ -402,8 +398,17 @@
         icon.removeClass("fa-bookmark").addClass("fa-bookmark-o");
       }
     });
+    // redirect on click of contact row
+    $('.strategy-provider-section .contact-row').click(showStrategyProviderDetailsPage)
   }
-
+  function showStrategyProviderDetailsPage(event) {
+    const targetName = $(event.target).attr('name');
+    if (targetName === "follow-provider-cta" || targetName === "favourites-cta") {
+      return;
+    }
+    localStorage.setItem('selectedProviderId', $(event.currentTarget).data('id'))
+    window.location.href = window.location.origin + '/strategy-provider-details.html';
+  }
 
   // Helper methods : in below section we will place all the helper functions used on dom ready
 
@@ -446,7 +451,7 @@
           <span class="text-light-black">${name}</span>
         </div>
       </div>
-      <span class="fa favourite-icon ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}"></span>
+      <span class="fa favourite-icon cursor-pointer ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}" name="favourites-cta"></span>
     </div>
     <div class="d-flex justify-content-between">
       <div class=" align-self-center m-0 font-bold d-flex flex-column">
@@ -459,7 +464,7 @@
       </div>
     </div>
     <canvas class="lineChart" class="mt-2"></canvas>
-    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#follow-provider-modal">
+    <button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
       Follow Provider
     </button>
     <!-- area chart here-->
@@ -535,7 +540,7 @@
       advised_min,
       favourite
     } = user;
-    return ` <tr id="table-user-${id}">
+    return ` <tr id="table-user-${id}" class="contact-row cursor-pointer" data-id="${id}">
       <td class="mr-2 pl-3">
         <img
           alt="image"
@@ -578,7 +583,7 @@
       </div>
       </td>
       <td>
-        <button class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal"">
+        <button id="follow-provider-cta" class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
           Follow Provider
         </button>
       </td>
@@ -593,8 +598,9 @@
             mx-2
             border-0
           "
+          name="favourites-cta"
         >
-          <i class="fa favourite-icon extra-large-font border-0 ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}"></i>
+          <i class="fa favourite-icon extra-large-font border-0 ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}" name="favourites-cta"></i>
         </button>
       </td>
     </tr>`
@@ -655,7 +661,7 @@
           <span class="text-light-black">${name}</span>
         </div>
       </div>
-      <span class="fa fa-bookmark-o favourite-icon"></span>
+      <span class="fa fa-bookmark-o favourite-icon" name="favourites-cta"></span>
     </div>
     <div class="d-flex justify-content-between mt-2">
       <div class="d-flex flex-column">
@@ -697,7 +703,7 @@
         <p class="font-bold text-center">${trades}</p>
       </div>
     </div>
-    <button class="btn btn-primary btn-block follow-provider" data-toggle="modal" data-target="#follow-provider-modal">
+    <button class="btn btn-primary btn-block follow-provider" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
       Follow Provider
     </button>
   </div>`;
