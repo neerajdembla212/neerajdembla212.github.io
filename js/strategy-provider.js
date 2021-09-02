@@ -261,6 +261,7 @@
 
     container.empty().append(`<div class="ibox-content table-responsive p-0">
     ${getUserTableHTML(data)}
+    ${getUserTableResponsiveHTML(data)}
     </div>`)
 
   }
@@ -331,6 +332,7 @@
     const container = $("#top-growth .panel-body");
     container.empty().append(loadingContactBoxes);
   }
+
   // register events on static content i.e content which is not changing dynamically. such events are global for this page
   function registerGlobalEvents() {
     // subheader - toggling active class on grid and list icons
@@ -480,6 +482,7 @@
   </div>`;
   }
 
+  // render user table start
   function getUserTableHTML(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -487,6 +490,7 @@
     return `<table class="table mb-0">
     ${getUserTableHeaders()}
     ${getUserTableBody(data)}
+    ${getStrategyProvidersTableFooter()}
     </table>`
   }
 
@@ -609,6 +613,130 @@
     </tr>`
   }
 
+
+  function getStrategyProvidersTableFooter() {
+    return `<tfoot>
+    <tr>
+      <td colspan="11" class="pb-0">
+        <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
+          <select class="form-control rows-per-page mr-2" name="rows-per-page">
+            <option>10 Rows per page</option>
+            <option>20 Rows per page</option>
+            <option>30 Rows per page</option>
+            <option>40 Rows per page</option>
+          </select>
+          <i class="fa fa-angle-left mx-2"></i>
+          <i class="fa fa-angle-right mx-2"></i>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>`
+  }
+  // render user table end
+
+  // render user table responsive HTML start
+  function getUserTableResponsiveHTML(data) {
+    const rowsHTML = [];
+    data.forEach(user => {
+      rowsHTML.push(getUserTableResponsiveRow(user))
+    })
+    return `<div class="responsive-users">
+        ${rowsHTML.join('')}
+    </div>`
+  }
+
+  function getUserTableResponsiveRow(user) {
+    if (!user) {
+      return '';
+    }
+    const { id,
+      profile_image,
+      name,
+      username,
+      country,
+      return_percentage,
+      return_duration,
+      drawDown,
+      follower_count,
+      average_per_month,
+      follower_funds,
+      average_pips,
+      advised_min,
+      favourite
+    } = user;
+
+    return `<div class="p-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
+            <div class="ml-2 float-left">
+              <p class="font-bold font-size-12 mb-0">
+                ${username}
+              </p>
+              <p class="text-light-black font-size-12 mb-0">
+                ${name}
+                <img class="ml-1" src="${getCountryFlags(country)}" />
+              </p>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <p class="mb-0 text-dark-green font-bold large-font mr-3">${return_percentage}%</p>
+            <button class="btn btn-primary font-size-12 mr-3" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
+              Follow
+            </button>
+            <button
+              class="
+                btn
+                btn-default
+                btn-square
+                btn-outline
+                btn-action
+                mx-2
+                border-0
+              "
+              name="favourites-cta"
+            >
+              <i class="fa favourite-icon extra-large-font border-0 ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}" name="favourites-cta"></i>
+            </button>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-2">
+          <div class="mr-3">
+            <p class="mb-0 responsive-label">Age</p>
+            <p class="mb-0 font-bold responsive-value">${return_duration}</p>
+          </div>
+          <div class="mr-3">
+            <p class="mb-0 responsive-label">DD</p>
+            <p class="mb-0 font-bold responsive-value text-light-red">${drawDown}</p>
+          </div>
+          <div class="mr-3">
+            <p class="mb-0 responsive-label">AVG/MTH</p>
+            <p class="mb-0 font-bold responsive-value text-dark-green">${average_per_month}</p>
+          </div>
+          <div class="mr-3">
+            <p class="mb-0 responsive-label">Advised Min</p>
+            <p class="mb-0 font-bold responsive-value text-dark-green">${advised_min}</p>
+          </div>
+          <div class="mr-3 hide-m">
+            <p class="mb-0 responsive-label">Avg Pips</p>
+            <p class="mb-0 font-bold responsive-value text-dark-green">${average_pips}</p>
+          </div>
+          <div class="mr-3 hide-m">
+            <p class="mb-0 responsive-label">Follower Funds</p>
+            <p class="mb-0 font-bold responsive-value text-dark-green">${follower_funds}</p>
+          </div>
+          <div class="mr-3">
+            <p class="mb-0 responsive-label">Followers</p>
+            <p class="mb-0 font-bold responsive-value text-dark-green">${follower_count}</p>
+          </div>
+      </div>
+    </div>
+    `
+  }
+
+  // render user table responsive HTML end 
+
+  // render featured providers card HTML start
   function plotFeaturedProviersCard(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -713,7 +841,9 @@
     </button>
   </div>`;
   }
+  // render featured providers card HTML end
 
+  // render following users card HTML start
   function plotFollowingUsersCard(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -741,7 +871,9 @@
     </div>`)
 
   }
+  // render following users card HTML start
 
+  // render favourite users card HTML start
   function plotFavouriteUsersCard(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -754,6 +886,7 @@
     });
     container.empty().append(containerHTML);
   }
+  // render favourite users card HTML start
 
   function plotFavouriteUsersTable(data) {
     if (!data || !Array.isArray(data)) {
