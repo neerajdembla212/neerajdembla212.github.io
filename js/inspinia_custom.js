@@ -5,10 +5,10 @@ $(document).ready(function () {
   registerEventHandlers();
 });
 function checkUserLogin() {
-  return getCookie('accessToken')
+  return readCookie('accessToken')
 }
 
-function getCookie(name) {
+function readCookie(name) {
   var dc = document.cookie;
   var prefix = name + "=";
   var begin = dc.indexOf("; " + prefix);
@@ -26,6 +26,13 @@ function getCookie(name) {
   return decodeURI(dc.substring(begin + prefix.length, end));
 }
 
+function set_cookie(name, value) {
+  document.cookie = name + '=' + value;
+}
+function delete_cookie(name) {
+  document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 function registerEventHandlers() {
   // dropdown in navigation panel to switch accounts
   $(".dropdown-select-menu").click((event) => {
@@ -41,6 +48,19 @@ function registerEventHandlers() {
 
   $('.nav-header .dropdown-menu').click(function (e) {
     const role = e.target.innerText;
+    switch (role) {
+      case 'Strategy Provider':
+        localStorage.setItem('currentRole', 'provider');
+        window.location.reload();
+        break;
+      case 'Strategy Follower':
+        localStorage.setItem('currentRole', 'follower');
+        window.location.reload();
+        break;
+      case 'Sign Out':
+        delete_cookie('accessToken');
+        window.location.reload();
+    }
     if (role === 'Strategy Provider') {
       localStorage.setItem('currentRole', 'provider');
       window.location.reload();
