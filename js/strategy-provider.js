@@ -75,11 +75,11 @@
       url: "https://copypip.free.beeceptor.com/users/featured-providers",
       successCallback: (data) => {
         STATE.setFeaturedProviders(data.data);
-        // const viewType = getCurrentViewType();
-        // switch (viewType) {
-        //   case 'grid': plotGridView(); break;
-        //   case 'list': plotListView(); break;
-        // }
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
       },
       beforeSend: plotGridLoadingState.bind(null, activeTabId)
     });

@@ -343,6 +343,15 @@
     @strategy-title-width: 100px;
     @strategy-title-skeleton: linear-gradient(@light-gray @strategy-title-height, transparent 0);
 
+    /* Strategy Philosophy content Line 1 */
+    @strategy-content-height: 8px;
+    @strategy-content-position: @card-padding 225px;
+    @strategy-content-width: 310px;
+    @strategy-content-skeleton: linear-gradient(@light-gray @strategy-content-height, transparent 0);
+
+    /* Strategy Philosophy content Line 2 */
+    @strategy-content-position2: @card-padding 245px;
+
     /* Age Text specs */
     @age-text-height: 8px;
     @age-text-position: @card-padding 285px;
@@ -428,6 +437,8 @@
     @followers-text-skeleton,
     @risk-text-skeleton,
     @strategy-title-skeleton,
+    @strategy-content-skeleton,
+    @strategy-content-skeleton,
     @age-text-skeleton,
     @drawdown-text-skeleton,
     @avg-mth-text-skeleton,
@@ -450,6 +461,8 @@
     @followers-text-width @followers-text-height,
     @risk-text-width @risk-text-height,
     @strategy-title-width @strategy-title-height,
+    @strategy-content-width @strategy-content-height,
+    @strategy-content-width @strategy-content-height,
     @age-text-width @age-text-height,
     @drawdown-text-width @drawdown-text-height,
     @avg-mth-text-width @avg-mth-text-height,
@@ -472,6 +485,8 @@
     @followers-text-position,
     @risk-text-position,
     @strategy-title-position,
+    @strategy-content-position,
+    @strategy-content-position2,
     @age-text-position,
     @drawdown-text-position,
     @avg-mth-text-position,
@@ -511,6 +526,10 @@
             280px 95px,
             /* Strategy Philosophy Title specs */
             19px 195px,
+            /* Strategy Philosophy Content specs */
+            19px 225px,
+            /* Strategy Philosophy Content specs */
+            19px 245px,
             /* Age Text specs */
             19px 285px,
             /* Drawdown Text specs */
