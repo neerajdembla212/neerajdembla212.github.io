@@ -10401,7 +10401,7 @@ thead {
 }
 tr > td:first-child,
 tr > th:first-child {
-  padding-left: 1rem;
+  padding-left: 1rem !important;
 }
 tr > td:last-child,
 tr > th:last-child {
@@ -10695,6 +10695,7 @@ body.body-small .responsive-navbar-cta {
 .btn-watchlist {
   color: #4D4D4E;
   padding: 8px;
+  height: 34px;
 }
 .btn-watchlist .fa {
   color: #b7c0cb;
@@ -10704,12 +10705,12 @@ body.body-small .responsive-navbar-cta {
   color: #7B8496;
   padding: 8px;
   margin-right: 0.5rem;
+  height: 34px;
 }
 .currency-chip img {
   cursor: pointer;
   height: 12px;
   width: auto;
-  margin-bottom: 3px;
 }
 .trade-terminal-chart {
   height: 20vw;
@@ -10718,18 +10719,29 @@ body.body-small .responsive-navbar-cta {
 .buy-sell-section {
   border-radius: 6px;
   height: 20vw;
-  width: 320px;
+  width: 340px;
 }
 .trade-section {
   border-radius: 6px;
-  height: 20vw;
+  max-height: 400px;
   width: 55vw;
+  overflow: auto;
+  overflow-x: hidden;
 }
 .trade-section .tabs-header {
   padding: 10px;
 }
 .trade-section .panel-body {
   padding: 15px;
+}
+.trade-section .nav-tabs .nav-link.active {
+  background-color: #E7EDF4;
+}
+.trade-section .highlight-amount {
+  background: #F7F7F7;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  height: 20px;
 }
 .strategy-provider-section .tabs-header {
   background: #ffffff;
