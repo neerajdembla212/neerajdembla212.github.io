@@ -55,7 +55,7 @@
     onTabChange(activeId);
   });
 
-  function fetchTopGrowthProviders() {
+  function fetchTopGrowthProviders(activeTabId) {
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/top-growth",
       successCallback: (data) => {
@@ -66,26 +66,26 @@
           case 'list': plotListView(); break;
         }
       },
-      beforeSend: plotGridLoadingState
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
     });
   }
 
-  function fetchFeaturedProviders() {
+  function fetchFeaturedProviders(activeTabId) {
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/featured-providers",
       successCallback: (data) => {
         STATE.setFeaturedProviders(data.data);
-        const viewType = getCurrentViewType();
-        switch (viewType) {
-          case 'grid': plotGridView(); break;
-          case 'list': plotListView(); break;
-        }
+        // const viewType = getCurrentViewType();
+        // switch (viewType) {
+        //   case 'grid': plotGridView(); break;
+        //   case 'list': plotListView(); break;
+        // }
       },
-      // beforeSend: plotGridLoadingState
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
     });
   }
 
-  function fetchFollowingUsers() {
+  function fetchFollowingUsers(activeTabId) {
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/following",
       successCallback: (data) => {
@@ -96,11 +96,11 @@
           case 'list': plotListView(); break;
         }
       },
-      // beforeSend: plotGridLoadingState
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
     });
   }
 
-  function fetchFavouriteUsers() {
+  function fetchFavouriteUsers(activeTabId) {
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/favourites",
       successCallback: (data) => {
@@ -111,7 +111,7 @@
           case 'list': plotListView(); break;
         }
       },
-      // beforeSend: plotGridLoadingState
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
     });
   }
 
@@ -327,9 +327,9 @@
     }
   }
 
-  function plotGridLoadingState() {
-    const loadingContactBoxes = $('.grid-loading-state .contact-box');
-    const container = $("#top-growth .panel-body");
+  function plotGridLoadingState(activeTabId) {
+    const loadingContactBoxes = getLoadingContactBoxes(activeTabId);
+    const container = $(`${activeTabId} .panel-body`);
     container.empty().append(loadingContactBoxes);
   }
 
@@ -365,10 +365,10 @@
       return
     }
     switch (tabId) {
-      case '#top-growth': fetchTopGrowthProviders(); break;
-      case '#featured': fetchFeaturedProviders(); break;
-      case '#following': fetchFollowingUsers(); break;
-      case '#favourites': fetchFavouriteUsers(); break;
+      case '#top-growth': fetchTopGrowthProviders(tabId); break;
+      case '#featured': fetchFeaturedProviders(tabId); break;
+      case '#following': fetchFollowingUsers(tabId); break;
+      case '#favourites': fetchFavouriteUsers(tabId); break;
 
     }
   }
@@ -816,24 +816,24 @@
     <p class="joined-date mb-3">Joined ${formatDate(new Date(joining_date))}</p>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column">
-        <p class="text-gray small-font">AGE</p>
-        <p class="font-bold">${age}</p>
+        <p class="text-gray small-font mb-1">AGE</p>
+        <p class="font-bold mb-1">${age}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font">MAX DD</p>
-        <p class="text-light-red font-bold text-center">${drawPercentage}</p>
+        <p class="text-gray small-font mb-1">MAX DD</p>
+        <p class="text-light-red font-bold text-center mb-1">${drawPercentage}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font">AVG / MTH</p>
-        <p class="text-green font-bold text-center">${avg_per_month}</p>
+        <p class="text-gray small-font mb-1">AVG / MTH</p>
+        <p class="text-green font-bold text-center mb-1">${avg_per_month}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font">AVG PIPS</p>
-        <p class="font-bold text-center">${avg_pips}</p>
+        <p class="text-gray small-font mb-1">AVG PIPS</p>
+        <p class="font-bold text-center mb-1">${avg_pips}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font">TRADES</p>
-        <p class="font-bold text-center">${trades}</p>
+        <p class="text-gray small-font mb-1">TRADES</p>
+        <p class="font-bold text-center mb-1">${trades}</p>
       </div>
     </div>
     <button class="btn btn-primary btn-block follow-provider" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
@@ -902,6 +902,20 @@
   }
   function getProxyCardHTML() {
     return `<div class="contact-box proxy d-flex flex-column col" id="contact-box-proxy"></div>`
+  }
+
+  function getLoadingContactBoxes(activeTabId) {
+    const numberOfBoxes = 8;
+    const boxesHTML = [];
+    for (let i = 0; i < numberOfBoxes; i++) {
+      boxesHTML.push(`<div class="contact-box loading ${activeTabId === "#featured" ? 'featured' : ''}">
+          <span class="fa fa-bookmark-o favourite-icon float-right"></span>
+          <button class="btn btn-primary btn-block">
+            Follow Provider
+          </button>
+        </div>`);
+    }
+    return boxesHTML.join('')
   }
 })();
 

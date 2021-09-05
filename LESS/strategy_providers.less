@@ -57,7 +57,8 @@
 
     #featured {
         .contact-box {
-            width: 350px
+            width: 350px;
+            height: 390px;
         }
 
         .follow-provider {
@@ -146,8 +147,8 @@
 }
 
 
-/* Loader state for rising cards */
-#top-growth .panel-body .contact-box.loading {
+/* Loader state for Top Growth, Following and favourite tab */
+.strategy-provider-section .panel-body .contact-box.loading {
     height: 240px;
     @card-padding: 19px;
     /* avatar specs */
@@ -206,7 +207,7 @@
 
     /* Animation specs */
     @blur-width: 200px;
-    @blur-size: 50px 200px;
+    @blur-size: 50px 240px;
     @blur-position: 0 0;
     @blur-skeleton: linear-gradient(90deg, rgba(@white, 0) 0, rgba(@white, .8) 50%, rgba(@white, 0) 100%);
 
@@ -275,5 +276,260 @@
             19px 210px,
             /* Drawdown Text specs */
             190px 210px;
+    }
+}
+
+/* Loader state for Featured tab */
+.strategy-provider-section .panel-body .contact-box.loading.featured {
+    height: 396px;
+    @card-padding: 19px;
+    /* avatar specs */
+    @avatar-radius: 19px;
+    @avatar-size: @avatar-radius * 2;
+    @avatar-position: @card-padding @card-padding;
+    @avatar-skeleton: radial-gradient(circle @avatar-radius at @avatar-radius @avatar-radius, @light-gray 99%, transparent 0);
+
+    /* username specs */
+    @username-height: 10px;
+    @username-width: 80px;
+    @username-position: 64px 19px;
+    @username-skeleton: linear-gradient(@light-gray @username-height, transparent 0);
+
+    /* Fullname specs */
+    @fullname-height: 10px;
+    @fullname-position: 64px 38px;
+    @fullname-width: 100px;
+    @fullname-skeleton: linear-gradient(@light-gray @fullname-height, transparent 0);
+
+    /* Return percentage specs */
+    @return-percent-height: 20px;
+    @return-percent-position: @card-padding 70px;
+    @return-percent-width: 60px;
+    @return-percent-skeleton: linear-gradient(@light-gray @return-percent-height, transparent 0);
+
+    /* Risk Amount specs */
+    @risk-amount-height: 20px;
+    @risk-amount-position: 270px 70px;
+    @risk-amount-width: 60px;
+    @risk-amount-skeleton: linear-gradient(@light-gray @risk-amount-height, transparent 0);
+
+    /* Followers count specs */
+    @followers-count-height: 20px;
+    @followers-count-position: 150px 70px;
+    @followers-count-width: 60px;
+    @followers-count-skeleton: linear-gradient(@light-gray @followers-count-height, transparent 0);
+
+    /* Return Percentage Text specs */
+    @return-text-height: 8px;
+    @return-text-position: @card-padding 95px;
+    @return-text-width: 50px;
+    @return-text-skeleton: linear-gradient(@light-gray @return-text-height, transparent 0);
+
+    /* Followers Text specs */
+    @followers-text-height: 8px;
+    @followers-text-position: 152px 95px;
+    @followers-text-width: 50px;
+    @followers-text-skeleton: linear-gradient(@light-gray @followers-text-height, transparent 0);
+
+    /* Risk Text specs */
+    @risk-text-height: 8px;
+    @risk-text-position: 280px 95px;
+    @risk-text-width: 40px;
+    @risk-text-skeleton: linear-gradient(@light-gray @risk-amount-height, transparent 0);
+
+    /* Strategy Philosophy Title */
+    @strategy-title-height: 8px;
+    @strategy-title-position: @card-padding 195px;
+    @strategy-title-width: 100px;
+    @strategy-title-skeleton: linear-gradient(@light-gray @strategy-title-height, transparent 0);
+
+    /* Age Text specs */
+    @age-text-height: 8px;
+    @age-text-position: @card-padding 285px;
+    @age-text-width: 30px;
+    @age-text-skeleton: linear-gradient(@light-gray @age-text-height, transparent 0);
+
+    /* Age specs */
+    @age-height: 8px;
+    @age-position: @card-padding 315px;
+    @age-width: 70px;
+    @age-skeleton: linear-gradient(@light-gray @age-height, transparent 0);
+
+
+    /* Drawdown text specs */
+    @drawdown-text-height: 8px;
+    @drawdown-text-position: 110px 285px;
+    @drawdown-text-width: 30px;
+    @drawdown-text-skeleton: linear-gradient(@light-gray @drawdown-text-height, transparent 0);
+
+    /* Average month text specs */
+    @avg-mth-text-height: 8px;
+    @avg-mth-text-position: 155px 285px;
+    @avg-mth-text-width: 50px;
+    @avg-mth-text-skeleton: linear-gradient(@light-gray @avg-mth-text-height, transparent 0);
+
+    /* Average pips text specs */
+    @avg-pips-text-height: 8px;
+    @avg-pips-text-position: 217px 285px;
+    @avg-pips-text-width: 40px;
+    @avg-pips-text-skeleton: linear-gradient(@light-gray @avg-pips-text-height, transparent 0);
+
+    /* Trades text specs */
+    @trades-text-height: 8px;
+    @trades-text-position: 285px 285px;
+    @trades-text-width: 40px;
+    @trades-text-skeleton: linear-gradient(@light-gray @trades-text-height, transparent 0);
+
+    /* Drawdown specs */
+    @drawdown-height: 8px;
+    @drawdown-position: 115px 315px;
+    @drawdown-width: 20px;
+    @drawdown-skeleton: linear-gradient(@light-gray @drawdown-height, transparent 0);
+
+    /* Average month specs */
+    @avg-mth-height: 8px;
+    @avg-mth-position: 160px 315px;
+    @avg-mth-width: 30px;
+    @avg-mth-skeleton: linear-gradient(@light-gray @avg-mth-height, transparent 0);
+
+    /* Average pips specs */
+    @avg-pips-height: 8px;
+    @avg-pips-position: 220px 315px;
+    @avg-pips-width: 30px;
+    @avg-pips-skeleton: linear-gradient(@light-gray @avg-pips-height, transparent 0);
+
+    /* Trade specs */
+    @trade-height: 8px;
+    @trade-position: 280px 315px;
+    @trade-width: 50px;
+    @trade-skeleton: linear-gradient(@light-gray @trade-height, transparent 0);
+
+    /* Animation specs */
+    @blur-width: 200px;
+    @blur-size: 50px 390px;
+    @blur-position: 0 0;
+    @blur-skeleton: linear-gradient(90deg, rgba(@white, 0) 0, rgba(@white, .8) 50%, rgba(@white, 0) 100%);
+
+    /* build Ghost Skeleton */
+    .btn-primary.btn-block {
+        margin-top: 320px;
+        width: 40%;
+    }
+
+    background-repeat: no-repeat;
+    background-image: @avatar-skeleton,
+    @blur-skeleton,
+    @username-skeleton,
+    @fullname-skeleton,
+    @return-percent-skeleton,
+    @followers-count-skeleton,
+    @risk-amount-skeleton,
+    @return-text-skeleton,
+    @followers-text-skeleton,
+    @risk-text-skeleton,
+    @strategy-title-skeleton,
+    @age-text-skeleton,
+    @drawdown-text-skeleton,
+    @avg-mth-text-skeleton,
+    @avg-pips-text-skeleton,
+    @trades-text-skeleton,
+    @age-skeleton,
+    @drawdown-skeleton,
+    @avg-mth-skeleton,
+    @avg-pips-skeleton,
+    @trade-skeleton;
+
+    background-size: @avatar-size,
+    @blur-size,
+    @username-width @username-height,
+    @fullname-width @fullname-height,
+    @return-percent-width @return-percent-height,
+    @followers-count-width @followers-count-height,
+    @risk-amount-width @risk-amount-height,
+    @return-text-width @return-text-height,
+    @followers-text-width @followers-text-height,
+    @risk-text-width @risk-text-height,
+    @strategy-title-width @strategy-title-height,
+    @age-text-width @age-text-height,
+    @drawdown-text-width @drawdown-text-height,
+    @avg-mth-text-width @avg-mth-text-height,
+    @avg-pips-text-width @avg-pips-text-height,
+    @trades-text-width @trades-text-height,
+    @age-width @age-height,
+    @drawdown-width @drawdown-height,
+    @avg-mth-width @avg-mth-height,
+    @avg-pips-width @avg-pips-height,
+    @trade-width @trade-height;
+
+    background-position: @avatar-position,
+    @blur-position,
+    @username-position,
+    @fullname-position,
+    @return-percent-position,
+    @followers-count-position,
+    @risk-amount-position,
+    @return-text-position,
+    @followers-text-position,
+    @risk-text-position,
+    @strategy-title-position,
+    @age-text-position,
+    @drawdown-text-position,
+    @avg-mth-text-position,
+    @avg-pips-text-position,
+    @trades-text-position,
+    @age-position,
+    @drawdown-position,
+    @avg-mth-position,
+    @avg-pips-position,
+    @trade-position;
+
+    animation: featured_shine 1s infinite;
+}
+
+@keyframes featured_shine {
+    to {
+        background-position:
+            /* avatar specs */
+            19px 19px,
+            /* Animation specs */
+            100% 0,
+            /* username specs */
+            64px 19px,
+            /* Fullname specs */
+            64px 38px,
+            /* Return percentage specs */
+            19px 70px,
+            /* Followers count specs */
+            150px 70px,
+            /* Risk Amount specs */
+            270px 70px,
+            /* Return Percentage Text specs */
+            19px 95px,
+            /* Followers Text specs */
+            152px 95px,
+            /* Risk Text specs */
+            280px 95px,
+            /* Strategy Philosophy Title specs */
+            19px 195px,
+            /* Age Text specs */
+            19px 285px,
+            /* Drawdown Text specs */
+            110px 285px,
+            /* Average Month Text specs */
+            155px 285px,
+            /* Average Pips Text specs */
+            217px 285px,
+            /* Trades Pips Text specs */
+            285px 285px,
+            /* Age specs */
+            19px 315px,
+            /* Drawdown specs */
+            115px 315px,
+            /* Agerage Month specs */
+            160px 315px,
+            /* Agerage pips specs */
+            220px 315px,
+            /* Trade specs */
+            280px 315px,
     }
 }
