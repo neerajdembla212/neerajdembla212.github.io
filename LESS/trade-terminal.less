@@ -1,6 +1,7 @@
 .btn-watchlist {
     color: @bold-black;
     padding: 8px;
+    height: 34px;
 
     .fa {
         color: @subheader-icon-color;
@@ -12,12 +13,12 @@
     color: @chip-text-color;
     padding: 8px;
     margin-right: 0.5rem;
+    height: 34px;
 
     img {
         cursor: pointer;
         height: 12px;
         width: auto;
-        margin-bottom: 3px;
     }
 }
 
@@ -29,13 +30,15 @@
 .buy-sell-section {
     border-radius: 6px;
     height: 20vw;
-    width: 320px;
+    width: 340px;
 }
 
 .trade-section {
     border-radius: 6px;
-    height: 20vw;
+    max-height: 400px;
     width: 55vw;
+    overflow: auto;
+    overflow-x: hidden;
 
     .tabs-header {
         padding: 10px;
@@ -43,5 +46,17 @@
 
     .panel-body {
         padding: 15px;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: @border-color-bookmark-icon;
+    }
+
+    .highlight-amount {
+        background: @highlight-gray;
+        border: 1px solid @lightest-gray;
+        border-radius: 4px;
+        height: 20px;
+        padding: 2px;
     }
 }
