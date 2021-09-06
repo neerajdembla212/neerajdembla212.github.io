@@ -10260,6 +10260,9 @@ body.mini-navbar .nav.metismenu > li.logo {
 .super-large-font {
   font-size: 24px;
 }
+.super-extra-large-font {
+  font-size: 30px;
+}
 .ratings .fa-star:not(.active) {
   color: #BFBFBF;
 }
@@ -10457,6 +10460,9 @@ body.body-small .responsive-navbar-cta {
   background-color: rgba(34, 208, 145, 0.2);
   border-radius: 4px;
 }
+.account-number .live {
+  letter-spacing: 0.35em;
+}
 .modal.inmodal .uppercase-label {
   color: #8E8FA3;
   text-transform: uppercase;
@@ -10520,6 +10526,42 @@ body.body-small .responsive-navbar-cta {
 }
 .tooltip-inner {
   background-color: #754ef7;
+}
+.form-control {
+  border: 1.5px solid #E7EDF4;
+  border-radius: 6px;
+  padding: 6px !important;
+}
+.w-35 {
+  width: 35%;
+}
+.w-45 {
+  width: 45%;
+}
+.btn-bleed-red {
+  background: #D0226B;
+  border-color: #D0226B;
+}
+.btn-bleed-red:hover,
+.btn-bleed-red:focus {
+  background: #D0226B;
+  border-color: #D0226B;
+}
+.btn-dropdown {
+  background: transparent;
+  border: none;
+}
+.btn-dropdown:hover,
+.btn-dropdown:focus,
+.btn-dropdown:active {
+  border: none;
+  box-shadow: none;
+}
+.line-height-sm {
+  line-height: 15px;
+}
+.line-height-md {
+  line-height: 20px;
 }
 .sparkline-container {
   width: 100%;
@@ -10718,12 +10760,11 @@ body.body-small .responsive-navbar-cta {
 }
 .buy-sell-section {
   border-radius: 6px;
-  height: 20vw;
   width: 340px;
 }
 .trade-section {
   border-radius: 6px;
-  max-height: 400px;
+  max-height: 410px;
   width: 55vw;
   overflow: auto;
   overflow-x: hidden;
@@ -10742,6 +10783,7 @@ body.body-small .responsive-navbar-cta {
   border: 1px solid #E5E5E5;
   border-radius: 4px;
   height: 20px;
+  padding: 2px;
 }
 .strategy-provider-section .tabs-header {
   background: #ffffff;
@@ -10749,6 +10791,7 @@ body.body-small .responsive-navbar-cta {
   align-items: center;
   padding: 10px;
   border-radius: 6px;
+  border: 1px solid #e7eaec;
 }
 @media screen and (max-width: 1000px) {
   .strategy-provider-section .tabs-header .actions-container {
@@ -10856,12 +10899,10 @@ body.body-small .responsive-navbar-cta {
   width: 18px;
   height: 18px;
 }
-#follow-provider-modal .live {
-  letter-spacing: 0.35em;
-}
 /* Loader state for Top Growth, Following and favourite tab */
 .strategy-provider-section .panel-body .contact-box.loading {
   height: 240px;
+  min-width: 270px;
   /* avatar specs */
   /* username specs */
   /* Fullname specs */
@@ -10890,6 +10931,7 @@ body.body-small .responsive-navbar-cta {
 /* Loader state for Featured tab */
 .strategy-provider-section .panel-body .contact-box.loading.featured {
   height: 396px;
+  min-width: 360px;
   /* avatar specs */
   /* username specs */
   /* Fullname specs */
