@@ -328,7 +328,8 @@
   }
 
   function plotGridLoadingState(activeTabId) {
-    const loadingContactBoxes = getLoadingContactBoxes(activeTabId);
+    const boxCount = activeTabId === '#featured' ? 6 : 8;
+    const loadingContactBoxes = getLoadingContactBoxes(activeTabId, boxCount);
     const container = $(`${activeTabId} .panel-body`);
     container.empty().append(loadingContactBoxes);
   }
@@ -904,11 +905,10 @@
     return `<div class="contact-box proxy d-flex flex-column col" id="contact-box-proxy"></div>`
   }
 
-  function getLoadingContactBoxes(activeTabId) {
-    const numberOfBoxes = 8;
+  function getLoadingContactBoxes(activeTabId, numberOfBoxes = 8) {
     const boxesHTML = [];
     for (let i = 0; i < numberOfBoxes; i++) {
-      boxesHTML.push(`<div class="contact-box loading ${activeTabId === "#featured" ? 'featured' : ''}">
+      boxesHTML.push(`<div class="contact-box loading col ${activeTabId === "#featured" ? 'featured' : ''}">
           <span class="fa fa-bookmark-o favourite-icon float-right"></span>
           <button class="btn btn-primary btn-block">
             Follow Provider

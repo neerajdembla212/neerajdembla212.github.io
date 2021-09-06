@@ -299,6 +299,10 @@ body.mini-navbar .nav.metismenu>li.logo {
   font-size: @super-large-font;
 }
 
+.super-extra-large-font {
+  font-size: @super-extra-large-font;
+}
+
 .ratings {
   .fa-star:not(.active) {
     color: @background-light-gray;
@@ -555,6 +559,10 @@ body.body-small .responsive-navbar-cta {
 .account-number {
   background-color: rgba(34, 208, 145, 0.2);
   border-radius: 4px;
+
+  .live {
+    letter-spacing: 0.35em;
+  }
 }
 
 .modal.inmodal {
@@ -637,4 +645,49 @@ body.body-small .responsive-navbar-cta {
 
 .tooltip-inner {
   background-color: @nav-bg;
+}
+
+.form-control {
+  border: 1.5px solid #E7EDF4;
+  border-radius: 6px;
+  padding: 6px !important;
+}
+
+.w-35 {
+  width: 35%;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.btn-bleed-red {
+  background: @bleed-red;
+  border-color: @bleed-red;
+
+  &:hover,
+  &:focus {
+    background: @bleed-red;
+    border-color: @bleed-red;
+  }
+}
+
+.btn-dropdown {
+  background: transparent;
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.line-height-sm {
+  line-height: 15px;
+}
+
+.line-height-md {
+  line-height: 20px;
 }

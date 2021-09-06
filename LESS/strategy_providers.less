@@ -5,6 +5,7 @@
         align-items: center;
         padding: 10px;
         border-radius: 6px;
+        border: 1px solid @border-color;
 
         .actions-container {
             @media screen and (max-width: 1000px) {
@@ -140,16 +141,13 @@
         height: 18px;
     }
 
-    .live {
-        letter-spacing: 0.35em;
-    }
-
 }
 
 
 /* Loader state for Top Growth, Following and favourite tab */
 .strategy-provider-section .panel-body .contact-box.loading {
     height: 240px;
+    min-width: 270px;
     @card-padding: 19px;
     /* avatar specs */
     @avatar-radius: 19px;
@@ -282,6 +280,7 @@
 /* Loader state for Featured tab */
 .strategy-provider-section .panel-body .contact-box.loading.featured {
     height: 396px;
+    min-width: 360px;
     @card-padding: 19px;
     /* avatar specs */
     @avatar-radius: 19px;
