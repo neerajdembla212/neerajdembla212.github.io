@@ -10491,7 +10491,7 @@ body.body-small .responsive-navbar-cta {
   overflow-y: auto;
 }
 .modal.inmodal .modal-content {
-  height: 640px;
+  min-height: 640px;
 }
 .switchery {
   background-color: #E5E5E5;
@@ -10562,6 +10562,17 @@ body.body-small .responsive-navbar-cta {
 }
 .line-height-md {
   line-height: 20px;
+}
+.btn-blue {
+  background: #3698F3;
+}
+.btn-text-red {
+  color: #D0226B;
+}
+.btn-text-red:hover,
+.btn-text-red:focus,
+.btn-text-red:active {
+  color: #D0226B;
 }
 .sparkline-container {
   width: 100%;
@@ -10784,6 +10795,19 @@ body.body-small .responsive-navbar-cta {
   border-radius: 4px;
   height: 20px;
   padding: 2px;
+}
+#edit-trade-modal .form-control {
+  padding: 10px !important;
+}
+#edit-trade-modal .modal-content {
+  min-height: 500px;
+  width: 400px !important;
+  padding-right: 0 !important;
+}
+#edit-trade-modal .modal-body {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .strategy-provider-section .tabs-header {
   background: #ffffff;
