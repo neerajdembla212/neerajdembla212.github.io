@@ -600,7 +600,7 @@ body.body-small .responsive-navbar-cta {
   }
 
   .modal-content {
-    height: 640px;
+    min-height: 640px;
   }
 }
 
@@ -690,4 +690,18 @@ body.body-small .responsive-navbar-cta {
 
 .line-height-md {
   line-height: 20px;
+}
+
+.btn-blue {
+  background: @medium-blue;
+}
+
+.btn-text-red {
+  color: @bleed-red;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @bleed-red;
+  }
 }

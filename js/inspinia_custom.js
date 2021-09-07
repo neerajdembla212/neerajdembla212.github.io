@@ -100,6 +100,9 @@ function registerEventHandlers() {
   })
 }
 
+// set init data
+localStorage.setItem('selectedAccountNo', 'TA 209761M');
+localStorage.setItem('selectedAccountType', 'LIVE');
 //generic ajax function
 function callAjaxMethod({
   url,
@@ -154,21 +157,16 @@ function formatDate(date, format = "DD MMM YYYY") {
   if (!isDateValid(date)) {
     return '';
   }
-  if (format === "DD MMM YYYY") {
-    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
-    const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
-    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
-    return `${da} ${mo} ${ye}`;
-  }
-  if (format === "DD/MM/YYYY HH:mm") {
-    return new Intl.DateTimeFormat('en-US', {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    }).format(date)
+  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
+  const mmm = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
+  const mm = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(date);
+  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
+  const hr = new Intl.DateTimeFormat('en', { hour: '2-digit', hour12: false }).format(date);
+  const min = new Intl.DateTimeFormat('en', { minute: '2-digit' }).format(date);
+  switch (format) {
+    case 'DD MMM YYYY': return `${da} ${mmm} ${ye}`;
+    case 'DD MM YYYY HH:mm': return `${da} ${mm} ${ye} ${hr}:${min}`;
+    case 'DD/MM/YYYY HH:mm': return `${da}/${mm}/${ye} ${hr}:${min}`;
   }
 }
 
