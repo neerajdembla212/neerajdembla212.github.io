@@ -374,7 +374,7 @@
                 <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
             </div>
             <div class="d-flex align-items-center">
-                <p class="mb-0 font-bold mr-3">S$${amount}</p>
+                <p class="mb-0 font-bold mr-3">S$${formatWithCommas(amount)}</p>
                 <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
             </div>
         </div>
