@@ -15,7 +15,7 @@ video {
 #page-container {
   padding: 20px 20px 0 20px;
   overflow-y: auto;
-  max-height: 90vh;
+  max-height: 91vh;
   overflow-x: hidden;
 
   @media screen and (max-width: 768px) {
@@ -500,6 +500,10 @@ tr>th:last-child {
   padding-right: 1rem !important;
 }
 
+table>tbody>tr:first-child>td {
+  border-top: none;
+}
+
 .table>thead>tr>th {
   border-bottom-color: #EEEEEE;
   text-transform: uppercase;
@@ -704,4 +708,20 @@ body.body-small .responsive-navbar-cta {
   &:active {
     color: @bleed-red;
   }
+}
+
+.w-9 {
+  width: 9% !important;
+}
+
+.w-12 {
+  width: 12% !important;
+}
+
+.w-17 {
+  width: 17% !important
+}
+
+.w-18 {
+  width: 18% !important;
 }

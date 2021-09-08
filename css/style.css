@@ -10034,7 +10034,7 @@ video {
 #page-container {
   padding: 20px 20px 0 20px;
   overflow-y: auto;
-  max-height: 90vh;
+  max-height: 91vh;
   overflow-x: hidden;
 }
 @media screen and (max-width: 768px) {
@@ -10410,6 +10410,9 @@ tr > td:last-child,
 tr > th:last-child {
   padding-right: 1rem !important;
 }
+table > tbody > tr:first-child > td {
+  border-top: none;
+}
 .table > thead > tr > th {
   border-bottom-color: #EEEEEE;
   text-transform: uppercase;
@@ -10573,6 +10576,18 @@ body.body-small .responsive-navbar-cta {
 .btn-text-red:focus,
 .btn-text-red:active {
   color: #D0226B;
+}
+.w-9 {
+  width: 9% !important;
+}
+.w-12 {
+  width: 12% !important;
+}
+.w-17 {
+  width: 17% !important;
+}
+.w-18 {
+  width: 18% !important;
 }
 .sparkline-container {
   width: 100%;
@@ -10745,6 +10760,9 @@ body.body-small .responsive-navbar-cta {
 #strategy-settings-modal .username-container {
   margin-left: 2.5rem !important;
 }
+#page-container.trade-terminal-page {
+  padding: 20px 20px 0 0 !important;
+}
 .btn-watchlist {
   color: #4D4D4E;
   padding: 8px;
@@ -10775,10 +10793,7 @@ body.body-small .responsive-navbar-cta {
 }
 .trade-section {
   border-radius: 6px;
-  max-height: 410px;
-  width: 55vw;
-  overflow: auto;
-  overflow-x: hidden;
+  width: 57vw;
 }
 .trade-section .tabs-header {
   padding: 10px;
@@ -10795,6 +10810,24 @@ body.body-small .responsive-navbar-cta {
   border-radius: 4px;
   height: 20px;
   padding: 2px;
+}
+.trade-section table {
+  width: 100%;
+}
+.trade-section tbody {
+  height: 288px;
+  overflow-y: auto;
+  width: 100%;
+}
+.trade-section thead,
+.trade-section tbody,
+.trade-section tfoot,
+.trade-section tr {
+  display: block;
+  width: 100%;
+}
+.trade-section tfoot td {
+  display: block;
 }
 #edit-trade-modal .form-control {
   padding: 10px !important;
