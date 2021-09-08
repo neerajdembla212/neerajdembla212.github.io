@@ -1,3 +1,7 @@
+#page-container.trade-terminal-page {
+    padding: 20px 20px 0 0 !important;
+}
+
 .btn-watchlist {
     color: @bold-black;
     padding: 8px;
@@ -34,10 +38,7 @@
 
 .trade-section {
     border-radius: 6px;
-    max-height: 410px;
-    width: 55vw;
-    overflow: auto;
-    overflow-x: hidden;
+    width: 57vw;
 
     .tabs-header {
         padding: 10px;
@@ -58,6 +59,31 @@
         height: 20px;
         padding: 2px;
     }
+
+    table {
+        width: 100%;
+    }
+
+    tbody {
+        height: 288px;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    thead,
+    tbody,
+    tfoot,
+    tr {
+        display: block;
+        width: 100%;
+    }
+
+    tfoot {
+        td {
+            display: block;
+        }
+    }
+
 }
 
 #edit-trade-modal {
