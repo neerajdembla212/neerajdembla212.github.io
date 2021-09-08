@@ -10396,6 +10396,7 @@ table thead th {
 }
 .navbar-form-custom .form-control {
   width: 234px;
+  padding-left: 2rem !important;
 }
 thead {
   background: #F9F9FB;
@@ -10523,9 +10524,6 @@ body.body-small .responsive-navbar-cta {
 }
 .border-top-none {
   border-top: none !important;
-}
-.border-bottom-transparent {
-  border-bottom: transparent !important;
 }
 .tooltip-inner {
   background-color: #754ef7;
@@ -10849,6 +10847,7 @@ body.body-small .responsive-navbar-cta {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #e7eaec;
+  border-bottom-color: transparent;
 }
 @media screen and (max-width: 1000px) {
   .strategy-provider-section .tabs-header .actions-container {

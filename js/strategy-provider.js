@@ -499,17 +499,17 @@
     return `
     <thead class="border-top-none">
       <tr>
-        <th class="pl-3">PROVIDER</th>
-        <th>AGE</th>
-        <th style="height:32px" class="border-bottom-transparent">Total Returns / equity growth</th>
-        <th>DD</th>
-        <th>avg / mth</th>
-        <th>Avg Pips</th>
-        <th>follower funds</th>
-        <th>followers</th>
-        <th>advised min</th>
-        <th>Follow</th>
-        <th class="pr-3">WATCH</th>
+        <th class="pl-3 align-middle">PROVIDER</th>
+        <th class="align-middle text-center">AGE</th>
+        <th style="height:32px" class="align-middle text-center">Total Returns / equity growth</th>
+        <th class="align-middle text-center">DD</th>
+        <th class="align-middle text-center">avg / mth</th>
+        <th class="align-middle text-center">Avg Pips</th>
+        <th class="align-middle text-center">follower funds</th>
+        <th class="align-middle text-center">followers</th>
+        <th class="align-middle text-center">advised min</th>
+        <th class="align-middle text-center">Follow</th>
+        <th class="pr-3 align-middle text-center">WATCH</th>
       </tr>
     </thead>`
   }
