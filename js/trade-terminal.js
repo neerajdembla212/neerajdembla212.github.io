@@ -70,10 +70,12 @@
         }
     }
 
+    // Global variables for this file
     const STATE = new State();
+    const DESKTOP_MEDIA = window.matchMedia("(max-width: 992px)")
+    const MOBILE_MEDIA = window.matchMedia("(max-width: 480px)")
     // document ready function 
     $(function () {
-
         const accountNo = localStorage.getItem('selectedAccountNo');
         const accontType = localStorage.getItem('selectedAccountType');
         STATE.setSelectedAccount({
@@ -101,6 +103,45 @@
         $(".tabs-container .nav-tabs > li").click(event => {
             onTabChange($(event.target).attr('href'))
         })
+
+        DESKTOP_MEDIA.addEventListener('change', function (event) {
+            if (event.matches) {
+                // screen width is below 992px;
+                renderResponsiveTable()
+            } else {
+                // screen width is above 992px;
+                const activeId = getActiveTab().attr('href');
+                onTabChange(activeId);
+            }
+        })
+
+        MOBILE_MEDIA.addEventListener('change', updateTabNames)
+        updateTabNames(MOBILE_MEDIA);
+    }
+
+    function updateTabNames(event) {
+        const tabs = $('.trade-section .nav-tabs .nav-link')
+        if (event.matches) {
+            // screen is below 480px;
+            tabs.map((i, tab) => {
+                const href = $(tab).attr('href');
+                switch (href) {
+                    case '#open-trades': tab.text = 'Open'; break;
+                    case '#pending-orders': tab.text = 'Pending'; break;
+                    case '#closed-trades': tab.text = 'Closed'; break;
+                }
+            })
+        } else {
+            // screen is above 480px;
+            tabs.map((i, tab) => {
+                const href = $(tab).attr('href');
+                switch (href) {
+                    case '#open-trades': tab.text = 'Open Trades'; break;
+                    case '#pending-orders': tab.text = 'Pending Orders'; break;
+                    case '#closed-trades': tab.text = 'Closed Trades'; break;
+                }
+            })
+        }
     }
 
     function onTabChange(tabId) {
@@ -119,7 +160,11 @@
             url: "https://copypip.free.beeceptor.com/open-trades",
             successCallback: (data) => {
                 STATE.setOpenTrades(data.data);
-                renderOpenTrades();
+                if (DESKTOP_MEDIA.matches) {
+                    renderResponsiveTradesHTML('open')
+                } else {
+                    renderOpenTrades();
+                }
             },
         });
     }
@@ -129,7 +174,11 @@
             url: "https://copypip.free.beeceptor.com/pending-trades",
             successCallback: (data) => {
                 STATE.setPendingTrades(data.data);
-                renderPendingTrades();
+                if (DESKTOP_MEDIA.matches) {
+                    renderResponsiveTradesHTML('pending')
+                } else {
+                    renderPendingTrades();
+                }
             },
         });
     }
@@ -139,7 +188,11 @@
             url: "https://copypip.free.beeceptor.com/closed-trades",
             successCallback: (data) => {
                 STATE.setClosedTrades(data.data);
-                renderClosedTrades();
+                if (DESKTOP_MEDIA.matches) {
+                    renderResponsiveTradesHTML('closed')
+                } else {
+                    renderClosedTrades();
+                }
             },
         });
     }
@@ -273,8 +326,93 @@
         </tr>
       </tfoot>`
     }
-
     // render open trades end
+
+    // render responsive open trades start
+    function renderResponsiveTradesHTML(tradeType) {
+        const openTrades = STATE.getOpenTrades();
+        let container;
+        switch (tradeType) {
+            case 'open': container = $('.tab-content #open-trades'); break;
+            case 'pending': container = $('.tab-content #pending-orders'); break;
+            case 'closed': container = $('.tab-content #closed-trades'); break;
+        }
+        const rowsHTML = [];
+        openTrades.forEach(trade => {
+            rowsHTML.push(getResponsiveOpenTradesRow(trade))
+        })
+        container.empty().append(`<div class="responsive-trades">
+            ${rowsHTML.join('')}
+        </div>`)
+    }
+
+    function getResponsiveOpenTradesRow(trade) {
+        if (!trade) {
+            return '';
+        }
+        const {
+            id,
+            from_currency,
+            to_currency,
+            trade_time,
+            trader_image,
+            trade_type,
+            trade_volume,
+            open_price,
+            amount,
+            sl,
+            tp,
+            current,
+            swap,
+            profit } = trade;
+
+        return `
+        <div class="p-3">
+            <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-0 font-weight-bolder">${from_currency}${to_currency} <span class="text-darker-gray">${trade_type}</span></p>
+                <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
+            </div>
+            <div class="d-flex align-items-center">
+                <p class="mb-0 font-bold mr-3">S$${amount}</p>
+                <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label">Volume</p>
+                <p class="mb-0 font-bold responsive-value">${trade_volume}</p>
+            </div>
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label">Price</p>
+                <p class="mb-0 font-bold responsive-value">${open_price}</p>
+            </div>
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label">Swap</p>
+                <p class="mb-0 font-bold responsive-value">${swap}</p>
+            </div>
+            <div class="mr-3 d-flex flex-column justify-content-between current-amount">
+                <p class="mb-0 responsive-label">Current</p>
+                <p class="mb-0 font-bold responsive-value highlight-amount">${current}</p>
+            </div>
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label">Profit</p>
+                <p class="mb-0 font-bold responsive-value ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">S$${profit}</p>
+            </div>
+            <div class="mr-2 d-flex flex-column justify-content-between">
+                <div class="d-flex">
+                    <p class="mb-0 mr-2 responsive-label">SL</p>
+                    <p class="responsive-value mb-0">${sl}</p>
+                </div>
+                <div class="d-flex">
+                    <p class="mb-0 mr-2 responsive-label">TP</p>
+                    <p class="responsive-value mb-0">${tp}</p>
+                </div>
+            </div>
+        </div>
+        </div>`
+    }
+    // render responsive open trades end
 
     // render pending trades begin
     function renderPendingTrades() {
@@ -918,7 +1056,14 @@
         })
     }
     // render edit trade popup end
-
+    function renderResponsiveTable() {
+        const activeTabId = getActiveTab().attr('href');
+        switch (activeTabId) {
+            case '#open-trades': renderResponsiveOpenTradesHTML(); break;
+            case '#pending-orders': renderResponsiveOpenTradesHTML(); break;
+            case '#closed-trades': renderResponsiveOpenTradesHTML(); break;
+        }
+    }
     // Helper methods
     function getActiveTab() {
         return $('.nav.nav-tabs .active')

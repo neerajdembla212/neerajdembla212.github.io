@@ -34,11 +34,21 @@
 .buy-sell-section {
     border-radius: 6px;
     width: 340px;
+
+    @media screen and (max-width: 1250px) {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 1rem !important;
+    }
 }
 
 .trade-section {
     border-radius: 6px;
-    width: 57vw;
+    width: 56vw;
+
+    @media screen and (max-width: 1250px) {
+        width: 100%;
+    }
 
     .tabs-header {
         padding: 10px;
@@ -84,6 +94,17 @@
         }
     }
 
+    .responsive-trades {
+        >* {
+            border-top: 1px solid @table-border;
+        }
+
+        .current-amount {
+            @media screen and (max-width: 480px) {
+                display: none !important;
+            }
+        }
+    }
 }
 
 #edit-trade-modal {
@@ -101,5 +122,11 @@
         max-height: 500px;
         overflow-y: auto;
         overflow-x: hidden;
+    }
+}
+
+.bottom-container {
+    @media screen and (max-width: 1250px) {
+        flex-wrap: wrap;
     }
 }
