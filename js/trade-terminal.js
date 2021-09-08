@@ -1059,9 +1059,9 @@
     function renderResponsiveTable() {
         const activeTabId = getActiveTab().attr('href');
         switch (activeTabId) {
-            case '#open-trades': renderResponsiveOpenTradesHTML(); break;
-            case '#pending-orders': renderResponsiveOpenTradesHTML(); break;
-            case '#closed-trades': renderResponsiveOpenTradesHTML(); break;
+            case '#open-trades': renderResponsiveTradesHTML('open'); break;
+            case '#pending-orders': renderResponsiveTradesHTML('pending'); break;
+            case '#closed-trades': renderResponsiveTradesHTML('closed'); break;
         }
     }
     // Helper methods
