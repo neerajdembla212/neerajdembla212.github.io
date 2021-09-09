@@ -11127,19 +11127,22 @@ body.body-small .responsive-navbar-cta {
   height: 100%;
   background: #ffffff;
 }
-.login-form {
+.login-container .login-form {
   width: 50%;
   margin-top: 10vh;
   margin-left: 40%;
 }
-.login-form .nav.nav-tabs {
+.login-container .login-form .nav.nav-tabs {
   border: none;
 }
-.leverage-container .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
+.login-container .leverage-container .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
   line-height: 2rem !important;
 }
-.leverage-container .select2-container--bootstrap4 .select2-selection--single {
+.login-container .leverage-container .select2-container--bootstrap4 .select2-selection--single {
   height: calc(2rem + 2px) !important;
+}
+.login-container .img-logo {
+  height: 22px;
 }
 @media print {
   nav.navbar-static-side {
