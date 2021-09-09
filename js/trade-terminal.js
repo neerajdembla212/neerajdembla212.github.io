@@ -341,9 +341,10 @@
         openTrades.forEach(trade => {
             rowsHTML.push(getResponsiveOpenTradesRow(trade))
         })
-        container.empty().append(`<div class="responsive-trades">
+        container.empty().append(`<div class="responsive-trades" data-toggle="modal" data-target="#edit-trade-modal">
             ${rowsHTML.join('')}
         </div>`)
+        registerTradeEvents();
     }
 
     function getResponsiveOpenTradesRow(trade) {
@@ -367,7 +368,7 @@
             profit } = trade;
 
         return `
-        <div class="p-3">
+        <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}">
             <div class="d-flex justify-content-between align-items-center">
             <div>
                 <p class="mb-0 font-weight-bolder">${from_currency}${to_currency} <span class="text-darker-gray">${trade_type}</span></p>
@@ -922,10 +923,6 @@
 
     function renderEditTradeModal() {
         $('#edit-trade-modal').empty().append(getEditTradeModalHTML())
-        // $(`#table-trade-${tradeId}`).attr({
-        //     "data-toggle": "modal",
-        //     "data-target": "#follow-provider-modal"
-        // }).click();
     }
 
     function getEditTradeModalHTML() {
