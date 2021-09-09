@@ -10782,6 +10782,11 @@ body.body-small .responsive-navbar-cta {
 #page-container.trade-terminal-page {
   padding: 20px 20px 0 0 !important;
 }
+@media screen and (max-width: 768px) {
+  #page-container.trade-terminal-page {
+    padding: 1rem !important;
+  }
+}
 .btn-watchlist {
   color: #4D4D4E;
   padding: 8px;
@@ -10809,6 +10814,7 @@ body.body-small .responsive-navbar-cta {
 @media screen and (max-width: 1250px) {
   .trade-terminal-chart {
     border-radius: 0px;
+    min-width: 300px;
   }
 }
 .buy-sell-section {
@@ -10892,6 +10898,9 @@ body.body-small .responsive-navbar-cta {
   .bottom-container {
     flex-wrap: wrap;
   }
+}
+.trade-terminal-page .subheader {
+  padding-left: 0 !important;
 }
 .strategy-provider-section .tabs-header {
   background: #ffffff;

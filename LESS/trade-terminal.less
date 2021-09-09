@@ -1,5 +1,9 @@
 #page-container.trade-terminal-page {
     padding: 20px 20px 0 0 !important;
+
+    @media screen and (max-width: 768px) {
+        padding: 1rem !important;
+    }
 }
 
 .btn-watchlist {
@@ -32,6 +36,7 @@
 
     @media screen and (max-width: 1250px) {
         border-radius: 0px;
+        min-width: 300px;
     }
 }
 
@@ -134,5 +139,11 @@
 .bottom-container {
     @media screen and (max-width: 1250px) {
         flex-wrap: wrap;
+    }
+}
+
+.trade-terminal-page {
+    .subheader {
+        padding-left: 0 !important;
     }
 }
