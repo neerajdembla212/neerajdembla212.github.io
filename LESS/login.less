@@ -1,10 +1,28 @@
 .login-container {
     height: 100%;
     background: @white;
-}
 
-.login-form {
-    width: 50%;
-    margin-top: 208px;
-    margin-left: 40%;
+    .login-form {
+        width: 50%;
+        margin-top: 10vh;
+        margin-left: 40%;
+
+        .nav.nav-tabs {
+            border: none
+        }
+    }
+
+    .leverage-container {
+        .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
+            line-height: 2rem !important;
+        }
+
+        .select2-container--bootstrap4 .select2-selection--single {
+            height: calc(2rem + 2px) !important;
+        }
+    }
+
+    .img-logo {
+        height: 22px;
+    }
 }

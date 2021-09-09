@@ -10587,6 +10587,9 @@ body.body-small .responsive-navbar-cta {
 .w-18 {
   width: 18% !important;
 }
+.w-45 {
+  width: 45% !important;
+}
 .responsive-label {
   text-transform: uppercase;
   color: #8E8FA3;
@@ -11126,8 +11129,17 @@ body.body-small .responsive-navbar-cta {
 }
 .login-form {
   width: 50%;
-  margin-top: 208px;
+  margin-top: 10vh;
   margin-left: 40%;
+}
+.login-form .nav.nav-tabs {
+  border: none;
+}
+.leverage-container .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
+  line-height: 2rem !important;
+}
+.leverage-container .select2-container--bootstrap4 .select2-selection--single {
+  height: calc(2rem + 2px) !important;
 }
 @media print {
   nav.navbar-static-side {
