@@ -11120,6 +11120,15 @@ body.body-small .responsive-navbar-cta {
 .trade-history-section .responsive-trade-history > * {
   border-top: 1px solid #EEEEEE;
 }
+.login-container {
+  height: 100%;
+  background: #ffffff;
+}
+.login-form {
+  width: 50%;
+  margin-top: 208px;
+  margin-left: 40%;
+}
 @media print {
   nav.navbar-static-side {
     display: none;
