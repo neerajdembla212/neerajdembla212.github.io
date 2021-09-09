@@ -10467,6 +10467,13 @@ body.body-small .responsive-navbar-cta {
 .account-number .live {
   letter-spacing: 0.35em;
 }
+.account-number.demo-account {
+  background-color: #E7EDF4;
+}
+.account-number.demo-account .demo {
+  letter-spacing: 0.35em;
+  color: #768496 !important;
+}
 .modal.inmodal .uppercase-label {
   color: #8E8FA3;
   text-transform: uppercase;

@@ -36,14 +36,18 @@ function delete_cookie(name) {
 function registerEventHandlers() {
   // dropdown in navigation panel to switch accounts
   $(".dropdown-select-menu").click((event) => {
-    const selectedItem = event.target.innerText.trim();
+    // const selectedItem = event.innerText.trim();
     const selectButton = $("button.dropdown-toggle.dropdown-select");
-    if (selectedItem.toUpperCase() === "LIVE") {
-      selectButton.addClass("active");
-    } else {
-      selectButton.removeClass("active");
-    }
-    selectButton.text(selectedItem);
+    const accountNo = $('.dropdown-item .account-number .medium-font')
+    const accountType = $('.dropdown-item .account-number .text-navy')
+    // if (selectedItem.toUpperCase() === "LIVE") {
+    //   selectButton.addClass("active");
+    // } else {
+    //   selectButton.removeClass("active");
+    // }
+    localStorage.setItem('selectedAccountNo', accountNo.textContent);
+    localStorage.setItem('selectedAccountType', accountType.textContent);
+    window.location.reload();
   });
 
   $('.nav-header .dropdown-menu').click(function (e) {
