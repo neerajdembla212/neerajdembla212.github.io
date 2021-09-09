@@ -10801,7 +10801,7 @@ body.body-small .responsive-navbar-cta {
 }
 .buy-sell-section {
   border-radius: 6px;
-  width: 340px;
+  width: 31vw;
 }
 @media screen and (max-width: 1250px) {
   .buy-sell-section {
@@ -10812,7 +10812,7 @@ body.body-small .responsive-navbar-cta {
 }
 .trade-section {
   border-radius: 6px;
-  width: 56vw;
+  width: 59vw;
 }
 @media screen and (max-width: 1250px) {
   .trade-section {
