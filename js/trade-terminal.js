@@ -83,21 +83,16 @@
             number: accountNo
         })
         registerGlobalEvents();
-        fetchBuySellData();
+        // Global function
+        fetchBuySellData(function (data) {
+            STATE.setBuySellData(data);
+            renderBuySellData();
+            registerBuySellEvents();
+        });
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
     });
 
-    function fetchBuySellData() {
-        callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/buy-sell-data",
-            successCallback: (data) => {
-                STATE.setBuySellData(data.data);
-                renderBuySellData();
-                registerBuySellEvents();
-            },
-        });
-    }
     function registerGlobalEvents() {
         // tabs change event listener
         $(".tabs-container .nav-tabs > li").click(event => {
@@ -941,7 +936,7 @@
             sl
         } = tradeDetails;
         return `
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-center">
             <div class="modal-content animated fadeIn">
                 <!-- Modal Header start -->
                 <div class="d-flex justify-content-between m-3">
