@@ -10799,6 +10799,11 @@ body.body-small .responsive-navbar-cta {
   height: 20vw;
   border-radius: 6px;
 }
+@media screen and (max-width: 1250px) {
+  .trade-terminal-chart {
+    border-radius: 0px;
+  }
+}
 .buy-sell-section {
   border-radius: 6px;
   width: 31vw;
@@ -10808,6 +10813,7 @@ body.body-small .responsive-navbar-cta {
     width: 100%;
     margin-right: 0 !important;
     margin-bottom: 1rem !important;
+    border-radius: 0px;
   }
 }
 .trade-section {
@@ -10817,6 +10823,7 @@ body.body-small .responsive-navbar-cta {
 @media screen and (max-width: 1250px) {
   .trade-section {
     width: 100%;
+    border-radius: 0px;
   }
 }
 .trade-section .tabs-header {
