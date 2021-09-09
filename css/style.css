@@ -10608,6 +10608,17 @@ body.body-small .responsive-navbar-cta {
   word-break: break-word;
   height: auto !important;
 }
+#buy-sell-modal .modal-content {
+  width: 400px;
+  min-height: 460px;
+  margin: auto;
+}
+.modal-dialog-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
 .sparkline-container {
   width: 100%;
   background-color: #1F1F25;
@@ -10888,6 +10899,7 @@ body.body-small .responsive-navbar-cta {
   min-height: 500px;
   width: 400px !important;
   padding-right: 0 !important;
+  margin: auto;
 }
 #edit-trade-modal .modal-body {
   max-height: 500px;

@@ -62,6 +62,7 @@ function registerEventHandlers() {
         window.location.reload();
         break;
       case 'Sign Out':
+        clearLocalStorageData();
         delete_cookie('accessToken');
         window.location.reload();
     }
@@ -102,6 +103,7 @@ function registerEventHandlers() {
     $('.read-more-less .read-more-text').toggleClass('d-none');
     $('.read-more-less .read-less-text').toggleClass('d-none');
   })
+  fetchBuySellData(registerBuySellModalEvents)
 }
 
 // set init data
@@ -141,7 +143,88 @@ function callAjaxMethod({
     console.log(e);
   }
 }
+// fetch buy sell initial data
+function fetchBuySellData(cb) {
+  if (!localStorage.getItem('buySellData')) {
+    callAjaxMethod({
+      url: "https://copypip.free.beeceptor.com/buy-sell-data",
+      successCallback: (data) => {
+        localStorage.setItem('buySellData', JSON.stringify(data.data));
+        if (cb && typeof cb === 'function') {
+          cb(data);
+        }
+      },
+    });
+  } else {
+    const buySellData = JSON.parse(localStorage.getItem('buySellData'))
+    cb(buySellData);
+  }
+}
+// Buy sell popup events 
+function registerBuySellModalEvents(data) {
+  if (!data) {
+    return
+  }
+  var elem = document.querySelector('.js-switch');
+  new Switchery(elem, {
+    color: '#E5E5E5',
+    secondaryColor: '#E5E5E5',
+    jackColor: '#22D091',
+    jackSecondaryColor: "#FFFFFF",
+  });
 
+  // type input dropdown
+  $('#buy-sell-modal #type-input-menu.dropdown-menu').click(event => {
+    const selectedItem = event.target.innerText.trim();
+    const selectedButton = $('#buy-sell-modal #btn-type-input')
+    selectedButton.text(selectedItem);
+    if (selectedItem.toUpperCase() === 'PENDING ORDER') {
+      $('#buy-sell-modal .dynamic-elements').removeClass('d-none');
+    } else if (selectedItem.toUpperCase() === 'MARKET EXECUTION') {
+      $('#buy-sell-modal .dynamic-elements').addClass('d-none');
+    }
+  })
+
+  // order type dropdown menu
+  $('#buy-sell-modal #order-type-input-menu.dropdown-menu').click(event => {
+    const selectedItem = event.target.innerText.trim();
+    const selectedButton = $('#buy-sell-modal #btn-order-type-input')
+    selectedButton.text(selectedItem);
+  })
+
+  // expiration dropdown menu
+  $('#buy-sell-modal #expiration-input-menu.dropdown-menu').click(event => {
+    const selectedItem = event.target.innerText.trim();
+    const selectedButton = $('#buy-sell-modal #btn-expiration-input')
+    selectedButton.text(selectedItem);
+    if (selectedItem.toUpperCase() === 'GOOD TILL CANCELLED (GTC)') {
+      $('#buy-sell-modal #btn-expiration-date-input').attr('disabled', 'true');
+    } else if (selectedItem.toUpperCase() === 'DAY ORDER') {
+      const expirationDate = data.day_order_expiration_date;
+      $('#buy-sell-modal #btn-expiration-date-input').datepicker('setDate', new Date(expirationDate));
+    } else {
+      $('#buy-sell-modal #btn-expiration-date-input').removeAttr('disabled');
+    }
+  })
+
+  // expiration date picker
+  $('#buy-sell-modal #expiration-date-input').datepicker({
+    todayBtn: "linked",
+    keyboardNavigation: true,
+    forceParse: false,
+    calendarWeeks: true,
+    autoclose: true
+  }).on('changeDate', function (e) {
+    const displayDateButton = $('#buy-sell-modal #btn-expiration-date-input');
+    displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
+  });
+  const expirationDate = new Date(data.gtc_expiration_date);
+  $('#buy-sell-modal #expiration-date-input').datepicker('setDate', expirationDate);
+}
+
+function clearLocalStorageData() {
+  localStorage.clear()
+}
 // utility method to format number with commas before displaying
 function formatWithCommas(number) {
   internationalNumberFormat = new Intl.NumberFormat("en-US");
