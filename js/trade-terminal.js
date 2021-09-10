@@ -754,7 +754,7 @@
         <!-- Profit loss input end -->
         <!-- Buy Sell CTA start -->
         <div class="d-flex justify-content-between mb-3">
-            <button type="button" class="btn btn-w-m btn-primary btn-bleed-red w-45 ">
+            <button type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
             Sell
             </button>
             <button type="button" class="btn btn-w-m btn-primary w-45">
