@@ -10862,6 +10862,9 @@ body.body-small .responsive-navbar-cta {
 .trade-terminal-chart .dropdown-toggle::after {
   content: none;
 }
+.trade-terminal-chart .actions-header {
+  height: 30px;
+}
 .buy-sell-section {
   border-radius: 6px;
   width: 31vw;
