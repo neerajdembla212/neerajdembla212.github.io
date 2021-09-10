@@ -4522,7 +4522,7 @@ samp {
   width: 260px !important;
   z-index: 1009;
   bottom: 0;
-  right: -260px;
+  right: -310px;
 }
 .right-sidebar.sidebar-open {
   right: 0;
@@ -10282,7 +10282,7 @@ body.mini-navbar .nav.metismenu > li.logo {
   font-size: 14px;
 }
 .inline-search-icon + .form-control {
-  padding-left: 30px;
+  padding-left: 30px !important;
 }
 .form-control::placeholder,
 .form-control:-ms-input-placeholder,
@@ -10913,6 +10913,23 @@ body.body-small .responsive-navbar-cta {
 }
 .trade-terminal-page .subheader {
   padding-left: 0 !important;
+}
+.watchlist-right-sidebar {
+  top: 60px !important;
+  width: 310px !important;
+}
+.watchlist-right-sidebar .add-watchlist,
+.watchlist-right-sidebar .close {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.watchlist-right-sidebar .delete-watchlist {
+  width: 16px;
+  height: 2px;
+}
+.watchlist-right-sidebar .white-bg {
+  background: #ffffff;
 }
 .strategy-provider-section .tabs-header {
   background: #ffffff;

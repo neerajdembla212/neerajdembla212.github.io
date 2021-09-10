@@ -162,9 +162,9 @@
             <div class="currency-chip d-flex align-items-center">
               <p class="mb-0">EURUSD &nbsp;</p><img src="img/ic_cross.svg" />
             </div>
-            <button type="button" class="btn btn-default btn-sm btn-watchlist">
+            <button type="button" class="btn btn-default btn-sm btn-watchlist watchlist-right-sidebar-toggle">
               <i class="fa fa-bookmark mr-2"></i>
-              My Watchlist&nbsp;<i id="watchlist-number"></i>
+              My Watchlist <i id="watchlist-number"></i>
             </button>
           </div>
         </div>
@@ -356,6 +356,73 @@
 
       <!-- Edit trade popup -->
       <div class="modal inmodal" id="edit-trade-modal" tabindex="-1" role="dialog" aria-modal="true">
+      </div>
+
+      <!-- My watchlist right sidebar -->
+      <div class="animated right-sidebar watchlist-right-sidebar">
+        <div class="sidebar-container p-3">
+          <!-- Header start -->
+          <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex align-items-center">
+              <img src="img/ic_cross.svg" class="close mr-3" alt="close sidebar">
+              <p class="mb-0 font-weight-bold extra-large-font">My Watchlist</p>
+            </div>
+            <img src="img/ic_plus.svg" class="add-watchlist" alt="add watchlist" />
+          </div>
+          <!-- Header end -->
+          <!-- Search currency pairs start -->
+          <form role="search" class="w-100 mb-2">
+            <div class="form-group position-relative">
+              <span class="inline-search-icon fa fa-search"></span>
+              <input type="text" placeholder="Search Currency Pairs" class="form-control white-bg" name="top-search"
+                id="top-search">
+            </div>
+          </form>
+          <!-- Search currency pairs end -->
+          <!-- Column headers start -->
+          <div class="d-flex justify-content-between mb-2">
+            <p class="mb-0 extra-small-font text-gray">SYMBOL</p>
+            <p class="mb-0 extra-small-font text-gray">LAST</p>
+            <p class="mb-0 extra-small-font text-gray">CHANGE</p>
+          </div>
+          <!-- Column headers end -->
+          <div class="divider mb-2"></div>
+          <!-- Watchlist 1 start -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <button class="btn btn-outline btn-link font-bold text-modal-black medium-font" type="button"
+              data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+              aria-controls="collapseExample">
+              Watchlist 1
+            </button>
+            <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist" />
+          </div>
+          <div class="divider mb-2"></div>
+          <div class="collapse" id="collapseExample">
+            <!-- Watchlist content row 1 start -->
+            <div class="d-flex justify-content-between align-items-center mb-2 mx-2">
+              <p class="mb-0 font-bold">EURUSD</p>
+              <p class="mb-0 font-bold">1.2563</p>
+              <div>
+                <p class="mb-0">-0.00311</p>
+                <p class="mb-0">23.4%</p>
+              </div>
+            </div>
+            <!-- Watchlist content row 1 end -->
+            <div class="divider"></div>
+            <!-- Watchlist content row 2 start -->
+            <div class="d-flex justify-content-between align-items-center mb-2 mx-2">
+              <p class="mb-0 font-bold">EURUSD</p>
+              <p class="mb-0 font-bold">1.2563</p>
+              <div>
+                <p class="mb-0">-0.00311</p>
+                <p class="mb-0">23.4%</p>
+              </div>
+            </div>
+            <!-- Watchlist content row 2 end -->
+            <div class="divider"></div>
+          </div>
+          <!-- Watchlist 1 end -->
+        </div>
       </div>
     </div>
   </div>
