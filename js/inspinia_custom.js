@@ -84,12 +84,12 @@ function registerEventHandlers() {
   }
 
   // Open close Buy/Sell right sidebar
-  $(".buy-sell-right-sidebar-toggle").on("click", function (e) {
+  $(".watchlist-right-sidebar-toggle").on("click", function (e) {
     e.preventDefault();
-    $(".right-sidebar.buy-sell-right-sidebar").addClass("sidebar-open");
+    $(".right-sidebar.watchlist-right-sidebar").addClass("sidebar-open");
   });
 
-  $(".right-sidebar .fa-close").on("click", function (e) {
+  $(".right-sidebar .close").on("click", function (e) {
     e.preventDefault();
     $(".right-sidebar").removeClass("sidebar-open");
   });
