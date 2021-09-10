@@ -142,7 +142,7 @@
           <div class="nav navbar-top-links navbar-right d-flex align-self-center">
             <span class="welcome-message">Welcome KS Tan</span>
             <i class="fa fa-bell"></i>
-            <button type="button" class="btn btn-w-m btn-primary buy-sell-right-sidebar-toggle">
+            <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#buy-sell-modal">
               Buy/Sell
             </button>
           </div>
@@ -186,6 +186,151 @@
         </div>
       </div>
 
+    </div>
+    <!-- Buy/Sell popup -->
+    <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">
+      <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content animated fadeIn">
+          <!-- Modal Header start -->
+          <div class="d-flex justify-content-between m-3">
+            <h4 class="modal-title">Buy/Sell</h4>
+            <button id="close-modal" class="btn
+                  btn-default
+                  btn-outline
+                  btn-action
+                  border-0
+              " data-dismiss="modal">
+              <img src="img/ic_cross.svg">
+            </button>
+          </div>
+          <!-- Modal Header end -->
+          <!-- order by account start -->
+          <div class="d-flex justify-content-between mb-2 mx-3">
+            <p class="mb-0 font-bold">Order by Account</p>
+            <div class="account-number p-1"><span class="mr-1 text-navy live small-font">LIVE</span><span
+                class="medium-font font-bold small-font">TA 209761M</span>
+            </div>
+          </div>
+          <!-- order by account end -->
+          <!-- Currency exchange input start -->
+          <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
+            <div class="line-height-md">
+              <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
+              <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
+            </div>
+            <input type="text" class="form-control w-50" placeholder="0.01 - 100">
+          </div>
+          <!-- Currency exchange input end -->
+          <div class="divider mb-2 mx-3"></div>
+          <!-- Type input start -->
+          <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+            <p class="mb-0 font-weight-light medium-font">Type</p>
+            <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
+              aria-expanded="false">
+              Market Execution
+            </button>
+            <ul id="type-input-menu" class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Market Execution</a></li>
+              <li><a class="dropdown-item" href="#">Pending Order</a></li>
+            </ul>
+          </div>
+          <!-- Type input end -->
+          <div class="divider mb-3 mx-3"></div>
+          <div class="dynamic-elements d-none">
+            <!-- Order Type input start -->
+            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+              <p class="mb-0 font-weight-light medium-font">Order Type</p>
+              <button id="btn-order-type-input" data-toggle="dropdown"
+                class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
+                Buy Limit
+              </button>
+              <ul id="order-type-input-menu" class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Buy Limit</a></li>
+                <li><a class="dropdown-item" href="#">Sell Limit</a></li>
+                <li><a class="dropdown-item" href="#">Buy Stop</a></li>
+                <li><a class="dropdown-item" href="#">Sell Stop</a></li>
+              </ul>
+            </div>
+            <!-- Order Type input end -->
+            <div class="divider mb-2 mx-3"></div>
+            <!-- Expiration input start -->
+            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+              <p class="mb-0 font-weight-light medium-font">Expiration</p>
+              <button id="btn-expiration-input" data-toggle="dropdown"
+                class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
+                Day Order
+              </button>
+              <ul id="expiration-input-menu" class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Good Till Cancelled (GTC)</a></li>
+                <li><a class="dropdown-item" href="#">Day Order</a></li>
+                <li><a class="dropdown-item" href="#">Specific</a></li>
+              </ul>
+            </div>
+            <!-- Expiration input end -->
+            <div class="divider mb-3 mx-3"></div>
+            <!-- Expiration Date input start -->
+            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+              <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
+              <div class="date" id="expiration-date-input">
+                <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold"
+                  aria-expanded="false">
+                  08 Aug 2021 14:00
+                </button>
+              </div>
+            </div>
+            <!-- Expiration Date input end -->
+            <div class="divider mb-3 mx-3"></div>
+            <!-- Price input start -->
+            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+              <p class="mb-0 font-weight-light medium-font">Price</p>
+              <input type="text" class="form-control w-50">
+            </div>
+            <!-- Price input end -->
+          </div>
+          <!-- Profit loss display start -->
+          <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+            <div>
+              <p class="mb-0 super-extra-large-font font-bold text-modal-black">1.2563</p>
+              <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                  class="up-arrow-green mr-1"></span>+0.00032 (+0.04%)
+              </p>
+            </div>
+            <div>
+              <p class="mb-0 super-extra-large-font font-bold text-modal-black">1.2566</p>
+              <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                  class="up-arrow-green mr-1"></span>+0.00032 (+0.04%)
+            </div>
+          </div>
+          <!-- Profit loss display end -->
+          <!-- Profit loss input start -->
+          <div class="d-flex justify-content-between mb-2 mx-3">
+            <p class="mb-0 font-weight-light medium-font">Take Profit</p>
+            <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-3 mx-3">
+            <input type="text" class="form-control w-35" id="profit-input" placeholder="100">
+            <span class="font-bold medium-font text-dark-black">price</span>
+            <input type="text" class="form-control w-35" id="loss-input" placeholder="100">
+          </div>
+          <!-- Profit loss input end -->
+          <!-- Buy Sell CTA start -->
+          <div class="d-flex justify-content-between mb-3 mx-3">
+            <button type="button" class="btn btn-w-m btn-primary btn-bleed-red w-45 ">
+              Sell
+            </button>
+            <button type="button" class="btn btn-w-m btn-primary w-45">
+              Buy
+            </button>
+          </div>
+          <!-- Buy Sell CTA end -->
+          <!-- one Click trading start-->
+          <div class="d-flex justify-content-between align-items-center mx-3 mb-3">
+            <p class="mb-0 text-gray font-weight-light">One click trading</p>
+            <input type="checkbox" class="js-switch" checked />
+          </div>
+          <!-- one Click trading end-->
+        </div>
+      </div>
     </div>
   </div>
 
