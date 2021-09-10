@@ -112,6 +112,19 @@
 
         MOBILE_MEDIA.addEventListener('change', updateTabNames)
         updateTabNames(MOBILE_MEDIA);
+
+        // chart filter 
+        $('.chart-filter .btn').click(event => {
+            const target = $(event.currentTarget);
+            $('.chart-filter .btn').removeClass('active');
+            target.addClass('active');
+            const value = target.text();
+            console.log(value);
+        })
+        // init select2 dropdown
+        $('.select2_dropdown').select2({
+            theme: 'bootstrap4',
+        });
     }
 
     function updateTabNames(event) {

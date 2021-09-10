@@ -31,13 +31,39 @@
 }
 
 .trade-terminal-chart {
-    height: 20vw;
+    height: 400px;
     border-radius: 6px;
 
     @media screen and (max-width: 1250px) {
         border-radius: 0px;
         min-width: 300px;
     }
+
+    .chart-filter {
+        .btn {
+            border: none
+        }
+
+        .active {
+            color: @navy;
+            box-shadow: none;
+        }
+    }
+
+    .btn-playlist-add img {
+        width: 15px;
+        height: auto;
+    }
+
+    .currency-exchange-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .dropdown-toggle::after {
+        content: none;
+    }
+
 }
 
 .buy-sell-section {
