@@ -5354,6 +5354,9 @@ table.table-mail tr td {
 .text-negative-red {
   color: #C00000;
 }
+.text-market-blue {
+  color: #5AA6FF;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;
@@ -10434,6 +10437,13 @@ table > tbody > tr:first-child > td {
   display: block;
   transform: rotate(90deg);
 }
+.down-arrow-red {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #C00000;
+}
 .inmodal .modal-body {
   background: #ffffff;
 }
@@ -10621,6 +10631,9 @@ body.body-small .responsive-navbar-cta {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) !important;
+}
+.text-left {
+  text-align: left;
 }
 .sparkline-container {
   width: 100%;
@@ -10822,7 +10835,7 @@ body.body-small .responsive-navbar-cta {
   width: auto;
 }
 .trade-terminal-chart {
-  height: 20vw;
+  height: 400px;
   border-radius: 6px;
 }
 @media screen and (max-width: 1250px) {
@@ -10830,6 +10843,24 @@ body.body-small .responsive-navbar-cta {
     border-radius: 0px;
     min-width: 300px;
   }
+}
+.trade-terminal-chart .chart-filter .btn {
+  border: none;
+}
+.trade-terminal-chart .chart-filter .active {
+  color: #22D091;
+  box-shadow: none;
+}
+.trade-terminal-chart .btn-playlist-add img {
+  width: 15px;
+  height: auto;
+}
+.trade-terminal-chart .currency-exchange-icon {
+  width: 35px;
+  height: 35px;
+}
+.trade-terminal-chart .dropdown-toggle::after {
+  content: none;
 }
 .buy-sell-section {
   border-radius: 6px;

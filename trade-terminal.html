@@ -14,6 +14,8 @@
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+  <link href="css/plugins/select2/select2.min.css" rel="stylesheet">
+  <link href="css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -171,7 +173,92 @@
 
         <div class="wrapper wrapper-content">
           <!-- trade terminal chart here -->
-          <section class="card trade-terminal-chart"></section>
+          <section class="card trade-terminal-chart">
+            <div class="d-flex justify-content-between p-3">
+              <div>
+                <!-- <div class="d-flex justify-content-between">
+                  <img src="img/ic_eurusd.svg" alt="currency exchange icon" />
+                  <div class="d-flex flex-column">
+                    <p class="mb-0 font-weight-bold medium-font">EURUSD</p>
+                    <div>
+                      <p class="font-weight-light mb-0 small-font">Prices by Fullerton Markets, in USD</p>
+                      <p class="mb-0 text-currency-blue small-font">MARKET OPEN</p>
+                    </div>
+                  </div>
+                </div> -->
+                <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
+                  aria-expanded="false">
+                  <div class="d-flex justify-content-between">
+                    <img src="img/ic_eurusd.svg" alt="currency exchange icon" class="currency-exchange-icon" />
+                    <div class="ml-2">
+                      <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
+                      <div class="d-flex">
+                        <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
+                        <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                <ul id="type-input-menu" class="dropdown-menu p-3">
+                  <div class="form-group position-relative">
+                    <span class="inline-search-icon fa fa-search"></span>
+                    <input type="text" placeholder="Search Currencies" class="form-control white-bg" name="top-search"
+                      id="top-search">
+                  </div>
+                  <li class="cursor-pointer">
+                    <div class="d-flex justify-content-between mb-2">
+                      <img src="img/ic_eurusd.svg" alt="currency exchange icon" class="currency-exchange-icon" />
+                      <div class="ml-2">
+                        <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
+                        <div class="d-flex">
+                          <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
+                          <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="cursor-pointer">
+                    <div class="d-flex justify-content-between mb-2">
+                      <img src="img/ic_eurusd.svg" alt="currency exchange icon" class="currency-exchange-icon" />
+                      <div class="ml-2">
+                        <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
+                        <div class="d-flex">
+                          <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
+                          <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="cursor-pointer">
+                    <div class="d-flex justify-content-between mb-2">
+                      <img src="img/ic_eurusd.svg" alt="currency exchange icon" class="currency-exchange-icon" />
+                      <div class="ml-2">
+                        <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
+                        <div class="d-flex">
+                          <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
+                          <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="d-flex">
+                <div class="chart-filter">
+                  <button class="btn btn-white">1H</button>
+                  <button class="btn btn-white active">24H</button>
+                  <button class="btn btn-white">1W</button>
+                  <button class="btn btn-white">1M</button>
+                  <button class="btn btn-white">3M</button>
+                  <button class="btn btn-white">1Y</button>
+                </div>
+                <a class="btn btn-white btn-playlist-add">
+                  <img src="img/ic_playlist_add.svg" alt="add icon" />
+                </a>
+              </div>
+            </div>
+            <div class="divider"></div>
+          </section>
           <div class="d-flex justify-content-between mt-3 bottom-container">
             <section class="card buy-sell-section p-3 mr-3">
             </section>
@@ -404,7 +491,10 @@
               <p class="mb-0 font-bold">1.2563</p>
               <div>
                 <p class="mb-0 text-negative-red font-bold medium-font">-0.00311</p>
-                <p class="mb-0 text-negative-red font-bold extra-small-font">23.4%</p>
+                <div class="d-flex align-items-center">
+                  <i class="down-arrow-red mr-1"></i>
+                  <p class="mb-0 text-negative-red font-bold extra-small-font">23.4%</p>
+                </div>
               </div>
             </div>
             <!-- Watchlist content row 1 end -->
@@ -415,7 +505,10 @@
               <p class="mb-0 font-bold">1.2563</p>
               <div>
                 <p class="mb-0 text-negative-red font-bold medium-font">-0.00311</p>
-                <p class="mb-0 text-negative-red font-bold extra-small-font">23.4%</p>
+                <div class="d-flex align-items-center">
+                  <i class="down-arrow-red mr-1"></i>
+                  <p class="mb-0 text-negative-red font-bold extra-small-font">23.4%</p>
+                </div>
               </div>
             </div>
             <!-- Watchlist content row 2 end -->
@@ -446,6 +539,8 @@
   <script src="js/plugins/switchery/switchery.js"></script>
   <!-- Dat2 picker -->
   <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+  <!-- Select2 -->
+  <script src="js/plugins/select2/select2.full.min.js"></script>
 </body>
 
 </html>
