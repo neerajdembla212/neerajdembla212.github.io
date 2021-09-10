@@ -5351,6 +5351,9 @@ table.table-mail tr td {
 .text-bold-black {
   color: #4D4D4E;
 }
+.text-negative-red {
+  color: #C00000;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;

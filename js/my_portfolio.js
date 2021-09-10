@@ -699,12 +699,9 @@
         } else if (role === 'follower') {
             roleSpecificData = `<div class="sparkline">
             <div class="key">
-            <div>
-                <p class="mb-0">Total Paid</p>
-                <p class="mb-0 small-font">Fees + Profit Shared</p>
-                </div>
-                <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
+                <p class="mb-0">Total Paid <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
             </div>
+            <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
         </div>`
         }
         return `
