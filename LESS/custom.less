@@ -327,6 +327,14 @@ body.mini-navbar .nav.metismenu>li.logo {
   font-size: 14px;
 }
 
+.inline-search-currency-icon {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  height: 17px;
+  z-index: 1;
+}
+
 .inline-search-icon+.form-control {
   padding-left: 30px !important;
 }
@@ -735,6 +743,14 @@ body.body-small .responsive-navbar-cta {
   width: 9% !important;
 }
 
+.w-8 {
+  width: 8% !important;
+}
+
+.w-5 {
+  width: 5% !important;
+}
+
 .w-12 {
   width: 12% !important;
 }
@@ -749,6 +765,26 @@ body.body-small .responsive-navbar-cta {
 
 .w-45 {
   width: 45% !important;
+}
+
+.w-11 {
+  width: 11% !important;
+}
+
+.w-16 {
+  width: 16% !important;
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.w-22 {
+  width: 22% !important;
 }
 
 .responsive-label {
@@ -781,4 +817,119 @@ body.body-small .responsive-navbar-cta {
 
 .text-left {
   text-align: left;
+}
+
+.action-icon {
+  .fa {
+    color: @subheader-icon-color;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}
+
+.sparkline-container {
+  width: 100%;
+  background-color: @black;
+  border-radius: 6px;
+  min-height: 80px;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 0;
+  }
+
+  .desktop-content {
+    @media screen and (max-width: 480px) {
+      display: none !important;
+    }
+  }
+
+  .responsive-content {
+    display: none !important;
+
+    @media screen and (max-width: 480px) {
+      display: block !important;
+    }
+
+    .key,
+    .key>p {
+      color: @lighter-gray;
+      font-size: 14px;
+    }
+
+    .value {
+      font-weight: bold;
+    }
+  }
+
+  .sparkline {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    margin-right: 1em;
+
+    .value {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .key {
+      color: @lighter-gray;
+      font-size: 14px;
+    }
+
+    .sub-key {
+      font-size: 12px;
+      color: @lighter-gray;
+    }
+  }
+
+  // Sparkline Css
+
+  .sparkline-container .sparkline:first-of-type {
+    margin-right: 0;
+  }
+
+  .divider {
+    width: 1px;
+    border: none;
+    height: 100%;
+    width: 1px;
+    background-color: #000000;
+  }
+
+  .horizontal-divider {
+    width: 100%;
+    border: none;
+    background-color: #000000;
+    height: 2px;
+  }
+
+  .w-60 {
+    width: 60%
+  }
+
+  .green {
+    color: @navy;
+  }
+
+  .white {
+    color: @white;
+  }
+
+  .dark-red {
+    color: @dark-red;
+  }
+
+  .light-white {
+    color: @lighter-gray;
+  }
+
+  .highlight {
+    font-size: 1.75rem !important;
+  }
+
+  .border-right {
+    border-right: 2px solid #000000 !important;
+  }
 }

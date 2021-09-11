@@ -283,3 +283,8 @@ function calculateDateDiff(a, b) {
     return `${days} Days`
   }
 }
+
+// activate tooltips globally (to be called by respective file after content is loaded)
+function activateTooltips() {
+  $("[data-toggle='tooltip']").tooltip()
+}
