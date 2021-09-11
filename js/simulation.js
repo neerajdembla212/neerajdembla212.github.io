@@ -3,6 +3,7 @@
         strategyProviders = [];
         strategyDetails = {};
         lineChartData = {};
+        strategyProvidersSearchResult = [];
 
         getStrategyProviders() {
             return this.strategyProviders;
@@ -33,16 +34,26 @@
             }
             this.lineChartData = data;
         }
+
+        getStrategyProvidersSearchResult() {
+            return this.strategyProvidersSearchResult
+        }
+        setStrategyProvidersSearchResult(data) {
+            if (!data || !Array.isArray(data)) {
+                return
+            }
+            this.strategyProvidersSearchResult = data;
+        }
     }
     const STATE = new State();
 
     // Document ready
     $(function () {
-        console.log('Simulation js');
         registerGlobalEvents();
         fetchStrategyProviders();
         fetchStrategyDetails();
         fetchLineData();
+        fetchStrategyProvidersSearch();
     });
 
     function registerGlobalEvents() {
@@ -87,12 +98,16 @@
 
     function fetchLineData() {
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/portfolio-line-data",
+            url: "https://copypip.free.beeceptor.com/strategy-providers",
             successCallback: (data) => {
-                STATE.setLineChartData(data.data);
-                plotLineChart()
+                STATE.setStrategyProvidersSearchResult(data.data);
+                renderSearchStrategyProvider();
             }
         });
+    }
+
+    function fetchStrategyProvidersSearch() {
+
     }
     // fetch api methods end
 
@@ -390,6 +405,47 @@
         ctx.globalCompositeOperation = 'destination-over';
     }
 
+    // render search strategy provider start
+    function renderSearchStrategyProvider() {
+        const strategyProviders = STATE.getStrategyProvidersSearchResult();
+        const container = $('#add-provider-menu');
+        const rowsHTML = [];
+        strategyProviders.forEach(provider => {
+            rowsHTML.push(getStrategyProviderSearchRow(provider))
+        })
+        container.append(rowsHTML.join(''))
+    }
+    function getStrategyProviderSearchRow(provider) {
+        if (!provider) {
+            return
+        }
+        const { id,
+            profile_image,
+            username,
+            name,
+            country,
+            return_duration,
+            return_percentage } = provider;
+        return `
+            <li class="cursor-pointer px-2" data-id="provider-${id}">
+                <div class="d-flex justify-content-between py-2">
+                    <div class="d-flex">
+                        <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
+                        <div class="ml-2 float-left">
+                            <p class="font-bold font-size-12 mb-0">${username}</p>
+                            <div class="d-flex">
+                                <p class="text-light-black font-size-12 mb-0">${name}</p>
+                                <img class="ml-1" src="${getCountryFlags(country)}">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-0 medium-font text-light-gray font-bold">${return_duration}</p>
+                    <p class="mb-0 medium-font text-dark-green font-bold">${return_percentage}%</p>
+                </div>
+            </li>
+        `
+    }
+    // render search strategy provider end
     // render line chart end
 
 })();
