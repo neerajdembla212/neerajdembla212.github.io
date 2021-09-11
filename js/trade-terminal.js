@@ -1102,6 +1102,7 @@
             rowsHTML.push(getWatchListHTML(watchListRow));
         })
         container.append(rowsHTML.join(''))
+        registerWatchListEvents();
     }
 
     function getWatchListHTML(watchListRow) {
@@ -1112,11 +1113,11 @@
         const currenciesRowHTML = [];
         if (watchListRow.currencies && Array.isArray(watchListRow.currencies)) {
             watchListRow.currencies.forEach(currency => {
-                currenciesRowHTML.push(getWatchListCurrencyRow(currency, id));
+                currenciesRowHTML.push(getWatchListCurrencyRow(currency));
             })
         }
         return `
-            <!-- Watchlist 1 collapsed start -->
+            <!-- Watchlist collapsed start -->
             <div class="d-flex justify-content-between align-items-center py-2">
               <button class="btn btn-outline font-bold text-modal-black medium-font" type="button" data-toggle="collapse"
                 data-target="#watchlist-${id}-content" aria-expanded="false" aria-controls="collapseExample">
@@ -1125,15 +1126,17 @@
                   <span>${title}</span>
                 </div>
               </button>
-              <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist" data-id="${id}"/>
+              <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist cursor-pointer" data-id="${id}"/>
             </div>
-            <!-- Watchlist 1 collapsed end -->
+            <!-- Watchlist collapsed end -->
             <div class="divider"></div>
-            ${currenciesRowHTML.join('')}
+            <div id="watchlist-${id}-content" class="collapse">
+                ${currenciesRowHTML.join('')}
+            </div>
             `
     }
 
-    function getWatchListCurrencyRow(currency, watchlistId) {
+    function getWatchListCurrencyRow(currency) {
         if (!currency) {
             return
         }
@@ -1143,24 +1146,32 @@
             currency_delta_amount,
             currency_delta_percentage } = currency;
         return `
-        <!-- Watchlist 1 expand start -->
-        <div class="collapse" id="watchlist-${watchlistId}-content">
-            <div class="d-flex justify-content-between align-items-center mx-2 py-2">
-                <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
-                <p class="mb-0 font-bold">${currency_rate}</p>
-                <div>    
-                    <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold medium-font">${currency_delta_amount}</p>
-                    <div class="d-flex align-items-center">
-                        <i class="${currency_delta_amount > 0 ? 'up-arrow-green' : 'down-arrow arrow-red'} mr-1"></i>
-                        <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold extra-small-font">${currency_delta_percentage}%</p>
-                    </div>
+        <!-- Watchlist expand start -->
+        <div class="d-flex justify-content-between align-items-center mx-2 py-2">
+            <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
+            <p class="mb-0 font-bold">${currency_rate}</p>
+            <div>    
+                <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold medium-font">${currency_delta_amount}</p>
+                <div class="d-flex align-items-center">
+                    <i class="${currency_delta_amount > 0 ? 'up-arrow-green' : 'down-arrow arrow-red'} mr-1"></i>
+                    <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold extra-small-font">${currency_delta_percentage}%</p>
                 </div>
-                <img src="img/ic_pin_filled.svg" alt="pin icon" />
             </div>
-            <div class="divider"></div>
+            <img src="img/ic_pin_filled.svg" alt="pin icon" />
         </div>
-        <!-- Watchlist 1 expand end -->
+        <div class="divider"></div>
+        <!-- Watchlist expand end -->
         `
+    }
+
+    function registerWatchListEvents() {
+        $('.delete-watchlist').click(function (event) {
+            console.log(event.currentTarget, event.target);
+            const watchListId = $(event.target).data('id')
+            debugger
+            $(event.target).parent().remove();
+            $(`#watchlist-${watchListId}-content.collapse`).remove();
+        })
     }
     // render watchlist end
     // Helper methods
