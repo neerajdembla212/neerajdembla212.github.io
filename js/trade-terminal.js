@@ -155,6 +155,9 @@
             const searchQuery = event.currentTarget.value;
             fetchCurrenciesSearch(searchQuery);
         })
+
+        // add new watchlist
+        $('#add-new-watchList').click(addNewWatchList)
     }
 
     function updateTabNames(event) {
@@ -739,7 +742,7 @@
     }
 
     function registerTradeEvents() {
-        $('.edit-trade-cta').click(function (event) {
+        $('.edit-trade-cta').unbind().click(function (event) {
             const tradeId = $(event.currentTarget).data('id')
             STATE.setTradeDetails({ id: tradeId })
             fetchTradeDetails(tradeId);
@@ -1102,7 +1105,7 @@
     }
 
     function registerEditTradeModalEvents() {
-        $('#type-input-menu-edit.dropdown-menu').click(event => {
+        $('#type-input-menu-edit.dropdown-menu').unbind().click(event => {
             const selectedItem = event.target.innerText.trim();
             const selectedButton = $('#btn-type-input-edit')
             selectedButton.text(selectedItem);
@@ -1148,20 +1151,22 @@
         }
         return `
             <!-- Watchlist collapsed start -->
-            <div class="d-flex justify-content-between align-items-center py-2">
-              <button class="btn btn-outline font-bold text-modal-black medium-font" type="button" data-toggle="collapse"
-                data-target="#watchlist-${id}-content" aria-expanded="false" aria-controls="collapseExample">
-                <div class="d-flex align-items-center">
-                  <i class="down-arrow arrow-black mr-2"></i>
-                  <span>${title}</span>
+            <div id="watchlist-${id}-row">
+                <div class="d-flex justify-content-between align-items-center py-2">
+                <button class="btn btn-outline font-bold text-modal-black medium-font" type="button" data-toggle="collapse"
+                    data-target="#watchlist-${id}-content" aria-expanded="false" aria-controls="collapseExample">
+                    <div class="d-flex align-items-center">
+                    <i class="down-arrow arrow-black mr-2"></i>
+                    <span>${title}</span>
+                    </div>
+                </button>
+                <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist cursor-pointer" data-id="${id}"/>
                 </div>
-              </button>
-              <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist cursor-pointer" data-id="${id}"/>
-            </div>
-            <!-- Watchlist collapsed end -->
-            <div class="divider"></div>
-            <div id="watchlist-${id}-content" class="collapse">
-                ${currenciesRowHTML.join('')}
+                <div class="divider"></div>
+                <!-- Watchlist collapsed end -->
+                <div id="watchlist-${id}-content" class="collapse">
+                    ${currenciesRowHTML.join('')}
+                </div>
             </div>
             `
     }
@@ -1195,11 +1200,12 @@
     }
 
     function registerWatchListEvents() {
-        $('.delete-watchlist').click(function (event) {
+        $('.delete-watchlist').unbind().click(function (event) {
             console.log(event.currentTarget, event.target);
             const watchListId = $(event.target).data('id')
-            $(event.target).parent().remove();
-            $(`#watchlist-${watchListId}-content.collapse`).remove();
+            $(`#watchlist-${watchListId}-row`).remove();
+            // $(event.target).parent().remove();
+            // $(`#watchlist-${watchListId}-content.collapse`).remove();
         })
     }
     // render watchlist end
@@ -1254,6 +1260,12 @@
     }
     // render currencies search result end
 
+    // Add new Watchlist 
+    function addNewWatchList() {
+        const container = $('.watchlist-right-sidebar .sidebar-container .sidebar-content');
+        container.append(getWatchListHTML({ id: STATE.watchlist.length, title: `Watchlist ${STATE.watchlist.length}` }))
+        registerWatchListEvents()
+    }
     // Helper methods
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
