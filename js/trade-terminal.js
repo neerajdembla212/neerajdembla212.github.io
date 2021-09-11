@@ -1145,7 +1145,7 @@
         return `
         <!-- Watchlist 1 expand start -->
         <div class="collapse" id="watchlist-${watchlistId}-content">
-            <div class="d-flex justify-content-between align-items-center mx-2">
+            <div class="d-flex justify-content-between align-items-center mx-2 py-2">
                 <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
                 <p class="mb-0 font-bold">${currency_rate}</p>
                 <div>    
@@ -1157,6 +1157,7 @@
                 </div>
                 <img src="img/ic_pin_filled.svg" alt="pin icon" />
             </div>
+            <div class="divider"></div>
         </div>
         <!-- Watchlist 1 expand end -->
         `
