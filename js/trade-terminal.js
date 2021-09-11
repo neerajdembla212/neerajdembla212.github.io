@@ -10,6 +10,7 @@
         };
         tradeDetails = {};
         watchlist = [];
+        currencySearchResult = [];
         getOpenTrades() {
             return this.openTrades;
         }
@@ -79,6 +80,15 @@
             }
             this.watchlist = data;
         }
+
+        getCurrencySearchResult() {
+            return this.currencySearchResult;
+        }
+        setCurrencySearchResult(data) {
+            if (!data || Array.isArray(data)) {
+                this.currencySearchResult = data;
+            }
+        }
     }
 
     // Global variables for this file
@@ -138,6 +148,13 @@
         $('.select2_dropdown').select2({
             theme: 'bootstrap4',
         });
+
+        // watchlist search 
+        $('#search-currency').change(function (event) {
+            console.log(event)
+            const searchQuery = event.currentTarget.value;
+            fetchCurrenciesSearch(searchQuery);
+        })
     }
 
     function updateTabNames(event) {
@@ -176,6 +193,7 @@
         }
     }
 
+    // Api call functions start
     function fetchOpenTrades() {
         callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/open-trades",
@@ -227,6 +245,18 @@
             },
         });
     }
+
+    function fetchCurrenciesSearch(query) {
+        callAjaxMethod({
+            url: `https://copypip.free.beeceptor.com/search-currency?q=${query}`,
+            successCallback: (data) => {
+                debugger
+                STATE.setCurrencySearchResult(data.data);
+                renderCurrencySearchResult();
+            },
+        });
+    }
+    // Api call functions end
 
     // render open trades begin
     function renderOpenTrades() {
@@ -1096,7 +1126,7 @@
     // render watchlist start
     function renderWatchlists() {
         const watchList = STATE.getWatchList();
-        const container = $('.watchlist-right-sidebar .sidebar-container');
+        const container = $('.watchlist-right-sidebar .sidebar-container .sidebar-content');
         const rowsHTML = [];
         watchList.forEach(watchListRow => {
             rowsHTML.push(getWatchListHTML(watchListRow));
@@ -1168,12 +1198,62 @@
         $('.delete-watchlist').click(function (event) {
             console.log(event.currentTarget, event.target);
             const watchListId = $(event.target).data('id')
-            debugger
             $(event.target).parent().remove();
             $(`#watchlist-${watchListId}-content.collapse`).remove();
         })
     }
     // render watchlist end
+
+    // render currencies search result start
+    function renderCurrencySearchResult() {
+        const searchedCurrencies = STATE.getCurrencySearchResult();
+        const container = $('.watchlist-right-sidebar .sidebar-container .sidebar-content');
+        const rowsHTML = [];
+        searchedCurrencies.forEach(searchedRow => {
+            rowsHTML.push(getSearchCurrencyRowHTML(searchedRow));
+        })
+        container.empty().append(rowsHTML.join(''))
+    }
+
+    function getSearchCurrencyRowHTML(searchedRow) {
+        if (!searchedRow) {
+            return;
+        }
+        const { from_currency,
+            to_currency,
+            currency_delta_amount,
+            currency_delta_percentage,
+            currency_rate
+        } = searchedRow;
+
+        return `
+        <!-- Search row start -->
+        <div class="d-flex justify-content-between align-items-center mx-2 py-2">
+            <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
+            <p class="mb-0 font-bold">${currency_rate}</p>
+            <div>    
+                <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold medium-font">${currency_delta_amount}</p>
+                <div class="d-flex align-items-center">
+                    <i class="${currency_delta_amount > 0 ? 'up-arrow-green' : 'down-arrow arrow-red'} mr-1"></i>
+                    <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold extra-small-font">${currency_delta_percentage}%</p>
+                </div>
+            </div>
+            <button class="btn btn-default border-0" type="button" data-toggle="dropdown" aria-expanded="false">
+                <img src="img/ic_plus.svg" alt="pin icon" />
+            </button>
+            <ul id="add-currency-menu" class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Add to Watchlist 1</a></li>
+                <li><a class="dropdown-item" href="#">Add to Watchlist 2</a></li>
+            </ul>
+
+        </div>
+        <div class="divider"></div>
+        <!-- Search row end -->
+
+        `
+    }
+    // render currencies search result end
+
     // Helper methods
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
