@@ -204,7 +204,16 @@
             <section class="simulation-strategy-providers card col p-0">
               <div class="d-flex justify-content-between p-3 align-items-center">
                 <h3 class="">Following</h3>
-                <button type="button" class="btn btn-primary btn-sm">Add Provider</button>
+                <button type="button" data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle font-bold"
+                  aria-expanded="false">Add
+                  Provider</button>
+                <ul id="add-provider-menu" class="dropdown-menu">
+                  <div class="form-group position-relative">
+                    <span class="inline-search-icon fa fa-search"></span>
+                    <input type="text" placeholder="Search Providers" class="form-control white-bg p-3"
+                      name="top-search" id="providers-search">
+                  </div>
+                </ul>
               </div>
             </section>
           </div>
