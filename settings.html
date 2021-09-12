@@ -13,6 +13,9 @@
 
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+  <link href="css/plugins/select2/select2.min.css" rel="stylesheet">
+  <link href="css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -147,46 +150,78 @@
           </div>
         </nav>
       </div>
-      <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-sm-4">
-          <h2>This is main title</h2>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">This is</a>
-            </li>
-            <li class="breadcrumb-item active">
-              <strong>Breadcrumb</strong>
-            </li>
-          </ol>
+      <div id="page-container" class="settings-page">
+        <div class="d-flex justify-content-between subheader flex-wrap">
+          <h2 class="font-bold my-2 page-title">Settings</h2>
         </div>
-        <div class="col-sm-8">
-          <div class="title-action">
-            <a href="" class="btn btn-primary">This is action area</a>
-          </div>
-        </div>
-      </div>
+        <div class="wrapper wrapper-content row">
+          <div class="basic-profile-settings card p-3 col mr-3">
 
-      <div class="wrapper wrapper-content">
-        <div class="middle-box text-center animated fadeInRightBig">
-          <h3 class="font-bold">This is page content</h3>
-          <div class="error-desc">
-            You can create here any grid layout you want. And any variation layout you imagine:) Check out
-            main dashboard and other site. It use many different layout.
-            <br /><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
           </div>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="float-right">
-          10GB of <strong>250GB</strong> Free.
-        </div>
-        <div>
-          <strong>Copyright</strong> Example Company &copy; 2014-2018
+          <div class="col secondary-details-settings">
+            <!-- Profile settings card start -->
+            <div class="card profile-settings mb-3">
+              <!-- Header start -->
+              <p class="mb-2 font-weight-bold large-font p-3">Profile Settings</p>
+              <div class="divider"></div>
+              <div class="p-3">
+                <!-- Email address input start -->
+                <div class="form-group full-width-control">
+                  <label class="text-modal-gray medium-font font-weight-light">Email Address</label>
+                  <input type="email" class="form-control" />
+                </div>
+                <!-- Email address input end -->
+                <!-- First name last name input start -->
+                <div class="d-flex mb-2">
+                  <div class="form-group half-width-control mr-4">
+                    <label class="text-modal-gray medium-font font-weight-light">First Name</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="form-group half-width-control">
+                    <label class="text-modal-gray medium-font font-weight-light">Last Name</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <!-- First name last name input end -->
+                <!-- Mobile and country input start -->
+                <div class="d-flex mb-2">
+                  <div class="form-group half-width-control mr-4">
+                    <label class="text-modal-gray medium-font font-weight-light">Mobile</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="form-group half-width-control">
+                    <label class="text-modal-gray medium-font font-weight-light">Country</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <!-- Mobile and country input end -->
+                <!-- CTA -->
+                <div>
+                  <button type="button" class="btn btn-default text-blue font-bold mr-3">
+                    Update Details
+                  </button>
+                  <button type="button" class="btn btn-default text-blue font-bold">
+                    Forgot Password
+                  </button>
+
+                </div>
+              </div>
+            </div>
+            <div class="card trading-accounts">
+              <!-- Table header start -->
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <p class="mb-0 font-bold large-font">Trading Accounts</p>
+                <button type="button" class="btn btn-w-m btn-primary">Create Account</button>
+              </div>
+              <!-- Table header end -->
+            </div>
+            <!-- Profile settings card end -->
+          </div>
         </div>
       </div>
 
     </div>
-    <!-- Buy/Sell popup -->
+    <!-- Buy/Sell popup start -->
     <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">
       <div class="modal-dialog modal-dialog-center">
         <div class="modal-content animated fadeIn">
@@ -331,6 +366,7 @@
         </div>
       </div>
     </div>
+    <!-- Buy/Sell popup end -->
   </div>
 
   <!-- Mainly scripts -->
@@ -344,6 +380,14 @@
   <script src="js/inspinia.js"></script>
   <script src="js/plugins/pace/pace.min.js"></script>
   <script src="js/inspinia_custom.js"></script>
+  <script src="js/settings.js"></script>
+
+  <!-- Switchery -->
+  <script src="js/plugins/switchery/switchery.js"></script>
+  <!-- Dat2 picker -->
+  <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+  <!-- Select2 -->
+  <script src="js/plugins/select2/select2.full.min.js"></script>
 </body>
 
 </html>
