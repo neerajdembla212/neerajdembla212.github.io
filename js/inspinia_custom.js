@@ -246,17 +246,37 @@ function formatDate(date, format = "DD MMM YYYY") {
   if (!isDateValid(date)) {
     return '';
   }
-  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
+  let da = +new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
   const mmm = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
-  const mm = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(date);
-  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
-  const hr = new Intl.DateTimeFormat('en', { hour: '2-digit', hour12: false }).format(date);
-  const min = new Intl.DateTimeFormat('en', { minute: '2-digit' }).format(date);
+  let mm = +new Intl.DateTimeFormat('en', { month: '2-digit' }).format(date);
+  let ye = +new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
+  let hr = +new Intl.DateTimeFormat('en', { hour: '2-digit', hour12: false }).format(date);
+  let min = +new Intl.DateTimeFormat('en', { minute: '2-digit' }).format(date);
+
+  // add prefix zero if value is < 10
+  da = addPrefixZero(da);
+  mm = addPrefixZero(mm);
+  ye = addPrefixZero(ye);
+  hr = addPrefixZero(hr);
+  min = addPrefixZero(min);
+
   switch (format) {
     case 'DD MMM YYYY': return `${da} ${mmm} ${ye}`;
     case 'DD MM YYYY HH:mm': return `${da} ${mm} ${ye} ${hr}:${min}`;
     case 'DD/MM/YYYY HH:mm': return `${da}/${mm}/${ye} ${hr}:${min}`;
+    case 'HH:mm': return `${hr}:${min}`
   }
+}
+
+function addPrefixZero(number) {
+  if (!number || typeof number !== "number" || isNaN(number)) {
+    return number
+  }
+  if (number < 0) {
+    return ("0" + number);
+  }
+  return number;
+
 }
 
 // utility function to check valid date object

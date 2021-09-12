@@ -11346,6 +11346,19 @@ body.body-small .responsive-navbar-cta {
 .login-container .img-logo {
   height: 22px;
 }
+.trading-view-widget {
+  width: 70%;
+  height: 80vh;
+}
+.trading-view-widget .tradingview-widget-container {
+  width: 100%;
+}
+.trading-view-widget .tradingview-widget-container iframe {
+  width: 100%;
+}
+.technical-summary-box {
+  width: 30%;
+}
 @media print {
   nav.navbar-static-side {
     display: none;
