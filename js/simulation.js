@@ -98,15 +98,22 @@
 
     function fetchLineData() {
         callAjaxMethod({
+            url: "https://copypip.free.beeceptor.com/portfolio-line-data",
+            successCallback: (data) => {
+                STATE.setLineChartData(data.data);
+                plotLineChart()
+            }
+        });
+    }
+
+    function fetchStrategyProvidersSearch() {
+        callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/strategy-providers",
             successCallback: (data) => {
                 STATE.setStrategyProvidersSearchResult(data.data);
                 renderSearchStrategyProvider();
             }
         });
-    }
-
-    function fetchStrategyProvidersSearch() {
 
     }
     // fetch api methods end
