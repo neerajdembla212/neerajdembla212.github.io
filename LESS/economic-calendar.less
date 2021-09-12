@@ -3,6 +3,12 @@
     border-radius: 6px;
     width: 68%;
 
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        border-radius: 0;
+        height: 500px;
+    }
+
     .tradingview-widget-container {
         width: 100%;
 
@@ -15,8 +21,25 @@
 .technical-summary-box {
     border-radius: 6px;
     height: 470px;
+
+    @media screen and (max-width: 1080px) {
+        border-radius: 0;
+    }
 }
 
 .small-widgets {
-    width: 30%
+    width: 30%;
+
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+.rss-feeds {
+    border-radius: 6px;
+
+    @media screen and (max-width: 1080px) {
+        border-radius: 0;
+    }
 }

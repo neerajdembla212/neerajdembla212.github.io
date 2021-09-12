@@ -11357,6 +11357,13 @@ iframe {
   border-radius: 6px;
   width: 68%;
 }
+@media screen and (max-width: 1080px) {
+  .trading-view-widget {
+    width: 100%;
+    border-radius: 0;
+    height: 500px;
+  }
+}
 .trading-view-widget .tradingview-widget-container {
   width: 100%;
 }
@@ -11367,8 +11374,27 @@ iframe {
   border-radius: 6px;
   height: 470px;
 }
+@media screen and (max-width: 1080px) {
+  .technical-summary-box {
+    border-radius: 0;
+  }
+}
 .small-widgets {
   width: 30%;
+}
+@media screen and (max-width: 1080px) {
+  .small-widgets {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+.rss-feeds {
+  border-radius: 6px;
+}
+@media screen and (max-width: 1080px) {
+  .rss-feeds {
+    border-radius: 0;
+  }
 }
 @media print {
   nav.navbar-static-side {
