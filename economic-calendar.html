@@ -158,8 +158,8 @@
           </div>
           <p class="mb-0 small-font">All data are streaming and updated automatically</p>
         </div>
-        <div class="wrapper wrapper-content row">
-          <section class="trading-view-widget col-8">
+        <div class="wrapper wrapper-content d-flex justify-content-between flex-wrap">
+          <section class="trading-view-widget card">
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container">
               <div class="tradingview-widget-container__widget"></div>
@@ -172,7 +172,7 @@
                     "width": "100%",
                       "height": "100%",
                         "colorTheme": "light",
-                          "isTransparent": false,
+                          "isTransparent": true,
                             "locale": "in",
                               "importanceFilter": "-1,0,1"
                   }
@@ -180,25 +180,20 @@
             </div>
             <!-- TradingView Widget END -->
           </section>
-          <div class="col-4">
+          <div class="small-widgets">
             <!-- Technical summary box start -->
-            <section class="technical-summary-box">
+            <section class="technical-summary-box card p-3 mb-3">
               <iframe
                 src="https://ssltsw.investing.com?lang=1&forex=1,2,3,5,7,9,10&commodities=8830,8836,8831,8849,8833,8862,8832&indices=175,166,172,27,179,170,174&stocks=345,346,347,348,349,350,352&tabs=1,2,3,4"
-                width="317" height="467"></iframe>
+                width="100%" height="467"></iframe>
+              <!-- Techinal summary box end -->
             </section>
-            <!-- Techinal summary box end -->
-            <!-- Central bank rates start -->
-            <!-- <iframe
-              src="https://www.widgets.investing.com/live-currency-cross-rates?theme=lightTheme&hideTitle=true&cols=last,prev,high,low,time&pairs=1,3,2,4,7,5,8,6,9,10,49,11,13,16,47,51,58,50"
-              width="100%" height="100%" frameborder="0" allowtransparency="true" marginwidth="0"
-              marginheight="0"></iframe> -->
-            <!-- Central bank rates end -->
             <!-- RSS feeds start -->
-            <script
-              src="//rss.bloople.net/?url=https%3A%2F%2Fwww.investing.com%2Frss%2Fnews_1.rss&showicon=true&striphtml=true&type=js"></script>
+            <section class="rss-feeds card p-3">
+              <script
+                src="//rss.bloople.net/?url=https%3A%2F%2Fwww.investing.com%2Frss%2Fnews_1.rss&showicon=true&striphtml=true&type=js"></script>
+            </section>
             <!-- RSS feeds end -->
-
           </div>
         </div>
       </div>
