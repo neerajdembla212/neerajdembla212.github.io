@@ -6,13 +6,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>INSPINIA | News Feed</title>
+  <title>INSPINIA | Economic Calendar</title>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+  <link href="css/plugins/select2/select2.min.css" rel="stylesheet">
+  <link href="css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -147,203 +150,202 @@
           </div>
         </nav>
       </div>
-      <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-sm-4">
-          <h2>This is main title</h2>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">This is</a>
-            </li>
-            <li class="breadcrumb-item active">
-              <strong>Breadcrumb</strong>
-            </li>
-          </ol>
+      <div id="page-container">
+        <div class="d-flex justify-content-between subheader align-items-center flex-wrap mb-3">
+          <div class="d-flex align-items-center">
+            <h2 class="font-bold my-2 d-flex mr-3">Economic Calendar</h2>
+            <p class="mb-0">Current Time : <b class="current-time"></b></p>
+          </div>
+          <p class="mb-0 small-font">All data are streaming and updated automatically</p>
         </div>
-        <div class="col-sm-8">
-          <div class="title-action">
-            <a href="" class="btn btn-primary">This is action area</a>
+        <div class="wrapper wrapper-content row">
+          <section class="trading-view-widget col-8">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <div class="tradingview-widget-copyright"><a
+                  href="https://in.tradingview.com/markets/currencies/economic-calendar/" rel="noopener"
+                  target="_blank"><span class="blue-text">Economic Calendar</span></a> by TradingView</div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
+                async>
+                  {
+                    "width": "100%",
+                      "height": "100%",
+                        "colorTheme": "light",
+                          "isTransparent": false,
+                            "locale": "in",
+                              "importanceFilter": "-1,0,1"
+                  }
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
+          </section>
+          <div class="col-4">
+            <!-- Technical summary box start -->
+            <section class="technical-summary-box">
+              <iframe
+                src="https://ssltsw.investing.com?lang=1&forex=1,2,3,5,7,9,10&commodities=8830,8836,8831,8849,8833,8862,8832&indices=175,166,172,27,179,170,174&stocks=345,346,347,348,349,350,352&tabs=1,2,3,4"
+                width="317" height="467"></iframe>
+            </section>
+            <!-- Techinal summary box end -->
+            <!-- Central bank rates start -->
+            <iframe
+              src="https://www.widgets.investing.com/live-currency-cross-rates?theme=lightTheme&hideTitle=true&cols=last,prev,high,low,time&pairs=1,3,2,4,7,5,8,6,9,10,49,11,13,16,47,51,58,50"
+              width="100%" height="100%" frameborder="0" allowtransparency="true" marginwidth="0"
+              marginheight="0"></iframe>
+            <!-- Central bank rates end -->
+
           </div>
         </div>
       </div>
-
-      <div class="wrapper wrapper-content">
-        <div>
-          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <div class="tradingview-widget-copyright"><a
-                href="https://www.tradingview.com/markets/currencies/economic-calendar/" rel="noopener"
-                target="_blank"><span class="blue-text">Economic Calendar</span></a> by TradingView</div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
-              async>
-                {
-                  "colorTheme": "light",
-                    "isTransparent": false,
-                      "width": "510",
-                        "height": "600",
-                          "locale": "en",
-                            "importanceFilter": "-1,0,1"
-                }
-              </script>
-          </div>
-          <!-- TradingView Widget END -->
-        </div>
-      </div>
-      <div class="footer">
-        <div class="float-right">
-          10GB of <strong>250GB</strong> Free.
-        </div>
-        <div>
-          <strong>Copyright</strong> Example Company &copy; 2014-2018
-        </div>
-      </div>
-
     </div>
-    <!-- Buy/Sell popup -->
-    <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">
-      <div class="modal-dialog modal-dialog-center">
-        <div class="modal-content animated fadeIn">
-          <!-- Modal Header start -->
-          <div class="d-flex justify-content-between m-3">
-            <h4 class="modal-title">Buy/Sell</h4>
-            <button id="close-modal" class="btn
+
+  </div>
+  <!-- Buy/Sell popup -->
+  <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-center">
+      <div class="modal-content animated fadeIn">
+        <!-- Modal Header start -->
+        <div class="d-flex justify-content-between m-3">
+          <h4 class="modal-title">Buy/Sell</h4>
+          <button id="close-modal" class="btn
                   btn-default
                   btn-outline
                   btn-action
                   border-0
               " data-dismiss="modal">
-              <img src="img/ic_cross.svg">
-            </button>
+            <img src="img/ic_cross.svg">
+          </button>
+        </div>
+        <!-- Modal Header end -->
+        <!-- order by account start -->
+        <div class="d-flex justify-content-between mb-2 mx-3">
+          <p class="mb-0 font-bold">Order by Account</p>
+          <div class="account-number p-1"><span class="mr-1 text-navy live small-font">LIVE</span><span
+              class="medium-font font-bold small-font">TA 209761M</span>
           </div>
-          <!-- Modal Header end -->
-          <!-- order by account start -->
-          <div class="d-flex justify-content-between mb-2 mx-3">
-            <p class="mb-0 font-bold">Order by Account</p>
-            <div class="account-number p-1"><span class="mr-1 text-navy live small-font">LIVE</span><span
-                class="medium-font font-bold small-font">TA 209761M</span>
-            </div>
+        </div>
+        <!-- order by account end -->
+        <!-- Currency exchange input start -->
+        <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
+          <div class="line-height-md">
+            <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
+            <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
           </div>
-          <!-- order by account end -->
-          <!-- Currency exchange input start -->
-          <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
-            <div class="line-height-md">
-              <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
-              <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
-            </div>
-            <input type="text" class="form-control w-50" placeholder="0.01 - 100">
-          </div>
-          <!-- Currency exchange input end -->
-          <div class="divider mb-2 mx-3"></div>
-          <!-- Type input start -->
+          <input type="text" class="form-control w-50" placeholder="0.01 - 100">
+        </div>
+        <!-- Currency exchange input end -->
+        <div class="divider mb-2 mx-3"></div>
+        <!-- Type input start -->
+        <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+          <p class="mb-0 font-weight-light medium-font">Type</p>
+          <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
+            aria-expanded="false">
+            Market Execution
+          </button>
+          <ul id="type-input-menu" class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Market Execution</a></li>
+            <li><a class="dropdown-item" href="#">Pending Order</a></li>
+          </ul>
+        </div>
+        <!-- Type input end -->
+        <div class="divider mb-3 mx-3"></div>
+        <div class="dynamic-elements d-none">
+          <!-- Order Type input start -->
           <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Type</p>
-            <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
+            <p class="mb-0 font-weight-light medium-font">Order Type</p>
+            <button id="btn-order-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
               aria-expanded="false">
-              Market Execution
+              Buy Limit
             </button>
-            <ul id="type-input-menu" class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Market Execution</a></li>
-              <li><a class="dropdown-item" href="#">Pending Order</a></li>
+            <ul id="order-type-input-menu" class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Buy Limit</a></li>
+              <li><a class="dropdown-item" href="#">Sell Limit</a></li>
+              <li><a class="dropdown-item" href="#">Buy Stop</a></li>
+              <li><a class="dropdown-item" href="#">Sell Stop</a></li>
             </ul>
           </div>
-          <!-- Type input end -->
-          <div class="divider mb-3 mx-3"></div>
-          <div class="dynamic-elements d-none">
-            <!-- Order Type input start -->
-            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
-              <p class="mb-0 font-weight-light medium-font">Order Type</p>
-              <button id="btn-order-type-input" data-toggle="dropdown"
-                class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                Buy Limit
-              </button>
-              <ul id="order-type-input-menu" class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Buy Limit</a></li>
-                <li><a class="dropdown-item" href="#">Sell Limit</a></li>
-                <li><a class="dropdown-item" href="#">Buy Stop</a></li>
-                <li><a class="dropdown-item" href="#">Sell Stop</a></li>
-              </ul>
-            </div>
-            <!-- Order Type input end -->
-            <div class="divider mb-2 mx-3"></div>
-            <!-- Expiration input start -->
-            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
-              <p class="mb-0 font-weight-light medium-font">Expiration</p>
-              <button id="btn-expiration-input" data-toggle="dropdown"
-                class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                Day Order
-              </button>
-              <ul id="expiration-input-menu" class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Good Till Cancelled (GTC)</a></li>
-                <li><a class="dropdown-item" href="#">Day Order</a></li>
-                <li><a class="dropdown-item" href="#">Specific</a></li>
-              </ul>
-            </div>
-            <!-- Expiration input end -->
-            <div class="divider mb-3 mx-3"></div>
-            <!-- Expiration Date input start -->
-            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
-              <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
-              <div class="date" id="expiration-date-input">
-                <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold"
-                  aria-expanded="false">
-                  08 Aug 2021 14:00
-                </button>
-              </div>
-            </div>
-            <!-- Expiration Date input end -->
-            <div class="divider mb-3 mx-3"></div>
-            <!-- Price input start -->
-            <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
-              <p class="mb-0 font-weight-light medium-font">Price</p>
-              <input type="text" class="form-control w-50">
-            </div>
-            <!-- Price input end -->
-          </div>
-          <!-- Profit loss display start -->
+          <!-- Order Type input end -->
+          <div class="divider mb-2 mx-3"></div>
+          <!-- Expiration input start -->
           <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
-            <div>
-              <p class="mb-0 super-extra-large-font font-bold text-modal-black">1.2563</p>
-              <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
-                  class="up-arrow-green mr-1"></span>+0.00032 (+0.04%)
-              </p>
-            </div>
-            <div>
-              <p class="mb-0 super-extra-large-font font-bold text-modal-black">1.2566</p>
-              <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
-                  class="up-arrow-green mr-1"></span>+0.00032 (+0.04%)
-            </div>
-          </div>
-          <!-- Profit loss display end -->
-          <!-- Profit loss input start -->
-          <div class="d-flex justify-content-between mb-2 mx-3">
-            <p class="mb-0 font-weight-light medium-font">Take Profit</p>
-            <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mb-3 mx-3">
-            <input type="text" class="form-control w-35" id="profit-input" placeholder="100">
-            <span class="font-bold medium-font text-dark-black">price</span>
-            <input type="text" class="form-control w-35" id="loss-input" placeholder="100">
-          </div>
-          <!-- Profit loss input end -->
-          <!-- Buy Sell CTA start -->
-          <div class="d-flex justify-content-between mb-3 mx-3">
-            <button type="button" class="btn btn-w-m btn-primary btn-bleed-red w-45 ">
-              Sell
+            <p class="mb-0 font-weight-light medium-font">Expiration</p>
+            <button id="btn-expiration-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
+              aria-expanded="false">
+              Day Order
             </button>
-            <button type="button" class="btn btn-w-m btn-primary w-45">
-              Buy
-            </button>
+            <ul id="expiration-input-menu" class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Good Till Cancelled (GTC)</a></li>
+              <li><a class="dropdown-item" href="#">Day Order</a></li>
+              <li><a class="dropdown-item" href="#">Specific</a></li>
+            </ul>
           </div>
-          <!-- Buy Sell CTA end -->
-          <!-- one Click trading start-->
-          <div class="d-flex justify-content-between align-items-center mx-3 mb-3">
-            <p class="mb-0 text-gray font-weight-light">One click trading</p>
-            <input type="checkbox" class="js-switch" checked />
+          <!-- Expiration input end -->
+          <div class="divider mb-3 mx-3"></div>
+          <!-- Expiration Date input start -->
+          <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+            <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
+            <div class="date" id="expiration-date-input">
+              <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold"
+                aria-expanded="false">
+                08 Aug 2021 14:00
+              </button>
+            </div>
           </div>
-          <!-- one Click trading end-->
+          <!-- Expiration Date input end -->
+          <div class="divider mb-3 mx-3"></div>
+          <!-- Price input start -->
+          <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+            <p class="mb-0 font-weight-light medium-font">Price</p>
+            <input type="text" class="form-control w-50">
+          </div>
+          <!-- Price input end -->
         </div>
+        <!-- Profit loss display start -->
+        <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
+          <div>
+            <p class="mb-0 super-extra-large-font font-bold text-modal-black">1.2563</p>
+            <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                class="up-arrow-green mr-1"></span>+0.00032 (+0.04%)
+            </p>
+          </div>
+          <div>
+            <p class="mb-0 super-extra-large-font font-bold text-modal-black">1.2566</p>
+            <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                class="up-arrow-green mr-1"></span>+0.00032 (+0.04%)
+          </div>
+        </div>
+        <!-- Profit loss display end -->
+        <!-- Profit loss input start -->
+        <div class="d-flex justify-content-between mb-2 mx-3">
+          <p class="mb-0 font-weight-light medium-font">Take Profit</p>
+          <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-3 mx-3">
+          <input type="text" class="form-control w-35" id="profit-input" placeholder="100">
+          <span class="font-bold medium-font text-dark-black">price</span>
+          <input type="text" class="form-control w-35" id="loss-input" placeholder="100">
+        </div>
+        <!-- Profit loss input end -->
+        <!-- Buy Sell CTA start -->
+        <div class="d-flex justify-content-between mb-3 mx-3">
+          <button type="button" class="btn btn-w-m btn-primary btn-bleed-red w-45 ">
+            Sell
+          </button>
+          <button type="button" class="btn btn-w-m btn-primary w-45">
+            Buy
+          </button>
+        </div>
+        <!-- Buy Sell CTA end -->
+        <!-- one Click trading start-->
+        <div class="d-flex justify-content-between align-items-center mx-3 mb-3">
+          <p class="mb-0 text-gray font-weight-light">One click trading</p>
+          <input type="checkbox" class="js-switch" checked />
+        </div>
+        <!-- one Click trading end-->
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Mainly scripts -->
@@ -357,6 +359,11 @@
   <script src="js/inspinia.js"></script>
   <script src="js/plugins/pace/pace.min.js"></script>
   <script src="js/inspinia_custom.js"></script>
+  <script src="js/economic-calendar.js"></script>
+  <!-- Switchery -->
+  <script src="js/plugins/switchery/switchery.js"></script>
+  <!-- Dat2 picker -->
+  <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 </body>
 
 </html>
