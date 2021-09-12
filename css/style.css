@@ -10760,6 +10760,12 @@ body.body-small .responsive-navbar-cta {
 .sparkline-container .border-right {
   border-right: 2px solid #000000 !important;
 }
+iframe {
+  border: none !important;
+}
+.quotesBox {
+  width: 380px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -11347,8 +11353,9 @@ body.body-small .responsive-navbar-cta {
   height: 22px;
 }
 .trading-view-widget {
-  width: 70%;
-  height: 80vh;
+  height: 990px;
+  border-radius: 6px;
+  width: 68%;
 }
 .trading-view-widget .tradingview-widget-container {
   width: 100%;
@@ -11357,6 +11364,10 @@ body.body-small .responsive-navbar-cta {
   width: 100%;
 }
 .technical-summary-box {
+  border-radius: 6px;
+  height: 470px;
+}
+.small-widgets {
   width: 30%;
 }
 @media print {
