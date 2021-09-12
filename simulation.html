@@ -121,7 +121,7 @@
       </div>
     </nav>
 
-    <div id="page-wrapper" class="gray-bg dashbard-1">
+    <div id="page-wrapper" class="gray-bg dashbard-1 simulation-page-wrapper">
       <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
           <div class="navbar-header d-flex align-items-center">
@@ -205,8 +205,7 @@
               <div class="d-flex justify-content-between p-3 align-items-center">
                 <h3 class="">Following</h3>
                 <button type="button" data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle font-bold"
-                  aria-expanded="false">Add
-                  Provider</button>
+                  aria-expanded="false">Add Provider</button>
                 <ul id="add-provider-menu" class="dropdown-menu">
                   <div class="form-group position-relative">
                     <span class="inline-search-icon fa fa-search"></span>
@@ -245,10 +244,24 @@
           <!-- Simulation Results end -->
         </div>
         <!-- Page Content end -->
+        <!-- Follow/ Edit provider modal start -->
+        <div class="modal inmodal" id="follow-provider-modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content animated fadeIn">
+
+              <!-- Modal body start -->
+              <div class="modal-body p-3 scrollable-content">
+
+              </div>
+              <!-- Modal body end -->
+            </div>
+          </div>
+        </div>
+        <!-- Follow/ Edit provider modal end -->
       </div>
     </div>
 
-    <!-- Buy/Sell popup -->
+    <!-- Buy/Sell popup start -->
     <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">
       <div class="modal-dialog modal-dialog-center">
         <div class="modal-content animated fadeIn">
@@ -393,6 +406,8 @@
         </div>
       </div>
     </div>
+    <!-- Buy/Sell popup end -->
+
   </div>
 
   <!-- Mainly scripts -->

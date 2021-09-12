@@ -93,19 +93,21 @@ function registerEventHandlers() {
     e.preventDefault();
     $(".right-sidebar").removeClass("sidebar-open");
   });
-
   // Read more / Read less events
-  $(".read-more-less .btn-read-more").click(function () {
-    $('.read-more-less .read-less-text').toggleClass('d-none');
-    $('.read-more-less .read-more-text').toggleClass('d-none');
-  })
-  $('.read-more-less .btn-read-less').click(function () {
-    $('.read-more-less .read-more-text').toggleClass('d-none');
-    $('.read-more-less .read-less-text').toggleClass('d-none');
-  })
+  readMoreLessEventHandler();
+
   fetchBuySellData(registerBuySellModalEvents)
 }
-
+function readMoreLessEventHandler() {
+  $(".read-more-less .btn-read-more").unbind().click(function () {
+    $('.read-more-less .read-less-text').toggleClass('d-none');
+    $('.read-more-less .read-more-text').toggleClass('d-none');
+  })
+  $('.read-more-less .btn-read-less').unbind().click(function () {
+    $('.read-more-less .read-more-text').toggleClass('d-none');
+    $('.read-more-less .read-less-text').toggleClass('d-none');
+  })
+}
 // set init data
 localStorage.setItem('selectedAccountNo', 'TA 209761M');
 localStorage.setItem('selectedAccountType', 'LIVE');

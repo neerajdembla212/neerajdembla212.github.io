@@ -11319,6 +11319,12 @@ body.body-small .responsive-navbar-cta {
   color: #22D091;
   box-shadow: none;
 }
+#page-container.simulation-page #follow-provider-modal .simulation-text {
+  color: #7A4AEB;
+  background: #DBCCFD;
+  letter-spacing: 0.35em;
+  border-radius: 4px;
+}
 .login-container {
   height: 100%;
   background: #ffffff;
