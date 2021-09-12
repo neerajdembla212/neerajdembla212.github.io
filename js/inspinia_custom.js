@@ -216,7 +216,7 @@ function registerBuySellModalEvents(data) {
     forceParse: false,
     calendarWeeks: true,
     autoclose: true
-  }).on('changeDate', function (e) {
+  }).off('changeDate').on('changeDate', function (e) {
     const displayDateButton = $('#buy-sell-modal #btn-expiration-date-input');
     displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
   });

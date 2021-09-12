@@ -11396,6 +11396,42 @@ iframe {
     border-radius: 0;
   }
 }
+.settings-page .basic-profile-settings {
+  max-width: 340px;
+  border-radius: 6px;
+}
+.settings-page .basic-profile-settings img {
+  width: 48px;
+  height: 48px;
+}
+.settings-page .profile-settings {
+  border-radius: 6px;
+}
+.settings-page .profile-settings .full-width-control {
+  max-width: 360px;
+}
+.settings-page .profile-settings .half-width-control {
+  max-width: 165px;
+}
+.settings-page .trading-accounts .live-account {
+  background-color: rgba(34, 208, 145, 0.2);
+  border-radius: 4px;
+  letter-spacing: 0.35em;
+  width: 45px;
+  color: #22D091;
+}
+.settings-page .trading-accounts .demo-account {
+  background-color: #E7EDF4;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+  width: 45px;
+  color: #768496;
+}
+.settings-page .trading-accounts .online {
+  background-color: #C0E9E1;
+  color: #000000;
+  border-radius: 4px;
+}
 @media print {
   nav.navbar-static-side {
     display: none;
