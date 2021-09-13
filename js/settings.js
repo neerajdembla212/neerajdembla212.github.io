@@ -103,6 +103,12 @@
         const profileDetails = STATE.getProfileDetails();
         const container = $('.settings-page .basic-profile-settings');
         container.append(getBasicProfileSettingsHTML(profileDetails))
+        const role = STATE.getRole();
+        if (role === 'follower') {
+            container.addClass('mh-sm')
+        } else {
+            container.removeClass('mh-sm')
+        }
     }
 
     function getBasicProfileSettingsHTML(data) {
@@ -207,8 +213,7 @@
         <div class="divider"></div>
         <!-- CTA -->
         <div class="d-flex justify-content-between flex-wrap">
-            <button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
-            Strategy</button>
+            ${roleBasedCTA}
             ${settingsButton}
             <button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button>
         </div>
