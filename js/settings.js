@@ -36,7 +36,7 @@
     }
 
     const STATE = new State();
-    const MOBILE_MEDIA = window.matchMedia("(max-width: 480px)");
+    const MOBILE_MEDIA = window.matchMedia("(max-width: 575px)");
 
     // document ready
     $(function () {

@@ -11402,7 +11402,7 @@ textarea {
   }
 }
 .settings-page .basic-profile-settings {
-  width: 21vw;
+  min-width: 21vw;
   border-radius: 6px;
   margin-right: 1rem;
 }
@@ -11464,7 +11464,7 @@ textarea {
   border-radius: 4px;
 }
 .settings-page .secondary-details-settings {
-  width: 57vw;
+  min-width: 59vw;
 }
 @media screen and (max-width: 1250px) {
   .settings-page .secondary-details-settings {
