@@ -36,13 +36,28 @@
     }
 
     const STATE = new State();
+    const MOBILE_MEDIA = window.matchMedia("(max-width: 575px)");
+
     // document ready
     $(function () {
         // role has to be set first before callig other methods as they depend upon this value
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
+        registerGlobalEvents();
         fetchProfileDetails();
         fetchTradingAccounts();
     })
+
+    function registerGlobalEvents() {
+        MOBILE_MEDIA.addEventListener('change', function (event) {
+            if (event.matches) {
+                // screen is below 480px
+                renderResponsiveTradingAccountsTable();
+            } else {
+                // screen is above 480px
+                renderTradingAccountsTable();
+            }
+        })
+    }
     // data fetch functions start
     function fetchProfileDetails() {
         const role = STATE.getRole();
@@ -52,6 +67,16 @@
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard();
+                    fillFormWithProfileDetails();
+                }
+            })
+        } else if (role === 'follower') {
+            callAjaxMethod({
+                url: 'https://copypip.free.beeceptor.com/strategy-follower-details?id=123',
+                successCallback: (data) => {
+                    STATE.setProfileDetails(data.data);
+                    renderBasicProfileCard(role);
+                    fillFormWithProfileDetails();
                 }
             })
         }
@@ -62,7 +87,11 @@
             url: 'https://copypip.free.beeceptor.com/get-trading-accounts',
             successCallback: (data) => {
                 STATE.setTradingAccounts(data.data);
-                renderTradingAccountsTable();
+                if (MOBILE_MEDIA.matches) {
+                    renderResponsiveTradingAccountsTable();
+                } else {
+                    renderTradingAccountsTable();
+                }
             }
         })
     }
@@ -86,34 +115,45 @@
             strategy_philosophy,
             joined_date,
             strategy_age,
+            follower_age,
             cumulative_returns,
             avg_growth_per_month,
             avg_pips,
             trade_count,
             max_drawdown
         } = data;
+        const role = STATE.getRole();
+
+        const strategyPhilosophyHTML = role === 'provider' ? `<div class="py-3">
+        <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
+        <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
+        <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(new Date(joined_date))}
+        </div> 
+        <div class="divider"></div>` : '';
+
+        const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3" type="button" data-toggle="modal"
+        data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
+
+        const roleBasedCTA = role === 'provider' ? `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
+        Strategy</button>` : `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Apply to be a Strategy Provider</button>`
 
         return `
         <div class="mb-3">
             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
             <div class="ml-2 float-left">
-                <p class="font-bold extra-large-font mb-0">${username}</p>
-                <p class="text-light-black extra-large-font mb-0">${name}</p>
+                <p class="font-bold medium-font mb-0">${username}</p>
+                <p class="text-light-black medium-font mb-0">${name}</p>
             </div>
         </div>
         <div class="divider"></div>
         <!-- strategy philosophy start -->
-        <div class="py-3">
-            <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
-            <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
-            <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(new Date(joined_date))}
-        </div>
+        ${strategyPhilosophyHTML}
         <!-- strategy philosophy end -->
-        <div class="divider"></div>
+        
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <p class="mb-0 font-bold small-font text-dark-black">Strategy Age</p>
-            <p class="mb-0 medium-font font-bold text-dark-black">${strategy_age}</p>
+            <p class="mb-0 medium-font font-bold text-dark-black">${role === 'provider' ? strategy_age : follower_age}</p>
         </div>
         <!-- strategy age end -->
         <div class="divider"></div>
@@ -157,13 +197,21 @@
         <!-- Trades end -->
         <div class="divider"></div>
         <!-- Max Drawdown start -->
-        <div class="pt-3 d-flex justify-content-between align-items-center">
+        <div class="pt-3 d-flex justify-content-between align-items-center mb-2">
             <div>
                 <p class="mb-0 font-bold small-font text-dark-black">Max Drawdown </p>
             </div>
             <p class="mb-0 extra-large-font text-light-red font-bold">${max_drawdown}%</p>
         </div>
         <!-- Max Drawdown end -->
+        <div class="divider"></div>
+        <!-- CTA -->
+        <div class="d-flex justify-content-between flex-wrap">
+            <button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
+            Strategy</button>
+            ${settingsButton}
+            <button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button>
+        </div>
         `
     }
     // render basic profile end
@@ -171,8 +219,8 @@
     // render trading accounts start
     function renderTradingAccountsTable() {
         const tradingAccounts = STATE.getTradingAccounts();
-        const container = $('.settings-page .trading-accounts');
-        container.append(getTradingAccountsTableHTML(tradingAccounts))
+        const container = $('.settings-page .trading-accounts .trading-accounts-content');
+        container.empty().append(getTradingAccountsTableHTML(tradingAccounts))
     }
 
     function getTradingAccountsTableHTML(data) {
@@ -229,7 +277,7 @@
                 <td class="font-bold medium-font">
                     <p class="mb-0">${account_name}</p>
                 </td>
-                <td >
+                <td>
                     <p class="mb-0 text-center p-1 extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
                 </td>
                 <td>
@@ -251,5 +299,75 @@
             `
     }
     // render trading accounts end
+
+    // render responsive trading accounts start
+    function renderResponsiveTradingAccountsTable() {
+        const tradingAccounts = STATE.getTradingAccounts();
+        const container = $('.settings-page .trading-accounts .trading-accounts-content');
+        const rowsHTML = [];
+        tradingAccounts.forEach(account => {
+            rowsHTML.push(getResponsiveRowTradingAccount(account))
+        })
+        container.empty().append(rowsHTML.join(''))
+    }
+
+    function getResponsiveRowTradingAccount(account) {
+        if (!account) {
+            return '';
+        }
+        const { account_name,
+            account_type,
+            role,
+            server,
+            date_created,
+            demo_leverage,
+            status } = account;
+
+        return `
+                <div class="divider"></div>
+                <div class="p-3">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                            <p class="mb-0 font-bold medium-font mr-1">${account_name}</p>
+                            <p class="mb-0 text-center p-1 extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
+                        </div>
+                        <p class="mb-0 text-center">${formatDate(new Date(date_created))}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <p class="mb-0 text-center">${role}</p>
+                        <p class="mb-0 text-center">${server}</p>
+                        <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? 'online' : ''}">${status}</p>
+                    </div>
+                </div>
+            `
+    }
+    // render responsive trading accounts end
+
+    // fill profile settings start
+    function fillFormWithProfileDetails() {
+        const profileDetails = STATE.getProfileDetails();
+        const {
+            email,
+            name,
+            phone,
+            country,
+            strategy_philosophy
+        } = profileDetails;
+        const container = $('.profile-settings');
+        const role = STATE.getRole();
+        if (role === 'provider') {
+            container.find('#strategy_philosophy_container').removeClass('d-none');
+            container.find('#strategy_philosophy').val(strategy_philosophy);
+        } else if (role === 'follower') {
+            container.find('#strategy_philosophy_container').addClass('d-none');
+            container.find('#strategy_philosophy').val('');
+        }
+        container.find('#email_address').val(email);
+        container.find('#first_name').val(name.split(' ')[0]);
+        container.find('#last_name').val(name.split(' ')[1]);
+        container.find('#mobile').val(phone);
+        container.find('#country').val(country.toUpperCase());
+    }
+    // fill profile settings end
 
 })();

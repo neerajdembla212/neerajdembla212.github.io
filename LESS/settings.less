@@ -1,7 +1,23 @@
 .settings-page {
+    .wrapper.wrapper-content {
+        @media screen and (max-width: 1250px) {
+            flex-wrap: wrap;
+        }
+    }
+
     .basic-profile-settings {
-        max-width: 340px;
+        min-width: 21vw;
         border-radius: 6px;
+        margin-right: 1rem;
+
+        @media screen and (max-width: 1250px) {
+            width: 100%;
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            border-radius: 0;
+        }
 
         img {
             width: 48px;
@@ -13,6 +29,10 @@
     .profile-settings {
         border-radius: 6px;
 
+        @media screen and (max-width: 768px) {
+            border-radius: 0;
+        }
+
         .full-width-control {
             max-width: 360px;
         }
@@ -23,6 +43,13 @@
     }
 
     .trading-accounts {
+        width: inherit;
+        border-radius: 6px;
+
+        @media screen and (max-width: 768px) {
+            border-radius: 0;
+        }
+
         .live-account {
             background-color: rgba(34, 208, 145, 0.2);
             border-radius: 4px;
@@ -43,6 +70,19 @@
             background-color: @lightest-green;
             color: #000000;
             border-radius: 4px;
+        }
+    }
+
+    .secondary-details-settings {
+        min-width: 59vw;
+
+        @media screen and (max-width: 1250px) {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .profile-settings {
+            width: inherit;
         }
     }
 }

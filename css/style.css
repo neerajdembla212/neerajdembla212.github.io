@@ -10519,9 +10519,6 @@ body.body-small .responsive-navbar-cta {
   width: 18px;
   height: 18px;
 }
-.modal.inmodal textarea {
-  resize: none;
-}
 .modal.inmodal .scrollable-content {
   overflow-x: hidden;
   overflow-y: auto;
@@ -10765,6 +10762,9 @@ iframe {
 }
 .quotesBox {
   width: 380px;
+}
+textarea {
+  resize: none;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
@@ -11396,9 +11396,26 @@ iframe {
     border-radius: 0;
   }
 }
+@media screen and (max-width: 1250px) {
+  .settings-page .wrapper.wrapper-content {
+    flex-wrap: wrap;
+  }
+}
 .settings-page .basic-profile-settings {
-  max-width: 340px;
+  min-width: 21vw;
   border-radius: 6px;
+  margin-right: 1rem;
+}
+@media screen and (max-width: 1250px) {
+  .settings-page .basic-profile-settings {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .settings-page .basic-profile-settings {
+    border-radius: 0;
+  }
 }
 .settings-page .basic-profile-settings img {
   width: 48px;
@@ -11407,11 +11424,25 @@ iframe {
 .settings-page .profile-settings {
   border-radius: 6px;
 }
+@media screen and (max-width: 768px) {
+  .settings-page .profile-settings {
+    border-radius: 0;
+  }
+}
 .settings-page .profile-settings .full-width-control {
   max-width: 360px;
 }
 .settings-page .profile-settings .half-width-control {
   max-width: 165px;
+}
+.settings-page .trading-accounts {
+  width: inherit;
+  border-radius: 6px;
+}
+@media screen and (max-width: 768px) {
+  .settings-page .trading-accounts {
+    border-radius: 0;
+  }
 }
 .settings-page .trading-accounts .live-account {
   background-color: rgba(34, 208, 145, 0.2);
@@ -11431,6 +11462,18 @@ iframe {
   background-color: #C0E9E1;
   color: #000000;
   border-radius: 4px;
+}
+.settings-page .secondary-details-settings {
+  min-width: 59vw;
+}
+@media screen and (max-width: 1250px) {
+  .settings-page .secondary-details-settings {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+.settings-page .secondary-details-settings .profile-settings {
+  width: inherit;
 }
 @media print {
   nav.navbar-static-side {
