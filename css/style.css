@@ -11475,6 +11475,12 @@ textarea {
 .settings-page .secondary-details-settings .profile-settings {
   width: inherit;
 }
+.settings-page .mh-sm {
+  max-height: 553px;
+}
+.settings-page .mh-auto {
+  max-height: fit-content;
+}
 @media print {
   nav.navbar-static-side {
     display: none;
