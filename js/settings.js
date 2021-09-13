@@ -36,13 +36,28 @@
     }
 
     const STATE = new State();
+    const MOBILE_MEDIA = window.matchMedia("(max-width: 480px)");
+
     // document ready
     $(function () {
         // role has to be set first before callig other methods as they depend upon this value
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
+        registerGlobalEvents();
         fetchProfileDetails();
         fetchTradingAccounts();
     })
+
+    function registerGlobalEvents() {
+        MOBILE_MEDIA.addEventListener('change', function (event) {
+            if (event.matches) {
+                // screen is below 480px
+                renderResponsiveTradingAccountsTable();
+            } else {
+                // screen is above 480px
+                renderTradingAccountsTable();
+            }
+        })
+    }
     // data fetch functions start
     function fetchProfileDetails() {
         const role = STATE.getRole();
@@ -72,7 +87,11 @@
             url: 'https://copypip.free.beeceptor.com/get-trading-accounts',
             successCallback: (data) => {
                 STATE.setTradingAccounts(data.data);
-                renderTradingAccountsTable();
+                if (MOBILE_MEDIA.matches) {
+                    renderResponsiveTradingAccountsTable();
+                } else {
+                    renderTradingAccountsTable();
+                }
             }
         })
     }
@@ -109,7 +128,8 @@
         <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
         <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
         <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(new Date(joined_date))}
-        </div> ` : '';
+        </div> 
+        <div class="divider"></div>` : '';
 
         const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3" type="button" data-toggle="modal"
         data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
@@ -129,7 +149,7 @@
         <!-- strategy philosophy start -->
         ${strategyPhilosophyHTML}
         <!-- strategy philosophy end -->
-        <div class="divider"></div>
+        
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <p class="mb-0 font-bold small-font text-dark-black">Strategy Age</p>
@@ -199,8 +219,8 @@
     // render trading accounts start
     function renderTradingAccountsTable() {
         const tradingAccounts = STATE.getTradingAccounts();
-        const container = $('.settings-page .trading-accounts');
-        container.append(getTradingAccountsTableHTML(tradingAccounts))
+        const container = $('.settings-page .trading-accounts .trading-accounts-content');
+        container.empty().append(getTradingAccountsTableHTML(tradingAccounts))
     }
 
     function getTradingAccountsTableHTML(data) {
@@ -257,7 +277,7 @@
                 <td class="font-bold medium-font">
                     <p class="mb-0">${account_name}</p>
                 </td>
-                <td >
+                <td>
                     <p class="mb-0 text-center p-1 extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
                 </td>
                 <td>
@@ -279,6 +299,49 @@
             `
     }
     // render trading accounts end
+
+    // render responsive trading accounts start
+    function renderResponsiveTradingAccountsTable() {
+        const tradingAccounts = STATE.getTradingAccounts();
+        const container = $('.settings-page .trading-accounts .trading-accounts-content');
+        const rowsHTML = [];
+        tradingAccounts.forEach(account => {
+            rowsHTML.push(getResponsiveRowTradingAccount(account))
+        })
+        container.empty().append(rowsHTML.join(''))
+    }
+
+    function getResponsiveRowTradingAccount(account) {
+        if (!account) {
+            return '';
+        }
+        const { account_name,
+            account_type,
+            role,
+            server,
+            date_created,
+            demo_leverage,
+            status } = account;
+
+        return `
+                <div class="divider"></div>
+                <div class="p-3">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                            <p class="mb-0 font-bold medium-font mr-1">${account_name}</p>
+                            <p class="mb-0 text-center p-1 extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
+                        </div>
+                        <p class="mb-0 text-center">${formatDate(new Date(date_created))}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <p class="mb-0 text-center">${role}</p>
+                        <p class="mb-0 text-center">${server}</p>
+                        <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? 'online' : ''}">${status}</p>
+                    </div>
+                </div>
+            `
+    }
+    // render responsive trading accounts end
 
     // fill profile settings start
     function fillFormWithProfileDetails() {

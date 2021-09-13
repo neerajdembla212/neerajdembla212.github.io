@@ -11396,9 +11396,26 @@ textarea {
     border-radius: 0;
   }
 }
+@media screen and (max-width: 1250px) {
+  .settings-page .wrapper.wrapper-content {
+    flex-wrap: wrap;
+  }
+}
 .settings-page .basic-profile-settings {
-  width: 340px;
+  width: 21vw;
   border-radius: 6px;
+  margin-right: 1rem;
+}
+@media screen and (max-width: 1250px) {
+  .settings-page .basic-profile-settings {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .settings-page .basic-profile-settings {
+    border-radius: 0;
+  }
 }
 .settings-page .basic-profile-settings img {
   width: 48px;
@@ -11406,6 +11423,11 @@ textarea {
 }
 .settings-page .profile-settings {
   border-radius: 6px;
+}
+@media screen and (max-width: 768px) {
+  .settings-page .profile-settings {
+    border-radius: 0;
+  }
 }
 .settings-page .profile-settings .full-width-control {
   max-width: 360px;
@@ -11415,6 +11437,12 @@ textarea {
 }
 .settings-page .trading-accounts {
   width: inherit;
+  border-radius: 6px;
+}
+@media screen and (max-width: 768px) {
+  .settings-page .trading-accounts {
+    border-radius: 0;
+  }
 }
 .settings-page .trading-accounts .live-account {
   background-color: rgba(34, 208, 145, 0.2);
@@ -11436,8 +11464,13 @@ textarea {
   border-radius: 4px;
 }
 .settings-page .secondary-details-settings {
-  width: 820px;
-  margin-right: 20px;
+  width: 57vw;
+}
+@media screen and (max-width: 1250px) {
+  .settings-page .secondary-details-settings {
+    width: 100%;
+    margin-top: 1rem;
+  }
 }
 .settings-page .secondary-details-settings .profile-settings {
   width: inherit;
