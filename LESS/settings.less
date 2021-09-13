@@ -1,6 +1,6 @@
 .settings-page {
     .basic-profile-settings {
-        max-width: 340px;
+        width: 340px;
         border-radius: 6px;
 
         img {
@@ -23,6 +23,8 @@
     }
 
     .trading-accounts {
+        width: inherit;
+
         .live-account {
             background-color: rgba(34, 208, 145, 0.2);
             border-radius: 4px;
@@ -43,6 +45,15 @@
             background-color: @lightest-green;
             color: #000000;
             border-radius: 4px;
+        }
+    }
+
+    .secondary-details-settings {
+        width: 820px;
+        margin-right: 20px;
+
+        .profile-settings {
+            width: inherit;
         }
     }
 }

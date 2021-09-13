@@ -52,6 +52,16 @@
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard();
+                    fillFormWithProfileDetails();
+                }
+            })
+        } else if (role === 'follower') {
+            callAjaxMethod({
+                url: 'https://copypip.free.beeceptor.com/strategy-follower-details?id=123',
+                successCallback: (data) => {
+                    STATE.setProfileDetails(data.data);
+                    renderBasicProfileCard(role);
+                    fillFormWithProfileDetails();
                 }
             })
         }
@@ -86,34 +96,44 @@
             strategy_philosophy,
             joined_date,
             strategy_age,
+            follower_age,
             cumulative_returns,
             avg_growth_per_month,
             avg_pips,
             trade_count,
             max_drawdown
         } = data;
+        const role = STATE.getRole();
+
+        const strategyPhilosophyHTML = role === 'provider' ? `<div class="py-3">
+        <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
+        <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
+        <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(new Date(joined_date))}
+        </div> ` : '';
+
+        const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3" type="button" data-toggle="modal"
+        data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
+
+        const roleBasedCTA = role === 'provider' ? `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
+        Strategy</button>` : `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Apply to be a Strategy Provider</button>`
 
         return `
         <div class="mb-3">
             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
             <div class="ml-2 float-left">
-                <p class="font-bold extra-large-font mb-0">${username}</p>
-                <p class="text-light-black extra-large-font mb-0">${name}</p>
+                <p class="font-bold medium-font mb-0">${username}</p>
+                <p class="text-light-black medium-font mb-0">${name}</p>
             </div>
         </div>
         <div class="divider"></div>
         <!-- strategy philosophy start -->
-        <div class="py-3">
-            <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
-            <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
-            <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(new Date(joined_date))}
-        </div>
+        ${strategyPhilosophyHTML}
         <!-- strategy philosophy end -->
         <div class="divider"></div>
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <p class="mb-0 font-bold small-font text-dark-black">Strategy Age</p>
-            <p class="mb-0 medium-font font-bold text-dark-black">${strategy_age}</p>
+            <p class="mb-0 medium-font font-bold text-dark-black">${role === 'provider' ? strategy_age : follower_age}</p>
         </div>
         <!-- strategy age end -->
         <div class="divider"></div>
@@ -157,13 +177,21 @@
         <!-- Trades end -->
         <div class="divider"></div>
         <!-- Max Drawdown start -->
-        <div class="pt-3 d-flex justify-content-between align-items-center">
+        <div class="pt-3 d-flex justify-content-between align-items-center mb-2">
             <div>
                 <p class="mb-0 font-bold small-font text-dark-black">Max Drawdown </p>
             </div>
             <p class="mb-0 extra-large-font text-light-red font-bold">${max_drawdown}%</p>
         </div>
         <!-- Max Drawdown end -->
+        <div class="divider"></div>
+        <!-- CTA -->
+        <div class="d-flex justify-content-between flex-wrap">
+            <button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
+            Strategy</button>
+            ${settingsButton}
+            <button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button>
+        </div>
         `
     }
     // render basic profile end
@@ -251,5 +279,32 @@
             `
     }
     // render trading accounts end
+
+    // fill profile settings start
+    function fillFormWithProfileDetails() {
+        const profileDetails = STATE.getProfileDetails();
+        const {
+            email,
+            name,
+            phone,
+            country,
+            strategy_philosophy
+        } = profileDetails;
+        const container = $('.profile-settings');
+        const role = STATE.getRole();
+        if (role === 'provider') {
+            container.find('#strategy_philosophy_container').removeClass('d-none');
+            container.find('#strategy_philosophy').val(strategy_philosophy);
+        } else if (role === 'follower') {
+            container.find('#strategy_philosophy_container').addClass('d-none');
+            container.find('#strategy_philosophy').val('');
+        }
+        container.find('#email_address').val(email);
+        container.find('#first_name').val(name.split(' ')[0]);
+        container.find('#last_name').val(name.split(' ')[1]);
+        container.find('#mobile').val(phone);
+        container.find('#country').val(country.toUpperCase());
+    }
+    // fill profile settings end
 
 })();

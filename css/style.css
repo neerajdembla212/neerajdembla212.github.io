@@ -10519,9 +10519,6 @@ body.body-small .responsive-navbar-cta {
   width: 18px;
   height: 18px;
 }
-.modal.inmodal textarea {
-  resize: none;
-}
 .modal.inmodal .scrollable-content {
   overflow-x: hidden;
   overflow-y: auto;
@@ -10765,6 +10762,9 @@ iframe {
 }
 .quotesBox {
   width: 380px;
+}
+textarea {
+  resize: none;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
@@ -11397,7 +11397,7 @@ iframe {
   }
 }
 .settings-page .basic-profile-settings {
-  max-width: 340px;
+  width: 340px;
   border-radius: 6px;
 }
 .settings-page .basic-profile-settings img {
@@ -11412,6 +11412,9 @@ iframe {
 }
 .settings-page .profile-settings .half-width-control {
   max-width: 165px;
+}
+.settings-page .trading-accounts {
+  width: inherit;
 }
 .settings-page .trading-accounts .live-account {
   background-color: rgba(34, 208, 145, 0.2);
@@ -11431,6 +11434,13 @@ iframe {
   background-color: #C0E9E1;
   color: #000000;
   border-radius: 4px;
+}
+.settings-page .secondary-details-settings {
+  width: 820px;
+  margin-right: 20px;
+}
+.settings-page .secondary-details-settings .profile-settings {
+  width: inherit;
 }
 @media print {
   nav.navbar-static-side {
