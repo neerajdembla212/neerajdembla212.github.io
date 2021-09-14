@@ -16,8 +16,26 @@ $(document).ready(function () {
     // Add body-small class if window less than 768px
     if (window.innerWidth < 769) {
         $('body').addClass('body-small')
+        $('.body-small .responsive-navbar-cta').on('click', function(e) {
+            $('.navbar-default').toggleClass('dynamic-navbar')
+            if($('.navbar-default').hasClass('dynamic-navbar')) {
+                //$('.pace-done').removeClass('mini-navbar');
+                $('.navbar-default').css({'width': '33%', 'position': 'fixed', 'background': 'gray'});
+            } else {
+                $('.navbar-default').css({'width': '0', 'position': 'relative', 'background': 'none'});
+            }
+        })
+        $('.body-small .logo').on('click', function(e) {
+            $('.navbar-default').css({'width': '0', 'position': 'relative', 'background': 'none'});
+        })
+        
     } else {
-        $('body').removeClass('body-small')
+        $('body').removeClass('body-small');
+        if($('.pace-done').hasClass('mini-navbar')) {
+            $('.navbar-default').css({'width': '70px', 'position': 'inherit', 'background': 'none'});
+        } else {
+            $('.navbar-default').css({'width': '220px', 'position': 'inherit', 'background': 'none'});
+        }
     }
 
     // MetisMenu
@@ -150,8 +168,28 @@ $(document).ready(function () {
 $(window).bind("resize", function () {
     if (window.innerWidth < 769) {
         $('body').addClass('body-small')
+        console.log("less than 769")
+        //$('.navbar-default').css({'width': '0', 'position': 'relative', 'background': 'none'});
+        $('.body-small .responsive-navbar-cta').on('click', function(e) {
+            $('.navbar-default').toggleClass('dynamic-navbar')
+            if($('.navbar-default').hasClass('dynamic-navbar')) {
+                //$('.pace-done').removeClass('mini-navbar');
+                $('.navbar-default').css({'width': '33%', 'position': 'fixed', 'background': 'gray'});
+            } else {
+                $('.navbar-default').css({'width': '0', 'position': 'relative', 'background': 'none'});
+            }
+        })
+        $('.body-small .logo').on('click', function(e) {
+            $('.navbar-default').css({'width': '0', 'position': 'relative', 'background': 'none'});
+        })
     } else {
         $('body').removeClass('body-small')
+        console.log("More than 769")
+        if($('.pace-done').hasClass('mini-navbar')) {
+            $('.navbar-default').css({'width': '70px', 'position': 'inherit', 'background': 'none'});
+        } else {
+            $('.navbar-default').css({'width': '220px', 'position': 'inherit', 'background': 'none'});
+        }
     }
 });
 
