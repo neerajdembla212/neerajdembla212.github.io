@@ -10736,9 +10736,6 @@ body.body-small .responsive-navbar-cta {
   background-color: #000000;
   height: 2px;
 }
-.sparkline-container .w-60 {
-  width: 60%;
-}
 .sparkline-container .green {
   color: #22D091;
 }
@@ -10765,6 +10762,9 @@ iframe {
 }
 textarea {
   resize: none;
+}
+.w-55 {
+  width: 55% !important;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
@@ -11480,6 +11480,18 @@ textarea {
 }
 .settings-page .mh-auto {
   max-height: fit-content;
+}
+#become-strategy-provider-modal .modal-dialog {
+  width: 400px;
+}
+#become-strategy-provider-modal .modal-dialog .full-form-control {
+  width: 165px;
+}
+#become-strategy-provider-modal .modal-dialog .half-form-control {
+  width: 60%;
+}
+#become-strategy-provider-modal .modal-body {
+  max-height: 500px;
 }
 @media print {
   nav.navbar-static-side {
