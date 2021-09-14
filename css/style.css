@@ -11331,26 +11331,53 @@ textarea {
   letter-spacing: 0.35em;
   border-radius: 4px;
 }
-.login-container {
-  height: 100%;
+#page-wrapper.login-page {
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#page-wrapper.login-page .login-container {
+  height: auto;
   background: #ffffff;
 }
-.login-container .login-form {
-  width: 50%;
-  margin-top: 10vh;
-  margin-left: 40%;
+#page-wrapper.login-page .login-container .login-form {
+  width: 100%;
+  margin: 10vh auto;
+  max-width: 300px;
 }
-.login-container .login-form .nav.nav-tabs {
+#page-wrapper.login-page .login-container .login-form .nav.nav-tabs {
   border: none;
 }
-.login-container .leverage-container .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
+#page-wrapper.login-page .login-container .login-form img {
+  max-height: 100vh;
+}
+#page-wrapper.login-page .login-container .leverage-container .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
   line-height: 2rem !important;
 }
-.login-container .leverage-container .select2-container--bootstrap4 .select2-selection--single {
+#page-wrapper.login-page .login-container .leverage-container .select2-container--bootstrap4 .select2-selection--single {
   height: calc(2rem + 2px) !important;
 }
-.login-container .img-logo {
+#page-wrapper.login-page .login-container .img-logo {
   height: 22px;
+}
+#page-wrapper.login-page .img-display {
+  height: auto;
+  background: url('/img/bg_desktop_signup.jpg');
+  background-size: 100% 100%;
+}
+#page-wrapper.login-page .img-display .disclaimer-content {
+  width: auto;
+  margin-top: 10vh;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+#page-wrapper.login-page .img-display .notice-content {
+  background: rgba(48, 25, 102, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 10vh;
 }
 .trading-view-widget {
   height: 990px;
