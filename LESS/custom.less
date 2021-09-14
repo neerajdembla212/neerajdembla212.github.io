@@ -556,7 +556,7 @@ table>tbody>tr:first-child>td {
   display: none;
 }
 
-body.body-small .navbar-minimalize {
+body .navbar-minimalize {
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -572,10 +572,10 @@ body.body-small .navbar-minimalize {
     height: 20px;
     margin: auto;
   }
-}
 
-body.body-small .responsive-navbar-cta {
-  display: flex !important;
+  @media screen and(max-width: 768px) {
+    display: flex !important;
+  }
 }
 
 .navbar.navbar-static-top {
@@ -940,4 +940,34 @@ textarea {
 
 .w-55 {
   width: 55% !important;
+}
+
+.fixed-navbar .navbar-static-side {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 220px;
+  z-index: 1;
+  background-color: #754ef7;
+}
+
+.fixed-navbar-hide {
+  display: none;
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 4px 0px 0px 4px;
+  z-index: 1;
+
+  .nav-menu-toggle-arrow {
+    border-right-color: @white;
+    margin: 7px 0px 7px -2px;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 }

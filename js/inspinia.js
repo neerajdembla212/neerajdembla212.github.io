@@ -14,10 +14,9 @@ $(document).ready(function () {
 
 
     // Add body-small class if window less than 768px
-    if (window.innerWidth < 769) {
-        $('body').addClass('body-small')
-    } else {
-        $('body').removeClass('body-small')
+    if (window.innerWidth > 768) {
+        // $('body').removeClass('fixed-navbar')
+        $('body').removeClass('fixed-navbar')
     }
 
     // MetisMenu
@@ -148,8 +147,9 @@ $(document).ready(function () {
 
 // Minimalize menu when screen is less than 768px
 $(window).bind("resize", function () {
-    if (window.innerWidth < 769) {
-        $('body').addClass('body-small')
+    if (window.innerWidth > 768) {
+        $('body').removeClass('body-small')
+        // $('body').addClass('body-small')
     } else {
         $('body').removeClass('body-small')
     }
@@ -236,7 +236,13 @@ function animationHover(element, animation) {
 }
 
 function SmoothlyMenu() {
-    if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
+    if ($('body').hasClass('fixed-navbar')) {
+        $('nav ul.nav.metismenu').hide();
+        setTimeout(
+            function () {
+                $('nav ul.nav.metismenu').fadeIn(400);
+            }, 200);
+    } else if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
         // Hide menu in order to smoothly turn on when maximize menu
         $('nav ul.nav.metismenu').hide();
         // For smoothly turn on menu
@@ -244,12 +250,6 @@ function SmoothlyMenu() {
             function () {
                 $('nav ul.nav.metismenu').fadeIn(400);
             }, 200);
-    } else if ($('body').hasClass('fixed-sidebar')) {
-        $('nav ul.nav.metismenu').hide();
-        setTimeout(
-            function () {
-                $('nav ul.nav.metismenu').fadeIn(400);
-            }, 100);
     } else {
         // Remove all inline style from jquery fadeIn function to reset menu state
         $('nav ul.nav.metismenu').removeAttr('style');

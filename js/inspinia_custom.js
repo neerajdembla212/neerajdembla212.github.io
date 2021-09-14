@@ -95,8 +95,14 @@ function registerEventHandlers() {
   });
   // Read more / Read less events
   readMoreLessEventHandler();
-
-  fetchBuySellData(registerBuySellModalEvents)
+  fetchBuySellData(registerBuySellModalEvents);
+  $('.responsive-navbar-cta').click(function () {
+    $('body').toggleClass('fixed-navbar');
+    SmoothlyMenu();
+  })
+  $('.fixed-navbar-hide').click(function () {
+    $('body').removeClass('fixed-navbar');
+  })
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
