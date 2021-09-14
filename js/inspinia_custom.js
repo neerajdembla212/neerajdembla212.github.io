@@ -95,8 +95,14 @@ function registerEventHandlers() {
   });
   // Read more / Read less events
   readMoreLessEventHandler();
-
-  fetchBuySellData(registerBuySellModalEvents)
+  fetchBuySellData(registerBuySellModalEvents);
+  $('.responsive-navbar-cta').click(function () {
+    $('body').toggleClass('fixed-navbar');
+    SmoothlyMenu();
+  })
+  $('.fixed-navbar-hide').click(function () {
+    $('body').removeClass('fixed-navbar');
+  })
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -167,7 +173,7 @@ function registerBuySellModalEvents(data) {
   if (!data) {
     return
   }
-  var elem = document.querySelector('.js-switch');
+  var elem = document.querySelector('#buy-sell-modal .js-switch');
   new Switchery(elem, {
     color: '#E5E5E5',
     secondaryColor: '#E5E5E5',
@@ -263,16 +269,17 @@ function formatDate(date, format = "DD MMM YYYY") {
   switch (format) {
     case 'DD MMM YYYY': return `${da} ${mmm} ${ye}`;
     case 'DD MM YYYY HH:mm': return `${da} ${mm} ${ye} ${hr}:${min}`;
+    case 'DD MMM YYYY HH:mm': return `${da} ${mmm} ${ye} ${hr}:${min}`;
     case 'DD/MM/YYYY HH:mm': return `${da}/${mm}/${ye} ${hr}:${min}`;
     case 'HH:mm': return `${hr}:${min}`
   }
 }
 
 function addPrefixZero(number) {
-  if (!number || typeof number !== "number" || isNaN(number)) {
+  if (typeof number !== "number" || isNaN(number)) {
     return number
   }
-  if (number < 0) {
+  if (number < 10) {
     return ("0" + number);
   }
   return number;

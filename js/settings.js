@@ -57,6 +57,36 @@
                 renderTradingAccountsTable();
             }
         })
+        // add switchery radio button in modal
+        var elem = document.querySelector('#become-strategy-provider-modal .js-switch');
+        new Switchery(elem, {
+            color: '#E5E5E5',
+            secondaryColor: '#E5E5E5',
+            jackColor: '#22D091',
+            jackSecondaryColor: "#FFFFFF",
+        });
+        // start date picker
+        $('#become-strategy-provider-modal .start-date-input').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: true,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        }).off('changeDate').on('changeDate', function (e) {
+            const displayDateButton = $('#become-strategy-provider-modal .start-date-input .btn-dropdown');
+            displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
+        });
+        // end date picker
+        $('#become-strategy-provider-modal .end-date-input').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: true,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        }).off('changeDate').on('changeDate', function (e) {
+            const displayDateButton = $('#become-strategy-provider-modal .end-date-input .btn-dropdown');
+            displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
+        });
     }
     // data fetch functions start
     function fetchProfileDetails() {
@@ -141,7 +171,7 @@
         data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
 
         const roleBasedCTA = role === 'provider' ? `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
-        Strategy</button>` : `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Apply to be a Strategy Provider</button>`
+        Strategy</button>` : `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button" data-toggle="modal" data-target="#become-strategy-provider-modal">Apply to be a Strategy Provider</button>`
 
         return `
         <div class="mb-3">
@@ -361,10 +391,10 @@
         const container = $('.profile-settings');
         const role = STATE.getRole();
         if (role === 'provider') {
-            container.find('#strategy_philosophy_container').removeClass('d-none');
+            container.find('#strategy_philosophy_container').removeClass('invisible');
             container.find('#strategy_philosophy').val(strategy_philosophy);
         } else if (role === 'follower') {
-            container.find('#strategy_philosophy_container').addClass('d-none');
+            container.find('#strategy_philosophy_container').addClass('invisible');
             container.find('#strategy_philosophy').val('');
         }
         container.find('#email_address').val(email);

@@ -820,7 +820,7 @@
             const value = target.text();
             console.log(value);
         })
-        var elem = document.querySelector('.js-switch');
+        var elem = document.querySelector('#strategy-settings-modal .js-switch');
         new Switchery(elem, {
             color: '#E5E5E5',
             secondaryColor: '#E5E5E5',

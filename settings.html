@@ -379,6 +379,132 @@
       </div>
     </div>
     <!-- Buy/Sell popup end -->
+    <!-- Apply to be a strategy provider popup start -->
+    <div class="modal inmodal" id="become-strategy-provider-modal" tabindex="-1" role="dialog" aria-modal="true">
+      <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+          <!-- Modal Header start -->
+          <div class="d-flex justify-content-between m-3">
+            <h4 class="modal-title">Become a Strategy Provider</h4>
+            <button id="close-modal" class="btn
+                  btn-default
+                  btn-outline
+                  btn-action
+                  border-0
+              " data-dismiss="modal">
+              <img src="img/ic_cross.svg">
+            </button>
+          </div>
+          <!-- Modal Header end -->
+          <!-- Modal content start -->
+          <div class="modal-body p-3 scrollable-content">
+            <!-- Strategy name input start -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="mb-0 font-weight-bold text-dark-gray">Strategy Name</p>
+              <input type="text" class="form-control full-form-control" id="strategy_name" />
+            </div>
+            <!-- Strategy name input end -->
+            <!-- Fee input start -->
+            <div class="d-flex justify-content-between mb-3">
+              <div>
+                <p class="text-gray medium-font mb-1">Management Fee</p>
+                <div class="d-flex align-items-center">
+                  <input type="text" class="form-control mr-2 half-form-control" placeholder="0.01 - 100">
+                  <span class="font-bold medium-font text-dark-black">USD / m</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-gray medium-font mb-1">Profit Sharing Fee</p>
+                <div class="d-flex align-items-center">
+                  <input type="text" class="form-control half-form-control mr-2" placeholder="0.01 - 100">
+                  <span class="font-bold medium-font text-dark-black">%</span>
+                </div>
+              </div>
+            </div>
+            <!-- Fee input end -->
+            <!-- Auto approval input start -->
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+              <p class="mb-0">Auto Approval for Followers</p>
+              <input type="checkbox" class="js-switch" checked />
+            </div>
+            <!-- Auto approval input end -->
+            <div class="divider"></div>
+            <!-- Trading method input start -->
+            <section class="my-3">
+              <p class="font-bold medium-font">Trading Method</p>
+              <div class="d-flex justify-content-between">
+                <div class="form-check abc-checkbox form-check-inline">
+                  <input class="form-check-input mr-2" type="checkbox" value="option1">
+                  <label class="form-check-label text-gray medium-font">Manual</label>
+                </div>
+                <div class="form-check abc-checkbox form-check-inline">
+                  <input class="form-check-input mr-2" type="checkbox" value="option1">
+                  <label class="form-check-label text-gray medium-font">Automated</label>
+                </div>
+                <div class="form-check abc-checkbox form-check-inline">
+                  <input class="form-check-input mr-2" type="checkbox" value="option1">
+                  <label class="form-check-label text-gray medium-font">Combined</label>
+                </div>
+              </div>
+            </section>
+            <!-- Trading method input end -->
+            <div class="divider"></div>
+            <!-- Trading history input start-->
+            <section class="my-3">
+              <p class="font-bold medium-font">Trading History</p>
+              <div class="d-flex">
+                <div class="form-check abc-checkbox form-check-inline w-55 mr-0">
+                  <input class="form-check-input mr-2" type="checkbox" value="option1">
+                  <label class="form-check-label text-gray medium-font">Full History</label>
+                </div>
+                <div class="form-check abc-checkbox form-check-inline">
+                  <input class="form-check-input mr-2" type="checkbox" value="option2">
+                  <label class="form-check-label text-gray medium-font">Specify Duration</label>
+                </div>
+              </div>
+            </section>
+            <!-- Trading history input end-->
+            <!-- Follow duration section start -->
+            <div class="d-flex mb-3">
+              <div class="w-55">
+                <p class="mb-0 text-dark-gray medium-font">Start Date</p>
+                <div class="date start-date-input">
+                  <button class="btn dropdown-toggle btn-dropdown font-bold pl-0" aria-expanded="false">
+                    1 Jan 2021
+                  </button>
+                </div>
+              </div>
+              <div>
+                <p class="mb-0 text-dark-gray medium-font">End Date</p>
+                <div class="date end-date-input">
+                  <button class="btn dropdown-toggle btn-dropdown font-bold pl-0" aria-expanded="false">
+                    1 Jan 2021
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Follow duration section end -->
+            <div class="divider mb-3"></div>
+            <!-- Description input start-->
+            <section class="py-3">
+              <p class="mb-3 font-bold medium-font">Description</p>
+              <textarea class="form-control mb-3" placeholder="Tell us about your trading strategy" rows="3"></textarea>
+              <p class="small-font text-dark-black">The MT4 trading account used for application must not already be a
+                Strategy Follower account.</p>
+            </section>
+            <!-- Description input end-->
+            <!-- <div class="divider"></div> -->
+          </div>
+          <!-- Modal content end-->
+          <!-- Modal footer start -->
+          <div class="modal-footer w-100 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary w-50" id="update-strategy-settings">Submit Application</button>
+          </div>
+          <!-- Modal footer end -->
+        </div>
+      </div>
+    </div>
+    <!-- Apply to be a strategy provider popup end -->
   </div>
 
   <!-- Mainly scripts -->
