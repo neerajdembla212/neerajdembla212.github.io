@@ -247,10 +247,8 @@
       const providerCard = getTopGrowthCardHTML(provider);
       containerHTML.push(providerCard);
     });
-    if (data.length % 2 !== 0) {
-      containerHTML.push(getProxyCardHTML())
-    }
     container.empty().append(containerHTML);
+    addProxyCard(container, data.length);
   }
 
   function plotTopGrowthTable(data) {
@@ -855,10 +853,23 @@
       const providerCard = getTopGrowthCardHTML(provider);
       containerHTML.push(providerCard);
     });
-    if (data.length % 2 !== 0) {
-      containerHTML.push(getProxyCardHTML())
-    }
     container.empty().append(containerHTML);
+    // adding proxy card if needed
+    addProxyCard(container, data.length);
+  }
+
+  function addProxyCard(container, dataLength) {
+    const containerWidth = container.innerWidth();
+    const card = container.find('.contact-box')[0];
+    const cardsInRow = Math.round(containerWidth / $(card).innerWidth());
+    const proxyCardHTML = [];
+    if (dataLength % cardsInRow !== 0) {
+      const numberOfProxyCards = cardsInRow - (dataLength % cardsInRow);
+      for (let i = 0; i < numberOfProxyCards; i++) {
+        proxyCardHTML.push(getProxyCardHTML());
+      }
+      container.append(proxyCardHTML.join(''));
+    }
   }
 
   function plotFollowingUsersTable(data) {
@@ -887,6 +898,7 @@
       containerHTML.push(providerCard);
     });
     container.empty().append(containerHTML);
+    addProxyCard(container, data.length);
   }
   // render favourite users card HTML start
 
@@ -910,7 +922,7 @@
     for (let i = 0; i < numberOfBoxes; i++) {
       boxesHTML.push(`<div class="contact-box loading col ${activeTabId === "#featured" ? 'featured' : ''}">
           <span class="fa fa-bookmark-o favourite-icon float-right"></span>
-          <button class="btn btn-primary btn-block">
+          <button class="btn btn-primary btn-block" disabled>
             Follow Provider
           </button>
         </div>`);

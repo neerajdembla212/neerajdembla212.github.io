@@ -118,9 +118,6 @@ function registerEventHandlers() {
     SmoothlyMenu();
   })
 
-  fetchBuySellData(registerBuySellModalEvents)
-
-
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -192,6 +189,7 @@ function registerBuySellModalEvents(data) {
     return
   }
   var elem = document.querySelector('#buy-sell-modal .js-switch');
+
   new Switchery(elem, {
     color: '#E5E5E5',
     secondaryColor: '#E5E5E5',

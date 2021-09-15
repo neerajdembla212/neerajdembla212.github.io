@@ -10967,7 +10967,7 @@ textarea {
 }
 .buy-sell-section {
   border-radius: 6px;
-  width: 31vw;
+  max-height: 444px;
 }
 @media screen and (max-width: 1250px) {
   .buy-sell-section {
@@ -11002,24 +11002,6 @@ textarea {
   border-radius: 4px;
   height: 20px;
   padding: 2px;
-}
-.trade-section table {
-  width: 100%;
-}
-.trade-section tbody {
-  height: 288px;
-  overflow-y: auto;
-  width: 100%;
-}
-.trade-section thead,
-.trade-section tbody,
-.trade-section tfoot,
-.trade-section tr {
-  display: block;
-  width: 100%;
-}
-.trade-section tfoot td {
-  display: block;
 }
 .trade-section .responsive-trades > * {
   border-top: 1px solid #EEEEEE;
