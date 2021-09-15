@@ -10775,7 +10775,7 @@ textarea {
   left: 0;
   height: 100vh;
   width: 220px;
-  z-index: 1;
+  z-index: 2;
   background-color: #754ef7;
 }
 .fixed-navbar-hide {
@@ -10788,8 +10788,8 @@ textarea {
   z-index: 1;
 }
 .fixed-navbar-hide .nav-menu-toggle-arrow {
-  border-right-color: #ffffff;
-  margin: 7px 0px 7px 0px;
+  border-left-color: #ffffff;
+  margin: 7px 0px 7px -2px;
 }
 @media screen and (max-width: 768px) {
   .fixed-navbar-hide {

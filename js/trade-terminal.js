@@ -108,7 +108,7 @@
         fetchBuySellData(function (data) {
             STATE.setBuySellData(data);
             renderBuySellData();
-            registerBuySellEvents();
+            // registerBuySellEvents();
         });
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
@@ -837,28 +837,6 @@
             <input type="checkbox" class="js-switch" checked />
         </div>
         <!-- one Click trading end-->`
-    }
-
-    function registerBuySellEvents() {
-        var elem = document.querySelector('.js-switch');
-        new Switchery(elem, {
-            color: '#E5E5E5',
-            secondaryColor: '#E5E5E5',
-            jackColor: '#22D091',
-            jackSecondaryColor: "#FFFFFF",
-        });
-        $('#type-input-menu.dropdown-menu').click(event => {
-            const selectedItem = event.target.innerText.trim();
-            const selectedButton = $('#btn-type-input')
-            selectedButton.text(selectedItem);
-            if (selectedItem.toUpperCase() === 'PENDING ORDER') {
-                renderPendingOrderFormControls();
-                $('.trade-section tbody').css('height', '530px')
-            } else if (selectedItem.toUpperCase() === 'MARKET EXECUTION') {
-                renderMarketExecutionFormControls();
-                $('.trade-section tbody').css('height', '288px')
-            }
-        })
     }
 
     function renderPendingOrderFormControls(mode) {
