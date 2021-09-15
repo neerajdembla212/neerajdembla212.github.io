@@ -34,6 +34,14 @@ function delete_cookie(name) {
 }
 
 function registerEventHandlers() {
+  // navigating pages 
+  $('nav .metismenu li a[data-href]').unbind().click(function (event) {
+    const target = $(event.currentTarget).data('href');
+    if (target === window.location.pathname) {
+      return;
+    }
+    window.location.href = window.location.origin + target;
+  })
   // dropdown in navigation panel to switch accounts
   $(".dropdown-select-menu").click((event) => {
     // const selectedItem = event.innerText.trim();
@@ -103,6 +111,10 @@ function registerEventHandlers() {
   $('.fixed-navbar-hide').click(function () {
     $('body').removeClass('fixed-navbar');
   })
+
+  fetchBuySellData(registerBuySellModalEvents)
+
+
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
