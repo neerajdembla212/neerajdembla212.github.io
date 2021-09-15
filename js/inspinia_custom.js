@@ -110,6 +110,12 @@ function registerEventHandlers() {
   })
   $('.fixed-navbar-hide').click(function () {
     $('body').removeClass('fixed-navbar');
+    $('#overlay').removeClass('show').addClass('d-none fade');
+  })
+  $('#overlay').click(function (event) {
+    $(event.currentTarget).removeClass('show').addClass('d-none fade');
+    $('body').removeClass('fixed-navbar');
+    SmoothlyMenu();
   })
 
   fetchBuySellData(registerBuySellModalEvents)
