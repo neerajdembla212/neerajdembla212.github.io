@@ -108,7 +108,7 @@
         fetchBuySellData(function (data) {
             STATE.setBuySellData(data);
             renderBuySellData();
-            // registerBuySellEvents();
+            registerBuySellEvents();
         });
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
@@ -270,7 +270,7 @@
     }
 
     function getOpenTradesTableHTML(data) {
-        return `<table class="table scroll">
+        return `<table class="table mb-0">
         ${getOpenTradesTableHeaders()}
         ${getOpenTradesTableBody(data)}
         ${getOpenTradesTableFooter()}
@@ -281,17 +281,17 @@
         return `
         <thead>
             <tr>
-            <th class="align-middle w-18">Symbol</th>
-            <th class="text-center align-middle w-9">Trader</th>
-            <th class="text-center align-middle w-9">Type</th>
-            <th class="text-center align-middle w-9">Volume</th>
-            <th class="text-center align-middle w-17">Open Price</th>
-            <th class="text-center align-middle w-9 pr-3">Amount</th>
-            <th class="text-center align-middle w-9">SL</th>
-            <th class="text-center align-middle w-9">TP</th>
-            <th class="text-center align-middle w-9">Current</th>
-            <th class="text-center align-middle w-9">Swap</th>
-            <th class="text-center align-middle w-9">Profit</th>
+            <th class="pl-2 align-middle">Symbol</th>
+            <th class="text-center align-middle">Trader</th>
+            <th class="text-center align-middle">Type</th>
+            <th class="text-center align-middle">Volume</th>
+            <th class="text-center align-middle">Open Price</th>
+            <th class="text-center align-middle pr-3">Amount</th>
+            <th class="text-center align-middle">SL</th>
+            <th class="text-center align-middle">TP</th>
+            <th class="text-center align-middle">Current</th>
+            <th class="text-center align-middle">Swap</th>
+            <th class="text-center align-middle">Profit</th>
             </tr>
         </thead>
         `
@@ -332,40 +332,40 @@
             swap,
             profit } = trade;
         return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
-                <td class="w-18">
+                <td class="pl-2">
                     <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
                     <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
                 </td>
-                <td class="text-center align-middle w-9 pl-2" align="center">
-                    <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
+                <td class="text-center align-middle d-flex">
+                    <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
-                <td class="text-center align-middle text-darker-gray font-weight-bolder w-9 pl-2">
+                <td class="text-center align-middle text-darker-gray font-weight-bolder pl-2">
                     ${trade_type}
                 </td>
-                <td class="text-center align-middle w-9 pl-2">
+                <td class="text-center align-middle">
                     ${trade_volume}
                 </td>
-                <td class="text-center align-middle w-17 pl-2">
+                <td class="text-center align-middle">
                     ${open_price}
                 </td>
-                <td class="text-center align-middle font-bold w-9 pl-3">
+                <td class="text-center align-middle font-bold">
                     S$${formatWithCommas(amount)}
                 </td>
-                <td class="text-center align-middle w-9 pl-3">
+                <td class="text-center align-middle">
                     ${sl}
                 </td>
-                <td class="text-center align-middle w-9">
+                <td class="text-center align-middle">
                     ${tp}
                 </td>
-                <td class="text-center align-middle w-9">
+                <td class="text-center align-middle">
                     <span class="highlight-amount">
                         ${current}
                     </span>
                 </td>
-                <td class="text-center align-middle text-dark-green w-9">
+                <td class="text-center align-middle text-dark-green">
                     S$${swap}
                 </td>
-                <td class="text-center align-middle w-9 font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
+                <td class="text-center align-middle font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
                     S$${profit}
                 </td>
             </tr>
@@ -948,6 +948,16 @@
         const buySellData = STATE.getBuySellData();
         const expirationDate = new Date(buySellData.gtc_expiration_date);
         $('#expiration-date-input').datepicker('setDate', expirationDate);
+    }
+    function registerBuySellEvents() {
+        // switchery radio button
+        var elem = document.querySelector('.buy-sell-section .js-switch');
+        new Switchery(elem, {
+            color: '#E5E5E5',
+            secondaryColor: '#E5E5E5',
+            jackColor: '#22D091',
+            jackSecondaryColor: "#FFFFFF",
+        });
     }
     // render buy sell section end
 

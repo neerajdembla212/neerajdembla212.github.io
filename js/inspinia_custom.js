@@ -34,6 +34,14 @@ function delete_cookie(name) {
 }
 
 function registerEventHandlers() {
+  // navigating pages 
+  $('nav .metismenu li a[data-href]').unbind().click(function (event) {
+    const target = $(event.currentTarget).data('href');
+    if (target === window.location.pathname) {
+      return;
+    }
+    window.location.href = window.location.origin + target;
+  })
   // dropdown in navigation panel to switch accounts
   $(".dropdown-select-menu").click((event) => {
     // const selectedItem = event.innerText.trim();
@@ -102,7 +110,14 @@ function registerEventHandlers() {
   })
   $('.fixed-navbar-hide').click(function () {
     $('body').removeClass('fixed-navbar');
+    $('#overlay').removeClass('show').addClass('d-none fade');
   })
+  $('#overlay').click(function (event) {
+    $(event.currentTarget).removeClass('show').addClass('d-none fade');
+    $('body').removeClass('fixed-navbar');
+    SmoothlyMenu();
+  })
+
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -174,6 +189,7 @@ function registerBuySellModalEvents(data) {
     return
   }
   var elem = document.querySelector('#buy-sell-modal .js-switch');
+
   new Switchery(elem, {
     color: '#E5E5E5',
     secondaryColor: '#E5E5E5',

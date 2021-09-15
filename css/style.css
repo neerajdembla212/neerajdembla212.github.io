@@ -10775,8 +10775,13 @@ textarea {
   left: 0;
   height: 100vh;
   width: 220px;
-  z-index: 2;
+  z-index: 3;
   background-color: #754ef7;
+}
+@media screen and (min-width: 768px) {
+  .fixed-navbar .navbar-static-side {
+    display: none;
+  }
 }
 .fixed-navbar-hide {
   display: none;
@@ -10800,6 +10805,22 @@ textarea {
   .fixed-navbar-hide {
     display: block;
   }
+}
+.fixed-navbar #page-wrapper {
+  margin: 0;
+  width: 100% !important;
+}
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
@@ -10946,7 +10967,7 @@ textarea {
 }
 .buy-sell-section {
   border-radius: 6px;
-  width: 31vw;
+  max-height: 444px;
 }
 @media screen and (max-width: 1250px) {
   .buy-sell-section {
@@ -10981,24 +11002,6 @@ textarea {
   border-radius: 4px;
   height: 20px;
   padding: 2px;
-}
-.trade-section table {
-  width: 100%;
-}
-.trade-section tbody {
-  height: 288px;
-  overflow-y: auto;
-  width: 100%;
-}
-.trade-section thead,
-.trade-section tbody,
-.trade-section tfoot,
-.trade-section tr {
-  display: block;
-  width: 100%;
-}
-.trade-section tfoot td {
-  display: block;
 }
 .trade-section .responsive-trades > * {
   border-top: 1px solid #EEEEEE;

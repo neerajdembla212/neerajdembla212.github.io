@@ -85,37 +85,38 @@
             </div>
           </li>
           <li>
-            <a href="my-portfolio.html">
+            <a href="javascript: void(0)" data-href="/my-portfolio.html">
               <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
           </li>
           <li>
-            <a href="trade-terminal.html"><span class="nav-icon trade-terminal"></span>
+            <a href="javascript: void(0)" data-href="/trade-terminal.html"><span class="nav-icon trade-terminal"></span>
               <span class="nav-label">Trade Terminal</span></a>
           </li>
           <li class="divider"></li>
           <li class="active">
-            <a href="strategy-providers.html"><span class="nav-icon strategy-providers"></span>
+            <a href="javascript: void(0)" data-href="/strategy-providers.html"><span
+                class="nav-icon strategy-providers"></span>
               <span class="nav-label">Strategy Providers</span></a>
           </li>
           <li>
-            <a href="simulation.html"><span class="nav-icon simulation"></span>
+            <a href="javascript: void(0)" data-href="/simulation.html"><span class="nav-icon simulation"></span>
               <span class="nav-label">Simulation</span></a>
           </li>
           <li>
-            <a href="economic-calendar.html"><span class="nav-icon news-feed"></span>
+            <a href="javascript: void(0)" data-href="/economic-calendar.html"><span class="nav-icon news-feed"></span>
               <span class="nav-label">Economic Calendar</span></a>
           </li>
           <li class="divider"></li>
           <li>
-            <a href="settings.html"><span class="nav-icon settings"></span>
+            <a href="javascript: void(0)" data-href="/settings.html"><span class="nav-icon settings"></span>
               <span class="nav-label">Settings</span></a>
           </li>
           <li>
-            <a href="help.html"><span class="nav-icon help"></span>
+            <a href="javascript: void(0)" data-href="/help.html"><span class="nav-icon help"></span>
               <span class="nav-label">Help</span></a>
           </li>
           <li>
-            <a href="refer-a-friend.html"><span class="nav-icon refer-a-friend"></span>
+            <a href="javascript: void(0)" data-href="/refer-a-friend.html"><span class="nav-icon refer-a-friend"></span>
               <span class="nav-label">Refer a Friend</span></a>
           </li>
         </ul>
@@ -414,12 +415,6 @@
                     </p>
                   </div>
                 </div>
-                <div>
-                  <p class="mb-0 text-dark-black extra-large-font">
-                    S$40/m
-                  </p>
-                  <p class="mb-0 text-capitalize extra-small-font text-blue text-center">Low Risk</p>
-                </div>
               </div>
               <!-- Data display Row 1 start -->
               <div class="d-flex justify-content-between mb-2">
@@ -624,14 +619,14 @@
                   <div class="w-75 mr-3">
                     <p class="text-gray medium-font mb-1">Minimum Lot Size</p>
                     <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="0.01 - 100">
+                      <input type="text" class="form-control w-50 mr-3">
                       <span class="font-bold medium-font text-dark-black">LOT</span>
                     </div>
                   </div>
                   <div>
                     <p class="text-gray medium-font mb-1">Maximum Lot Size</p>
                     <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="0.01 - 100">
+                      <input type="text" class="form-control w-50 mr-3">
                       <span class="font-bold medium-font text-dark-black">LOT</span>
                     </div>
                   </div>
@@ -642,14 +637,14 @@
                   <div class="w-75 mr-3">
                     <p class="text-gray medium-font mb-1">Fix Take Profit</p>
                     <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="100">
+                      <input type="text" class="form-control w-50 mr-3">
                       <span class="font-bold medium-font text-dark-black">Pips</span>
                     </div>
                   </div>
                   <div>
                     <p class="text-gray medium-font mb-1">Fix Stop Loss</p>
                     <div class="d-flex align-items-center">
-                      <input type="text" class="form-control w-50 mr-3" placeholder="100">
+                      <input type="text" class="form-control w-50 mr-3">
                       <span class="font-bold medium-font text-dark-black">Pips</span>
                     </div>
                   </div>
@@ -678,7 +673,7 @@
 
       </div>
     </div>
-
+    <div id="overlay" class="d-none"></div>
     <!-- Mainly scripts -->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/popper.min.js"></script>
