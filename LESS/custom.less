@@ -958,12 +958,17 @@ textarea {
   background: rgba(255, 255, 255, 0.2);
   position: absolute;
   right: 0;
-  top: 0;
+  top: 12px;
   border-radius: 4px 0px 0px 4px;
   z-index: 1;
 
-  .nav-menu-toggle-arrow {
-    border-left-color: @white;
+  .fixed-nav-menu-arrow {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-right: 7px solid @white;
+    border-bottom: 5px solid transparent;
+    display: block;
     margin: 7px 0px 7px -2px;
   }
 
