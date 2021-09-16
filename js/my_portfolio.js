@@ -4,6 +4,8 @@
         lineChartData = {};
         userList = {}; // this will store followers or providers depending on user's role
         role = ''; // provider or follower
+        strategyProviderDetails = {};
+
         getStrategyDetails() {
             return this.strategyDetails;
         }
@@ -37,6 +39,16 @@
         setRole(role) {
             this.role = role;
         }
+
+        getStrategyProviderDetails() {
+            return this.strategyProviderDetails;
+        }
+        setStrategyProviderDetails(data) {
+            if (!data) {
+                return
+            }
+            this.strategyProviderDetails = data;
+        }
     }
     const STATE = new State();
     // document ready function
@@ -53,7 +65,7 @@
         fetchListOfUsers();
         fetchLineData();
     })
-
+    // Fetching data function start
     // This function fetch strategy details and render sparkline
     function fetchStrategyDetails() {
         callAjaxMethod({
@@ -100,8 +112,6 @@
         })
     }
 
-
-
     function fetchStrategyFollowers() {
         callAjaxMethod({
             url: 'https://copypip.free.beeceptor.com/get-portfolio-users/followers',
@@ -112,6 +122,16 @@
         })
     }
 
+    function fetchStrategyProviderDetails(id) {
+        callAjaxMethod({
+            url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${id}`,
+            successCallback: (data) => {
+                STATE.setStrategyProviderDetails(data.data)
+                renderFollowProviderPopup(data.data);
+            }
+        });
+    }
+    // fetch data functions end
     // render Strategy provider table HTML start
     function renderStrategyProviders() {
         const users = STATE.getUserList();
@@ -215,10 +235,11 @@
         <td class="text-center font-weight-bold align-middle">
           S$${formatWithCommas(total_fee)}
         </td>
-        <td class="action-tools text-center align-middle">
-          <i class="fa fa-pause mr-1"></i>
-          <i class="fa fa-stop mr-1"></i>
-          <i class="fa fa-gear mr-1"></i>
+        <td class="action-tools text-center align-middle" name="actions">
+          <i class="fa fa-pause mr-1" name="actions"></i>
+          <i class="fa fa-stop mr-1" name="actions"></i>
+          <i class="fa fa-gear mr-1 strategy-provider-settings" name="actions" data-id=${id} data-toggle="modal"
+          data-target="#follow-provider-modal"></i>
         </td>
       </tr>`
     }
@@ -287,9 +308,12 @@
                                 <i class="fa fa-play fa-rotate-270 font-size-12"></i>
                                 ${total_returns}
                             </span>
-                            <i class="fa fa-pause mr-2 action-tools large-font"></i>
-                            <i class="fa fa-stop mr-2 action-tools large-font"></i>
-                            <i class="fa fa-gear mr-2 action-tools large-font"></i>
+                            <div name="actions">
+                                <i class="fa fa-pause mr-2 action-tools large-font" name="actions"></i>
+                                <i class="fa fa-stop mr-2 action-tools large-font" name="actions"></i>
+                                <i class="fa fa-gear mr-2 action-tools large-font strategy-provider-settings" name="actions" data-id=${id} data-toggle="modal"
+                                data-target="#follow-provider-modal"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
@@ -321,10 +345,21 @@
                 </div>`
     }
     function registerStrategyProviderTableEvents() {
+        // click on row and go to provider details page
         $('.sp-details-cta').unbind().click(event => {
             const id = $(event.currentTarget).data('id');
+            const targetName = $(event.target).attr('name')
+            if (targetName === 'actions') {
+                return;
+            }
             localStorage.setItem('selectedProviderId', id);
             window.location.href = window.location.origin + '/strategy-provider-details.html';
+        })
+
+        // click on gear icon (settings) on any strategy provider table row and open FP popup
+        $('.strategy-provider-settings').unbind().click(event => {
+            const id = $(event.currentTarget).data('id');
+            fetchStrategyProviderDetails(id);
         })
     }
     // render Strategy provider responsive HTML end
