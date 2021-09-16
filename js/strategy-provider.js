@@ -326,8 +326,7 @@
   }
 
   function plotGridLoadingState(activeTabId) {
-    const boxCount = activeTabId === '#featured' ? 6 : 8;
-    const loadingContactBoxes = getLoadingContactBoxes(activeTabId, boxCount);
+    const loadingContactBoxes = getLoadingContactBoxes(activeTabId);
     const container = $(`${activeTabId} .panel-body`);
     container.empty().append(loadingContactBoxes);
   }
@@ -917,9 +916,12 @@
     return `<div class="contact-box proxy d-flex flex-column col" id="contact-box-proxy"></div>`
   }
 
-  function getLoadingContactBoxes(activeTabId, numberOfBoxes = 8) {
+  function getLoadingContactBoxes(activeTabId) {
     const boxesHTML = [];
-    for (let i = 0; i < numberOfBoxes; i++) {
+    const containerWidth = getLoadingContainerWidth()
+    const cardWidth = activeTabId === '#featured' ? 360 : 270;
+    const cardsInRow = Math.round(containerWidth / cardWidth);
+    for (let i = 0; i < cardsInRow; i++) {
       boxesHTML.push(`<div class="contact-box loading col ${activeTabId === "#featured" ? 'featured' : ''}">
           <span class="fa fa-bookmark-o favourite-icon float-right"></span>
           <button class="btn btn-primary btn-block" disabled>
@@ -928,6 +930,18 @@
         </div>`);
     }
     return boxesHTML.join('')
+  }
+
+  function getLoadingContainerWidth() {
+    const tabs = $('.strategy-provider-section .tab-content').children('[role="tabpanel"]');
+    let maxWidth = 0;
+    tabs.each((i, tab) => {
+      const tabWidth = $(tab).innerWidth();
+      if (tabWidth > maxWidth) {
+        maxWidth = tabWidth;
+      }
+    })
+    return maxWidth;
   }
 })();
 
