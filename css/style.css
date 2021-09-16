@@ -10921,15 +10921,21 @@ textarea {
   margin-left: 2.5rem !important;
 }
 #pause-provider-modal .modal-dialog,
-#stop-provider-modal .modal-dialog {
+#pause-follower-modal .modal-dialog,
+#stop-provider-modal .modal-dialog,
+#stop-follower-modal .modal-dialog {
   width: 280px;
 }
 #pause-provider-modal .modal-content,
-#stop-provider-modal .modal-content {
+#pause-follower-modal .modal-content,
+#stop-provider-modal .modal-content,
+#stop-follower-modal .modal-content {
   min-height: 193px !important;
 }
 #pause-provider-modal .modal-body,
-#stop-provider-modal .modal-body {
+#pause-follower-modal .modal-body,
+#stop-provider-modal .modal-body,
+#stop-follower-modal .modal-body {
   height: 127px !important;
 }
 #page-container.trade-terminal-page {
