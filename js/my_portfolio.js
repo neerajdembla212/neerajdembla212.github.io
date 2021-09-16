@@ -236,9 +236,11 @@
           S$${formatWithCommas(total_fee)}
         </td>
         <td class="action-tools text-center align-middle" name="actions">
-          <i class="fa fa-pause mr-1" name="actions"></i>
-          <i class="fa fa-stop mr-1" name="actions"></i>
-          <i class="fa fa-gear mr-1 strategy-provider-settings" name="actions" data-id=${id} data-toggle="modal"
+          <i class="fa fa-pause mr-1 cursor-pointer pause-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+          data-target="#pause-provider-modal"></i>
+          <i class="fa fa-stop mr-1 cursor-pointer stop-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+          data-target="#stop-provider-modal"></i>
+          <i class="fa fa-gear mr-1 strategy-provider-settings cursor-pointer" name="actions" data-id=${id} data-toggle="modal"
           data-target="#follow-provider-modal"></i>
         </td>
       </tr>`
@@ -309,8 +311,10 @@
                                 ${total_returns}
                             </span>
                             <div name="actions">
-                                <i class="fa fa-pause mr-2 action-tools large-font" name="actions"></i>
-                                <i class="fa fa-stop mr-2 action-tools large-font" name="actions"></i>
+                                <i class="fa fa-pause mr-2 action-tools large-font pause-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                                data-target="#pause-provider-modal"></i>
+                                <i class="fa fa-stop mr-2 action-tools large-font stop-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                                data-target="#stop-provider-modal"></i>
                                 <i class="fa fa-gear mr-2 action-tools large-font strategy-provider-settings" name="actions" data-id=${id} data-toggle="modal"
                                 data-target="#follow-provider-modal"></i>
                             </div>
@@ -344,6 +348,7 @@
                     </div>
                 </div>`
     }
+
     function registerStrategyProviderTableEvents() {
         // click on row and go to provider details page
         $('.sp-details-cta').unbind().click(event => {
@@ -361,6 +366,39 @@
             const id = $(event.currentTarget).data('id');
             fetchStrategyProviderDetails(id);
         })
+        // click on pause icon on any strategy provider tabls row and open pause provider popup
+        $('.pause-provider-cta').unbind().click(event => {
+            const id = $(event.currentTarget).data('id');
+            const providerName = $(event.currentTarget).data('name');
+            renderPauseProviderPopup(id, providerName);
+        })
+
+        // click on stop icon on any strategy provider tabls row and open stop provider popup
+        $('.stop-provider-cta').unbind().click(event => {
+            const id = $(event.currentTarget).data('id');
+            const providerName = $(event.currentTarget).data('name');
+            renderStopProviderPopup(id, providerName);
+        })
+    }
+    function renderPauseProviderPopup(id, name) {
+        const container = $('#pause-provider-modal .modal-body');
+        container.empty().append(`
+            <p class="mb-3">Are you sure you want to pause following <b>${name}</b> ?</p>
+            <div class="w-100 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+            </div>
+        `)
+    }
+    function renderStopProviderPopup(id, name) {
+        const container = $('#stop-provider-modal .modal-body');
+        container.empty().append(`
+            <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>
+            <div class="w-100 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+            </div>
+        `)
     }
     // render Strategy provider responsive HTML end
 
@@ -468,7 +506,7 @@
         S$${formatWithCommas(com_earned)}
         </td>
       
-        <td class="action-tools ">
+        <td class="action-tools align-middle">
          ${getStrategyFollowersActionColumn(id, is_new)}
         </td>
       </tr>`

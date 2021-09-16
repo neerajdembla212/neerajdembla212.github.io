@@ -10882,7 +10882,8 @@ textarea {
   color: #b7c0cb;
   font-size: 14px;
 }
-.portfolio-users-table .action-tools .btn.text-dark-green:hover {
+.portfolio-users-table .action-tools .btn.text-dark-green:hover,
+.portfolio-users-table .action-tools .btn.text-dark-green:active {
   color: #339A4A;
 }
 .portfolio-users-table .action-tools .btn.text-bleed-red:hover {
@@ -10918,6 +10919,18 @@ textarea {
 }
 #strategy-settings-modal .username-container {
   margin-left: 2.5rem !important;
+}
+#pause-provider-modal .modal-dialog,
+#stop-provider-modal .modal-dialog {
+  width: 280px;
+}
+#pause-provider-modal .modal-content,
+#stop-provider-modal .modal-content {
+  min-height: 193px !important;
+}
+#pause-provider-modal .modal-body,
+#stop-provider-modal .modal-body {
+  height: 127px !important;
 }
 #page-container.trade-terminal-page {
   padding: 20px 20px 0 0 !important;

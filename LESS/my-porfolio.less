@@ -52,7 +52,8 @@
         color: @subheader-icon-color;
         font-size: 14px;
 
-        .btn.text-dark-green:hover {
+        .btn.text-dark-green:hover,
+        .btn.text-dark-green:active {
             color: @dark-green;
         }
 
@@ -99,5 +100,21 @@
 #strategy-settings-modal {
     .username-container {
         margin-left: 2.5rem !important;
+    }
+}
+
+#pause-provider-modal,
+#stop-provider-modal {
+
+    .modal-dialog {
+        width: 280px;
+    }
+
+    .modal-content {
+        min-height: 193px !important;
+    }
+
+    .modal-body {
+        height: 127px !important;
     }
 }
