@@ -10822,6 +10822,19 @@ textarea {
   z-index: 2;
   cursor: pointer;
 }
+#follow-provider-modal .username-container {
+  margin-left: 2.5rem !important;
+}
+#follow-provider-modal .risk-mangement {
+  border-top: 1px solid #dee2e6;
+}
+#follow-provider-modal .form-check-input {
+  width: 18px;
+  height: 18px;
+}
+#follow-provider-modal .modal-body {
+  max-height: 500px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -11154,19 +11167,6 @@ textarea {
 .strategy-provider-section .responsive-users .responsive-value {
   font-size: 14px;
   word-break: break-word;
-}
-#follow-provider-modal .username-container {
-  margin-left: 2.5rem !important;
-}
-#follow-provider-modal .risk-mangement {
-  border-top: 1px solid #dee2e6;
-}
-#follow-provider-modal .form-check-input {
-  width: 18px;
-  height: 18px;
-}
-#follow-provider-modal .modal-body {
-  max-height: 73vh;
 }
 /* Loader state for Top Growth, Following and favourite tab */
 .strategy-provider-section .panel-body .contact-box.loading {
