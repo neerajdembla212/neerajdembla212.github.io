@@ -142,7 +142,7 @@
     }
 
     function getStrategyProvidersTableHTML(data) {
-        return `<table class="table">
+        return `<table class="table table-hover">
             ${getStrategyProvidersTableHeaders()}
             ${getStrategyProvidersTableBody(data)}
             ${getStrategyProvidersTableFooter()}
@@ -236,11 +236,11 @@
           S$${formatWithCommas(total_fee)}
         </td>
         <td class="action-tools text-center align-middle" name="actions">
-          <i class="fa fa-pause mr-1 cursor-pointer pause-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
-          data-target="#pause-provider-modal"></i>
-          <i class="fa fa-stop mr-1 cursor-pointer stop-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+            <i class="fa fa-pause mr-2 cursor-pointer pause-provider-cta extra-large-font" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+            data-target="#pause-provider-modal"></i>
+          <i class="fa fa-stop mr-2 cursor-pointer stop-provider-cta extra-large-font" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
           data-target="#stop-provider-modal"></i>
-          <i class="fa fa-gear mr-1 strategy-provider-settings cursor-pointer" name="actions" data-id=${id} data-toggle="modal"
+          <i class="fa fa-gear mr-0 strategy-provider-settings cursor-pointer extra-large-font" name="actions" data-id=${id} data-toggle="modal"
           data-target="#follow-provider-modal"></i>
         </td>
       </tr>`
@@ -311,11 +311,11 @@
                                 ${total_returns}
                             </span>
                             <div name="actions">
-                                <i class="fa fa-pause mr-2 action-tools large-font cursor-pointer pause-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                                <i class="fa fa-pause mr-2 action-tools large-font cursor-pointer extra-large-font pause-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                                 data-target="#pause-provider-modal"></i>
-                                <i class="fa fa-stop mr-2 action-tools large-font cursor-pointer stop-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                                <i class="fa fa-stop mr-2 action-tools large-font cursor-pointer extra-large-font stop-provider-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                                 data-target="#stop-provider-modal"></i>
-                                <i class="fa fa-gear mr-2 action-tools large-font cursor-pointer strategy-provider-settings" name="actions" data-id=${id} data-toggle="modal"
+                                <i class="fa fa-gear mr-2 action-tools large-font cursor-pointer extra-large-font strategy-provider-settings" name="actions" data-id=${id} data-toggle="modal"
                                 data-target="#follow-provider-modal"></i>
                             </div>
                         </div>
@@ -518,9 +518,9 @@
             return `<button class="btn btn-white text-dark-green font-bold px-1" type="button" data-id="${id}">Accept</button> 
             <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>`
         } else if (isNew === "false") {
-            return ` <i class="fa fa-pause mr-1 cursor-pointer pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+            return ` <i class="fa fa-pause mr-2 cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
             data-target="#pause-follower-modal"></i>
-            <i class="fa fa-stop mr-1 cursor-pointer stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+            <i class="fa fa-stop mr-0 cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
             data-target="#stop-follower-modal"></i>`
         }
     }
@@ -594,9 +594,9 @@
                                 <i class="fa fa-play fa-rotate-270 font-size-12"></i>
                                 S$${formatWithCommas(profit_or_loss)}
                             </span>
-                            <i class="fa fa-pause mr-2 action-tools large-font cursor-pointer pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                            <i class="fa fa-pause mr-2 action-tools large-font cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                             data-target="#pause-follower-modal"></i>
-                            <i class="fa fa-stop mr-2 action-tools large-font cursor-pointer stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                            <i class="fa fa-stop mr-0 action-tools large-font cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                             data-target="#stop-follower-modal"></i>
                         </div>
                     </div>
