@@ -11165,6 +11165,9 @@ textarea {
   width: 18px;
   height: 18px;
 }
+#follow-provider-modal .modal-body {
+  max-height: 73vh;
+}
 /* Loader state for Top Growth, Following and favourite tab */
 .strategy-provider-section .panel-body .contact-box.loading {
   height: 240px;
