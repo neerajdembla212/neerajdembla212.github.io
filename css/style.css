@@ -11170,22 +11170,11 @@ select[name="rows-per-page"] {
   margin-top: -1rem !important;
   border-radius: 0 0 6px 6px;
 }
-@media screen and (max-width: 1024px) {
-  .strategy-provider-section .table-responsive .table {
-    display: none;
-  }
-  .strategy-provider-section .table-responsive .responsive-users {
-    display: block !important;
-  }
-}
 .strategy-provider-section .contact-box {
   cursor: pointer;
 }
 .strategy-provider-section .line-chart-container {
   height: 40px;
-}
-.strategy-provider-section .responsive-users {
-  display: none;
 }
 .strategy-provider-section .responsive-users .hide-m {
   display: block;
