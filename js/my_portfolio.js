@@ -118,6 +118,7 @@
         const container = $('.portfolio-users-table');
         container.append(getStrategyProvidersTableHTML(users));
         container.append(getStrategyProviderResponsiveHTML(users));
+        registerStrategyProviderTableEvents();
     }
 
     function getStrategyProvidersTableHTML(data) {
@@ -177,7 +178,7 @@
             subscription_fee,
             profit_share,
             total_fee } = user;
-        return `<tr id="table-user-${id}">
+        return `<tr id="table-user-${id}" class="sp-details-cta cursor-pointer" data-id="${id}">
         <td class="d-flex">
           <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
           <div class="ml-2 float-left">
@@ -267,7 +268,7 @@
             profit_share,
             total_fee } = user;
 
-        return `<div class="p-3">
+        return `<div class="p-3 sp-details-cta cursor-pointer" data-id="${id}">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
@@ -319,7 +320,13 @@
                     </div>
                 </div>`
     }
-
+    function registerStrategyProviderTableEvents() {
+        $('.sp-details-cta').unbind().click(event => {
+            const id = $(event.currentTarget).data('id');
+            localStorage.setItem('selectedProviderId', id);
+            window.location.href = window.location.origin + '/strategy-provider-details.html';
+        })
+    }
     // render Strategy provider responsive HTML end
 
     // render Strategy Follower table HTML start
