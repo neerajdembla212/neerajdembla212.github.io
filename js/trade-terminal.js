@@ -299,7 +299,6 @@
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/search-currency?q=${query}`,
             successCallback: (data) => {
-                debugger
                 STATE.setCurrencySearchResult(data.data);
                 renderCurrencySearchResult();
             },
@@ -1168,7 +1167,7 @@
         watchList.forEach(watchListRow => {
             rowsHTML.push(getWatchListHTML(watchListRow));
         })
-        container.append(rowsHTML.join(''))
+        container.empty().append(rowsHTML.join(''))
         registerWatchListEvents();
     }
 
@@ -1180,7 +1179,7 @@
         const currenciesRowHTML = [];
         if (watchListRow.currencies && Array.isArray(watchListRow.currencies)) {
             watchListRow.currencies.forEach(currency => {
-                currenciesRowHTML.push(getWatchListCurrencyRow(currency));
+                currenciesRowHTML.push(getWatchListCurrencyRow(currency, id));
             })
         }
         return `
@@ -1205,11 +1204,13 @@
             `
     }
 
-    function getWatchListCurrencyRow(currency) {
+    function getWatchListCurrencyRow(currency, watchListId) {
         if (!currency) {
             return
         }
-        const { from_currency,
+        const {
+            id,
+            from_currency,
             to_currency,
             currency_rate,
             currency_delta_amount,
@@ -1226,7 +1227,8 @@
                     <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold extra-small-font">${currency_delta_percentage}%</p>
                 </div>
             </div>
-            <img src="img/ic_pin_filled.svg" alt="pin icon" />
+            <img src="img/ic_pin_unfilled.svg" alt="pin icon" class="sidebar-pin-currency cursor-pointer" data-currency-id="${id}" data-watchlist-id="${watchListId}" />
+            <img src="img/ic_pin_filled.svg" alt="pin icon" class="sidebar-unpin-currency cursor-pointer d-none" data-currency-id="${id}" data-watchlist-id="${watchListId}" />
         </div>
         <div class="divider"></div>
         <!-- Watchlist expand end -->
@@ -1234,12 +1236,42 @@
     }
 
     function registerWatchListEvents() {
+        // delete watchlist
         $('.delete-watchlist').unbind().click(function (event) {
-            console.log(event.currentTarget, event.target);
             const watchListId = $(event.target).data('id')
             $(`#watchlist-${watchListId}-row`).remove();
-            // $(event.target).parent().remove();
-            // $(`#watchlist-${watchListId}-content.collapse`).remove();
+        })
+        // pin currency
+        $('.sidebar-pin-currency').unbind().click(function (event) {
+            const currentTarget = $(event.currentTarget);
+            const currencyId = currentTarget.data('currency-id');
+            const watchListId = currentTarget.data('watchlist-id');
+            currentTarget.toggleClass('d-none');
+            currentTarget.siblings('.sidebar-unpin-currency').toggleClass('d-none');
+            // add this id in pinned currencies and re-render pinned currencies section
+            // find currency object from watchlist array
+            const watchListObj = STATE.getWatchList().find(obj => +obj.id === +watchListId)
+            const currencyObj = watchListObj.currencies.find(currency => currency.id === currencyId);
+            const pinnedCurrencies = STATE.getPinnedCurrencies();
+            pinnedCurrencies.push(currencyObj);
+            STATE.setPinnedCurrencies(pinnedCurrencies);
+            renderPinnedCurrencies()
+        })
+
+        // unpin currency
+        $('.sidebar-unpin-currency').unbind().click(function (event) {
+            const currentTarget = $(event.currentTarget);
+            const currencyId = currentTarget.data('currency-id');
+            currentTarget.toggleClass('d-none');
+            currentTarget.siblings('.sidebar-pin-currency').toggleClass('d-none');
+            // remove this currency object from pinned currencies and re-render the pinned currency list
+            const pinnedCurrencies = STATE.getPinnedCurrencies();
+            const pinnedCurrencyObjIndex = pinnedCurrencies.findIndex(currency => currency.id === currencyId);
+            if (pinnedCurrencyObjIndex !== -1) {
+                pinnedCurrencies.splice(pinnedCurrencyObjIndex, 1);
+                STATE.setPinnedCurrencies(pinnedCurrencies);
+                renderPinnedCurrencies()
+            }
         })
     }
     // render watchlist end
@@ -1253,13 +1285,15 @@
             rowsHTML.push(getSearchCurrencyRowHTML(searchedRow));
         })
         container.empty().append(rowsHTML.join(''))
+        registerCurrencySearchResultEvents();
     }
 
     function getSearchCurrencyRowHTML(searchedRow) {
         if (!searchedRow) {
             return;
         }
-        const { from_currency,
+        const { id,
+            from_currency,
             to_currency,
             currency_delta_amount,
             currency_delta_percentage,
@@ -1282,8 +1316,7 @@
                 <img src="img/ic_plus.svg" alt="pin icon" />
             </button>
             <ul id="add-currency-menu" class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Add to Watchlist 1</a></li>
-                <li><a class="dropdown-item" href="#">Add to Watchlist 2</a></li>
+                ${getWatchListDropdownHTML(id)}
             </ul>
 
         </div>
@@ -1291,6 +1324,37 @@
         <!-- Search row end -->
 
         `
+    }
+
+    function getWatchListDropdownHTML(currencyId) {
+        const watchList = STATE.getWatchList();
+        const listHTML = [];
+        watchList.forEach(watchListObj => {
+            listHTML.push(`
+                <li data-currency-id="${currencyId}" data-watchlist-id="${watchListObj.id}"><a data-currency-id="${currencyId}" data-watchlist-id="${watchListObj.id}" class="dropdown-item" href="#">Add to ${watchListObj.title}</a></li>
+            `)
+        })
+        return listHTML.join('');
+    }
+
+    function registerCurrencySearchResultEvents() {
+        // add currency to watchList menu
+        $('#add-currency-menu').unbind().click(event => {
+            const watchListId = $(event.target).data('watchlist-id');
+            const currencyId = $(event.target).data('currency-id');
+            // find watchlist and add currency to it and re-render watchList
+            const watchList = STATE.getWatchList();
+            const selectedWatchList = watchList.find(obj => obj.id === +watchListId);
+            if (selectedWatchList) {
+                const currencyList = STATE.getCurrencySearchResult();
+                const selectedCurrency = currencyList.find(currency => currency.id === +currencyId);
+                if (selectedCurrency) {
+                    selectedWatchList.currencies.push(selectedCurrency);
+                    STATE.setWatchList(selectedWatchList);
+                    renderWatchlists()
+                }
+            }
+        })
     }
     // render currencies search result end
 
@@ -1322,17 +1386,20 @@
             `)
         })
         container.empty().append(currenciesHTML.join(''));
+        registerPinnedCurrenciesEvent();
+    }
+
+    function registerPinnedCurrenciesEvent() {
         $('.unpin-currency').unbind().click(event => {
             const currencyChip = $(event.currentTarget).parent('.currency-chip');
-            const id = $(currencyChip).data('id');
+            const currencyId = $(currencyChip).data('id');
             const pinnedCurrencies = STATE.getPinnedCurrencies();
-            const currencyToDeleteIndex = pinnedCurrencies.findIndex(currency => currency.id === +id);
+            const currencyToDeleteIndex = pinnedCurrencies.findIndex(currency => currency.id === +currencyId);
             pinnedCurrencies.splice(currencyToDeleteIndex, 1);
             STATE.setPinnedCurrencies(pinnedCurrencies);
             currencyChip.remove()
         })
     }
-
     // render pinned currencies end
 
     // Helper methods
