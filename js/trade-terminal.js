@@ -11,6 +11,7 @@
         tradeDetails = {};
         watchlist = [];
         currencySearchResult = [];
+        pinnedCurrencies = [];
         getOpenTrades() {
             return this.openTrades;
         }
@@ -89,6 +90,22 @@
                 this.currencySearchResult = data;
             }
         }
+
+        getPinnedCurrencies() {
+            return this.pinnedCurrencies;
+        }
+        setPinnedCurrencies(data) {
+            if (!data || !Array.isArray(data)) {
+                return
+            }
+            this.pinnedCurrencies = data;
+        }
+        addPinnedCurrency(data) {
+            if (!data) {
+                return;
+            }
+            this.pinnedCurrencies.push(data);
+        }
     }
 
     // Global variables for this file
@@ -114,6 +131,35 @@
         onTabChange(activeId);
         // fetching watchlist
         fetchWatchList();
+        // adding mock pinned currencies
+        STATE.setPinnedCurrencies([
+            {
+                "id": 1,
+                "from_currency": "EUR",
+                "to_currency": "USD",
+                "currency_rate": 1.2563,
+                "currency_delta_percentage": 23.4,
+                "currency_delta_amount": -0.00311
+            },
+            {
+                "id": 2,
+                "from_currency": "GBP",
+                "to_currency": "USD",
+                "currency_rate": 1.2563,
+                "currency_delta_percentage": 23.4,
+                "currency_delta_amount": -0.00311
+            },
+            {
+                "id": 3,
+                "from_currency": "AUD",
+                "to_currency": "USD",
+                "currency_rate": 1.2563,
+                "currency_delta_percentage": 23.4,
+                "currency_delta_amount": -0.00311
+            }
+        ])
+
+        renderPinnedCurrencies();
     });
 
     function registerGlobalEvents() {
@@ -1262,6 +1308,33 @@
         container.append(getWatchListHTML({ id: STATE.watchlist.length, title: `Watchlist ${STATE.watchlist.length}` }))
         registerWatchListEvents()
     }
+
+    // render pinned currencies start 
+    function renderPinnedCurrencies() {
+        const pinnedCurrencies = STATE.getPinnedCurrencies();
+        const container = $('.trade-terminal-page .pinned-currency-container');
+        const currenciesHTML = [];
+        pinnedCurrencies.forEach(currency => {
+            currenciesHTML.push(`
+                <div class="currency-chip d-flex align-items-center" data-id="${currency.id}">
+                    <p class="mb-0">${currency.from_currency}${currency.to_currency} &nbsp;</p><img src="img/ic_cross.svg" class="unpin-currency"/>
+                </div>
+            `)
+        })
+        container.empty().append(currenciesHTML.join(''));
+        $('.unpin-currency').unbind().click(event => {
+            const currencyChip = $(event.currentTarget).parent('.currency-chip');
+            const id = $(currencyChip).data('id');
+            const pinnedCurrencies = STATE.getPinnedCurrencies();
+            const currencyToDeleteIndex = pinnedCurrencies.findIndex(currency => currency.id === +id);
+            pinnedCurrencies.splice(currencyToDeleteIndex, 1);
+            STATE.setPinnedCurrencies(pinnedCurrencies);
+            currencyChip.remove()
+        })
+    }
+
+    // render pinned currencies end
+
     // Helper methods
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
