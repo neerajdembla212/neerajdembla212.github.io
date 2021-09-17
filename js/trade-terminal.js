@@ -1250,6 +1250,14 @@
 
     // Add new Watchlist 
     function addNewWatchList() {
+        const watchList = STATE.getWatchList();
+
+        const newWatchList = {
+            id: watchList[watchList.length - 1].id + 1,
+            title: "Watchlist " + watchList[watchList.length - 1].id + 1,
+            currencies: []
+        }
+        STATE.watchlist.push(newWatchList);
         const container = $('.watchlist-right-sidebar .sidebar-container .sidebar-content');
         container.append(getWatchListHTML({ id: STATE.watchlist.length, title: `Watchlist ${STATE.watchlist.length}` }))
         registerWatchListEvents()
