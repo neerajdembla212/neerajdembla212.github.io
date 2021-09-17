@@ -10255,13 +10255,13 @@ body.mini-navbar .nav.metismenu > li.logo {
   font-size: 10px;
 }
 .medium-font {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 .large-font {
   font-size: 16px !important;
 }
 .extra-large-font {
-  font-size: 18px;
+  font-size: 18px !important;
 }
 .super-large-font {
   font-size: 24px;
@@ -10834,6 +10834,9 @@ textarea {
 }
 #follow-provider-modal .modal-body {
   max-height: 500px;
+}
+select[name="rows-per-page"] {
+  height: 35px !important;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;

@@ -12,6 +12,10 @@
         watchlist = [];
         currencySearchResult = [];
         pinnedCurrencies = [];
+        paginationData = {
+            rowsPerPage: 10,
+            total: 0
+        }
         getOpenTrades() {
             return this.openTrades;
         }
@@ -105,6 +109,16 @@
                 return;
             }
             this.pinnedCurrencies.push(data);
+        }
+
+        getPaginationData() {
+            return this.paginationData;
+        }
+        setPaginationData(data) {
+            if (!data) {
+                return;
+            }
+            this.paginationData = data;
         }
     }
 
@@ -247,6 +261,9 @@
         callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/open-trades",
             successCallback: (data) => {
+                const paginationData = STATE.getPaginationData();
+                paginationData.total = data.total;
+                STATE.setPaginationData(paginationData);
                 STATE.setOpenTrades(data.data);
                 if (DESKTOP_MEDIA.matches) {
                     renderResponsiveTradesHTML('open')
@@ -261,6 +278,9 @@
         callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/pending-trades",
             successCallback: (data) => {
+                const paginationData = STATE.getPaginationData();
+                paginationData.total = data.total;
+                STATE.setPaginationData(paginationData);
                 STATE.setPendingTrades(data.data);
                 if (DESKTOP_MEDIA.matches) {
                     renderResponsiveTradesHTML('pending')
@@ -275,6 +295,9 @@
         callAjaxMethod({
             url: "https://copypip.free.beeceptor.com/closed-trades",
             successCallback: (data) => {
+                const paginationData = STATE.getPaginationData();
+                paginationData.total = data.total;
+                STATE.setPaginationData(paginationData);
                 STATE.setClosedTrades(data.data);
                 if (DESKTOP_MEDIA.matches) {
                     renderResponsiveTradesHTML('closed')
@@ -309,8 +332,10 @@
     // render open trades begin
     function renderOpenTrades() {
         const openTrades = STATE.getOpenTrades();
+        const rowsPerPage = STATE.getPaginationData().rowsPerPage;
+        const slicedOpenTrades = openTrades.slice(0, rowsPerPage);
         const container = $('.tab-content #open-trades');
-        container.empty().append(getOpenTradesTableHTML(openTrades));
+        container.empty().append(getOpenTradesTableHTML(slicedOpenTrades));
         registerTradeEvents();
     }
 
@@ -418,20 +443,29 @@
     }
 
     function getOpenTradesTableFooter() {
+        const paginationData = STATE.getPaginationData();
         return `<tfoot>
         <tr>
           <td colspan="11">
-            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-              <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                <option>10 Rows per page</option>
-                <option>20 Rows per page</option>
-                <option>30 Rows per page</option>
-                <option>40 Rows per page</option>
-              </select>
-              <i class="fa fa-angle-left mx-2"></i>
-              <i class="fa fa-angle-right mx-2"></i>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="mb-0 text-dark-gray small-font">Showing <b>1</b> to <b>6</b> of <b>${paginationData.total}</b> trades</p>
+            <ul class="pagination d-flex justify-content-end align-items-center m-0">
+            <select class="form-control rows-per-page mr-2" name="rows-per-page" id="open-trade-rows-per-page">
+                <option value="10">10 Rows per page</option>
+                <option value="20">20 Rows per page</option>
+                <option value="30">30 Rows per page</option>
+                <option value="40">40 Rows per page</option>
+            </select>
+                <button class="btn btn-default border-0" type="button">
+                    <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                </button>
+                <button class="btn btn-default border-0" type="button">
+                    <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                </button>
+                
             </ul>
-          </td>
+            </div>
+            </td>
         </tr>
       </tfoot>`
     }
@@ -527,8 +561,10 @@
     // render pending trades begin
     function renderPendingTrades() {
         const pendingTrades = STATE.getPendingTrades();
+        const rowsPerPage = STATE.getPaginationData().rowsPerPage;
+        const slicedPendingTrades = pendingTrades.slice(0, rowsPerPage);
         const container = $('.tab-content #pending-orders');
-        container.empty().append(getPendingTradesTableHTML(pendingTrades));
+        container.empty().append(getPendingTradesTableHTML(slicedPendingTrades));
         registerTradeEvents();
     }
 
@@ -636,19 +672,28 @@
     }
 
     function getPendingTradesTableFooter() {
+        const paginationData = STATE.getPaginationData();
         return `<tfoot>
         <tr>
           <td colspan="11">
-            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-              <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                <option>10 Rows per page</option>
-                <option>20 Rows per page</option>
-                <option>30 Rows per page</option>
-                <option>40 Rows per page</option>
-              </select>
-              <i class="fa fa-angle-left mx-2"></i>
-              <i class="fa fa-angle-right mx-2"></i>
-            </ul>
+          <div class="d-flex justify-content-between align-items-center">
+          <p class="mb-0 text-dark-gray small-font">Showing <b>1</b> to <b>6</b> of <b>${paginationData.total}</b> trades</p>
+          <ul class="pagination d-flex justify-content-end align-items-center m-0">
+          <select class="form-control rows-per-page mr-2" name="rows-per-page" id="pending-trade-rows-per-page">
+              <option value="10">10 Rows per page</option>
+              <option value="20">20 Rows per page</option>
+              <option value="30">30 Rows per page</option>
+              <option value="40">40 Rows per page</option>
+          </select>
+              <button class="btn btn-default border-0" type="button">
+                  <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+              </button>
+              <button class="btn btn-default border-0" type="button">
+                  <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+              </button>
+              
+          </ul>
+          </div>
           </td>
         </tr>
       </tfoot>`
@@ -659,8 +704,10 @@
     // render open trades begin
     function renderClosedTrades() {
         const closedTrades = STATE.getClosedTrades();
+        const rowsPerPage = STATE.getPaginationData().rowsPerPage;
+        const slicedClosedTrades = closedTrades.slice(0, rowsPerPage);
         const container = $('.tab-content #closed-trades');
-        container.empty().append(getClosedTradesTableHTML(closedTrades));
+        container.empty().append(getClosedTradesTableHTML(slicedClosedTrades));
         registerTradeEvents();
     }
 
@@ -768,19 +815,28 @@
     }
 
     function getClosedTradesTableFooter() {
+        const paginationData = STATE.getPaginationData();
         return `<tfoot>
             <tr>
               <td colspan="11">
-                <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-                  <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                    <option>10 Rows per page</option>
-                    <option>20 Rows per page</option>
-                    <option>30 Rows per page</option>
-                    <option>40 Rows per page</option>
-                  </select>
-                  <i class="fa fa-angle-left mx-2"></i>
-                  <i class="fa fa-angle-right mx-2"></i>
-                </ul>
+              <div class="d-flex justify-content-between align-items-center">
+              <p class="mb-0 text-dark-gray small-font">Showing <b>1</b> to <b>6</b> of <b>${paginationData.total}</b> trades</p>
+              <ul class="pagination d-flex justify-content-end align-items-center m-0">
+              <select class="form-control rows-per-page mr-2" name="rows-per-page" id="closed-trade-rows-per-page">
+                  <option value="10">10 Rows per page</option>
+                  <option value="20">20 Rows per page</option>
+                  <option value="30">30 Rows per page</option>
+                  <option value="40">40 Rows per page</option>
+              </select>
+                  <button class="btn btn-default border-0" type="button">
+                      <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                  </button>
+                  <button class="btn btn-default border-0" type="button">
+                      <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                  </button>
+                  
+              </ul>
+              </div>
               </td>
             </tr>
           </tfoot>`
@@ -792,6 +848,47 @@
             STATE.setTradeDetails({ id: tradeId })
             fetchTradeDetails(tradeId);
         })
+        // open table footer rows per page
+        $('#open-trade-rows-per-page').off().on('change', function () {
+            console.log(this.value);
+            debugger
+            const rowsPerPage = +this.value;
+            const paginationData = STATE.getPaginationData();
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                renderOpenTrades();
+            }
+        })
+        $('#open-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // pending table footer rows per page
+        $('#pending-trade-rows-per-page').off().on('change', function () {
+            console.log(this.value);
+            debugger
+            const rowsPerPage = +this.value;
+            const paginationData = STATE.getPaginationData();
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                renderPendingTrades();
+            }
+        })
+        $('#pending-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // closed table footer rows per page
+        $('#closed-trade-rows-per-page').off().on('change', function () {
+            console.log(this.value);
+            debugger
+            const rowsPerPage = +this.value;
+            const paginationData = STATE.getPaginationData();
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                renderClosedTrades();
+            }
+        })
+        $('#closed-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
     }
     // render open trades end
 
