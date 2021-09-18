@@ -250,6 +250,11 @@
         if (!tabId) {
             return
         }
+        // reset pagination data
+        const paginationData = STATE.getPaginationData();
+        paginationData.page = 0;
+        paginationData.rowsPerPage = 10
+        STATE.setPaginationData(paginationData);
         switch (tabId) {
             case '#open-trades': fetchOpenTrades(); break;
             case '#pending-orders': fetchPendingTrades(); break;
@@ -513,7 +518,6 @@
         } else {
             $('#next-page-open-trade').removeAttr('disabled')
         }
-
     }
     // render open trades end
 
@@ -729,10 +733,10 @@
               <option value="30">30 Rows per page</option>
               <option value="40">40 Rows per page</option>
           </select>
-              <button class="btn btn-default border-0" type="button">
+              <button class="btn btn-default border-0" type="button" id="prev-page-pending-trade">
                   <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
               </button>
-              <button class="btn btn-default border-0" type="button">
+              <button class="btn btn-default border-0" type="button" id="next-page-pending-trade">
                   <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
               </button>
               
@@ -743,19 +747,37 @@
       </tfoot>`
     }
     function registerPendingTradesEvents() {
+        const paginationData = STATE.getPaginationData();
         // pending table footer rows per page
         $('#pending-trade-rows-per-page').off().on('change', function () {
-            console.log(this.value);
-            debugger
             const rowsPerPage = +this.value;
-            const paginationData = STATE.getPaginationData();
             if (rowsPerPage) {
                 paginationData.rowsPerPage = rowsPerPage;
                 STATE.setPaginationData(paginationData)
-                renderPendingTrades();
+                fetchPendingTrades();
             }
         })
         $('#pending-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // fetch data with updated params on click of next pagination action
+        $('#next-page-pending-trade').unbind().click(function () {
+            paginationData.page++;
+            fetchPendingTrades();
+        })
+        // disable prev if page number is 0 or less else enable
+        if (paginationData.page <= 0) {
+            $('#prev-page-pending-trade').attr('disabled', true);
+        } else {
+            $('#prev-page-pending-trade').removeAttr('disabled');
+        }
+
+        // enable next if page number is max it can be else disable
+        const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+        if (paginationData.page >= totalPossiblePages) {
+            $('#next-page-pending-trade').attr('disabled', true);
+        } else {
+            $('#next-page-pending-trade').removeAttr('disabled')
+        }
 
     }
     // render pending trades end
@@ -885,10 +907,10 @@
                   <option value="30">30 Rows per page</option>
                   <option value="40">40 Rows per page</option>
               </select>
-                  <button class="btn btn-default border-0" type="button">
+                  <button class="btn btn-default border-0" type="button" id="prev-page-closed-trade">
                       <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
                   </button>
-                  <button class="btn btn-default border-0" type="button">
+                  <button class="btn btn-default border-0" type="button" id="next-page-closed-trade">
                       <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
                   </button>
                   
@@ -914,19 +936,37 @@
 
 
     function registerClosedTradeEvents() {
+        const paginationData = STATE.getPaginationData();
         // closed table footer rows per page
         $('#closed-trade-rows-per-page').off().on('change', function () {
-            console.log(this.value);
-            debugger
             const rowsPerPage = +this.value;
-            const paginationData = STATE.getPaginationData();
             if (rowsPerPage) {
                 paginationData.rowsPerPage = rowsPerPage;
                 STATE.setPaginationData(paginationData)
-                renderClosedTrades();
+                fetchClosedTrades();
             }
         })
         $('#closed-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // fetch data with updated params on click of next pagination action
+        $('#next-page-closed-trade').unbind().click(function () {
+            paginationData.page++;
+            fetchClosedTrades();
+        })
+        // disable prev if page number is 0 or less else enable
+        if (paginationData.page <= 0) {
+            $('#prev-page-closed-trade').attr('disabled', true);
+        } else {
+            $('#prev-page-closed-trade').removeAttr('disabled');
+        }
+
+        // enable next if page number is max it can be else disable
+        const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+        if (paginationData.page >= totalPossiblePages) {
+            $('#next-page-closed-trade').attr('disabled', true);
+        } else {
+            $('#next-page-closed-trade').removeAttr('disabled')
+        }
     }
     // render closed trades end
 
