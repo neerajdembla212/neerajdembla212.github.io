@@ -447,12 +447,12 @@
     }
 
     function getOpenTradesTableFooter() {
-        const paginationData = STATE.getPaginationData();
+        const { start, end, total } = getStartEndRecordCount();
         return `<tfoot>
         <tr>
           <td colspan="11">
           <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0 text-dark-gray small-font">Showing <b>1</b> to <b>6</b> of <b>${paginationData.total}</b> trades</p>
+            <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
             <ul class="pagination d-flex justify-content-end align-items-center m-0">
             <select class="form-control rows-per-page mr-2" name="rows-per-page" id="open-trade-rows-per-page">
                 <option value="10">10 Rows per page</option>
@@ -720,12 +720,12 @@
     }
 
     function getPendingTradesTableFooter() {
-        const paginationData = STATE.getPaginationData();
+        const { start, end, total } = getStartEndRecordCount();
         return `<tfoot>
         <tr>
           <td colspan="11">
           <div class="d-flex justify-content-between align-items-center">
-          <p class="mb-0 text-dark-gray small-font">Showing <b>1</b> to <b>6</b> of <b>${paginationData.total}</b> trades</p>
+          <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
           <select class="form-control rows-per-page mr-2" name="rows-per-page" id="pending-trade-rows-per-page">
               <option value="10">10 Rows per page</option>
@@ -894,12 +894,12 @@
     }
 
     function getClosedTradesTableFooter() {
-        const paginationData = STATE.getPaginationData();
+        const { start, end, total } = getStartEndRecordCount();
         return `<tfoot>
             <tr>
               <td colspan="11">
               <div class="d-flex justify-content-between align-items-center">
-              <p class="mb-0 text-dark-gray small-font">Showing <b>1</b> to <b>6</b> of <b>${paginationData.total}</b> trades</p>
+              <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
               <ul class="pagination d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page" id="closed-trade-rows-per-page">
                   <option value="10">10 Rows per page</option>
@@ -1581,5 +1581,19 @@
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
     }
-
+    function getStartEndRecordCount() {
+        const paginationData = STATE.getPaginationData();
+        const { page, rowsPerPage, total } = paginationData;
+        let start = page * rowsPerPage + 1;
+        let end = start + rowsPerPage - 1;
+        if (start >= total || end >= total) {
+            start = total - rowsPerPage;
+            end = total
+        }
+        return {
+            start,
+            end,
+            total
+        }
+    }
 })()
