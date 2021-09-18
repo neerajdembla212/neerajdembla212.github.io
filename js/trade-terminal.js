@@ -14,7 +14,8 @@
         pinnedCurrencies = [];
         paginationData = {
             rowsPerPage: 10,
-            total: 0
+            total: 0,
+            page: 0
         }
         getOpenTrades() {
             return this.openTrades;
@@ -258,10 +259,10 @@
 
     // Api call functions start
     function fetchOpenTrades() {
+        const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/open-trades",
+            url: `https://copypip.free.beeceptor.com/open-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
-                const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
                 STATE.setOpenTrades(data.data);
@@ -275,10 +276,10 @@
     }
 
     function fetchPendingTrades() {
+        const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/pending-trades",
+            url: `https://copypip.free.beeceptor.com/pending-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
-                const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
                 STATE.setPendingTrades(data.data);
@@ -292,10 +293,10 @@
     }
 
     function fetchClosedTrades() {
+        const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/closed-trades",
+            url: `https://copypip.free.beeceptor.com/closed-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
-                const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
                 STATE.setClosedTrades(data.data);
@@ -332,10 +333,8 @@
     // render open trades begin
     function renderOpenTrades() {
         const openTrades = STATE.getOpenTrades();
-        const rowsPerPage = STATE.getPaginationData().rowsPerPage;
-        const slicedOpenTrades = openTrades.slice(0, rowsPerPage);
         const container = $('.tab-content #open-trades');
-        container.empty().append(getOpenTradesTableHTML(slicedOpenTrades));
+        container.empty().append(getOpenTradesTableHTML(openTrades));
         registerTradeEvents();
     }
 
@@ -456,10 +455,10 @@
                 <option value="30">30 Rows per page</option>
                 <option value="40">40 Rows per page</option>
             </select>
-                <button class="btn btn-default border-0" type="button">
+                <button class="btn btn-default border-0" type="button" id="prev-page-open-trade" disabled="true">
                     <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
                 </button>
-                <button class="btn btn-default border-0" type="button">
+                <button class="btn btn-default border-0" type="button" id="next-page-open-trade" disabled="true">
                     <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
                 </button>
                 
@@ -468,6 +467,53 @@
             </td>
         </tr>
       </tfoot>`
+    }
+    function registerOpenTradeEvents() {
+        const paginationData = STATE.getPaginationData();
+        // open table footer rows per page
+        $('#open-trade-rows-per-page').off().on('change', function () {
+            const rowsPerPage = +this.value;
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                fetchOpenTrades();
+            }
+        })
+        $('#open-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // fetch data with updated params on click of next pagination action
+        $('#next-page-open-trade').unbind().click(function () {
+            paginationData.page++;
+            fetchOpenTrades();
+        })
+        // fetch data with updated params on click of previous pagination action
+        $('#prev-page-open-trade').unbind().click(function () {
+            if (paginationData.page > 0) {
+                paginationData.page--;
+                if (paginationData.page === 0) {
+                    $(this).attr('disabled', true);
+                }
+                fetchOpenTrades();
+            } else {
+                $(this).attr('disabled', true);
+            }
+        })
+
+        // disable prev if page number is 0 or less else enable
+        if (paginationData.page <= 0) {
+            $('#prev-page-open-trade').attr('disabled', true);
+        } else {
+            $('#prev-page-open-trade').removeAttr('disabled');
+        }
+
+        // enable next if page number is max it can be else disable
+        const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+        if (paginationData.page >= totalPossiblePages) {
+            $('#next-page-open-trade').attr('disabled', true);
+        } else {
+            $('#next-page-open-trade').removeAttr('disabled')
+        }
+
     }
     // render open trades end
 
@@ -561,10 +607,8 @@
     // render pending trades begin
     function renderPendingTrades() {
         const pendingTrades = STATE.getPendingTrades();
-        const rowsPerPage = STATE.getPaginationData().rowsPerPage;
-        const slicedPendingTrades = pendingTrades.slice(0, rowsPerPage);
         const container = $('.tab-content #pending-orders');
-        container.empty().append(getPendingTradesTableHTML(slicedPendingTrades));
+        container.empty().append(getPendingTradesTableHTML(pendingTrades));
         registerTradeEvents();
     }
 
@@ -698,16 +742,29 @@
         </tr>
       </tfoot>`
     }
+    function registerPendingTradesEvents() {
+        // pending table footer rows per page
+        $('#pending-trade-rows-per-page').off().on('change', function () {
+            console.log(this.value);
+            debugger
+            const rowsPerPage = +this.value;
+            const paginationData = STATE.getPaginationData();
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                renderPendingTrades();
+            }
+        })
+        $('#pending-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
 
+    }
     // render pending trades end
 
     // render open trades begin
     function renderClosedTrades() {
         const closedTrades = STATE.getClosedTrades();
-        const rowsPerPage = STATE.getPaginationData().rowsPerPage;
-        const slicedClosedTrades = closedTrades.slice(0, rowsPerPage);
         const container = $('.tab-content #closed-trades');
-        container.empty().append(getClosedTradesTableHTML(slicedClosedTrades));
+        container.empty().append(getClosedTradesTableHTML(closedTrades));
         registerTradeEvents();
     }
 
@@ -848,34 +905,15 @@
             STATE.setTradeDetails({ id: tradeId })
             fetchTradeDetails(tradeId);
         })
-        // open table footer rows per page
-        $('#open-trade-rows-per-page').off().on('change', function () {
-            console.log(this.value);
-            debugger
-            const rowsPerPage = +this.value;
-            const paginationData = STATE.getPaginationData();
-            if (rowsPerPage) {
-                paginationData.rowsPerPage = rowsPerPage;
-                STATE.setPaginationData(paginationData)
-                renderOpenTrades();
-            }
-        })
-        $('#open-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
 
-        // pending table footer rows per page
-        $('#pending-trade-rows-per-page').off().on('change', function () {
-            console.log(this.value);
-            debugger
-            const rowsPerPage = +this.value;
-            const paginationData = STATE.getPaginationData();
-            if (rowsPerPage) {
-                paginationData.rowsPerPage = rowsPerPage;
-                STATE.setPaginationData(paginationData)
-                renderPendingTrades();
-            }
-        })
-        $('#pending-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+        registerOpenTradeEvents();
+        registerPendingTradesEvents();
+        registerClosedTradeEvents();
+    }
 
+
+
+    function registerClosedTradeEvents() {
         // closed table footer rows per page
         $('#closed-trade-rows-per-page').off().on('change', function () {
             console.log(this.value);
@@ -890,7 +928,7 @@
         })
         $('#closed-trade-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
     }
-    // render open trades end
+    // render closed trades end
 
     // render buy sell section start
     function renderBuySellData() {
