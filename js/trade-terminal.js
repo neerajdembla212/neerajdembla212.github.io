@@ -347,7 +347,7 @@
         return `<table class="table mb-0">
         ${getOpenTradesTableHeaders()}
         ${getOpenTradesTableBody(data)}
-        ${getOpenTradesTableFooter()}
+        ${getOpenTradesTableFooter(data.length)}
         </table>`
     }
 
@@ -446,8 +446,8 @@
             `
     }
 
-    function getOpenTradesTableFooter() {
-        const { start, end, total } = getStartEndRecordCount();
+    function getOpenTradesTableFooter(dataLength) {
+        const { start, end, total } = getStartEndRecordCount(dataLength);
         return `<tfoot>
         <tr>
           <td colspan="11">
@@ -1581,14 +1581,17 @@
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
     }
-    function getStartEndRecordCount() {
+
+    function getStartEndRecordCount(dataLength) {
         const paginationData = STATE.getPaginationData();
         const { page, rowsPerPage, total } = paginationData;
         let start = page * rowsPerPage + 1;
+        if (start >= total) {
+            start = total - rowsPerPage + 1;
+        }
         let end = start + rowsPerPage - 1;
-        if (start >= total || end >= total) {
-            start = total - rowsPerPage;
-            end = total
+        if (end > total) {
+            end = dataLength
         }
         return {
             start,
@@ -1596,4 +1599,5 @@
             total
         }
     }
+
 })()

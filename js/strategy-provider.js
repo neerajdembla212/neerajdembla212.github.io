@@ -5,6 +5,11 @@
     followingUsers = [];
     favouriteUsers = [];
     strategyProviderDetails = {};
+    paginationData = {
+      rowsPerPage: 10,
+      total: 0,
+      page: 0
+    }
 
     getState() {
       return {
@@ -12,7 +17,8 @@
         featuredProviders: this.featuredProviders,
         followingUsers: this.followingUsers,
         favouriteUsers: this.favouriteUsers,
-        strategyProviderDetails: this.strategyProviderDetails
+        strategyProviderDetails: this.strategyProviderDetails,
+        paginationData: this.paginationData,
       }
     }
 
@@ -49,6 +55,12 @@
       }
       this.strategyProviderDetails = data;
     }
+    setPaginationData(data) {
+      if (!data) {
+        return
+      }
+      this.paginationData = data;
+    }
   }
 
   // creating state object which will contain application data fetched from api in memory for SP page only.
@@ -64,10 +76,14 @@
   });
 
   // fetch apis start
-  function fetchTopGrowthProviders(activeTabId) {
+  function fetchTopGrowthProviders(activeTabId, noLoadingState = false) {
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/top-growth",
       successCallback: (data) => {
+        const paginationData = STATE.getState().paginationData;
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
+
         STATE.setTopGrowth(data.data);
         const viewType = getCurrentViewType();
         switch (viewType) {
@@ -75,7 +91,7 @@
           case 'list': plotListView(); break;
         }
       },
-      beforeSend: plotGridLoadingState.bind(null, activeTabId)
+      beforeSend: noLoadingState ? null : plotGridLoadingState.bind(null, activeTabId)
     });
   }
 
@@ -98,6 +114,10 @@
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/following",
       successCallback: (data) => {
+        const paginationData = STATE.getState().paginationData;
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
+
         STATE.setFollowingUsers(data.data);
         const viewType = getCurrentViewType();
         switch (viewType) {
@@ -113,6 +133,9 @@
     callAjaxMethod({
       url: "https://copypip.free.beeceptor.com/users/favourites",
       successCallback: (data) => {
+        const paginationData = STATE.getState().paginationData;
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
         STATE.setFavouriteUsers(data.data);
         const viewType = getCurrentViewType();
         switch (viewType) {
@@ -287,6 +310,7 @@
     $('.strategy-provider-section .tabs-header').css({
       borderRadius: '6px 6px 0 0'
     });
+
     switch (activeId) {
       case '#top-growth':
         const topGrowth = STATE.getState().topGrowth;
@@ -381,6 +405,11 @@
     if (!tabId) {
       return
     }
+    STATE.setPaginationData({
+      rowsPerPage: 10,
+      total: 0,
+      page: 0
+    })
     switch (tabId) {
       case '#top-growth': fetchTopGrowthProviders(tabId); break;
       case '#featured': fetchFeaturedProviders(tabId); break;
@@ -430,6 +459,60 @@
     });
     // redirect on click of contact row
     $('.strategy-provider-section .contact-row').click(showStrategyProviderDetailsPage)
+    registerTablePaginationEvents();
+  }
+  function registerTablePaginationEvents() {
+    let fetchDataFunction = () => { };
+    const activeId = getActiveTab().attr('href');
+    switch (activeId) {
+      case '#top-growth': fetchDataFunction = fetchTopGrowthProviders; break;
+      case '#following': fetchDataFunction = fetchFollowingUsers; break;
+      case '#favourites': fetchDataFunction = fetchFavouriteUsers; break;
+    }
+    const paginationData = STATE.getState().paginationData;
+    // strategy provider footer rows per page
+    $('#sp-rows-per-page').off().on('change', function () {
+      const rowsPerPage = +this.value;
+      if (rowsPerPage) {
+        paginationData.rowsPerPage = rowsPerPage;
+        STATE.setPaginationData(paginationData)
+        fetchDataFunction(activeId, true);
+      }
+    })
+    $('#sp-rows-per-page').val(paginationData.rowsPerPage)
+
+    // fetch data with updated params on click of next pagination action
+    $('#next-page-sp').unbind().click(function () {
+      paginationData.page++;
+      fetchDataFunction(activeId, true);
+    })
+    // fetch data with updated params on click of previous pagination action
+    $('#prev-page-sp').unbind().click(function () {
+      if (paginationData.page > 0) {
+        paginationData.page--;
+        if (paginationData.page === 0) {
+          $(this).attr('disabled', true);
+        }
+        fetchDataFunction(activeId, true);
+      } else {
+        $(this).attr('disabled', true);
+      }
+    })
+
+    // disable prev if page number is 0 or less else enable
+    if (paginationData.page <= 0) {
+      $('#prev-page-sp').attr('disabled', true);
+    } else {
+      $('#prev-page-sp').removeAttr('disabled');
+    }
+
+    // enable next if page number is max it can be else disable
+    const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+    if (paginationData.page >= totalPossiblePages) {
+      $('#next-page-sp').attr('disabled', true);
+    } else {
+      $('#next-page-sp').removeAttr('disabled')
+    }
   }
   function showStrategyProviderDetailsPage(event) {
     const targetName = $(event.target).attr('name');
@@ -517,7 +600,7 @@
     return `<table class="table mb-0">
     ${getUserTableHeaders()}
     ${getUserTableBody(data)}
-    ${getStrategyProvidersTableFooter()}
+    ${getStrategyProvidersTableFooter(data.length)}
     </table>`
   }
 
@@ -641,20 +724,28 @@
   }
 
 
-  function getStrategyProvidersTableFooter() {
+  function getStrategyProvidersTableFooter(dataLength) {
+    const { start, end, total } = getStartEndRecordCount(dataLength);
     return `<tfoot>
     <tr>
       <td colspan="11" class="pb-0">
-        <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-          <select class="form-control rows-per-page mr-2" name="rows-per-page">
-            <option>10 Rows per page</option>
-            <option>20 Rows per page</option>
-            <option>30 Rows per page</option>
-            <option>40 Rows per page</option>
+      <div class="d-flex justify-content-between align-items-center">
+      <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+      <ul class="pagination d-flex justify-content-end align-items-center m-0">
+          <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
+              <option value="10">10 Rows per page</option>
+              <option value="20">20 Rows per page</option>
+              <option value="30">30 Rows per page</option>
+              <option value="40">40 Rows per page</option>
           </select>
-          <i class="fa fa-angle-left mx-2"></i>
-          <i class="fa fa-angle-right mx-2"></i>
-        </ul>
+          <button class="btn btn-default border-0" type="button" id="prev-page-sp">
+              <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+          </button>
+          <button class="btn btn-default border-0" type="button" id="next-page-sp">
+              <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+          </button>
+      </ul>
+      </div>
       </td>
     </tr>
   </tfoot>`
@@ -974,5 +1065,22 @@
     return maxWidth;
   }
 
+  function getStartEndRecordCount(dataLength) {
+    const paginationData = STATE.getState().paginationData
+    const { page, rowsPerPage, total } = paginationData;
+    let start = page * rowsPerPage + 1;
+    if (start >= total) {
+      start = total - rowsPerPage + 1;
+    }
+    let end = start + rowsPerPage - 1;
+    if (end > total) {
+      end = dataLength
+    }
+    return {
+      start,
+      end,
+      total
+    }
+  }
 })();
 

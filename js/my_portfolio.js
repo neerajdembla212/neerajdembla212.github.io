@@ -5,6 +5,11 @@
         userList = {}; // this will store followers or providers depending on user's role
         role = ''; // provider or follower
         strategyProviderDetails = {};
+        paginationData = {
+            rowsPerPage: 10,
+            total: 0,
+            page: 0
+        }
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -48,6 +53,16 @@
                 return
             }
             this.strategyProviderDetails = data;
+        }
+
+        getPaginationData() {
+            return this.paginationData;
+        }
+        setPaginationData(data) {
+            if (!data) {
+                return;
+            }
+            this.paginationData = data;
         }
     }
     const STATE = new State();
@@ -106,6 +121,9 @@
         callAjaxMethod({
             url: 'https://copypip.free.beeceptor.com/get-portfolio-users/providers',
             successCallback: (data) => {
+                const paginationData = STATE.getPaginationData();
+                paginationData.total = data.total;
+                STATE.setPaginationData(paginationData);
                 STATE.setUserList(data.data);
                 renderStrategyProviders();
             }
@@ -116,6 +134,9 @@
         callAjaxMethod({
             url: 'https://copypip.free.beeceptor.com/get-portfolio-users/followers',
             successCallback: (data) => {
+                const paginationData = STATE.getPaginationData();
+                paginationData.total = data.total;
+                STATE.setPaginationData(paginationData);
                 STATE.setUserList(data.data);
                 renderStrategyFollowers();
             }
@@ -136,7 +157,7 @@
     function renderStrategyProviders() {
         const users = STATE.getUserList();
         const container = $('.portfolio-users-table');
-        container.append(getStrategyProvidersTableHTML(users));
+        container.empty().append(getStrategyProvidersTableHTML(users));
         container.append(getStrategyProviderResponsiveHTML(users));
         registerStrategyProviderTableEvents();
     }
@@ -145,7 +166,7 @@
         return `<table class="table table-hover">
             ${getStrategyProvidersTableHeaders()}
             ${getStrategyProvidersTableBody(data)}
-            ${getStrategyProvidersTableFooter()}
+            ${getStrategyProvidersTableFooter(data.length)}
         </table>`
     }
 
@@ -246,20 +267,28 @@
       </tr>`
     }
 
-    function getStrategyProvidersTableFooter() {
+    function getStrategyProvidersTableFooter(dataLength) {
+        const { start, end, total } = getStartEndRecordCount(dataLength);
         return `<tfoot>
         <tr>
           <td colspan="9" class="pb-0">
-            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-              <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                <option>10 Rows per page</option>
-                <option>20 Rows per page</option>
-                <option>30 Rows per page</option>
-                <option>40 Rows per page</option>
-              </select>
-              <i class="fa fa-angle-left mx-2"></i>
-              <i class="fa fa-angle-right mx-2"></i>
-            </ul>
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+                <ul class="pagination d-flex justify-content-end align-items-center m-0">
+                    <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
+                        <option value="10">10 Rows per page</option>
+                        <option value="20">20 Rows per page</option>
+                        <option value="30">30 Rows per page</option>
+                        <option value="40">40 Rows per page</option>
+                    </select>
+                    <button class="btn btn-default border-0" type="button" id="prev-page-sp">
+                        <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                    </button>
+                    <button class="btn btn-default border-0" type="button" id="next-page-sp">
+                        <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                    </button>
+                </ul>
+            </div>
           </td>
         </tr>
       </tfoot>`
@@ -379,6 +408,7 @@
             const providerName = $(event.currentTarget).data('name');
             renderStopProviderPopup(id, providerName);
         })
+        registerStrategyProviderPaginationEvents();
     }
     function renderPauseProviderPopup(id, name) {
         const container = $('#pause-provider-modal .modal-body');
@@ -400,13 +430,59 @@
             </div>
         `)
     }
+    function registerStrategyProviderPaginationEvents() {
+        const paginationData = STATE.getPaginationData();
+        // strategy provider footer rows per page
+        $('#sp-rows-per-page').off().on('change', function () {
+            const rowsPerPage = +this.value;
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                fetchStrategyProviders();
+            }
+        })
+        $('#sp-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // fetch data with updated params on click of next pagination action
+        $('#next-page-sp').unbind().click(function () {
+            paginationData.page++;
+            fetchStrategyProviders();
+        })
+        // fetch data with updated params on click of previous pagination action
+        $('#prev-page-sp').unbind().click(function () {
+            if (paginationData.page > 0) {
+                paginationData.page--;
+                if (paginationData.page === 0) {
+                    $(this).attr('disabled', true);
+                }
+                fetchStrategyProviders();
+            } else {
+                $(this).attr('disabled', true);
+            }
+        })
+
+        // disable prev if page number is 0 or less else enable
+        if (paginationData.page <= 0) {
+            $('#prev-page-sp').attr('disabled', true);
+        } else {
+            $('#prev-page-sp').removeAttr('disabled');
+        }
+
+        // enable next if page number is max it can be else disable
+        const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+        if (paginationData.page >= totalPossiblePages) {
+            $('#next-page-sp').attr('disabled', true);
+        } else {
+            $('#next-page-sp').removeAttr('disabled')
+        }
+    }
     // render Strategy provider responsive HTML end
 
     // render Strategy Follower table HTML start
     function renderStrategyFollowers() {
         const users = STATE.getUserList();
         const container = $('.portfolio-users-table');
-        container.append(getStrategyFollowersTableHTML(users));
+        container.empty().append(getStrategyFollowersTableHTML(users));
         container.append(getStrategyFollowersResponsiveHTML(users));
         registerStrategyFollowersTableEvents();
     }
@@ -415,7 +491,7 @@
         return `<table class="table">
             ${getStrategyFollowersTableHeaders()}
             ${getStrategyFollowersTableBody(data)}
-            ${getStrategyFollowersTableFooter()}
+            ${getStrategyFollowersTableFooter(data.length)}
         </table>`
     }
 
@@ -525,20 +601,29 @@
         }
     }
 
-    function getStrategyFollowersTableFooter() {
+    function getStrategyFollowersTableFooter(dataLength) {
+        const { start, end, total } = getStartEndRecordCount(dataLength);
+
         return `<tfoot>
         <tr>
           <td colspan="9" class="pb-0">
-            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-              <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                <option>10 Rows per page</option>
-                <option>20 Rows per page</option>
-                <option>30 Rows per page</option>
-                <option>40 Rows per page</option>
+          <div class="d-flex justify-content-between align-items-center">
+          <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> followers</p>
+          <ul class="pagination d-flex justify-content-end align-items-center m-0">
+              <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sf-rows-per-page">
+                  <option value="10">10 Rows per page</option>
+                  <option value="20">20 Rows per page</option>
+                  <option value="30">30 Rows per page</option>
+                  <option value="40">40 Rows per page</option>
               </select>
-              <i class="fa fa-angle-left mx-2"></i>
-              <i class="fa fa-angle-right mx-2"></i>
-            </ul>
+              <button class="btn btn-default border-0" type="button" id="prev-page-sf">
+                  <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+              </button>
+              <button class="btn btn-default border-0" type="button" id="next-page-sf">
+                  <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+              </button>
+          </ul>
+        </div>
           </td>
         </tr>
       </tfoot>`
@@ -643,6 +728,7 @@
             const providerName = $(event.currentTarget).data('name');
             renderStopFollowerPopup(id, providerName);
         })
+        registerStrategyFollowerPaginationEvents()
     }
     function renderPauseFollowerPopup(id, name) {
         const container = $('#pause-follower-modal .modal-body');
@@ -663,6 +749,52 @@
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
             </div>
         `)
+    }
+    function registerStrategyFollowerPaginationEvents() {
+        const paginationData = STATE.getPaginationData();
+        // strategy provider footer rows per page
+        $('#sf-rows-per-page').off().on('change', function () {
+            const rowsPerPage = +this.value;
+            if (rowsPerPage) {
+                paginationData.rowsPerPage = rowsPerPage;
+                STATE.setPaginationData(paginationData)
+                fetchStrategyFollowers();
+            }
+        })
+        $('#sf-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+        // fetch data with updated params on click of next pagination action
+        $('#next-page-sf').unbind().click(function () {
+            paginationData.page++;
+            fetchStrategyFollowers();
+        })
+        // fetch data with updated params on click of previous pagination action
+        $('#prev-page-sf').unbind().click(function () {
+            if (paginationData.page > 0) {
+                paginationData.page--;
+                if (paginationData.page === 0) {
+                    $(this).attr('disabled', true);
+                }
+                fetchStrategyFollowers();
+            } else {
+                $(this).attr('disabled', true);
+            }
+        })
+
+        // disable prev if page number is 0 or less else enable
+        if (paginationData.page <= 0) {
+            $('#prev-page-sf').attr('disabled', true);
+        } else {
+            $('#prev-page-sf').removeAttr('disabled');
+        }
+
+        // enable next if page number is max it can be else disable
+        const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+        if (paginationData.page >= totalPossiblePages) {
+            $('#next-page-sf').attr('disabled', true);
+        } else {
+            $('#next-page-sf').removeAttr('disabled')
+        }
     }
     // render Strategy Follower responsive HTML end
 
@@ -946,6 +1078,24 @@
             jackColor: '#22D091',
             jackSecondaryColor: "#FFFFFF",
         });
+    }
+
+    function getStartEndRecordCount(dataLength) {
+        const paginationData = STATE.getPaginationData();
+        const { page, rowsPerPage, total } = paginationData;
+        let start = page * rowsPerPage + 1;
+        if (start >= total) {
+            start = total - rowsPerPage + 1;
+        }
+        let end = start + rowsPerPage - 1;
+        if (end > total) {
+            end = dataLength
+        }
+        return {
+            start,
+            end,
+            total
+        }
     }
 
 })();
