@@ -350,7 +350,6 @@
             successCallback: (data) => {
                 STATE.setBuySellData(data.data);
                 renderBuySellData();
-                registerBuySellEvents();
             },
         });
     }
@@ -997,16 +996,14 @@
         const container = $('.buy-sell-section');
         container.empty().append(getBuySellDataHTML(buySellData));
         buySellSectionAdjustHeight();
+        registerBuySellEvents();
     }
 
     function getBuySellDataHTML(data) {
         if (!data) {
             return;
         }
-        const { from_currency_rate,
-            to_currency_rate,
-            from_currency_delta,
-            to_currency_delta,
+        const {
             status,
             order_number,
             order_type,
@@ -1063,7 +1060,7 @@
         <div class="divider mb-3"></div>
         <div class="dynamic-elements"></div>
         <!-- Profit loss display start -->
-        ${getProfitLossDisplayHTML(status)}
+        ${getProfitLossDisplayHTML()}
         <!-- Profit loss display end -->
         <!-- Profit loss input start -->
         <div class="d-flex justify-content-between mb-2">
@@ -1157,28 +1154,28 @@
     function getBuySellSectionCTA(status) {
         if (status === 'NEW') {
             return `<div class="d-flex justify-content-between mb-3">
-            <button type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
+            <button id="sell-trade" type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
             Sell
             </button>
-            <button type="button" class="btn btn-w-m btn-primary w-45">
+            <button id="buy-trade" type="button" class="btn btn-w-m btn-primary w-45">
             Buy
             </button>
             </div>`
         } else if (status === "ORDER_PLACED") {
             return `
             <div class="d-flex justify-content-between mb-3">
-                <button type="button" class="btn btn-w-m btn-default w-45 text-bleed-red font-bold">
+                <button id="cancel-trade" type="button" class="btn btn-w-m btn-default w-45 text-bleed-red font-bold">
                     Cancel Order
                 </button>
                 <button type="button" class="btn btn-w-m btn-blue w-45 text-white font-bold">
                     Modify
                 </button>
             </div>
-            <button type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto">Create New Order</button>
+            <button id="create_new_order" type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto">Create New Order</button>
             `
         } else {
             return `
-                <button type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto mb-3">Create New Order</button>
+                <button id="create_new_order" type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto mb-3">Create New Order</button>
             `
         }
     }
@@ -1313,6 +1310,41 @@
             jackColor: '#22D091',
             jackSecondaryColor: "#FFFFFF",
         });
+        // change status on click of buy CTA
+        $('.buy-sell-section #buy-trade').unbind().click(function () {
+            const buySellData = STATE.getBuySellData();
+            buySellData.status = 'ORDER_PLACED';
+            buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
+            buySellData.order_type = 'BUY';
+            STATE.setBuySellData(buySellData);
+            renderBuySellData();
+        })
+        // change status on click of sell CTA
+        $('.buy-sell-section #sell-trade').unbind().click(function () {
+            const buySellData = STATE.getBuySellData();
+            buySellData.status = 'ORDER_PLACED';
+            buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
+            buySellData.order_type = 'SELL';
+            STATE.setBuySellData(buySellData);
+            renderBuySellData();
+        })
+
+        $('.buy-sell-section #cancel-trade').unbind().click(function () {
+            const buySellData = STATE.getBuySellData();
+            buySellData.status = 'CANCELLED';
+            STATE.setBuySellData(buySellData);
+            renderBuySellData();
+        })
+
+        // reset to empty state on click of create new order
+        $('#create_new_order').unbind().click(function () {
+            const buySellData = STATE.getBuySellData();
+            buySellData.status = 'NEW';
+            buySellData.order_number = '';
+            buySellData.order_type = '';
+            STATE.setBuySellData(buySellData);
+            renderBuySellData();
+        })
     }
     // render buy sell section end
 
@@ -1345,8 +1377,7 @@
             to_currency_rate,
             to_currency_delta,
             tp,
-            sl,
-            status
+            sl
         } = tradeDetails;
         return `
         <div class="modal-dialog modal-dialog-center">
