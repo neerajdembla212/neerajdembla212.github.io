@@ -5357,6 +5357,18 @@ table.table-mail tr td {
 .text-market-blue {
   color: #5AA6FF;
 }
+.text-light-green {
+  color: #78CBBB;
+}
+.text-extra-light-blue {
+  color: #75BDFF;
+}
+.text-light-brown {
+  color: #DA8282;
+}
+.text-blur-gray {
+  color: #9A9A9A;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;

@@ -3,6 +3,7 @@ $(document).ready(function () {
     window.location.href = window.origin + '/login.html'
   }
   registerEventHandlers();
+  fetchBuySellData(registerBuySellModalEvents);
 });
 function checkUserLogin() {
   return readCookie('accessToken')
@@ -103,7 +104,6 @@ function registerEventHandlers() {
   });
   // Read more / Read less events
   readMoreLessEventHandler();
-  fetchBuySellData(registerBuySellModalEvents);
   $('.responsive-navbar-cta').click(function () {
     $('body').toggleClass('fixed-navbar');
     SmoothlyMenu();

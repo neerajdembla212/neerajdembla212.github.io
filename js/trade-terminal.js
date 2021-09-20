@@ -17,6 +17,10 @@
             total: 0,
             page: 0
         }
+        recentOrderDetails = {
+
+        }
+
         getOpenTrades() {
             return this.openTrades;
         }
@@ -121,6 +125,16 @@
             }
             this.paginationData = data;
         }
+
+        getRecentOrderDetails() {
+            return this.recentOrderDetails;
+        }
+        setRecentOrderDetails(data) {
+            if (!data) {
+                return
+            }
+            this.recentOrderDetails = data;
+        }
     }
 
     // Global variables for this file
@@ -137,11 +151,7 @@
         })
         registerGlobalEvents();
         // Global function
-        fetchBuySellData(function (data) {
-            STATE.setBuySellData(data);
-            renderBuySellData();
-            registerBuySellEvents();
-        });
+        fetchRecentOrderDetails();
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
         // fetching watchlist
@@ -330,6 +340,17 @@
             successCallback: (data) => {
                 STATE.setCurrencySearchResult(data.data);
                 renderCurrencySearchResult();
+            },
+        });
+    }
+
+    function fetchRecentOrderDetails() {
+        callAjaxMethod({
+            url: `https://copypip.free.beeceptor.com/get-recent-order-details`,
+            successCallback: (data) => {
+                STATE.setBuySellData(data.data);
+                renderBuySellData();
+                registerBuySellEvents();
             },
         });
     }
@@ -975,13 +996,36 @@
         const buySellData = STATE.getBuySellData();
         const container = $('.buy-sell-section');
         container.empty().append(getBuySellDataHTML(buySellData));
+        buySellSectionAdjustHeight();
     }
 
     function getBuySellDataHTML(data) {
         if (!data) {
             return;
         }
-        const { from_currency_rate, to_currency_rate, from_currency_delta, to_currency_delta } = data;
+        const { from_currency_rate,
+            to_currency_rate,
+            from_currency_delta,
+            to_currency_delta,
+            status,
+            order_number,
+            order_type,
+            order_time,
+            type,
+            profit,
+            loss } = data;
+
+        const orderDetailsHTML = status !== 'NEW' ? `
+        <div class="d-flex justify-content-between mb-3">
+            <p class="mb-0 font-weight-bold text-dark-gray">${order_type} ORDER #${order_number}</p>
+            <p class="mb-0">${formatDate(new Date(order_time), 'DD/MM/YYYY HH:mm')}</p>
+        </div>
+            ` : '';
+
+        const typeValue = status !== 'NEW' ? type : 'Market Execution';
+
+        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control w-35" id="profit-input" value="${profit}">` : `<input type="text" class="form-control w-35" id="profit-input">`;
+        const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control w-35" id="loss-input" value="${loss}">` : `<input type="text" class="form-control w-35" id="loss-input">`;
         return `
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
@@ -991,6 +1035,9 @@
           </div>
         </div>
         <!-- order by account end -->
+        <!-- order details start -->
+        ${orderDetailsHTML}
+       <!-- order details end -->
         <!-- Currency exchange input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
           <div class="line-height-md">
@@ -1005,7 +1052,7 @@
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <p class="mb-0 font-weight-light medium-font">Type</p>
             <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                Market Execution
+                ${typeValue}
             </button>
             <ul id="type-input-menu" class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Market Execution</a></li>
@@ -1016,19 +1063,7 @@
         <div class="divider mb-3"></div>
         <div class="dynamic-elements"></div>
         <!-- Profit loss display start -->
-        <div class="d-flex justify-content-between mb-3 align-items-center">
-            <div>
-                <p class="mb-0 super-extra-large-font font-bold text-modal-black">${from_currency_rate}</p>
-                <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
-                      class="up-arrow-green mr-1"></span>+${from_currency_delta}
-                </p>
-            </div>
-            <div>
-                <p class="mb-0 super-extra-large-font font-bold text-modal-black">${to_currency_rate}</p>
-                <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
-                      class="up-arrow-green mr-1"></span>+${to_currency_delta}
-            </div>
-        </div>
+        ${getProfitLossDisplayHTML(status)}
         <!-- Profit loss display end -->
         <!-- Profit loss input start -->
         <div class="d-flex justify-content-between mb-2">
@@ -1036,20 +1071,13 @@
             <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <input type="text" class="form-control w-35" id="profit-input">
+           ${profitInputHTML}
             <span class="font-bold medium-font text-dark-black">price</span>
-            <input type="text" class="form-control w-35" id="loss-input">
+            ${lossInputHTML}
         </div>
         <!-- Profit loss input end -->
         <!-- Buy Sell CTA start -->
-        <div class="d-flex justify-content-between mb-3">
-            <button type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
-            Sell
-            </button>
-            <button type="button" class="btn btn-w-m btn-primary w-45">
-            Buy
-            </button>
-        </div>
+        ${getBuySellSectionCTA(status)}
         <!-- Buy Sell CTA end -->
         <!-- one Click trading start-->
         <div class="d-flex justify-content-between align-items-center">
@@ -1057,6 +1085,113 @@
             <input type="checkbox" class="js-switch" checked />
         </div>
         <!-- one Click trading end-->`
+    }
+
+    function getProfitLossDisplayHTML() {
+        const { status,
+            from_currency_rate,
+            from_currency_delta,
+            to_currency_rate,
+            to_currency_delta,
+            from_currency,
+            to_currency,
+            volume,
+            order_number,
+            order_type } = STATE.getBuySellData();
+        switch (status) {
+            case 'NEW':
+            case 'ORDER_PLACED':
+                return `
+                <div class="d-flex justify-content-between mb-3 align-items-center">
+                <div>
+                    <p class="mb-0 super-extra-large-font font-bold text-modal-black">${from_currency_rate}</p>
+                    <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                          class="up-arrow-green mr-1"></span>+${from_currency_delta}
+                    </p>
+                </div>
+                <div>
+                    <p class="mb-0 super-extra-large-font font-bold text-modal-black">${to_currency_rate}</p>
+                    <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                          class="up-arrow-green mr-1"></span>+${to_currency_delta}
+                </div>
+            </div>
+                `
+            case 'TRADE_INITIATED':
+                return `
+            <div class="mb-2 d-flex">
+                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+            </div>
+            <p class="mb-3 text-light-green super-extra-large-font font-bold">Trade Initiated</p>
+            `
+            case 'TRADE_PROCESSING':
+                return `
+            <div class="mb-2 d-flex">
+                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+            </div>
+            <p class="mb-3 text-extra-light-blue super-extra-large-font font-bold">Trade Processing</p>
+            `
+            case 'NO_CONNECTION':
+                return `
+            <div class="mb-2 d-flex">
+                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+            </div>
+            <p class="mb-3 text-light-brown super-extra-large-font font-bold">No Connection</p>
+            `
+            case 'TRADE_CLOSED':
+                return `
+            <div class="mb-2 d-flex">
+                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+            </div>
+            <p class="mb-3 super-extra-large-font font-bold">Closed ${volume} at ${to_currency_rate}</p>
+            `
+            case 'CANCELLED':
+                return `
+            <div class="mb-2 d-flex">
+                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+            </div>
+            <p class="mb-3 text-blur-gray super-extra-large-font font-bold">Cancelled</p>
+            `
+            default: return ``;
+        }
+    }
+    function getBuySellSectionCTA(status) {
+        if (status === 'NEW') {
+            return `<div class="d-flex justify-content-between mb-3">
+            <button type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
+            Sell
+            </button>
+            <button type="button" class="btn btn-w-m btn-primary w-45">
+            Buy
+            </button>
+            </div>`
+        } else if (status === "ORDER_PLACED") {
+            return `
+            <div class="d-flex justify-content-between mb-3">
+                <button type="button" class="btn btn-w-m btn-default w-45 text-bleed-red font-bold">
+                    Cancel Order
+                </button>
+                <button type="button" class="btn btn-w-m btn-blue w-45 text-white font-bold">
+                    Modify
+                </button>
+            </div>
+            <button type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto">Create New Order</button>
+            `
+        } else {
+            return `
+                <button type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto mb-3">Create New Order</button>
+            `
+        }
+    }
+
+    function buySellSectionAdjustHeight() {
+        const { status } = STATE.getBuySellData();
+        if (status === 'ORDER_PLACED') {
+            $('.buy-sell-section').css('max-height', '512px');
+        } else if (status === 'NEW') {
+            $('.buy-sell-section').css('max-height', '444px');
+        } else {
+            $('.buy-sell-section').css('max-height', '472px');
+        }
     }
 
     function renderPendingOrderFormControls(mode) {
@@ -1210,7 +1345,8 @@
             to_currency_rate,
             to_currency_delta,
             tp,
-            sl
+            sl,
+            status
         } = tradeDetails;
         return `
         <div class="modal-dialog modal-dialog-center">
