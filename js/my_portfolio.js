@@ -156,7 +156,7 @@
     // render Strategy provider table HTML start
     function renderStrategyProviders() {
         const users = STATE.getUserList();
-        const container = $('.portfolio-users-table');
+        const container = $('.portfolio-users-table .portfolio-users-table-content');
         container.empty().append(getStrategyProvidersTableHTML(users));
         container.append(getStrategyProviderResponsiveHTML(users));
         registerStrategyProviderTableEvents();
@@ -481,7 +481,7 @@
     // render Strategy Follower table HTML start
     function renderStrategyFollowers() {
         const users = STATE.getUserList();
-        const container = $('.portfolio-users-table');
+        const container = $('.portfolio-users-table .portfolio-users-table-content');
         container.empty().append(getStrategyFollowersTableHTML(users));
         container.append(getStrategyFollowersResponsiveHTML(users));
         registerStrategyFollowersTableEvents();
