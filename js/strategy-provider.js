@@ -922,7 +922,7 @@
       favourite
     } = user;
 
-    return `<div class="p-3">
+    return `<div class="p-3 contact-row">
       <div class="d-flex justify-content-between align-items-center">
         <div>
             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
