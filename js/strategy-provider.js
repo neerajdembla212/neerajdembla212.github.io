@@ -97,6 +97,8 @@
   // NOTE : This state structure ensures whenever data changes by any function / api they call methods of state data fist to update data and then update UI
   // however this structure doesn't support data sharing between two pages, for that we have to rely upon api or local storage
   const STATE = new State();
+  // Global variables for this file
+  const DESKTOP_MEDIA = window.matchMedia("(max-width: 1024px)")
 
   $(function () {
     registerGlobalEvents();
@@ -445,10 +447,16 @@
     }
     const container = $("#top-growth .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
+
 
   }
   // render top growth table end
@@ -585,6 +593,14 @@
     $(".tabs-container .nav-tabs > li").click(event => {
       onTabChange($(event.target).attr('href'))
     })
+
+    DESKTOP_MEDIA.addEventListener('change', function (event) {
+      const viewType = getCurrentViewType();
+      if (viewType === 'list') {
+        plotListView();
+      }
+    })
+
     // Follow provider api call on click of CTA from modal
     $('#follow-provider-modal #follow-provider').click(() => {
       $('#follow-provider-modal #close-modal').click();
@@ -1115,10 +1131,15 @@
     }
     const container = $("#following .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
 
   }
   // render following users card HTML start
@@ -1145,10 +1166,15 @@
     }
     const container = $("#favourites .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
   function getProxyCardHTML() {
     return `<div class="contact-box proxy d-flex flex-column col" id="contact-box-proxy"></div>`
@@ -1222,10 +1248,15 @@
     }
     const container = $("#low-growth .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
 
   // render low growth users end
@@ -1250,10 +1281,15 @@
     }
     const container = $("#mid-growth .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
   // render mid growth users end
 
@@ -1277,13 +1313,16 @@
       return;
     }
     const container = $("#high-growth .panel-body");
-
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
-
   // render high growth users end
 
 
