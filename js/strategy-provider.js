@@ -456,7 +456,7 @@
       ${getUserTableHTML(data)}
       </div>`)
     }
-    
+
 
   }
   // render top growth table end
@@ -596,9 +596,9 @@
 
     DESKTOP_MEDIA.addEventListener('change', function (event) {
       const viewType = getCurrentViewType();
-        if(viewType === 'list') {
-          plotListView();
-        }
+      if (viewType === 'list') {
+        plotListView();
+      }
     })
 
     // Follow provider api call on click of CTA from modal
@@ -1248,10 +1248,15 @@
     }
     const container = $("#low-growth .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
 
   // render low growth users end
@@ -1276,10 +1281,15 @@
     }
     const container = $("#mid-growth .panel-body");
 
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
   // render mid growth users end
 
@@ -1303,13 +1313,16 @@
       return;
     }
     const container = $("#high-growth .panel-body");
-
-    container.empty().append(`<div class="ibox-content table-responsive p-0">
-    ${getUserTableHTML(data)}
-    ${getUserTableResponsiveHTML(data)}
-    </div>`)
+    if (DESKTOP_MEDIA.matches) {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableResponsiveHTML(data)}
+      </div>`)
+    } else {
+      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      ${getUserTableHTML(data)}
+      </div>`)
+    }
   }
-
   // render high growth users end
 
 
