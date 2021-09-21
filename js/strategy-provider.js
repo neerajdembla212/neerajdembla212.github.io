@@ -5,6 +5,9 @@
     followingUsers = [];
     favouriteUsers = [];
     strategyProviderDetails = {};
+    lowGrowthUsers = [];
+    midGrowthUsers = [];
+    highGrowthUsers = [];
     paginationData = {
       rowsPerPage: 10,
       total: 0,
@@ -19,6 +22,9 @@
         favouriteUsers: this.favouriteUsers,
         strategyProviderDetails: this.strategyProviderDetails,
         paginationData: this.paginationData,
+        lowGrowthUsers: this.lowGrowthUsers,
+        midGrowthUsers: this.midGrowthUsers,
+        highGrowthUsers: this.highGrowthUsers
       }
     }
 
@@ -49,17 +55,40 @@
       }
       this.favouriteUsers = data;
     }
+
     setStrategyProviderDetails(data) {
       if (!data) {
         return
       }
       this.strategyProviderDetails = data;
     }
+
     setPaginationData(data) {
       if (!data) {
         return
       }
       this.paginationData = data;
+    }
+
+    setLowGrowthUsers(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.lowGrowthUsers = data;
+    }
+
+    setMidGrowthUsers(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.midGrowthUsers = data;
+    }
+
+    setHighGrowthUsers(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.highGrowthUsers = data;
     }
   }
 
@@ -146,6 +175,7 @@
       beforeSend: plotGridLoadingState.bind(null, activeTabId)
     });
   }
+
   function fetchStrategyProviderDetails(id) {
     callAjaxMethod({
       url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${id}`,
@@ -155,8 +185,63 @@
       }
     });
   }
+
+  function fetchLowGrowthUsers(activeTabId) {
+    callAjaxMethod({
+      url: `https://copypip.free.beeceptor.com/users/low-growth`,
+      successCallback: (data) => {
+        const paginationData = STATE.getState().paginationData;
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
+        STATE.setLowGrowthUsers(data.data);
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
+      },
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
+    });
+  }
+
+  function fetchMidGrowthUsers(activeTabId) {
+    callAjaxMethod({
+      url: `https://copypip.free.beeceptor.com/users/mid-growth`,
+      successCallback: (data) => {
+        const paginationData = STATE.getState().paginationData;
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
+        STATE.setMidGrowthUsers(data.data);
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
+      },
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
+    });
+  }
+
+  function fetchHighGrowthUsers(activeTabId) {
+    callAjaxMethod({
+      url: `https://copypip.free.beeceptor.com/users/high-growth`,
+      successCallback: (data) => {
+        const paginationData = STATE.getState().paginationData;
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
+        STATE.setHighGrowthUsers(data.data);
+        const viewType = getCurrentViewType();
+        switch (viewType) {
+          case 'grid': plotGridView(); break;
+          case 'list': plotListView(); break;
+        }
+      },
+      beforeSend: plotGridLoadingState.bind(null, activeTabId)
+    });
+  }
   // fetch apis end
-  // Plot single Line chart (trendline) 
+
+  // Plot single Line chart (trendline) start
   function plotLineChart(lineChartCanvas, lineData, viewType) {
     if (!lineData || !Array.isArray(lineData)) {
       return;
@@ -245,8 +330,9 @@
 
     new Chart(ctx, config);
   }
+  // Plot single Line chart (trendline) end
 
-  // plot all line charts in grid view
+  // plot all line charts in grid view start
   function plotGridLineCharts(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -260,7 +346,7 @@
       }
     });
   }
-
+  // plot all line charts in grid view end
 
   function plotListLineCharts(data) {
     if (!data || !Array.isArray(data)) {
@@ -278,6 +364,7 @@
     });
   }
 
+  // render top growth card start
   function plotTopGrowthCard(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -285,13 +372,73 @@
     const container = $("#top-growth .panel-body");
     const containerHTML = [];
     data.forEach((provider) => {
-      const providerCard = getTopGrowthCardHTML(provider);
+      const providerCard = getUserCardHTML(provider);
       containerHTML.push(providerCard);
     });
     container.empty().append(containerHTML);
     addProxyCard(container, data.length);
   }
 
+  function getUserCardHTML(provider) {
+    if (!provider) {
+      return "";
+    }
+    const {
+      id,
+      profile_image,
+      username,
+      name,
+      return_percentage,
+      follower_count,
+      drawDown,
+      return_duration,
+      risk_amount,
+      favourite
+    } = provider;
+
+    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}" data-id="${id}">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <img
+          alt="image"
+          class="rounded-circle img-fluid img-sm"
+          src="${profile_image}"
+        />
+        <div class="d-flex flex-column ml-3">
+          <span class="font-bold">${username}</span>
+          <span class="text-light-black">${name}</span>
+        </div>
+      </div>
+      <span class="fa favourite-icon cursor-pointer ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}" name="favourites-cta"></span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class=" align-self-center m-0 font-bold d-flex flex-column">
+        <p class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</p>
+        <p class="text-uppercase text-light-gray small-font">${return_duration}</p>
+      </div>
+      <div class=" align-self-center m-0 d-flex flex-column">
+        <p class="risk_amount h4 align-self-center text-light-gray m-0">$${risk_amount}</p>
+        <p class="text-capitalize small-font text-blue text-center">low risk</p>
+      </div>
+    </div>
+    <div class="line-chart-container">
+      <canvas class="lineChart" class="mt-2"></canvas>
+    </div>
+    <button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
+      Follow Provider
+    </button>
+    <!-- area chart here-->
+    <div class="d-flex mt-2 justify-content-between">
+      <span class="text-light-gray"><span class="format-us">${formatWithCommas(follower_count)}</span> Followers</span>
+      <span class="font-bold">
+        Drawdown <span class="${drawDown > 0 ? 'text-green' : 'text-danger'}">${drawDown}%</span>
+      </span>
+    </div>
+  </div>`;
+  }
+  // render top growth card end
+
+  // render top growth table start
   function plotTopGrowthTable(data) {
     if (!data || !Array.isArray(data)) {
       return;
@@ -304,6 +451,7 @@
     </div>`)
 
   }
+  // render top growth table end
 
   function plotListView() {
     const activeId = getActiveTab().attr('href');
@@ -330,6 +478,27 @@
         const favouriteUsers = STATE.getState().favouriteUsers;
         plotFavouriteUsersTable(favouriteUsers);
         plotListLineCharts(favouriteUsers);
+        registerListViewEvents();
+        break;
+
+      case '#low-growth':
+        const lowGrowthUsers = STATE.getState().lowGrowthUsers;
+        plotLowGrowthUsersTable(lowGrowthUsers);
+        plotListLineCharts(lowGrowthUsers);
+        registerListViewEvents();
+        break;
+
+      case '#mid-growth':
+        const midGrowthUsers = STATE.getState().midGrowthUsers;
+        plotMidGrowthUsersTable(midGrowthUsers);
+        plotListLineCharts(midGrowthUsers);
+        registerListViewEvents();
+        break;
+
+      case '#high-growth':
+        const highGrowthUsers = STATE.getState().highGrowthUsers;
+        plotHighGrowthUsersTable(highGrowthUsers);
+        plotListLineCharts(highGrowthUsers);
         registerListViewEvents();
         break;
     }
@@ -363,6 +532,27 @@
         const favouriteUsers = STATE.getState().favouriteUsers;
         plotFavouriteUsersCard(favouriteUsers);
         plotGridLineCharts(favouriteUsers);
+        registerGridViewEvents();
+        break;
+
+      case '#low-growth':
+        const lowGrowthUsers = STATE.getState().lowGrowthUsers;
+        plotLowGrowthUsersCard(lowGrowthUsers);
+        plotGridLineCharts(lowGrowthUsers);
+        registerGridViewEvents();
+        break;
+
+      case '#mid-growth':
+        const midGrowthUsers = STATE.getState().midGrowthUsers;
+        plotMidGrowthUsersCard(midGrowthUsers);
+        plotGridLineCharts(midGrowthUsers);
+        registerGridViewEvents();
+        break;
+
+      case '#high-growth':
+        const highGrowthUsers = STATE.getState().highGrowthUsers;
+        plotHighGrowthUsersCard(highGrowthUsers);
+        plotGridLineCharts(highGrowthUsers);
         registerGridViewEvents();
         break;
     }
@@ -415,8 +605,9 @@
       case '#featured': fetchFeaturedProviders(tabId); break;
       case '#following': fetchFollowingUsers(tabId); break;
       case '#favourites': fetchFavouriteUsers(tabId); break;
-
-
+      case '#low-growth': fetchLowGrowthUsers(tabId); break;
+      case '#mid-growth': fetchMidGrowthUsers(tabId); break;
+      case '#high-growth': fetchHighGrowthUsers(tabId); break;
     }
   }
 
@@ -438,11 +629,9 @@
     // follow provider popup 
     const activeTabId = getActiveTab().attr('href');
     $(`${activeTabId} .panel-body .contact-box`).click(event => {
-      debugger
       const id = $(event.currentTarget).data('id')
       fetchStrategyProviderDetails(id);
     })
-
   }
 
   function registerListViewEvents() {
@@ -514,6 +703,7 @@
       $('#next-page-sp').removeAttr('disabled')
     }
   }
+
   function showStrategyProviderDetailsPage(event) {
     const targetName = $(event.target).attr('name');
     if (targetName === "follow-provider-cta" || targetName === "favourites-cta") {
@@ -534,64 +724,6 @@
     return $(".subheader .btn-group button.active").data("viewType")
   }
 
-  function getTopGrowthCardHTML(provider) {
-    if (!provider) {
-      return "";
-    }
-    const {
-      id,
-      profile_image,
-      username,
-      name,
-      return_percentage,
-      follower_count,
-      drawDown,
-      return_duration,
-      risk_amount,
-      favourite
-    } = provider;
-
-    return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}" data-id="${id}">
-    <div class="d-flex justify-content-between">
-      <div class="d-flex">
-        <img
-          alt="image"
-          class="rounded-circle img-fluid img-sm"
-          src="${profile_image}"
-        />
-        <div class="d-flex flex-column ml-3">
-          <span class="font-bold">${username}</span>
-          <span class="text-light-black">${name}</span>
-        </div>
-      </div>
-      <span class="fa favourite-icon cursor-pointer ${favourite === 'true' ? 'fa-bookmark active' : 'fa-bookmark-o'}" name="favourites-cta"></span>
-    </div>
-    <div class="d-flex justify-content-between">
-      <div class=" align-self-center m-0 font-bold d-flex flex-column">
-        <p class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</p>
-        <p class="text-uppercase text-light-gray small-font">${return_duration}</p>
-      </div>
-      <div class=" align-self-center m-0 d-flex flex-column">
-        <p class="risk_amount h4 align-self-center text-light-gray m-0">$${risk_amount}</p>
-        <p class="text-capitalize small-font text-blue text-center">low risk</p>
-      </div>
-    </div>
-    <div class="line-chart-container">
-      <canvas class="lineChart" class="mt-2"></canvas>
-    </div>
-    <button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
-      Follow Provider
-    </button>
-    <!-- area chart here-->
-    <div class="d-flex mt-2 justify-content-between">
-      <span class="text-light-gray"><span class="format-us">${formatWithCommas(follower_count)}</span> Followers</span>
-      <span class="font-bold">
-        Drawdown <span class="${drawDown > 0 ? 'text-green' : 'text-danger'}">${drawDown}%</span>
-      </span>
-    </div>
-  </div>`;
-  }
-
   // render user table start
   function getUserTableHTML(data) {
     if (!data || !Array.isArray(data)) {
@@ -600,7 +732,7 @@
     return `<table class="table mb-0">
     ${getUserTableHeaders()}
     ${getUserTableBody(data)}
-    ${getStrategyProvidersTableFooter(data.length)}
+    ${getUserTableFooter(data.length)}
     </table>`
   }
 
@@ -616,7 +748,6 @@
         <th class="align-middle text-center">Avg Pips</th>
         <th class="align-middle text-center">follower funds</th>
         <th class="align-middle text-center">followers</th>
-        <th class="align-middle text-center">advised min</th>
         <th class="align-middle text-center">Follow</th>
         <th class="pr-3 align-middle text-center">WATCH</th>
       </tr>
@@ -654,7 +785,6 @@
       average_per_month,
       follower_funds,
       average_pips,
-      advised_min,
       favourite
     } = user;
     return ` <tr id="table-user-${id}" class="contact-row cursor-pointer" data-id="${id}">
@@ -693,12 +823,6 @@
       <td class="font-bold text-center align-middle">${average_pips}</td>
       <td class="font-bold text-center align-middle">${follower_funds}</td>
       <td class="font-bold text-center align-middle">${formatWithCommas(follower_count)}</td>
-      <td class="font-bold text-center align-middle">
-      <div>
-        <p class="m-0">$${formatWithCommas(advised_min)}</p>
-        <p class="small-font text-capitalize text-blue m-0 font-weight-normal">Low Risk</p>
-      </div>
-      </td>
       <td class="align-middle">
         <button id="follow-provider-cta" class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
           Follow Provider
@@ -724,7 +848,7 @@
   }
 
 
-  function getStrategyProvidersTableFooter(dataLength) {
+  function getUserTableFooter(dataLength) {
     const { start, end, total } = getStartEndRecordCount(dataLength);
     return `<tfoot>
     <tr>
@@ -779,7 +903,6 @@
       average_per_month,
       follower_funds,
       average_pips,
-      advised_min,
       favourite
     } = user;
 
@@ -831,10 +954,6 @@
             <p class="mb-0 responsive-label">AVG/MTH</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${average_per_month}</p>
           </div>
-          <div class="mr-3">
-            <p class="mb-0 responsive-label">Advised Min</p>
-            <p class="mb-0 font-bold responsive-value text-dark-green">${advised_min}</p>
-          </div>
           <div class="mr-3 hide-m">
             <p class="mb-0 responsive-label">Avg Pips</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${average_pips}</p>
@@ -851,7 +970,6 @@
     </div>
     `
   }
-
   // render user table responsive HTML end 
 
   // render featured providers card HTML start
@@ -906,7 +1024,7 @@
           src="${profile_image}"
         />
         <div class="d-flex flex-column ml-3">
-          <span class="font-bold">${username}</span>
+          <span class="font-bold">${username} <span class="ml-2 featured-chip px-1 text-white extra-small-font">Featured</span></span>
           <span class="text-light-black">${name}</span>
         </div>
       </div>
@@ -969,7 +1087,7 @@
     const container = $("#following .panel-body");
     const containerHTML = [];
     data.forEach((provider) => {
-      const providerCard = getTopGrowthCardHTML(provider);
+      const providerCard = getUserCardHTML(provider);
       containerHTML.push(providerCard);
     });
     container.empty().append(containerHTML);
@@ -1013,7 +1131,7 @@
     const container = $("#favourites .panel-body");
     const containerHTML = [];
     data.forEach((provider) => {
-      const providerCard = getTopGrowthCardHTML(provider);
+      const providerCard = getUserCardHTML(provider);
       containerHTML.push(providerCard);
     });
     container.empty().append(containerHTML);
@@ -1082,5 +1200,92 @@
       total
     }
   }
+
+  // render low growth users start
+  function plotLowGrowthUsersCard(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#low-growth .panel-body");
+    const containerHTML = [];
+    data.forEach((provider) => {
+      const providerCard = getUserCardHTML(provider);
+      containerHTML.push(providerCard);
+    });
+    container.empty().append(containerHTML);
+    addProxyCard(container, data.length);
+  }
+
+  function plotLowGrowthUsersTable(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#low-growth .panel-body");
+
+    container.empty().append(`<div class="ibox-content table-responsive p-0">
+    ${getUserTableHTML(data)}
+    ${getUserTableResponsiveHTML(data)}
+    </div>`)
+  }
+
+  // render low growth users end
+
+  // render mid growth users start
+  function plotMidGrowthUsersCard(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#mid-growth .panel-body");
+    const containerHTML = [];
+    data.forEach((provider) => {
+      const providerCard = getUserCardHTML(provider);
+      containerHTML.push(providerCard);
+    });
+    container.empty().append(containerHTML);
+    addProxyCard(container, data.length);
+  }
+  function plotMidGrowthUsersTable(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#mid-growth .panel-body");
+
+    container.empty().append(`<div class="ibox-content table-responsive p-0">
+    ${getUserTableHTML(data)}
+    ${getUserTableResponsiveHTML(data)}
+    </div>`)
+  }
+  // render mid growth users end
+
+  // render high growth users start
+  function plotHighGrowthUsersCard(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#high-growth .panel-body");
+    const containerHTML = [];
+    data.forEach((provider) => {
+      const providerCard = getUserCardHTML(provider);
+      containerHTML.push(providerCard);
+    });
+    container.empty().append(containerHTML);
+    addProxyCard(container, data.length);
+  }
+
+  function plotHighGrowthUsersTable(data) {
+    if (!data || !Array.isArray(data)) {
+      return;
+    }
+    const container = $("#high-growth .panel-body");
+
+    container.empty().append(`<div class="ibox-content table-responsive p-0">
+    ${getUserTableHTML(data)}
+    ${getUserTableResponsiveHTML(data)}
+    </div>`)
+  }
+
+  // render high growth users end
+
+
 })();
 

@@ -10850,6 +10850,12 @@ textarea {
 select[name="rows-per-page"] {
   height: 35px !important;
 }
+.vertical-divider {
+  height: 100%;
+  border: none;
+  background-color: #DDDDDD;
+  width: 1px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -11200,6 +11206,10 @@ select[name="rows-per-page"] {
 .strategy-provider-section .responsive-users .responsive-value {
   font-size: 14px;
   word-break: break-word;
+}
+.strategy-provider-section .featured-chip {
+  background-color: #487FD9;
+  border-radius: 4px;
 }
 /* Loader state for Top Growth, Following and favourite tab */
 .strategy-provider-section .panel-body .contact-box.loading {
