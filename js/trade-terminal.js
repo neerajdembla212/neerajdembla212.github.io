@@ -467,7 +467,7 @@
     }
 
     function getOpenTradesTableFooter(dataLength) {
-        const { start, end, total } = getStartEndRecordCount(dataLength);
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
           <td colspan="11">
@@ -740,7 +740,7 @@
     }
 
     function getPendingTradesTableFooter() {
-        const { start, end, total } = getStartEndRecordCount();
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
           <td colspan="11">
@@ -914,7 +914,7 @@
     }
 
     function getClosedTradesTableFooter() {
-        const { start, end, total } = getStartEndRecordCount();
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
             <tr>
               <td colspan="11">
@@ -1747,24 +1747,6 @@
     // Helper methods
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
-    }
-
-    function getStartEndRecordCount(dataLength) {
-        const paginationData = STATE.getPaginationData();
-        const { page, rowsPerPage, total } = paginationData;
-        let start = page * rowsPerPage + 1;
-        if (start >= total) {
-            start = total - rowsPerPage + 1;
-        }
-        let end = start + rowsPerPage - 1;
-        if (end > total) {
-            end = dataLength
-        }
-        return {
-            start,
-            end,
-            total
-        }
     }
 
 })()

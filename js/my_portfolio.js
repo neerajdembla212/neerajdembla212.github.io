@@ -66,6 +66,7 @@
         }
     }
     const STATE = new State();
+    const DESKTOP_MEDIA = window.matchMedia("(max-width: 968px)")
     // document ready function
     $(function () {
         // role has to be set first before callig other methods as they depend upon this value
@@ -157,8 +158,13 @@
     function renderStrategyProviders() {
         const users = STATE.getUserList();
         const container = $('.portfolio-users-table .portfolio-users-table-content');
-        container.empty().append(getStrategyProvidersTableHTML(users));
-        container.append(getStrategyProviderResponsiveHTML(users));
+        if (DESKTOP_MEDIA.matches) {
+            // screen size is below 968px
+            container.empty().append(getStrategyProviderResponsiveHTML(users));
+        } else {
+            // screnn size is above 968px
+            container.empty().append(getStrategyProvidersTableHTML(users));
+        }
         registerStrategyProviderTableEvents();
     }
 
@@ -268,7 +274,7 @@
     }
 
     function getStrategyProvidersTableFooter(dataLength) {
-        const { start, end, total } = getStartEndRecordCount(dataLength);
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
           <td colspan="9" class="pb-0">
@@ -303,6 +309,7 @@
         })
         return `<div class="responsive-providers">
             ${rowsHTML.join('')}
+            ${getStrategyProviderResponsiveFooter(data.length)}
         </div>`
     }
 
@@ -377,7 +384,28 @@
                     </div>
                 </div>`
     }
-
+    function getStrategyProviderResponsiveFooter(dataLength) {
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
+        return `
+        <div class="d-flex justify-content-between align-items-center p-2">
+                <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+                <ul class="pagination d-flex justify-content-end align-items-center m-0">
+                    <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
+                        <option value="10">10 Rows per page</option>
+                        <option value="20">20 Rows per page</option>
+                        <option value="30">30 Rows per page</option>
+                        <option value="40">40 Rows per page</option>
+                    </select>
+                    <button class="btn btn-default border-0" type="button" id="prev-page-sp">
+                        <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                    </button>
+                    <button class="btn btn-default border-0" type="button" id="next-page-sp">
+                        <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                    </button>
+                </ul>
+            </div>
+        `
+    }
     function registerStrategyProviderTableEvents() {
         // click on row and go to provider details page
         $('.sp-details-cta').unbind().click(event => {
@@ -482,8 +510,13 @@
     function renderStrategyFollowers() {
         const users = STATE.getUserList();
         const container = $('.portfolio-users-table .portfolio-users-table-content');
-        container.empty().append(getStrategyFollowersTableHTML(users));
-        container.append(getStrategyFollowersResponsiveHTML(users));
+        if (DESKTOP_MEDIA.matches) {
+            // screen is below 968px
+            container.empty().append(getStrategyFollowersResponsiveHTML(users));
+        } else {
+            // screen is above 968px
+            container.empty().append(getStrategyFollowersTableHTML(users));
+        }
         registerStrategyFollowersTableEvents();
     }
 
@@ -602,7 +635,7 @@
     }
 
     function getStrategyFollowersTableFooter(dataLength) {
-        const { start, end, total } = getStartEndRecordCount(dataLength);
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
 
         return `<tfoot>
         <tr>
@@ -638,6 +671,7 @@
         })
         return `<div class="responsive-providers">
             ${rowsHTML.join('')}
+            ${getStrategyFollowerResponsiveFooter(data.length)}
         </div>`
     }
 
@@ -713,7 +747,27 @@
                     </div>
                 </div>`
     }
-
+    function getStrategyFollowerResponsiveFooter(dataLength) {
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
+        return `
+            <div class="d-flex justify-content-between align-items-center p-2">
+                <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+                <ul class="pagination d-flex justify-content-end align-items-center m-0">
+                    <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
+                        <option value="10">10 Rows per page</option>
+                        <option value="20">20 Rows per page</option>
+                        <option value="30">30 Rows per page</option>
+                        <option value="40">40 Rows per page</option>
+                    </select>
+                    <button class="btn btn-default border-0" type="button" id="prev-page-sp">
+                        <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                    </button>
+                    <button class="btn btn-default border-0" type="button" id="next-page-sp">
+                        <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                    </button>
+                </ul>
+            </div>`
+    }
     function registerStrategyFollowersTableEvents() {
         // click on pause icon on any strategy provider tabls row and open pause provider popup
         $('.pause-follower-cta').unbind().click(event => {
@@ -1078,24 +1132,17 @@
             jackColor: '#22D091',
             jackSecondaryColor: "#FFFFFF",
         });
-    }
 
-    function getStartEndRecordCount(dataLength) {
-        const paginationData = STATE.getPaginationData();
-        const { page, rowsPerPage, total } = paginationData;
-        let start = page * rowsPerPage + 1;
-        if (start >= total) {
-            start = total - rowsPerPage + 1;
-        }
-        let end = start + rowsPerPage - 1;
-        if (end > total) {
-            end = dataLength
-        }
-        return {
-            start,
-            end,
-            total
-        }
+        DESKTOP_MEDIA.addEventListener('change', function (event) {
+            const userRole = STATE.getRole()
+            if (userRole.toLowerCase() === 'provider') {
+                // render followers table
+                renderStrategyFollowers();
+            } else if (userRole === 'follower') {
+                // render providers table
+                renderStrategyProviders();
+            }
+        })
     }
 
 })();

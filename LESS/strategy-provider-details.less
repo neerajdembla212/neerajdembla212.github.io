@@ -1,71 +1,52 @@
 .strategy-provider-details-section {
-    display: grid;
-    grid-template-columns: 350px;
-    grid-template-rows: 500px;
-    grid-gap: 1rem 2rem;
-}
+    .left-section {
+        max-width: 350px;
+        min-width: 350px;
 
-.provider-details-section {
-    border-radius: 6px;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    max-height: 550px;
-}
-
-.followers-section {
-    border-radius: 6px;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
-
-.strategy-provider-line-chart-section {
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 2;
-
-    .chart-filter {
-        .btn {
-            border: none
+        .provider-details-section {
+            border-radius: 6px;
+            width: 100%;
         }
 
-        .active {
-            color: @navy;
-            box-shadow: none;
-        }
-    }
-}
-
-.trade-history-section {
-    border-radius: 6px;
-    grid-row-start: 2;
-    grid-row-end: 4;
-    grid-column-start: 2;
-
-    @media screen and (max-width: 1250px) {
-        .table {
-            display: none;
-        }
-
-        .responsive-trade-history {
-            display: block !important;
+        .followers-section {
+            border-radius: 6px;
+            width: 100%;
         }
     }
 
-    tr>td:first-child,
-    tr>th:first-child {
-        padding-left: 1rem;
-    }
+    .right-section {
 
-    .responsive-trade-history {
-        display: none;
+        .strategy-provider-line-chart-section {
+            max-height: 600px;
+            width: 100%;
 
-        >* {
-            border-top: 1px solid @table-border;
+            .chart-filter {
+                .btn {
+                    border: none
+                }
+
+                .active {
+                    color: @navy;
+                    box-shadow: none;
+                }
+            }
         }
 
+        .trade-history-section {
+            border-radius: 6px;
+            width: 100%;
+
+            tr>td:first-child,
+            tr>th:first-child {
+                padding-left: 1rem;
+            }
+
+            .responsive-trade-history {
+                >* {
+                    border-top: 1px solid @table-border;
+                }
+
+            }
+        }
     }
 }
