@@ -874,6 +874,7 @@
     }
 
     // Plot Line chart 
+
     function plotLineChart() {
         const canvas = document.getElementById("line-chart");
         const lineData = STATE.getLineChartData();

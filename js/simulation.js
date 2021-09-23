@@ -141,12 +141,12 @@
     });
   }
 
-  function fetchStrategyProviderDetails(providerId, isEdit = false) {
+  function fetchStrategyProviderDetails(providerId) {
     callAjaxMethod({
       url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${providerId}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
-        renderStrategyProviderModal(isEdit);
+        renderStrategyProviderModal();
       }
     });
   }
@@ -279,7 +279,7 @@
   function registerStrategyProviderTableEvents() {
     $('.simulation-strategy-providers .action-icon').unbind().click(function (event) {
       const providerId = $(event.currentTarget).data('id')
-      fetchStrategyProviderDetails(providerId, true);
+      fetchStrategyProviderDetails(providerId);
     })
   }
 
@@ -505,15 +505,17 @@
   // render search strategy provider end
 
   // render strategy provider modal start
-  function renderStrategyProviderModal(isEdit) {
+  function renderStrategyProviderModal() {
     const strategyProviderDetails = STATE.getStrategyProviderDetails();
-    const container = $('#follow-provider-modal .modal-content');
-    container.empty().append(getStrategyProviderModalHTML(strategyProviderDetails, isEdit))
+    const container = $('#follow-provider-modal .modal-content .modal-body');
+    container.empty().append(getStrategyProviderModalHTML(strategyProviderDetails))
+    const modalContent = $('#follow-provider-modal .modal-content');
+    modalContent.append(getStrategyProviderModalFooterHTML())
     // Global function 
     readMoreLessEventHandler()
     strategyProviderModalEventHandler();
   }
-  function getStrategyProviderModalHTML(strategyProviderDetails, isEdit) {
+  function getStrategyProviderModalHTML(strategyProviderDetails) {
     if (!strategyProviderDetails) {
       return;
     }
@@ -531,22 +533,7 @@
     } = strategyProviderDetails;
 
     return `
-        <!-- Modal header start -->
-        <div class="d-flex justify-content-between p-3">
-                <h4 class="modal-title">${isEdit ? 'Edit Strategy Provider' : 'Follow a Strategy Provider'}</h4>
-                <button id="close-modal" class="btn
-          btn-default
-          btn-outline
-          btn-action
-          border-0
-        " data-dismiss="modal">
-                  <img src="img/ic_cross.svg">
-                </button>
-              </div>
-              <!-- Modal header end -->
-        <!-- Modal body start -->
-        <div class="modal-body p-3 scrollable-content">
-            <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
             <div>
             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src=${profile_image}>
             <div class="username-container">
@@ -565,7 +552,7 @@
           </p>
           <p class="mb-0 text-capitalize extra-small-font text-blue text-center">Low Risk</p>
         </div>
-      </div>
+        </div>
       <!-- Data display Row 1 start -->
       <div class="d-flex justify-content-between mb-2">
         <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
@@ -838,14 +825,17 @@
     </section>
     <!-- Follow duration section end -->
     <div class="divider"></div>
-    </div>
-    <!-- Modal footer start -->
-        <div class="w-100 d-flex justify-content-between p-3 align-items-center">
-            <p class="simulation-text p-1 mb-0 extra-small-font font-bold">SIMULATION</p>
-            <button type="button" class="btn btn-primary" id="follow-provider">Follow Provider</button>
-        </div>
-    <!-- Modal footer end -->
         `
+  }
+  function getStrategyProviderModalFooterHTML() {
+    return `
+    <!-- Modal footer start -->
+    <div class="w-100 d-flex justify-content-between p-3 align-items-center">
+        <p class="simulation-text p-1 mb-0 extra-small-font font-bold">SIMULATION</p>
+        <button type="button" class="btn btn-primary" id="follow-provider">Follow Provider</button>
+    </div>
+<!-- Modal footer end -->
+    `
   }
   function strategyProviderModalEventHandler() {
     initDatePicker();

@@ -10519,7 +10519,7 @@ table > tbody > tr:first-child > td {
   font-size: 10px;
 }
 .modal.inmodal .modal-body {
-  max-height: 680px;
+  max-height: 73vh;
   overflow-y: auto;
   overflow-x: hidden;
   padding-bottom: 0 !important;
@@ -10537,8 +10537,8 @@ table > tbody > tr:first-child > td {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.modal.inmodal .modal-content {
-  min-height: 640px;
+#buy-sell-modal .modal-body {
+  max-height: 60vh;
 }
 .switchery {
   background-color: #E5E5E5;
@@ -10843,9 +10843,6 @@ textarea {
 #follow-provider-modal .form-check-input {
   width: 18px;
   height: 18px;
-}
-#follow-provider-modal .modal-body {
-  max-height: 500px;
 }
 select[name="rows-per-page"] {
   height: 35px !important;
