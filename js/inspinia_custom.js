@@ -667,4 +667,21 @@ function readMoreLessEventHandler() {
     $('.read-more-less .read-less-text').toggleClass('d-none');
   })
 }
-  // render follow provider end
+// render follow provider end
+
+function getStartEndRecordCount(dataLength, paginationData) {
+  const { page, rowsPerPage, total } = paginationData;
+  let start = page * rowsPerPage + 1;
+  if (start >= total) {
+    start = total - rowsPerPage + 1;
+  }
+  let end = start + rowsPerPage - 1;
+  if (end > total) {
+    end = dataLength
+  }
+  return {
+    start,
+    end,
+    total
+  }
+}

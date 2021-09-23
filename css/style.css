@@ -8,25 +8,25 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v25/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/opensans/v23/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v25/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v25/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/opensans/v23/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v25/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -9562,25 +9562,25 @@ body.light-skin {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBBc9.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc9.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
 }
 body.md-skin {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -11272,61 +11272,41 @@ select[name="rows-per-page"] {
     background-position: 19px 19px, /* Animation specs */ 100% 0, /* username specs */ 64px 19px, /* Fullname specs */ 64px 38px, /* Return percentage specs */ 19px 70px, /* Followers count specs */ 150px 70px, /* Risk Amount specs */ 270px 70px, /* Return Percentage Text specs */ 19px 95px, /* Followers Text specs */ 152px 95px, /* Risk Text specs */ 280px 95px, /* Strategy Philosophy Title specs */ 19px 195px, /* Strategy Philosophy Content specs */ 19px 225px, /* Strategy Philosophy Content specs */ 19px 245px, /* Age Text specs */ 19px 285px, /* Drawdown Text specs */ 110px 285px, /* Average Month Text specs */ 155px 285px, /* Average Pips Text specs */ 217px 285px, /* Trades Pips Text specs */ 285px 285px, /* Age specs */ 19px 315px, /* Drawdown specs */ 115px 315px, /* Agerage Month specs */ 160px 315px, /* Agerage pips specs */ 220px 315px, /* Trade specs */ 280px 315px;
   }
 }
-.strategy-provider-details-section {
-  display: grid;
-  grid-template-columns: 350px;
-  grid-template-rows: 500px;
-  grid-gap: 1rem 2rem;
+.strategy-provider-details-section .left-section {
+  max-width: 350px;
+  min-width: 350px;
 }
-.provider-details-section {
+.strategy-provider-details-section .left-section .provider-details-section {
   border-radius: 6px;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  max-height: 550px;
+  width: 100%;
 }
-.followers-section {
+.strategy-provider-details-section .left-section .followers-section {
   border-radius: 6px;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  grid-column-start: 1;
-  grid-column-end: 2;
+  width: 100%;
 }
-.strategy-provider-line-chart-section {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
+.strategy-provider-details-section .right-section {
+  max-width: 770px;
 }
-.strategy-provider-line-chart-section .chart-filter .btn {
+.strategy-provider-details-section .right-section .strategy-provider-line-chart-section {
+  max-height: 600px;
+  width: 100%;
+}
+.strategy-provider-details-section .right-section .strategy-provider-line-chart-section .chart-filter .btn {
   border: none;
 }
-.strategy-provider-line-chart-section .chart-filter .active {
+.strategy-provider-details-section .right-section .strategy-provider-line-chart-section .chart-filter .active {
   color: #22D091;
   box-shadow: none;
 }
-.trade-history-section {
+.strategy-provider-details-section .right-section .trade-history-section {
   border-radius: 6px;
-  grid-row-start: 2;
-  grid-row-end: 4;
-  grid-column-start: 2;
+  width: 100%;
 }
-@media screen and (max-width: 1250px) {
-  .trade-history-section .table {
-    display: none;
-  }
-  .trade-history-section .responsive-trade-history {
-    display: block !important;
-  }
-}
-.trade-history-section tr > td:first-child,
-.trade-history-section tr > th:first-child {
+.strategy-provider-details-section .right-section .trade-history-section tr > td:first-child,
+.strategy-provider-details-section .right-section .trade-history-section tr > th:first-child {
   padding-left: 1rem;
 }
-.trade-history-section .responsive-trade-history {
-  display: none;
-}
-.trade-history-section .responsive-trade-history > * {
+.strategy-provider-details-section .right-section .trade-history-section .responsive-trade-history > * {
   border-top: 1px solid #EEEEEE;
 }
 #page-container.simulation-page {

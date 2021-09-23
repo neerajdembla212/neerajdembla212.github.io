@@ -865,7 +865,7 @@
 
 
   function getUserTableFooter(dataLength) {
-    const { start, end, total } = getStartEndRecordCount(dataLength);
+    const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getState().paginationData);
     return `<tfoot>
     <tr>
       <td colspan="11" class="pb-0">
@@ -900,6 +900,7 @@
     })
     return `<div class="responsive-users">
         ${rowsHTML.join('')}
+        ${getUserTableResponsiveFooter(data.length)}
     </div>`
   }
 
@@ -983,6 +984,31 @@
             <p class="mb-0 font-bold responsive-value text-dark-green">${follower_count}</p>
           </div>
       </div>
+    </div>
+    `
+  }
+
+  function getUserTableResponsiveFooter(dataLength) {
+    const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getState().paginationData);
+
+    return `
+    <div class="d-flex justify-content-between align-items-center p-2">
+    <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+    <ul class="pagination d-flex justify-content-end align-items-center m-0">
+    <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
+        <option value="10">10 Rows per page</option>
+        <option value="20">20 Rows per page</option>
+        <option value="30">30 Rows per page</option>
+        <option value="40">40 Rows per page</option>
+    </select>
+        <button class="btn btn-default border-0" type="button" id="prev-page-sp" disabled="true">
+            <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+        </button>
+        <button class="btn btn-default border-0" type="button" id="next-page-sp" disabled="true">
+            <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+        </button>
+        
+    </ul>
     </div>
     `
   }
@@ -1207,24 +1233,6 @@
       }
     })
     return maxWidth;
-  }
-
-  function getStartEndRecordCount(dataLength) {
-    const paginationData = STATE.getState().paginationData
-    const { page, rowsPerPage, total } = paginationData;
-    let start = page * rowsPerPage + 1;
-    if (start >= total) {
-      start = total - rowsPerPage + 1;
-    }
-    let end = start + rowsPerPage - 1;
-    if (end > total) {
-      end = dataLength
-    }
-    return {
-      start,
-      end,
-      total
-    }
   }
 
   // render low growth users start

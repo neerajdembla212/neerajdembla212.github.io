@@ -4,6 +4,11 @@
     providerId;
     tradeHistory = [];
     providerDetails = {};
+    paginationData = {
+      rowsPerPage: 10,
+      total: 0,
+      page: 0
+    }
 
     getLineChartData() {
       return this.lineChartData;
@@ -43,8 +48,18 @@
       }
       this.providerDetails = data;
     }
+    getPaginationData() {
+      return this.paginationData
+    }
+    setPaginationData(data) {
+      if (!data || Array.isArray(data)) {
+        return
+      }
+      this.paginationData = data;
+    }
   }
   const STATE = new State();
+  const DESKTOP_MEDIA = window.matchMedia("(max-width: 1250px)")
   // document ready function
   $(function () {
     const providerId = localStorage.getItem('selectedProviderId');
@@ -66,9 +81,12 @@
   }
 
   function fetchTradeHistory() {
+    const paginationData = STATE.getPaginationData();
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/strategy-provider-trade-history",
+      url: `https://copypip.free.beeceptor.com/strategy-provider-trade-history?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
       successCallback: (data) => {
+        paginationData.total = data.total;
+        STATE.setPaginationData(paginationData);
         STATE.setTradeHistory(data.data);
         renderTradeHistorySection();
       }
@@ -94,6 +112,9 @@
       target.addClass('active');
       const value = target.text();
       console.log(value);
+    })
+    DESKTOP_MEDIA.addEventListener('change', function (event) {
+      renderTradeHistorySection();
     })
   }
 
@@ -201,15 +222,21 @@
   function renderTradeHistorySection() {
     const tradeHistory = STATE.getTradeHistory();
     const container = $('.trade-history-section');
-    container.append(getTradeHistoryTableHTML(tradeHistory));
-    container.append(getTradeHistoryResponsiveHTML(tradeHistory));
+    if (DESKTOP_MEDIA.matches) {
+      // screen size is below 1250px
+      container.empty().append(getTradeHistoryResponsiveHTML(tradeHistory));
+    } else {
+      // screen size is above 1250px
+      container.empty().append(getTradeHistoryTableHTML(tradeHistory));
+    }
+    registerTradeHistoryTableEvents();
   }
 
   function getTradeHistoryTableHTML(data) {
     return `<table class="table">
         ${getTradeHistoryTableHeaders()}
         ${getTradeHistoryTableBody(data)}
-        ${getTradeHistoryTableFooter()}
+        ${getTradeHistoryTableFooter(data.length)}
     </table>`
   }
 
@@ -303,20 +330,29 @@
             </tr>
             `
   }
-  function getTradeHistoryTableFooter() {
+  function getTradeHistoryTableFooter(dataLength) {
+    const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
+
     return `<tfoot>
         <tr>
           <td colspan="10" class="pb-0">
-            <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
-              <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                <option>10 Rows per page</option>
-                <option>20 Rows per page</option>
-                <option>30 Rows per page</option>
-                <option>40 Rows per page</option>
-              </select>
-              <i class="fa fa-angle-left mx-2"></i>
-              <i class="fa fa-angle-right mx-2"></i>
-            </ul>
+          <div class="d-flex justify-content-between align-items-center">
+          <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+          <ul class="pagination d-flex justify-content-end align-items-center m-0">
+          <select class="form-control rows-per-page mr-2" name="rows-per-page" id="th-rows-per-page">
+              <option value="10">10 Rows per page</option>
+              <option value="20">20 Rows per page</option>
+              <option value="30">30 Rows per page</option>
+              <option value="40">40 Rows per page</option>
+          </select>
+              <button class="btn btn-default border-0" type="button" id="prev-page-th">
+                  <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+              </button>
+              <button class="btn btn-default border-0" type="button" id="next-page-th">
+                  <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+              </button>
+          </ul>
+          </div>
           </td>
         </tr>
       </tfoot>`
@@ -331,6 +367,7 @@
     })
     return `<div class="responsive-trade-history">
             ${rowsHTML.join('')}
+            ${getTradeHistoryResponsiveFooter(data.length)}
         </div>`
   }
 
@@ -392,6 +429,74 @@
                         </div>
                     </div>
                 </div>`
+  }
+
+  function getTradeHistoryResponsiveFooter(dataLength) {
+    const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
+    return `
+        <div class="d-flex justify-content-between align-items-center p-2">
+            <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+            <ul class="pagination d-flex justify-content-end align-items-center m-0">
+                <select class="form-control rows-per-page mr-2" name="rows-per-page" id="th-rows-per-page">
+                    <option value="10">10 Rows per page</option>
+                    <option value="20">20 Rows per page</option>
+                    <option value="30">30 Rows per page</option>
+                    <option value="40">40 Rows per page</option>
+                </select>
+                <button class="btn btn-default border-0" type="button" id="prev-page-th">
+                    <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                </button>
+                <button class="btn btn-default border-0" type="button" id="next-page-th">
+                    <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                </button>
+            </ul>
+        </div>`
+  }
+  function registerTradeHistoryTableEvents() {
+    const paginationData = STATE.getPaginationData();
+    // trade history footer rows per page
+    $('#th-rows-per-page').off().on('change', function () {
+      const rowsPerPage = +this.value;
+      if (rowsPerPage) {
+        paginationData.rowsPerPage = rowsPerPage;
+        STATE.setPaginationData(paginationData)
+        fetchTradeHistory();
+      }
+    })
+    $('#th-rows-per-page').val(STATE.getPaginationData().rowsPerPage)
+
+    // fetch data with updated params on click of next pagination action
+    $('#next-page-th').unbind().click(function () {
+      paginationData.page++;
+      fetchTradeHistory();
+    })
+    // fetch data with updated params on click of previous pagination action
+    $('#prev-page-th').unbind().click(function () {
+      if (paginationData.page > 0) {
+        paginationData.page--;
+        if (paginationData.page === 0) {
+          $(this).attr('disabled', true);
+        }
+        fetchTradeHistory();
+      } else {
+        $(this).attr('disabled', true);
+      }
+    })
+
+    // disable prev if page number is 0 or less else enable
+    if (paginationData.page <= 0) {
+      $('#prev-page-th').attr('disabled', true);
+    } else {
+      $('#prev-page-th').removeAttr('disabled');
+    }
+
+    // enable next if page number is max it can be else disable
+    const totalPossiblePages = Math.floor(paginationData.total / paginationData.rowsPerPage);
+    if (paginationData.page >= totalPossiblePages) {
+      $('#next-page-th').attr('disabled', true);
+    } else {
+      $('#next-page-th').removeAttr('disabled')
+    }
   }
   // render trade history responsive html end
 
