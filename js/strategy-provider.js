@@ -762,7 +762,7 @@
         <th class="align-middle text-center">DD</th>
         <th class="align-middle text-center">avg / mth</th>
         <th class="align-middle text-center">Avg Pips</th>
-        <th class="align-middle text-center">follower funds</th>
+        <th class="align-middle text-center">managed funds</th>
         <th class="align-middle text-center">followers</th>
         <th class="align-middle text-center">Follow</th>
         <th class="pr-3 align-middle text-center">WATCH</th>
@@ -976,7 +976,7 @@
             <p class="mb-0 font-bold responsive-value text-dark-green">${average_pips}</p>
           </div>
           <div class="mr-3 hide-m">
-            <p class="mb-0 responsive-label">Follower Funds</p>
+            <p class="mb-0 responsive-label">Managed Funds</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${follower_funds}</p>
           </div>
           <div class="mr-3">

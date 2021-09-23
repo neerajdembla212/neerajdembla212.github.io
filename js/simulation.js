@@ -1,175 +1,175 @@
 (() => {
-    class State {
-        strategyProviders = [];
-        strategyDetails = {};
-        lineChartData = {};
-        strategyProvidersSearchResult = [];
-        strategyProviderDetails = {};
+  class State {
+    strategyProviders = [];
+    strategyDetails = {};
+    lineChartData = {};
+    strategyProvidersSearchResult = [];
+    strategyProviderDetails = {};
 
-        getStrategyProviders() {
-            return this.strategyProviders;
-        }
-        setStrategyProviders(data) {
-            if (!data || !Array.isArray(data)) {
-                return;
-            }
-            this.strategyProviders = data;
-        }
-
-        getStrategyDetails() {
-            return this.strategyDetails;
-        }
-        setStrategyDetails(data) {
-            if (!data) {
-                return;
-            }
-            this.strategyDetails = data;
-        }
-
-        getLineChartData() {
-            return this.lineChartData
-        }
-        setLineChartData(data) {
-            if (!data) {
-                return
-            }
-            this.lineChartData = data;
-        }
-
-        getStrategyProvidersSearchResult() {
-            return this.strategyProvidersSearchResult
-        }
-        setStrategyProvidersSearchResult(data) {
-            if (!data || !Array.isArray(data)) {
-                return
-            }
-            this.strategyProvidersSearchResult = data;
-        }
-
-        getStrategyProviderDetails() {
-            return this.strategyProviderDetails;
-        }
-        setStrategyProviderDetails(data) {
-            if (!data) {
-                return;
-            }
-            this.strategyProviderDetails = data;
-        }
+    getStrategyProviders() {
+      return this.strategyProviders;
     }
-    const STATE = new State();
+    setStrategyProviders(data) {
+      if (!data || !Array.isArray(data)) {
+        return;
+      }
+      this.strategyProviders = data;
+    }
 
-    // Document ready
-    $(function () {
-        registerGlobalEvents();
-        fetchStrategyProviders();
-        fetchStrategyDetails();
-        fetchLineData();
-        fetchStrategyProvidersSearch();
+    getStrategyDetails() {
+      return this.strategyDetails;
+    }
+    setStrategyDetails(data) {
+      if (!data) {
+        return;
+      }
+      this.strategyDetails = data;
+    }
+
+    getLineChartData() {
+      return this.lineChartData
+    }
+    setLineChartData(data) {
+      if (!data) {
+        return
+      }
+      this.lineChartData = data;
+    }
+
+    getStrategyProvidersSearchResult() {
+      return this.strategyProvidersSearchResult
+    }
+    setStrategyProvidersSearchResult(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.strategyProvidersSearchResult = data;
+    }
+
+    getStrategyProviderDetails() {
+      return this.strategyProviderDetails;
+    }
+    setStrategyProviderDetails(data) {
+      if (!data) {
+        return;
+      }
+      this.strategyProviderDetails = data;
+    }
+  }
+  const STATE = new State();
+
+  // Document ready
+  $(function () {
+    registerGlobalEvents();
+    fetchStrategyProviders();
+    fetchStrategyDetails();
+    fetchLineData();
+    fetchStrategyProvidersSearch();
+  });
+
+  function registerGlobalEvents() {
+    // add country flag on input
+    $('#country-flag-input').attr('src', getCountryFlags('us'));
+
+    // datepicker init
+    initDatePicker();
+
+    // chart fileter buttons 
+    $('.chart-filter .btn').click(event => {
+      const target = $(event.currentTarget);
+      $('.chart-filter .btn').removeClass('active');
+      target.addClass('active');
+      const value = target.text();
+      console.log(value);
+    })
+  }
+
+  function initDatePicker() {
+    // datepicker init
+    $('.capital-date-input').datepicker({
+      todayBtn: "linked",
+      keyboardNavigation: true,
+      forceParse: false,
+      calendarWeeks: true,
+      autoclose: true
+    }).off('changeDate').on('changeDate', function (e) {
+      const displayDateButton = $(e.target).find('button');
+      displayDateButton.text(formatDate(e.date, "DD MMM YYYY"));
     });
+  }
+  // fetch api methods start
+  function fetchStrategyProviders() {
+    callAjaxMethod({
+      url: 'https://copypip.free.beeceptor.com/get-portfolio-users/providers',
+      successCallback: (data) => {
+        STATE.setStrategyProviders(data.data);
+        renderStrategyProviders();
+      }
+    })
+  }
 
-    function registerGlobalEvents() {
-        // add country flag on input
-        $('#country-flag-input').attr('src', getCountryFlags('us'));
+  function fetchStrategyDetails() {
+    callAjaxMethod({
+      url: `https://copypip.free.beeceptor.com/get-strategy-details`,
+      successCallback: (data) => {
+        STATE.setStrategyDetails(data.data);
+        renderSparkline();
+        // activate dynamic Tooltips 
+        activateTooltips();
+      }
+    })
+  }
 
-        // datepicker init
-        initDatePicker();
+  function fetchLineData() {
+    callAjaxMethod({
+      url: "https://copypip.free.beeceptor.com/portfolio-line-data",
+      successCallback: (data) => {
+        STATE.setLineChartData(data.data);
+        plotLineChart()
+      }
+    });
+  }
 
-        // chart fileter buttons 
-        $('.chart-filter .btn').click(event => {
-            const target = $(event.currentTarget);
-            $('.chart-filter .btn').removeClass('active');
-            target.addClass('active');
-            const value = target.text();
-            console.log(value);
-        })
-    }
+  function fetchStrategyProvidersSearch() {
+    callAjaxMethod({
+      url: "https://copypip.free.beeceptor.com/strategy-providers",
+      successCallback: (data) => {
+        STATE.setStrategyProvidersSearchResult(data.data);
+        renderSearchStrategyProvider();
+        registerSearchStrategyProviderEvents();
+      }
+    });
+  }
 
-    function initDatePicker() {
-        // datepicker init
-        $('.capital-date-input').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: true,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true
-        }).off('changeDate').on('changeDate', function (e) {
-            const displayDateButton = $(e.target).find('button');
-            displayDateButton.text(formatDate(e.date, "DD MMM YYYY"));
-        });
-    }
-    // fetch api methods start
-    function fetchStrategyProviders() {
-        callAjaxMethod({
-            url: 'https://copypip.free.beeceptor.com/get-portfolio-users/providers',
-            successCallback: (data) => {
-                STATE.setStrategyProviders(data.data);
-                renderStrategyProviders();
-            }
-        })
-    }
+  function fetchStrategyProviderDetails(providerId, isEdit = false) {
+    callAjaxMethod({
+      url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${providerId}`,
+      successCallback: (data) => {
+        STATE.setStrategyProviderDetails(data.data);
+        renderStrategyProviderModal(isEdit);
+      }
+    });
+  }
+  // fetch api methods end
 
-    function fetchStrategyDetails() {
-        callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-strategy-details`,
-            successCallback: (data) => {
-                STATE.setStrategyDetails(data.data);
-                renderSparkline();
-                // activate dynamic Tooltips 
-                activateTooltips();
-            }
-        })
-    }
+  // render strategy providers start
+  function renderStrategyProviders() {
+    const strategyProviders = STATE.getStrategyProviders();
+    const container = $('.simulation-strategy-providers');
+    container.append(getStrategyProvidersTableHTML(strategyProviders));
+    registerStrategyProviderTableEvents();
+  }
 
-    function fetchLineData() {
-        callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/portfolio-line-data",
-            successCallback: (data) => {
-                STATE.setLineChartData(data.data);
-                plotLineChart()
-            }
-        });
-    }
-
-    function fetchStrategyProvidersSearch() {
-        callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/strategy-providers",
-            successCallback: (data) => {
-                STATE.setStrategyProvidersSearchResult(data.data);
-                renderSearchStrategyProvider();
-                registerSearchStrategyProviderEvents();
-            }
-        });
-    }
-
-    function fetchStrategyProviderDetails(providerId, isEdit = false) {
-        callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${providerId}`,
-            successCallback: (data) => {
-                STATE.setStrategyProviderDetails(data.data);
-                renderStrategyProviderModal(isEdit);
-            }
-        });
-    }
-    // fetch api methods end
-
-    // render strategy providers start
-    function renderStrategyProviders() {
-        const strategyProviders = STATE.getStrategyProviders();
-        const container = $('.simulation-strategy-providers');
-        container.append(getStrategyProvidersTableHTML(strategyProviders));
-        registerStrategyProviderTableEvents();
-    }
-
-    function getStrategyProvidersTableHTML(strategyProviders) {
-        return `<table class="table">
+  function getStrategyProvidersTableHTML(strategyProviders) {
+    return `<table class="table">
             ${getStrategyProvidersTableHeaders()}
             ${getStrategyProvidersTableBody(strategyProviders)}
             ${getStrategyProvidersTableFooter()}
         </table>`
-    }
+  }
 
-    function getStrategyProvidersTableHeaders() {
-        return `
+  function getStrategyProvidersTableHeaders() {
+    return `
         <thead>
             <tr>
             <th class="align-middle w-22 extra-small-font pr-0">Provider</th>
@@ -183,41 +183,41 @@
             </tr>
         </thead>
         `
-    }
+  }
 
-    function getStrategyProvidersTableBody(data) {
-        if (!data || !Array.isArray(data)) {
-            return
-        }
-        const rowsHTML = [];
-        data.forEach(user => {
-            rowsHTML.push(getStrategyProvidersTableRow(user));
-        })
-        return `
+  function getStrategyProvidersTableBody(data) {
+    if (!data || !Array.isArray(data)) {
+      return
+    }
+    const rowsHTML = [];
+    data.forEach(user => {
+      rowsHTML.push(getStrategyProvidersTableRow(user));
+    })
+    return `
           <tbody>
             ${rowsHTML.join('')}
           </tbody>
           `
-    }
+  }
 
-    function getStrategyProvidersTableRow(user) {
-        if (!user) {
-            return '';
-        }
-        const { id,
-            profile_image,
-            name,
-            username,
-            country,
-            total_profit_loss,
-            trades,
-            subscription_fee,
-            profit_share,
-            total_fee,
-            joined_start_date,
-            joined_end_date
-        } = user;
-        return `<tr id="table-user-${id}">
+  function getStrategyProvidersTableRow(user) {
+    if (!user) {
+      return '';
+    }
+    const { id,
+      profile_image,
+      name,
+      username,
+      country,
+      total_profit_loss,
+      trades,
+      subscription_fee,
+      profit_share,
+      total_fee,
+      joined_start_date,
+      joined_end_date
+    } = user;
+    return `<tr id="table-user-${id}">
         <td class="w-22">
             <div class="d-flex">
             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
@@ -256,10 +256,10 @@
             <i class="fa fa-gear mr-1"></i>
         </td>
       </tr>`
-    }
+  }
 
-    function getStrategyProvidersTableFooter() {
-        return `<tfoot>
+  function getStrategyProvidersTableFooter() {
+    return `<tfoot>
         <tr>
           <td colspan="9" class="pb-0">
             <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
@@ -275,39 +275,39 @@
           </td>
         </tr>
       </tfoot>`
-    }
-    function registerStrategyProviderTableEvents() {
-        $('.simulation-strategy-providers .action-icon').unbind().click(function (event) {
-            const providerId = $(event.currentTarget).data('id')
-            fetchStrategyProviderDetails(providerId, true);
-        })
-    }
+  }
+  function registerStrategyProviderTableEvents() {
+    $('.simulation-strategy-providers .action-icon').unbind().click(function (event) {
+      const providerId = $(event.currentTarget).data('id')
+      fetchStrategyProviderDetails(providerId, true);
+    })
+  }
 
-    // render strategy providers end
+  // render strategy providers end
 
-    // render sparkline start
-    function renderSparkline() {
-        const strategy = STATE.getStrategyDetails();
-        const container = $('.sparkline-container');
-        container.empty().append(getSparklineHTML(strategy));
-        // container.append(getSparklineResponsiveHTML(strategy, role));
-    }
+  // render sparkline start
+  function renderSparkline() {
+    const strategy = STATE.getStrategyDetails();
+    const container = $('.sparkline-container');
+    container.empty().append(getSparklineHTML(strategy));
+    // container.append(getSparklineResponsiveHTML(strategy, role));
+  }
 
-    function getSparklineHTML(strategy) {
-        const { cumulative_returns,
-            strategy_age,
-            deposits,
-            current_balance,
-            withdrawals,
-            followers,
-            trades,
-            max_drawdown,
-            amount_paid } = strategy;
+  function getSparklineHTML(strategy) {
+    const { cumulative_returns,
+      strategy_age,
+      deposits,
+      current_balance,
+      withdrawals,
+      followers,
+      trades,
+      max_drawdown,
+      amount_paid } = strategy;
 
-        return `
+    return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-            <div class="key tooltip-demo">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Since Inception </br> ${strategy_age}"></i></div>
+            <div class="key tooltip-demo">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Since Inception </br> ${strategy_age}"></i></div>
             <div class="d-flex justify-content-between">
                 <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
@@ -347,136 +347,136 @@
             <div class="value dark-red">${max_drawdown}</div>
         </div>
       </div>`
-    }
-    // render sparkline end
+  }
+  // render sparkline end
 
-    // render line chart start
-    // Plot Line chart 
-    function plotLineChart() {
-        const canvas = document.querySelector(".simulation-line-chart #line-chart");
-        const lineData = STATE.getLineChartData();
-        if (!lineData || !Array.isArray(lineData) || !canvas) {
-            return;
-        }
-        const lineDataPoints = lineData.reduce((acc, curr) => {
-            acc.push(curr.data);
-            return acc;
-        }, []);
-        canvas.height = 330;
-        const ctx = canvas.getContext("2d");
-        const positiveColor = "#22D091";
-        const negativColor = "#C00000"
-        const labels = lineData.map(d => d.time);
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: "",
-                data: lineDataPoints,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.1
-            }]
-        };
-        const config = {
-            type: "line",
-            data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [
-                        {
-                            gridLines: {
-                                display: false,
-                                tickMarkLength: 0,
-                            },
-                            ticks: {
-                                maxTicksLimit: 10,
-                                padding: 10
-                            },
-                        },
-                    ],
-                    yAxes: [
-                        {
-                            gridLines: {
-                                display: true,
-                                tickMarkLength: 0,
-                                drawBorder: false,
-                            },
-                            ticks: {
-                                display: true,
-                                tickMarkLength: 1,
-                                maxTicksLimit: 5,
-                                callback: function (value) {
-                                    return value + '%'
-                                }
-                            },
-                        },
-                    ],
-                },
-                legend: {
-                    display: false,
-                },
-                elements: {
-                    point: {
-                        radius: 0,
-                    },
-                    line: {
-                        tension: 0,
-                        borderWidth: 2,
-                    },
-                },
-                layout: {
-                    padding: {
-                        bottom: 20,
-                        left: 10,
-                    },
-                },
+  // render line chart start
+  // Plot Line chart 
+  function plotLineChart() {
+    const canvas = document.querySelector(".simulation-line-chart #line-chart");
+    const lineData = STATE.getLineChartData();
+    if (!lineData || !Array.isArray(lineData) || !canvas) {
+      return;
+    }
+    const lineDataPoints = lineData.reduce((acc, curr) => {
+      acc.push(curr.data);
+      return acc;
+    }, []);
+    canvas.height = 330;
+    const ctx = canvas.getContext("2d");
+    const positiveColor = "#22D091";
+    const negativColor = "#C00000"
+    const labels = lineData.map(d => d.time);
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: "",
+        data: lineDataPoints,
+        cubicInterpolationMode: 'monotone',
+        tension: 0.1
+      }]
+    };
+    const config = {
+      type: "line",
+      data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+                tickMarkLength: 0,
+              },
+              ticks: {
+                maxTicksLimit: 10,
+                padding: 10
+              },
             },
-            plugins: [{
-                beforeRender: function (c) {
-                    const dataset = c.data.datasets[0];
-                    const yScale = c.scales['y-axis-0'];
-                    const yPos = yScale.getPixelForValue(0);
-
-                    const gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
-                    gradientFill.addColorStop(0, positiveColor);
-                    gradientFill.addColorStop(yPos / c.height, "#D9F7E6");
-                    gradientFill.addColorStop(yPos / c.height, "#F1C7C7");
-                    gradientFill.addColorStop(1, negativColor);
-
-                    const model = c.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].$filler.el._model;
-                    model.backgroundColor = gradientFill;
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: true,
+                tickMarkLength: 0,
+                drawBorder: false,
+              },
+              ticks: {
+                display: true,
+                tickMarkLength: 1,
+                maxTicksLimit: 5,
+                callback: function (value) {
+                  return value + '%'
                 }
-            }]
-        };
-        new Chart(ctx, config);
-        ctx.globalCompositeOperation = 'destination-over';
-    }
-    // render line chart end
+              },
+            },
+          ],
+        },
+        legend: {
+          display: false,
+        },
+        elements: {
+          point: {
+            radius: 0,
+          },
+          line: {
+            tension: 0,
+            borderWidth: 2,
+          },
+        },
+        layout: {
+          padding: {
+            bottom: 20,
+            left: 10,
+          },
+        },
+      },
+      plugins: [{
+        beforeRender: function (c) {
+          const dataset = c.data.datasets[0];
+          const yScale = c.scales['y-axis-0'];
+          const yPos = yScale.getPixelForValue(0);
 
-    // render search strategy provider start
-    function renderSearchStrategyProvider() {
-        const strategyProviders = STATE.getStrategyProvidersSearchResult();
-        const container = $('#add-provider-menu');
-        const rowsHTML = [];
-        strategyProviders.forEach(provider => {
-            rowsHTML.push(getStrategyProviderSearchRow(provider))
-        })
-        container.append(rowsHTML.join(''))
-    }
+          const gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
+          gradientFill.addColorStop(0, positiveColor);
+          gradientFill.addColorStop(yPos / c.height, "#D9F7E6");
+          gradientFill.addColorStop(yPos / c.height, "#F1C7C7");
+          gradientFill.addColorStop(1, negativColor);
 
-    function getStrategyProviderSearchRow(provider) {
-        if (!provider) {
-            return
+          const model = c.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].$filler.el._model;
+          model.backgroundColor = gradientFill;
         }
-        const { id,
-            profile_image,
-            username,
-            name,
-            country,
-            return_duration,
-            return_percentage } = provider;
-        return `
+      }]
+    };
+    new Chart(ctx, config);
+    ctx.globalCompositeOperation = 'destination-over';
+  }
+  // render line chart end
+
+  // render search strategy provider start
+  function renderSearchStrategyProvider() {
+    const strategyProviders = STATE.getStrategyProvidersSearchResult();
+    const container = $('#add-provider-menu');
+    const rowsHTML = [];
+    strategyProviders.forEach(provider => {
+      rowsHTML.push(getStrategyProviderSearchRow(provider))
+    })
+    container.append(rowsHTML.join(''))
+  }
+
+  function getStrategyProviderSearchRow(provider) {
+    if (!provider) {
+      return
+    }
+    const { id,
+      profile_image,
+      username,
+      name,
+      country,
+      return_duration,
+      return_percentage } = provider;
+    return `
             <li class="cursor-pointer px-2 provider-modal-cta" data-id="${id}" data-toggle="modal" data-target="#follow-provider-modal">
                 <div class="d-flex justify-content-between py-2">
                     <div class="d-flex">
@@ -494,43 +494,43 @@
                 </div>
             </li>
         `
-    }
+  }
 
-    function registerSearchStrategyProviderEvents() {
-        $('.provider-modal-cta').unbind().click(event => {
-            const providerId = $(event.currentTarget).data('id')
-            fetchStrategyProviderDetails(providerId);
-        })
-    }
-    // render search strategy provider end
+  function registerSearchStrategyProviderEvents() {
+    $('.provider-modal-cta').unbind().click(event => {
+      const providerId = $(event.currentTarget).data('id')
+      fetchStrategyProviderDetails(providerId);
+    })
+  }
+  // render search strategy provider end
 
-    // render strategy provider modal start
-    function renderStrategyProviderModal(isEdit) {
-        const strategyProviderDetails = STATE.getStrategyProviderDetails();
-        const container = $('#follow-provider-modal .modal-content');
-        container.empty().append(getStrategyProviderModalHTML(strategyProviderDetails, isEdit))
-        // Global function 
-        readMoreLessEventHandler()
-        strategyProviderModalEventHandler();
+  // render strategy provider modal start
+  function renderStrategyProviderModal(isEdit) {
+    const strategyProviderDetails = STATE.getStrategyProviderDetails();
+    const container = $('#follow-provider-modal .modal-content');
+    container.empty().append(getStrategyProviderModalHTML(strategyProviderDetails, isEdit))
+    // Global function 
+    readMoreLessEventHandler()
+    strategyProviderModalEventHandler();
+  }
+  function getStrategyProviderModalHTML(strategyProviderDetails, isEdit) {
+    if (!strategyProviderDetails) {
+      return;
     }
-    function getStrategyProviderModalHTML(strategyProviderDetails, isEdit) {
-        if (!strategyProviderDetails) {
-            return;
-        }
-        const {
-            profile_image,
-            username,
-            name,
-            country,
-            cumulative_returns,
-            advised_min,
-            avg_lot_size,
-            max_drawdown,
-            strategy_age,
-            profit_sharing
-        } = strategyProviderDetails;
+    const {
+      profile_image,
+      username,
+      name,
+      country,
+      cumulative_returns,
+      advised_min,
+      avg_lot_size,
+      max_drawdown,
+      strategy_age,
+      profit_sharing
+    } = strategyProviderDetails;
 
-        return `
+    return `
         <!-- Modal header start -->
         <div class="d-flex justify-content-between p-3">
                 <h4 class="modal-title">${isEdit ? 'Edit Strategy Provider' : 'Follow a Strategy Provider'}</h4>
@@ -846,11 +846,11 @@
         </div>
     <!-- Modal footer end -->
         `
-    }
-    function strategyProviderModalEventHandler() {
-        initDatePicker();
-        $('')
-    }
-    // render strategy provider modal end
+  }
+  function strategyProviderModalEventHandler() {
+    initDatePicker();
+    $('')
+  }
+  // render strategy provider modal end
 
 })();
