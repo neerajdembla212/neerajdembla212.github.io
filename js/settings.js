@@ -193,16 +193,16 @@
         </div>
         <!-- strategy age end -->
         <div class="divider"></div>
-        <!-- Cumulative returns start -->
+        <!-- Total returns start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold mall-font text-dark-black">Cumulative returns </p>
+                <p class="mb-0 font-bold mall-font text-dark-black">Total returns </p>
                 <p class="mb-0 small-font text-dark-black font-weight-light">since Inception 1
                     Jul 2021</p>
             </div>
             <p class="mb-0 super-large-font text-dark-green font-bold">${cumulative_returns}%</p>
         </div>
-        <!-- Cumulative returns end -->
+        <!-- Total returns end -->
         <div class="divider"></div>
         <!-- Average growth start -->
         <div class="py-3 d-flex justify-content-between align-items-center">

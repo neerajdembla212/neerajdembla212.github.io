@@ -1004,7 +1004,7 @@
         } else if (role === 'follower') {
             roleSpecificData = `<div class="sparkline">
             <div class="key">
-                <p class="mb-0">Total Paid <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
+                <p class="mb-0">Total Fees <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
             </div>
             <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
         </div>`
@@ -1012,7 +1012,7 @@
         return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-            <div class="key tooltip-demo">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></div>
+            <div class="key tooltip-demo">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></div>
             <div class="d-flex justify-content-between">
                 <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
@@ -1070,7 +1070,7 @@
         } else if (role === 'follower') {
             roleSpecificData = `<div class="d-flex justify-content-between align-items-center p-3">
                 <div class="key">
-                    <p class="mb-0">Total Paid</p>
+                    <p class="mb-0">Total Fees</p>
                     <p class="mb-0 small-font font-weight-light">Fees + Profit Shared</p>
                 </div>
                 <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
@@ -1079,7 +1079,7 @@
         return `<div class="responsive-content">
                     <div class="d-flex justify-content-between align-items-center p-3">
                         <div class="key">
-                            <p class="mb-0">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></p>
+                            <p class="mb-0">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></p>
                         </div>
                         <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                     </div>
