@@ -11273,23 +11273,49 @@ select[name="rows-per-page"] {
   }
 }
 .strategy-provider-details-section .left-section {
+  min-width: 300px;
   max-width: 350px;
-  min-width: 350px;
+}
+@media screen and (max-width: 1150px) {
+  .strategy-provider-details-section .left-section {
+    max-width: 100%;
+  }
 }
 .strategy-provider-details-section .left-section .provider-details-section {
   border-radius: 6px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .strategy-provider-details-section .left-section .provider-details-section {
+    border-radius: 0px;
+  }
+}
 .strategy-provider-details-section .left-section .followers-section {
   border-radius: 6px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .strategy-provider-details-section .left-section .followers-section {
+    border-radius: 0px;
+  }
+}
 .strategy-provider-details-section .right-section {
-  max-width: 770px;
+  min-width: 615px;
+}
+@media screen and (max-width: 1150px) {
+  .strategy-provider-details-section .right-section {
+    min-width: 100%;
+  }
 }
 .strategy-provider-details-section .right-section .strategy-provider-line-chart-section {
   max-height: 600px;
   width: 100%;
+  border-radius: 6px;
+}
+@media screen and (max-width: 768px) {
+  .strategy-provider-details-section .right-section .strategy-provider-line-chart-section {
+    border-radius: 0px;
+  }
 }
 .strategy-provider-details-section .right-section .strategy-provider-line-chart-section .chart-filter .btn {
   border: none;
@@ -11301,6 +11327,11 @@ select[name="rows-per-page"] {
 .strategy-provider-details-section .right-section .trade-history-section {
   border-radius: 6px;
   width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .strategy-provider-details-section .right-section .trade-history-section {
+    border-radius: 0px;
+  }
 }
 .strategy-provider-details-section .right-section .trade-history-section tr > td:first-child,
 .strategy-provider-details-section .right-section .trade-history-section tr > th:first-child {

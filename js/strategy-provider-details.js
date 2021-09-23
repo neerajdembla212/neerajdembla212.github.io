@@ -118,7 +118,7 @@
     })
   }
 
-  // Plot Line chart 
+  // Plot Line chart start
   function plotLineChart() {
     const canvas = document.getElementById("line-chart");
     const lineData = STATE.getLineChartData();
@@ -158,6 +158,7 @@
               },
               ticks: {
                 maxTicksLimit: 10,
+                padding: 10
               },
             },
           ],
@@ -217,7 +218,7 @@
     };
     new Chart(ctx, config);
   }
-
+  // Plot Line chart end
   // Render trade history table start
   function renderTradeHistorySection() {
     const tradeHistory = STATE.getTradeHistory();

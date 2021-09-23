@@ -1,24 +1,46 @@
 .strategy-provider-details-section {
     .left-section {
+        min-width: 300px;
         max-width: 350px;
-        min-width: 350px;
+
+        @media screen and (max-width: 1150px) {
+            max-width: 100%;
+        }
 
         .provider-details-section {
             border-radius: 6px;
             width: 100%;
+
+            @media screen and (max-width: 768px) {
+                border-radius: 0px;
+            }
         }
 
         .followers-section {
             border-radius: 6px;
             width: 100%;
+
+            @media screen and (max-width: 768px) {
+                border-radius: 0px;
+            }
         }
     }
 
     .right-section {
+        min-width: 615px;
+
+        @media screen and (max-width: 1150px) {
+            min-width: 100%;
+        }
 
         .strategy-provider-line-chart-section {
             max-height: 600px;
             width: 100%;
+            border-radius: 6px;
+
+            @media screen and (max-width: 768px) {
+                border-radius: 0px;
+            }
 
             .chart-filter {
                 .btn {
@@ -35,6 +57,10 @@
         .trade-history-section {
             border-radius: 6px;
             width: 100%;
+
+            @media screen and (max-width: 768px) {
+                border-radius: 0px;
+            }
 
             tr>td:first-child,
             tr>th:first-child {
