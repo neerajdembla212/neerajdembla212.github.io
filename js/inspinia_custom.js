@@ -121,6 +121,7 @@ function registerEventHandlers() {
     height: '100%',
     railOpacity: 0.9
   });
+  registerTableFilterEvents();
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -787,4 +788,37 @@ function plotLineChart(lineData) {
   };
   new Chart(ctx, config);
   ctx.globalCompositeOperation = 'destination-over';
+}
+
+function registerTableFilterEvents() {
+  // show dropdown menu on click of more filters button
+  $('.btn-group-more-filter .btn-more-filter').unbind().click(function () {
+    $(this).siblings('.dropdown-menu-list').toggle()
+    $('.btn-group-more-filter .dropdown-menu-input').hide();
+  })
+  // on click of dropdown menu item hide menu and show dropdown menu input
+  $('.btn-group-more-filter .dropdown-menu>li.dropdown-item').unbind().click(function () {
+    const filterName = $(this).data('filter-name');
+    const filterOperation = $(this).data('filter-operation');
+    const filterValue = $(this).data('filter-value');
+    const percentage = $(this).data('percentage');
+    $('.btn-group-more-filter .dropdown-menu-list').hide();
+    $('.btn-group-more-filter .dropdown-menu-input').show();
+  })
+  // in dropdown menu input toggle active class on buttons
+  $('.btn-group-more-filter .dropdown-menu-input .content .btn').click(function () {
+    $('.btn-group-more-filter .dropdown-menu-input .content .btn').removeClass('active');
+    $(this).addClass('active');
+  })
+
+  // close dropdown menu input
+  $('.close-cta').unbind().click(function () {
+    $('.btn-group-more-filter .dropdown-menu-input').hide();
+  })
+
+  // go back to dropdown menu list on click of chevron
+  $('.dropdown-menu-input .go-back').unbind().click(function () {
+    $('.btn-group-more-filter .dropdown-menu-input').hide();
+    $('.btn-group-more-filter .dropdown-menu-list').show();
+  })
 }

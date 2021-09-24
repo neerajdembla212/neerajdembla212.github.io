@@ -5373,6 +5373,9 @@ table.table-mail tr td {
 .text-blur-gray {
   color: #9A9A9A;
 }
+.text-dark-blue {
+  color: #487FD9;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;
@@ -10857,6 +10860,38 @@ select[name="rows-per-page"] {
   border: none;
   background-color: #DDDDDD;
   width: 1px;
+}
+.btn-group-more-filter .dropdown-menu {
+  left: -80%;
+}
+.btn-group-more-filter .btn-more-filter::after {
+  content: none;
+}
+.btn-group-more-filter .dropdown-menu-input {
+  width: 235px;
+  left: -120%;
+}
+.btn-group-more-filter .dropdown-menu-input .content {
+  height: 200px;
+}
+.btn-group-more-filter .dropdown-menu-input .content .btn.active {
+  background-color: #D4F6EA;
+  box-shadow: none;
+  border: none;
+}
+.btn-group-more-filter .dropdown-menu-input .content .btn {
+  background-color: #F7F7F7;
+  box-shadow: none;
+  border: none;
+  color: #7B8496;
+  font-weight: 600;
+  border-radius: 4px;
+}
+.btn-group-more-filter .dropdown-menu-input .content .percent {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translate(-50%, -50%);
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
