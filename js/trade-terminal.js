@@ -400,7 +400,7 @@
             rowsHTML.push(getOpenTradesTableRow(trade));
         })
         return `
-          <tbody data-toggle="modal" data-target="#edit-trade-modal">
+          <tbody>
                 ${rowsHTML.join('')}
           </tbody>
           `
@@ -425,7 +425,7 @@
             current,
             swap,
             profit } = trade;
-        return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
+        return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}" data-toggle="modal" data-target="#edit-trade-modal">
                 <td class="pl-2">
                     <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
                     <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
@@ -545,22 +545,34 @@
     function renderResponsiveTradesHTML(tradeType) {
         const openTrades = STATE.getOpenTrades();
         let container;
+        let data;
         switch (tradeType) {
-            case 'open': container = $('.tab-content #open-trades'); break;
-            case 'pending': container = $('.tab-content #pending-orders'); break;
-            case 'closed': container = $('.tab-content #closed-trades'); break;
+            case 'open':
+                container = $('.tab-content #open-trades');
+                data = STATE.getOpenTrades();
+                break;
+            case 'pending':
+                container = $('.tab-content #pending-orders');
+                data = STATE.getPendingTrades();
+                break;
+            case 'closed':
+                container = $('.tab-content #closed-trades');
+                data = STATE.getClosedTrades();
+                break;
         }
         const rowsHTML = [];
         openTrades.forEach(trade => {
-            rowsHTML.push(getResponsiveOpenTradesRow(trade))
+            rowsHTML.push(getResponsiveTradesRow(trade))
         })
-        container.empty().append(`<div class="responsive-trades" data-toggle="modal" data-target="#edit-trade-modal">
+        container.empty().append(`
+        <div class="responsive-trades">
             ${rowsHTML.join('')}
+            ${getResponsiveTradesFooter(data.length, tradeType)}
         </div>`)
         registerTradeEvents();
     }
 
-    function getResponsiveOpenTradesRow(trade) {
+    function getResponsiveTradesRow(trade) {
         if (!trade) {
             return '';
         }
@@ -581,7 +593,7 @@
             profit } = trade;
 
         return `
-        <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}">
+        <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}" data-toggle="modal" data-target="#edit-trade-modal">
             <div class="d-flex justify-content-between align-items-center">
             <div>
                 <p class="mb-0 font-weight-bolder">${from_currency}${to_currency} <span class="text-darker-gray">${trade_type}</span></p>
@@ -626,6 +638,35 @@
         </div>
         </div>`
     }
+    function getResponsiveTradesFooter(dataLength, tradeType) {
+        const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
+        let idPrefix;
+        switch (tradeType) {
+            case 'open': idPrefix = 'open-trade'; break; // open trade
+            case 'pending': idPrefix = 'pending-trade'; break; // pending trade
+            case 'closed': idPrefix = 'closed-trade'; break; // closed trade
+        }
+
+        return `
+        <div class="d-flex justify-content-between align-items-center p-2">
+        <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+        <ul class="pagination d-flex justify-content-end align-items-center m-0">
+            <select class="form-control rows-per-page mr-2" name="rows-per-page" id="${idPrefix}-rows-per-page">
+                <option value="10">10 Rows per page</option>
+                <option value="20">20 Rows per page</option>
+                <option value="30">30 Rows per page</option>
+                <option value="40">40 Rows per page</option>
+            </select>
+            <button class="btn btn-default border-0" type="button" id="prev-page-${idPrefix}" disabled="true">
+                <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+            </button>
+            <button class="btn btn-default border-0" type="button" id="next-page-${idPrefix}" disabled="true">
+                <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+            </button>
+        </ul>
+        </div>
+        `
+    }
     // render responsive open trades end
 
     // render pending trades begin
@@ -640,7 +681,7 @@
         return `<table class="table">
         ${getPendingTradesTableHeaders()}
         ${getPendingTradesTableBody(data)}
-        ${getPendingTradesTableFooter()}
+        ${getPendingTradesTableFooter(data.length)}
         </table>`
     }
 
@@ -739,7 +780,7 @@
             `
     }
 
-    function getPendingTradesTableFooter() {
+    function getPendingTradesTableFooter(dataLength) {
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
@@ -768,7 +809,7 @@
     }
     function registerPendingTradesEvents() {
         const paginationData = STATE.getPaginationData();
-        // pending table footer rows per page
+        // open table footer rows per page
         $('#pending-trade-rows-per-page').off().on('change', function () {
             const rowsPerPage = +this.value;
             if (rowsPerPage) {
@@ -784,6 +825,19 @@
             paginationData.page++;
             fetchPendingTrades();
         })
+        // fetch data with updated params on click of previous pagination action
+        $('#prev-page-pending-trade').unbind().click(function () {
+            if (paginationData.page > 0) {
+                paginationData.page--;
+                if (paginationData.page === 0) {
+                    $(this).attr('disabled', true);
+                }
+                fetchPendingTrades();
+            } else {
+                $(this).attr('disabled', true);
+            }
+        })
+
         // disable prev if page number is 0 or less else enable
         if (paginationData.page <= 0) {
             $('#prev-page-pending-trade').attr('disabled', true);
@@ -798,7 +852,6 @@
         } else {
             $('#next-page-pending-trade').removeAttr('disabled')
         }
-
     }
     // render pending trades end
 
@@ -814,7 +867,7 @@
         return `<table class="table">
             ${getClosedTradesTableHeaders()}
             ${getClosedTradesTableBody(data)}
-            ${getClosedTradesTableFooter()}
+            ${getClosedTradesTableFooter(data.length)}
             </table>`
     }
 
@@ -913,7 +966,7 @@
             `
     }
 
-    function getClosedTradesTableFooter() {
+    function getClosedTradesTableFooter(dataLength) {
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
             <tr>
@@ -942,22 +995,25 @@
     }
 
     function registerTradeEvents() {
-        $('.edit-trade-cta').unbind().click(function (event) {
+        const activeTabId = getActiveTab().attr('href');
+        switch (activeTabId) {
+            case '#open-trades': registerOpenTradeEvents(); break;
+            case '#pending-orders': registerPendingTradesEvents(); break;
+            case '#closed-trades': registerClosedTradeEvents(); break;
+        }
+        // edit trade popup on click of row
+        $(`${activeTabId} .edit-trade-cta`).unbind().click(function (event) {
             const tradeId = $(event.currentTarget).data('id')
             STATE.setTradeDetails({ id: tradeId })
             fetchTradeDetails(tradeId);
         })
-
-        registerOpenTradeEvents();
-        registerPendingTradesEvents();
-        registerClosedTradeEvents();
     }
 
 
 
     function registerClosedTradeEvents() {
         const paginationData = STATE.getPaginationData();
-        // closed table footer rows per page
+        // open table footer rows per page
         $('#closed-trade-rows-per-page').off().on('change', function () {
             const rowsPerPage = +this.value;
             if (rowsPerPage) {
@@ -973,6 +1029,19 @@
             paginationData.page++;
             fetchClosedTrades();
         })
+        // fetch data with updated params on click of previous pagination action
+        $('#prev-page-closed-trade').unbind().click(function () {
+            if (paginationData.page > 0) {
+                paginationData.page--;
+                if (paginationData.page === 0) {
+                    $(this).attr('disabled', true);
+                }
+                fetchClosedTrades();
+            } else {
+                $(this).attr('disabled', true);
+            }
+        })
+
         // disable prev if page number is 0 or less else enable
         if (paginationData.page <= 0) {
             $('#prev-page-closed-trade').attr('disabled', true);
