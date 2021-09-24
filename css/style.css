@@ -8,25 +8,29 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/opensans/v25/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v26/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0B4gaVc.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/opensans/v25/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v26/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: url(https://fonts.gstatic.com/s/opensans/v25/mem5YaGs126MiZpBA-UNirkOUuhs.ttf) format('truetype');
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v26/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1x4gaVc.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/opensans/v25/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf) format('truetype');
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v26/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4gaVc.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -10344,6 +10348,7 @@ body.mini-navbar .nav.metismenu > li.logo {
 @media screen and (max-width: 968px) {
   .subheader {
     padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 table thead th {
@@ -11082,6 +11087,7 @@ select[name="rows-per-page"] {
 }
 .trade-terminal-page .subheader {
   padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .watchlist-right-sidebar {
   top: 60px !important;
