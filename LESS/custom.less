@@ -1035,3 +1035,46 @@ select[name="rows-per-page"] {
   background-color: #DDDDDD;
   width: 1px;
 }
+
+.btn-group-more-filter {
+  .dropdown-menu {
+    left: -80%;
+  }
+
+  .btn-more-filter::after {
+    content: none;
+  }
+
+  .dropdown-menu-input {
+    width: 235px;
+    left: -120%;
+
+    .content {
+      height: 200px;
+
+      .btn.active {
+        background-color: @active-nav-link-color;
+        box-shadow: none;
+        border: none;
+      }
+
+      .btn {
+        background-color: @highlight-gray;
+        box-shadow: none;
+        border: none;
+        color: @chip-text-color;
+        font-weight: 600;
+        border-radius: 4px;
+      }
+
+      .percent {
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+  }
+
+}

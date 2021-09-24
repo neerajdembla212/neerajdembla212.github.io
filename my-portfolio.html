@@ -208,7 +208,64 @@
           <div class="my-3 portfolio-users-table ibox card">
             <div class="d-flex justify-content-between p-3">
               <h3 class="table-title"></h3>
-              <button type="button" class="btn btn-default btn-sm">More Filters</button>
+              <div class="btn-group btn-group-more-filter">
+                <button class="btn btn-default btn-more-filter dropdown-toggle">
+                  More Filters
+                </button>
+                <ul class="dropdown-menu dropdown-menu-list">
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer"
+                    data-filter-name="Equity Growth" data-filter-operation="&lt;" data-filter-value="10"
+                    data-percentage="true">
+                    <p class="mb-0 medium-font mr-3">Equity Growth</p>
+                    <p class="mb-0 medium-font text-dark-blue font-weight-bold">&gt;10%</p>
+                  </li>
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer">
+                    <p class="mb-0 mr-3 medium-font">Total Returns</p>
+                    <p class="mb-0 medium-font text-dark-blue font-weight-bold">&gt;5%</p>
+                  </li>
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer">
+                    <p class="mb-0 mr-3 medium-font">No. Trades</p>
+                    <p class="mb-0 medium-font text-dark-blue font-weight-bold">&gt;5</p>
+                  </li>
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer">
+                    <p class="mb-0 medium-font mr-3">Max Drawdown</p>
+                    <p class="mb-0 medium-font text-dark-blue font-weight-bold">&lt;15%</p>
+                  </li>
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer">
+                    <p class="mb-0 medium-font mr-3">Management Fees</p>
+                    <p class="mb-0 medium-font text-dark-blue font-weight-bold">&lt;15%</p>
+                  </li>
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer">
+                    <p class="mb-0 mr-3 medium-font">Profit Sharing</p>
+                    <p class="mb-0 text-dark-blue medium-font font-weight-bold">&lt;15%</p>
+                  </li>
+                  <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer">
+                    <p class="mb-0 mr-3 medium-font">Total Fees</p>
+                    <p class="mb-0 text-dark-blue medium-font font-weight-bold">&lt;15%</p>
+                  </li>
+                </ul>
+                <ul class="dropdown-menu dropdown-menu-input p-3">
+                  <!-- header -->
+                  <div class="d-flex mb-3">
+                    <img src="img/ic_chevron-left.svg" class="mr-3 go-back cursor-pointer" />
+                    <p class="mb-0 font-bold medium-font">Equity Growth</p>
+                  </div>
+                  <div class="content">
+                    <!--operations-->
+                    <div class="d-flex justify-content-between mb-3">
+                      <button type="button" class="btn btn-outline btn-default active mr-2">&gt; More Than</button>
+                      <button type="button" class="btn btn-outline btn-default">&lt; Less Than</button>
+                    </div>
+                    <div class="position-relative">
+                      <input type="text" class="form-control" value="10">
+                      <p class="mb-0 percent medium-font">%</p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="close-cta btn btn-outline btn-link font-bold text-navy">Apply</button>
+                  </div>
+                </ul>
+              </div>
             </div>
             <div class="portfolio-users-table-content"></div>
           </div>
