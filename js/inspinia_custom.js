@@ -790,7 +790,7 @@ function plotLineChart(lineData) {
   ctx.globalCompositeOperation = 'destination-over';
 }
 
-function registerTableFilterEvents() {
+function registerTableFilterEvents(onApplyFilter) {
   // show dropdown menu on click of more filters button
   $('.btn-group-more-filter .btn-more-filter').unbind().click(function () {
     $(this).siblings('.dropdown-menu-list').toggle()
@@ -801,10 +801,59 @@ function registerTableFilterEvents() {
     const filterName = $(this).data('filter-name');
     const filterOperation = $(this).data('filter-operation');
     const filterValue = $(this).data('filter-value');
+    const filterParam = $(this).data('filter-param');
     const percentage = $(this).data('percentage');
     $('.btn-group-more-filter .dropdown-menu-list').hide();
+    renderDropdownMenuInput({
+      filterName,
+      filterOperation,
+      filterValue,
+      percentage,
+      filterParam
+    }, onApplyFilter);
     $('.btn-group-more-filter .dropdown-menu-input').show();
   })
+}
+
+function renderDropdownMenuInput(filter, onApplyFilter) {
+  if (!filter) {
+    return
+  }
+  const container = $('.btn-group-more-filter .dropdown-menu-input');
+  container.empty().append(getDropdownMenuInputHTML(filter))
+  registerDropdownMenuInputEvents(filter, onApplyFilter);
+}
+
+function getDropdownMenuInputHTML(filter) {
+  const { filterName, filterOperation, filterValue, percentage } = filter;
+  return `
+  <!-- Header start -->
+    <div class="d-flex mb-3">
+        <img src="img/ic_chevron-left.svg" class="mr-3 go-back cursor-pointer" />
+        <p class="mb-0 font-bold medium-font">${filterName}</p>
+    </div>
+  <!-- Header end -->
+  <!-- Content start -->
+  <div class="content">
+    <div class="d-flex justify-content-between mb-3">
+      <button type="button" class="btn btn-outline btn-default mr-2 ${filterOperation === '>' ? 'active' : ''}" data-filter-operation="&gt;">&gt; More Than</button>
+      <button type="button" class="btn btn-outline btn-default ${filterOperation === '<' ? 'active' : ''}" data-filter-operation="&lt;">&lt; Less Than</button>
+    </div>
+    <div class="position-relative">
+      <input type="text" class="form-control" value="${filterValue}">
+      <p class="mb-0 percent medium-font">${percentage ? '%' : ''}</p>
+    </div>
+  </div>
+  <!-- Content end -->
+  <!-- Footer start -->
+  <div class="d-flex justify-content-end">
+    <button type="button" class="close-cta btn btn-outline btn-link font-bold text-navy">Apply</button>
+  </div>
+  <!-- Footer end -->
+  `
+}
+
+function registerDropdownMenuInputEvents(filter, onApplyFilter) {
   // in dropdown menu input toggle active class on buttons
   $('.btn-group-more-filter .dropdown-menu-input .content .btn').click(function () {
     $('.btn-group-more-filter .dropdown-menu-input .content .btn').removeClass('active');
@@ -813,7 +862,17 @@ function registerTableFilterEvents() {
 
   // close dropdown menu input
   $('.close-cta').unbind().click(function () {
-    $('.btn-group-more-filter .dropdown-menu-input').hide();
+    const container = $('.btn-group-more-filter .dropdown-menu-input');
+    const selectedOperation = $(container).find('.content .btn.active').data('filter-operation');
+    const filterValue = $(container).find('input[type="text"]').val()
+    debugger
+    const selectedFilter = {
+      ...filter,
+      filterOperation: selectedOperation,
+      filterValue
+    }
+    container.hide();
+    onApplyFilter(selectedFilter)
   })
 
   // go back to dropdown menu list on click of chevron
