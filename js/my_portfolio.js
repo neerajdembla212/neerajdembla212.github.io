@@ -10,6 +10,7 @@
             total: 0,
             page: 0
         }
+        selectedTableFilters = []
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -63,6 +64,22 @@
                 return;
             }
             this.paginationData = data;
+        }
+
+        getSelectedTableFilters() {
+            return this.selectedTableFilters;
+        }
+        setSelectedTableFilters(data) {
+            if (!data || !Array.isArray(data)) {
+                return
+            }
+            this.selectedTableFilters = data;
+        }
+        addSelectedFilter(data) {
+            if (!data) {
+                return
+            }
+            this.selectedTableFilters.push(data);
         }
     }
     const STATE = new State();
@@ -119,27 +136,33 @@
     }
 
     function fetchStrategyProviders() {
+        renderSeletedFilters();
+        const filterQueryParams = getSelectedFiltersQueryParams();
         callAjaxMethod({
-            url: 'https://copypip.free.beeceptor.com/get-portfolio-users/providers',
+            url: `https://copypip.free.beeceptor.com/get-portfolio-users/providers?${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
                 STATE.setUserList(data.data);
                 renderStrategyProviders();
+                renderTableFilters();
             }
         })
     }
 
     function fetchStrategyFollowers() {
+        renderSeletedFilters();
+        const filterQueryParams = getSelectedFiltersQueryParams();
         callAjaxMethod({
-            url: 'https://copypip.free.beeceptor.com/get-portfolio-users/followers',
+            url: `https://copypip.free.beeceptor.com/get-portfolio-users/followers?${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
                 STATE.setUserList(data.data);
                 renderStrategyFollowers();
+                renderTableFilters();
             }
         })
     }
@@ -154,6 +177,7 @@
         });
     }
     // fetch data functions end
+
     // render Strategy provider table HTML start
     function renderStrategyProviders() {
         const users = STATE.getUserList();
@@ -852,6 +876,132 @@
     }
     // render Strategy Follower responsive HTML end
 
+    // render table filters start
+    function renderTableFilters() {
+        const container = $('.dropdown-menu.dropdown-menu-list');
+        const filterItemHTML = [];
+        const filterItems = [{
+            id: 1,
+            displayName: 'Equity Growth',
+            filterParam: 'equity_growth',
+            filterOperation: "&gt;",
+            filterPercentage: true,
+            filterValue: 10
+        },
+        {
+            id: 2,
+            displayName: 'Total Returns',
+            filterParam: 'total_returns',
+            filterOperation: "&gt;",
+            filterPercentage: true,
+            filterValue: 5
+        },
+        {
+            id: 3,
+            displayName: 'No. Trades',
+            filterParam: 'trades',
+            filterOperation: "&gt;",
+            filterPercentage: false,
+            filterValue: 5
+        },
+        {
+            id: 4,
+            displayName: 'Max Drawdown',
+            filterParam: 'max_drawdown',
+            filterOperation: "&lt;",
+            filterPercentage: true,
+            filterValue: 15
+        },
+        {
+            id: 5,
+            displayName: 'Management Fees',
+            filterParam: 'management_fee',
+            filterOperation: "&lt;",
+            filterPercentage: true,
+            filterValue: 15
+        },
+        {
+            id: 6,
+            displayName: 'Profit Sharing',
+            filterParam: 'profit_sharing',
+            filterOperation: "&lt;",
+            filterPercentage: true,
+            filterValue: 15
+        },
+        {
+            id: 6,
+            displayName: 'Total Fees',
+            filterParam: 'total_fee',
+            filterOperation: "&lt;",
+            filterPercentage: true,
+            filterValue: 15
+        }
+        ]
+        filterItems.forEach(filter => {
+            filterItemHTML.push(getFilterItemHTML(filter))
+        })
+        container.empty().append(filterItemHTML.join(''))
+        registerTableFilterEvents(onApplyFilter);
+    }
+    function getFilterItemHTML(filter) {
+        if (!filter) {
+            return
+        }
+        const { id, displayName, filterOperation, filterValue, filterPercentage, filterParam } = filter;
+        return `
+        <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer" 
+        data-id="${id}"
+        data-filter-name="${displayName}"
+        data-filter-operation="${filterOperation}"
+        data-filter-value="${filterValue}"
+        data-percentage=${filterPercentage}
+        data-filter-param="${filterParam}">
+        <p class="mb-0 medium-font mr-3">${displayName}</p>
+        <p class="mb-0 medium-font text-dark-blue font-weight-bold">${filterOperation}${filterValue}${filterPercentage ? '%' : ''}</p>
+      </li>
+        `
+    }
+    function onApplyFilter(selectedFilter) {
+        console.log('filter applied ', selectedFilter);
+        STATE.addSelectedFilter(selectedFilter);
+        const role = STATE.getRole();
+        if (role.toLowerCase() === 'provider') {
+            fetchStrategyFollowers();
+        } else if (role.toLowerCase() === 'follower') {
+            fetchStrategyProviders();
+        }
+    }
+    // process selected filters and create query params 
+    function getSelectedFiltersQueryParams() {
+        const selectedFilters = STATE.getSelectedTableFilters();
+        let queryParamString = '';
+        selectedFilters.forEach(filter => {
+            queryParamString = queryParamString + $.param({
+                [filter.filterParam]: filter.filterValue
+            }) + '&'
+        })
+        return queryParamString;
+    }
+    function renderSeletedFilters() {
+        debugger
+        const selectedFilters = STATE.getSelectedTableFilters();
+        const container = $('.selected-filters-container');
+        filterChipsHTML = [];
+        selectedFilters.forEach(filter => {
+            const { id,
+                filterName,
+                filterOperation,
+                filterValue
+            } = filter;
+            filterChipsHTML.push(`
+                <div class="currency-chip d-flex align-items-center" data-id="${id}">
+                    <p class="mb-0">${filterName} &nbsp;(${filterOperation}${filterValue})</p><img src="img/ic_cross.svg" class="unpin-currency"/>
+                </div>
+            `)
+        })
+        container.empty().append(filterChipsHTML.join(''))
+    }
+    // render table filters end
     // function to display role chip in sub header
     function showRoleWiseElements() {
         const role = STATE.getRole()
