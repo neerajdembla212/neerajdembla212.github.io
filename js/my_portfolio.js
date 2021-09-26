@@ -1,4 +1,61 @@
 (() => {
+    const defaultFilterItems = [{ // default filter items is the master list with default filters
+        id: 1,
+        displayName: 'Equity Growth',
+        filterParam: 'equity_growth',
+        filterOperation: "&gt;",
+        filterPercentage: true,
+        filterValue: 10
+    },
+    {
+        id: 2,
+        displayName: 'Total Returns',
+        filterParam: 'total_returns',
+        filterOperation: "&gt;",
+        filterPercentage: true,
+        filterValue: 5
+    },
+    {
+        id: 3,
+        displayName: 'No. Trades',
+        filterParam: 'trades',
+        filterOperation: "&gt;",
+        filterPercentage: false,
+        filterValue: 5
+    },
+    {
+        id: 4,
+        displayName: 'Max Drawdown',
+        filterParam: 'max_drawdown',
+        filterOperation: "&lt;",
+        filterPercentage: true,
+        filterValue: 15
+    },
+    {
+        id: 5,
+        displayName: 'Management Fees',
+        filterParam: 'management_fee',
+        filterOperation: "&lt;",
+        filterPercentage: true,
+        filterValue: 15
+    },
+    {
+        id: 6,
+        displayName: 'Profit Sharing',
+        filterParam: 'profit_sharing',
+        filterOperation: "&lt;",
+        filterPercentage: true,
+        filterValue: 15
+    },
+    {
+        id: 6,
+        displayName: 'Total Fees',
+        filterParam: 'total_fee',
+        filterOperation: "&lt;",
+        filterPercentage: true,
+        filterValue: 15
+    }
+    ];
     class State {
         strategyDetails = {};
         lineChartData = {};
@@ -11,6 +68,8 @@
             page: 0
         }
         selectedTableFilters = []
+        defaultTableFilterItems = defaultFilterItems.map(f => ({ ...f }));
+        dropdownFilterItems = defaultFilterItems.map(f => ({ ...f })); // filter list items initiates with default filter items and uppdates as we select and remove filters
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -79,7 +138,35 @@
             if (!data) {
                 return
             }
-            this.selectedTableFilters.push(data);
+            const existingFilterIndex = this.selectedTableFilters.findIndex(filter => filter.id === data.id);
+            if (existingFilterIndex > -1) {
+                this.selectedTableFilters[existingFilterIndex].filterValue = data.filterValue;
+                this.selectedTableFilters[existingFilterIndex].filterOperation = data.filterOperation;
+            } else {
+                this.selectedTableFilters.push(data);
+            }
+        }
+        removeSelectedFilter(id) {
+            if (!id) {
+                return;
+            }
+            const filterIndexToRemove = this.selectedTableFilters.findIndex(f => f.id === id);
+            if (filterIndexToRemove > -1) {
+                this.selectedTableFilters.splice(filterIndexToRemove, 1)
+            }
+        }
+        getDefaultTableFilters() {
+            return this.defaultTableFilters;
+        }
+
+        setDropdownFilterItems(data) {
+            if (!data || !Array.isArray(data)) {
+                return
+            }
+            this.dropdownFilterItems = data;
+        }
+        getDropdownFilterItems() {
+            return this.dropdownFilterItems;
         }
     }
     const STATE = new State();
@@ -139,7 +226,7 @@
         renderSeletedFilters();
         const filterQueryParams = getSelectedFiltersQueryParams();
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-portfolio-users/providers?${filterQueryParams}`,
+            url: `https://copypip.free.beeceptor.com/get-portfolio-users/providers${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
@@ -155,7 +242,7 @@
         renderSeletedFilters();
         const filterQueryParams = getSelectedFiltersQueryParams();
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-portfolio-users/followers?${filterQueryParams}`,
+            url: `https://copypip.free.beeceptor.com/get-portfolio-users/followers${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
@@ -880,69 +967,33 @@
     function renderTableFilters() {
         const container = $('.dropdown-menu.dropdown-menu-list');
         const filterItemHTML = [];
-        const filterItems = [{
-            id: 1,
-            displayName: 'Equity Growth',
-            filterParam: 'equity_growth',
-            filterOperation: "&gt;",
-            filterPercentage: true,
-            filterValue: 10
-        },
-        {
-            id: 2,
-            displayName: 'Total Returns',
-            filterParam: 'total_returns',
-            filterOperation: "&gt;",
-            filterPercentage: true,
-            filterValue: 5
-        },
-        {
-            id: 3,
-            displayName: 'No. Trades',
-            filterParam: 'trades',
-            filterOperation: "&gt;",
-            filterPercentage: false,
-            filterValue: 5
-        },
-        {
-            id: 4,
-            displayName: 'Max Drawdown',
-            filterParam: 'max_drawdown',
-            filterOperation: "&lt;",
-            filterPercentage: true,
-            filterValue: 15
-        },
-        {
-            id: 5,
-            displayName: 'Management Fees',
-            filterParam: 'management_fee',
-            filterOperation: "&lt;",
-            filterPercentage: true,
-            filterValue: 15
-        },
-        {
-            id: 6,
-            displayName: 'Profit Sharing',
-            filterParam: 'profit_sharing',
-            filterOperation: "&lt;",
-            filterPercentage: true,
-            filterValue: 15
-        },
-        {
-            id: 6,
-            displayName: 'Total Fees',
-            filterParam: 'total_fee',
-            filterOperation: "&lt;",
-            filterPercentage: true,
-            filterValue: 15
-        }
-        ]
+        const filterItems = STATE.getDropdownFilterItems();
+
         filterItems.forEach(filter => {
             filterItemHTML.push(getFilterItemHTML(filter))
         })
         container.empty().append(filterItemHTML.join(''))
         registerTableFilterEvents(onApplyFilter);
+
+        $('.remove-filter').unbind().click(removeAppliedFilter);
     }
+
+    function removeAppliedFilter() {
+        const filterId = $(this).parent('.currency-chip').data('id');
+        // remove selected filter from state 
+        STATE.removeSelectedFilter(filterId);
+        // update dropdowm filter list items 
+        const defaultFilter = defaultFilterItems.find(f => f.id === filterId);
+        const dropdownFilterItems = STATE.getDropdownFilterItems();
+        const dropdownFilterItemIndex = dropdownFilterItems.findIndex(f => f.id === filterId);
+        if (dropdownFilterItemIndex > -1) {
+            dropdownFilterItems[dropdownFilterItemIndex].filterOperation = defaultFilter.filterOperation;
+            dropdownFilterItems[dropdownFilterItemIndex].filterValue = defaultFilter.filterValue;
+        }
+        // fetch and render table based on role 
+        fetchListOfUsers();
+    }
+
     function getFilterItemHTML(filter) {
         if (!filter) {
             return
@@ -954,7 +1005,7 @@
         data-filter-name="${displayName}"
         data-filter-operation="${filterOperation}"
         data-filter-value="${filterValue}"
-        data-percentage=${filterPercentage}
+        data-filter-percentage=${filterPercentage}
         data-filter-param="${filterParam}">
         <p class="mb-0 medium-font mr-3">${displayName}</p>
         <p class="mb-0 medium-font text-dark-blue font-weight-bold">${filterOperation}${filterValue}${filterPercentage ? '%' : ''}</p>
@@ -963,27 +1014,29 @@
     }
     function onApplyFilter(selectedFilter) {
         console.log('filter applied ', selectedFilter);
-        STATE.addSelectedFilter(selectedFilter);
-        const role = STATE.getRole();
-        if (role.toLowerCase() === 'provider') {
-            fetchStrategyFollowers();
-        } else if (role.toLowerCase() === 'follower') {
-            fetchStrategyProviders();
+        STATE.addSelectedFilter(selectedFilter); // update filter chips
+        // update filter items list 
+        const filterItems = STATE.getDropdownFilterItems();
+        const filterItemIndex = filterItems.findIndex(f => f.id === selectedFilter.id)
+        if (filterItemIndex > -1) {
+            filterItems[filterItemIndex].filterOperation = selectedFilter.filterOperation;
+            filterItems[filterItemIndex].filterValue = selectedFilter.filterValue;
         }
+        fetchListOfUsers();
     }
     // process selected filters and create query params 
     function getSelectedFiltersQueryParams() {
         const selectedFilters = STATE.getSelectedTableFilters();
-        let queryParamString = '';
-        selectedFilters.forEach(filter => {
-            queryParamString = queryParamString + $.param({
-                [filter.filterParam]: filter.filterValue
-            }) + '&'
+        let queryParamString = '?';
+        selectedFilters.forEach((filter, index) => {
+            queryParamString = queryParamString + filter.filterParam + filter.filterOperation + filter.filterValue;
+            if (index < selectedFilters.length - 1) {
+                queryParamString += '&'
+            }
         })
         return queryParamString;
     }
     function renderSeletedFilters() {
-        debugger
         const selectedFilters = STATE.getSelectedTableFilters();
         const container = $('.selected-filters-container');
         filterChipsHTML = [];
@@ -991,11 +1044,12 @@
             const { id,
                 filterName,
                 filterOperation,
-                filterValue
+                filterValue,
+                filterPercentage
             } = filter;
             filterChipsHTML.push(`
                 <div class="currency-chip d-flex align-items-center" data-id="${id}">
-                    <p class="mb-0">${filterName} &nbsp;(${filterOperation}${filterValue})</p><img src="img/ic_cross.svg" class="unpin-currency"/>
+                    <p class="mb-0 mr-2">${filterName} &nbsp;(${filterOperation}${filterValue}${filterPercentage ? '%' : ''})</p><img src="img/ic_cross.svg" class="remove-filter"/>
                 </div>
             `)
         })
