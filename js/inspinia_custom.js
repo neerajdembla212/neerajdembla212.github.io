@@ -799,17 +799,19 @@ function registerTableFilterEvents(onApplyFilter) {
   // on click of dropdown menu item hide menu and show dropdown menu input
   $('.btn-group-more-filter .dropdown-menu>li.dropdown-item').unbind().click(function () {
     const filterName = $(this).data('filter-name');
+    const id = $(this).data('id');
     const filterOperation = $(this).data('filter-operation');
     const filterValue = $(this).data('filter-value');
     const filterParam = $(this).data('filter-param');
-    const percentage = $(this).data('percentage');
+    const filterPercentage = $(this).data('filter-percentage');
     $('.btn-group-more-filter .dropdown-menu-list').hide();
     renderDropdownMenuInput({
       filterName,
       filterOperation,
       filterValue,
-      percentage,
-      filterParam
+      filterPercentage,
+      filterParam,
+      id
     }, onApplyFilter);
     $('.btn-group-more-filter .dropdown-menu-input').show();
   })
@@ -863,12 +865,11 @@ function registerDropdownMenuInputEvents(filter, onApplyFilter) {
   // close dropdown menu input
   $('.close-cta').unbind().click(function () {
     const container = $('.btn-group-more-filter .dropdown-menu-input');
-    const selectedOperation = $(container).find('.content .btn.active').data('filter-operation');
+    const filterOperation = $(container).find('.content .btn.active').data('filter-operation');
     const filterValue = $(container).find('input[type="text"]').val()
-    debugger
     const selectedFilter = {
       ...filter,
-      filterOperation: selectedOperation,
+      filterOperation,
       filterValue
     }
     container.hide();
