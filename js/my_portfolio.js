@@ -1,5 +1,5 @@
 (() => {
-    const defaultFilterItems = [{ // default filter items is the master list with default filters
+    const spDefaultFilterItems = [{ // default filter items is the master list with default filters
         id: 1,
         displayName: 'Equity Growth',
         filterParam: 'equity_growth',
@@ -48,13 +48,54 @@
         filterValue: 15
     },
     {
-        id: 6,
+        id: 7,
         displayName: 'Total Fees',
         filterParam: 'total_fee',
         filterOperation: "&lt;",
         filterPercentage: true,
         filterValue: 15
     }
+    ];
+    const sfDefaultFilterItems = [{ // default filter items is the master list with default filters
+        id: 1,
+        displayName: 'P/L',
+        filterParam: 'p_l',
+        filterOperation: "&gt;",
+        filterPercentage: false,
+        filterValue: 10
+    },
+    {
+        id: 2,
+        displayName: 'HWM Diffrence',
+        filterParam: 'hwm_difference',
+        filterOperation: "&gt;",
+        filterPercentage: false,
+        filterValue: 5
+    },
+    {
+        id: 3,
+        displayName: 'Balance',
+        filterParam: 'balance',
+        filterOperation: "&gt;",
+        filterPercentage: false,
+        filterValue: 58
+    },
+    {
+        id: 4,
+        displayName: 'Fee Earned',
+        filterParam: 'fee_earned',
+        filterOperation: "&lt;",
+        filterPercentage: false,
+        filterValue: 15
+    },
+    {
+        id: 5,
+        displayName: 'Com Earned',
+        filterParam: 'com_earned',
+        filterOperation: "&lt;",
+        filterPercentage: false,
+        filterValue: 15
+    },
     ];
     class State {
         strategyDetails = {};
@@ -67,9 +108,9 @@
             total: 0,
             page: 0
         }
+        defaultFilterItems = [];
         selectedTableFilters = []
-        defaultTableFilterItems = defaultFilterItems.map(f => ({ ...f }));
-        dropdownFilterItems = defaultFilterItems.map(f => ({ ...f })); // filter list items initiates with default filter items and uppdates as we select and remove filters
+        dropdownFilterItems = sfDefaultFilterItems.map(f => ({ ...f })); // filter list items initiates with default filter items and uppdates as we select and remove filters
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -155,9 +196,6 @@
                 this.selectedTableFilters.splice(filterIndexToRemove, 1)
             }
         }
-        getDefaultTableFilters() {
-            return this.defaultTableFilters;
-        }
 
         setDropdownFilterItems(data) {
             if (!data || !Array.isArray(data)) {
@@ -167,6 +205,16 @@
         }
         getDropdownFilterItems() {
             return this.dropdownFilterItems;
+        }
+
+        getDefaultFilterItems() {
+            return this.defaultFilterItems
+        }
+        setDefaultFilterItems(data) {
+            if (!data || !Array.isArray(data)) {
+                return
+            }
+            this.defaultFilterItems = data;
         }
     }
     const STATE = new State();
@@ -212,11 +260,17 @@
 
     // this function will fetch strategy providers or followers based on user's role and render the table accordingly
     function fetchListOfUsers() {
-        const userRole = STATE.getRole()
+        const userRole = STATE.getRole();
         if (userRole.toLowerCase() === 'provider') {
+            // change default table filter Items
+            const defaultFilter = sfDefaultFilterItems.map(f => ({ ...f }));
+            STATE.setDefaultFilterItems(defaultFilter);
             // fetch followers and render followers table
             fetchStrategyFollowers();
         } else if (userRole === 'follower') {
+            // change default table filter Items
+            const defaultFilter = spDefaultFilterItems.map(f => ({ ...f }));
+            STATE.setDefaultFilterItems(defaultFilter);
             // fetch providers and render providers table
             fetchStrategyProviders();
         }
@@ -983,10 +1037,10 @@
         // remove selected filter from state 
         STATE.removeSelectedFilter(filterId);
         // update dropdowm filter list items 
-        const defaultFilter = defaultFilterItems.find(f => f.id === filterId);
+        const defaultFilter = STATE.getDefaultFilterItems().find(f => f.id === filterId);
         const dropdownFilterItems = STATE.getDropdownFilterItems();
         const dropdownFilterItemIndex = dropdownFilterItems.findIndex(f => f.id === filterId);
-        if (dropdownFilterItemIndex > -1) {
+        if (dropdownFilterItemIndex > -1 && defaultFilter) {
             dropdownFilterItems[dropdownFilterItemIndex].filterOperation = defaultFilter.filterOperation;
             dropdownFilterItems[dropdownFilterItemIndex].filterValue = defaultFilter.filterValue;
         }
