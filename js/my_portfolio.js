@@ -611,9 +611,8 @@
 
         // click on stop icon on any strategy provider tabls row and open stop provider popup
         $('.stop-provider-cta').unbind().click(event => {
-            const id = $(event.currentTarget).data('id');
             const providerName = $(event.currentTarget).data('name');
-            renderStopProviderPopup(id, providerName);
+            renderStopProviderPopup(providerName);
         })
         registerStrategyProviderPaginationEvents();
     }
@@ -627,7 +626,7 @@
             </div>
         `)
     }
-    function renderStopProviderPopup(id, name) {
+    function renderStopProviderPopup(name) {
         const container = $('#stop-provider-modal .modal-body');
         container.empty().append(`
             <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>

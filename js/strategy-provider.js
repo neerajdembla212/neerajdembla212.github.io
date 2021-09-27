@@ -509,8 +509,16 @@
       drawDown,
       return_duration,
       risk_amount,
-      favourite
+      favourite,
+      followed
     } = provider;
+
+    const followProviderCTA = followed === 'true' ? `<button type="button" class="btn btn-outline btn-primary btn-block2 unfollow-provider-cta" name="unfollow-provider-cta" data-toggle="modal"
+    data-target="#unfollow-provider-modal" data-name="${name}">
+    Unfollow Provider
+  </button>` : `<button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
+  Follow Provider
+  </button>`;
 
     return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}" data-id="${id}">
     <div class="d-flex justify-content-between">
@@ -540,9 +548,7 @@
     <div class="line-chart-container">
       <canvas class="lineChart" class="mt-2"></canvas>
     </div>
-    <button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
-      Follow Provider
-    </button>
+    ${followProviderCTA}
     <!-- area chart here-->
     <div class="d-flex mt-2 justify-content-between">
       <span class="text-light-gray"><span class="format-us">${formatWithCommas(follower_count)}</span> Followers</span>
@@ -551,6 +557,17 @@
       </span>
     </div>
   </div>`;
+  }
+
+  function renderUnfollowProviderPopup(name) {
+    const container = $('#unfollow-provider-modal .modal-body');
+    container.empty().append(`
+        <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>
+        <div class="w-100 d-flex justify-content-end">
+            <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+        </div>
+    `)
   }
   // render top growth card end
 
@@ -778,6 +795,12 @@
       const id = $(event.currentTarget).data('id')
       fetchStrategyProviderDetails(id);
     })
+
+    // stop provider CTA
+    $('.unfollow-provider-cta').unbind().click(event => {
+      const providerName = $(event.currentTarget).data('name');
+      renderUnfollowProviderPopup(providerName);
+    })
   }
 
   function registerListViewEvents() {
@@ -852,7 +875,7 @@
 
   function showStrategyProviderDetailsPage(event) {
     const targetName = $(event.target).attr('name');
-    if (targetName === "follow-provider-cta" || targetName === "favourites-cta") {
+    if (targetName === "follow-provider-cta" || targetName === "favourites-cta" || targetName === "unfollow-provider-cta") {
       return;
     }
     localStorage.setItem('selectedProviderId', $(event.currentTarget).data('id'))
