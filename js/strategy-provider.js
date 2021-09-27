@@ -1,4 +1,62 @@
 (function () {
+  const defaultFilterItems = [
+    {
+      id: 1,
+      displayName: 'Equity Growth',
+      filterParam: 'equity_growth',
+      filterOperation: "&gt;",
+      filterPercentage: true,
+      filterValue: 10
+    },
+    {
+      id: 2,
+      displayName: 'Total Returns',
+      filterParam: 'total_returns',
+      filterOperation: "&gt;",
+      filterPercentage: true,
+      filterValue: 5
+    },
+    {
+      id: 3,
+      displayName: 'Max Drawdown',
+      filterParam: 'max_drawdown',
+      filterOperation: "&lt;",
+      filterPercentage: true,
+      filterValue: 15
+    },
+    {
+      id: 4,
+      displayName: 'Avg / Mth',
+      filterParam: 'avg_per_month',
+      filterOperation: "&lt;",
+      filterPercentage: true,
+      filterValue: 15
+    },
+    {
+      id: 5,
+      displayName: 'Avg Pips',
+      filterParam: 'avg_pips',
+      filterOperation: "&lt;",
+      filterPercentage: false,
+      filterValue: 15
+    },
+    {
+      id: 6,
+      displayName: 'Managed Funds',
+      filterParam: 'managed_funds',
+      filterOperation: "&lt;",
+      filterPercentage: false,
+      filterValue: 100
+    },
+    {
+      id: 7,
+      displayName: 'Followers',
+      filterParam: 'followers',
+      filterOperation: "&lt;",
+      filterPercentage: false,
+      filterValue: 198
+    },
+  ]
   class State {
     topGrowth = [];
     featuredProviders = [];
@@ -13,6 +71,9 @@
       total: 0,
       page: 0
     }
+    selectedTableFilters = []
+    dropdownFilterItems = defaultFilterItems.map((f) => ({ ...f }));
+
 
     getState() {
       return {
@@ -24,7 +85,9 @@
         paginationData: this.paginationData,
         lowGrowthUsers: this.lowGrowthUsers,
         midGrowthUsers: this.midGrowthUsers,
-        highGrowthUsers: this.highGrowthUsers
+        highGrowthUsers: this.highGrowthUsers,
+        selectedTableFilters: this.selectedTableFilters,
+        dropdownFilterItems: this.dropdownFilterItems
       }
     }
 
@@ -90,6 +153,45 @@
       }
       this.highGrowthUsers = data;
     }
+
+    setSelectedTableFilters(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.selectedTableFilters = data;
+    }
+
+    addSelectedFilter(data) {
+      if (!data) {
+        return
+      }
+      const existingFilterIndex = this.selectedTableFilters.findIndex(filter => filter.id === data.id);
+      if (existingFilterIndex > -1) {
+        this.selectedTableFilters[existingFilterIndex].filterValue = data.filterValue;
+        this.selectedTableFilters[existingFilterIndex].filterOperation = data.filterOperation;
+      } else {
+        this.selectedTableFilters.push(data);
+      }
+    }
+    removeSelectedFilter(id) {
+      if (!id) {
+        return;
+      }
+      const filterIndexToRemove = this.selectedTableFilters.findIndex(f => f.id === id);
+      if (filterIndexToRemove > -1) {
+        this.selectedTableFilters.splice(filterIndexToRemove, 1)
+      }
+    }
+
+    setDropdownFilterItems(data) {
+      if (!data || !Array.isArray(data)) {
+        return
+      }
+      this.dropdownFilterItems = data;
+    }
+    getDropdownFilterItems() {
+      return this.dropdownFilterItems;
+    }
   }
 
   // creating state object which will contain application data fetched from api in memory for SP page only.
@@ -103,13 +205,15 @@
   $(function () {
     registerGlobalEvents();
     const activeId = getActiveTab().attr('href');
-    onTabChange(activeId);
+    onTabChange(activeId, false);
   });
 
   // fetch apis start
   function fetchTopGrowthProviders(activeTabId, noLoadingState = false) {
+    renderSeletedFilters();
+    const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/users/top-growth",
+      url: `https://copypip.free.beeceptor.com/users/top-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -142,8 +246,10 @@
   }
 
   function fetchFollowingUsers(activeTabId) {
+    renderSeletedFilters();
+    const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/users/following",
+      url: `https://copypip.free.beeceptor.com/users/following${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -161,8 +267,10 @@
   }
 
   function fetchFavouriteUsers(activeTabId) {
+    renderSeletedFilters();
+    const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/users/favourites",
+      url: `https://copypip.free.beeceptor.com/users/favourites${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -189,8 +297,10 @@
   }
 
   function fetchLowGrowthUsers(activeTabId) {
+    renderSeletedFilters();
+    const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/low-growth`,
+      url: `https://copypip.free.beeceptor.com/users/low-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -207,8 +317,10 @@
   }
 
   function fetchMidGrowthUsers(activeTabId) {
+    renderSeletedFilters();
+    const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/mid-growth`,
+      url: `https://copypip.free.beeceptor.com/users/mid-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -225,8 +337,10 @@
   }
 
   function fetchHighGrowthUsers(activeTabId) {
+    renderSeletedFilters();
+    const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/high-growth`,
+      url: `https://copypip.free.beeceptor.com/users/high-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -473,6 +587,7 @@
         plotTopGrowthTable(topGrowth);
         plotListLineCharts(topGrowth);
         registerListViewEvents();
+        renderTableFilters();
         break;
 
       case '#following':
@@ -480,6 +595,7 @@
         plotFollowingUsersTable(followingUsers);
         plotListLineCharts(followingUsers);
         registerListViewEvents();
+        renderTableFilters();
         break;
 
       case '#favourites':
@@ -487,6 +603,7 @@
         plotFavouriteUsersTable(favouriteUsers);
         plotListLineCharts(favouriteUsers);
         registerListViewEvents();
+        renderTableFilters();
         break;
 
       case '#low-growth':
@@ -494,6 +611,7 @@
         plotLowGrowthUsersTable(lowGrowthUsers);
         plotListLineCharts(lowGrowthUsers);
         registerListViewEvents();
+        renderTableFilters();
         break;
 
       case '#mid-growth':
@@ -501,6 +619,7 @@
         plotMidGrowthUsersTable(midGrowthUsers);
         plotListLineCharts(midGrowthUsers);
         registerListViewEvents();
+        renderTableFilters();
         break;
 
       case '#high-growth':
@@ -508,6 +627,7 @@
         plotHighGrowthUsersTable(highGrowthUsers);
         plotListLineCharts(highGrowthUsers);
         registerListViewEvents();
+        renderTableFilters();
         break;
     }
   }
@@ -520,6 +640,7 @@
         plotTopGrowthCard(topGrowth);
         plotGridLineCharts(topGrowth);
         registerGridViewEvents();
+        renderTableFilters();
         break;
 
       case "#featured":
@@ -527,6 +648,7 @@
         plotFeaturedProviersCard(featuredProviders);
         plotGridLineCharts(featuredProviders);
         registerGridViewEvents();
+        renderTableFilters();
         break;
 
       case '#following':
@@ -534,6 +656,7 @@
         plotFollowingUsersCard(followingUsers);
         plotGridLineCharts(followingUsers);
         registerGridViewEvents();
+        renderTableFilters();
         break;
 
       case '#favourites':
@@ -541,6 +664,7 @@
         plotFavouriteUsersCard(favouriteUsers);
         plotGridLineCharts(favouriteUsers);
         registerGridViewEvents();
+        renderTableFilters();
         break;
 
       case '#low-growth':
@@ -548,6 +672,7 @@
         plotLowGrowthUsersCard(lowGrowthUsers);
         plotGridLineCharts(lowGrowthUsers);
         registerGridViewEvents();
+        renderTableFilters();
         break;
 
       case '#mid-growth':
@@ -555,6 +680,7 @@
         plotMidGrowthUsersCard(midGrowthUsers);
         plotGridLineCharts(midGrowthUsers);
         registerGridViewEvents();
+        renderTableFilters();
         break;
 
       case '#high-growth':
@@ -562,6 +688,7 @@
         plotHighGrowthUsersCard(highGrowthUsers);
         plotGridLineCharts(highGrowthUsers);
         registerGridViewEvents();
+        renderTableFilters();
         break;
     }
   }
@@ -607,7 +734,7 @@
     })
   }
 
-  function onTabChange(tabId) {
+  function onTabChange(tabId, isManual = true) {
     if (!tabId) {
       return
     }
@@ -616,6 +743,9 @@
       total: 0,
       page: 0
     })
+    if (isManual) {
+      clearFilters();
+    }
     switch (tabId) {
       case '#top-growth': fetchTopGrowthProviders(tabId); break;
       case '#featured': fetchFeaturedProviders(tabId); break;
@@ -1333,6 +1463,119 @@
   }
   // render high growth users end
 
+  // table filters start
+  function renderSeletedFilters() {
+    const selectedFilters = STATE.getState().selectedTableFilters;
+    const container = $('.selected-filters-container');
+    filterChipsHTML = [];
+    selectedFilters.forEach(filter => {
+      const { id,
+        filterName,
+        filterOperation,
+        filterValue,
+        filterPercentage
+      } = filter;
+      filterChipsHTML.push(`
+            <div class="currency-chip d-flex align-items-center" data-id="${id}">
+                <p class="mb-0 mr-2">${filterName} &nbsp;(${filterOperation}${filterValue}${filterPercentage ? '%' : ''})</p><img src="img/ic_cross.svg" class="remove-filter"/>
+            </div>
+        `)
+    })
+    container.empty().append(filterChipsHTML.join(''))
+  }
+
+  function renderTableFilters() {
+    const container = $('.dropdown-menu.dropdown-menu-list');
+    const filterItemHTML = [];
+    const filterItems = STATE.getState().dropdownFilterItems;
+
+    filterItems.forEach(filter => {
+      filterItemHTML.push(getFilterItemHTML(filter))
+    })
+    container.empty().append(filterItemHTML.join(''))
+    registerTableFilterEvents(onApplyFilter);
+
+    $('.remove-filter').unbind().click(removeAppliedFilter);
+  }
+
+  function removeAppliedFilter() {
+    const filterId = $(this).parent('.currency-chip').data('id');
+    // remove selected filter from state 
+    STATE.removeSelectedFilter(filterId);
+    // update dropdowm filter list items 
+    const defaultFilter = defaultFilterItems.find(f => f.id === filterId);
+    const dropdownFilterItems = STATE.getState().dropdownFilterItems;
+    const dropdownFilterItemIndex = dropdownFilterItems.findIndex(f => f.id === filterId);
+    if (dropdownFilterItemIndex > -1 && defaultFilter) {
+      dropdownFilterItems[dropdownFilterItemIndex].filterOperation = defaultFilter.filterOperation;
+      dropdownFilterItems[dropdownFilterItemIndex].filterValue = defaultFilter.filterValue;
+    }
+    // fetch and render table based on active tab
+    const activeId = getActiveTab().attr('href');
+    onTabChange(activeId, false);
+  }
+
+  function getFilterItemHTML(filter) {
+    if (!filter) {
+      return
+    }
+    const { id, displayName, filterOperation, filterValue, filterPercentage, filterParam } = filter;
+    return `
+    <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer" 
+    data-id="${id}"
+    data-filter-name="${displayName}"
+    data-filter-operation="${filterOperation}"
+    data-filter-value="${filterValue}"
+    data-filter-percentage=${filterPercentage}
+    data-filter-param="${filterParam}">
+    <p class="mb-0 medium-font mr-3">${displayName}</p>
+    <p class="mb-0 medium-font text-dark-blue font-weight-bold">${filterOperation}${filterValue}${filterPercentage ? '%' : ''}</p>
+  </li>
+    `
+  }
+
+  function onApplyFilter(selectedFilter) {
+    console.log('filter applied ', selectedFilter);
+    STATE.addSelectedFilter(selectedFilter); // update filter chips
+    // update filter items list 
+    const filterItems = STATE.getState().dropdownFilterItems;
+    const filterItemIndex = filterItems.findIndex(f => f.id === selectedFilter.id)
+    if (filterItemIndex > -1) {
+      filterItems[filterItemIndex].filterOperation = selectedFilter.filterOperation;
+      filterItems[filterItemIndex].filterValue = selectedFilter.filterValue;
+    }
+    // fetch and render table based on active tab
+    const activeId = getActiveTab().attr('href');
+    onTabChange(activeId, false);
+  }
+
+  function renderSeletedFilters() {
+    const selectedFilters = STATE.getState().selectedTableFilters;
+    const container = $('.selected-filters-container');
+    filterChipsHTML = [];
+    selectedFilters.forEach(filter => {
+      const { id,
+        filterName,
+        filterOperation,
+        filterValue,
+        filterPercentage
+      } = filter;
+      filterChipsHTML.push(`
+            <div class="currency-chip d-flex align-items-center" data-id="${id}">
+                <p class="mb-0 mr-2">${filterName} &nbsp;(${filterOperation}${filterValue}${filterPercentage ? '%' : ''})</p><img src="img/ic_cross.svg" class="remove-filter"/>
+            </div>
+        `)
+    })
+    container.empty().append(filterChipsHTML.join(''))
+  }
+
+  function clearFilters() {
+    STATE.setDropdownFilterItems(defaultFilterItems);
+    STATE.setSelectedTableFilters([]);
+    renderTableFilters();
+    renderSeletedFilters();
+  }
+  // table filters end
 
 })();
 

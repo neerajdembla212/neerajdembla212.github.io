@@ -121,7 +121,6 @@ function registerEventHandlers() {
     height: '100%',
     railOpacity: 0.9
   });
-  registerTableFilterEvents();
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -881,4 +880,19 @@ function registerDropdownMenuInputEvents(filter, onApplyFilter) {
     $('.btn-group-more-filter .dropdown-menu-input').hide();
     $('.btn-group-more-filter .dropdown-menu-list').show();
   })
+}
+
+// process selected filters and create query params 
+function getSelectedFiltersQueryParams(selectedFilters) {
+  if (!selectedFilters || !Array.isArray(selectedFilters)) {
+    return '';
+  }
+  let queryParamString = '?';
+  selectedFilters.forEach((filter, index) => {
+    queryParamString = queryParamString + filter.filterParam + filter.filterOperation + filter.filterValue;
+    if (index < selectedFilters.length - 1) {
+      queryParamString += '&'
+    }
+  })
+  return queryParamString;
 }

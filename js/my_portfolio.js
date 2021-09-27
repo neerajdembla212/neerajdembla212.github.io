@@ -279,7 +279,7 @@
 
     function fetchStrategyProviders() {
         renderSeletedFilters();
-        const filterQueryParams = getSelectedFiltersQueryParams();
+        const filterQueryParams = getSelectedFiltersQueryParams(STATE.getSelectedTableFilters());
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/get-portfolio-users/providers${filterQueryParams}`,
             successCallback: (data) => {
@@ -295,7 +295,7 @@
 
     function fetchStrategyFollowers() {
         renderSeletedFilters();
-        const filterQueryParams = getSelectedFiltersQueryParams();
+        const filterQueryParams = getSelectedFiltersQueryParams(STATE.getSelectedTableFilters());
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/get-portfolio-users/followers${filterQueryParams}`,
             successCallback: (data) => {
@@ -1092,18 +1092,7 @@
         }
         fetchListOfUsers();
     }
-    // process selected filters and create query params 
-    function getSelectedFiltersQueryParams() {
-        const selectedFilters = STATE.getSelectedTableFilters();
-        let queryParamString = '?';
-        selectedFilters.forEach((filter, index) => {
-            queryParamString = queryParamString + filter.filterParam + filter.filterOperation + filter.filterValue;
-            if (index < selectedFilters.length - 1) {
-                queryParamString += '&'
-            }
-        })
-        return queryParamString;
-    }
+
     function renderSeletedFilters() {
         const selectedFilters = STATE.getSelectedTableFilters();
         const container = $('.selected-filters-container');
