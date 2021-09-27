@@ -154,6 +154,7 @@
         <div class="d-flex justify-content-between subheader flex-wrap">
           <h2 class="font-bold my-2 page-title">Strategy Providers</h2>
           <div class="d-flex my-2">
+            <div class="selected-filters-container mr-2 d-flex"></div>
             <div class="btn-group" role="group">
               <button class="btn btn-default active" type="button" data-view-type="grid">
                 <i class="fa fa-th grid-icon mt-1"></i>
@@ -214,9 +215,16 @@
                     </li>
                   </ul>
                 </div>
-                <button type="button" class="btn btn-w-m btn-default">
-                  More Filters
-                </button>
+                <div class="btn-group btn-group-more-filter">
+                  <button class="btn btn-default btn-more-filter dropdown-toggle">
+                    More Filters
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-list">
+
+                  </ul>
+                  <ul class="dropdown-menu dropdown-menu-input p-3">
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="tab-content pt-3">
