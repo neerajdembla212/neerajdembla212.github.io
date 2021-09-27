@@ -10059,7 +10059,7 @@ video {
 #page-container {
   padding: 20px 20px 0 20px;
   overflow-y: auto;
-  max-height: 91vh;
+  max-height: calc(100vh - 60px);
   overflow-x: hidden;
 }
 @media screen and (max-width: 768px) {
@@ -10893,6 +10893,18 @@ select[name="rows-per-page"] {
   right: 5px;
   transform: translate(-50%, -50%);
 }
+.currency-chip {
+  background: #DCE3EC;
+  color: #7B8496;
+  padding: 8px;
+  margin-right: 0.5rem;
+  height: 34px;
+}
+.currency-chip img {
+  cursor: pointer;
+  height: 12px;
+  width: auto;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -11011,18 +11023,6 @@ select[name="rows-per-page"] {
 }
 .btn-watchlist .fa {
   color: #b7c0cb;
-}
-.currency-chip {
-  background: #DCE3EC;
-  color: #7B8496;
-  padding: 8px;
-  margin-right: 0.5rem;
-  height: 34px;
-}
-.currency-chip img {
-  cursor: pointer;
-  height: 12px;
-  width: auto;
 }
 .trade-terminal-chart {
   height: 400px;
