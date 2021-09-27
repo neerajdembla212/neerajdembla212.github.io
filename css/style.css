@@ -11315,6 +11315,15 @@ select[name="rows-per-page"] {
     background-position: 19px 19px, /* Animation specs */ 100% 0, /* username specs */ 64px 19px, /* Fullname specs */ 64px 38px, /* Return percentage specs */ 19px 70px, /* Followers count specs */ 150px 70px, /* Risk Amount specs */ 270px 70px, /* Return Percentage Text specs */ 19px 95px, /* Followers Text specs */ 152px 95px, /* Risk Text specs */ 280px 95px, /* Strategy Philosophy Title specs */ 19px 195px, /* Strategy Philosophy Content specs */ 19px 225px, /* Strategy Philosophy Content specs */ 19px 245px, /* Age Text specs */ 19px 285px, /* Drawdown Text specs */ 110px 285px, /* Average Month Text specs */ 155px 285px, /* Average Pips Text specs */ 217px 285px, /* Trades Pips Text specs */ 285px 285px, /* Age specs */ 19px 315px, /* Drawdown specs */ 115px 315px, /* Agerage Month specs */ 160px 315px, /* Agerage pips specs */ 220px 315px, /* Trade specs */ 280px 315px;
   }
 }
+#unfollow-provider-modal .modal-dialog {
+  width: 280px;
+}
+#unfollow-provider-modal .modal-content {
+  min-height: 193px !important;
+}
+#unfollow-provider-modal .modal-body {
+  height: 127px !important;
+}
 .strategy-provider-details-section .left-section {
   min-width: 300px;
   max-width: 350px;
