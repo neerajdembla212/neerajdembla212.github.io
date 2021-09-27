@@ -226,6 +226,12 @@
             const searchQuery = event.currentTarget.value;
             fetchCurrenciesSearch(searchQuery);
         })
+        // clear search results
+        $('.clear-search-results').click(function () {
+            // clear search results and go back to watchlist screen
+            $('#search-currency').val('');
+            renderWatchlists();
+        })
 
         // add new watchlist
         $('#add-new-watchList').click(addNewWatchList)
@@ -1762,7 +1768,6 @@
                 if (selectedCurrency) {
                     selectedWatchList.currencies.push(selectedCurrency);
                     STATE.setWatchList(selectedWatchList);
-                    renderWatchlists()
                 }
             }
         })
