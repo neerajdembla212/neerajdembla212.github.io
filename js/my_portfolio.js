@@ -110,7 +110,7 @@
         }
         defaultFilterItems = [];
         selectedTableFilters = []
-        dropdownFilterItems = sfDefaultFilterItems.map(f => ({ ...f })); // filter list items initiates with default filter items and uppdates as we select and remove filters
+        dropdownFilterItems = [];
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -232,6 +232,7 @@
         // render table section based on role
         fetchListOfUsers();
         fetchLineData();
+        setDefaulltDropdownItems();
     })
     // Fetching data function start
     // This function fetch strategy details and render sparkline
@@ -318,7 +319,20 @@
         });
     }
     // fetch data functions end
-
+    function setDefaulltDropdownItems() {
+        const userRole = STATE.getRole();
+        if (userRole.toLowerCase() === 'provider') {
+            // change default table filter Items
+            const defaultFilter = sfDefaultFilterItems.map(f => ({ ...f }));
+            STATE.setDefaultFilterItems(defaultFilter);
+            STATE.setDropdownFilterItems(defaultFilter);
+        } else if (userRole.toLowerCase() === 'follower') {
+            // change default table filter Items
+            const defaultFilter = spDefaultFilterItems.map(f => ({ ...f }));
+            STATE.setDefaultFilterItems(defaultFilter);
+            STATE.setDropdownFilterItems(defaultFilter);
+        }
+    }
     // render Strategy provider table HTML start
     function renderStrategyProviders() {
         const users = STATE.getUserList();
