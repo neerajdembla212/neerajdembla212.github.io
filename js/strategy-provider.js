@@ -291,6 +291,7 @@
       url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${id}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
+        // global function (insipnia_custom.js)
         renderFollowProviderPopup(data.data);
       }
     });
