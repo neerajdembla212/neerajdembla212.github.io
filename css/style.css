@@ -10905,6 +10905,9 @@ select[name="rows-per-page"] {
   height: 12px;
   width: auto;
 }
+.btn-small {
+  width: 80px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

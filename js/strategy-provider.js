@@ -579,11 +579,11 @@
     const container = $("#top-growth .panel-body");
 
     if (DESKTOP_MEDIA.matches) {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableResponsiveHTML(data)}
       </div>`)
     } else {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableHTML(data)}
       </div>`)
     }
@@ -796,7 +796,7 @@
       fetchStrategyProviderDetails(id);
     })
 
-    // stop provider CTA
+    // unfollow provider CTA
     $('.unfollow-provider-cta').unbind().click(event => {
       const providerName = $(event.currentTarget).data('name');
       renderUnfollowProviderPopup(providerName);
@@ -817,6 +817,12 @@
     });
     // redirect on click of contact row
     $('.strategy-provider-section .contact-row').click(showStrategyProviderDetailsPage)
+
+    // unfollow provider CTA
+    $('.unfollow-provider-cta').unbind().click(event => {
+      const providerName = $(event.currentTarget).data('name');
+      renderUnfollowProviderPopup(providerName);
+    })
     registerTablePaginationEvents();
   }
   function registerTablePaginationEvents() {
@@ -954,8 +960,17 @@
       average_per_month,
       follower_funds,
       average_pips,
-      favourite
+      favourite,
+      followed
     } = user;
+
+    const followProviderCTA = followed === 'true' ? `<button type="button" class="btn btn-outline btn-primary btn-block unfollow-provider-cta" name="unfollow-provider-cta" data-toggle="modal"
+    data-target="#unfollow-provider-modal" data-name="${name}">
+    Unfollow Provider
+  </button>` : `<button id="follow-provider-cta" class="btn btn-primary font-size-12 btn-block" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
+  Follow Provider
+</button>`;
+
     return ` <tr id="table-user-${id}" class="contact-row cursor-pointer" data-id="${id}">
       <td class="mr-2 pl-3">
         <img
@@ -990,12 +1005,10 @@
       </td>
       <td class="font-bold text-green text-center align-middle">${average_per_month}%</td>
       <td class="font-bold text-center align-middle">${average_pips}</td>
-      <td class="font-bold text-center align-middle">${follower_funds}</td>
+      <td class="font-bold text-center align-middle">${formatWithCommas(follower_funds)}</td>
       <td class="font-bold text-center align-middle">${formatWithCommas(follower_count)}</td>
       <td class="align-middle">
-        <button id="follow-provider-cta" class="btn btn-primary font-size-12" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
-          Follow Provider
-        </button>
+        ${followProviderCTA}
       </td>
       <td class="pr-3 align-middle">
         <button
@@ -1021,7 +1034,7 @@
     const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getState().paginationData);
     return `<tfoot>
     <tr>
-      <td colspan="11" class="pb-0">
+      <td colspan="11">
       <div class="d-flex justify-content-between align-items-center">
       <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
       <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -1073,8 +1086,15 @@
       average_per_month,
       follower_funds,
       average_pips,
-      favourite
+      favourite,
+      followed
     } = user;
+
+    const followProviderCTA = followed === 'true' ? `<button class="btn btn-primary btn-outline btn-small font-size-12 mr-3" data-toggle="modal" data-target="#unfollow-provider-modal" name="unfollow-provider-cta" data-name="${name}">
+    Unfollow
+  </button>` : `<button class="btn btn-primary font-size-12 mr-3 btn-small" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
+    &nbsp;Follow&nbsp;
+  </button>`
 
     return `<div class="p-3 contact-row">
       <div class="d-flex justify-content-between align-items-center">
@@ -1092,9 +1112,7 @@
         </div>
         <div class="d-flex align-items-center">
             <p class="mb-0 text-dark-green font-bold large-font mr-3">${return_percentage}%</p>
-            <button class="btn btn-primary font-size-12 mr-3" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
-              Follow
-            </button>
+            ${followProviderCTA}
             <button
               class="
                 btn
@@ -1311,11 +1329,11 @@
     const container = $("#following .panel-body");
 
     if (DESKTOP_MEDIA.matches) {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableResponsiveHTML(data)}
       </div>`)
     } else {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableHTML(data)}
       </div>`)
     }
@@ -1346,11 +1364,11 @@
     const container = $("#favourites .panel-body");
 
     if (DESKTOP_MEDIA.matches) {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableResponsiveHTML(data)}
       </div>`)
     } else {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableHTML(data)}
       </div>`)
     }
@@ -1410,11 +1428,11 @@
     const container = $("#low-growth .panel-body");
 
     if (DESKTOP_MEDIA.matches) {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableResponsiveHTML(data)}
       </div>`)
     } else {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableHTML(data)}
       </div>`)
     }
@@ -1443,11 +1461,11 @@
     const container = $("#mid-growth .panel-body");
 
     if (DESKTOP_MEDIA.matches) {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableResponsiveHTML(data)}
       </div>`)
     } else {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableHTML(data)}
       </div>`)
     }
@@ -1475,11 +1493,11 @@
     }
     const container = $("#high-growth .panel-body");
     if (DESKTOP_MEDIA.matches) {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableResponsiveHTML(data)}
       </div>`)
     } else {
-      container.empty().append(`<div class="ibox-content table-responsive p-0">
+      container.empty().append(`<div class="ibox-content table-responsive p-0 mb-2">
       ${getUserTableHTML(data)}
       </div>`)
     }
