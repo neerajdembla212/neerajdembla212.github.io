@@ -291,6 +291,7 @@
       url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${id}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
+        // global function (insipnia_custom.js)
         renderFollowProviderPopup(data.data);
       }
     });
@@ -762,6 +763,14 @@
     })
     if (isManual) {
       clearFilters();
+    }
+    if (tabId === "#featured") {
+      $('#list-view-cta').hide();
+      if (getCurrentViewType() === 'list') {
+        $('#grid-view-cta').click();
+      }
+    } else {
+      $('#list-view-cta').show();
     }
     switch (tabId) {
       case '#top-growth': fetchTopGrowthProviders(tabId); break;
@@ -1386,9 +1395,6 @@
     for (let i = 0; i < cardsInRow - 1; i++) {
       boxesHTML.push(`<div class="contact-box col loading ${activeTabId === "#featured" ? 'featured' : ''}">
           <span class="fa fa-bookmark-o favourite-icon float-right"></span>
-          <button class="btn btn-primary btn-block" disabled>
-            Follow Provider
-          </button>
         </div>`);
     }
     return boxesHTML.join('')

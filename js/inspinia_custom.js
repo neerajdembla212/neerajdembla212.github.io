@@ -635,15 +635,27 @@ function getFollowProviderPopupBody(data) {
       </div>
     </div>
     <!-- Fix profit/loss input end -->
-    <div class="form-check abc-checkbox form-check-inline mb-2">
-      <input class="form-check-input mr-3" type="checkbox" value="option1">
-      <label class="form-check-label text-gray medium-font"> Copy Open Trades & Pending Orders </label>
-    </div>
+    <!-- Limit quantity input start -->
     <div class="form-check abc-checkbox form-check-inline">
-      <input class="form-check-input mr-3" type="checkbox" value="option1">
+      <input id="limit-quantity-checkbox" class="form-check-input mr-3" type="checkbox" value="checked">
       <label class="form-check-label text-gray medium-font"> Limit Quantity of Simultaneous Trades
       </label>
     </div>
+    <!-- No of trades input start -->
+    <section id="limit-quantity-input" class="d-none">
+      <div class="d-flex justify-content-between mt-2">
+        <div class="w-50">
+          <p class="text-gray medium-font mb-1">By Number of Trades <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="test"></i></p>
+          <input type="text" class="form-control w-50">
+        </div>
+        <div>
+          <p class="text-gray medium-font mb-1">By level of Equity <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="test"></i></p>
+          <input type="text" class="form-control w-50">
+        </div>
+      </div>
+    </section>
+    <!-- No of trades input end -->
+    <!-- Limit quantity input end -->
   </section>
     `
 }
@@ -657,6 +669,19 @@ function getFollowProviderPopupFooter() {
 
 function registerFollowProviderPopupEvents() {
   readMoreLessEventHandler();
+  // show hide number of trades and by level equity on check of limit quantuty checkbox
+  $('#limit-quantity-checkbox').unbind().click(function () {
+    if ($(this).is(':checked')) {
+      // show limit quantity input section
+      $('#limit-quantity-input').removeClass('d-none');
+    } else {
+      // hide limit quantity input section
+      $('#limit-quantity-input').addClass('d-none');
+    }
+  })
+
+  // activate tooltips
+  activateTooltips();
 }
 
 function readMoreLessEventHandler() {

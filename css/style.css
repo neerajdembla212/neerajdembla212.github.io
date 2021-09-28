@@ -10064,7 +10064,12 @@ video {
 }
 @media screen and (max-width: 768px) {
   #page-container {
-    padding: 20px 0 0 0;
+    padding: 1rem !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  #page-container {
+    padding: 20px 0 0 0 !important;
   }
 }
 #wrapper {
@@ -10348,7 +10353,7 @@ body.mini-navbar .nav.metismenu > li.logo {
   height: 40px;
   align-self: center;
 }
-@media screen and (max-width: 968px) {
+@media screen and (max-width: 480px) {
   .subheader {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -10426,6 +10431,7 @@ table thead th {
 }
 .page-title {
   font-size: 20px;
+  padding: 14px 0;
 }
 .navbar-form-custom .form-control {
   width: 234px;
@@ -11011,14 +11017,6 @@ select[name="rows-per-page"] {
 #stop-follower-modal .modal-body {
   height: 127px !important;
 }
-#page-container.trade-terminal-page {
-  padding: 20px 20px 0 0 !important;
-}
-@media screen and (max-width: 768px) {
-  #page-container.trade-terminal-page {
-    padding: 1rem !important;
-  }
-}
 .btn-watchlist {
   color: #4D4D4E;
   padding: 8px;
@@ -11122,10 +11120,6 @@ select[name="rows-per-page"] {
   .bottom-container {
     flex-wrap: wrap;
   }
-}
-.trade-terminal-page .subheader {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
 }
 .watchlist-right-sidebar {
   top: 60px !important;
@@ -11394,14 +11388,6 @@ select[name="rows-per-page"] {
 }
 .strategy-provider-details-section .right-section .trade-history-section .responsive-trade-history > * {
   border-top: 1px solid #EEEEEE;
-}
-#page-container.simulation-page {
-  padding: 20px 20px 0 0 !important;
-}
-@media screen and (max-width: 768px) {
-  #page-container.simulation-page {
-    padding: 1rem !important;
-  }
 }
 #page-container.simulation-page .calculate-card {
   height: 265px;

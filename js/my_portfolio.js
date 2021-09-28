@@ -1273,7 +1273,7 @@
         return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-            <div class="key tooltip-demo">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></div>
+            <div class="key">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></div>
             <div class="d-flex justify-content-between">
                 <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">

@@ -19,7 +19,11 @@ video {
   overflow-x: hidden;
 
   @media screen and (max-width: 768px) {
-    padding: 20px 0 0 0;
+    padding: 1rem !important;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 20px 0 0 0 !important;
   }
 }
 
@@ -384,7 +388,7 @@ body.mini-navbar .nav.metismenu>li.logo {
     align-self: center;
   }
 
-  @media screen and (max-width: 968px) {
+  @media screen and (max-width: 480px) {
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -487,6 +491,7 @@ table thead th {
 
 .page-title {
   font-size: 20px;
+  padding: 14px 0;
 }
 
 .navbar-form-custom .form-control {
