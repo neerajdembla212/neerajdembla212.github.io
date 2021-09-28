@@ -763,6 +763,14 @@
     if (isManual) {
       clearFilters();
     }
+    if (tabId === "#featured") {
+      $('#list-view-cta').hide();
+      if (getCurrentViewType() === 'list') {
+        $('#grid-view-cta').click();
+      }
+    } else {
+      $('#list-view-cta').show();
+    }
     switch (tabId) {
       case '#top-growth': fetchTopGrowthProviders(tabId); break;
       case '#featured': fetchFeaturedProviders(tabId); break;
