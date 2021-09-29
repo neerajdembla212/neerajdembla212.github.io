@@ -5,6 +5,7 @@ $(document).ready(function () {
   registerEventHandlers();
   fetchBuySellData(registerBuySellModalEvents);
   initData();
+  validateBuySellPopupInputs();
 });
 function checkUserLogin() {
   return readCookie('accessToken')
@@ -44,6 +45,7 @@ function registerEventHandlers() {
     }
     window.location.href = window.location.origin + target;
   })
+
   // account switcher event
   $(".account-switcher .dropdown-item").click((event) => {
     const accountNumber = $(event.currentTarget).data('account-no');
@@ -76,11 +78,11 @@ function registerEventHandlers() {
   const storedRole = localStorage.getItem('currentRole');
   if (storedRole === 'provider') {
     $('.nav-header .role').text('Strategy Provider');
-    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2"/>')
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
   } else {
     $('.nav-header .role').text('Strategy Follower');
     localStorage.setItem('currentRole', 'follower');
-    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2"/>')
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
   }
 
   // Open close Buy/Sell right sidebar
@@ -913,4 +915,83 @@ function getSelectedFiltersQueryParams(selectedFilters) {
     }
   })
   return queryParamString;
+}
+
+// validate text inputs
+function validateTextInput(target, test = () => { }, errorMessage = 'Invalid input') {
+  $(target).off().on('change', function (event) {
+    if (!test(event.target.value)) {
+      // show error
+      $(this).addClass('error');
+      $(`<p class="mb-0 position-absolute error-message text-error-red d-flex"><img src="img/ic_error.svg" class="mr-2"/>${errorMessage}</p>`).insertAfter($(this));
+      console.log('error')
+    } else {
+      // remove error
+      $(this).removeClass('error');
+      $(this).siblings('.error-message').remove();
+      console.log('no error');
+    }
+  })
+}
+
+// validate buy sell popup inputs
+function validateBuySellPopupInputs() {
+  // validate volume input 
+  validateTextInput($('#buy-sell-modal #volume-input'), function (val) {
+    if (isNaN(val)) {
+      return false;
+    }
+    if (val === '') {
+      return true;
+    }
+    const numVal = Number(val);
+    if (numVal >= 0.01 && numVal <= 100) {
+      return true
+    }
+    return false
+  })
+  // validate take profit input
+  validateTextInput($('#buy-sell-modal #profit-input'), function (val) {
+    if (isNaN(val)) {
+      return false;
+    }
+    if (val === '') {
+      return true;
+    }
+    const numVal = Number(val);
+    if (numVal >= 0) {
+      return true
+    }
+    return false
+  }, 'Number only')
+
+  // validate stop loss input
+  validateTextInput($('#buy-sell-modal #loss-input'), function (val) {
+    if (isNaN(val)) {
+      return false;
+    }
+    if (val === '') {
+      return true;
+    }
+    const numVal = Number(val);
+    if (numVal >= 0) {
+      return true
+    }
+    return false
+  }, 'Number only')
+
+  // validate price input
+  validateTextInput($('#buy-sell-modal #price-input'), function (val) {
+    if (isNaN(val)) {
+      return false;
+    }
+    if (val === '') {
+      return true;
+    }
+    const numVal = Number(val);
+    if (numVal >= 0) {
+      return true
+    }
+    return false
+  }, 'Number only')
 }
