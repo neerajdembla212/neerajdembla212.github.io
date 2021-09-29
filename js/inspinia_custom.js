@@ -60,36 +60,32 @@ function registerEventHandlers() {
   });
 
   $('.nav-header .dropdown-menu').click(function (e) {
-    const role = e.target.innerText;
+    const role = $(e.target).data('role');
     switch (role) {
-      case 'Strategy Provider':
+      case 'provider':
         localStorage.setItem('currentRole', 'provider');
         window.location.reload();
         break;
-      case 'Strategy Follower':
+      case 'follower':
         localStorage.setItem('currentRole', 'follower');
         window.location.reload();
         break;
-      case 'Sign Out':
+      case 'signout':
         clearLocalStorageData();
         delete_cookie('accessToken');
         window.location.reload();
     }
-    if (role === 'Strategy Provider') {
-      localStorage.setItem('currentRole', 'provider');
-      window.location.reload();
-    } else if (role === 'Strategy Follower') {
-      localStorage.setItem('currentRole', 'follower');
-      window.location.reload();
-    }
   })
+
   // display selected role on nav header
   const storedRole = localStorage.getItem('currentRole');
   if (storedRole === 'provider') {
     $('.nav-header .role').text('Strategy Provider');
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2"/>')
   } else {
     $('.nav-header .role').text('Strategy Follower');
     localStorage.setItem('currentRole', 'follower');
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2"/>')
   }
 
   // Open close Buy/Sell right sidebar
