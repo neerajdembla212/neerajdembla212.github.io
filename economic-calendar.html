@@ -36,19 +36,19 @@
           <li class="nav-header position-relative">
             <a data-toggle="dropdown" class="dropdown-toggle p-0" href="#">
               <div class="dropdown profile-element">
-                <img alt="image" class="rounded-circle" src="img/profile_small.jpg" />
-                <div class="details">
+                <img alt="image" class="rounded-circle ml-2" src="img/profile_small.jpg" />
+                <div class="details mr-2">
                   <span class="block m-t-xs font-bold text-white">KS Tan</span>
                   <span class="text-xs text-light-white role"></span>
                 </div>
               </div>
             </a>
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-              <h3 class="pl-3 pt-2">KS Tan</h3>
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item p-3 cursor-pointer">Strategy Follower</li>
-              <li class="dropdown-item p-3 cursor-pointer">Strategy Provider</li>
-              <li class="dropdown-item p-3 cursor-pointer">Sign Out</li>
+              <p class="pl-3 pt-2 extra-large-font font-bold pb-0 mb-2">KS Tan</p>
+              <div class="divider"></div>
+              <li class="dropdown-item p-3 cursor-pointer" data-role="follower">Strategy Follower</li>
+              <li class="dropdown-item p-3 cursor-pointer" data-role="provider">Strategy Provider</li>
+              <li class="dropdown-item p-3 cursor-pointer" data-role="signout">Sign Out</li>
             </ul>
           </li>
           <li class="sm d-flex justify-content-between">
@@ -57,33 +57,27 @@
               <button data-toggle="dropdown" class="btn btn-default dropdown-toggle dropdown-select">
                 Demo
               </button>
-              <ul class="dropdown-menu dropdown-select-menu py-2">
-                <li>
-                  <a class="dropdown-item font-bold text-navy px-2" href="javascript:;">
-                    Create Demo Account
-                  </a>
+              <ul class="dropdown-menu dropdown-select-menu py-2 account-switcher">
+                <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3" data-account-no="create">
+                  Create Demo Account
                 </li>
-                <li>
-                  <a class="dropdown-item px-2" href="javascript:;">
-                    <div class="account-number px-1"><span class="mr-1 text-navy live small-font">LIVE</span><span
-                        class="medium-font font-bold small-font">TA 209761M</span>
-                    </div>
-                  </a>
+                <li class="dropdown-item py-2 cursor-pointer px-3" data-account-no="TA209761M" data-account-type="live">
+                  <div class="account-number px-2 d-flex align-items-center"><span
+                      class="mr-2 text-navy live extra-small-font font-bold">LIVE</span><span
+                      class="medium-font font-bold small-font">TA 209761M</span>
+                  </div>
                 </li>
-                <li>
-                  <a class="dropdown-item px-2" href="javascript:;">
-                    <div class="account-number px-1"><span class="mr-1 text-navy live small-font">LIVE</span><span
-                        class="medium-font font-bold small-font">TA 209245M</span>
-                    </div>
-                  </a>
+                <li class="dropdown-item py-2 cursor-pointer px-3" data-account-no="TA209245M" data-account-type="live">
+                  <div class="account-number px-2 d-flex align-items-center"><span
+                      class="mr-2 text-navy live extra-small-font font-bold">LIVE</span><span
+                      class="medium-font font-bold small-font">TA 209245M</span>
+                  </div>
                 </li>
-                <li>
-                  <a class="dropdown-item px-2" href="javascript:;">
-                    <div class="account-number demo-account px-1"><span
-                        class="mr-1 text-navy demo small-font">DEMO</span><span
-                        class="medium-font font-bold small-font">TA 209951M</span>
-                    </div>
-                  </a>
+                <li class="dropdown-item py-2 cursor-pointer px-3" data-account-no="TA209951M" data-account-type="demo">
+                  <div class="account-number demo-account px-2 d-flex align-items-center"><span
+                      class="mr-2 text-navy demo extra-small-font font-bold">DEMO</span><span
+                      class="medium-font font-bold small-font">TA 209951M</span>
+                  </div>
                 </li>
               </ul>
             </div>
