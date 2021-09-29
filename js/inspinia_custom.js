@@ -4,6 +4,7 @@ $(document).ready(function () {
   }
   registerEventHandlers();
   fetchBuySellData(registerBuySellModalEvents);
+  initData();
 });
 function checkUserLogin() {
   return readCookie('accessToken')
@@ -43,22 +44,16 @@ function registerEventHandlers() {
     }
     window.location.href = window.location.origin + target;
   })
-  // dropdown in navigation panel to switch accounts
-  $(".dropdown-select-menu").click((event) => {
-    // const selectedItem = event.innerText.trim();
-    const selectButton = $("button.dropdown-toggle.dropdown-select");
-    const accountNo = $('.dropdown-item .account-number .medium-font')
-    const accountType = $('.dropdown-item .account-number .text-navy')
-    // if (selectedItem.toUpperCase() === "LIVE") {
-    //   selectButton.addClass("active");
-    // } else {
-    //   selectButton.removeClass("active");
-    // }
-    localStorage.setItem('selectedAccountNo', accountNo.textContent);
-    localStorage.setItem('selectedAccountType', accountType.textContent);
+  // account switcher event
+  $(".account-switcher .dropdown-item").click((event) => {
+    const accountNumber = $(event.currentTarget).data('account-no');
+    const accountType = $(event.currentTarget).data('account-type');
+    localStorage.setItem('selectedAccountNo', accountNumber);
+    localStorage.setItem('selectedAccountType', accountType);
     window.location.reload();
   });
 
+  // role switcher event
   $('.nav-header .dropdown-menu').click(function (e) {
     const role = $(e.target).data('role');
     switch (role) {
@@ -129,8 +124,10 @@ function readMoreLessEventHandler() {
   })
 }
 // set init data
-localStorage.setItem('selectedAccountNo', 'TA 209761M');
-localStorage.setItem('selectedAccountType', 'LIVE');
+function initData() {
+  localStorage.setItem('selectedAccountNo', 'TA 209761M');
+  localStorage.setItem('selectedAccountType', 'LIVE');
+}
 //generic ajax function
 function callAjaxMethod({
   url,
