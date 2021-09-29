@@ -5376,6 +5376,9 @@ table.table-mail tr td {
 .text-dark-blue {
   color: #487FD9;
 }
+.text-error-red {
+  color: #DE2F1B;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;
@@ -10913,6 +10916,9 @@ select[name="rows-per-page"] {
 }
 .btn-small {
   width: 80px;
+}
+.form-control.error {
+  border: 1px solid #DE2F1B !important;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;

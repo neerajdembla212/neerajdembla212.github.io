@@ -5,6 +5,7 @@ $(document).ready(function () {
   registerEventHandlers();
   fetchBuySellData(registerBuySellModalEvents);
   initData();
+  validateBuySellPopupInputs();
 });
 function checkUserLogin() {
   return readCookie('accessToken')
@@ -44,6 +45,7 @@ function registerEventHandlers() {
     }
     window.location.href = window.location.origin + target;
   })
+
   // account switcher event
   $(".account-switcher .dropdown-item").click((event) => {
     const accountNumber = $(event.currentTarget).data('account-no');
@@ -76,11 +78,11 @@ function registerEventHandlers() {
   const storedRole = localStorage.getItem('currentRole');
   if (storedRole === 'provider') {
     $('.nav-header .role').text('Strategy Provider');
-    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2"/>')
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
   } else {
     $('.nav-header .role').text('Strategy Follower');
     localStorage.setItem('currentRole', 'follower');
-    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2"/>')
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
   }
 
   // Open close Buy/Sell right sidebar
@@ -359,6 +361,7 @@ function renderFollowProviderPopup(strategyProviderDetails) {
   const footerContainer = $('#follow-provider-modal .modal-footer');
   footerContainer.empty().append(getFollowProviderPopupFooter())
   registerFollowProviderPopupEvents();
+  validateFollowProviderPopupInputs();
 }
 
 function getFollowProviderPopupBody(data) {
@@ -476,7 +479,7 @@ function getFollowProviderPopupBody(data) {
           <p class="font-bold medium-font text-modal-black mb-2">Percentage of Total Balance Fund Allocation
           </p>
           <p class="mb-2 text-light-red">Set a percentage or fixed value for this Strategy Provider.</p>
-          <div class="d-flex align-items-center mb-2">
+          <div class="d-flex align-items-center mb-3">
             <div class="btn-group mr-3">
               <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
                 Percentage
@@ -492,7 +495,9 @@ function getFollowProviderPopupBody(data) {
                 <li class="dropdown-divider"></li>
               </ul>
             </div>
-            <input type="text" class="form-control w-25 mr-3">
+            <div class="position-relative w-25 mr-3">
+              <input type="text" class="form-control" id="percentage-input">
+            </div>
             <span class="font-bold medium-font text-dark-black">%</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
@@ -527,9 +532,11 @@ function getFollowProviderPopupBody(data) {
           </p>
           <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
             Provider.</p>
-          <div class="d-flex align-items-center mb-2">
+          <div class="d-flex align-items-center mb-3">
             <label class="col-form-label mr-3 font-bold text-dark-black">Fixed Trade Size</label>
-            <input type="text" class="form-control w-25 mr-3" >
+            <div class="position-relative w-25 mr-3">
+              <input type="text" class="form-control" id="fixed-trade-size">
+            </div>
             <span class="font-bold medium-font text-dark-black">LOT</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
@@ -562,9 +569,11 @@ function getFollowProviderPopupBody(data) {
           </p>
           <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
             Provider.</p>
-          <div class="d-flex align-items-center mb-2">
+          <div class="d-flex align-items-center mb-3">
             <label class="col-form-label mr-3 font-bold text-dark-black">Ratio of Trade Size</label>
-            <input type="text" class="form-control w-25 mr-3" >
+            <div class="position-relative w-25 mr-3">
+              <input type="text" class="form-control" id="trade-size-ratio">
+            </div>
             <span class="font-bold medium-font text-dark-black">Ratio</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
@@ -597,14 +606,18 @@ function getFollowProviderPopupBody(data) {
       <div class="w-75 mr-3">
         <p class="text-gray medium-font mb-1">Minimum Lot Size</p>
         <div class="d-flex align-items-center">
-          <input type="text" class="form-control w-50 mr-3">
+          <div class="position-relative w-50 mr-3">
+            <input type="text" class="form-control" id="min-lot-size">
+          </div>
           <span class="font-bold medium-font text-dark-black">LOT</span>
         </div>
       </div>
       <div>
         <p class="text-gray medium-font mb-1">Maximum Lot Size</p>
         <div class="d-flex align-items-center">
-          <input type="text" class="form-control w-50 mr-3">
+        <div class="position-relative w-75 mr-3">
+          <input type="text" class="form-control" id="max-lot-size">
+        </div>
           <span class="font-bold medium-font text-dark-black">LOT</span>
         </div>
       </div>
@@ -615,14 +628,18 @@ function getFollowProviderPopupBody(data) {
       <div class="w-75 mr-3">
         <p class="text-gray medium-font mb-1">Fix Take Profit</p>
         <div class="d-flex align-items-center">
-          <input type="text" class="form-control w-50 mr-3">
+        <div class="position-relative w-50 mr-3">
+          <input type="text" class="form-control" id="take-profit-input">
+        </div>
           <span class="font-bold medium-font text-dark-black">Pips</span>
         </div>
       </div>
       <div>
         <p class="text-gray medium-font mb-1">Fix Stop Loss</p>
         <div class="d-flex align-items-center">
-          <input type="text" class="form-control w-50 mr-3">
+          <div class="position-relative w-75 mr-3">
+            <input type="text" class="form-control" id="stop-loss-input">
+          </div>
           <span class="font-bold medium-font text-dark-black">Pips</span>
         </div>
       </div>
@@ -639,11 +656,15 @@ function getFollowProviderPopupBody(data) {
       <div class="d-flex justify-content-between mt-2">
         <div class="w-50">
           <p class="text-gray medium-font mb-1">By Number of Trades <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="test"></i></p>
-          <input type="text" class="form-control w-50">
+          <div class="position-relative w-50">
+            <input type="text" class="form-control" id="no-of-trades">
+          </div>
         </div>
         <div>
           <p class="text-gray medium-font mb-1">By level of Equity <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="test"></i></p>
-          <input type="text" class="form-control w-50">
+          <div class="position-relative w-75">
+            <input type="text" class="form-control" id="level-of-equity">
+          </div>
         </div>
       </div>
     </section>
@@ -652,12 +673,42 @@ function getFollowProviderPopupBody(data) {
   </section>
     `
 }
+
 function getFollowProviderPopupFooter() {
   const accountNo = localStorage.getItem('selectedAccountNo');
   return `
     <div class="account-number p-1"><span class="mr-1 text-navy live">LIVE</span><span class="medium-font font-bold">${accountNo}</span></div>
     <button type="button" class="btn btn-primary" id="follow-provider">Follow Provider</button>
     `
+}
+
+function validateFollowProviderPopupInputs() {
+  // validate Minimum lot size input 
+  validateTextInput($('#follow-provider-modal #min-lot-size'), validateNumber, 'Number only')
+
+  // validate Maximum lot size input 
+  validateTextInput($('#follow-provider-modal #max-lot-size'), validateNumber, 'Number only')
+
+  // validate Take profit input 
+  validateTextInput($('#follow-provider-modal #take-profit-input'), validateNumber, 'Number only')
+
+  // validate Stop loss input 
+  validateTextInput($('#follow-provider-modal #stop-loss-input'), validateNumber, 'Number only')
+
+  // validate number of trades
+  validateTextInput($('#follow-provider-modal #no-of-trades'), validateNumber, 'Number only')
+
+  // validate level of equity
+  validateTextInput($('#follow-provider-modal #level-of-equity'), validateNumber, 'Number only')
+
+  // validate percentage input
+  validateTextInput($('#follow-provider-modal #percentage-input'), validatePercentage, 'Number only');
+
+  // validate fixed trade size input
+  validateTextInput($('#follow-provider-modal #fixed-trade-size'), validatePercentage, 'Number only');
+
+  // validate Trade size ratio input
+  validateTextInput($('#follow-provider-modal #trade-size-ratio'), validatePercentage, 'Number only');
 }
 
 function registerFollowProviderPopupEvents() {
@@ -672,7 +723,6 @@ function registerFollowProviderPopupEvents() {
       $('#limit-quantity-input').addClass('d-none');
     }
   })
-
   // activate tooltips
   activateTooltips();
 }
@@ -913,4 +963,75 @@ function getSelectedFiltersQueryParams(selectedFilters) {
     }
   })
   return queryParamString;
+}
+
+// validate text inputs
+function validateTextInput(target, test = () => { }, errorMessage = 'Invalid input') {
+  $(target).off().on('change', function (event) {
+    if (!test(event.target.value)) {
+      // show error
+      $(this).addClass('error');
+      $(`<p class="mb-0 position-absolute error-message text-error-red d-flex"><img src="img/ic_error.svg" class="mr-2"/>${errorMessage}</p>`).insertAfter($(this));
+      console.log('error')
+    } else {
+      // remove error
+      $(this).removeClass('error');
+      $(this).siblings('.error-message').remove();
+      console.log('no error');
+    }
+  })
+}
+
+// validate buy sell popup inputs
+function validateBuySellPopupInputs() {
+  // validate volume input 
+  validateTextInput($('#buy-sell-modal #volume-input'), function (val) {
+    if (isNaN(val)) {
+      return false;
+    }
+    if (val === '') {
+      return true;
+    }
+    const numVal = Number(val);
+    if (numVal >= 0.01 && numVal <= 100) {
+      return true
+    }
+    return false
+  }, 'Number only')
+  // validate take profit input
+  validateTextInput($('#buy-sell-modal #profit-input'), validateNumber, 'Number only')
+
+  // validate stop loss input
+  validateTextInput($('#buy-sell-modal #loss-input'), validateNumber, 'Number only')
+
+  // validate price input
+  validateTextInput($('#buy-sell-modal #price-input'), validateNumber, 'Number only')
+}
+
+function validateNumber(val) {
+  if (isNaN(val)) {
+    return false;
+  }
+  if (val === '') {
+    return true;
+  }
+  const numVal = Number(val);
+  if (numVal >= 0) {
+    return true
+  }
+  return false
+}
+
+function validatePercentage(val) {
+  if (isNaN(val)) {
+    return false;
+  }
+  if (val === '') {
+    return true;
+  }
+  const numVal = Number(val);
+  if (numVal >= 0 && numVal <= 100) {
+    return true
+  }
+  return false
 }

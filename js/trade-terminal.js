@@ -1096,8 +1096,8 @@
 
         const typeValue = status !== 'NEW' ? type : 'Market Execution';
 
-        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control w-35" id="profit-input" value="${profit}">` : `<input type="text" class="form-control w-35" id="profit-input">`;
-        const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control w-35" id="loss-input" value="${loss}">` : `<input type="text" class="form-control w-35" id="loss-input">`;
+        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value="${profit}">` : `<input type="text" class="form-control" id="profit-input">`;
+        const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="loss-input" value="${loss}">` : `<input type="text" class="form-control" id="loss-input">`;
         return `
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
@@ -1116,7 +1116,9 @@
             <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
             <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
           </div>
-          <input type="text" class="form-control w-50" placeholder="0.01 - 100">
+          <div class="w-50 position-relative">
+            <input type="text" class="form-control" placeholder="0.01 - 100" id="volume-input">
+          </div>
         </div>
         <!-- Currency exchange input end -->
         <div class="divider mb-3"></div>
@@ -1142,10 +1144,14 @@
             <p class="mb-0 font-weight-light medium-font">Take Profit</p>
             <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
         </div>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-           ${profitInputHTML}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="position-relative w-35">
+                ${profitInputHTML}
+           </div>
             <span class="font-bold medium-font text-dark-black">price</span>
-            ${lossInputHTML}
+            <div class="position-relative w-35">
+                ${lossInputHTML}
+            </div>
         </div>
         <!-- Profit loss input end -->
         <!-- Buy Sell CTA start -->
@@ -1420,6 +1426,54 @@
             STATE.setBuySellData(buySellData);
             renderBuySellData();
         })
+        validateBuySellInputs();
+    }
+
+    function validateBuySellInputs() {
+        // validate volume input 
+        validateTextInput($('#volume-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
+            }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0.01 && numVal <= 100) {
+                return true
+            }
+            return false
+        })
+        // validate take profit input
+        validateTextInput($('#profit-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
+            }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                return true
+            }
+            return false
+        }, 'Number only')
+
+        // validate stop loss input
+        validateTextInput($('#loss-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
+            }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                return true
+            }
+            return false
+        }, 'Number only')
+
     }
     // render buy sell section end
 
