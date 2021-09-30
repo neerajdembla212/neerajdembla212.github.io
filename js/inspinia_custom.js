@@ -351,9 +351,15 @@ function getTimezoneOffset() {
 }
 // activate tooltips globally (to be called by respective file after content is loaded)
 function activateTooltips() {
-  $("[data-toggle='tooltip']").tooltip()
+  $("[data-toggle='tooltip']").tooltip({ container: 'body' })
+}
+function getNoOfTradesTooltipText() {
+  return '<b>By Number of Trades</b> This option blocks the opening of new trades / pending orders, if the current number of open trades / pending orders (in the given trading strategy) in the brokerage account exceeds or is equal to the value specified in the field.'
 }
 
+function getLevelOfEquityTooltipText() {
+  return '<b>By Level of Equity</b> This option blocks the opening of new trades, if the current equity in the brokerage account is less than the set amount.'
+}
 // render follow provider start
 function renderFollowProviderPopup(strategyProviderDetails) {
   const bodyContainer = $('#follow-provider-modal .modal-body');
@@ -655,13 +661,13 @@ function getFollowProviderPopupBody(data) {
     <section id="limit-quantity-input" class="d-none">
       <div class="d-flex justify-content-between mt-2">
         <div class="w-50">
-          <p class="text-gray medium-font mb-1">By Number of Trades <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="test"></i></p>
+          <p class="text-gray medium-font mb-1">By Number of Trades <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="left" data-html="true" title="${getNoOfTradesTooltipText()}"></i></p>
           <div class="position-relative w-50">
             <input type="text" class="form-control" id="no-of-trades">
           </div>
         </div>
         <div>
-          <p class="text-gray medium-font mb-1">By level of Equity <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="test"></i></p>
+          <p class="text-gray medium-font mb-1">By level of Equity <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-html="true" data-placement="right" title="${getLevelOfEquityTooltipText()}"></i></p>
           <div class="position-relative w-75">
             <input type="text" class="form-control" id="level-of-equity">
           </div>

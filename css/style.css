@@ -10588,6 +10588,9 @@ table > tbody > tr:first-child > td {
 .tooltip-inner {
   background-color: #754ef7;
 }
+.tooltip {
+  z-index: 100000000;
+}
 .form-control {
   border: 1.5px solid #E7EDF4;
   border-radius: 6px;
