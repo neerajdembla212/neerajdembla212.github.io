@@ -360,12 +360,27 @@
         });
     }
     // Api call functions end
-
+    function resetPagination() {
+        // reset pagination 
+        const paginationData = STATE.getPaginationData();
+        paginationData.page = 0;
+        paginationData.rowsPerPage = 10
+        STATE.setPaginationData(paginationData);
+    }
     // render open trades begin
-    function renderOpenTrades() {
+    function renderOpenTrades(isSort = false) {
         const openTrades = STATE.getOpenTrades();
         const container = $('.tab-content #open-trades');
-        container.empty().append(getOpenTradesTableHTML(openTrades));
+        if (isSort) {
+            // if rerendering for sort only update table body and footer
+            resetPagination();
+            container.find('tbody, tfoot').remove();
+            const rowsHTML = [getOpenTradesTableBody(openTrades), getOpenTradesTableFooter(openTrades.length)]
+            container.find('thead').after(rowsHTML.join(''))
+
+        } else {
+            container.empty().append(getOpenTradesTableHTML(openTrades));
+        }
         registerTradeEvents();
     }
 
@@ -381,17 +396,57 @@
         return `
         <thead>
             <tr>
-            <th class="pl-2 align-middle">Symbol</th>
+            <th class="pl-2 align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
+                    <p class="m-0 p-0">Symbol</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
             <th class="text-center align-middle">Trader</th>
-            <th class="text-center align-middle">Type</th>
-            <th class="text-center align-middle">Volume</th>
-            <th class="text-center align-middle">Open Price</th>
-            <th class="text-center align-middle pr-3">Amount</th>
-            <th class="text-center align-middle">SL</th>
-            <th class="text-center align-middle">TP</th>
-            <th class="text-center align-middle">Current</th>
-            <th class="text-center align-middle">Swap</th>
-            <th class="text-center align-middle">Profit</th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_type">
+                    <p class="m-0 p-0">Type</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
+                    <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
+                    <p class="m-0 p-0">Open Price</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle pr-3">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
+                    <p class="m-0 p-0">Amount</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
+                    <p class="m-0 p-0">SL</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
+                    <p class="m-0 p-0">TP</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
+                    <p class="m-0 p-0">Current</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
+                    <p class="m-0 p-0">Swap</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
+                    <p class="m-0 p-0">Profit</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
             </tr>
         </thead>
         `
@@ -544,6 +599,27 @@
         } else {
             $('#next-page-open-trade').removeAttr('disabled')
         }
+
+        // open trade table sort
+        tableSortEvents($('.tab-content #open-trades'), onOpenTableSort);
+    }
+    // callback to sort open trades
+    function onOpenTableSort(key, direction) {
+        const openTrades = STATE.getOpenTrades();
+        if (!openTrades.length) {
+            return
+        }
+        if (!openTrades[0].hasOwnProperty(key)) {
+            return
+        }
+        openTrades.sort((a, b) => {
+            if (direction === 'asc') {
+                return a[key] - b[key]
+            } else if (direction === 'desc') {
+                return b[key] - a[key]
+            }
+        })
+        renderOpenTrades(true)
     }
     // render open trades end
 
@@ -676,10 +752,18 @@
     // render responsive open trades end
 
     // render pending trades begin
-    function renderPendingTrades() {
+    function renderPendingTrades(isSort = false) {
         const pendingTrades = STATE.getPendingTrades();
         const container = $('.tab-content #pending-orders');
-        container.empty().append(getPendingTradesTableHTML(pendingTrades));
+        if (isSort) {
+            // if rerendering for sort only update table body and footer
+            resetPagination();
+            container.find('tbody, tfoot').remove();
+            const rowsHTML = [getPendingTradesTableBody(openTrades), getPendingTradesTableFooter(openTrades.length)]
+            container.find('thead').after(rowsHTML.join(''))
+        } else {
+            container.empty().append(getPendingTradesTableHTML(pendingTrades));
+        }
         registerTradeEvents();
     }
 
@@ -695,17 +779,57 @@
         return `
         <thead>
             <tr>
-            <th class="align-middle w-18">Symbol</th>
-            <th class="text-center align-middle w-9">Trader</th>
-            <th class="text-center align-middle w-9">Type</th>
-            <th class="text-center align-middle w-9">Volume</th>
-            <th class="text-center align-middle w-17">Open Price</th>
-            <th class="text-center align-middle w-9 pr-3">Amount</th>
-            <th class="text-center align-middle w-9">SL</th>
-            <th class="text-center align-middle w-9">TP</th>
-            <th class="text-center align-middle w-9">Current</th>
-            <th class="text-center align-middle w-9">Swap</th>
-            <th class="text-center align-middle w-9">Profit</th>
+            <th class="pl-2 align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
+                    <p class="m-0 p-0">Symbol</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">Trader</th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_type">
+                    <p class="m-0 p-0">Type</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
+                    <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
+                    <p class="m-0 p-0">Open Price</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle pr-3">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
+                    <p class="m-0 p-0">Amount</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
+                    <p class="m-0 p-0">SL</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
+                    <p class="m-0 p-0">TP</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
+                    <p class="m-0 p-0">Current</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
+                    <p class="m-0 p-0">Swap</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
+                    <p class="m-0 p-0">Profit</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                </div>
+            </th>
             </tr>
         </thead>
         `
@@ -858,14 +982,41 @@
         } else {
             $('#next-page-pending-trade').removeAttr('disabled')
         }
+        // pending trade table sort
+        tableSortEvents($('.tab-content #pending-trades'), onPendingTableSort);
     }
     // render pending trades end
-
+    // callback to sort pending trades
+    function onPendingTableSort(key, direction) {
+        const openTrades = STATE.getPendingTrades();
+        if (!openTrades.length) {
+            return
+        }
+        if (!openTrades[0].hasOwnProperty(key)) {
+            return
+        }
+        openTrades.sort((a, b) => {
+            if (direction === 'asc') {
+                return a[key] - b[key]
+            } else if (direction === 'desc') {
+                return b[key] - a[key]
+            }
+        })
+        renderPendingTrades(true)
+    }
     // render open trades begin
-    function renderClosedTrades() {
+    function renderClosedTrades(isSort = false) {
         const closedTrades = STATE.getClosedTrades();
         const container = $('.tab-content #closed-trades');
-        container.empty().append(getClosedTradesTableHTML(closedTrades));
+        if (isSort) {
+            // if rerendering for sort only update table body and footer
+            resetPagination();
+            container.find('tbody, tfoot').remove();
+            const rowsHTML = [getClosedTradesTableBody(openTrades), getClosedTradesTableFooter(openTrades.length)]
+            container.find('thead').after(rowsHTML.join(''))
+        } else {
+            container.empty().append(getClosedTradesTableHTML(closedTrades));
+        }
         registerTradeEvents();
     }
 
@@ -1062,9 +1213,29 @@
         } else {
             $('#next-page-closed-trade').removeAttr('disabled')
         }
+        // closed trade table sort
+        tableSortEvents($('.tab-content #closed-trades'), onClosedTableSort);
     }
     // render closed trades end
 
+    // callback to sort closed trades
+    function onClosedTableSort(key, direction) {
+        const openTrades = STATE.getClosedTrades();
+        if (!openTrades.length) {
+            return
+        }
+        if (!openTrades[0].hasOwnProperty(key)) {
+            return
+        }
+        openTrades.sort((a, b) => {
+            if (direction === 'asc') {
+                return a[key] - b[key]
+            } else if (direction === 'desc') {
+                return b[key] - a[key]
+            }
+        })
+        renderClosedTrades(true)
+    }
     // render buy sell section start
     function renderBuySellData() {
         const buySellData = STATE.getBuySellData();

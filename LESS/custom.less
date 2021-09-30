@@ -539,11 +539,12 @@ table>tbody>tr:first-child>td {
   transform: rotate(90deg);
 }
 
-.down-arrow {
+.down-arrow-sort {
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
+  border-top: 5px solid @tfoot-pagination-action;
 }
 
 .arrow-red {
@@ -552,6 +553,16 @@ table>tbody>tr:first-child>td {
 
 .arrow-black {
   border-top: 5px solid @dark-black;
+}
+
+.up-arrow-sort {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-right: 7px solid @tfoot-pagination-action;
+  border-bottom: 5px solid transparent;
+  display: block;
+  transform: rotate(90deg);
 }
 
 .inmodal .modal-body {
