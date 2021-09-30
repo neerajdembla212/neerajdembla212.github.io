@@ -1109,3 +1109,42 @@ select[name="rows-per-page"] {
 .form-control.error {
   border: 1px solid @error-red  !important;
 }
+
+.popover[class*="tour-"] {
+  z-index: 2222 !important;
+}
+
+.popover.tour {
+  background-color: @tour-background;
+  color: @white;
+
+  >* {
+    background: transparent;
+    border: none;
+    color: @white;
+  }
+
+  .popover-navigation {
+    >* {
+      background: transparent;
+      color: @white;
+    }
+  }
+
+  // .progress {
+  //   height: 0;
+  // }
+
+  .arrow {
+    z-index: 2221;
+
+    &::after {
+      border-bottom-color: @navy;
+      top: 2px;
+    }
+
+    &::before {
+      top: 1px;
+    }
+  }
+}
