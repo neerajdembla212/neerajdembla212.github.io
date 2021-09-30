@@ -95,8 +95,11 @@ function registerEventHandlers() {
     e.preventDefault();
     $(".right-sidebar").removeClass("sidebar-open");
   });
+
   // Read more / Read less events
   readMoreLessEventHandler();
+
+  // navbar events
   $('.responsive-navbar-cta').click(function () {
     $('body').toggleClass('fixed-navbar');
     SmoothlyMenu();
@@ -969,6 +972,35 @@ function getSelectedFiltersQueryParams(selectedFilters) {
     }
   })
   return queryParamString;
+}
+
+// register table sort events
+function tableSortEvents(container, onTableSort = () => { }) {
+  container.find('thead th .sort-header').unbind().click(function () {
+    const sortKey = $(this).data('sort-key');
+    const arrow = $(this).find('.arrow');
+    let direction; // desc or asc
+    const isArrowHidden = arrow.hasClass('d-none');
+    if (isArrowHidden) {
+      // showing arrow down, hence descending
+      container.find('thead th .sort-header .arrow').addClass('d-none');
+      arrow.removeClass('d-none');
+      direction = 'desc';
+    } else {
+      const isArrowUp = arrow.hasClass('up-arrow-sort');
+      // if up arrow is present remove and add down arrow
+      if (isArrowUp) {
+        // adding arrow down, hence descending
+        arrow.removeClass('up-arrow-sort').addClass('down-arrow-sort');
+        direction = 'desc';
+      } else {
+        // if down arrow remove and add up arrow, hence ascending
+        direction = 'asc';
+        arrow.removeClass('down-arrow-sort').addClass('up-arrow-sort');
+      }
+    }
+    onTableSort(sortKey, direction);
+  })
 }
 
 // validate text inputs
