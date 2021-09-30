@@ -10923,6 +10923,32 @@ select[name="rows-per-page"] {
 .form-control.error {
   border: 1px solid #DE2F1B !important;
 }
+.popover[class*="tour-"] {
+  z-index: 2222 !important;
+}
+.popover.tour {
+  background-color: #393C51;
+  color: #ffffff;
+}
+.popover.tour > * {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+}
+.popover.tour .popover-navigation > * {
+  background: transparent;
+  color: #ffffff;
+}
+.popover.tour .arrow {
+  z-index: 2221;
+}
+.popover.tour .arrow::after {
+  border-bottom-color: #22D091;
+  top: 2px;
+}
+.popover.tour .arrow::before {
+  top: 1px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

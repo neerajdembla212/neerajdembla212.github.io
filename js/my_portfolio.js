@@ -233,6 +233,11 @@
         fetchListOfUsers();
         fetchLineData();
         setDefaulltDropdownItems();
+        const tour = setupTour();
+        const showTour = localStorage.getItem('showTour');
+        if (showTour === "true") {
+            tour.restart();
+        }
     })
     // Fetching data function start
     // This function fetch strategy details and render sparkline
@@ -1406,4 +1411,57 @@
         })
     }
 
+    // tour start
+    function setupTour() {
+        return new Tour({
+            framework: "bootstrap4",
+            container: "#page-container",
+            onStart: function (tour) {
+                console.log('started ', tour)
+                $('body').addClass('tour-open')
+            },
+            onEnd: function (tour) {
+                $('body').removeClass('tour-open')
+                localStorage.setItem('showTour', 'false');
+            },
+            template: `
+            <div class='popover tour'>
+                <div class='arrow'></div>
+                <h3 class='popover-header'></h3>
+                <div class='popover-body mt-2'></div>
+                <div class='popover-navigation'>
+                    <button class='btn btn-default btn-outline mr-2' data-role='prev'>Prev</button>
+                    <button class='btn btn-default btn-outline ' data-role='next'>Next</button>
+                    <button class='btn btn-default btn-outline ' data-role='end'>End tour</button>
+                </div>
+            </div>
+            `,
+            showProgressBar: false,
+            showProgressText: false,
+            steps: [
+                {
+                    element: ".sparkline-container",
+                    title: "My Portfolio",
+                    content: "See your current holdings etc on this page",
+                    placement: "bottom",
+                    backdropContainer: '#page-wrapper',
+                },
+                {
+                    element: ".portfolio-line-chart",
+                    title: "Trade Terminal",
+                    content: "See your current holdings etc on this page",
+                    placement: "top",
+                    backdropContainer: '#page-wrapper',
+                },
+                {
+                    element: ".portfolio-users-table",
+                    title: "Strategy Providers",
+                    content: "Find Strategy Providers here to follow.",
+                    placement: "bottom",
+                    backdropContainer: '#page-wrapper',
+                }
+            ]
+        });
+    }
+    // tour end
 })();

@@ -5,6 +5,12 @@
             document.cookie = "accessToken=12345678"
             window.location.href = window.location.origin + "/my-portfolio.html";
         })
+        $('#btn-signup').click(() => {
+            document.cookie = "accessToken=12345678"
+            localStorage.setItem('showTour', 'true');
+            window.location.href = window.location.origin + "/my-portfolio.html";
+        })
+
         $('.select2_dropdown').select2({
             theme: 'bootstrap4',
         });
