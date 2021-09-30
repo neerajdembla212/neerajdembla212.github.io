@@ -301,7 +301,7 @@
                     </div>
                 </td>
                 <td class="text-center align-middle" align="center">
-                    <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
+                    <img alt="image" class="rounded-circle img-fluid img-sm" src="${trader_image}" />
                 </td>
                 <td class="text-center align-middle text-darker-gray font-weight-bolder">
                     ${trade_type}
