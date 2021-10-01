@@ -402,11 +402,7 @@
                 </div>
             </th>
             <th class="text-center align-middle">Trader</th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_type">
-                    <p class="m-0 p-0">Type</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
+            <th class="text-center align-middle">Type</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
                     <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
@@ -759,7 +755,7 @@
             // if rerendering for sort only update table body and footer
             resetPagination();
             container.find('tbody, tfoot').remove();
-            const rowsHTML = [getPendingTradesTableBody(openTrades), getPendingTradesTableFooter(openTrades.length)]
+            const rowsHTML = [getPendingTradesTableBody(pendingTrades), getPendingTradesTableFooter(pendingTrades.length)]
             container.find('thead').after(rowsHTML.join(''))
         } else {
             container.empty().append(getPendingTradesTableHTML(pendingTrades));
@@ -785,11 +781,7 @@
                 </div>
             </th>
             <th class="text-center align-middle">Trader</th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_type">
-                    <p class="m-0 p-0">Type</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
+            <th class="text-center align-middle">Type</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
                     <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
@@ -983,7 +975,7 @@
             $('#next-page-pending-trade').removeAttr('disabled')
         }
         // pending trade table sort
-        tableSortEvents($('.tab-content #pending-trades'), onPendingTableSort);
+        tableSortEvents($('.tab-content #pending-orders'), onPendingTableSort);
     }
     // render pending trades end
     // callback to sort pending trades
@@ -1012,7 +1004,7 @@
             // if rerendering for sort only update table body and footer
             resetPagination();
             container.find('tbody, tfoot').remove();
-            const rowsHTML = [getClosedTradesTableBody(openTrades), getClosedTradesTableFooter(openTrades.length)]
+            const rowsHTML = [getClosedTradesTableBody(closedTrades), getClosedTradesTableFooter(closedTrades.length)]
             container.find('thead').after(rowsHTML.join(''))
         } else {
             container.empty().append(getClosedTradesTableHTML(closedTrades));
@@ -1032,19 +1024,55 @@
         return `
         <thead>
             <tr>
-            <th class="align-middle w-18">Symbol</th>
-            <th class="text-center align-middle w-9">Trader</th>
-            <th class="text-center align-middle w-9">Type</th>
-            <th class="text-center align-middle w-9">Volume</th>
-            <th class="text-center align-middle w-17">Open Price</th>
-            <th class="text-center align-middle w-9 pr-3">Amount</th>
-            <th class="text-center align-middle w-9">SL</th>
-            <th class="text-center align-middle w-9">TP</th>
-            <th class="text-center align-middle w-9">Current</th>
-            <th class="text-center align-middle w-9">Swap</th>
-            <th class="text-center align-middle w-9">Profit</th>
+                <th class="pl-2 align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
+                        <p class="m-0 p-0">Symbol</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">Trader</th>
+                <th class="text-center align-middle">Type</th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
+                        <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
+                        <p class="m-0 p-0">Open Price</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle pr-3">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
+                        <p class="m-0 p-0">Amount</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
+                        <p class="m-0 p-0">SL</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
+                        <p class="m-0 p-0">TP</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
+                        <p class="m-0 p-0">Current</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
+                        <p class="m-0 p-0">Swap</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
+                <th class="text-center align-middle">
+                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
+                        <p class="m-0 p-0">Profit</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    </div>
+                </th>
             </tr>
-        </thead>
+    </thead>
         `
     }
 
