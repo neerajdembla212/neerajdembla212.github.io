@@ -20,7 +20,10 @@
         recentOrderDetails = {
 
         }
-
+        sortData = {
+            sortKey: '',
+            direction: '' // asc or desc
+        }
         getOpenTrades() {
             return this.openTrades;
         }
@@ -135,6 +138,15 @@
             }
             this.recentOrderDetails = data;
         }
+        getSortData() {
+            return this.sortData
+        }
+        setSortData(data) {
+            if (!data) {
+                return
+            }
+            this.sortData = data;
+        }
     }
 
     // Global variables for this file
@@ -183,7 +195,6 @@
                 "currency_delta_amount": -0.00311
             }
         ])
-
         renderPinnedCurrencies();
     });
 
@@ -267,10 +278,8 @@
             return
         }
         // reset pagination data
-        const paginationData = STATE.getPaginationData();
-        paginationData.page = 0;
-        paginationData.rowsPerPage = 10
-        STATE.setPaginationData(paginationData);
+        resetPagination();
+        resetSortData()
         switch (tabId) {
             case '#open-trades': fetchOpenTrades(); break;
             case '#pending-orders': fetchPendingTrades(); break;
@@ -367,80 +376,86 @@
         paginationData.rowsPerPage = 10
         STATE.setPaginationData(paginationData);
     }
+
+    function resetSortData() {
+        STATE.setSortData({
+            sortKey: '',
+            direction: ''
+        })
+    }
     // render open trades begin
-    function renderOpenTrades(isSort = false) {
+    function renderOpenTrades() {
         const openTrades = STATE.getOpenTrades();
         const container = $('.tab-content #open-trades');
-        if (isSort) {
-            // if rerendering for sort only update table body and footer
-            resetPagination();
-            container.find('tbody, tfoot').remove();
-            const rowsHTML = [getOpenTradesTableBody(openTrades), getOpenTradesTableFooter(openTrades.length)]
-            container.find('thead').after(rowsHTML.join(''))
-
-        } else {
-            container.empty().append(getOpenTradesTableHTML(openTrades));
-        }
+        container.empty().append(getOpenTradesTableHTML(openTrades));
         registerTradeEvents();
     }
 
     function getOpenTradesTableHTML(data) {
         return `<table class="table mb-0">
-        ${getOpenTradesTableHeaders()}
+        ${getTableHeaders()}
         ${getOpenTradesTableBody(data)}
         ${getOpenTradesTableFooter(data.length)}
         </table>`
     }
 
-    function getOpenTradesTableHeaders() {
+    function getTableHeaders() {
+        const selectedSort = STATE.getSortData();
+        const { sortKey, direction } = selectedSort;
+        let arrowClass = '';
+        if (direction === 'asc') {
+            arrowClass = 'up-arrow-sort';
+        } else if (direction === 'desc') {
+            arrowClass = 'down-arrow-sort';
+        }
         return `
         <thead>
             <tr>
             <th class="pl-2 align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
-                    <p class="m-0 p-0">Symbol</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Symbol</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">Trader</th>
             <th class="text-center align-middle">Type</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                    <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Volume</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
-                    <p class="m-0 p-0">Open Price</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Open Price</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'open_price' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle pr-3">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
-                    <p class="m-0 p-0">Amount</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Amount</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'amount' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
-                    <p class="m-0 p-0">SL</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">SL</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                    <p class="m-0 p-0">TP</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">TP</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
-                    <p class="m-0 p-0">Current</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Current</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'current' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
-                    <p class="m-0 p-0">Swap</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Swap</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
-                    <p class="m-0 p-0">Profit</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
+                    <p class="m-0 p-0">Profit</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i>
                 </div>
             </th>
             </tr>
@@ -615,7 +630,12 @@
                 return b[key] - a[key]
             }
         })
-        renderOpenTrades(true)
+        const selectedSort = {
+            sortKey: key,
+            direction
+        }
+        STATE.setSortData(selectedSort);
+        renderOpenTrades()
     }
     // render open trades end
 
@@ -748,83 +768,19 @@
     // render responsive open trades end
 
     // render pending trades begin
-    function renderPendingTrades(isSort = false) {
+    function renderPendingTrades() {
         const pendingTrades = STATE.getPendingTrades();
         const container = $('.tab-content #pending-orders');
-        if (isSort) {
-            // if rerendering for sort only update table body and footer
-            resetPagination();
-            container.find('tbody, tfoot').remove();
-            const rowsHTML = [getPendingTradesTableBody(pendingTrades), getPendingTradesTableFooter(pendingTrades.length)]
-            container.find('thead').after(rowsHTML.join(''))
-        } else {
-            container.empty().append(getPendingTradesTableHTML(pendingTrades));
-        }
+        container.empty().append(getPendingTradesTableHTML(pendingTrades));
         registerTradeEvents();
     }
 
     function getPendingTradesTableHTML(data) {
         return `<table class="table">
-        ${getPendingTradesTableHeaders()}
+        ${getTableHeaders()}
         ${getPendingTradesTableBody(data)}
         ${getPendingTradesTableFooter(data.length)}
         </table>`
-    }
-
-    function getPendingTradesTableHeaders() {
-        return `
-        <thead>
-            <tr>
-            <th class="pl-2 align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
-                    <p class="m-0 p-0">Symbol</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">Trader</th>
-            <th class="text-center align-middle">Type</th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                    <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
-                    <p class="m-0 p-0">Open Price</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle pr-3">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
-                    <p class="m-0 p-0">Amount</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
-                    <p class="m-0 p-0">SL</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                    <p class="m-0 p-0">TP</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
-                    <p class="m-0 p-0">Current</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
-                    <p class="m-0 p-0">Swap</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            <th class="text-center align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
-                    <p class="m-0 p-0">Profit</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                </div>
-            </th>
-            </tr>
-        </thead>
-        `
     }
 
     function getPendingTradesTableBody(data) {
@@ -980,100 +936,41 @@
     // render pending trades end
     // callback to sort pending trades
     function onPendingTableSort(key, direction) {
-        const openTrades = STATE.getPendingTrades();
-        if (!openTrades.length) {
+        const pendingTrades = STATE.getPendingTrades();
+        if (!pendingTrades.length) {
             return
         }
-        if (!openTrades[0].hasOwnProperty(key)) {
+        if (!pendingTrades[0].hasOwnProperty(key)) {
             return
         }
-        openTrades.sort((a, b) => {
+        pendingTrades.sort((a, b) => {
             if (direction === 'asc') {
                 return a[key] - b[key]
             } else if (direction === 'desc') {
                 return b[key] - a[key]
             }
         })
-        renderPendingTrades(true)
+        const selectedSort = {
+            sortKey: key,
+            direction
+        }
+        STATE.setSortData(selectedSort);
+        renderPendingTrades()
     }
     // render open trades begin
-    function renderClosedTrades(isSort = false) {
+    function renderClosedTrades() {
         const closedTrades = STATE.getClosedTrades();
         const container = $('.tab-content #closed-trades');
-        if (isSort) {
-            // if rerendering for sort only update table body and footer
-            resetPagination();
-            container.find('tbody, tfoot').remove();
-            const rowsHTML = [getClosedTradesTableBody(closedTrades), getClosedTradesTableFooter(closedTrades.length)]
-            container.find('thead').after(rowsHTML.join(''))
-        } else {
-            container.empty().append(getClosedTradesTableHTML(closedTrades));
-        }
+        container.empty().append(getClosedTradesTableHTML(closedTrades));
         registerTradeEvents();
     }
 
     function getClosedTradesTableHTML(data) {
         return `<table class="table">
-            ${getClosedTradesTableHeaders()}
+            ${getTableHeaders()}
             ${getClosedTradesTableBody(data)}
             ${getClosedTradesTableFooter(data.length)}
             </table>`
-    }
-
-    function getClosedTradesTableHeaders() {
-        return `
-        <thead>
-            <tr>
-                <th class="pl-2 align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
-                        <p class="m-0 p-0">Symbol</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">Trader</th>
-                <th class="text-center align-middle">Type</th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                        <p class="m-0 p-0">Volume</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
-                        <p class="m-0 p-0">Open Price</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle pr-3">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
-                        <p class="m-0 p-0">Amount</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
-                        <p class="m-0 p-0">SL</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                        <p class="m-0 p-0">TP</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
-                        <p class="m-0 p-0">Current</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
-                        <p class="m-0 p-0">Swap</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-                <th class="text-center align-middle">
-                    <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
-                        <p class="m-0 p-0">Profit</p> <i class="arrow down-arrow-sort ml-1 d-none"></i>
-                    </div>
-                </th>
-            </tr>
-    </thead>
-        `
     }
 
     function getClosedTradesTableBody(data) {
@@ -1262,7 +1159,12 @@
                 return b[key] - a[key]
             }
         })
-        renderClosedTrades(true)
+        const selectedSort = {
+            sortKey: key,
+            direction
+        }
+        STATE.setSortData(selectedSort);
+        renderClosedTrades()
     }
     // render buy sell section start
     function renderBuySellData() {
