@@ -130,9 +130,55 @@ function readMoreLessEventHandler() {
 }
 // set init data
 function initData() {
-  localStorage.setItem('selectedAccountNo', 'TA 209761M');
-  localStorage.setItem('selectedAccountType', 'LIVE');
+  callAjaxMethod({
+    url: 'https://copypip.free.beeceptor.com/get-all-user-accounts',
+    successCallback: (data) => {
+      localStorage.setItem('userAccounts', JSON.stringify(data.data));
+      renderAccountSwitcher(data.data);
+    }
+  })
 }
+// account switcher start
+function renderAccountSwitcher(userAccounts) {
+  if (!userAccounts || !Array.isArray(userAccounts)) {
+    return
+  }
+  const container = $('.account-switcher');
+  const rowsHTML = []
+  userAccounts.forEach((account, i) => {
+    const { accountNo, accountType } = account;
+    const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+    rowsHTML.push(`
+        <li class="dropdown-item py-2 cursor-pointer px-3 d-flex align-items-center" data-account-no="${accountNo}" data-account-type="${accountType}">
+            <div class="account-number px-2 d-flex align-items-center ${accountType === 'DEMO' ?
+        'demo-account' : ''}"><span
+                class="mr-2 text-navy live extra-small-font font-bold ${accountType === 'DEMO' ? 'demo' : ''}">${accountType}</span><span
+                class="medium-font font-bold small-font">${accountNo}</span>
+            </div>
+            ${selectedAccountNo === accountNo ? '<img class="ml-2" src="img/ic_tick.svg" />' : ''}
+        </li>
+    `)
+  })
+  rowsHTML.unshift(`
+    <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3" data-account-no="create">
+      Create Demo Account
+    </li>
+  `)
+  container.empty().append(rowsHTML.join(''))
+  registerAccountSwitcherEvents();
+}
+
+function registerAccountSwitcherEvents() {
+  $('.account-switcher li.dropdown-item').unbind().click(function (evemt) {
+    const accountNo = $(evemt.currentTarget).data("account-no");
+    const accountType = $(evemt.currentTarget).data("account-type");
+    localStorage.setItem('selectedAccountNo', accountNo);
+    localStorage.setItem('selectedAccountType', accountType);
+    window.location.reload();
+  })
+}
+// account switcher end
+
 //generic ajax function
 function callAjaxMethod({
   url,

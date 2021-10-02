@@ -10480,6 +10480,13 @@ table > tbody > tr:first-child > td {
   border-right: 5px solid transparent;
   border-top: 5px solid #6D788F;
 }
+.down-arrow-gray {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #768496;
+}
 .arrow-red {
   border-top: 5px solid #C00000;
 }
@@ -10491,6 +10498,15 @@ table > tbody > tr:first-child > td {
   height: 0;
   border-top: 5px solid transparent;
   border-right: 7px solid #6D788F;
+  border-bottom: 5px solid transparent;
+  display: block;
+  transform: rotate(90deg);
+}
+.up-arrow-black {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-right: 7px solid #1F1F25;
   border-bottom: 5px solid transparent;
   display: block;
   transform: rotate(90deg);
@@ -10959,6 +10975,17 @@ select[name="rows-per-page"] {
 .popover.tour .arrow::before {
   top: 1px;
 }
+.account-switcher li.dropdown-item {
+  width: 200px;
+}
+.sort-header .header-text {
+  position: relative;
+}
+.sort-header .header-text .arrow {
+  position: absolute;
+  right: -10px;
+  top: 5px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -11100,6 +11127,16 @@ select[name="rows-per-page"] {
 }
 .trade-terminal-chart .actions-header {
   height: 30px;
+}
+.trade-terminal-chart .arrow {
+  position: absolute;
+  top: 20px;
+}
+.trade-terminal-chart .dropdown-menu {
+  width: 365px;
+}
+.trade-terminal-chart .dropdown-menu li:hover {
+  background: #F3F3F3;
 }
 .buy-sell-section {
   border-radius: 6px;

@@ -413,49 +413,49 @@
             <tr>
             <th class="pl-2 align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
-                    <p class="m-0 p-0">Symbol</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Symbol<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">Trader</th>
             <th class="text-center align-middle">Type</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                    <p class="m-0 p-0">Volume</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Volume <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
-                    <p class="m-0 p-0">Open Price</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'open_price' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Open Price <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'open_price' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle pr-3">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
-                    <p class="m-0 p-0">Amount</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'amount' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Amount <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'amount' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
-                    <p class="m-0 p-0">SL</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">SL <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                    <p class="m-0 p-0">TP</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">TP <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
-                    <p class="m-0 p-0">Current</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'current' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Current <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'current' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
-                    <p class="m-0 p-0">Swap</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Swap <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
-                    <p class="m-0 p-0">Profit</p> <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i>
+                    <p class="m-0 p-0 header-text">Profit <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             </tr>
@@ -1188,6 +1188,8 @@
             profit,
             loss } = data;
 
+        const selelctedAccount = STATE.getSelectedAccount();
+
         const orderDetailsHTML = status !== 'NEW' ? `
         <div class="d-flex justify-content-between mb-3">
             <p class="mb-0 font-weight-bold text-dark-gray">${order_type} ORDER #${order_number}</p>
@@ -1203,8 +1205,8 @@
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
           <p class="mb-0 font-bold">Order by Account</p>
-          <div class="account-number p-1"><span class="mr-1 text-navy live small-font">${STATE.getSelectedAccount().type}</span><span
-              class="medium-font font-bold small-font">${STATE.getSelectedAccount().number}</span>
+          <div class="account-number p-1 ${selelctedAccount.type === 'DEMO' ? 'demo-account' : ''}"><span class="mr-1 text-navy live small-font ${selelctedAccount.type === 'DEMO' ? 'demo' : ''}">${selelctedAccount.type}</span><span
+              class="medium-font font-bold small-font">${selelctedAccount.number}</span>
           </div>
         </div>
         <!-- order by account end -->

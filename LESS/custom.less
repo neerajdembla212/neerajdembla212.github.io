@@ -547,6 +547,14 @@ table>tbody>tr:first-child>td {
   border-top: 5px solid @tfoot-pagination-action;
 }
 
+.down-arrow-gray {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid @placeholder-color;
+}
+
 .arrow-red {
   border-top: 5px solid @negative-red;
 }
@@ -560,6 +568,16 @@ table>tbody>tr:first-child>td {
   height: 0;
   border-top: 5px solid transparent;
   border-right: 7px solid @tfoot-pagination-action;
+  border-bottom: 5px solid transparent;
+  display: block;
+  transform: rotate(90deg);
+}
+
+.up-arrow-black {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-right: 7px solid @black;
   border-bottom: 5px solid transparent;
   display: block;
   transform: rotate(90deg);
@@ -1142,10 +1160,6 @@ select[name="rows-per-page"] {
     }
   }
 
-  // .progress {
-  //   height: 0;
-  // }
-
   .arrow {
     z-index: 2221;
 
@@ -1157,5 +1171,19 @@ select[name="rows-per-page"] {
     &::before {
       top: 1px;
     }
+  }
+}
+
+.account-switcher li.dropdown-item {
+  width: 200px;
+}
+
+.sort-header .header-text {
+  position: relative;
+
+  .arrow {
+    position: absolute;
+    right: -10px;
+    top: 5px;
   }
 }
