@@ -10978,6 +10978,14 @@ select[name="rows-per-page"] {
 .account-switcher li.dropdown-item {
   width: 200px;
 }
+.sort-header .header-text {
+  position: relative;
+}
+.sort-header .header-text .arrow {
+  position: absolute;
+  right: -10px;
+  top: 5px;
+}
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
