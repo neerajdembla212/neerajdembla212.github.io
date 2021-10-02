@@ -1188,6 +1188,8 @@
             profit,
             loss } = data;
 
+        const selelctedAccount = STATE.getSelectedAccount();
+
         const orderDetailsHTML = status !== 'NEW' ? `
         <div class="d-flex justify-content-between mb-3">
             <p class="mb-0 font-weight-bold text-dark-gray">${order_type} ORDER #${order_number}</p>
@@ -1203,8 +1205,8 @@
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
           <p class="mb-0 font-bold">Order by Account</p>
-          <div class="account-number p-1"><span class="mr-1 text-navy live small-font">${STATE.getSelectedAccount().type}</span><span
-              class="medium-font font-bold small-font">${STATE.getSelectedAccount().number}</span>
+          <div class="account-number p-1 ${selelctedAccount.type === 'DEMO' ? 'demo-account' : ''}"><span class="mr-1 text-navy live small-font ${selelctedAccount.type === 'DEMO' ? 'demo' : ''}">${selelctedAccount.type}</span><span
+              class="medium-font font-bold small-font">${selelctedAccount.number}</span>
           </div>
         </div>
         <!-- order by account end -->
