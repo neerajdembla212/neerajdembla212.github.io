@@ -1187,3 +1187,49 @@ select[name="rows-per-page"] {
     top: 5px;
   }
 }
+
+.notifications-container {
+  height: 30px;
+  width: 30px;
+
+  a {
+    background: transparent
+  }
+
+  .btn-outline {
+    width: inherit;
+    height: inherit;
+
+    &:hover {
+      background: @notification-background;
+      border-radius: 4px;
+    }
+  }
+
+  .dropdown-menu {
+    width: 320px;
+
+    li:hover {
+      background: rgba(218, 218, 218, 0.2);
+    }
+  }
+
+  .label-notification {
+    background: @negative-red;
+    border-radius: 8px;
+    border: 1.5px solid @white;
+    color: @white;
+    width: 18px;
+    height: 16px;
+  }
+}
+
+.notifications-container.show {
+  .btn.btn-outline .fa {
+    color: @medium-blue
+  }
+
+  .label-notification {
+    display: none;
+  }
+}

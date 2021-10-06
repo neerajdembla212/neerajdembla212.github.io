@@ -6,7 +6,9 @@ $(document).ready(function () {
   fetchBuySellData(registerBuySellModalEvents);
   initData();
   validateBuySellPopupInputs();
+  fetchNotifications();
 });
+
 function checkUserLogin() {
   return readCookie('accessToken')
 }
@@ -117,6 +119,7 @@ function registerEventHandlers() {
     height: '100%',
     railOpacity: 0.9
   });
+
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -213,7 +216,7 @@ function callAjaxMethod({
     console.log(e);
   }
 }
-// fetch buy sell initial data
+// fetch buy sell initial data start
 function fetchBuySellData(cb) {
   if (!localStorage.getItem('buySellData')) {
     callAjaxMethod({
@@ -231,6 +234,7 @@ function fetchBuySellData(cb) {
   }
 }
 // Buy sell popup events 
+
 function registerBuySellModalEvents(data) {
   if (!data) {
     return
@@ -292,6 +296,43 @@ function registerBuySellModalEvents(data) {
   const expirationDate = new Date(data.gtc_expiration_date);
   $('#buy-sell-modal #expiration-date-input').datepicker('setDate', expirationDate);
 }
+// fetch buy sell initial data end
+
+// fetch notifications start
+function fetchNotifications() {
+  callAjaxMethod({
+    url: "https://copypip.free.beeceptor.com/notifications",
+    successCallback: (data) => {
+      renderNotifications(data.data);
+      $('.notifications-container .label-notification').text(data.newNotificationCount)
+    },
+  });
+}
+function renderNotifications(notifications) {
+  if (!notifications || !Array.isArray(notifications)) {
+    return
+  }
+  const container = $('.notifications-container .dropdown-menu');
+  const rowsHTML = [];
+  notifications.forEach(notification => {
+    rowsHTML.push(getNotificationRowHTML(notification))
+  })
+  container.empty().append(rowsHTML.join(''))
+}
+
+function getNotificationRowHTML(notification) {
+  const { profile_image, message, timestamp } = notification;
+  return `
+  <li class="d-flex m-0 justify-content-between p-2">
+      <div class="m-0 d-flex">
+          <img alt="image" class="rounded-circle img-fluid img-sm float-left ml-0 mr-2" src="${profile_image}" />
+          <p class="m-0 font-weight-light medium-font w-75">${message}</p>
+      </div>
+      <p class="m-0 text-modal-gray medium-font">${formatDate(new Date(timestamp), 'DD MMM YYYY HH:mm')}</p>
+  </li>
+  `
+}
+// fetch notifications end
 
 function clearLocalStorageData() {
   localStorage.clear()
