@@ -177,8 +177,7 @@
             <div class="d-flex justify-content-between p-3 align-items-center flex-wrap">
               <div class="position-relative">
                 <i class="arrow down-arrow-gray mr-2"></i>
-                <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
-                  aria-expanded="false">
+                <button data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
                   <div class="d-flex justify-content-between">
                     <img src="img/ic_eurusd.svg" alt="currency exchange icon" class="currency-exchange-icon" />
                     <div class="ml-2">
@@ -329,12 +328,12 @@
               <div class="d-flex justify-content-between mb-2 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Type</p>
                 <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold"
-                  aria-expanded="false">
+                  aria-expanded="false" data-value="market_execution">
                   Market Execution
                 </button>
                 <ul id="type-input-menu" class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Market Execution</a></li>
-                  <li><a class="dropdown-item" href="#">Pending Order</a></li>
+                  <li data-value="market_execution"><a class="dropdown-item" href="#">Market Execution</a></li>
+                  <li data-value="pending_order"><a class="dropdown-item" href="#">Pending Order</a></li>
                 </ul>
               </div>
               <!-- Type input end -->

@@ -1,4 +1,5 @@
 (() => {
+    let initialBuySellData = {};
     class State {
         openTrades = [];
         pendingTrades = [];
@@ -157,13 +158,19 @@
     $(function () {
         const accountNo = localStorage.getItem('selectedAccountNo');
         const accontType = localStorage.getItem('selectedAccountType');
+        const tradeData = localStorage.getItem('tradeData');
         STATE.setSelectedAccount({
             type: accontType,
             number: accountNo
         })
+        initialBuySellData = {
+            ...JSON.parse(tradeData),
+            status: 'NEW'
+        };
+        STATE.setBuySellData(initialBuySellData);
         registerGlobalEvents();
         // Global function
-        fetchRecentOrderDetails();
+        renderBuySellData();
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
         // fetching watchlist
@@ -359,15 +366,6 @@
         });
     }
 
-    function fetchRecentOrderDetails() {
-        callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-recent-order-details`,
-            successCallback: (data) => {
-                STATE.setBuySellData(data.data);
-                renderBuySellData();
-            },
-        });
-    }
     // Api call functions end
     function resetPagination() {
         // reset pagination 
@@ -1179,7 +1177,7 @@
         if (!data) {
             return;
         }
-        const {
+        let {
             status,
             order_number,
             order_type,
@@ -1189,7 +1187,7 @@
             loss } = data;
 
         const selelctedAccount = STATE.getSelectedAccount();
-
+        const typeValue = type === 'pending_order' ? 'Pending Order' : 'Market Execution';
         const orderDetailsHTML = status !== 'NEW' ? `
         <div class="d-flex justify-content-between mb-3">
             <p class="mb-0 font-weight-bold text-dark-gray">${order_type} ORDER #${order_number}</p>
@@ -1197,9 +1195,7 @@
         </div>
             ` : '';
 
-        const typeValue = status !== 'NEW' ? type : 'Market Execution';
-
-        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value="${profit}">` : `<input type="text" class="form-control" id="profit-input">`;
+        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value=${profit}>` : `<input type="text" class="form-control" id="profit-input">`;
         const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="loss-input" value="${loss}">` : `<input type="text" class="form-control" id="loss-input">`;
         return `
         <!-- order by account start -->
@@ -1269,7 +1265,7 @@
     }
 
     function getProfitLossDisplayHTML() {
-        const { status,
+        let { status,
             from_currency_rate,
             from_currency_delta,
             to_currency_rate,
@@ -1279,9 +1275,9 @@
             volume,
             order_number,
             order_type } = STATE.getBuySellData();
+
         switch (status) {
             case 'NEW':
-            case 'ORDER_PLACED':
                 return `
                 <div class="d-flex justify-content-between mb-3 align-items-center">
                 <div>
@@ -1297,12 +1293,12 @@
                 </div>
             </div>
                 `
-            case 'TRADE_INITIATED':
+            case 'TRADE_OPEN_SUCCESS':
                 return `
             <div class="mb-2 d-flex">
                 <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
             </div>
-            <p class="mb-3 text-light-green super-extra-large-font font-bold">Trade Initiated</p>
+            <p class="mb-3 text-light-green super-extra-large-font font-bold">Trade Open Success</p>
             `
             case 'TRADE_PROCESSING':
                 return `
@@ -1358,14 +1354,15 @@
             <button id="create_new_order" type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto">Create New Order</button>
             `
         } else {
-            return `
-                <button id="create_new_order" type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto mb-3">Create New Order</button>
-            `
+            return '';
         }
     }
 
     function buySellSectionAdjustHeight() {
-        const { status } = STATE.getBuySellData();
+        let { status } = STATE.getBuySellData();
+        if (Object.keys(STATE.getBuySellData()).length === 0) {
+            status = 'NEW';
+        }
         if (status === 'ORDER_PLACED') {
             $('.buy-sell-section').css('max-height', '512px');
         } else if (status === 'NEW') {
@@ -1495,23 +1492,10 @@
             jackSecondaryColor: "#FFFFFF",
         });
         // change status on click of buy CTA
-        $('.buy-sell-section #buy-trade').unbind().click(function () {
-            const buySellData = STATE.getBuySellData();
-            buySellData.status = 'ORDER_PLACED';
-            buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
-            buySellData.order_type = 'BUY';
-            STATE.setBuySellData(buySellData);
-            renderBuySellData();
-        })
+        $('.buy-sell-section #buy-trade').unbind().click(() => handleBuySellTrade('BUY'));
+
         // change status on click of sell CTA
-        $('.buy-sell-section #sell-trade').unbind().click(function () {
-            const buySellData = STATE.getBuySellData();
-            buySellData.status = 'ORDER_PLACED';
-            buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
-            buySellData.order_type = 'SELL';
-            STATE.setBuySellData(buySellData);
-            renderBuySellData();
-        })
+        $('.buy-sell-section #sell-trade').unbind().click(() => handleBuySellTrade('SELL'));
 
         $('.buy-sell-section #cancel-trade').unbind().click(function () {
             const buySellData = STATE.getBuySellData();
@@ -1530,6 +1514,19 @@
             renderBuySellData();
         })
         validateBuySellInputs();
+    }
+
+    function handleBuySellTrade(status) {
+        const buySellData = STATE.getBuySellData();
+        buySellData.status = 'TRADE_OPEN_SUCCESS';
+        buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
+        buySellData.order_type = status;
+        buySellData.type = $('#btn-type-input').data('value');
+        buySellData.profit = $('#profit-input').val();
+        buySellData.loss = $('#loss-input').val();
+        buySellData.volume = $('#volume-input').val();
+        STATE.setBuySellData(buySellData);
+        renderBuySellData();
     }
 
     function validateBuySellInputs() {

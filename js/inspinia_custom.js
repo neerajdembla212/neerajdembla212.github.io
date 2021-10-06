@@ -134,10 +134,11 @@ function readMoreLessEventHandler() {
 // set init data
 function initData() {
   callAjaxMethod({
-    url: 'https://copypip.free.beeceptor.com/get-all-user-accounts',
+    url: 'https://copypip.free.beeceptor.com/get-user-config',
     successCallback: (data) => {
-      localStorage.setItem('userAccounts', JSON.stringify(data.data));
-      renderAccountSwitcher(data.data);
+      localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
+      renderAccountSwitcher(data.data.userAccounts);
+      localStorage.setItem('tradeData', JSON.stringify(data.data.tradeData))
     }
   })
 }
