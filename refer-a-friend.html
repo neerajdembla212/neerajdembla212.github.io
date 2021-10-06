@@ -136,7 +136,15 @@
           </div>
           <div class="nav navbar-top-links navbar-right d-flex align-self-center">
             <span class="welcome-message">Welcome KS Tan</span>
-            <i class="fa fa-bell"></i>
+            <li class="dropdown notifications-container">
+              <button type="button" class="btn btn-outline btn-default border-0 count-info p-0 m-0 dropdown-toggle"
+                data-toggle="dropdown">
+                <i class="fa fa-bell m-0"></i> <span class="label label-notification p-0"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-alerts p-0 pt-2">
+
+              </ul>
+            </li>
             <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#buy-sell-modal">
               Buy/Sell
             </button>

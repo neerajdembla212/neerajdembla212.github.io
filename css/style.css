@@ -1154,8 +1154,8 @@ ul.nav-second-level {
   line-height: 12px;
   padding: 2px 5px;
   position: absolute;
-  right: 6px;
-  top: 12px;
+  right: -23px;
+  top: -2px;
 }
 .arrow {
   float: right;
@@ -10985,6 +10985,41 @@ select[name="rows-per-page"] {
   position: absolute;
   right: -10px;
   top: 5px;
+}
+.notifications-container {
+  height: 30px;
+  width: 30px;
+}
+.notifications-container a {
+  background: transparent;
+}
+.notifications-container .btn-outline {
+  width: inherit;
+  height: inherit;
+}
+.notifications-container .btn-outline:hover {
+  background: #EDEDED;
+  border-radius: 4px;
+}
+.notifications-container .dropdown-menu {
+  width: 320px;
+}
+.notifications-container .dropdown-menu li:hover {
+  background: rgba(218, 218, 218, 0.2);
+}
+.notifications-container .label-notification {
+  background: #C00000;
+  border-radius: 8px;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+  width: 18px;
+  height: 16px;
+}
+.notifications-container.show .btn.btn-outline .fa {
+  color: #3698F3;
+}
+.notifications-container.show .label-notification {
+  display: none;
 }
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
