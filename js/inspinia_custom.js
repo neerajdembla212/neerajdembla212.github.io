@@ -189,7 +189,10 @@ function callAjaxMethod({
   method = "GET",
   parameters = {},
   successCallback,
-  beforeSend
+  beforeSend,
+  errorCallback = function (xhr, textStatus, errorThrown) {
+    console.log(errorThrown);
+  }
 }) {
   try {
     $.ajax({
@@ -203,15 +206,7 @@ function callAjaxMethod({
         // $(".loader").fadeIn();
       },
       success: successCallback,
-      error: function (xhr, textStatus, errorThrown) {
-        console.log(errorThrown);
-        // $(".loader").fadeOut();
-      },
-      complete: function () {
-        //disable loader
-        console.log("request complete");
-        // $(".loader").fadeOut();
-      },
+      error: errorCallback,
     });
   } catch (e) {
     console.log(e);

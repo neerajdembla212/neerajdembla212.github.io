@@ -158,18 +158,12 @@
     $(function () {
         const accountNo = localStorage.getItem('selectedAccountNo');
         const accontType = localStorage.getItem('selectedAccountType');
-        const tradeData = localStorage.getItem('tradeData');
         STATE.setSelectedAccount({
             type: accontType,
             number: accountNo
         })
-        initialBuySellData = {
-            ...JSON.parse(tradeData),
-            status: 'NEW'
-        };
-        STATE.setBuySellData(initialBuySellData);
         registerGlobalEvents();
-        // Global function
+        resetBuySellData();
         renderBuySellData();
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
@@ -1184,7 +1178,8 @@
             order_time,
             type,
             profit,
-            loss } = data;
+            loss,
+            volume } = data;
 
         const selelctedAccount = STATE.getSelectedAccount();
         const typeValue = type === 'pending_order' ? 'Pending Order' : 'Market Execution';
@@ -1197,6 +1192,7 @@
 
         const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value=${profit}>` : `<input type="text" class="form-control" id="profit-input">`;
         const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="loss-input" value="${loss}">` : `<input type="text" class="form-control" id="loss-input">`;
+        const volumeInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="volume-input" value="${volume}">` : `<input type="text" class="form-control" id="volume-input">`;
         return `
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
@@ -1216,7 +1212,7 @@
             <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
           </div>
           <div class="w-50 position-relative">
-            <input type="text" class="form-control" placeholder="0.01 - 100" id="volume-input">
+            ${volumeInputHTML}
           </div>
         </div>
         <!-- Currency exchange input end -->
@@ -1296,7 +1292,7 @@
             case 'TRADE_OPEN_SUCCESS':
                 return `
             <div class="mb-2 d-flex">
-                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+                <p class="mb-0 font-bold extra-large-font">#${order_number}</p>
             </div>
             <p class="mb-3 text-light-green super-extra-large-font font-bold">Trade Open Success</p>
             `
@@ -1310,7 +1306,7 @@
             case 'NO_CONNECTION':
                 return `
             <div class="mb-2 d-flex">
-                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+                <p class="mb-0 font-bold extra-large-font">#${order_number}</p>
             </div>
             <p class="mb-3 text-light-brown super-extra-large-font font-bold">No Connection</p>
             `
@@ -1492,10 +1488,10 @@
             jackSecondaryColor: "#FFFFFF",
         });
         // change status on click of buy CTA
-        $('.buy-sell-section #buy-trade').unbind().click(() => handleBuySellTrade('BUY'));
+        $('.buy-sell-section #buy-trade').unbind().click(() => handleClickBuySellTrade('BUY'));
 
         // change status on click of sell CTA
-        $('.buy-sell-section #sell-trade').unbind().click(() => handleBuySellTrade('SELL'));
+        $('.buy-sell-section #sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
 
         $('.buy-sell-section #cancel-trade').unbind().click(function () {
             const buySellData = STATE.getBuySellData();
@@ -1516,19 +1512,67 @@
         validateBuySellInputs();
     }
 
-    function handleBuySellTrade(status) {
+    function handleClickBuySellTrade(status) {
         const buySellData = STATE.getBuySellData();
-        buySellData.status = 'TRADE_OPEN_SUCCESS';
         buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
         buySellData.order_type = status;
         buySellData.type = $('#btn-type-input').data('value');
         buySellData.profit = $('#profit-input').val();
         buySellData.loss = $('#loss-input').val();
         buySellData.volume = $('#volume-input').val();
-        STATE.setBuySellData(buySellData);
-        renderBuySellData();
+        // check internet connection
+        if (!navigator.onLine) {
+            handleBuySellTradeError(buySellData)
+            return;
+        }
+        // call an api here and on success render buy sell data
+        callAjaxMethod({
+            url: 'https://copypip.free.beeceptor.com/initiate-trade',
+            method: 'POST',
+            successCallback: () => {
+                handleBuySellTradeSuccess(buySellData);
+            },
+            errorCallback: () => {
+                handleBuySellTradeError(buySellData)
+            }
+        })
     }
 
+    function handleBuySellTradeSuccess(buySellData) {
+        buySellData.status = 'TRADE_OPEN_SUCCESS';
+        STATE.setBuySellData(buySellData);
+        renderBuySellData();
+        // play success sound
+        var audioElement = document.querySelector('#success-sound');
+        audioElement.play();
+        // render buy sell data to new state after 0.5 seconds
+        setTimeout(() => {
+            resetBuySellData();
+            renderBuySellData()
+        }, 500)
+    }
+    function handleBuySellTradeError(buySellData) {
+        buySellData.status = 'NO_CONNECTION';
+        STATE.setBuySellData(buySellData);
+        renderBuySellData();
+        // play error sound
+        var audioElement = document.querySelector('#error-sound');
+        audioElement.play();
+        // render buy sell data to new state after 2 seconds
+        setTimeout(() => {
+            resetBuySellData();
+            renderBuySellData();
+        }, 2000)
+    }
+
+    function resetBuySellData() {
+        STATE.setBuySellData({})
+        const tradeData = localStorage.getItem('tradeData');
+        STATE.setBuySellData({
+            ...JSON.parse(tradeData),
+            status: 'NEW'
+        })
+    }
     function validateBuySellInputs() {
         // validate volume input 
         validateTextInput($('#volume-input'), function (val) {
