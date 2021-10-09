@@ -1093,12 +1093,10 @@ function validateTextInput(target, test = () => { }, errorMessage = 'Invalid inp
       // show error
       $(this).addClass('error');
       $(`<p class="mb-0 position-absolute error-message text-error-red d-flex"><img src="img/ic_error.svg" class="mr-2"/>${errorMessage}</p>`).insertAfter($(this));
-      console.log('error')
     } else {
       // remove error
       $(this).removeClass('error');
       $(this).siblings('.error-message').remove();
-      console.log('no error');
     }
   })
 }

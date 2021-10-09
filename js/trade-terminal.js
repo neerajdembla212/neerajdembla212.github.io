@@ -1079,7 +1079,11 @@
         $(`${activeTabId} .edit-trade-cta`).unbind().click(function (event) {
             const tradeId = $(event.currentTarget).data('id')
             STATE.setTradeDetails({ id: tradeId })
-            fetchTradeDetails(tradeId);
+            switch (activeTabId) {
+                case '#open-trades': fetchOpenTradeDetails(tradeId); break;
+                case '#pending-orders': fetchPendingTradeDetails(tradeId); break;
+                case '#closed-trades': fetchClosedTradeDetails(tradeId); break;
+            }
         })
     }
 
@@ -1223,9 +1227,9 @@
             <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
                 ${typeValue}
             </button>
-            <ul id="type-input-menu" class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Market Execution</a></li>
-                <li><a class="dropdown-item" href="#">Pending Order</a></li>
+            <ul id="type-input-menu" class="dropdown-menu" data-value="${type}">
+                <li data-value="market_execution"><a class="dropdown-item" href="#">Market Execution</a></li>
+                <li data-value="pending_order"><a class="dropdown-item" href="#">Pending Order</a></li>
             </ul>
         </div>
         <!-- Type input end -->
@@ -1355,16 +1359,11 @@
     }
 
     function buySellSectionAdjustHeight() {
-        let { status } = STATE.getBuySellData();
-        if (Object.keys(STATE.getBuySellData()).length === 0) {
-            status = 'NEW';
-        }
-        if (status === 'ORDER_PLACED') {
-            $('.buy-sell-section').css('max-height', '512px');
-        } else if (status === 'NEW') {
+        const typeValue = $('.buy-sell-section #type-input-menu.dropdown-menu').data('value')
+        if (typeValue === 'pending_order') {
+            $('.buy-sell-section').css('max-height', '700px');
+        } else if (typeValue === 'market_execution') {
             $('.buy-sell-section').css('max-height', '444px');
-        } else {
-            $('.buy-sell-section').css('max-height', '472px');
         }
     }
 
@@ -1493,30 +1492,37 @@
         // change status on click of sell CTA
         $('.buy-sell-section #sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
 
+        // This CTA will only be available while editing pending orders
         $('.buy-sell-section #cancel-trade').unbind().click(function () {
             const buySellData = STATE.getBuySellData();
             buySellData.status = 'CANCELLED';
             STATE.setBuySellData(buySellData);
             renderBuySellData();
         })
-
-        // reset to empty state on click of create new order
-        $('#create_new_order').unbind().click(function () {
-            const buySellData = STATE.getBuySellData();
-            buySellData.status = 'NEW';
-            buySellData.order_number = '';
-            buySellData.order_type = '';
-            STATE.setBuySellData(buySellData);
-            renderBuySellData();
+        // type input dropdown
+        $('.buy-sell-section #type-input-menu.dropdown-menu li').click(event => {
+            const selectedValue = $(event.currentTarget).data('value');
+            const selectedButton = $('.buy-sell-section #btn-type-input');
+            const dropdownMenu = $('.buy-sell-section #type-input-menu.dropdown-menu');
+            if (selectedValue === 'market_execution') {
+                selectedButton.text('Market Execution');
+                $('.buy-sell-section .dynamic-elements').addClass('d-none');
+            } else if (selectedValue === 'pending_order') {
+                selectedButton.text('Pending Order');
+                $('.buy-sell-section .dynamic-elements').removeClass('d-none');
+                renderPendingOrderFormControls();
+            }
+            dropdownMenu.data('value', selectedValue)
+            buySellSectionAdjustHeight();
         })
-        validateBuySellInputs();
+        validateBuySellInputs($('.buy-sell-section'));
     }
 
     function handleClickBuySellTrade(status) {
         const buySellData = STATE.getBuySellData();
         buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
         buySellData.order_type = status;
-        buySellData.type = $('#btn-type-input').data('value');
+        buySellData.type = $('.buy-sell-section #type-input-menu.dropdown-menu').data('value');
         buySellData.profit = $('#profit-input').val();
         buySellData.loss = $('#loss-input').val();
         buySellData.volume = $('#volume-input').val();
@@ -1550,6 +1556,13 @@
             resetBuySellData();
             renderBuySellData()
         }, 500)
+        // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
+        if (buySellData.type === 'market_execution') {
+            onTabChange('#open-trades');
+        } else if (buySellData.type === 'pending_orders') {
+            onTabChange('#pending-orders');
+        }
+
     }
     function handleBuySellTradeError(buySellData) {
         buySellData.status = 'NO_CONNECTION';
@@ -1573,9 +1586,9 @@
             status: 'NEW'
         })
     }
-    function validateBuySellInputs() {
+    function validateBuySellInputs(container) {
         // validate volume input 
-        validateTextInput($('#volume-input'), function (val) {
+        validateTextInput(container.find('#volume-input'), function (val) {
             if (isNaN(val)) {
                 return false;
             }
@@ -1584,12 +1597,12 @@
             }
             const numVal = Number(val);
             if (numVal >= 0.01 && numVal <= 100) {
-                return true
+                return true;
             }
             return false
         })
         // validate take profit input
-        validateTextInput($('#profit-input'), function (val) {
+        validateTextInput(container.find('#profit-input'), function (val) {
             if (isNaN(val)) {
                 return false;
             }
@@ -1604,7 +1617,7 @@
         }, 'Number only')
 
         // validate stop loss input
-        validateTextInput($('#loss-input'), function (val) {
+        validateTextInput(container.find('#loss-input'), function (val) {
             if (isNaN(val)) {
                 return false;
             }
@@ -1622,13 +1635,36 @@
     // render buy sell section end
 
     // render edit trade popup start
-    function fetchTradeDetails(tradeId) {
+    function fetchOpenTradeDetails(tradeId) {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-trade?id=${tradeId}`,
+            url: `https://copypip.free.beeceptor.com/get-open-trade?id=${tradeId}`,
             successCallback: (data) => {
                 STATE.setTradeDetails(data.data);
                 renderEditTradeModal();
                 registerEditTradeModalEvents();
+            },
+        });
+    }
+
+    function fetchPendingTradeDetails(tradeId) {
+        callAjaxMethod({
+            url: `https://copypip.free.beeceptor.com/get-pending-trade?id=${tradeId}`,
+            successCallback: (data) => {
+                STATE.setTradeDetails(data.data);
+                renderEditTradeModal();
+                registerEditTradeModalEvents();
+            },
+        });
+    }
+
+    function fetchClosedTradeDetails(tradeId) {
+        callAjaxMethod({
+            url: `https://copypip.free.beeceptor.com/get-closed-trade?id=${tradeId}`,
+            successCallback: (data) => {
+                STATE.setTradeDetails(data.data);
+                renderEditTradeModal();
+                registerEditTradeModalEvents();
+                validateEditTradeModalInputs();
             },
         });
     }
@@ -1650,8 +1686,40 @@
             to_currency_rate,
             to_currency_delta,
             tp,
-            sl
+            sl,
+            order_price, // order price represents the price at which trade was initiated. in case of pending order this can be empty,
+            is_partial_order // this boolean value represents if the trade was open trade and part volume was traded initially since then the trade will remain partial forever
         } = tradeDetails;
+
+        let tradeVolumeInput = '';
+        let takeProfitInput = '';
+        let stoplLossInput = '';
+        let priceInput = '';
+        let secondaryCTA = '';
+        if (order_type === 'market_execution') {
+            tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`;
+            takeProfitInput = `<input type="text" class="form-control w-35" id="profit-input" value="${tp}">`;
+            stoplLossInput = `<input type="text" class="form-control w-35" id="loss-input" value="${sl}">`;
+            priceInput = `<input type="text" class="form-control w-50" id="price-input" disabled value="${order_price}">`
+            if (is_partial_order) {
+                secondaryCTA = `<button type="button" id="partial-close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
+                Partial Close Order
+            </button>`
+            } else {
+                secondaryCTA = `<button type="button" id="close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
+                Close Order
+            </button>`
+            }
+        } else if (order_type === 'pending_order') {
+            tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`
+            takeProfitInput = `<input type="text" class="form-control w-35" id="profit-input" value="${tp}">`;
+            stoplLossInput = `<input type="text" class="form-control w-35" id="loss-input" value="${sl}">`;
+            priceInput = `<input type="text" class="form-control w-50" id="price-input" value="${order_price}">`
+            secondaryCTA = `<button type="button" id="cancel-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
+                    Cancel Order
+                </button>`
+        }
+
         return `
         <div class="modal-dialog modal-dialog-center">
             <div class="modal-content animated fadeIn">
@@ -1688,28 +1756,32 @@
                     <!-- order account details end -->
                     <!-- Currency exchange input start -->
                     <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
-                    <div class="line-height-md">
-                        <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
-                        <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
-                    </div>
-                    <input type="text" disabled class="form-control w-45" placeholder="0.01 - 100" value="${trade_volume}">
+                        <div class="line-height-md">
+                            <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
+                            <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
+                        </div>
+                        <div class="position-relative">
+                            ${tradeVolumeInput}
+                        </div>
                     </div>
                     <!-- Currency exchange input end -->
                     <div class="divider mb-3 mx-3"></div>
                     <!-- Type input start -->
                     <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
                         <p class="mb-0 font-weight-light medium-font">Type</p>
-                        <button id="btn-type-input-edit" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                            ${order_type}
+                        <button id="btn-type-input-edit" class="btn btn-dropdown font-bold">
+                            ${order_type === 'market_execution' ? 'Market Execution' : 'Pending Order'}
                         </button>
-                        <ul id="type-input-menu-edit" class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Market Execution</a></li>
-                            <li><a class="dropdown-item" href="#">Pending Order</a></li>
-                        </ul>
                     </div>
                     <!-- Type input end -->
                     <div class="divider mb-3"></div>
                     <div class="dynamic-elements mx-3"></div>
+                    <!-- Price input start -->
+                    <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
+                        <p class="mb-0 font-weight-light medium-font">Price</p>
+                        ${priceInput}
+                    </div>
+                    <!-- Price input end -->
                     <!-- Profit loss display start -->
                     <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
                         <div>
@@ -1731,18 +1803,16 @@
                         <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3 mx-3">
-                        <input type="text" class="form-control w-35" id="edit-profit-input" value="${tp}">
+                        ${takeProfitInput}
                         <span class="font-bold medium-font text-dark-black">price</span>
-                        <input type="text" class="form-control w-35" id="edit-loss-input" value="${sl}">
+                        ${stoplLossInput}
                     </div>
                     <!-- Profit loss input end -->
                 </div>
                 <!-- Modify CTA start -->
                 <div class="d-flex justify-content-between mb-3 mx-3">
-                    <button type="button" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
-                        Cancel Order
-                    </button>
-                    <button type="button" class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
+                    ${secondaryCTA}
+                    <button type="button" id="modify-trade" disabled class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
                         Modify
                     </button>
                 </div>
@@ -1753,16 +1823,119 @@
     }
 
     function registerEditTradeModalEvents() {
-        $('#type-input-menu-edit.dropdown-menu').unbind().click(event => {
-            const selectedItem = event.target.innerText.trim();
-            const selectedButton = $('#btn-type-input-edit')
-            selectedButton.text(selectedItem);
-            if (selectedItem.toUpperCase() === 'PENDING ORDER') {
-                renderPendingOrderFormControls('edit');
-            } else if (selectedItem.toUpperCase() === 'MARKET EXECUTION') {
-                renderMarketExecutionFormControls('edit');
+        const container = $('#edit-trade-modal');
+        const tradeDetails = STATE.getTradeDetails();
+        const { order_type, original_trade_volume, is_partial_order, trade_type, order_price } = tradeDetails;
+        const modifyTradeCTA = container.find('#modify-trade');
+        if (order_type === 'market_execution') {
+            container.find('#volume-input').off().on('change', function (event) {
+                const value = +event.target.value;
+                if (is_partial_order && (value >= 0.01 && value < original_trade_volume)) {
+                    modifyTradeCTA.prop('disabled', false);
+                } else if (!is_partial_order && (value >= 0.01 && value <= 100)) {
+                    modifyTradeCTA.prop('disabled', false);
+                } else {
+                    modifyTradeCTA.prop('disabled', true);
+                }
+            })
+
+            container.find('#profit-input').off().on('change', function (event) {
+                const value = +event.target.value;
+                // for BUY profit amount should be greater than buy price
+                if (trade_type === 'BUY') {
+                    if (value >= 0 && value > order_price) {
+                        modifyTradeCTA.prop('disabled', false);
+                    } else {
+                        modifyTradeCTA.prop('disabled', true);
+                    }
+                } else if (trade_type === 'SELL') { // for SELL profit amount should be less than sell price
+                    if (value >= 0 && value < order_price) {
+                        modifyTradeCTA.prop('disabled', false);
+                    } else {
+                        modifyTradeCTA.prop('disabled', true);
+                    }
+                }
+            })
+
+            container.find('#loss-input').off().on('change', function (event) {
+                const value = +event.target.value;
+                if (trade_type === 'BUY') { // for BUY loss amount should me less than buy price
+                    if (value > 0 && value < order_price) {
+                        modifyTradeCTA.prop('disabled', false);
+                    } else {
+                        modifyTradeCTA.prop('disabled', true);
+                    }
+                } else if (trade_type === 'SELL') { // for SELL loss amount should be greater than sell price
+                    modifyTradeCTA.prop('disabled', false);
+                } else {
+                    modifyTradeCTA.prop('disabled', true);
+                }
+            })
+        } else if (order_type === 'pending_order') {
+            $('#type-input-menu-edit.dropdown-menu').unbind().click(event => {
+                const selectedItem = event.target.innerText.trim();
+                const selectedButton = $('#btn-type-input-edit')
+                selectedButton.text(selectedItem);
+                if (selectedItem.toUpperCase() === 'PENDING ORDER') {
+                    renderPendingOrderFormControls('edit');
+                } else if (selectedItem.toUpperCase() === 'MARKET EXECUTION') {
+                    renderMarketExecutionFormControls('edit');
+                }
+            })
+        }
+    }
+
+    function validateEditTradeModalInputs() {
+        const container = $('#edit-trade-modal');
+        const tradeDetails = STATE.getTradeDetails();
+        const { is_partial_order, original_trade_volume } = tradeDetails;
+        // validate volume input 
+        validateTextInput(container.find('#volume-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
             }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (is_partial_order && (numVal >= 0.01 && numVal < original_trade_volume)) {
+                return true;
+            }
+            else if (!is_partial_order && (numVal >= 0.01 && numVal <= 100)) {
+                return true;
+            }
+            return false
         })
+        // validate take profit input
+        validateTextInput(container.find('#profit-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
+            }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                return true
+            }
+            return false
+        }, 'Number only')
+
+        // validate stop loss input
+        validateTextInput(container.find('#loss-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
+            }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                return true
+            }
+            return false
+        }, 'Number only')
+
     }
     // render edit trade popup end
     function renderResponsiveTable() {

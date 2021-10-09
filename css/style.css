@@ -11259,6 +11259,9 @@ select[name="rows-per-page"] {
   top: 10px;
   right: 10px;
 }
+#modify-trade[disabled] {
+  background-color: #b7c0cb;
+}
 .strategy-provider-section .tabs-header {
   background: #ffffff;
   min-height: 52px;
