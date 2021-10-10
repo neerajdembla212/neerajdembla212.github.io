@@ -10664,6 +10664,14 @@ table > tbody > tr:first-child > td {
 .btn-text-red:active {
   color: #D0226B;
 }
+.btn-text-medium-blue {
+  color: #3698F3;
+}
+.btn-text-medium-blue:hover,
+.btn-text-medium-blue:focus,
+.btn-text-medium-blue:active {
+  color: #3698F3;
+}
 .w-9 {
   width: 9% !important;
 }
