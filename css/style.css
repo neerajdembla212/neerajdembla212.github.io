@@ -1396,7 +1396,7 @@ body.canvas-menu.mini-navbar .footer {
 }
 body.fixed-sidebar .navbar-static-side,
 body.canvas-menu .navbar-static-side {
-  width: 220px;
+  width: 200px;
   z-index: 2001;
   height: 100vh;
   position: fixed;
@@ -1405,7 +1405,7 @@ body.fixed-sidebar.mini-navbar .navbar-static-side {
   width: 0;
 }
 body.fixed-sidebar #page-wrapper {
-  margin: 0 0 0 220px;
+  margin: 0 0 0 200px;
 }
 body.fixed-sidebar.body-small #page-wrapper {
   margin: 0;
@@ -1415,10 +1415,10 @@ body.fixed-sidebar.mini-navbar #page-wrapper {
   width: 100%;
 }
 body.body-small.fixed-sidebar.mini-navbar #page-wrapper {
-  margin: 0 0 0 220px;
+  margin: 0 0 0 200px;
 }
 body.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
-  width: 220px;
+  width: 200px;
 }
 .fixed-sidebar.mini-navbar .nav li:focus > .nav-second-level,
 .canvas-menu.mini-navbar .nav li:focus > .nav-second-level {
@@ -1477,7 +1477,7 @@ body.canvas-menu nav.navbar-static-side {
 }
 body.canvas-menu.mini-navbar nav.navbar-static-side {
   display: block;
-  width: 220px;
+  width: 200px;
 }
 .navbar-menu-toggle {
   width: 1px;
@@ -4715,7 +4715,7 @@ video {
   padding: 0 15px;
   position: relative !important;
   flex-shrink: 1;
-  width: calc(100% - 220px);
+  width: calc(100% - 200px);
 }
 @media (min-width: 768px) {
   #page-wrapper {
@@ -4776,7 +4776,7 @@ ol.unstyled {
   padding: 10px 20px;
   background: white;
   border-top: 1px solid #e7eaec;
-  margin-left: 220px;
+  margin-left: 200px;
 }
 body.mini-navbar .footer.fixed,
 body.body-small.mini-navbar .footer.fixed {
@@ -4790,7 +4790,7 @@ body.canvas-menu .footer.fixed {
   margin: 0 !important;
 }
 body.fixed-sidebar.body-small.mini-navbar .footer.fixed {
-  margin: 0 0 0 220px;
+  margin: 0 0 0 200px;
 }
 body.body-small .footer.fixed {
   margin-left: 0;
@@ -8859,10 +8859,10 @@ body.rtls.mini-navbar.fixed-sidebar #page-wrapper {
   margin: 0 0 0 0;
 }
 body.rtls.body-small.fixed-sidebar.mini-navbar #page-wrapper {
-  margin: 0 220px 0 0;
+  margin: 0 200px 0 0;
 }
 body.rtls.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
-  width: 220px;
+  width: 200px;
 }
 .body-small.rtls .navbar-fixed-top {
   margin-right: 0;
@@ -8898,7 +8898,7 @@ body.rtls.top-navigation .footer.fixed {
     display: none;
     z-index: 2001;
     position: fixed;
-    width: 220px;
+    width: 200px;
   }
 }
 .rtls .ltr-support {
@@ -9899,7 +9899,7 @@ body.md-skin {
   margin: 0 0 0 0;
 }
 .md-skin.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
-  width: 220px;
+  width: 200px;
   background-color: #ffffff;
 }
 .md-skin.boxed-layout #wrapper {
@@ -9919,7 +9919,7 @@ body.md-skin {
   }
   .navbar-static-side {
     z-index: 2001;
-    width: 220px;
+    width: 200px;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,
@@ -9984,7 +9984,7 @@ body.md-skin {
     display: none;
     z-index: 2001;
     position: fixed;
-    width: 220px;
+    width: 200px;
   }
   .ibox-tools {
     float: none;
@@ -11184,6 +11184,7 @@ select[name="rows-per-page"] {
 .buy-sell-section {
   border-radius: 6px;
   max-height: 444px;
+  width: 350px;
 }
 @media screen and (max-width: 1250px) {
   .buy-sell-section {

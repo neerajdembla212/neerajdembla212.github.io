@@ -410,9 +410,10 @@
             </th>
             <th class="text-center align-middle">Trader</th>
             <th class="text-center align-middle">Type</th>
+            <th class="text-center align-middle">Time Stamp</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                    <p class="m-0 p-0 header-text">Volume <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text">Vol. <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
@@ -450,6 +451,7 @@
                     <p class="m-0 p-0 header-text">Profit <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
+            <th class="text-center align-middle">Close</th>
             </tr>
         </thead>
         `
@@ -489,16 +491,18 @@
             current,
             swap,
             profit } = trade;
-        return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}" data-toggle="modal" data-target="#edit-trade-modal">
-                <td class="pl-2">
+        return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
+                <td class="pl-2 align-middle">
                     <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
-                    <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
                 </td>
                 <td class="text-center align-middle d-flex">
                     <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
-                <td class="text-center align-middle text-darker-gray font-weight-bolder pl-2">
+                <td class="text-center align-middle text-blue font-weight-bolder pl-2">
                     ${trade_type}
+                </td>
+                <td class="text-center align-middle pl-2">
+                    <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
                 </td>
                 <td class="text-center align-middle">
                     ${trade_volume}
@@ -526,6 +530,9 @@
                 <td class="text-center align-middle font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
                     S$${profit}
                 </td>
+                <td class="text-center align-middle">
+                    <button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Close</button>
+                </td>
             </tr>
             `
     }
@@ -534,7 +541,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
-          <td colspan="11">
+          <td colspan="12">
           <div class="d-flex justify-content-between align-items-center">
             <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
             <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -683,7 +690,7 @@
             profit } = trade;
 
         return `
-        <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}" data-toggle="modal" data-target="#edit-trade-modal">
+        <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}">
             <div class="d-flex justify-content-between align-items-center">
             <div>
                 <p class="mb-0 font-weight-bolder">${from_currency}${to_currency} <span class="text-darker-gray">${trade_type}</span></p>
@@ -1078,9 +1085,15 @@
         // edit trade popup on click of row
         $(`${activeTabId} .edit-trade-cta`).unbind().click(function (event) {
             const tradeId = $(event.currentTarget).data('id')
+            const name = $(event.target).attr('name');
+            if (name !== 'close-trade-cta') {
+                // show modal
+                $('#edit-trade-modal').modal();
+            }
             STATE.setTradeDetails({ id: tradeId })
+            // fetch trade detail and render content accordingly
             switch (activeTabId) {
-                case '#open-trades': fetchOpenTradeDetails(tradeId); break;
+                case '#open-trades': fetchOpenTradeDetails(tradeId, name); break;
                 case '#pending-orders': fetchPendingTradeDetails(tradeId); break;
                 case '#closed-trades': fetchClosedTradeDetails(tradeId); break;
             }
@@ -1635,7 +1648,7 @@
     // render buy sell section end
 
     // render edit trade popup start
-    function fetchOpenTradeDetails(tradeId) {
+    function fetchOpenTradeDetails(tradeId, name) {
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/get-open-trade?id=${tradeId}`,
             successCallback: (data) => {
@@ -1643,6 +1656,11 @@
                 renderEditTradeModal();
                 registerEditTradeModalEvents();
                 validateEditTradeModalInputs()
+                if (name === 'close-trade-cta') {
+                    if (!data.data.one_click_trading) {
+                        $('#edit-trade-modal').modal();
+                    }
+                }
             },
         });
     }
