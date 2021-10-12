@@ -10637,6 +10637,15 @@ table > tbody > tr:first-child > td {
   background: #D0226B;
   border-color: #D0226B;
 }
+.btn-medium-blue {
+  background: #3698F3;
+  border-color: #3698F3;
+}
+.btn-medium-blue:hover,
+.btn-medium-blue:focus {
+  background: #3698F3;
+  border-color: #3698F3;
+}
 .btn-dropdown {
   background: transparent;
   border: none;
