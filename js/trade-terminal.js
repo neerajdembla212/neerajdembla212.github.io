@@ -531,7 +531,7 @@
                     S$${profit}
                 </td>
                 <td class="text-center align-middle">
-                    <button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Close</button>
+                    <button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Close</button>
                 </td>
             </tr>
             `
@@ -541,7 +541,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
-          <td colspan="12">
+          <td colspan="13">
           <div class="d-flex justify-content-between align-items-center">
             <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
             <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -1657,8 +1657,12 @@
                 registerEditTradeModalEvents();
                 validateEditTradeModalInputs()
                 if (name === 'close-trade-cta') {
-                    if (!data.data.one_click_trading) {
+                    if (data.data.one_click_trading === false) {
                         $('#edit-trade-modal').modal();
+                    } else if (data.data.one_click_trading === true) {
+                        // close the order via api and refresh the open order section
+                        // TODO : toast message for closed order success
+                        onTabChange('#open-trades');
                     }
                 }
             },
@@ -1711,17 +1715,18 @@
         let takeProfitInput = '';
         let stoplLossInput = '';
         let priceInput = '';
+
         if (order_type === 'market_execution') {
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`;
             takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}">`;
             stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}">`;
-            priceInput = `<input type="text" class="form-control w-50" id="price-input" disabled value="${order_price}">`
+            priceInput = `<input type="text" class="form-control w-35" id="price-input" disabled value="${order_price}">`
 
         } else if (order_type === 'pending_order') {
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`
             takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}">`;
             stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}">`;
-            priceInput = `<input type="text" class="form-control w-50" id="price-input" value="${order_price}">`
+            priceInput = `<input type="text" class="form-control w-35" id="price-input" value="${order_price}">`
         }
 
         return `
@@ -1748,7 +1753,7 @@
                     <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
                     <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
                 </div>
-                <div class="position-relative">
+                <div class="position-relative w-35">
                     ${tradeVolumeInput}
                 </div>
             </div>
@@ -1848,26 +1853,9 @@
     function getEditTradeModalFooter() {
         const tradeDetails = STATE.getTradeDetails();
         const {
-            order_type,
-            is_partial_order, // this boolean value represents if the trade was open trade and part volume was traded initially since then the trade will remain partial forever
             status
         } = tradeDetails;
-        let secondaryCTA = '';
-        if (order_type === 'market_execution') {
-            if (is_partial_order) {
-                secondaryCTA = `<button type="button" id="partial-close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
-                Partial Close Order
-                </button>`
-            } else {
-                secondaryCTA = `<button type="button" id="close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
-                Close Order
-                </button>`
-            }
-        } else if (order_type === 'pending_order') {
-            secondaryCTA = `<button type="button" id="cancel-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
-            Cancel Order
-        </button>`
-        }
+
         if (status === 'PARTIAL_CLOSED' || status === 'CLOSED') {
             return `
             <div class="px-3 mb-3">
@@ -1880,7 +1868,12 @@
         return `
         <!-- Modify CTA start -->
         <div class="d-flex justify-content-between mb-3 mx-3">
-            ${secondaryCTA}
+            <button type="button" id="partial-close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder d-none">
+                Partial Close Order
+            </button>
+            <button type="button" id="close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
+                Close Order
+            </button>
             <button type="button" id="modify-trade" disabled class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
                 Modify
             </button>
@@ -1892,12 +1885,22 @@
     function registerEditTradeModalEvents() {
         const container = $('#edit-trade-modal');
         const tradeDetails = STATE.getTradeDetails();
-        const { order_type } = tradeDetails;
+        const { order_type, trade_volume } = tradeDetails;
+        container.find('#volume-input').off().on('change', function (event) {
+            const value = +event.target.value;
+            if (value < trade_volume) {
+                container.find('.modal-footer-container #close-order').addClass('d-none');
+                container.find('.modal-footer-container #partial-close-order').removeClass('d-none');
+            } else {
+                container.find('.modal-footer-container #partial-close-order').addClass('d-none');
+                container.find('.modal-footer-container #close-order').removeClass('d-none');
+            }
+        })
         // on click of modify trade
         container.find('#modify-trade').unbind().click(handleClickModifyTrade);
         // on click close order
         container.find('#close-order').unbind().click(handleClickCloseOrder);
-        // on lcick partial close order
+        // on click partial close order
         container.find('#partial-close-order').unbind().click(handleClickPartialCloseOrder);
 
         if (order_type === 'pending_order') {
@@ -1999,9 +2002,8 @@
         const tradeDetails = STATE.getTradeDetails();
         const { order_type, original_trade_volume, is_partial_order, trade_type, order_price } = tradeDetails;
         const modifyTradeCTA = container.find('#modify-trade');
-        const errorMessage = 'Invalid input';
         if (order_type === 'market_execution') {
-            container.find('#volume-input').off().on('change', function (event) {
+            container.find('#volume-input').on('change', function (event) {
                 const value = +event.target.value;
                 if (is_partial_order) { // if order is partial order check against original volume
                     if (value >= 0.01 && value < original_trade_volume) {

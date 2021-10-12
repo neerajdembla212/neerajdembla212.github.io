@@ -11228,6 +11228,11 @@ select[name="rows-per-page"] {
     display: none !important;
   }
 }
+.trade-section .btn-gray {
+  background: #F7F7F7;
+  color: #8E8FA3;
+  border-radius: 4px;
+}
 #edit-trade-modal .form-control {
   padding: 10px !important;
 }
