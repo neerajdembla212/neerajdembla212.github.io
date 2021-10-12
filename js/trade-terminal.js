@@ -1247,7 +1247,9 @@
         </div>
         <!-- Type input end -->
         <div class="divider mb-3"></div>
-        <div class="dynamic-elements"></div>
+        <div class="dynamic-elements">
+        ${type === 'pending_order' ? getPendingOrderControls() : ''}
+        </div>
         <!-- Profit loss display start -->
         ${getProfitLossDisplayHTML()}
         <!-- Profit loss display end -->
@@ -1312,14 +1314,14 @@
                 <p class="mb-0 font-bold extra-large-font">#${order_number}</p>
             </div>
             <p class="mb-3 text-light-green super-extra-large-font font-bold">Trade Open Success</p>
-            `
-            case 'TRADE_PROCESSING':
+            `;
+            case 'TRADE_ORDER_PLACED':
                 return `
-            <div class="mb-2 d-flex">
-                <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
-            </div>
-            <p class="mb-3 text-extra-light-blue super-extra-large-font font-bold">Trade Processing</p>
-            `
+                <div class="mb-2 d-flex">
+                    <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+                </div>
+                <p class="mb-3 super-extra-large-font font-bold text-light-green">Order Placed</p>
+                `;
             case 'NO_CONNECTION':
                 return `
             <div class="mb-2 d-flex">
@@ -1346,12 +1348,15 @@
     }
     function getBuySellSectionCTA(status) {
         if (status === 'NEW') {
-            return `<div class="d-flex justify-content-between mb-3">
+            return `<div class="d-flex justify-content-between mb-3 buy-sell-footer">
             <button id="sell-trade" type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
             Sell
             </button>
             <button id="buy-trade" type="button" class="btn btn-w-m btn-primary w-45">
             Buy
+            </button>
+            <button id="place-order" type="button" class="btn btn-w-m btn-default btn-medium-blue btn-block text-white d-none">
+            Place Order
             </button>
             </div>`
         } else if (status === "ORDER_PLACED") {
@@ -1397,14 +1402,14 @@
         return ` <!-- Order Type input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <p class="mb-0 font-weight-light medium-font">Order Type</p>
-            <button id="btn-order-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
+            <button id="btn-order-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false" data-value="buy_limit">
                 Buy Limit
             </button>
             <ul id="order-type-input-menu" class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Buy Limit</a></li>
-                <li><a class="dropdown-item" href="#">Sell Limit</a></li>
-                <li><a class="dropdown-item" href="#">Buy Stop</a></li>
-                <li><a class="dropdown-item" href="#">Sell Stop</a></li>
+                <li data-value="buy_limit"><a class="dropdown-item" href="#">Buy Limit</a></li>
+                <li data-value="sell_limit"><a class="dropdown-item" href="#">Sell Limit</a></li>
+                <li data-value="buy_stop"><a class="dropdown-item" href="#">Buy Stop</a></li>
+                <li data-value="sell_stop"><a class="dropdown-item" href="#">Sell Stop</a></li>
             </ul>
         </div>
         <!-- Order Type input end -->
@@ -1428,7 +1433,7 @@
             <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
             <div class="date" id="expiration-date-input">
                 <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                ${formatDate(new Date(gtc_expiration_date))}
+                ${formatDate(new Date(gtc_expiration_date), 'DD MMM YYYY HH:mm')}
             </button>
             </div>
         </div>
@@ -1454,10 +1459,13 @@
     }
     function registerPendingOrderEvents() {
         // order type dropdown menu
-        $('#order-type-input-menu.dropdown-menu').click(event => {
-            const selectedItem = event.target.innerText.trim();
+        $('#order-type-input-menu.dropdown-menu li').click(event => {
+            const selectedItem = $(event.currentTarget);
+            const selectedValue = selectedItem.data('value');
+            const selectedItemText = event.currentTarget.innerText.trim();
             const selectedButton = $('#btn-order-type-input')
-            selectedButton.text(selectedItem);
+            selectedButton.text(selectedItemText);
+            selectedButton.attr('data-value', selectedValue);
         })
 
         // expiration dropdown menu
@@ -1499,11 +1507,22 @@
             jackColor: '#22D091',
             jackSecondaryColor: "#FFFFFF",
         });
+
         // change status on click of buy CTA
         $('.buy-sell-section #buy-trade').unbind().click(() => handleClickBuySellTrade('BUY'));
 
         // change status on click of sell CTA
         $('.buy-sell-section #sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
+
+        $('.buy-sell-section #place-order').unbind().click(() => {
+            debugger
+            const orderType = $('.buy-sell-section #btn-order-type-input').data('value');
+            if (orderType === 'buy_limit' || orderType === 'buy_stop') {
+                handleClickBuySellTrade('BUY');
+            } else if (orderType === 'sell_limit' || orderType === 'sell_stop') {
+                handleClickBuySellTrade('SELL');
+            }
+        });
 
         // This CTA will only be available while editing pending orders
         $('.buy-sell-section #cancel-trade').unbind().click(function () {
@@ -1520,10 +1539,18 @@
             if (selectedValue === 'market_execution') {
                 selectedButton.text('Market Execution');
                 $('.buy-sell-section .dynamic-elements').addClass('d-none');
+                // update footer cta section to sell and buy
+                $('.buy-sell-section .buy-sell-footer #sell-trade').removeClass('d-none');
+                $('.buy-sell-section .buy-sell-footer #buy-trade').removeClass('d-none');
+                $('.buy-sell-section .buy-sell-footer #place-order').addClass('d-none');
             } else if (selectedValue === 'pending_order') {
                 selectedButton.text('Pending Order');
                 $('.buy-sell-section .dynamic-elements').removeClass('d-none');
                 renderPendingOrderFormControls();
+                // update footer cta section to place order
+                $('.buy-sell-section .buy-sell-footer #sell-trade').addClass('d-none');
+                $('.buy-sell-section .buy-sell-footer #buy-trade').addClass('d-none');
+                $('.buy-sell-section .buy-sell-footer #place-order').removeClass('d-none');
             }
             dropdownMenu.data('value', selectedValue)
             buySellSectionAdjustHeight();
@@ -1532,6 +1559,7 @@
     }
 
     function handleClickBuySellTrade(status) {
+        debugger
         const buySellData = STATE.getBuySellData();
         buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
         buySellData.order_type = status;
@@ -1544,21 +1572,38 @@
             handleBuySellTradeError(buySellData)
             return;
         }
-        // call an api here and on success render buy sell data
-        callAjaxMethod({
-            url: 'https://copypip.free.beeceptor.com/initiate-trade',
-            method: 'POST',
-            successCallback: () => {
-                handleBuySellTradeSuccess(buySellData);
-            },
-            errorCallback: () => {
-                handleBuySellTradeError(buySellData)
-            }
-        })
+        if (buySellData.type === 'market_execution') {
+            // call an api here and on success render buy sell data
+            callAjaxMethod({
+                url: 'https://copypip.free.beeceptor.com/initiate-trade',
+                method: 'POST',
+                successCallback: () => {
+                    handleBuySellTradeSuccess(buySellData);
+                },
+                errorCallback: () => {
+                    handleBuySellTradeError(buySellData)
+                }
+            })
+        } else if (buySellData.type === 'pending_order') {
+            callAjaxMethod({
+                url: 'https://copypip.free.beeceptor.com/place-order',
+                method: 'POST',
+                successCallback: () => {
+                    handleBuySellTradeSuccess(buySellData);
+                },
+                errorCallback: () => {
+                    handleBuySellTradeError(buySellData)
+                }
+            })
+        }
     }
 
     function handleBuySellTradeSuccess(buySellData) {
-        buySellData.status = 'TRADE_OPEN_SUCCESS';
+        if (buySellData.type === 'market_execution') {
+            buySellData.status = 'TRADE_OPEN_SUCCESS';
+        } else if (buySellData.type === 'pending_order') {
+            buySellData.status = 'TRADE_ORDER_PLACED';
+        }
         STATE.setBuySellData(buySellData);
         renderBuySellData();
         // play success sound
@@ -1662,6 +1707,9 @@
                     } else if (data.data.one_click_trading === true) {
                         // close the order via api and refresh the open order section
                         // TODO : toast message for closed order success
+                        // play success sound
+                        var audioElement = document.querySelector('#success-sound');
+                        audioElement.play();
                         onTabChange('#open-trades');
                     }
                 }
@@ -1785,7 +1833,7 @@
                 <div class="position-relative w-35">
                     ${takeProfitInput}
                 </div>
-                <span class="font-bold medium-font text-dark-black">price</span>
+                <span class="font-bold medium-font text-dark-black">Price</span>
                 <div class="position-relative w-35">
                     ${stoplLossInput}
                 </div>
@@ -1965,8 +2013,12 @@
             STATE.setTradeDetails({});
             $('#edit-trade-modal #close-modal').click();
         }, 500)
-        // refetch closed trades from table
-        onTabChange('#closed-trades');
+        // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
+        if (tradeDetails.order_type === 'market_execution') {
+            onTabChange('#open-trades');
+        } else if (tradeDetails.order_type === 'pending_orders') {
+            onTabChange('#pending-orders');
+        }
     }
 
     function handleClickPartialCloseOrder() {
@@ -2000,28 +2052,17 @@
     function validateEditTradeModalInputs() {
         const container = $('#edit-trade-modal');
         const tradeDetails = STATE.getTradeDetails();
-        const { order_type, original_trade_volume, is_partial_order, trade_type, order_price } = tradeDetails;
+        const { order_type, original_trade_volume, trade_type, order_price } = tradeDetails;
         const modifyTradeCTA = container.find('#modify-trade');
         if (order_type === 'market_execution') {
             container.find('#volume-input').on('change', function (event) {
                 const value = +event.target.value;
-                if (is_partial_order) { // if order is partial order check against original volume
-                    if (value >= 0.01 && value < original_trade_volume) {
-                        modifyTradeCTA.prop('disabled', false);
-                        removeError.call(this);
-                    } else {
-                        modifyTradeCTA.prop('disabled', true);
-                        addError.call(this, `Volume more than ${original_trade_volume}`);
-                    }
+                if (value >= 0.01 && value <= 100) {
+                    modifyTradeCTA.prop('disabled', false);
+                    removeError.call(this);
                 } else {
-                    if (value >= 0.01 && value <= 100) { // if order is not partial order check against 100
-                        modifyTradeCTA.prop('disabled', false);
-                        removeError.call(this);
-                    } else {
-                        modifyTradeCTA.prop('disabled', true);
-                        addError.call(this, 'Volume more than 100');
-
-                    }
+                    modifyTradeCTA.prop('disabled', true);
+                    addError.call(this, 'Volume between 0 and 100');
                 }
             })
 

@@ -3,7 +3,6 @@ $(document).ready(function () {
     window.location.href = window.origin + '/login.html'
   }
   registerEventHandlers();
-  fetchBuySellData(registerBuySellModalEvents);
   initData();
   validateBuySellPopupInputs();
   fetchNotifications();
@@ -139,6 +138,7 @@ function initData() {
       localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
       renderAccountSwitcher(data.data.userAccounts);
       localStorage.setItem('tradeData', JSON.stringify(data.data.tradeData))
+      registerBuySellModalEvents(data.data.tradeData);
     }
   })
 }
@@ -213,22 +213,6 @@ function callAjaxMethod({
   }
 }
 // fetch buy sell initial data start
-function fetchBuySellData(cb) {
-  if (!localStorage.getItem('buySellData')) {
-    callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/buy-sell-data",
-      successCallback: (data) => {
-        localStorage.setItem('buySellData', JSON.stringify(data.data));
-        if (cb && typeof cb === 'function') {
-          cb(data);
-        }
-      },
-    });
-  } else {
-    const buySellData = JSON.parse(localStorage.getItem('buySellData'))
-    cb(buySellData);
-  }
-}
 // Buy sell popup events 
 
 function registerBuySellModalEvents(data) {
