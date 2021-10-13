@@ -775,7 +775,7 @@
     }
 
     function getPendingTradesTableHTML(data) {
-        return `<table class="table">
+        return `<table class="table mb-0">
         ${getTableHeaders()}
         ${getPendingTradesTableBody(data)}
         ${getPendingTradesTableFooter(data.length)}
@@ -791,7 +791,7 @@
             rowsHTML.push(getPendingTradesTableRow(trade));
         })
         return `
-          <tbody data-toggle="modal" data-target="#edit-trade-modal">
+          <tbody>
             ${rowsHTML.join('')}
           </tbody>
           `
@@ -817,41 +817,46 @@
             swap,
             profit } = trade;
         return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
-                <td class="w-18">
+                <td class="pl-2 align-middle">
                     <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
-                    <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
                 </td>
-                <td class="text-center align-middle w-9 pl-2" align="center">
-                    <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
+                <td class="text-center align-middle d-flex">
+                    <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
-                <td class="text-center align-middle text-darker-gray font-weight-bolder w-9 pl-2">
+                <td class="text-center align-middle text-blue font-weight-bolder pl-2">
                     ${trade_type}
                 </td>
-                <td class="text-center align-middle w-9 pl-2">
+                <td class="text-center align-middle pl-2">
+                    <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
+                </td>
+                <td class="text-center align-middle">
                     ${trade_volume}
                 </td>
-                <td class="text-center align-middle w-17 pl-2">
+                <td class="text-center align-middle">
                     ${open_price}
                 </td>
-                <td class="text-center align-middle font-bold w-9 pl-3">
+                <td class="text-center align-middle font-bold">
                     S$${formatWithCommas(amount)}
                 </td>
-                <td class="text-center align-middle w-9 pl-3">
+                <td class="text-center align-middle">
                     ${sl}
                 </td>
-                <td class="text-center align-middle w-9">
+                <td class="text-center align-middle">
                     ${tp}
                 </td>
-                <td class="text-center align-middle w-9">
+                <td class="text-center align-middle">
                     <span class="highlight-amount">
                         ${current}
                     </span>
                 </td>
-                <td class="text-center align-middle text-dark-green w-9">
+                <td class="text-center align-middle text-dark-green">
                     S$${swap}
                 </td>
-                <td class="text-center align-middle w-9 font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
+                <td class="text-center align-middle font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
                     S$${profit}
+                </td>
+                <td class="text-center align-middle">
+                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Close</button>
                 </td>
             </tr>
             `
@@ -861,7 +866,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
-          <td colspan="11">
+          <td colspan="13">
           <div class="d-flex justify-content-between align-items-center">
           <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -1094,7 +1099,7 @@
             // fetch trade detail and render content accordingly
             switch (activeTabId) {
                 case '#open-trades': fetchOpenTradeDetails(tradeId, name); break;
-                case '#pending-orders': fetchPendingTradeDetails(tradeId); break;
+                case '#pending-orders': fetchPendingTradeDetails(tradeId, name); break;
                 case '#closed-trades': fetchClosedTradeDetails(tradeId); break;
             }
         })
@@ -1515,7 +1520,6 @@
         $('.buy-sell-section #sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
 
         $('.buy-sell-section #place-order').unbind().click(() => {
-            debugger
             const orderType = $('.buy-sell-section #btn-order-type-input').data('value');
             if (orderType === 'buy_limit' || orderType === 'buy_stop') {
                 handleClickBuySellTrade('BUY');
@@ -1559,7 +1563,6 @@
     }
 
     function handleClickBuySellTrade(status) {
-        debugger
         const buySellData = STATE.getBuySellData();
         buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
         buySellData.order_type = status;
@@ -1717,7 +1720,7 @@
         });
     }
 
-    function fetchPendingTradeDetails(tradeId) {
+    function fetchPendingTradeDetails(tradeId, name) {
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/get-pending-trade?id=${tradeId}`,
             successCallback: (data) => {
@@ -1725,6 +1728,18 @@
                 renderEditTradeModal();
                 registerEditTradeModalEvents();
                 validateEditTradeModalInputs()
+                if (name === 'close-trade-cta') {
+                    if (data.data.one_click_trading === false) {
+                        $('#edit-trade-modal').modal();
+                    } else if (data.data.one_click_trading === true) {
+                        // close the order via api and refresh the open order section
+                        // TODO : toast message for closed order success
+                        // play success sound
+                        var audioElement = document.querySelector('#success-sound');
+                        audioElement.play();
+                        onTabChange('#pending-trades');
+                    }
+                }
             },
         });
     }
@@ -1766,8 +1781,8 @@
 
         if (order_type === 'market_execution') {
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`;
-            takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}">`;
-            stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}">`;
+            takeProfitInput = `<input type="text" class="form-control" id="profit-input" disabled value="${tp}">`;
+            stoplLossInput = `<input type="text" class="form-control" id="loss-input" disabled value="${sl}">`;
             priceInput = `<input type="text" class="form-control w-35" id="price-input" disabled value="${order_price}">`
 
         } else if (order_type === 'pending_order') {
@@ -1933,36 +1948,26 @@
     function registerEditTradeModalEvents() {
         const container = $('#edit-trade-modal');
         const tradeDetails = STATE.getTradeDetails();
-        const { order_type, trade_volume } = tradeDetails;
-        container.find('#volume-input').off().on('change', function (event) {
-            const value = +event.target.value;
-            if (value < trade_volume) {
-                container.find('.modal-footer-container #close-order').addClass('d-none');
-                container.find('.modal-footer-container #partial-close-order').removeClass('d-none');
-            } else {
-                container.find('.modal-footer-container #partial-close-order').addClass('d-none');
-                container.find('.modal-footer-container #close-order').removeClass('d-none');
-            }
-        })
+        const { trade_volume, order_type } = tradeDetails;
+        // partial close functionlaity is only for market execution i.e open orders
+        if (order_type === 'market_execution') {
+            container.find('#volume-input').off().on('change', function (event) {
+                const value = +event.target.value;
+                if (value < trade_volume) {
+                    container.find('.modal-footer-container #close-order').addClass('d-none');
+                    container.find('.modal-footer-container #partial-close-order').removeClass('d-none');
+                } else {
+                    container.find('.modal-footer-container #partial-close-order').addClass('d-none');
+                    container.find('.modal-footer-container #close-order').removeClass('d-none');
+                }
+            })
+        }
         // on click of modify trade
         container.find('#modify-trade').unbind().click(handleClickModifyTrade);
         // on click close order
         container.find('#close-order').unbind().click(handleClickCloseOrder);
         // on click partial close order
         container.find('#partial-close-order').unbind().click(handleClickPartialCloseOrder);
-
-        if (order_type === 'pending_order') {
-            $('#type-input-menu-edit.dropdown-menu').unbind().click(event => {
-                const selectedItem = event.target.innerText.trim();
-                const selectedButton = $('#btn-type-input-edit')
-                selectedButton.text(selectedItem);
-                if (selectedItem.toUpperCase() === 'PENDING ORDER') {
-                    renderPendingOrderFormControls('edit');
-                } else if (selectedItem.toUpperCase() === 'MARKET EXECUTION') {
-                    renderMarketExecutionFormControls('edit');
-                }
-            })
-        }
     }
 
     function handleClickModifyTrade() {
@@ -1973,8 +1978,10 @@
         const loss = container.find('#loss-input').val();
         // TODO : call api to update trade
         tradeDetails.trade_volume = volume;
-        tradeDetails.tp = profit;
-        tradeDetails.sl = loss;
+        if (tradeDetails.order_type === 'pending_orders') { // in case of pending order only user can change tp and sl hence capturing values only in that case
+            tradeDetails.tp = profit;
+            tradeDetails.sl = loss;
+        }
         tradeDetails.status = 'MODIFY_SUCCESS';
         renderEditTradeModal();
         // play success sound
@@ -2052,20 +2059,26 @@
     function validateEditTradeModalInputs() {
         const container = $('#edit-trade-modal');
         const tradeDetails = STATE.getTradeDetails();
-        const { order_type, original_trade_volume, trade_type, order_price } = tradeDetails;
+        const { order_type, trade_type, order_price } = tradeDetails;
         const modifyTradeCTA = container.find('#modify-trade');
-        if (order_type === 'market_execution') {
-            container.find('#volume-input').on('change', function (event) {
-                const value = +event.target.value;
-                if (value >= 0.01 && value <= 100) {
-                    modifyTradeCTA.prop('disabled', false);
-                    removeError.call(this);
-                } else {
-                    modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, 'Volume between 0 and 100');
-                }
-            })
 
+        // not adding off() here for market execution because we are adding a change listerner in registerEditTradeModalEvents so adding off() here will remove that function.
+        if (order_type === 'pending_order') {
+            container.find('#volume-input').off();
+        }
+        container.find('#volume-input').on('change', function (event) {
+            const value = +event.target.value;
+            if (value >= 0.01 && value <= 100) {
+                modifyTradeCTA.prop('disabled', false);
+                removeError.call(this);
+            } else {
+                modifyTradeCTA.prop('disabled', true);
+                addError.call(this, 'Volume between 0 and 100');
+            }
+        })
+
+        if (order_type === 'pending_order') {
+            // Profit input validation
             container.find('#profit-input').off().on('change', function (event) {
                 const value = +event.target.value;
                 // for BUY profit amount should be greater than buy price
@@ -2087,7 +2100,7 @@
                     }
                 }
             })
-
+            // Loss input validation
             container.find('#loss-input').off().on('change', function (event) {
                 const value = +event.target.value;
                 if (trade_type === 'BUY') { // for BUY loss amount should me less than buy price
@@ -2108,6 +2121,18 @@
                     }
                 }
             })
+            // Price input validation
+            container.find('#price-input').off().on('change', function (event) {
+                const value = +event.target.value;
+                if (!isNaN(value) && value > 0) {
+                    modifyTradeCTA.prop('disabled', false);
+                    removeError.call(this);
+                } else {
+                    modifyTradeCTA.prop('disabled', true);
+                    addError.call(this, 'Positive number only');
+                }
+            })
+
         }
     }
     function addError(errorMessage) {
