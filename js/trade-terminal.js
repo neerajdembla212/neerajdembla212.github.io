@@ -400,6 +400,16 @@
         } else if (direction === 'desc') {
             arrowClass = 'down-arrow-sort';
         }
+        const activeTabId = getActiveTab().attr('href');
+        let actionHeader = ''
+        switch (activeTabId) {
+            case '#open-trades':
+                actionHeader = '<th class="text-center align-middle">Close</th>'; break;
+            case '#pending-orders':
+                actionHeader = '<th class="text-center align-middle">Cancel</th>'; break;
+            case '#closed-trades':
+                actionHeader = '<th class="text-center align-middle">Status</th>'; break;
+        }
         return `
         <thead>
             <tr>
@@ -419,11 +429,6 @@
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
                     <p class="m-0 p-0 header-text">Open Price <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'open_price' ? 'd-none' : ''}"></i></p>
-                </div>
-            </th>
-            <th class="text-center align-middle pr-3">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="amount">
-                    <p class="m-0 p-0 header-text">Amount <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'amount' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
@@ -451,7 +456,7 @@
                     <p class="m-0 p-0 header-text">Profit <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="text-center align-middle">Close</th>
+            ${actionHeader}
             </tr>
         </thead>
         `
@@ -485,7 +490,6 @@
             trade_type,
             trade_volume,
             open_price,
-            amount,
             sl,
             tp,
             current,
@@ -509,9 +513,6 @@
                 </td>
                 <td class="text-center align-middle">
                     ${open_price}
-                </td>
-                <td class="text-center align-middle font-bold">
-                    S$${formatWithCommas(amount)}
                 </td>
                 <td class="text-center align-middle">
                     ${sl}
@@ -541,7 +542,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
-          <td colspan="13">
+          <td colspan="12">
           <div class="d-flex justify-content-between align-items-center">
             <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
             <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -810,12 +811,10 @@
             trade_type,
             trade_volume,
             open_price,
-            amount,
             sl,
             tp,
-            current,
-            swap,
-            profit } = trade;
+            current
+        } = trade;
         return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
                 <td class="pl-2 align-middle">
                     <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
@@ -835,9 +834,6 @@
                 <td class="text-center align-middle">
                     ${open_price}
                 </td>
-                <td class="text-center align-middle font-bold">
-                    S$${formatWithCommas(amount)}
-                </td>
                 <td class="text-center align-middle">
                     ${sl}
                 </td>
@@ -849,14 +845,14 @@
                         ${current}
                     </span>
                 </td>
-                <td class="text-center align-middle text-dark-green">
-                    S$${swap}
+                <td class="text-center align-middle text-blur-gray">
+                    NA
                 </td>
-                <td class="text-center align-middle font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
-                    S$${profit}
+                <td class="text-center align-middle font-bold pl-1 text-blur-gray">
+                    NA
                 </td>
                 <td class="text-center align-middle">
-                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Close</button>
+                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>
                 </td>
             </tr>
             `
@@ -866,7 +862,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
-          <td colspan="13">
+          <td colspan="12">
           <div class="d-flex justify-content-between align-items-center">
           <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -1091,7 +1087,7 @@
         $(`${activeTabId} .edit-trade-cta`).unbind().click(function (event) {
             const tradeId = $(event.currentTarget).data('id')
             const name = $(event.target).attr('name');
-            if (name !== 'close-trade-cta') {
+            if (name !== 'close-trade-cta' && name !== 'cancel-trade-cta') {
                 // show modal
                 $('#edit-trade-modal').modal();
             }
@@ -1398,12 +1394,35 @@
             container = $('.buy-sell-section .dynamic-elements')
         }
         container.empty().append(getPendingOrderControls())
-        registerPendingOrderEvents();
+        registerPendingOrderEvents(container);
     }
 
-    function getPendingOrderControls() {
+    function getPendingOrderControls(mode) {
         const buySellData = STATE.getBuySellData();
         const { gtc_expiration_date } = buySellData;
+        let priceInput = `
+         <!-- Price input start -->
+        <div class="d-flex justify-content-between mb-3 align-items-center">
+            <p class="mb-0 font-weight-light medium-font">Price</p>
+            <div class="position-relative w-35">
+                <input type="text" class="form-control" id="price-input">
+            </div>
+        </div>
+        <!-- Price input end -->
+        `
+        if (mode === 'edit') {
+            const tradeDetails = STATE.getTradeDetails();
+            const { order_price } = tradeDetails;
+            priceInput = `
+            <!-- Price input start -->
+            <div class="d-flex justify-content-between mb-3 align-items-center">
+                <p class="mb-0 font-weight-light medium-font">Price</p>
+                <div class="position-relative w-35">
+                    <input type="text" class="form-control" id="price-input" value="${order_price}">
+                </div>
+            </div>
+            <!-- Price input end -->`
+        }
         return ` <!-- Order Type input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <p class="mb-0 font-weight-light medium-font">Order Type</p>
@@ -1444,12 +1463,7 @@
         </div>
         <!-- Expiration Date input end -->
         <div class="divider mb-3"></div>
-        <!-- Price input start -->
-        <div class="d-flex justify-content-between mb-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Price</p>
-            <input type="text" class="form-control w-50">
-        </div>
-        <!-- Price input end -->
+        ${priceInput}
         `
     }
 
@@ -1462,46 +1476,47 @@
         }
         container.empty();
     }
-    function registerPendingOrderEvents() {
+    function registerPendingOrderEvents(container) {
         // order type dropdown menu
-        $('#order-type-input-menu.dropdown-menu li').click(event => {
+        container.find('#order-type-input-menu.dropdown-menu li').click(event => {
             const selectedItem = $(event.currentTarget);
             const selectedValue = selectedItem.data('value');
             const selectedItemText = event.currentTarget.innerText.trim();
-            const selectedButton = $('#btn-order-type-input')
+            const selectedButton = container.find('#btn-order-type-input');
             selectedButton.text(selectedItemText);
             selectedButton.attr('data-value', selectedValue);
         })
 
         // expiration dropdown menu
-        $('#expiration-input-menu.dropdown-menu').click(event => {
+        container.find('#expiration-input-menu.dropdown-menu').click(event => {
             const selectedItem = event.target.innerText.trim();
-            const selectedButton = $('#btn-expiration-input')
+            const selectedButton = container.find('#btn-expiration-input');
             selectedButton.text(selectedItem);
+            const expirationDateButton = container.find('#btn-expiration-date-input');
             if (selectedItem.toUpperCase() === 'GOOD TILL CANCELLED (GTC)') {
-                $('#btn-expiration-date-input').attr('disabled', 'true');
+                expirationDateButton.attr('disabled', 'true');
             } else if (selectedItem.toUpperCase() === 'DAY ORDER') {
                 const expirationDate = STATE.getBuySellData().day_order_expiration_date;
-                $('#btn-expiration-date-input').datepicker('setDate', new Date(expirationDate));
+                expirationDateButton.datepicker('setDate', new Date(expirationDate));
             } else {
-                $('#btn-expiration-date-input').removeAttr('disabled');
+                expirationDateButton.removeAttr('disabled');
             }
         })
 
         // expiration date picker
-        $('#expiration-date-input').datepicker({
+        container.find('#expiration-date-input').datepicker({
             todayBtn: "linked",
             keyboardNavigation: true,
             forceParse: false,
             calendarWeeks: true,
             autoclose: true
         }).on('changeDate', function (e) {
-            const displayDateButton = $('#btn-expiration-date-input');
+            const displayDateButton = container.find('#btn-expiration-date-input');
             displayDateButton.text(formatDate(e.date, "DD MM YYYY HH:mm"));
         });
         const buySellData = STATE.getBuySellData();
         const expirationDate = new Date(buySellData.gtc_expiration_date);
-        $('#expiration-date-input').datepicker('setDate', expirationDate);
+        container.find('#expiration-date-input').datepicker('setDate', expirationDate);
     }
     function registerBuySellEvents() {
         // switchery radio button
@@ -1557,6 +1572,7 @@
                 $('.buy-sell-section .buy-sell-footer #place-order').removeClass('d-none');
             }
             dropdownMenu.data('value', selectedValue)
+            validateBuySellInputs($('.buy-sell-section'));
             buySellSectionAdjustHeight();
         })
         validateBuySellInputs($('.buy-sell-section'));
@@ -1692,6 +1708,20 @@
             return false
         }, 'Number only')
 
+        // validate price input
+        validateTextInput(container.find('#price-input'), function (val) {
+            if (isNaN(val)) {
+                return false;
+            }
+            if (val === '') {
+                return true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                return true
+            }
+            return false
+        }, 'Number only')
     }
     // render buy sell section end
 
@@ -1724,15 +1754,12 @@
         callAjaxMethod({
             url: `https://copypip.free.beeceptor.com/get-pending-trade?id=${tradeId}`,
             successCallback: (data) => {
-                STATE.setTradeDetails(data.data);
-                renderEditTradeModal();
-                registerEditTradeModalEvents();
-                validateEditTradeModalInputs()
-                if (name === 'close-trade-cta') {
+                if (name === 'cancel-trade-cta') {
                     if (data.data.one_click_trading === false) {
+                        data.data.action = 'CANCEL';
                         $('#edit-trade-modal').modal();
                     } else if (data.data.one_click_trading === true) {
-                        // close the order via api and refresh the open order section
+                        // cancel the order via api and refresh the pending order section
                         // TODO : toast message for closed order success
                         // play success sound
                         var audioElement = document.querySelector('#success-sound');
@@ -1740,6 +1767,13 @@
                         onTabChange('#pending-trades');
                     }
                 }
+                STATE.setTradeDetails(data.data);
+                renderEditTradeModal();
+                registerEditTradeModalEvents();
+                if (data.data.order_type === 'pending_order') {
+                    registerPendingOrderEvents($('#edit-trade-modal'));
+                }
+                validateEditTradeModalInputs()
             },
         });
     }
@@ -1771,7 +1805,7 @@
             order_account_type,
             tp,
             sl,
-            order_price, // order price represents the price at which trade was initiated. in case of pending order this can be empty,
+            order_price // order price represents the price at which trade was initiated. in case of pending order this can be empty,
         } = tradeDetails;
 
         let tradeVolumeInput = '';
@@ -1783,13 +1817,19 @@
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`;
             takeProfitInput = `<input type="text" class="form-control" id="profit-input" disabled value="${tp}">`;
             stoplLossInput = `<input type="text" class="form-control" id="loss-input" disabled value="${sl}">`;
-            priceInput = `<input type="text" class="form-control w-35" id="price-input" disabled value="${order_price}">`
+            priceInput = `
+            <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
+                <p class="mb-0 font-weight-light medium-font">Price</p>
+                <input type="text" class="form-control w-35" id="price-input" disabled value="${order_price}">
+            </div>
+            <!-- Price input end -->
+            `
 
         } else if (order_type === 'pending_order') {
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`
             takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}">`;
             stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}">`;
-            priceInput = `<input type="text" class="form-control w-35" id="price-input" value="${order_price}">`
+            priceInput = ``;
         }
 
         return `
@@ -1831,12 +1871,11 @@
             </div>
             <!-- Type input end -->
             <div class="divider mb-3"></div>
-            <div class="dynamic-elements mx-3"></div>
-            <!-- Price input start -->
-            <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
-                <p class="mb-0 font-weight-light medium-font">Price</p>
-                ${priceInput}
+            <div class="dynamic-elements mx-3">
+            ${order_type === 'pending_order' ? getPendingOrderControls('edit') : ''}
             </div>
+            <!-- Price input start -->
+            ${priceInput}
             <!-- Price input end -->
             ${getEditTradeModalStatusHTML()}
             <!-- Profit loss input start -->
@@ -1892,6 +1931,13 @@
                 </div>
                 <p class="mb-3 mx-3 super-extra-large-font font-bold">Partial Closed ${trade_volume} at ${to_currency_rate}</p>
                 `;
+            case 'CANCELLED':
+                return `
+            <div class="mb-2 d-flex mx-3">
+                <p class="mb-0">#${order_number}</p>
+            </div>
+            <p class="mb-3 mx-3 super-extra-large-font font-bold text-blur-gray">Cancelled</p>
+            `
             default:
                 return `
                 <!-- Profit loss display start -->
@@ -1916,7 +1962,8 @@
     function getEditTradeModalFooter() {
         const tradeDetails = STATE.getTradeDetails();
         const {
-            status
+            status,
+            action // this parameter has been set on UI side to determine if modal is opened by clicking on cancel button or table row. 
         } = tradeDetails;
 
         if (status === 'PARTIAL_CLOSED' || status === 'CLOSED') {
@@ -1928,6 +1975,22 @@
             </div>
             `;
         }
+
+        if (action === 'CANCEL') {
+            return `
+            <!-- Modify CTA start -->
+            <div class="d-flex justify-content-between mb-3 mx-3">
+            <button type="button" id="cancel-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
+                Cancel Order
+            </button>
+            <button type="button" id="modify-trade" disabled class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
+                Modify
+            </button>
+            </div>
+            <!-- Modify CTA end -->
+            `
+        }
+
         return `
         <!-- Modify CTA start -->
         <div class="d-flex justify-content-between mb-3 mx-3">
@@ -1968,6 +2031,8 @@
         container.find('#close-order').unbind().click(handleClickCloseOrder);
         // on click partial close order
         container.find('#partial-close-order').unbind().click(handleClickPartialCloseOrder);
+        // on click cancel order
+        container.find('#cancel-order').unbind().click(handleClickCancelOrder);
     }
 
     function handleClickModifyTrade() {
@@ -2039,6 +2104,34 @@
         tradeDetails.tp = profit;
         tradeDetails.sl = loss;
         tradeDetails.status = 'PARTIAL_CLOSED';
+        renderEditTradeModal();
+        // play success sound
+        var audioElement = document.querySelector('#success-sound');
+        audioElement.play();
+        // render buy sell data to new state after 0.5 seconds
+        setTimeout(() => {
+            STATE.setTradeDetails({});
+            $('#edit-trade-modal #close-modal').click();
+        }, 500)
+        // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
+        if (tradeDetails.order_type === 'market_execution') {
+            onTabChange('#open-trades');
+        } else if (tradeDetails.order_type === 'pending_orders') {
+            onTabChange('#pending-orders');
+        }
+    }
+
+    function handleClickCancelOrder() {
+        const container = $('#edit-trade-modal');
+        const tradeDetails = STATE.getTradeDetails();
+        const volume = container.find('#volume-input').val();
+        const profit = container.find('#profit-input').val();
+        const loss = container.find('#loss-input').val();
+        // TODO : call api to update trade
+        tradeDetails.trade_volume = volume;
+        tradeDetails.tp = profit;
+        tradeDetails.sl = loss;
+        tradeDetails.status = 'CANCELLED';
         renderEditTradeModal();
         // play success sound
         var audioElement = document.querySelector('#success-sound');
@@ -2129,7 +2222,7 @@
                     removeError.call(this);
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, 'Positive number only');
+                    addError.call(this, 'Invalid price');
                 }
             })
 
