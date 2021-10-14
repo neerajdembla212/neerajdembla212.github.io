@@ -982,7 +982,7 @@
             rowsHTML.push(getClosedTradesTableRow(trade));
         })
         return `
-              <tbody data-toggle="modal" data-target="#edit-trade-modal">
+              <tbody>
                 ${rowsHTML.join('')}
               </tbody>
               `
@@ -1006,43 +1006,65 @@
             tp,
             current,
             swap,
-            profit } = trade;
-        return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
-                <td class="w-18">
-                    <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
-                    <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
-                </td>
-                <td class="text-center align-middle w-9 pl-2" align="center">
-                    <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
-                </td>
-                <td class="text-center align-middle text-darker-gray font-weight-bolder w-9 pl-2">
-                    ${trade_type}
-                </td>
-                <td class="text-center align-middle w-9 pl-2">
-                    ${trade_volume}
-                </td>
-                <td class="text-center align-middle w-17 pl-2">
-                    ${open_price}
-                </td>
-                <td class="text-center align-middle font-bold w-9 pl-3">
-                    S$${formatWithCommas(amount)}
-                </td>
-                <td class="text-center align-middle w-9 pl-3">
-                    ${sl}
-                </td>
-                <td class="text-center align-middle w-9">
-                    ${tp}
-                </td>
-                <td class="text-center align-middle w-9">
+            profit,
+            terminate_time, // this value is only available for closed trades, it gives time stamp of when was the trade closed or cancelled
+            status // this will have value either CLOSED or CANCELLED
+        } = trade;
+
+        let slColumn = `<td class="text-center align-middle">${sl}</td>`;
+        let tpColumn = `<td class="text-center align-middle">${tp}</td>`;
+        let currentColumn = `
+                <td class="text-center align-middle">
                     <span class="highlight-amount">
                         ${current}
                     </span>
+                </td>`;
+        let swapColumn = `
+            <td class="text-center align-middle text-dark-green">
+                ${`S$${swap}`}
+            </td>
+        `;
+        let profitColumn = `
+            <td class="text-center align-middle font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
+                ${`S$${profit}`}
+            </td>
+        `;
+        if (status === 'CANCELLED') {
+            slColumn = `<td class="text-center align-middle text-darker-gray">NA</td>`;
+            tpColumn = `<td class="text-center align-middle text-darker-gray">NA</td>`
+            currentColumn = `<td class="text-center align-middle text-darker-gray">NA</td>`
+            swapColumn = `<td class="text-center align-middle text-darker-gray">NA</td>`
+            profitColumn = `<td class="text-center align-middle text-darker-gray">NA</td>`
+        }
+        return `<tr id="table-trade-${id}" class="edit-trade-cta cursor-pointer" data-id="${id}">
+                <td class="pl-2 align-middle">
+                    <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
                 </td>
-                <td class="text-center align-middle text-dark-green w-9">
-                    S$${swap}
+                <td class="text-center align-middle d-flex">
+                    <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
-                <td class="text-center align-middle w-9 font-bold pl-1 ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
-                    S$${profit}
+                <td class="text-center align-middle text-blue font-weight-bolder pl-2">
+                    ${trade_type}
+                </td>
+                <td class="text-center align-middle pl-2">
+                    <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
+                </td>
+                <td class="text-center align-middle">
+                    ${trade_volume}
+                </td>
+                <td class="text-center align-middle">
+                    ${open_price}
+                </td>
+                ${slColumn}
+                ${tpColumn}
+                ${currentColumn}
+                ${swapColumn}
+                ${profitColumn}
+                <td class="align-middle pl-2">
+                    <div>
+                        <p class="m-0 font-weight-bold ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
+                        <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
+                    </div>
                 </td>
             </tr>
             `
@@ -1052,7 +1074,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
             <tr>
-              <td colspan="11">
+              <td colspan="12">
               <div class="d-flex justify-content-between align-items-center">
               <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
               <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -1397,7 +1419,7 @@
         registerPendingOrderEvents(container);
     }
 
-    function getPendingOrderControls(mode) {
+    function getPendingOrderControls(mode, status) {
         const buySellData = STATE.getBuySellData();
         const { gtc_expiration_date } = buySellData;
         let priceInput = `
@@ -1410,6 +1432,34 @@
         </div>
         <!-- Price input end -->
         `
+        if(status === 'CLOSED' || status === 'CANCELLED') {
+            const tradeDetails = STATE.getTradeDetails();
+            const { type, expiration, gtc_expiration_date } = tradeDetails;
+            return `
+            <!-- Order Type input start -->
+            <div class="d-flex justify-content-between mb-3 align-items-center">
+                <p class="mb-0 font-weight-light medium-font">Order Type</p>
+                <button data-toggle="dropdown" class="btn font-bold">${type}</button>
+            </div>
+            <!-- Order Type input end -->
+            <div class="divider mb-3"></div>
+            <!-- Expiration input start -->
+            <div class="d-flex justify-content-between mb-3 align-items-center">
+                <p class="mb-0 font-weight-light medium-font">Expiration</p>
+                <button class="btn font-bold">${expiration}</button>
+            </div>
+            <!-- Expiration input end -->
+            <div class="divider mb-3"></div>
+            <!-- Expiration Date input start -->
+            <div class="d-flex justify-content-between mb-3 align-items-center">
+                <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
+                <button class="btn font-bold">${formatDate(new Date(gtc_expiration_date), 'DD MMM YYYY HH:mm')}</button>
+            </div>
+            <!-- Expiration Date input end -->
+            <div class="divider mb-3"></div>
+            `
+        }
+
         if (mode === 'edit') {
             const tradeDetails = STATE.getTradeDetails();
             const { order_price } = tradeDetails;
@@ -1467,15 +1517,6 @@
         `
     }
 
-    function renderMarketExecutionFormControls(mode) {
-        let container;
-        if (mode === 'edit') {
-            container = $('#edit-trade-modal .dynamic-elements')
-        } else {
-            container = $('.buy-sell-section .dynamic-elements')
-        }
-        container.empty();
-    }
     function registerPendingOrderEvents(container) {
         // order type dropdown menu
         container.find('#order-type-input-menu.dropdown-menu li').click(event => {
@@ -1756,7 +1797,6 @@
             successCallback: (data) => {
                 if (name === 'cancel-trade-cta') {
                     if (data.data.one_click_trading === false) {
-                        data.data.action = 'CANCEL';
                         $('#edit-trade-modal').modal();
                     } else if (data.data.one_click_trading === true) {
                         // cancel the order via api and refresh the pending order section
@@ -1797,7 +1837,8 @@
 
     function getEditTradeModalHTML() {
         const tradeDetails = STATE.getTradeDetails();
-        const { order_number,
+        const {
+            order_number,
             trade_time,
             order_type,
             trade_volume,
@@ -1805,19 +1846,21 @@
             order_account_type,
             tp,
             sl,
-            order_price // order price represents the price at which trade was initiated. in case of pending order this can be empty,
+            order_price, // order price represents the price at which trade was initiated. in case of pending order this can be empty,
+            status
         } = tradeDetails;
 
         let tradeVolumeInput = '';
         let takeProfitInput = '';
         let stoplLossInput = '';
         let priceInput = '';
-
+        const isDisabled = status === 'CLOSED' || status === 'CANCELLED' ? true : false;
         if (order_type === 'market_execution') {
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`;
             takeProfitInput = `<input type="text" class="form-control" id="profit-input" disabled value="${tp}">`;
             stoplLossInput = `<input type="text" class="form-control" id="loss-input" disabled value="${sl}">`;
             priceInput = `
+            <!-- Price input start -->
             <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Price</p>
                 <input type="text" class="form-control w-35" id="price-input" disabled value="${order_price}">
@@ -1826,9 +1869,9 @@
             `
 
         } else if (order_type === 'pending_order') {
-            tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`
-            takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}">`;
-            stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}">`;
+            tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}"} ${isDisabled ? 'disabled': ''}>`
+            takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}" ${isDisabled ? 'disabled': ''}>`;
+            stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}" ${isDisabled ? 'disabled': ''}>`;
             priceInput = ``;
         }
 
@@ -1872,7 +1915,7 @@
             <!-- Type input end -->
             <div class="divider mb-3"></div>
             <div class="dynamic-elements mx-3">
-            ${order_type === 'pending_order' ? getPendingOrderControls('edit') : ''}
+                ${order_type === 'pending_order' ? getPendingOrderControls('edit', status) : ''}
             </div>
             <!-- Price input start -->
             ${priceInput}
@@ -1963,20 +2006,20 @@
         const tradeDetails = STATE.getTradeDetails();
         const {
             status,
-            action // this parameter has been set on UI side to determine if modal is opened by clicking on cancel button or table row. 
+            order_type
         } = tradeDetails;
 
         if (status === 'PARTIAL_CLOSED' || status === 'CLOSED') {
             return `
             <div class="px-3 mb-3">
-                <button type="button" id="close-window" class="btn btn-w-m btn-default btn-block btn-text-medium-blue font-weight-bolder">
+                <button type="button" id="close-window" class="close-window-cta btn btn-w-m btn-default btn-block btn-text-medium-blue font-weight-bolder">
                     Close Window
                 </button>
             </div>
             `;
         }
 
-        if (action === 'CANCEL') {
+        if (order_type === 'pending_order') {
             return `
             <!-- Modify CTA start -->
             <div class="d-flex justify-content-between mb-3 mx-3">
@@ -2033,6 +2076,10 @@
         container.find('#partial-close-order').unbind().click(handleClickPartialCloseOrder);
         // on click cancel order
         container.find('#cancel-order').unbind().click(handleClickCancelOrder);
+        // on click close window
+        container.find('#close-window').unbind().click(function () {
+            container.modal('hide');
+        })
     }
 
     function handleClickModifyTrade() {

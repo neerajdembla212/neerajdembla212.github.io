@@ -5379,6 +5379,9 @@ table.table-mail tr td {
 .text-error-red {
   color: #DE2F1B;
 }
+.text-pink {
+  color: #FF77C0;
+}
 .simple_tag {
   background-color: #f3f3f4;
   border: 1px solid #e7eaec;
