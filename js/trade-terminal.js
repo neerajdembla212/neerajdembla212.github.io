@@ -1,5 +1,4 @@
 (() => {
-    let initialBuySellData = {};
     class State {
         openTrades = [];
         pendingTrades = [];
@@ -25,6 +24,7 @@
             sortKey: '',
             direction: '' // asc or desc
         }
+        isBuySellFormValid = false;
         getOpenTrades() {
             return this.openTrades;
         }
@@ -147,6 +147,13 @@
                 return
             }
             this.sortData = data;
+        }
+
+        setIsBuySellFormValid(data) {
+            if (typeof data !== 'boolean') {
+                return
+            }
+            this.isBuySellFormValid = data;
         }
     }
 
@@ -1285,7 +1292,7 @@
             <div class="position-relative w-35">
                 ${profitInputHTML}
            </div>
-            <span class="font-bold medium-font text-dark-black">price</span>
+            <span class="font-bold medium-font text-dark-black">Price</span>
             <div class="position-relative w-35">
                 ${lossInputHTML}
             </div>
@@ -1432,7 +1439,7 @@
         </div>
         <!-- Price input end -->
         `
-        if(status === 'CLOSED' || status === 'CANCELLED') {
+        if (status === 'CLOSED' || status === 'CANCELLED') {
             const tradeDetails = STATE.getTradeDetails();
             const { type, expiration, gtc_expiration_date } = tradeDetails;
             return `
@@ -1707,61 +1714,68 @@
     function validateBuySellInputs(container) {
         // validate volume input 
         validateTextInput(container.find('#volume-input'), function (val) {
+            let isValid = false;
             if (isNaN(val)) {
-                return false;
+                isValid = false;
+            } else if (val === '') {
+                isValid = false
+            } else {
+                const numVal = Number(val);
+                if (numVal >= 0.01 && numVal <= 100) {
+                    isValid = true;
+                }
             }
-            if (val === '') {
-                return true;
-            }
-            const numVal = Number(val);
-            if (numVal >= 0.01 && numVal <= 100) {
-                return true;
-            }
-            return false
+            STATE.setIsBuySellFormValid(isValid);
+            return isValid;
         })
         // validate take profit input
         validateTextInput(container.find('#profit-input'), function (val) {
+            let isValid = false;
             if (isNaN(val)) {
-                return false;
+                isValid = false;
+            } else if (val === '') {
+                isValid = false;
+            } else {
+                const numVal = Number(val);
+                if (numVal >= 0) {
+                    isValid = true;
+                }
             }
-            if (val === '') {
-                return true;
-            }
-            const numVal = Number(val);
-            if (numVal >= 0) {
-                return true
-            }
-            return false
+            STATE.setIsBuySellFormValid(isValid);
+            return isValid;
         }, 'Number only')
 
         // validate stop loss input
         validateTextInput(container.find('#loss-input'), function (val) {
+            let isValid = false;
             if (isNaN(val)) {
-                return false;
+                isValid = false;
+            } else if (val === '') {
+                isValid = false;
+            } else {
+                const numVal = Number(val);
+                if (numVal >= 0) {
+                    isValid = true;
+                }
             }
-            if (val === '') {
-                return true;
-            }
-            const numVal = Number(val);
-            if (numVal >= 0) {
-                return true
-            }
-            return false
+            return isValid;
         }, 'Number only')
 
         // validate price input
         validateTextInput(container.find('#price-input'), function (val) {
+            let isValid = false;
             if (isNaN(val)) {
-                return false;
+                isValid = false;
             }
             if (val === '') {
-                return true;
+                isValid = false;
+            } else {
+                const numVal = Number(val);
+                if (numVal >= 0) {
+                    isValid = true;
+                }
             }
-            const numVal = Number(val);
-            if (numVal >= 0) {
-                return true
-            }
-            return false
+            return isValid;
         }, 'Number only')
     }
     // render buy sell section end
@@ -1857,8 +1871,8 @@
         const isDisabled = status === 'CLOSED' || status === 'CANCELLED' ? true : false;
         if (order_type === 'market_execution') {
             tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}">`;
-            takeProfitInput = `<input type="text" class="form-control" id="profit-input" disabled value="${tp}">`;
-            stoplLossInput = `<input type="text" class="form-control" id="loss-input" disabled value="${sl}">`;
+            takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}">`;
+            stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}">`;
             priceInput = `
             <!-- Price input start -->
             <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
@@ -1869,9 +1883,9 @@
             `
 
         } else if (order_type === 'pending_order') {
-            tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}"} ${isDisabled ? 'disabled': ''}>`
-            takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}" ${isDisabled ? 'disabled': ''}>`;
-            stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}" ${isDisabled ? 'disabled': ''}>`;
+            tradeVolumeInput = `<input type="text" class="form-control w-100" id="volume-input" value="${trade_volume}"} ${isDisabled ? 'disabled' : ''}>`
+            takeProfitInput = `<input type="text" class="form-control" id="profit-input" value="${tp}" ${isDisabled ? 'disabled' : ''}>`;
+            stoplLossInput = `<input type="text" class="form-control" id="loss-input" value="${sl}" ${isDisabled ? 'disabled' : ''}>`;
             priceInput = ``;
         }
 
@@ -2199,7 +2213,7 @@
     function validateEditTradeModalInputs() {
         const container = $('#edit-trade-modal');
         const tradeDetails = STATE.getTradeDetails();
-        const { order_type, trade_type, order_price } = tradeDetails;
+        const { order_type, trade_type, from_currency_rate } = tradeDetails;
         const modifyTradeCTA = container.find('#modify-trade');
 
         // not adding off() here for market execution because we are adding a change listerner in registerEditTradeModalEvents so adding off() here will remove that function.
@@ -2209,71 +2223,68 @@
         container.find('#volume-input').on('change', function (event) {
             const value = +event.target.value;
             if (value >= 0.01 && value <= 100) {
-                modifyTradeCTA.prop('disabled', false);
+                // modifyTradeCTA.prop('disabled', false);
                 removeError.call(this);
             } else {
-                modifyTradeCTA.prop('disabled', true);
+                // modifyTradeCTA.prop('disabled', true);
                 addError.call(this, 'Volume between 0 and 100');
             }
         })
 
-        if (order_type === 'pending_order') {
-            // Profit input validation
-            container.find('#profit-input').off().on('change', function (event) {
-                const value = +event.target.value;
-                // for BUY profit amount should be greater than buy price
-                if (trade_type === 'BUY') {
-                    if (value >= 0 && value > order_price) {
-                        modifyTradeCTA.prop('disabled', false);
-                        removeError.call(this);
-                    } else {
-                        modifyTradeCTA.prop('disabled', true);
-                        addError.call(this, `Profit less than ${order_price}`);
-                    }
-                } else if (trade_type === 'SELL') { // for SELL profit amount should be less than sell price
-                    if (value >= 0 && value < order_price) {
-                        modifyTradeCTA.prop('disabled', false);
-                        removeError.call(this);
-                    } else {
-                        modifyTradeCTA.prop('disabled', true);
-                        addError.call(this, `Profit more than ${order_price}`);
-                    }
-                }
-            })
-            // Loss input validation
-            container.find('#loss-input').off().on('change', function (event) {
-                const value = +event.target.value;
-                if (trade_type === 'BUY') { // for BUY loss amount should me less than buy price
-                    if (value > 0 && value < order_price) {
-                        modifyTradeCTA.prop('disabled', false);
-                        removeError.call(this);
-                    } else {
-                        modifyTradeCTA.prop('disabled', true);
-                        addError.call(this, `loss less than ${order_price}`);
-                    }
-                } else if (trade_type === 'SELL') { // for SELL loss amount should be greater than sell price
-                    if (value >= 0 && value > order_price) {
-                        modifyTradeCTA.prop('disabled', false);
-                        removeError.call(this);
-                    } else {
-                        modifyTradeCTA.prop('disabled', true);
-                        addError.call(this, `Loss less than ${order_price}`);
-                    }
-                }
-            })
-            // Price input validation
-            container.find('#price-input').off().on('change', function (event) {
-                const value = +event.target.value;
-                if (!isNaN(value) && value > 0) {
+        // Profit input validation
+        container.find('#profit-input').off().on('change', function (event) {
+            const value = +event.target.value;
+            // for BUY profit amount should be greater than buy price
+            if (trade_type === 'BUY') {
+                if (value >= 0 && value > from_currency_rate) {
                     modifyTradeCTA.prop('disabled', false);
                     removeError.call(this);
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, 'Invalid price');
+                    addError.call(this, `Profit less than ${from_currency_rate}`);
                 }
-            })
-
-        }
+            } else if (trade_type === 'SELL') { // for SELL profit amount should be less than sell price
+                if (value >= 0 && value < from_currency_rate) {
+                    modifyTradeCTA.prop('disabled', false);
+                    removeError.call(this);
+                } else {
+                    modifyTradeCTA.prop('disabled', true);
+                    addError.call(this, `Profit more than ${from_currency_rate}`);
+                }
+            }
+        })
+        // Loss input validation
+        container.find('#loss-input').off().on('change', function (event) {
+            const value = +event.target.value;
+            if (trade_type === 'BUY') { // for BUY loss amount should me less than buy price
+                if (value > 0 && value < from_currency_rate) {
+                    modifyTradeCTA.prop('disabled', false);
+                    removeError.call(this);
+                } else {
+                    modifyTradeCTA.prop('disabled', true);
+                    addError.call(this, `loss less than ${from_currency_rate}`);
+                }
+            } else if (trade_type === 'SELL') { // for SELL loss amount should be greater than sell price
+                if (value >= 0 && value > from_currency_rate) {
+                    modifyTradeCTA.prop('disabled', false);
+                    removeError.call(this);
+                } else {
+                    modifyTradeCTA.prop('disabled', true);
+                    addError.call(this, `Loss less than ${from_currency_rate}`);
+                }
+            }
+        })
+        // Price input validation
+        container.find('#price-input').off().on('change', function (event) {
+            const value = +event.target.value;
+            if (!isNaN(value) && value > 0) {
+                modifyTradeCTA.prop('disabled', false);
+                removeError.call(this);
+            } else {
+                modifyTradeCTA.prop('disabled', true);
+                addError.call(this, 'Invalid price');
+            }
+        })
     }
     function addError(errorMessage) {
         $(this).addClass('error');
