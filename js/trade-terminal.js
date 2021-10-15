@@ -1739,6 +1739,8 @@
                 const numVal = Number(val);
                 if (numVal >= 0) {
                     isValid = true;
+                    const allowedDecimalCount = STATE.getBuySellData().decimalCount;
+                    fixDecimals(container.find('#profit-input'), numVal, allowedDecimalCount);
                 }
             }
             STATE.setIsBuySellFormValid(isValid);
@@ -1756,6 +1758,8 @@
                 const numVal = Number(val);
                 if (numVal >= 0) {
                     isValid = true;
+                    const allowedDecimalCount = STATE.getBuySellData().decimalCount;
+                    fixDecimals(container.find('#loss-input'), numVal, allowedDecimalCount);
                 }
             }
             return isValid;
