@@ -137,6 +137,8 @@ function initData() {
     successCallback: (data) => {
       localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
       renderAccountSwitcher(data.data.userAccounts);
+      const decimalCount = countDecimals(data.data.tradeData.from_currency_rate);
+      data.data.tradeData.decimalCount = decimalCount;
       localStorage.setItem('tradeData', JSON.stringify(data.data.tradeData))
       registerBuySellModalEvents(data.data.tradeData);
     }
@@ -1137,4 +1139,27 @@ function validatePercentage(val) {
     return true
   }
   return false
+}
+
+function countDecimals(num) {
+  if (isNaN(num)) {
+    return 0;
+  }
+  if (Math.floor(num) === num) return 0;
+  return num.toString().split(".")[1].length || 0;
+}
+
+function fixDecimals(element, numVal, allowedDecimalCount) {
+  const enteredDecimalCount = countDecimals(numVal);
+  if (enteredDecimalCount < allowedDecimalCount) {
+    const diff = allowedDecimalCount - enteredDecimalCount;
+    let numValString = numVal.toString();
+    for (let i = 0; i < diff; i++) {
+      numValString += '0';
+    }
+    element.val(numValString)
+  } else if (enteredDecimalCount > allowedDecimalCount) {
+    const numValString = numVal.toFixed(allowedDecimalCount);
+    element.val(numValString)
+  }
 }
