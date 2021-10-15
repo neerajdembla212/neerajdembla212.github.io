@@ -1074,7 +1074,7 @@ function tableSortEvents(container, onTableSort = () => { }) {
 
 // validate text inputs
 function validateTextInput(target, test = () => { }, errorMessage = 'Invalid input') {
-  $(target).off().on('change', function (event) {
+  $(target).off().on('blur', function (event) {
     if (!test(event.target.value)) {
       // show error
       $(this).addClass('error');
@@ -1154,10 +1154,14 @@ function fixDecimals(element, numVal, allowedDecimalCount) {
   if (enteredDecimalCount < allowedDecimalCount) {
     const diff = allowedDecimalCount - enteredDecimalCount;
     let numValString = numVal.toString();
-    for (let i = 0; i < diff; i++) {
-      numValString += '0';
+    [integral, decimal] = numValString.split('.');
+    if(!decimal) {
+      decimal = '';
     }
-    element.val(numValString)
+    for (let i = 0; i < diff; i++) {
+      decimal += '0';
+    }
+    element.val(`${integral}.${decimal}`)
   } else if (enteredDecimalCount > allowedDecimalCount) {
     const numValString = numVal.toFixed(allowedDecimalCount);
     element.val(numValString)

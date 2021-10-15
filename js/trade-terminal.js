@@ -155,6 +155,9 @@
             }
             this.isBuySellFormValid = data;
         }
+        getIsBuySellFormValid() {
+            return this.isBuySellFormValid;
+        }
     }
 
     // Global variables for this file
@@ -1627,6 +1630,13 @@
     }
 
     function handleClickBuySellTrade(status) {
+        const container = $('.buy-sell-section');
+        container.find('#volume-input').blur();
+        container.find('#profit-input').blur();
+        container.find('#loss-input').blur();
+        if (!STATE.getIsBuySellFormValid()) {
+            return;
+        }
         const buySellData = STATE.getBuySellData();
         buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
         buySellData.order_type = status;
@@ -1762,6 +1772,7 @@
                     fixDecimals(container.find('#loss-input'), numVal, allowedDecimalCount);
                 }
             }
+            STATE.setIsBuySellFormValid(isValid);
             return isValid;
         }, 'Number only')
 
