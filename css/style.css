@@ -13553,6 +13553,10 @@ select[name="rows-per-page"] {
   border-left: 4px solid transparent;
 }
 
+.dropdown-toggle:disabled::after {
+  display: none;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
