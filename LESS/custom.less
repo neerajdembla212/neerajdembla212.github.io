@@ -1260,6 +1260,28 @@ select[name="rows-per-page"] {
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
+
 .dropdown-toggle:disabled::after {
   display: none;
+}
+
+.toast {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: @black;
+  width: 400px;
+  right: 20px;
+
+  .toast-icon {
+    display: none;
+  }
+}
+
+.toast.success {
+  color: @toast-green;
+
+  .toast-icon.success {
+    display: block;
+  }
 }
