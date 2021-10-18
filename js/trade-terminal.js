@@ -253,6 +253,12 @@
             theme: 'bootstrap4',
         });
 
+        // init toast notification
+        $('.toast').toast({
+            delay: 2000,
+            animation: true
+        })
+
         // watchlist search 
         $('#search-currency').change(function (event) {
             console.log(event)
@@ -1687,16 +1693,21 @@
     }
 
     function handleBuySellTradeSuccess(buySellData) {
+        let toastMessage = '';
         if (buySellData.type === 'market_execution') {
             buySellData.status = 'TRADE_OPEN_SUCCESS';
+            toastMessage = 'Trade open success';
         } else if (buySellData.type === 'pending_order') {
             buySellData.status = 'TRADE_ORDER_PLACED';
+            toastMessage = 'Trade order placed';
         }
         STATE.setBuySellData(buySellData);
         renderBuySellData();
         // play success sound
         var audioElement = document.querySelector('#success-sound');
         audioElement.play();
+        // show toast message
+        renderSuccessToast(toastMessage);
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             resetBuySellData();
@@ -1825,6 +1836,8 @@
                         // play success sound
                         var audioElement = document.querySelector('#success-sound');
                         audioElement.play();
+                        // show success toast
+                        renderSuccessToast('Trade closed');
                         onTabChange('#open-trades');
                     }
                 }
@@ -1845,6 +1858,8 @@
                         // play success sound
                         var audioElement = document.querySelector('#success-sound');
                         audioElement.play();
+                        // show toast success
+                        renderSuccessToast('Trade cancelled');
                         onTabChange('#pending-trades');
                     }
                 }
@@ -2146,6 +2161,8 @@
         // play success sound
         var audioElement = document.querySelector('#success-sound');
         audioElement.play();
+        // show success toast
+        renderSuccessToast('Trade modified');
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             STATE.setTradeDetails({});
@@ -2186,6 +2203,8 @@
             STATE.setTradeDetails({});
             STATE.setIsBuySellFormValid(false); (false);
             $('#edit-trade-modal').modal('hide');
+            // render toast success
+            renderSuccessToast('Trade closed');
         }, 500)
         // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
         if (tradeDetails.order_type === 'market_execution') {
@@ -2251,10 +2270,13 @@
         // play success sound
         var audioElement = document.querySelector('#success-sound');
         audioElement.play();
+
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             STATE.setIsBuySellFormValid(false); (false);
             $('#edit-trade-modal').modal('hide');
+            // show success toast
+            renderSuccessToast('Trade cancelled');
         }, 500)
         // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
         if (tradeDetails.order_type === 'market_execution') {
@@ -2624,5 +2646,11 @@
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
     }
-
+    // render trade start
+    function renderSuccessToast(message) {
+        const toastBox = $('.toast');
+        toastBox.addClass('success').find('.toast-body').text(message);
+        toastBox.toast('show');
+    }
+    // render trade end
 })()
