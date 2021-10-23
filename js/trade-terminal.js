@@ -1246,7 +1246,8 @@
             type,
             profit,
             loss,
-            volume } = data;
+            volume,
+            one_click_trading } = data;
 
         const selelctedAccount = STATE.getSelectedAccount();
         const typeValue = type === 'pending_order' ? 'Pending Order' : 'Market Execution';
@@ -1324,7 +1325,7 @@
         <!-- one Click trading start-->
         <div class="d-flex justify-content-between align-items-center">
             <p class="mb-0 text-gray font-weight-light">One click trading</p>
-            <input type="checkbox" class="js-switch" checked />
+            <input id="one-click-trading-input" type="checkbox" class="js-switch" ${one_click_trading ? 'checked' : ''} />
         </div>
         <!-- one Click trading end-->`
     }
@@ -1587,6 +1588,7 @@
         container.find('#expiration-date-input').datepicker('setDate', expirationDate);
     }
     function registerBuySellEvents() {
+        const container = $('.buy-sell-section');
         // switchery radio button
         var elem = document.querySelector('.buy-sell-section .js-switch');
         new Switchery(elem, {
@@ -1597,13 +1599,13 @@
         });
 
         // change status on click of buy CTA
-        $('.buy-sell-section #buy-trade').unbind().click(() => handleClickBuySellTrade('BUY'));
+        container.find('#buy-trade').unbind().click(() => handleClickBuySellTrade('BUY'));
 
         // change status on click of sell CTA
-        $('.buy-sell-section #sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
+        container.find('#sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
 
-        $('.buy-sell-section #place-order').unbind().click(() => {
-            const orderType = $('.buy-sell-section #btn-order-type-input').data('value');
+        container.find('#place-order').unbind().click(() => {
+            const orderType = container.find('#btn-order-type-input').data('value');
             if (orderType === 'buy_limit' || orderType === 'buy_stop') {
                 handleClickBuySellTrade('BUY');
             } else if (orderType === 'sell_limit' || orderType === 'sell_stop') {
@@ -1612,36 +1614,44 @@
         });
 
         // This CTA will only be available while editing pending orders
-        $('.buy-sell-section #cancel-trade').unbind().click(function () {
+        container.find('#cancel-trade').unbind().click(function () {
             const buySellData = STATE.getBuySellData();
             buySellData.status = 'CANCELLED';
             STATE.setBuySellData(buySellData);
             renderBuySellData();
         })
         // type input dropdown
-        $('.buy-sell-section #type-input-menu.dropdown-menu li').click(event => {
+        container.find('#type-input-menu.dropdown-menu li').click(event => {
             const selectedValue = $(event.currentTarget).data('value');
-            const selectedButton = $('.buy-sell-section #btn-type-input');
-            const dropdownMenu = $('.buy-sell-section #type-input-menu.dropdown-menu');
+            const selectedButton = container.find('#btn-type-input');
+            const dropdownMenu = container.find('#type-input-menu.dropdown-menu');
             if (selectedValue === 'market_execution') {
                 selectedButton.text('Market Execution');
-                $('.buy-sell-section .dynamic-elements').addClass('d-none');
+                container.find('.dynamic-elements').addClass('d-none');
                 // update footer cta section to sell and buy
-                $('.buy-sell-section .buy-sell-footer #sell-trade').removeClass('d-none');
-                $('.buy-sell-section .buy-sell-footer #buy-trade').removeClass('d-none');
-                $('.buy-sell-section .buy-sell-footer #place-order').addClass('d-none');
+                container.find('.buy-sell-footer #sell-trade').removeClass('d-none');
+                container.find('.buy-sell-footer #buy-trade').removeClass('d-none');
+                container.find('.buy-sell-footer #place-order').addClass('d-none');
             } else if (selectedValue === 'pending_order') {
                 selectedButton.text('Pending Order');
-                $('.buy-sell-section .dynamic-elements').removeClass('d-none');
+                container.find('.dynamic-elements').removeClass('d-none');
                 renderPendingOrderFormControls();
                 // update footer cta section to place order
-                $('.buy-sell-section .buy-sell-footer #sell-trade').addClass('d-none');
-                $('.buy-sell-section .buy-sell-footer #buy-trade').addClass('d-none');
-                $('.buy-sell-section .buy-sell-footer #place-order').removeClass('d-none');
+                container.find('.buy-sell-footer #sell-trade').addClass('d-none');
+                container.find('.buy-sell-footer #buy-trade').addClass('d-none');
+                container.find('.buy-sell-footer #place-order').removeClass('d-none');
             }
             dropdownMenu.data('value', selectedValue)
             validateBuySellInputs($('.buy-sell-section'));
             buySellSectionAdjustHeight();
+        })
+
+        container.find('#one-click-trading-input').off().on('change', function (event) {
+            const buySellData = STATE.getBuySellData();
+            STATE.setBuySellData({
+                ...buySellData,
+                one_click_trading: event.currentTarget.checked
+            })
         })
         validateBuySellInputs($('.buy-sell-section'));
     }
@@ -1649,8 +1659,6 @@
     function handleClickBuySellTrade(status) {
         const container = $('.buy-sell-section');
         container.find('#volume-input').blur();
-        container.find('#profit-input').blur();
-        container.find('#loss-input').blur();
         if (!STATE.getIsBuySellFormValid()) {
             return;
         }
@@ -1766,8 +1774,6 @@
             let isValid = false;
             if (isNaN(val)) {
                 isValid = false;
-            } else if (val === '') {
-                isValid = false;
             } else {
                 const numVal = Number(val);
                 if (numVal >= 0) {
@@ -1784,8 +1790,6 @@
         validateTextInput(container.find('#loss-input'), function (val) {
             let isValid = false;
             if (isNaN(val)) {
-                isValid = false;
-            } else if (val === '') {
                 isValid = false;
             } else {
                 const numVal = Number(val);
@@ -1828,9 +1832,10 @@
                 registerEditTradeModalEvents();
                 validateEditTradeModalInputs()
                 if (name === 'close-trade-cta') {
-                    if (data.data.one_click_trading === false) {
+                    const buySellData = STATE.getBuySellData();
+                    if (buySellData.one_click_trading === false) {
                         $('#edit-trade-modal').modal();
-                    } else if (data.data.one_click_trading === true) {
+                    } else if (buySellData.one_click_trading === true) {
                         // close the order via api and refresh the open order section
                         // TODO : toast message for closed order success
                         // play success sound
@@ -1850,9 +1855,10 @@
             url: `https://copypip.free.beeceptor.com/get-pending-trade?id=${tradeId}`,
             successCallback: (data) => {
                 if (name === 'cancel-trade-cta') {
-                    if (data.data.one_click_trading === false) {
+                    const buySellData = STATE.getBuySellData();
+                    if (buySellData.one_click_trading === false) {
                         $('#edit-trade-modal').modal();
-                    } else if (data.data.one_click_trading === true) {
+                    } else if (buySellData.one_click_trading === true) {
                         // cancel the order via api and refresh the pending order section
                         // TODO : toast message for closed order success
                         // play success sound
@@ -2122,6 +2128,16 @@
                     container.find('.modal-footer-container #partial-close-order').addClass('d-none');
                     container.find('.modal-footer-container #close-order').removeClass('d-none');
                 }
+                // if volume is changed profit and loss input will be disabled
+                container.find('#profit-input').attr('disabled', true);
+                container.find('#loss-input').attr('disabled', true);
+            })
+            // on profit or loss change disable volume input
+            container.find('#profit-input').off().on('change', function () {
+                container.find('#volume-input').attr('disabled', true);
+            })
+            container.find('#loss-input').off().on('change', function () {
+                container.find('#volume-input').attr('disabled', true);
             })
         }
         // on click of modify trade
@@ -2295,6 +2311,8 @@
         // not adding off() here for market execution because we are adding a change listerner in registerEditTradeModalEvents so adding off() here will remove that function.
         if (order_type === 'pending_order') {
             container.find('#volume-input').off();
+            container.find('#profit-input').off();
+            container.find('#loss-input').off();
         }
         container.find('#volume-input').on('blur', function (event) {
             const value = Number(event.target.value);
@@ -2311,7 +2329,7 @@
         })
 
         // Profit input validation
-        container.find('#profit-input').off().on('blur', function (event) {
+        container.find('#profit-input').on('blur', function (event) {
             const value = +event.target.value;
             if (event.target.value === '') {
                 modifyTradeCTA.prop('disabled', true);
@@ -2344,7 +2362,7 @@
             }
         })
         // Loss input validation
-        container.find('#loss-input').off().on('blur', function (event) {
+        container.find('#loss-input').on('blur', function (event) {
             const value = +event.target.value;
             if (event.target.value === '') {
                 modifyTradeCTA.prop('disabled', true);

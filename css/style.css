@@ -11051,7 +11051,7 @@ select[name="rows-per-page"] {
 }
 .toast {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   right: 0;
   background: #1F1F25;
   width: 400px;
