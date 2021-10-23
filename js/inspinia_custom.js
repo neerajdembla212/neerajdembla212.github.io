@@ -136,6 +136,9 @@ function initData() {
     url: 'https://copypip.free.beeceptor.com/get-user-config',
     successCallback: (data) => {
       localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
+      const defaultAccount = data.data.defaultAccount;
+      localStorage.setItem('selectedAccountNo', defaultAccount.accountNo);
+      localStorage.setItem('selectedAccountType', defaultAccount.accountType);
       renderAccountSwitcher(data.data.userAccounts);
       const decimalCount = countDecimals(data.data.tradeData.from_currency_rate);
       data.data.tradeData.decimalCount = decimalCount;
@@ -1155,7 +1158,7 @@ function fixDecimals(element, numVal, allowedDecimalCount) {
     const diff = allowedDecimalCount - enteredDecimalCount;
     let numValString = numVal.toString();
     [integral, decimal] = numValString.split('.');
-    if(!decimal) {
+    if (!decimal) {
       decimal = '';
     }
     for (let i = 0; i < diff; i++) {
