@@ -204,6 +204,8 @@
 
   $(function () {
     registerGlobalEvents();
+    const viewType = getCurrentViewType();
+    $(`.subheader .btn-group button[data-view-type=${viewType}]`).click();
     const activeId = getActiveTab().attr('href');
     onTabChange(activeId, false);
   });
@@ -725,10 +727,12 @@
       $(".subheader .btn-group button").removeClass("active");
       $(event.currentTarget).addClass("active");
       if (viewType === "list") {
+        localStorage.setItem('viewType', 'list');
         // plot list view for current active tab content
         plotListView();
 
       } else if (viewType === "grid") {
+        localStorage.setItem('viewType', 'grid');
         // plot grid view for current active tab content
         plotGridView();
       }
@@ -905,7 +909,7 @@
 
   // return view type as "grid" or "list"
   function getCurrentViewType() {
-    return $(".subheader .btn-group button.active").data("viewType")
+    return localStorage.getItem('viewType')
   }
 
   // render user table start

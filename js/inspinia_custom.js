@@ -146,6 +146,10 @@ function initData() {
       registerBuySellModalEvents(data.data.tradeData);
     }
   })
+  // set view type as grid for Strategy Provider page
+  if (!localStorage.getItem('viewType')) {
+    localStorage.setItem('viewType', 'grid');
+  }
 }
 // account switcher start
 function renderAccountSwitcher(userAccounts) {
