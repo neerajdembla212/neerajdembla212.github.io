@@ -461,7 +461,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `<tfoot>
         <tr>
-          <td colspan="9" class="pb-0">
+          <td colspan="9">
             <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
@@ -822,7 +822,7 @@
 
         return `<tfoot>
         <tr>
-          <td colspan="9" class="pb-0">
+          <td colspan="9">
           <div class="d-flex justify-content-between align-items-center">
           <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> followers</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">

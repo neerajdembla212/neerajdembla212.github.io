@@ -336,7 +336,7 @@
 
     return `<tfoot>
         <tr>
-          <td colspan="10" class="pb-0">
+          <td colspan="10">
           <div class="d-flex justify-content-between align-items-center">
           <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">

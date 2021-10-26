@@ -24,7 +24,11 @@
             sortKey: '',
             direction: '' // asc or desc
         }
-        isBuySellFormValid = false;
+        isBuySellFormValid = {
+            volume: false,
+            profit: false,
+            loss: false
+        }
         isBuySellModalFormValid = false;
         getOpenTrades() {
             return this.openTrades;
@@ -150,19 +154,30 @@
             this.sortData = data;
         }
 
-        setIsBuySellFormValid(data) {
+        setIsBuySellFormValid(control, data) {
             if (typeof data !== 'boolean') {
                 return
             }
-            this.isBuySellFormValid = data;
+            if (control !== '*' && !this.isBuySellFormValid.hasOwnProperty(control)) {
+                return;
+            }
+            if (control === '*') {
+                this.isBuySellFormValid.volume = data;
+                this.isBuySellFormValid.profit = data;
+                this.isBuySellFormValid.loss = data;
+            } else {
+                this.isBuySellFormValid[control] = data;
+            }
         }
+
         getIsBuySellFormValid() {
-            return this.isBuySellFormValid;
+            return this.isBuySellFormValid.volume && this.isBuySellFormValid.profit && this.isBuySellFormValid.loss;
         }
 
         getIsBuySellModalFormValid() {
             return this.isBuySellModalFormValid;
         }
+
         setIsBuySellModalFormValid(data) {
             if (typeof data !== 'boolean') {
                 return
@@ -1258,8 +1273,8 @@
         </div>
             ` : '';
 
-        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value=${profit}>` : `<input type="text" class="form-control" id="profit-input">`;
-        const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="loss-input" value="${loss}">` : `<input type="text" class="form-control" id="loss-input">`;
+        const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value=${profit}>` : `<input type="text" class="form-control" id="profit-input" value="0">`;
+        const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="loss-input" value="${loss}">` : `<input type="text" class="form-control" id="loss-input" value="0">`;
         const volumeInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="volume-input" value="${volume}">` : `<input type="text" class="form-control" id="volume-input">`;
         return `
         <!-- order by account start -->
@@ -1310,11 +1325,11 @@
             <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="position-relative w-35">
+            <div class="position-relative w-40">
                 ${profitInputHTML}
            </div>
             <span class="font-bold medium-font text-dark-black">Price</span>
-            <div class="position-relative w-35">
+            <div class="position-relative w-40">
                 ${lossInputHTML}
             </div>
         </div>
@@ -1454,7 +1469,7 @@
          <!-- Price input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <p class="mb-0 font-weight-light medium-font">Price</p>
-            <div class="position-relative w-35">
+            <div class="position-relative w-40">
                 <input type="text" class="form-control" id="price-input">
             </div>
         </div>
@@ -1495,7 +1510,7 @@
             <!-- Price input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Price</p>
-                <div class="position-relative w-35">
+                <div class="position-relative w-40">
                     <input type="text" class="form-control" id="price-input" value="${order_price}">
                 </div>
             </div>
@@ -1659,7 +1674,13 @@
     function handleClickBuySellTrade(status) {
         const container = $('.buy-sell-section');
         container.find('#volume-input').blur();
+        container.find('#profit-input').blur();
+        container.find('#loss-input').blur();
+        validateProfitLossInputs(status);
         if (!STATE.getIsBuySellFormValid()) {
+            // play bad sound and return
+            var audioElement = document.querySelector('#error-sound');
+            audioElement.play();
             return;
         }
         const buySellData = STATE.getBuySellData();
@@ -1697,6 +1718,71 @@
                     handleBuySellTradeError(buySellData)
                 }
             })
+        }
+    }
+
+    function validateProfitLossInputs(action) {
+        const { from_currency_rate, to_currency_rate } = STATE.getBuySellData();
+        let profitTargetValue = '';
+        let lossTargetValue = '';
+        const container = $('.buy-sell-section');
+        const profitInput = container.find('#profit-input');
+        const lossInput = container.find('#loss-input');
+        const profitVal = Number(profitInput.val());
+        const lossVal = Number(lossInput.val());
+
+        function addError(element, errorMessage) {
+            element.addClass('error');
+            $(`<p class="mb-0 position-absolute error-message text-error-red d-flex"><img src="img/ic_error.svg" class="mr-2"/>${errorMessage}</p>`).insertAfter(element);
+        }
+
+        function removeError(element) {
+            element.removeClass('error');
+            element.siblings('.error-message').remove();
+        }
+
+        if (action === 'BUY') {
+            profitTargetValue = Math.max(from_currency_rate, to_currency_rate);
+            lossTargetValue = Math.min(from_currency_rate, to_currency_rate);
+            // checking profit value
+            if (profitVal > profitTargetValue) {
+                removeError(profitInput);
+                STATE.setIsBuySellFormValid('profit', true);
+            } else {
+                const errorMessage = `Profit < ${profitTargetValue}`;
+                addError(profitInput, errorMessage);
+                STATE.setIsBuySellFormValid('profit', false);
+            }
+            // checking loss value
+            if (lossVal < lossTargetValue) {
+                removeError(lossInput);
+                STATE.setIsBuySellFormValid('loss', true);
+            } else {
+                const errorMessage = `Loss > ${lossTargetValue}`;
+                addError(lossInput, errorMessage);
+                STATE.setIsBuySellFormValid('loss', false);
+            }
+        } else if (action === 'SELL') {
+            profitTargetValue = Math.min(from_currency_rate, to_currency_rate);
+            lossTargetValue = Math.max(from_currency_rate, to_currency_rate);
+            // checking profit value
+            if (profitVal < profitTargetValue) {
+                removeError(profitInput);
+                STATE.setIsBuySellFormValid('profit', true);
+            } else {
+                const errorMessage = `Profit > ${profitTargetValue}`;
+                addError(profitInput, errorMessage);
+                STATE.setIsBuySellFormValid('profit', false);
+            }
+            // checking loss value
+            if (lossVal > lossTargetValue) {
+                removeError(lossInput);
+                STATE.setIsBuySellFormValid('loss', true);
+            } else {
+                const errorMessage = `Loss > ${lossTargetValue}`;
+                addError(lossInput, errorMessage);
+                STATE.setIsBuySellFormValid('loss', false);
+            }
         }
     }
 
@@ -1745,7 +1831,7 @@
 
     function resetBuySellData() {
         STATE.setBuySellData({})
-        STATE.setIsBuySellFormValid(false);
+        STATE.setIsBuySellFormValid('*', false);
         const tradeData = localStorage.getItem('tradeData');
         STATE.setBuySellData({
             ...JSON.parse(tradeData),
@@ -1759,20 +1845,22 @@
             if (isNaN(val)) {
                 isValid = false;
             } else if (val === '') {
-                isValid = false
+                isValid = false;
             } else {
                 const numVal = Number(val);
                 if (numVal >= 0.01 && numVal <= 100) {
                     isValid = true;
                 }
             }
-            STATE.setIsBuySellFormValid(isValid);
+            STATE.setIsBuySellFormValid('volume', isValid);
             return isValid;
         })
         // validate take profit input
         validateTextInput(container.find('#profit-input'), function (val) {
             let isValid = false;
             if (isNaN(val)) {
+                isValid = false;
+            } else if (val === '') {
                 isValid = false;
             } else {
                 const numVal = Number(val);
@@ -1782,7 +1870,7 @@
                     fixDecimals(container.find('#profit-input'), numVal, allowedDecimalCount);
                 }
             }
-            STATE.setIsBuySellFormValid(isValid);
+            STATE.setIsBuySellFormValid('profit', isValid);
             return isValid;
         }, 'Number only')
 
@@ -1790,6 +1878,8 @@
         validateTextInput(container.find('#loss-input'), function (val) {
             let isValid = false;
             if (isNaN(val)) {
+                isValid = false;
+            } else if (val === '') {
                 isValid = false;
             } else {
                 const numVal = Number(val);
@@ -1799,7 +1889,7 @@
                     fixDecimals(container.find('#loss-input'), numVal, allowedDecimalCount);
                 }
             }
-            STATE.setIsBuySellFormValid(isValid);
+            STATE.setIsBuySellFormValid('loss', isValid);
             return isValid;
         }, 'Number only')
 
@@ -1925,7 +2015,7 @@
             <!-- Price input start -->
             <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Price</p>
-                <input type="text" class="form-control w-35" id="price-input" disabled value="${order_price}">
+                <input type="text" class="form-control w-40" id="price-input" disabled value="${order_price}">
             </div>
             <!-- Price input end -->
             `
@@ -1961,7 +2051,7 @@
                     <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
                     <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
                 </div>
-                <div class="position-relative w-35">
+                <div class="position-relative w-40">
                     ${tradeVolumeInput}
                 </div>
             </div>
@@ -1989,11 +2079,11 @@
                 <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-3 mx-3">
-                <div class="position-relative w-35">
+                <div class="position-relative w-40">
                     ${takeProfitInput}
                 </div>
                 <span class="font-bold medium-font text-dark-black">Price</span>
-                <div class="position-relative w-35">
+                <div class="position-relative w-40">
                     ${stoplLossInput}
                 </div>
             </div>
@@ -2182,7 +2272,7 @@
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             STATE.setTradeDetails({});
-            STATE.setIsBuySellFormValid(false);
+            STATE.setIsBuySellFormValid('*', false);
             $('#edit-trade-modal').modal('hide');
         }, 500)
         // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
@@ -2217,7 +2307,7 @@
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             STATE.setTradeDetails({});
-            STATE.setIsBuySellFormValid(false); (false);
+            STATE.setIsBuySellFormValid('*', false);
             $('#edit-trade-modal').modal('hide');
             // render toast success
             renderSuccessToast('Trade closed');
@@ -2254,7 +2344,7 @@
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             STATE.setTradeDetails({});
-            STATE.setIsBuySellFormValid(false); (false);
+            STATE.setIsBuySellFormValid('*', false);
             $('#edit-trade-modal').modal('hide');
         }, 500)
         // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
@@ -2289,7 +2379,7 @@
 
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
-            STATE.setIsBuySellFormValid(false); (false);
+            STATE.setIsBuySellFormValid('*', false);
             $('#edit-trade-modal').modal('hide');
             // show success toast
             renderSuccessToast('Trade cancelled');

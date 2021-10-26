@@ -261,7 +261,7 @@
   function getStrategyProvidersTableFooter() {
     return `<tfoot>
         <tr>
-          <td colspan="9" class="pb-0">
+          <td colspan="9">
             <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page">
                 <option>10 Rows per page</option>
