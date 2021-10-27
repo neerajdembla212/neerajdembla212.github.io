@@ -706,7 +706,7 @@
                 break;
         }
         const rowsHTML = [];
-        openTrades.forEach(trade => {
+        data.forEach(trade => {
             rowsHTML.push(getResponsiveTradesRow(trade, tradeType))
         })
         container.empty().append(`
@@ -734,13 +734,22 @@
             tp,
             swap,
             profit,
-            order_number } = trade;
+            order_number,
+            status,
+            terminate_time } = trade;
 
         let actionCTA = '';
-        if (tradeType === 'open') {
-            actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">Close</button>`;
-        } else if (tradeType === 'pending') {
-            actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>`;
+        switch (tradeType) {
+            case 'open': actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">Close</button>`; break;
+            case 'pending': actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>`; break;
+            case 'closed': 
+                actionCTA = `
+                <div>
+                    <p class="m-0 font-weight-bold ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
+                    <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
+                </div>
+                `
+            break;
         }
         return `
         <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}">
@@ -1055,7 +1064,6 @@
             trade_type,
             trade_volume,
             open_price,
-            amount,
             sl,
             tp,
             current,
