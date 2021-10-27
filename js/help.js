@@ -8,7 +8,6 @@ import { FAQ } from './faq.js';
     })
     function registerEvents() {
         $('.faq .accordion-title').off().on('click', function (event) {
-            debugger
             const icon = $(this).find('.fa');
             if (icon.hasClass('fa-chevron-up')) {
                 icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
