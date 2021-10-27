@@ -13037,6 +13037,14 @@ table>tbody>tr:first-child>td {
   padding: 6px !important;
 }
 
+.w-20 {
+  width: 20%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
 .w-30 {
   width: 30%;
 }
@@ -13589,6 +13597,11 @@ select[name="rows-per-page"] {
 
 .toast.success .toast-icon.success {
   display: block;
+}
+
+.row-cols-2>* {
+  flex: 0 0 auto;
+  width: 50%;
 }
 
 .portfolio-line-chart {
@@ -14569,6 +14582,25 @@ select[name="rows-per-page"] {
 
 #become-strategy-provider-modal .modal-body {
   max-height: 500px;
+}
+
+.faq {
+  border-radius: 6px;
+}
+
+.faq .question-accordion {
+  min-width: 50%;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.get-help {
+  border-radius: 6px;
+  max-height: 700px;
+}
+
+.get-help .bg-help {
+  background: #DFF0FF;
+  min-height: 165px;
 }
 
 @media print {

@@ -157,44 +157,62 @@
           </div>
         </nav>
       </div>
-      <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-sm-4">
-          <h2>This is main title</h2>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">This is</a>
-            </li>
-            <li class="breadcrumb-item active">
-              <strong>Breadcrumb</strong>
-            </li>
-          </ol>
+      <div id="page-container" class="trade-terminal-page full-height-scroll">
+        <div class="d-flex justify-content-between subheader flex-wrap">
+          <h2 class="font-bold m-0 page-title">Help</h2>
         </div>
-        <div class="col-sm-8">
-          <div class="title-action">
-            <a href="" class="btn btn-primary">This is action area</a>
-          </div>
-        </div>
-      </div>
+        <div class="wrapper wrapper-content d-flex justify-content-between">
+          <!-- FAQ here -->
+          <section class="card mr-3 w-75 faq">
+            <div class="p-3">
+              <h3 class="m-0">Frequently Asked Questions</h3>
+            </div>
+            <div class="divider"></div>
+            <div class="p-3 d-flex justify-content-between">
+              <h3 class="m-0 w-20">Strategy Follower</h3>
+              <div class="row row-cols-2 strategy-follower-faq w-80">
 
-      <div class="wrapper wrapper-content">
-        <div class="middle-box text-center animated fadeInRightBig">
-          <h3 class="font-bold">This is page content</h3>
-          <div class="error-desc">
-            You can create here any grid layout you want. And any variation layout you imagine:) Check out
-            main dashboard and other site. It use many different layout.
-            <br /><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="float-right">
-          10GB of <strong>250GB</strong> Free.
-        </div>
-        <div>
-          <strong>Copyright</strong> Example Company &copy; 2014-2018
-        </div>
-      </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="p-3 d-flex justify-content-between">
+              <h3 class="m-0 w-20">Strategy Provider</h3>
+              <div class="row row-cols-2 strategy-provider-faq w-80">
 
+              </div>
+            </div>
+          </section>
+          <section class="card w-25 get-help">
+            <div class="p-3">
+              <h3 class="m-0">Get Help</h3>
+            </div>
+            <div class="bg-help d-flex justify-content-center">
+              <img class="align-self-center" src="img/img_help.svg" alt="Help" />
+            </div>
+            <div class="p-3">
+              <p class="p-0">
+                Enter a percentage of the total balance that you want to allocate to this trading strategy. E.g. if you
+                enter “10%”, this means that 1/10 of your balance will be used to trade according to this strategy. You
+                may also set the value higher than 100% depending on your risk tolerance.
+              </p>
+              <p class="p-0">
+                You can also set absolute values in which case the system will calculate the percentage depending on
+                your balance. E.g. if you enter “USD 1000” with a balance of “USD 3000”, our trading server will execute
+                a trade size 3 times smaller.
+              </p>
+              <p class="p-0">
+                The trade size (no. of lots) will be calculated automatically. Please note that this allocation does not
+                limit your losses to the percentage of your account chosen. This only affects the size that is opened.
+              </p>
+              <div class="divider"></div>
+              <div class="pt-3">
+                <button type="button" class="p-0 btn btn-w-m btn-link text-blue font-weight-bold">Reset Demo Tour</button>
+                <p class="p-0">Demo tour will be shown again.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
     <!-- Buy/Sell popup -->
     <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">
@@ -354,6 +372,8 @@
   <script src="js/inspinia.js"></script>
   <script src="js/plugins/pace/pace.min.js"></script>
   <script src="js/inspinia_custom.js"></script>
+  <script type="module" src="js/faq.js"></script>
+  <script type="module" src="js/help.js"></script>
   <!-- Switchery -->
   <script src="js/plugins/switchery/switchery.js"></script>
   <!-- Dat2 picker -->
