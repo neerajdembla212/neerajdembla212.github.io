@@ -14584,23 +14584,49 @@ select[name="rows-per-page"] {
   max-height: 500px;
 }
 
-.faq {
-  border-radius: 6px;
+.faq-content {
+  display: flex;
+  justify-content: space-between;
 }
 
-.faq .question-accordion {
+@media screen and (max-width: 960px) {
+  .faq-content {
+    display: block;
+  }
+}
+
+.faq-content .faq {
+  border-radius: 6px;
+  width: 75%;
+}
+
+.faq-content .faq .question-accordion {
   min-width: 50%;
   border-bottom: 1px solid #EEEEEE;
 }
 
-.get-help {
-  border-radius: 6px;
-  max-height: 700px;
+@media screen and (max-width: 960px) {
+  .faq-content .faq {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
 }
 
-.get-help .bg-help {
+.faq-content .get-help {
+  border-radius: 6px;
+  max-height: 700px;
+  width: 25%;
+}
+
+.faq-content .get-help .bg-help {
   background: #DFF0FF;
   min-height: 165px;
+}
+
+@media screen and (max-width: 960px) {
+  .get-help {
+    width: 100% !important;
+  }
 }
 
 @media print {
