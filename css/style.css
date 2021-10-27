@@ -13037,6 +13037,10 @@ table>tbody>tr:first-child>td {
   padding: 6px !important;
 }
 
+.w-30 {
+  width: 30%;
+}
+
 .w-35 {
   width: 35%;
 }

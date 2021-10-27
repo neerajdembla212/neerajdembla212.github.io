@@ -242,12 +242,17 @@
         })
 
         DESKTOP_MEDIA.addEventListener('change', function (event) {
+            const activeId = getActiveTab().attr('href');
             if (event.matches) {
                 // screen width is below 992px;
-                renderResponsiveTable()
+                console.log('active Id ', activeId);
+                switch (activeId) {
+                    case '#open-trades': renderResponsiveTradesHTML('open'); break;
+                    case '#pending-trades': renderResponsiveTradesHTML('pending'); break;
+                    case '#closed-trades': renderResponsiveTradesHTML('closed'); break;
+                }
             } else {
                 // screen width is above 992px;
-                const activeId = getActiveTab().attr('href');
                 onTabChange(activeId);
             }
         })
@@ -702,7 +707,7 @@
         }
         const rowsHTML = [];
         openTrades.forEach(trade => {
-            rowsHTML.push(getResponsiveTradesRow(trade))
+            rowsHTML.push(getResponsiveTradesRow(trade, tradeType))
         })
         container.empty().append(`
         <div class="responsive-trades">
@@ -712,7 +717,7 @@
         registerTradeEvents();
     }
 
-    function getResponsiveTradesRow(trade) {
+    function getResponsiveTradesRow(trade, tradeType) {
         if (!trade) {
             return '';
         }
@@ -725,55 +730,62 @@
             trade_type,
             trade_volume,
             open_price,
-            amount,
             sl,
             tp,
-            current,
             swap,
-            profit } = trade;
+            profit,
+            order_number } = trade;
 
+        let actionCTA = '';
+        if (tradeType === 'open') {
+            actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">Close</button>`;
+        } else if (tradeType === 'pending') {
+            actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>`;
+        }
         return `
         <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}">
             <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <p class="mb-0 font-weight-bolder">${from_currency}${to_currency} <span class="text-darker-gray">${trade_type}</span></p>
-                <p class="mb-0">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
+                <div class="w-30 d-flex align-items-center">
+                    <img alt="image" class="rounded-circle img-fluid img-sm float-left mr-3" src="${trader_image}" />
+                    <div>
+                        <p class="mb-0 font-bold large-font">#${order_number}</p>
+                        <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-0 font-weight-bolder">${from_currency}${to_currency}</p>
+                    <p class="mb-0 text-blue">${trade_type}</p>
+                </div>
+                <p class="mb-0 font-bold responsive-value highlight-amount">${open_price}</p>
+                ${actionCTA}
             </div>
-            <div class="d-flex align-items-center">
-                <p class="mb-0 font-bold mr-3">S$${formatWithCommas(amount)}</p>
-                <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${trader_image}" />
-            </div>
-        </div>
         <div class="d-flex justify-content-between mt-2">
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label">Volume</p>
-                <p class="mb-0 font-bold responsive-value">${trade_volume}</p>
-            </div>
-            <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label">Price</p>
+                <p class="mb-0 responsive-label text-center">Open Price</p>
                 <p class="mb-0 font-bold responsive-value">${open_price}</p>
             </div>
+            
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label">Swap</p>
+                <p class="mb-0 responsive-label text-center">Volume</p>
+                <p class="mb-0 font-bold responsive-value">${trade_volume}</p>
+            </div>
+            
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label text-center">SL</p>
+                <p class="mb-0 font-bold responsive-value">${sl}</p>
+            </div>
+            
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label text-center">TP</p>
+                <p class="mb-0 font-bold responsive-value">${tp}</p>
+            </div>
+            <div class="mr-3 d-flex flex-column justify-content-between">
+                <p class="mb-0 responsive-label text-center">Swap</p>
                 <p class="mb-0 font-bold responsive-value">${swap}</p>
             </div>
-            <div class="mr-3 d-flex flex-column justify-content-between current-amount">
-                <p class="mb-0 responsive-label">Current</p>
-                <p class="mb-0 font-bold responsive-value highlight-amount">${current}</p>
-            </div>
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label">Profit</p>
+                <p class="mb-0 responsive-label text-center">Profit</p>
                 <p class="mb-0 font-bold responsive-value ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">S$${profit}</p>
-            </div>
-            <div class="mr-2 d-flex flex-column justify-content-between">
-                <div class="d-flex">
-                    <p class="mb-0 mr-2 responsive-label">SL</p>
-                    <p class="responsive-value mb-0">${sl}</p>
-                </div>
-                <div class="d-flex">
-                    <p class="mb-0 mr-2 responsive-label">TP</p>
-                    <p class="responsive-value mb-0">${tp}</p>
-                </div>
             </div>
         </div>
         </div>`
