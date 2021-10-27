@@ -137,8 +137,10 @@ function initData() {
     successCallback: (data) => {
       localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
       const defaultAccount = data.data.defaultAccount;
-      localStorage.setItem('selectedAccountNo', defaultAccount.accountNo);
-      localStorage.setItem('selectedAccountType', defaultAccount.accountType);
+      if (!localStorage.getItem('selectedAccountType') && !localStorage.getItem('selectedAccountNo')) {
+        localStorage.setItem('selectedAccountNo', defaultAccount.accountNo);
+        localStorage.setItem('selectedAccountType', defaultAccount.accountType);
+      }
       renderAccountSwitcher(data.data.userAccounts);
       const decimalCount = countDecimals(data.data.tradeData.from_currency_rate);
       data.data.tradeData.decimalCount = decimalCount;

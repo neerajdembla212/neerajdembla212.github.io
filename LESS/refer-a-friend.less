@@ -1,0 +1,51 @@
+.refer-a-friend {
+    border-radius: 6px;
+    max-width: 820px;
+
+    .bg-demo {
+        background: @refer-demo;
+    }
+
+    .bg-live {
+        background: @refer-live;
+    }
+
+    .why-refer {
+        min-width: 33%;
+    }
+
+    .empty-space {
+        width: 20%;
+    }
+
+    .refer-link {
+        border-radius: 4px;
+        border: 1px solid @gray;
+    }
+}
+
+.refer-a-friend.demo-content {
+    .live {
+        display: none !important;
+    }
+
+    .demo {
+        display: block !important;
+    }
+    .highlight-content {
+        background: @refer-demo;
+    }
+}
+
+.refer-a-friend.live-content {
+    .live {
+        display: block !important;
+    }
+
+    .demo {
+        display: none !important;
+    }
+    .highlight-content {
+        background: @refer-live;
+    }
+}
