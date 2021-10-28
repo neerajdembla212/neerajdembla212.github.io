@@ -1124,7 +1124,7 @@
                 ${profitColumn}
                 <td class="align-middle pl-2">
                     <div>
-                        <p class="m-0 font-weight-bold ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
+                        <p class="m-0 font-weight-bold text-center ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
                         <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
                     </div>
                 </td>
