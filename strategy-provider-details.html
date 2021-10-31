@@ -22,109 +22,83 @@
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse d-flex flex-column justify-content-between">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="logo">
-                        <img alt="image" src="img/company_logo.svg" class="full-logo-element" />
-                        <div class="logo-element">
-                            <img alt="image" src="img/company_logo_cp.svg" />
-                        </div>
-                    </li>
-                    <li class="nav-header position-relative">
-                        <a data-toggle="dropdown" class="dropdown-toggle p-0" href="#">
-                            <div class="dropdown profile-element">
-                                <img alt="image" class="rounded-circle ml-2" src="img/profile_small.jpg" />
-                                <div class="details ml-2">
-                                    <span class="block m-t-xs font-bold text-white">KS Tan</span>
-                                    <span class="text-xs text-light-white role"></span>
-                                </div>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <p class="pl-3 pt-2 extra-large-font font-bold pb-0 mb-2">KS Tan</p>
-                            <div class="divider"></div>
-                            <li class="dropdown-item p-3 cursor-pointer" data-role="follower">Strategy Follower</li>
-                            <li class="dropdown-item p-3 cursor-pointer" data-role="provider">Strategy Provider</li>
-                            <li class="dropdown-item p-3 cursor-pointer" data-role="signout">Sign Out</li>
-                        </ul>
-                    </li>
-                    <li class="sm d-flex justify-content-between">
-                        <div class="trade-label">Trade</div>
-                        <div class="btn-group">
-                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle dropdown-select">
-                                Demo
-                            </button>
-                            <ul class="dropdown-menu dropdown-select-menu py-2 account-switcher">
-                                <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3"
-                                    data-account-no="create">
-                                    Create Demo Account
-                                </li>
-                                <li class="dropdown-item py-2 cursor-pointer px-3" data-account-no="TA209761M"
-                                    data-account-type="live">
-                                    <div class="account-number px-2 d-flex align-items-center"><span
-                                            class="mr-2 text-navy live extra-small-font font-bold">LIVE</span><span
-                                            class="medium-font font-bold small-font">TA 209761M</span>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item py-2 cursor-pointer px-3" data-account-no="TA209245M"
-                                    data-account-type="live">
-                                    <div class="account-number px-2 d-flex align-items-center"><span
-                                            class="mr-2 text-navy live extra-small-font font-bold">LIVE</span><span
-                                            class="medium-font font-bold small-font">TA 209245M</span>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item py-2 cursor-pointer px-3" data-account-no="TA209951M"
-                                    data-account-type="demo">
-                                    <div class="account-number demo-account px-2 d-flex align-items-center"><span
-                                            class="mr-2 text-navy demo extra-small-font font-bold">DEMO</span><span
-                                            class="medium-font font-bold small-font">TA 209951M</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/my-portfolio.html">
-                            <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/trade-terminal.html"><span
-                                class="nav-icon trade-terminal"></span>
-                            <span class="nav-label">Trade Terminal</span></a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="active">
-                        <a href="javascript: void(0)" data-href="/strategy-providers.html"><span
-                                class="nav-icon strategy-providers"></span>
-                            <span class="nav-label">Strategy Providers</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/simulation.html"><span
-                                class="nav-icon simulation"></span>
-                            <span class="nav-label">Simulation</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/economic-calendar.html"><span
-                                class="nav-icon news-feed"></span>
-                            <span class="nav-label">Economic Calendar</span></a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/settings.html"><span class="nav-icon settings"></span>
-                            <span class="nav-label">Settings</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/help.html"><span class="nav-icon help"></span>
-                            <span class="nav-label">Help</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0)" data-href="/refer-a-friend.html"><span
-                                class="nav-icon refer-a-friend"></span>
-                            <span class="nav-label">Refer a Friend</span></a>
-                    </li>
-                </ul>
+              <ul class="nav metismenu position-relative" id="side-menu">
+                <a class="fixed-navbar-hide minimalize-styl-2 navbar-menu-toggle m-0" href="#"><span
+                    class="fixed-nav-menu-arrow"></span>
+                </a>
+                <li class="logo">
+                  <img alt="image" src="img/company_logo.svg" class="full-logo-element" />
+                  <div class="logo-element">
+                    <img alt="image" src="img/company_logo_cp.svg" />
+                  </div>
+                </li>
+                <li class="nav-header position-relative">
+                  <a data-toggle="dropdown" class="dropdown-toggle p-0" href="#">
+                    <div class="dropdown profile-element">
+                      <img alt="image" class="rounded-circle ml-2" src="img/profile_small.jpg" />
+                      <div class="details ml-2">
+                        <span class="block m-t-xs font-bold text-white">KS Tan</span>
+                        <span class="text-xs text-light-white role"></span>
+                      </div>
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                    <p class="pl-3 pt-2 extra-large-font font-bold pb-0 mb-2">KS Tan</p>
+                    <div class="divider"></div>
+                    <li class="dropdown-item p-3 cursor-pointer" data-role="follower">Strategy Follower</li>
+                    <li class="dropdown-item p-3 cursor-pointer" data-role="provider">Strategy Provider</li>
+                    <li class="dropdown-item p-3 cursor-pointer" data-role="signout">Sign Out</li>
+                  </ul>
+                </li>
+                <li class="sm d-flex justify-content-between">
+                  <div class="trade-label">Trade</div>
+                  <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle dropdown-select">
+                      Demo
+                    </button>
+                    <ul class="dropdown-menu dropdown-select-menu py-2 account-switcher">
+      
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/my-portfolio.html">
+                    <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
+                </li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/trade-terminal.html"><span class="nav-icon trade-terminal"></span>
+                    <span class="nav-label">Trade Terminal</span></a>
+                </li>
+                <li class="active">
+                  <a href="javascript: void(0)" data-href="/strategy-providers.html"><span
+                      class="nav-icon strategy-providers"></span>
+                    <span class="nav-label">Strategy Providers</span></a>
+                </li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/simulation.html"><span class="nav-icon simulation"></span>
+                    <span class="nav-label">Simulation</span></a>
+                </li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/economic-calendar.html"><span class="nav-icon news-feed"></span>
+                    <span class="nav-label">Economic Calendar</span></a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/help.html"><span class="nav-icon help"></span>
+                    <span class="nav-label">Help</span></a>
+                </li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/refer-a-friend.html"><span class="nav-icon refer-a-friend"></span>
+                    <span class="nav-label">Refer a Friend</span></a>
+                </li>
+                <li>
+                  <a href="javascript: void(0)" data-href="/settings.html"><span class="nav-icon settings"></span>
+                    <span class="nav-label">Settings</span></a>
+                </li>
+              </ul>
             </div>
-        </nav>
-
+          </nav>
+      
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
