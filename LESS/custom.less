@@ -1316,3 +1316,27 @@ select[name="rows-per-page"] {
   flex: 0 0 auto;
   width: 50%;
 }
+
+.language-container {
+  .btn-outline {
+    &:hover {
+      background: @notification-background;
+    }
+
+    width: inherit;
+    height: inherit;
+
+    &:hover {
+      background: @notification-background;
+      border-radius: 4px;
+    }
+  }
+
+  .dropdown-menu {
+    width: 170px;
+
+    li:hover {
+      background: rgba(218, 218, 218, 0.2);
+    }
+  }
+}
