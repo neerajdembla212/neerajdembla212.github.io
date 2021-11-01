@@ -1416,6 +1416,9 @@
         return new Tour({
             framework: "bootstrap4",
             container: "#page-container",
+            // smartPlacement: true,
+            // backdrop: true,
+            autoscroll: true,
             onStart: function (tour) {
                 console.log('started ', tour)
                 $('body').addClass('tour-open')

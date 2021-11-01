@@ -16,6 +16,8 @@
   <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
   <link href="css/plugins/select2/select2.min.css" rel="stylesheet">
   <link href="css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
+  <!-- Toastr style -->
+  <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
 </head>
 
@@ -180,11 +182,23 @@
             <div class="divider"></div>
             <div class="p-3 d-flex justify-content-between">
               <p class="m-0 p-0 text-bold-black font-bold large-font">Demo Tour</p>
-              <button type="button" class="p-0 btn btn-w-m btn-link btn-text-blue font-weight-bold">Reset</button>
+              <button type="button" id="reset-demo"
+                class="p-0 btn btn-w-m btn-link btn-text-blue font-weight-bold">Reset</button>
             </div>
           </section>
         </div>
       </div>
+      <!-- Toast start -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="font-weight-bold p-3 d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <img src="img/ic_toast_success.svg" class="mr-2 toast-icon success" />
+            <p class="p-0 m-0 toast-body medium-font">Demo tour reset success</p>
+          </div>
+          <i data-dismiss="toast" aria-label="Close" aria-hidden="true" class="fa fa-close cursor-pointer"></i>
+        </div>
+      </div>
+      <!-- Toast end -->
     </div>
     <!-- Buy/Sell popup -->
     <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">

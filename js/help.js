@@ -11,9 +11,14 @@ import { FAQ } from './faq.js';
             const icon = $(this).find('.fa');
             if (icon.hasClass('fa-chevron-up')) {
                 icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
-            } else if(icon.hasClass('fa-chevron-down')) {
+            } else if (icon.hasClass('fa-chevron-down')) {
                 icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
             }
+        })
+
+        $('#reset-demo').off().on('click', function (event) {
+            localStorage.setItem('showTour', 'true');
+            renderSuccessToast();
         })
     }
     function plotStrategyFollowerFAQ() {
@@ -57,5 +62,10 @@ import { FAQ } from './faq.js';
         </div>
         <!-- accordion end -->
         `
+    }
+
+    function renderSuccessToast() {
+        const toastBox = $('.toast');
+        toastBox.addClass('success').toast('show');
     }
 })()

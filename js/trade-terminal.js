@@ -315,7 +315,7 @@
                 switch (href) {
                     case '#open-trades': tab.text = 'Open Trades'; break;
                     case '#pending-orders': tab.text = 'Pending Orders'; break;
-                    case '#closed-trades': tab.text = 'Closed Trades'; break;
+                    case '#closed-trades': tab.text = 'Trade History'; break;
                 }
             })
         }
