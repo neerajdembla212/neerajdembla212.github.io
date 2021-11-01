@@ -14335,18 +14335,6 @@ select[name="rows-per-page"] {
   width: 100%;
 }
 
-#page-container.simulation-page .simulation-strategy-providers thead,
-#page-container.simulation-page .simulation-strategy-providers tbody,
-#page-container.simulation-page .simulation-strategy-providers tfoot,
-#page-container.simulation-page .simulation-strategy-providers tr {
-  display: block;
-  width: 100%;
-}
-
-#page-container.simulation-page .simulation-strategy-providers tfoot td {
-  display: block;
-}
-
 #page-container.simulation-page .simulation-strategy-providers .dropdown-toggle::after {
   content: none;
 }

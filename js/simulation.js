@@ -172,13 +172,13 @@
     return `
         <thead>
             <tr>
-            <th class="align-middle w-22 extra-small-font pr-0">Provider</th>
-            <th class="text-right align-middle w-16 extra-small-font pr-0">joined duration</th>
-            <th class="text-right align-middle w-15 extra-small-font pr-0">equity growth</th>
-            <th class="text-right align-middle w-9 extra-small-font pr-0">Trades</th>
-            <th class="text-right align-middle w-17 extra-small-font pr-0">Subscription FEEs</th>
-            <th class="text-center align-middle w-9 extra-small-font pr-0">P share %</th>
-            <th class="text-right align-middle w-8 extra-small-font pr-0">TOTAL FEEs</th>
+            <th class="align-middle extra-small-font pr-0">Provider</th>
+            <th class="text-right align-middle extra-small-font pr-0">joined duration</th>
+            <th class="text-right align-middle extra-small-font pr-0">equity growth</th>
+            <th class="text-right align-middle extra-small-font pr-0">Trades</th>
+            <th class="text-right align-middle extra-small-font pr-0">Subscription FEEs</th>
+            <th class="text-center align-middle extra-small-font pr-0">P share %</th>
+            <th class="text-right align-middle extra-small-font pr-0">TOTAL FEEs</th>
             <th class="text-right align-middle extra-small-font">Actions</th>
             </tr>
         </thead>
@@ -218,7 +218,7 @@
       joined_end_date
     } = user;
     return `<tr id="table-user-${id}">
-        <td class="w-22">
+        <td>
             <div class="d-flex">
             <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
             <div class="ml-2 float-left">
@@ -234,22 +234,22 @@
             </div>
           </div>
         </td>
-        <td class="w-16 small-font">
+        <td class="small-font">
             ${formatDate(new Date(joined_start_date))} - ${formatDate(new Date(joined_end_date))}
         </td>
-        <td class="font-bold font-size-16 text-center align-middle w-15">
+        <td class="font-bold font-size-16 text-center align-middle">
             $${formatWithCommas(total_profit_loss)}
         </td>
-        <td class="text-center align-middle w-9">
+        <td class="text-center align-middle">
             ${formatWithCommas(trades)}
         </td>
-        <td class="text-center font-bold align-middle w-17">
+        <td class="text-center font-bold align-middle">
             S$${formatWithCommas(subscription_fee)}
         </td>
-        <td class="text-center align-middle w-5">
+        <td class="text-center align-middle">
             ${profit_share}
         </td>
-        <td class="text-center font-bold align-middle w-11">
+        <td class="text-center font-bold align-middle">
             S$${formatWithCommas(total_fee)}
         </td>
         <td class="action-tools text-center align-middle action-icon provider-modal-cta" data-id=${id} data-toggle="modal" data-target="#follow-provider-modal">
