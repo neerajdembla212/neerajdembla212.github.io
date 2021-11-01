@@ -12874,6 +12874,14 @@ table>tbody>tr:first-child>td {
   border-top: 5px solid #768496;
 }
 
+.down-arrow-white {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+}
+
 .arrow-red {
   border-top: 5px solid #C00000;
 }

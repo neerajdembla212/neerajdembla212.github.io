@@ -53,7 +53,7 @@ function registerEventHandlers() {
     const accountType = $(event.currentTarget).data('account-type');
     localStorage.setItem('selectedAccountNo', accountNumber);
     localStorage.setItem('selectedAccountType', accountType);
-    window.location.reload();
+    // window.location.reload();
   });
 
   // role switcher event
@@ -160,6 +160,7 @@ function renderAccountSwitcher(userAccounts) {
   }
   const container = $('.account-switcher');
   const rowsHTML = []
+  const selectedAccountType = localStorage.getItem('selectedAccountType');
   userAccounts.forEach((account, i) => {
     const { accountNo, accountType } = account;
     const selectedAccountNo = localStorage.getItem('selectedAccountNo');
@@ -180,6 +181,13 @@ function renderAccountSwitcher(userAccounts) {
     </li>
   `)
   container.empty().append(rowsHTML.join(''))
+  const accountSwitcherCTA = $('.account-switcher-cta');
+  accountSwitcherCTA.find('.text').text(selectedAccountType);
+  if (selectedAccountType.toUpperCase() === 'LIVE') {
+    accountSwitcherCTA.addClass('active');
+  } else {
+    accountSwitcherCTA.removeClass('active');
+  }
   registerAccountSwitcherEvents();
 }
 
@@ -187,6 +195,7 @@ function registerAccountSwitcherEvents() {
   $('.account-switcher li.dropdown-item').unbind().click(function (evemt) {
     const accountNo = $(evemt.currentTarget).data("account-no");
     const accountType = $(evemt.currentTarget).data("account-type");
+    console.log('accountNo ', accountNo, 'accountType ', accountType);
     localStorage.setItem('selectedAccountNo', accountNo);
     localStorage.setItem('selectedAccountType', accountType);
     window.location.reload();
