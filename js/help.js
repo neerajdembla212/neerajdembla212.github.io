@@ -49,7 +49,7 @@ import { FAQ } from './faq.js';
         <div class="col question-accordion p-0">
             <div class="p-3 border-0 cursor-pointer d-flex justify-content-between accordion-title" data-toggle="collapse" data-target="#${section}-answer-${index}" aria-expanded="false" aria-controls="${section}-answer-${index}">
                 <h5 class="m-0 mr-1">${question}</h5>
-                <i class="fa fa-chevron-up"></i>
+                <i class="fa fa-chevron-down"></i>
             </div>
             <div class="px-3 border-0 collapse mb-3" id="${section}-answer-${index}">
                 ${answer}
