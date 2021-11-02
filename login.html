@@ -40,14 +40,37 @@
                     <div class="row">
                         <div class="col">
                             <img src="img/login_logo.svg" alt="login logo" class="mb-4 img-logo" />
-                            <ul class="nav nav-tabs flex-nowrap mb-3" role="tablist">
-                                <li>
-                                    <a class="nav-link active" data-toggle="tab" href="#sign-in">Sign In</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" data-toggle="tab" href="#register">Register</a>
-                                </li>
-                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <ul class="nav nav-tabs flex-nowrap mb-3" role="tablist">
+                                    <li>
+                                        <a class="nav-link active" data-toggle="tab" href="#sign-in">Sign In</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" data-toggle="tab" href="#register">Register</a>
+                                    </li>
+                                </ul>
+                                <div class="dropdown language-container">
+                                    <button type="button"
+                                        class="btn btn-outline btn-default border-0 count-info px-0 m-0 dropdown-toggle d-flex align-items-center"
+                                        data-toggle="dropdown">
+                                        <img src="img/ic_globe.svg" class="mx-1" /><span
+                                            class="text-modal-gray font-weight-bold mx-1">EN</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-alerts p-0 p-2">
+                                        <li class="d-flex m-0 justify-content-between p-2 cursor-pointer"
+                                            data-value="en">English (EN)</li>
+                                        <li class="d-flex m-0 justify-content-between p-2 cursor-pointer"
+                                            data-value="cn">简体中文 (CN)</li>
+                                        <li class="d-flex m-0 justify-content-between p-2 cursor-pointer"
+                                            data-value="id">Bahasa Indonesia (ID)
+                                        </li>
+                                        <li class="d-flex m-0 justify-content-between p-2 cursor-pointer"
+                                            data-value="th">ไทย (TH)</li>
+                                        <li class="d-flex m-0 justify-content-between p-2 cursor-pointer"
+                                            data-value="vn">Tiếng Việt (VN)</li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="tab-content">
                                 <div role="tabpanel" id="sign-in" class="tab-pane active">
                                     <p class="medium-font font-bold mb-3">Welcome back! Login with your email.</p>
@@ -155,7 +178,8 @@
                         trading platform</p>
                     <div class="mb-0 small-font text-white">
                         <p class="mb-1">Follow, copy and earn from a global network of pro traders.</p>
-                        <p class="mb-1">For pro traders, become a strategy provider and start boosting your earning potential today.
+                        <p class="mb-1">For pro traders, become a strategy provider and start boosting your earning
+                            potential today.
                         </p>
                     </div>
                 </div>
