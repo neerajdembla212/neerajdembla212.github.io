@@ -12808,9 +12808,6 @@ table thead th {
   color: #D0226B;
 }
 
-.page-title {
-  padding: 14px 0;
-}
 
 .navbar-form-custom .form-control {
   width: 234px;
@@ -13656,6 +13653,10 @@ select[name="rows-per-page"] {
   height: calc(2rem + 2px) !important;
 }
 
+.subheader {
+  padding-bottom: 14px !important;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -14318,6 +14319,10 @@ select[name="rows-per-page"] {
 
 .strategy-provider-details-section .right-section .trade-history-section .responsive-trade-history>* {
   border-top: 1px solid #EEEEEE;
+}
+
+.btn-back {
+  margin-top: 12px;
 }
 
 #page-container.simulation-page .calculate-card {
