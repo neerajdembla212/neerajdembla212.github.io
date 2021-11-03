@@ -460,14 +460,14 @@
         return `
         <thead>
             <tr>
-            <th class="pl-2 align-middle">
-                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
-                    <p class="m-0 p-0 header-text">Symbol<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
-                </div>
-            </th>
+            <th class="pl-2 align-middle">Symbol</th>
             <th class="text-center align-middle">Trader</th>
             <th class="text-center align-middle">Type</th>
-            <th class="text-center align-middle">Time Stamp</th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
+                    <p class="m-0 p-0 header-text">Time Stamp<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
                     <p class="m-0 p-0 header-text">Vol. <i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
