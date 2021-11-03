@@ -176,7 +176,8 @@ function renderAccountSwitcher(userAccounts) {
     `)
   })
   rowsHTML.unshift(`
-    <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3" data-account-no="create">
+    <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3" data-account-no="create" data-toggle="modal"
+    data-target="#create-demo-modal">
       Create Demo Account
     </li>
   `)
@@ -196,6 +197,9 @@ function registerAccountSwitcherEvents() {
     const accountNo = $(evemt.currentTarget).data("account-no");
     const accountType = $(evemt.currentTarget).data("account-type");
     console.log('accountNo ', accountNo, 'accountType ', accountType);
+    if (accountNo === 'create') {
+      return;
+    }
     localStorage.setItem('selectedAccountNo', accountNo);
     localStorage.setItem('selectedAccountType', accountType);
     window.location.reload();

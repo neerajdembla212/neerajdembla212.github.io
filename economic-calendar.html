@@ -202,6 +202,63 @@
           </div>
         </div>
       </div>
+      <!-- Create Demo account start -->
+      <div class="modal inmodal" id="create-demo-modal" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-dialog-center">
+          <div class="modal-content animated fadeIn">
+            <div class="d-flex justify-content-between p-3">
+              <h4 class="modal-title super-large-font">Create Demo Account</h4>
+              <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
+                <img src="img/ic_cross.svg">
+              </button>
+            </div>
+            <div class="modal-body px-3 pt-0">
+              <div class="highlighted-content p-3 mb-3">
+                <p class="font-bold text-white">Notice for Demo Accounts:</p>
+                <p class="font-weight-light text-white">Inactive demo account will be removed/closed after 15 days.</p>
+                <p class="font-weight-light text-white">Active demo account will be closed after 30 days.</p>
+              </div>
+              <!-- Budget input start -->
+              <div class="d-flex justify-content-between mb-3">
+                <div class="mr-3">
+                  <p class="mb-1 font-weight-light text-dark-gray">
+                    Demo Budget
+                  </p>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">USD </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">USD</a></li>
+                        <li><a href="#">EUR</a></li>
+                        <li><a href="#">SGD</a></li>
+                      </ul>
+                    </div>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="w-30">
+                  <p class="mb-1 font-weight-light text-dark-gray">Leverage</p>
+                  <select class="select2_dropdown form-control" aria-valuenow="1">
+                    <option value="1">1:100</option>
+                    <option value="2">1:200</option>
+                    <option value="3">1:300</option>
+                    <option value="4">1:400</option>
+                    <option value="5">1:500</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Budget input end -->
+            </div>
+            <div class="divider"></div>
+            <div class="p-3 d-flex justify-content-end">
+              <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal">
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Create Demo account end -->
     </div>
   </div>
   <!-- Buy/Sell popup start -->

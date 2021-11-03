@@ -52,7 +52,8 @@
           <li class="sm d-flex justify-content-between">
             <div class="trade-label">Trade</div>
             <div class="btn-group">
-              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle dropdown-select account-switcher-cta d-flex align-items-center">
+              <button data-toggle="dropdown"
+                class="btn btn-default dropdown-toggle dropdown-select account-switcher-cta d-flex align-items-center">
                 <span class="text mr-1"></span> <i class="down-arrow-white"></i>
               </button>
               <ul class="dropdown-menu dropdown-select-menu py-2 account-switcher">
@@ -137,7 +138,8 @@
               <ul class="dropdown-menu dropdown-alerts p-0 p-2">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
-                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)</li>
+                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
+                </li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="th">ไทย (TH)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="vn">Tiếng Việt (VN)</li>
               </ul>
@@ -204,14 +206,71 @@
               <button type="button" class="p-0 btn btn-w-m btn-text-blue font-weight-bold demo">Login in to your client
                 portal</button>
               <div class="w-50 d-flex live">
-                <input type="text" class="p-2 mr-3 text-blue font-bold refer-link" value="http://referral.link" disabled/> <button type="button"
-                  class="btn btn-outline btn-default btn-text-blue font-bold">Copy Link</button>
+                <input type="text" class="p-2 mr-3 text-blue font-bold refer-link" value="http://referral.link"
+                  disabled /> <button type="button" class="btn btn-outline btn-default btn-text-blue font-bold">Copy
+                  Link</button>
               </div>
             </div>
           </section>
         </div>
       </div>
-
+      <!-- Create Demo account start -->
+      <div class="modal inmodal" id="create-demo-modal" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-dialog-center">
+          <div class="modal-content animated fadeIn">
+            <div class="d-flex justify-content-between p-3">
+              <h4 class="modal-title super-large-font">Create Demo Account</h4>
+              <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
+                <img src="img/ic_cross.svg">
+              </button>
+            </div>
+            <div class="modal-body px-3 pt-0">
+              <div class="highlighted-content p-3 mb-3">
+                <p class="font-bold text-white">Notice for Demo Accounts:</p>
+                <p class="font-weight-light text-white">Inactive demo account will be removed/closed after 15 days.</p>
+                <p class="font-weight-light text-white">Active demo account will be closed after 30 days.</p>
+              </div>
+              <!-- Budget input start -->
+              <div class="d-flex justify-content-between mb-3">
+                <div class="mr-3">
+                  <p class="mb-1 font-weight-light text-dark-gray">
+                    Demo Budget
+                  </p>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">USD </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">USD</a></li>
+                        <li><a href="#">EUR</a></li>
+                        <li><a href="#">SGD</a></li>
+                      </ul>
+                    </div>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="w-30">
+                  <p class="mb-1 font-weight-light text-dark-gray">Leverage</p>
+                  <select class="select2_dropdown form-control" aria-valuenow="1">
+                    <option value="1">1:100</option>
+                    <option value="2">1:200</option>
+                    <option value="3">1:300</option>
+                    <option value="4">1:400</option>
+                    <option value="5">1:500</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Budget input end -->
+            </div>
+            <div class="divider"></div>
+            <div class="p-3 d-flex justify-content-end">
+              <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal">
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Create Demo account end -->
     </div>
     <!-- Buy/Sell popup -->
     <div class="modal inmodal" id="buy-sell-modal" tabindex="-1" role="dialog" aria-modal="true">

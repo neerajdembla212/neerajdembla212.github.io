@@ -13642,6 +13642,20 @@ select[name="rows-per-page"] {
   background: rgba(218, 218, 218, 0.2);
 }
 
+#create-demo-modal .highlighted-content {
+  background: rgba(48, 25, 102, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+}
+
+#create-demo-modal .leverage-container .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
+  line-height: 2rem !important;
+}
+
+#create-demo-modal .leverage-container .select2-container--bootstrap4 .select2-selection--single {
+  height: calc(2rem + 2px) !important;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
