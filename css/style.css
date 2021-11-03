@@ -14085,6 +14085,11 @@ select[name="rows-per-page"] {
   border-radius: 4px;
 }
 
+.strategy-provider-section .arrow {
+  position: absolute;
+  top: 20px;
+}
+
 /* Loader state for Top Growth, Following and favourite tab */
 .strategy-provider-section .panel-body .contact-box.loading {
   height: 240px;

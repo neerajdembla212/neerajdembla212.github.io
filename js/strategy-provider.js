@@ -73,7 +73,10 @@
     }
     selectedTableFilters = []
     dropdownFilterItems = defaultFilterItems.map((f) => ({ ...f }));
-
+    sortData = {
+      sortKey: '',
+      direction: '' // asc or desc
+    }
 
     getState() {
       return {
@@ -87,7 +90,8 @@
         midGrowthUsers: this.midGrowthUsers,
         highGrowthUsers: this.highGrowthUsers,
         selectedTableFilters: this.selectedTableFilters,
-        dropdownFilterItems: this.dropdownFilterItems
+        dropdownFilterItems: this.dropdownFilterItems,
+        sortData: this.sortData
       }
     }
 
@@ -191,6 +195,13 @@
     }
     getDropdownFilterItems() {
       return this.dropdownFilterItems;
+    }
+
+    setSortData(data) {
+      if (!data) {
+        return
+      }
+      this.sortData = data;
     }
   }
 
@@ -760,11 +771,13 @@
     if (!tabId) {
       return
     }
+    // reset pagination data
     STATE.setPaginationData({
       rowsPerPage: 10,
       total: 0,
       page: 0
     })
+    resetSortData();
     if (isManual) {
       clearFilters();
     }
@@ -785,6 +798,13 @@
       case '#mid-growth': fetchMidGrowthUsers(tabId); break;
       case '#high-growth': fetchHighGrowthUsers(tabId); break;
     }
+  }
+
+  function resetSortData() {
+    STATE.setSortData({
+      sortKey: '',
+      direction: ''
+    })
   }
 
   function registerGridViewEvents() {
@@ -837,6 +857,7 @@
       renderUnfollowProviderPopup(providerName);
     })
     registerTablePaginationEvents();
+    registerTableSortEvents();
   }
   function registerTablePaginationEvents() {
     let fetchDataFunction = () => { };
@@ -892,6 +913,43 @@
     }
   }
 
+  // Table sort events start
+  function registerTableSortEvents() {
+    const activeId = getActiveTab().attr('href');
+    switch (activeId) {
+      case '#top-growth': tableSortEvents($(`.tab-content ${activeId}`), onTopGrowthSort);
+    }
+
+  }
+
+  function onTopGrowthSort(key, direction) {
+    const topGrowthUsers = STATE.getState().topGrowth
+    if (!topGrowthUsers.length) {
+      return
+    }
+    if (!topGrowthUsers[0].hasOwnProperty(key)) {
+      return
+    }
+    topGrowthUsers.sort((a, b) => {
+      if (direction === 'asc') {
+        return a[key] - b[key]
+      } else if (direction === 'desc') {
+        return b[key] - a[key]
+      }
+    })
+    const selectedSort = {
+      sortKey: key,
+      direction
+    }
+    STATE.setSortData(selectedSort);
+    plotTopGrowthTable(topGrowthUsers);
+    plotListLineCharts(topGrowthUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  // Table sort events end
+
   function showStrategyProviderDetailsPage(event) {
     const targetName = $(event.target).attr('name');
     if (targetName === "follow-provider-cta" || targetName === "favourites-cta" || targetName === "unfollow-provider-cta") {
@@ -925,12 +983,24 @@
   }
 
   function getUserTableHeaders() {
+    const selectedSort = STATE.getState().sortData
+    const { sortKey, direction } = selectedSort;
+    let arrowClass = '';
+    if (direction === 'asc') {
+      arrowClass = 'up-arrow-sort';
+    } else if (direction === 'desc') {
+      arrowClass = 'down-arrow-sort';
+    }
     return `
     <thead class="border-top-none">
       <tr>
         <th class="pl-3 align-middle">PROVIDER</th>
         <th class="align-middle text-center">AGE</th>
-        <th style="height:32px" class="align-middle text-center">Total Returns / equity growth</th>
+        <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
+        <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
+          <p class="m-0 p-0 header-text">Total Returns / equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
+        </div>
+        </th>
         <th class="align-middle text-center">DD</th>
         <th class="align-middle text-center">avg / mth</th>
         <th class="align-middle text-center">Avg Pips</th>
