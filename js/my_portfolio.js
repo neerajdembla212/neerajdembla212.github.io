@@ -111,6 +111,10 @@
         defaultFilterItems = [];
         selectedTableFilters = []
         dropdownFilterItems = [];
+        sortData = {
+            sortKey: '',
+            direction: '' // asc or desc
+        }
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -215,6 +219,16 @@
                 return
             }
             this.defaultFilterItems = data;
+        }
+
+        getSortData() {
+            return this.sortData
+        }
+        setSortData(data) {
+            if (!data) {
+                return
+            }
+            this.sortData = data;
         }
     }
     const STATE = new State();
@@ -361,17 +375,53 @@
     }
 
     function getStrategyProvidersTableHeaders() {
+        const selectedSort = STATE.getSortData()
+        const { sortKey, direction } = selectedSort;
+        let arrowClass = '';
+        if (direction === 'asc') {
+            arrowClass = 'up-arrow-sort';
+        } else if (direction === 'desc') {
+            arrowClass = 'down-arrow-sort';
+        }
         return `
         <thead>
             <tr>
             <th class="align-middle">Provider</th>
-            <th class="text-center align-middle">equity growth</th>
-            <th class="text-center align-middle">Total Returns</th>
-            <th class="text-center align-middle">Max DD</th>
-            <th class="text-center align-middle">Trades</th>
-            <th class="text-center align-middle">Management FEEs</th>
-            <th class="text-center align-middle">P share %</th>
-            <th class="text-center align-middle">TOTAL FEEs</th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
+                    <p class="m-0 p-0">equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_returns">
+                    <p class="m-0 p-0">Total Returns<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_returns' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="max_drawdown">
+                    <p class="m-0 p-0">Max DD<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'max_drawdown' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trades">
+                    <p class="m-0 p-0">Trades<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
+                    <p class="m-0 p-0">Management FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
+                    <p class="m-0 p-0">P Share %<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+            <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
+                    <p class="m-0 p-0">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
             <th class="align-middle">Actions</th>
             </tr>
         </thead>
@@ -428,11 +478,11 @@
         <td class="text-center align-middle">
           <span class="text-dark-green font-weight-bold">
             <i class="fa fa-play fa-rotate-270 font-size-12"></i>
-            ${total_returns}
+            ${total_returns}%
           </span>
         </td>
         <td class="text-center align-middle text-light-red">
-          ${max_drawdown}
+          ${max_drawdown}%
         </td>
         <td class="text-center align-middle">
           ${formatWithCommas(trades)}
@@ -441,7 +491,7 @@
           S$${formatWithCommas(subscription_fee)}
         </td>
         <td class="text-center align-middle">
-          ${profit_share}
+          ${profit_share}%
         </td>
         <td class="text-center font-weight-bold align-middle">
           S$${formatWithCommas(total_fee)}
@@ -620,7 +670,23 @@
             renderStopProviderPopup(providerName);
         })
         registerStrategyProviderPaginationEvents();
+        // table sort events
+        tableSortEvents($('.portfolio-users-table-content'), onFollowingTableSort);
     }
+
+    function onFollowingTableSort(key, direction) {
+        const providerUsers = STATE.getUserList();
+        if (!providerUsers.length) {
+            return
+        }
+        if (!providerUsers[0].hasOwnProperty(key)) {
+            return;
+        }
+        tableSort(providerUsers, key, direction);
+        renderStrategyProviders();
+        renderTableFilters();
+    }
+
     function renderPauseProviderPopup(id, name) {
         const container = $('#pause-provider-modal .modal-body');
         container.empty().append(`
@@ -712,17 +778,50 @@
     }
 
     function getStrategyFollowersTableHeaders() {
+        const selectedSort = STATE.getSortData();
+        const { sortKey, direction } = selectedSort;
+        let arrowClass = '';
+        if (direction === 'asc') {
+            arrowClass = 'up-arrow-sort';
+        } else if (direction === 'desc') {
+            arrowClass = 'down-arrow-sort';
+        }
+
         return `
         <thead>
             <tr>
             <th class="align-middle">Provider</th>
-            <th class="text-center align-middle">joined</th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="joined_on">
+                    <p class="m-0 p-0">Joined<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'joined_on' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
             <th class="text-center align-middle">Period</th>
-            <th class="text-center align-middle">P/L</th>
-            <th class="text-center align-middle">HWM Difference</th>
-            <th class="text-center align-middle">BALANCE</th>
-            <th class="text-center align-middle">FEE earned</th>
-            <th class="text-center align-middle">com earned</th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_or_loss">
+                    <p class="m-0 p-0">P/L<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_or_loss' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="hwm_diff">
+                    <p class="m-0 p-0">HWM Difference<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'hwm_diff' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="balance">
+                    <p class="m-0 p-0">Balance<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'balance' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="fee_earned">
+                    <p class="m-0 p-0">FEE Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'fee_earned' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
+            <th class="text-center align-middle">
+                <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="com_earned">
+                    <p class="m-0 p-0">Com Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'com_earned' ? 'd-none' : ''}"></i></p>
+                </div>
+            </th>
             <th class="align-middle">Actions</th>
             </tr>
         </thead>
@@ -759,6 +858,7 @@
             balance,
             com_earned,
             fee_earned,
+            fee_mode,
             is_new
         } = user;
         const newUSerChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
@@ -793,7 +893,7 @@
         S$${formatWithCommas(balance)}
         </td>
         <td class="text-center align-middle">
-        S$${fee_earned}
+        S$${fee_earned}/${fee_mode}
         </td>
         <td class="font-bold text-center align-middle">
         S$${formatWithCommas(com_earned)}
@@ -966,7 +1066,38 @@
             renderStopFollowerPopup(id, providerName);
         })
         registerStrategyFollowerPaginationEvents()
+        // table sort events
+        tableSortEvents($('.portfolio-users-table-content'), onFollowersTableSort);
     }
+
+    function onFollowersTableSort(key, direction) {
+        const followerUsers = STATE.getUserList();
+        if (!followerUsers.length) {
+            return
+        }
+        if (!followerUsers[0].hasOwnProperty(key)) {
+            return;
+        }
+        tableSort(followerUsers, key, direction);
+        renderStrategyFollowers();
+        renderTableFilters();
+    }
+
+    function tableSort(data, key, direction) {
+        data.sort((a, b) => {
+            if (direction === 'asc') {
+                return a[key] - b[key]
+            } else if (direction === 'desc') {
+                return b[key] - a[key]
+            }
+        })
+        const selectedSort = {
+            sortKey: key,
+            direction
+        }
+        STATE.setSortData(selectedSort);
+    }
+
     function renderPauseFollowerPopup(id, name) {
         const container = $('#pause-follower-modal .modal-body');
         container.empty().append(`
