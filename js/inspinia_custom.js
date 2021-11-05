@@ -399,9 +399,10 @@ function isDateValid(d) {
   return d instanceof Date && !isNaN(d)
 }
 // utility method to calculate date difference between two dates eg output : x Years y Months z days
-function calculateDateDiff(a, b) {
+function calculateDateDiff(a, b, short = false) {
+  let durationStr = '';
   if (!isDateValid(a) || !isDateValid(b)) {
-    return ''
+    return durationStr;
   }
   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
   // Discard the time and time-zone information.
@@ -411,14 +412,15 @@ function calculateDateDiff(a, b) {
   const months = Math.floor(days / 31);
   const years = Math.floor(months / 12);
   if (years > 0) {
-    return `${years} Years`;
+    durationStr += `${years} ${short ? 'Yr ' : 'Years '}`
   }
   if (months > 0) {
-    return `${months} Months`;
+    durationStr += `${months} ${short ? 'Mths ' : 'Months '}`;
   }
   if (days <= 31) {
-    return `${days} Days`
+    durationStr += `${days} Days`;
   }
+  return durationStr;
 }
 // utility to add timezone
 function getTimezoneOffset() {
@@ -1074,8 +1076,8 @@ function tableSortEvents(container, onTableSort = () => { }) {
     const isArrowHidden = arrow.hasClass('d-none');
     if (isArrowHidden) {
       // showing arrow down, hence descending
-      container.find('thead th .sort-header .arrow').addClass('d-none');
-      arrow.removeClass('d-none');
+      // container.find('thead th .sort-header .arrow').addClass('d-none');
+      // arrow.removeClass('d-none');
       direction = 'desc';
     } else {
       const isArrowUp = arrow.hasClass('up-arrow-sort');

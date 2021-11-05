@@ -552,7 +552,7 @@
     <div class="d-flex justify-content-between">
       <div class=" align-self-center m-0 font-bold d-flex flex-column">
         <p class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</p>
-        <p class="text-uppercase text-light-gray small-font">${return_duration}</p>
+        <p class="text-uppercase text-light-gray small-font">${calculateDateDiff(new Date(return_duration), new Date(), true)}</p>
       </div>
       <div class=" align-self-center m-0 d-flex flex-column">
         <p class="risk_amount h4 align-self-center text-light-gray m-0">$${risk_amount}</p>
@@ -839,7 +839,7 @@
   function registerListViewEvents() {
     // List view - Toggle follow button
     const listFavIcon = $("table td > .btn.btn-action");
-    listFavIcon.click((ele) => {
+    listFavIcon.unbind().click((ele) => {
       const icon = $(ele.currentTarget).find(".favourite-icon");
       icon.toggleClass("active");
       if (icon.hasClass("active")) {
@@ -849,7 +849,7 @@
       }
     });
     // redirect on click of contact row
-    $('.strategy-provider-section .contact-row').click(showStrategyProviderDetailsPage)
+    $('.strategy-provider-section .contact-row').unbind().click(showStrategyProviderDetailsPage)
 
     // unfollow provider CTA
     $('.unfollow-provider-cta').unbind().click(event => {
@@ -866,6 +866,7 @@
       case '#top-growth': fetchDataFunction = fetchTopGrowthProviders; break;
       case '#following': fetchDataFunction = fetchFollowingUsers; break;
       case '#favourites': fetchDataFunction = fetchFavouriteUsers; break;
+      case '#low-growth': fetchDataFunction = fetchLowGrowthUsers; break;
     }
     const paginationData = STATE.getState().paginationData;
     // strategy provider footer rows per page
@@ -917,7 +918,12 @@
   function registerTableSortEvents() {
     const activeId = getActiveTab().attr('href');
     switch (activeId) {
-      case '#top-growth': tableSortEvents($(`.tab-content ${activeId}`), onTopGrowthSort);
+      case '#top-growth': tableSortEvents($(`.tab-content ${activeId}`), onTopGrowthSort); break;
+      case '#following': tableSortEvents($(`.tab-content ${activeId}`), onFollowingSort); break;
+      case '#favourites': tableSortEvents($(`.tab-content ${activeId}`), onFavouritesSort); break;
+      case '#low-growth': tableSortEvents($(`.tab-content ${activeId}`), onLowGrowthSort); break;
+      case '#mid-growth': tableSortEvents($(`.tab-content ${activeId}`), onMidGrowthSort); break;
+      case '#high-growth': tableSortEvents($(`.tab-content ${activeId}`), onHighGrowthSort); break;
     }
 
   }
@@ -930,7 +936,91 @@
     if (!topGrowthUsers[0].hasOwnProperty(key)) {
       return
     }
-    topGrowthUsers.sort((a, b) => {
+    tableSort(topGrowthUsers, key, direction);
+    plotTopGrowthTable(topGrowthUsers);
+    plotListLineCharts(topGrowthUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  function onFollowingSort(key, direction) {
+    const followingUsers = STATE.getState().followingUsers;
+    if (!followingUsers.length) {
+      return
+    }
+
+    if (!followingUsers[0].hasOwnProperty(key)) {
+      return
+    }
+    tableSort(followingUsers, key, direction);
+    plotFollowingUsersTable(followingUsers);
+    plotListLineCharts(followingUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  function onFavouritesSort(key, direction) {
+    const favouriteUsers = STATE.getState().favouriteUsers;
+    if (!favouriteUsers.length) {
+      return
+    }
+    if (!favouriteUsers[0].hasOwnProperty(key)) {
+      return
+    }
+    tableSort(favouriteUsers, key, direction);
+    plotFavouriteUsersTable(favouriteUsers);
+    plotListLineCharts(favouriteUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  function onLowGrowthSort(key, direction) {
+    const lowGrowthUsers = STATE.getState().lowGrowthUsers;
+    if (!lowGrowthUsers.length) {
+      return
+    }
+    if (!lowGrowthUsers[0].hasOwnProperty(key)) {
+      return
+    }
+    tableSort(lowGrowthUsers, key, direction);
+    plotLowGrowthUsersTable(lowGrowthUsers);
+    plotListLineCharts(lowGrowthUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  function onMidGrowthSort(key, direction) {
+    const midGrowthUsers = STATE.getState().midGrowthUsers;
+    if (!midGrowthUsers.length) {
+      return
+    }
+    if (!midGrowthUsers[0].hasOwnProperty(key)) {
+      return
+    }
+    tableSort(midGrowthUsers, key, direction);
+    plotMidGrowthUsersTable(midGrowthUsers);
+    plotListLineCharts(midGrowthUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  function onHighGrowthSort(key, direction) {
+    const highGrowthUsers = STATE.getState().highGrowthUsers;
+    if (!highGrowthUsers.length) {
+      return
+    }
+    if (!highGrowthUsers[0].hasOwnProperty(key)) {
+      return
+    }
+    tableSort(highGrowthUsers, key, direction);
+    plotHighGrowthUsersTable(highGrowthUsers)
+    plotListLineCharts(highGrowthUsers);
+    registerListViewEvents();
+    renderTableFilters();
+  }
+
+  function tableSort(data, key, direction) {
+    data.sort((a, b) => {
       if (direction === 'asc') {
         return a[key] - b[key]
       } else if (direction === 'desc') {
@@ -942,11 +1032,8 @@
       direction
     }
     STATE.setSortData(selectedSort);
-    plotTopGrowthTable(topGrowthUsers);
-    plotListLineCharts(topGrowthUsers);
-    registerListViewEvents();
-    renderTableFilters();
   }
+
 
   // Table sort events end
 
@@ -995,17 +1082,41 @@
     <thead class="border-top-none">
       <tr>
         <th class="pl-3 align-middle">PROVIDER</th>
-        <th class="align-middle text-center">AGE</th>
-        <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
-        <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
-          <p class="m-0 p-0 header-text">Total Returns / equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
-        </div>
+        <th class="align-middle text-center">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_duration">
+            <p class="m-0 p-0 header-text">Age<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_duration' ? 'd-none' : ''}"></i></p>
+          </div>
         </th>
-        <th class="align-middle text-center">DD</th>
-        <th class="align-middle text-center">avg / mth</th>
-        <th class="align-middle text-center">Avg Pips</th>
-        <th class="align-middle text-center">managed funds</th>
-        <th class="align-middle text-center">followers</th>
+        <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
+            <p class="m-0 p-0 header-text">Total Returns / equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
+        <th class="align-middle text-center" data-sort-key="drawDown">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="drawDown">
+            <p class="m-0 p-0 header-text">DD<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'drawDown' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
+        <th class="align-middle text-center">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="average_per_month">
+            <p class="m-0 p-0 header-text">avg / mth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_per_month' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
+        <th class="align-middle text-center">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="average_pips">
+            <p class="m-0 p-0 header-text">Avg Pips<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_pips' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
+        <th class="align-middle text-center">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_funds">
+            <p class="m-0 p-0 header-text">Managed Funds<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_funds' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
+        <th class="align-middle text-center">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_count">
+            <p class="m-0 p-0 header-text">Followers<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_count' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
         <th class="align-middle text-center">Follow</th>
         <th class="pr-3 align-middle text-center">WATCH</th>
       </tr>
@@ -1075,7 +1186,7 @@
         </div>
       </td>
       <td class="text-center align-middle">
-      ${return_duration}
+        ${calculateDateDiff(new Date(return_duration), new Date(), true)}
       </td>
       <td class="px-3 d-flex">
         <span class="mr-3 return-percentage font-bold font-size-16 pt-1 align-self-center" style="height:30px">${return_percentage}%</span>
@@ -1357,7 +1468,7 @@
       </div>
       <div class="d-flex flex-column">
         <p class="text-gray small-font mb-1">AVG / MTH</p>
-        <p class="text-green font-bold text-center mb-1">${avg_per_month}</p>
+        <p class="text-green font-bold text-center mb-1">${avg_per_month}%</p>
       </div>
       <div class="d-flex flex-column">
         <p class="text-gray small-font mb-1">AVG PIPS</p>
