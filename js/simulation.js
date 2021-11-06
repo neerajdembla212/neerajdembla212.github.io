@@ -5,6 +5,10 @@
     lineChartData = {};
     strategyProvidersSearchResult = [];
     strategyProviderDetails = {};
+    sortData = {
+      sortKey: '',
+      direction: '' // asc or desc
+    }
 
     getStrategyProviders() {
       return this.strategyProviders;
@@ -54,6 +58,15 @@
         return;
       }
       this.strategyProviderDetails = data;
+    }
+    getSortData() {
+      return this.sortData
+    }
+    setSortData(data) {
+      if (!data) {
+        return
+      }
+      this.sortData = data;
     }
   }
   const STATE = new State();
@@ -155,8 +168,8 @@
   // render strategy providers start
   function renderStrategyProviders() {
     const strategyProviders = STATE.getStrategyProviders();
-    const container = $('.simulation-strategy-providers');
-    container.append(getStrategyProvidersTableHTML(strategyProviders));
+    const container = $('.strategy-providers-table-content');
+    container.empty().append(getStrategyProvidersTableHTML(strategyProviders));
     registerStrategyProviderTableEvents();
   }
 
@@ -169,17 +182,46 @@
   }
 
   function getStrategyProvidersTableHeaders() {
+    const selectedSort = STATE.getSortData()
+    const { sortKey, direction } = selectedSort;
+    let arrowClass = '';
+    if (direction === 'asc') {
+      arrowClass = 'up-arrow-sort';
+    } else if (direction === 'desc') {
+      arrowClass = 'down-arrow-sort';
+    }
+    console.log(sortKey !== 'total_profit_loss');
     return `
         <thead>
             <tr>
             <th class="align-middle extra-small-font pr-0">Provider</th>
-            <th class="text-right align-middle extra-small-font pr-0">joined duration</th>
-            <th class="text-right align-middle extra-small-font pr-0">equity growth</th>
-            <th class="text-right align-middle extra-small-font pr-0">Trades</th>
-            <th class="text-right align-middle extra-small-font pr-0">Subscription FEEs</th>
-            <th class="text-center align-middle extra-small-font pr-0">P share %</th>
-            <th class="text-right align-middle extra-small-font pr-0">TOTAL FEEs</th>
-            <th class="text-right align-middle extra-small-font">Actions</th>
+            <th class="text-center align-middle extra-small-font pr-0">joined duration</th>
+            <th class="text-center align-middle extra-small-font pr-0">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
+                <p class="m-0 p-0">equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle extra-small-font pr-0">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trades">
+                <p class="m-0 p-0">Trades<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle extra-small-font pr-0">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
+                <p class="m-0 p-0">Management FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle extra-small-font pr-0">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
+                <p class="m-0 p-0">P Share %<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle extra-small-font pr-0">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
+                <p class="m-0 p-0">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle extra-small-font">Actions</th>
             </tr>
         </thead>
         `
@@ -277,12 +319,39 @@
       </tfoot>`
   }
   function registerStrategyProviderTableEvents() {
-    $('.simulation-strategy-providers .action-icon').unbind().click(function (event) {
+    $('.strategy-providers-table-content .action-icon').unbind().click(function (event) {
       const providerId = $(event.currentTarget).data('id')
       fetchStrategyProviderDetails(providerId);
     })
+    // table sort events
+    tableSortEvents($('.strategy-providers-table-content'), onProvidersTableSort);
+  }
+  function onProvidersTableSort(key, direction) {
+    const strategyProviders = STATE.getStrategyProviders();
+    if (!strategyProviders.length) {
+      return
+    }
+    if (!strategyProviders[0].hasOwnProperty(key)) {
+      return
+    }
+    tableSort(strategyProviders, key, direction);
+    renderStrategyProviders();
   }
 
+  function tableSort(data, key, direction) {
+    data.sort((a, b) => {
+      if (direction === 'asc') {
+        return a[key] - b[key]
+      } else if (direction === 'desc') {
+        return b[key] - a[key]
+      }
+    })
+    const selectedSort = {
+      sortKey: key,
+      direction
+    }
+    STATE.setSortData(selectedSort);
+  }
   // render strategy providers end
 
   // render sparkline start
