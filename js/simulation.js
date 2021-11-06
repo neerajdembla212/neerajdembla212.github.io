@@ -9,7 +9,9 @@
       sortKey: '',
       direction: '' // asc or desc
     }
-
+    isCalculateFormValid = {
+      amount: false
+    }
     getStrategyProviders() {
       return this.strategyProviders;
     }
@@ -68,6 +70,16 @@
       }
       this.sortData = data;
     }
+
+    setIsCalculateFormValid(control, data) {
+      if (typeof data !== 'boolean') {
+        return
+      }
+      this.isCalculateFormValid[control] = data;
+    }
+    getIsCalculateFormValid() {
+      return this.isCalculateFormValid.amount
+    }
   }
   const STATE = new State();
 
@@ -94,6 +106,29 @@
       target.addClass('active');
       const value = target.text();
       console.log(value);
+    })
+
+    // validate input
+    validateTextInput($('.calculate-card .input-amount'), function (val) {
+      let isValid = false;
+      if (isNaN(val)) {
+        isValid = false;
+      } else if (val === '') {
+        isValid = false;
+      } else {
+        const numVal = Number(val);
+        if (numVal >= 0.01 && numVal <= 100) {
+          isValid = true;
+        }
+      }
+      return isValid;
+    })
+
+    $('#calculate-cta').off().on('click', function(){
+      $('.calculate-card .input-amount').blur();
+      if (!STATE.getIsCalculateFormValid()) {
+        return
+      }
     })
   }
 
