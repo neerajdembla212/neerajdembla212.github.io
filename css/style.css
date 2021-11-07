@@ -14344,18 +14344,14 @@ select[name="rows-per-page"] {
   text-align: right;
 }
 
+#page-container.simulation-page .calculate-card #calculate-cta:disabled {
+  background: #E5E5E5;
+  border-color: #E5E5E5;
+  border-radius: 4px;
+}
+
 #page-container.simulation-page .simulation-strategy-providers {
   border-radius: 6px;
-}
-
-#page-container.simulation-page .simulation-strategy-providers table {
-  width: 100%;
-}
-
-#page-container.simulation-page .simulation-strategy-providers tbody {
-  height: 200px;
-  overflow-y: auto;
-  width: 100%;
 }
 
 #page-container.simulation-page .simulation-strategy-providers .dropdown-toggle::after {
