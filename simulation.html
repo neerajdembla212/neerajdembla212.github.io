@@ -196,28 +196,49 @@
                 </div>
               </div>
               <!--end date end -->
-              <div class="divider"></div>
               <!-- Calculate button CTA start -->
-              <button id="calculate-cta" class="btn btn-primary btn-block">Calculate</button>
+              <button id="calculate-cta" class="btn btn-primary btn-block" disabled>Calculate</button>
               <!-- Calculate button CTA end -->
             </section>
             <!-- Calculate card end -->
             <!-- strategy providers section -->
-            <section class="simulation-strategy-providers card col p-0">
-              <div class="d-flex justify-content-between p-3 align-items-center">
-                <h3 class="">Following</h3>
-                <button type="button" data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle font-bold"
-                  aria-expanded="false">Add Provider</button>
-                <ul id="add-provider-menu" class="dropdown-menu">
-                  <div class="form-group position-relative">
-                    <span class="inline-search-icon fa fa-search"></span>
-                    <input type="text" placeholder="Search Providers" class="form-control white-bg p-3"
-                      name="top-search" id="providers-search">
-                  </div>
-                </ul>
-              </div>
-              <div class="strategy-providers-table-content"></div>
-            </section>
+            <div class="w-100">
+              <section class="simulation-strategy-providers card col p-0">
+                <div class="d-flex justify-content-between p-3 align-items-center">
+                  <h3 class="">Following</h3>
+                  <button type="button" data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle font-bold"
+                    aria-expanded="false">Add Provider</button>
+                  <ul id="add-provider-menu" class="dropdown-menu">
+                    <div class="form-group position-relative">
+                      <span class="inline-search-icon fa fa-search"></span>
+                      <input type="text" placeholder="Search Providers" class="form-control white-bg p-3"
+                        name="top-search" id="providers-search">
+                    </div>
+                  </ul>
+                </div>
+                <div class="strategy-providers-table-content">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="align-middle extra-small-font pr-0">Provider</th>
+                        <th class="text-center align-middle extra-small-font pr-0">joined duration</th>
+                        <th class="text-center align-middle extra-small-font pr-0">equity growth</th>
+                        <th class="text-center align-middle extra-small-font pr-0">Trades</th>
+                        <th class="text-center align-middle extra-small-font pr-0">Management FEEs</th>
+                        <th class="text-center align-middle extra-small-font pr-0">P Share %</th>
+                        <th class="text-center align-middle extra-small-font pr-0">Total FEEs</th>
+                        <th class="text-center align-middle extra-small-font pr-0">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="8" class="text-center text-dark-gray">Add a Provider to Start Simulation</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
           </div>
           <!-- Simulation End -->
           <div class="divider my-3"></div>
@@ -227,7 +248,41 @@
             <h2 class="font-bold mb-3">Simulation Results</h2>
             <!-- Sparkline data will be displayed here from api-->
             <div class="sparkline-container mt-2">
-
+              <div class="d-flex flex-wrap justify-content-between desktop-content">
+                <div class="sparkline mr-0">
+                  <div class="key tooltip-demo">Cumulative returns <i
+                      class="fa fa-question-circle cursor-pointer ml-1"></i>
+                    <div class="value text-light-gray highlight">0<sup class="ml-1 font-weight-normal">%</sup></div>
+                  </div>
+                </div>
+                <div class="divider mx-2"></div>
+                <div class="sparkline">
+                  <div class="key">Current Balance</div>
+                  <div class="value text-light-gray">SGD 0</div>
+                </div>
+                <div class="sparkline">
+                  <div class="key">Return / mth</div>
+                  <div class="value text-light-gray">SGD 0</div>
+                </div>
+                <div class="sparkline">
+                  <div class="key">Average Pips</div>
+                  <div class="value text-light-gray">SGD 0</div>
+                </div>
+                <div class="sparkline">
+                  <div class="key">
+                    <p class="mb-0">Total Paid <i class="fa fa-question-circle cursor-pointer ml-1"></i></p>
+                  </div>
+                  <div class="value text-light-gray">SGD 0</div>
+                </div>
+                <div class="sparkline">
+                  <div class="key">Trades</div>
+                  <div class="value text-light-gray">0</div>
+                </div>
+                <div class="sparkline">
+                  <div class="key">Max Drawdown</div>
+                  <div class="value text-light-gray">0%</div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- Sparkline end -->
@@ -248,7 +303,7 @@
         </div>
         <!-- Page Content end -->
         <!-- Follow/ Edit provider modal start -->
-        <div class="modal inmodal" id="follow-provider-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal inmodal" id="add-provider-modal" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content animated fadeIn">
               <!-- Modal header start -->

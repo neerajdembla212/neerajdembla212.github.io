@@ -86,11 +86,179 @@
   // Document ready
   $(function () {
     registerGlobalEvents();
-    fetchStrategyProviders();
-    fetchStrategyDetails();
-    fetchLineData();
+    // fetch and render add strategy provider dropdown 
     fetchStrategyProvidersSearch();
+    plotEmptyLineChart();
   });
+
+  function plotEmptyLineChart() {
+    STATE.setLineChartData([{
+      "time": "9:20",
+      "data": 0
+    }, {
+      "time": "9:21",
+      "data": 0
+    },
+    {
+      "time": "9:22",
+      "data": 0
+    },
+    {
+      "time": "9:23",
+      "data": 0
+    }, {
+      "time": "9:24",
+      "data": 0
+    },
+    {
+      "time": "9:25",
+      "data": 0
+    }, {
+      "time": "9:26",
+      "data": 0
+    },
+    {
+      "time": "9:27",
+      "data": 0
+    },
+    {
+      "time": "9:28",
+      "data": 0
+    },
+    {
+      "time": "9:29",
+      "data": 0
+    },
+    {
+      "time": "9:30",
+      "data": 0
+    },
+    {
+      "time": "9:31",
+      "data": 0
+    },
+    {
+      "time": "9:32",
+      "data": 0
+    },
+    {
+      "time": "9:33",
+      "data": 0
+    },
+    {
+      "time": "9:34",
+      "data": 0
+    },
+    {
+      "time": "9:35",
+      "data": 0
+    },
+    {
+      "time": "9:36",
+      "data": 0
+    },
+    {
+      "time": "9:37",
+      "data": 0
+    },
+    {
+      "time": "9:38",
+      "data": 0
+    },
+    {
+      "time": "9:39",
+      "data": 0
+    },
+    {
+      "time": "9:40",
+      "data": 0
+    },
+    {
+      "time": "9:41",
+      "data": 0
+    },
+    {
+      "time": "9:42",
+      "data": 0
+    },
+    {
+      "time": "9:43",
+      "data": 0
+    },
+    {
+      "time": "9:44",
+      "data": 0
+    },
+    {
+      "time": "9:45",
+      "data": 0
+    },
+    {
+      "time": "9:46",
+      "data": 0
+    },
+    {
+      "time": "9:47",
+      "data": 0
+    },
+    {
+      "time": "9:47",
+      "data": 0
+    },
+    {
+      "time": "9:48",
+      "data": 0
+    },
+    {
+      "time": "9:49",
+      "data": 0
+    },
+    {
+      "time": "9:50",
+      "data": 0
+    },
+    {
+      "time": "9:51",
+      "data": 0
+    },
+    {
+      "time": "9:52",
+      "data": 0
+    },
+    {
+      "time": "9:53",
+      "data": 0
+    },
+    {
+      "time": "9:54",
+      "data": 0
+    },
+    {
+      "time": "9:55",
+      "data": 0
+    },
+    {
+      "time": "9:56",
+      "data": 0
+    },
+    {
+      "time": "9:57",
+      "data": 0
+    },
+    {
+      "time": "9:58",
+      "data": 0
+    },
+    {
+      "time": "9:59",
+      "data": 0
+    },
+    {
+      "time": "10:00",
+      "data": 0
+    }]);
+    plotLineChart();
+  }
 
   function registerGlobalEvents() {
     // add country flag on input
@@ -121,14 +289,27 @@
           isValid = true;
         }
       }
+      STATE.setIsCalculateFormValid('amount', isValid);
       return isValid;
     })
+    const calculateCard = $('.calculate-card');
+    calculateCard.find('.input-amount').on('blur', function () {
+      if (STATE.getIsCalculateFormValid()) {
+        calculateCard.find('#calculate-cta').attr('disabled', false);
+      } else {
+        calculateCard.find('#calculate-cta').attr('disabled', true);
+      }
+    })
 
-    $('#calculate-cta').off().on('click', function(){
-      $('.calculate-card .input-amount').blur();
+    calculateCard.find('#calculate-cta').off().on('click', function () {
+      calculateCard.find('.input-amount').blur();
       if (!STATE.getIsCalculateFormValid()) {
         return
       }
+      // fetch and render strategy details
+      fetchStrategyDetails();
+      // fetch and plot trendline chart
+      fetchLineData();
     })
   }
 
@@ -329,7 +510,7 @@
         <td class="text-center font-bold align-middle">
             S$${formatWithCommas(total_fee)}
         </td>
-        <td class="action-tools text-center align-middle action-icon provider-modal-cta" data-id=${id} data-toggle="modal" data-target="#follow-provider-modal">
+        <td class="action-tools text-center align-middle action-icon provider-modal-cta" data-id=${id} data-toggle="modal" data-target="#add-provider-modal">
             <i class="fa fa-gear mr-1"></i>
         </td>
       </tr>`
@@ -394,7 +575,6 @@
     const strategy = STATE.getStrategyDetails();
     const container = $('.sparkline-container');
     container.empty().append(getSparklineHTML(strategy));
-    // container.append(getSparklineResponsiveHTML(strategy, role));
   }
 
   function getSparklineHTML(strategy) {
@@ -411,26 +591,26 @@
     return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-            <div class="key tooltip-demo">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Since Inception </br> ${strategy_age}"></i></div>
-            <div class="d-flex justify-content-between">
+              <div class="key tooltip-demo">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Since Inception </br> ${strategy_age}"></i></div>
+                <div class="d-flex justify-content-between">
                 <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
                     <p class="mb-0 font-weight-light"></p>
                 </div>
-            </div>
+              </div>
             </div>
             <div class="divider mx-2"></div>
             <div class="sparkline">
-            <div class="key">Current Balance</div>
-            <div class="value white">SGD${formatWithCommas(current_balance)}</div>
+              <div class="key">Current Balance</div>
+              <div class="value white">SGD${formatWithCommas(current_balance)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Deposits</div>
-            <div class="value white">SGD${formatWithCommas(deposits)}</div>
+              <div class="key">Return / mth</div>
+              <div class="value white">SGD${formatWithCommas(deposits)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Withdrawals</div>
-            <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
+              <div class="key">Average Pips</div>
+              <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
             </div>
             <div class="sparkline">
             <div class="key">
@@ -439,17 +619,13 @@
             <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
             </div>
             <div class="sparkline">
-                <div class="key">Followers</div>
-            <div class="value white">SGD${formatWithCommas(followers)}</div>
+              <div class="key">Trades</div>
+              <div class="value green">${formatWithCommas(trades)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Trades</div>
-            <div class="value green">${formatWithCommas(trades)}</div>
-            </div>
-            <div class="sparkline">
-            <div class="key">Max Drawdown</div>
-            <div class="value dark-red">${max_drawdown}</div>
-        </div>
+              <div class="key">Max Drawdown</div>
+              <div class="value dark-red">${max_drawdown}</div>
+          </div>
       </div>`
   }
   // render sparkline end
@@ -581,7 +757,7 @@
       return_duration,
       return_percentage } = provider;
     return `
-            <li class="cursor-pointer px-2 provider-modal-cta" data-id="${id}" data-toggle="modal" data-target="#follow-provider-modal">
+            <li class="cursor-pointer px-2 provider-modal-cta" data-id="${id}" data-toggle="modal" data-target="#add-provider-modal">
                 <div class="d-flex justify-content-between py-2">
                     <div class="d-flex">
                         <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
@@ -611,9 +787,9 @@
   // render strategy provider modal start
   function renderStrategyProviderModal() {
     const strategyProviderDetails = STATE.getStrategyProviderDetails();
-    const container = $('#follow-provider-modal .modal-content .modal-body');
+    const container = $('#add-provider-modal .modal-content .modal-body');
     container.empty().append(getStrategyProviderModalHTML(strategyProviderDetails))
-    const modalContent = $('#follow-provider-modal .modal-content');
+    const modalContent = $('#add-provider-modal .modal-content');
     modalContent.append(getStrategyProviderModalFooterHTML())
     // Global function 
     readMoreLessEventHandler()
@@ -936,14 +1112,18 @@
     <!-- Modal footer start -->
     <div class="w-100 d-flex justify-content-between p-3 align-items-center">
         <p class="simulation-text p-1 mb-0 extra-small-font font-bold">SIMULATION</p>
-        <button type="button" class="btn btn-primary" id="follow-provider">Follow Provider</button>
+        <button type="button" class="btn btn-primary" id="add-provider">Add Provider</button>
     </div>
 <!-- Modal footer end -->
     `
   }
   function strategyProviderModalEventHandler() {
     initDatePicker();
-    $('')
+    $('#add-provider-modal #add-provider').unbind().click(function () {
+      // fetch and render provider table content
+      fetchStrategyProviders();
+      $('#add-provider-modal').modal('hide')
+    })
   }
   // render strategy provider modal end
 
