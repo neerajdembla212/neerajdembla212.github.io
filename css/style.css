@@ -14330,6 +14330,11 @@ select[name="rows-per-page"] {
   margin-top: 12px;
 }
 
+.btn-back:hover{
+  background: #AAAAAA;
+  border-radius: 4px;
+}
+
 #page-container.simulation-page .calculate-card {
   height: 265px;
   border-radius: 6px;
