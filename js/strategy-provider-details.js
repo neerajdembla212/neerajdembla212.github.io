@@ -106,7 +106,7 @@
   }
 
   function registerEvents() {
-    $('.chart-filter .btn').click(event => {
+    $('.chart-filter .btn').unbind().click(event => {
       const target = $(event.currentTarget);
       $('.chart-filter .btn').removeClass('active');
       target.addClass('active');
@@ -115,6 +115,12 @@
     })
     DESKTOP_MEDIA.addEventListener('change', function (event) {
       renderTradeHistorySection();
+    })
+
+    // back button CTA to strategy provider page
+    $('.btn-back-cta').unbind().click(event => {
+      const activeTab = localStorage.getItem('SP_active_tab_id');
+      window.location.href = `${window.location.origin}/strategy-providers.html?tab=${activeTab}`
     })
   }
 

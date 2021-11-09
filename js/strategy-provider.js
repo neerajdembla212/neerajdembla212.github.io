@@ -765,6 +765,9 @@
     $('#follow-provider-modal #follow-provider').click(() => {
       $('#follow-provider-modal #close-modal').click();
     })
+    // select tab based on query params
+    const selectedTabId = window.location.hash;
+    $(`.nav.nav-tabs [href="${selectedTabId}"]`).click();
   }
 
   function onTabChange(tabId, isManual = true) {
@@ -789,6 +792,7 @@
     } else {
       $('#list-view-cta').show();
     }
+    localStorage.setItem('SP_active_tab_id', tabId);
     switch (tabId) {
       case '#top-growth': fetchTopGrowthProviders(tabId); break;
       case '#featured': fetchFeaturedProviders(tabId); break;
