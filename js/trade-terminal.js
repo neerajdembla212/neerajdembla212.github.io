@@ -1766,44 +1766,42 @@
         }
 
         if (action === 'BUY') {
-            profitTargetValue = Math.max(from_currency_rate, to_currency_rate);
-            lossTargetValue = Math.min(from_currency_rate, to_currency_rate);
+            targetValue = Math.min(from_currency_rate, to_currency_rate);
             // checking profit value
-            if (profitVal > profitTargetValue) {
+            if (profitVal >= targetValue) {
                 removeError(profitInput);
                 STATE.setIsBuySellFormValid('profit', true);
             } else {
-                const errorMessage = `Profit < ${profitTargetValue}`;
+                const errorMessage = `Invalid TP`;
                 addError(profitInput, errorMessage);
                 STATE.setIsBuySellFormValid('profit', false);
             }
             // checking loss value
-            if (lossVal < lossTargetValue) {
+            if (lossVal <= targetValue) {
                 removeError(lossInput);
                 STATE.setIsBuySellFormValid('loss', true);
             } else {
-                const errorMessage = `Loss > ${lossTargetValue}`;
+                const errorMessage = `Invalid SL`;
                 addError(lossInput, errorMessage);
                 STATE.setIsBuySellFormValid('loss', false);
             }
         } else if (action === 'SELL') {
-            profitTargetValue = Math.min(from_currency_rate, to_currency_rate);
-            lossTargetValue = Math.max(from_currency_rate, to_currency_rate);
+            targetValue = Math.max(from_currency_rate, to_currency_rate);
             // checking profit value
-            if (profitVal < profitTargetValue) {
+            if (profitVal <= targetValue) {
                 removeError(profitInput);
                 STATE.setIsBuySellFormValid('profit', true);
             } else {
-                const errorMessage = `Profit > ${profitTargetValue}`;
+                const errorMessage = `Invalid TP`;
                 addError(profitInput, errorMessage);
                 STATE.setIsBuySellFormValid('profit', false);
             }
             // checking loss value
-            if (lossVal > lossTargetValue) {
+            if (lossVal >= targetValue) {
                 removeError(lossInput);
                 STATE.setIsBuySellFormValid('loss', true);
             } else {
-                const errorMessage = `Loss > ${lossTargetValue}`;
+                const errorMessage = `Invalid SL`;
                 addError(lossInput, errorMessage);
                 STATE.setIsBuySellFormValid('loss', false);
             }
@@ -1880,42 +1878,42 @@
             return isValid;
         })
         // validate take profit input
-        validateTextInput(container.find('#profit-input'), function (val) {
-            let isValid = false;
-            if (isNaN(val)) {
-                isValid = false;
-            } else if (val === '') {
-                isValid = false;
-            } else {
-                const numVal = Number(val);
-                if (numVal >= 0) {
-                    isValid = true;
-                    const allowedDecimalCount = STATE.getBuySellData().decimalCount;
-                    fixDecimals(container.find('#profit-input'), numVal, allowedDecimalCount);
-                }
-            }
-            STATE.setIsBuySellFormValid('profit', isValid);
-            return isValid;
-        }, 'Number only')
+        // validateTextInput(container.find('#profit-input'), function (val) {
+        //     let isValid = false;
+        //     if (isNaN(val)) {
+        //         isValid = false;
+        //     } else if (val === '') {
+        //         isValid = false;
+        //     } else {
+        //         const numVal = Number(val);
+        //         if (numVal >= 0) {
+        //             isValid = true;
+        //             const allowedDecimalCount = STATE.getBuySellData().decimalCount;
+        //             fixDecimals(container.find('#profit-input'), numVal, allowedDecimalCount);
+        //         }
+        //     }
+        //     STATE.setIsBuySellFormValid('profit', isValid);
+        //     return isValid;
+        // }, '')
 
         // validate stop loss input
-        validateTextInput(container.find('#loss-input'), function (val) {
-            let isValid = false;
-            if (isNaN(val)) {
-                isValid = false;
-            } else if (val === '') {
-                isValid = false;
-            } else {
-                const numVal = Number(val);
-                if (numVal >= 0) {
-                    isValid = true;
-                    const allowedDecimalCount = STATE.getBuySellData().decimalCount;
-                    fixDecimals(container.find('#loss-input'), numVal, allowedDecimalCount);
-                }
-            }
-            STATE.setIsBuySellFormValid('loss', isValid);
-            return isValid;
-        }, 'Number only')
+        // validateTextInput(container.find('#loss-input'), function (val) {
+        //     let isValid = false;
+        //     if (isNaN(val)) {
+        //         isValid = false;
+        //     } else if (val === '') {
+        //         isValid = false;
+        //     } else {
+        //         const numVal = Number(val);
+        //         if (numVal >= 0) {
+        //             isValid = true;
+        //             const allowedDecimalCount = STATE.getBuySellData().decimalCount;
+        //             fixDecimals(container.find('#loss-input'), numVal, allowedDecimalCount);
+        //         }
+        //     }
+        //     STATE.setIsBuySellFormValid('loss', isValid);
+        //     return isValid;
+        // }, 'Number only')
 
         // validate price input
         validateTextInput(container.find('#price-input'), function (val) {
