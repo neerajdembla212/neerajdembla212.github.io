@@ -41,7 +41,7 @@ export const FAQ = {
         },
         {
             question: `What is monthly subscription?`,
-            answer: `This a fixed monthly fee that you may charge your followers for following you.`
+            answer: `This is a fixed monthly fee that you may charge your followers for following you.`
         },
         {
             question: `Do I trade with my followers' funds or my own?`,
