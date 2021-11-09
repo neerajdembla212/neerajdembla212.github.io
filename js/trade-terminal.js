@@ -579,7 +579,11 @@
                     S$${profit}
                 </td>
                 <td class="text-center align-middle">
-                    <button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Close</button>
+                    <button id="close-open-trade" class="btn btn-default px-2 btn-gray" type="button" name="close-trade-cta">
+                        <div class="d-flex align-items-center">
+                            <img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" /> Close
+                        </div>
+                    </button>
                 </td>
             </tr>
             `
@@ -742,14 +746,14 @@
         switch (tradeType) {
             case 'open': actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">Close</button>`; break;
             case 'pending': actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>`; break;
-            case 'closed': 
+            case 'closed':
                 actionCTA = `
                 <div>
                     <p class="m-0 font-weight-bold ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
                     <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
                 </div>
                 `
-            break;
+                break;
         }
         return `
         <div class="p-3 edit-trade-cta cursor-pointer" data-id="${id}">

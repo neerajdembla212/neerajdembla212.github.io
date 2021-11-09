@@ -13844,6 +13844,10 @@ select[name="rows-per-page"] {
   background: #F3F3F3;
 }
 
+.trade-terminal-chart .chart-content {
+  border-top: 1px solid #e5e5e5;
+}
+
 .buy-sell-section {
   border-radius: 6px;
   max-height: 444px;
