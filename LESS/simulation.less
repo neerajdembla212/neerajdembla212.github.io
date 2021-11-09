@@ -5,6 +5,15 @@
         border-radius: 6px;
         min-width: 340px;
 
+        @media screen and (max-width: 1250px) {
+            width: 100%;
+            margin-right: 0 !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            border-radius: 0;
+        }
+
         .input-amount {
             padding-left: 4rem !important;
 
@@ -23,6 +32,10 @@
     .simulation-strategy-providers {
         border-radius: 6px;
 
+        @media screen and (max-width: 768px) {
+            border-radius: 0 !important;
+        }
+
         .dropdown-toggle::after {
             content: none;
         }
@@ -33,6 +46,23 @@
 
         .dropdown-menu {
             width: 340px;
+        }
+
+        .responsive-providers {
+            >* {
+                border-top: 1px solid @table-border;
+            }
+
+            .responsive-label {
+                text-transform: uppercase;
+                color: @thead-color;
+                font-size: 10px;
+            }
+
+            .responsive-value {
+                font-size: 14px;
+                word-break: break-word;
+            }
         }
     }
 
@@ -66,6 +96,14 @@
             background: @light-purple;
             letter-spacing: 0.35em;
             border-radius: 4px;
+        }
+    }
+
+    .simulation-top-container {
+        flex-wrap: nowrap;
+
+        @media screen and (max-width: 1250px) {
+            flex-wrap: wrap;
         }
     }
 }
