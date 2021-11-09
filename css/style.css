@@ -13827,10 +13827,6 @@ select[name="rows-per-page"] {
   content: none;
 }
 
-.trade-terminal-chart .actions-header {
-  height: 30px;
-}
-
 .trade-terminal-chart .arrow {
   position: absolute;
   top: 20px;
