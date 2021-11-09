@@ -1326,7 +1326,7 @@
       <div class="d-flex justify-content-between mt-2">
           <div class="mr-3">
             <p class="mb-0 responsive-label">Age</p>
-            <p class="mb-0 font-bold responsive-value">${return_duration}</p>
+            <p class="mb-0 font-bold responsive-value">${calculateDateDiff(new Date(+return_duration), new Date(), true)}</p>
           </div>
           <div class="mr-3">
             <p class="mb-0 responsive-label">DD</p>

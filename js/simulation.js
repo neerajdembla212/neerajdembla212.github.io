@@ -12,6 +12,11 @@
     isCalculateFormValid = {
       amount: false
     }
+    paginationData = {
+      rowsPerPage: 10,
+      total: 0,
+      page: 0
+    }
     getStrategyProviders() {
       return this.strategyProviders;
     }
@@ -80,15 +85,27 @@
     getIsCalculateFormValid() {
       return this.isCalculateFormValid.amount
     }
+    getPaginationData() {
+      return this.paginationData;
+    }
+    setPaginationData(data) {
+      if (!data) {
+        return;
+      }
+      this.paginationData = data;
+    }
   }
   const STATE = new State();
-
+  const MOBILE_MEDIA = window.matchMedia("(max-width: 480px)")
+  const TABLET_MEDIA = window.matchMedia("(max-width: 768px)")
   // Document ready
   $(function () {
     registerGlobalEvents();
     // fetch and render add strategy provider dropdown 
     fetchStrategyProvidersSearch();
     plotEmptyLineChart();
+    // render empty state sparkline
+    renderSparkline();
   });
 
   function plotEmptyLineChart() {
@@ -311,6 +328,14 @@
       // fetch and plot trendline chart
       fetchLineData();
     })
+
+    MOBILE_MEDIA.addEventListener('change', function () {
+      renderSparkline();
+    })
+
+    TABLET_MEDIA.addEventListener('change', function () {
+      renderStrategyProviders();
+    })
   }
 
   function initDatePicker() {
@@ -385,7 +410,13 @@
   function renderStrategyProviders() {
     const strategyProviders = STATE.getStrategyProviders();
     const container = $('.strategy-providers-table-content');
-    container.empty().append(getStrategyProvidersTableHTML(strategyProviders));
+    if (TABLET_MEDIA.matches) {
+      // screen size less than 768px
+      container.empty().append(getStrategyProvidersResponsiveHTML(strategyProviders))
+    } else {
+      // screen size greater than 768px
+      container.empty().append(getStrategyProvidersTableHTML(strategyProviders));
+    }
     registerStrategyProviderTableEvents();
   }
 
@@ -534,6 +565,108 @@
         </tr>
       </tfoot>`
   }
+
+  function getStrategyProvidersResponsiveHTML(strategyProviders) {
+    const rowsHTML = [];
+    strategyProviders.forEach(user => {
+      rowsHTML.push(getStrategyProviderResponsiveRow(user))
+    })
+    return `<div class="responsive-providers">
+        ${rowsHTML.join('')}
+        ${getStrategyProviderResponsiveFooter(strategyProviders.length)}
+    </div>`
+  }
+
+  function getStrategyProviderResponsiveRow(user) {
+    if (!user) {
+      return '';
+    }
+    const { id,
+      profile_image,
+      name,
+      username,
+      country,
+      total_profit_loss,
+      trades,
+      subscription_fee,
+      profit_share,
+      total_fee,
+      joined_start_date,
+      joined_end_date
+    } = user;
+
+    return `<div class="p-3 sp-details-cta cursor-pointer" data-id="${id}">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}" />
+            <div class="ml-2 float-left">
+                <p class="font-bold font-size-12 mb-0">
+                    ${username}
+                </p>
+                <p class="text-light-black font-size-12 mb-0">
+                    ${name}
+                    <img class="ml-1" src="${getCountryFlags(country)}" />
+                </p>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div name="actions">
+                <i class="fa fa-gear mr-2 action-tools large-font cursor-pointer extra-large-font provider-modal-cta" name="actions" data-id=${id} data-toggle="modal" data-target="#add-provider-modal"></i>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mt-2">
+        <div class="mr-3">
+            <p class="mb-0 responsive-label">EQ growth</p>
+            <p class="mb-0 font-bold responsive-value">$${formatWithCommas(total_profit_loss)}</p>
+        </div>
+        <div class="mr-3">
+            <p class="mb-0 responsive-label">Joined Duration</p>
+            <p class="mb-0 font-bold responsive-value">${formatDate(new Date(joined_start_date))} - ${formatDate(new Date(joined_end_date))}</p>
+        </div>
+        <div class="mr-3">
+            <p class="mb-0 responsive-label">Trades</p>
+            <p class="mb-0 font-bold responsive-value">${formatWithCommas(trades)}</p>
+        </div>
+        <div class="mr-3">
+            <p class="mb-0 responsive-label">M Fees</p>
+            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(subscription_fee)}</p>
+        </div>
+        <div class="mr-3">
+            <p class="mb-0 responsive-label">P share</p>
+            <p class="mb-0 font-bold responsive-value">${profit_share}</p>
+        </div>
+        <div class="mr-3">
+            <p class="mb-0 responsive-label">Total fees</p>
+            <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(total_fee)}</p>
+        </div>
+    </div>
+</div>`
+  }
+
+  function getStrategyProviderResponsiveFooter(dataLength) {
+    const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
+    return `
+    <div class="d-flex justify-content-between align-items-center p-2">
+            <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+            <ul class="pagination d-flex justify-content-end align-items-center m-0">
+                <select class="form-control rows-per-page mr-2" name="rows-per-page">
+                    <option value="10">10 Rows per page</option>
+                    <option value="20">20 Rows per page</option>
+                    <option value="30">30 Rows per page</option>
+                    <option value="40">40 Rows per page</option>
+                </select>
+                <button class="btn btn-default border-0" type="button">
+                    <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
+                </button>
+                <button class="btn btn-default border-0" type="button">
+                    <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
+                </button>
+            </ul>
+        </div>
+    `
+  }
+
   function registerStrategyProviderTableEvents() {
     $('.strategy-providers-table-content .action-icon').unbind().click(function (event) {
       const providerId = $(event.currentTarget).data('id')
@@ -574,26 +707,35 @@
   function renderSparkline() {
     const strategy = STATE.getStrategyDetails();
     const container = $('.sparkline-container');
-    container.empty().append(getSparklineHTML(strategy));
+    if (MOBILE_MEDIA.matches) {
+      // screen size below 480px
+      container.empty().append(getSparklineResponsiveHTML(strategy));
+    } else {
+      // screen size is above 480px
+      container.empty().append(getSparklineHTML(strategy));
+    }
   }
 
   function getSparklineHTML(strategy) {
-    const { cumulative_returns,
+    const { cumulative_returns = 0,
       strategy_age,
-      deposits,
-      current_balance,
-      withdrawals,
-      followers,
-      trades,
-      max_drawdown,
-      amount_paid } = strategy;
+      deposits = 0,
+      current_balance = 0,
+      withdrawals = 0,
+      followers = 0,
+      trades = 0,
+      max_drawdown = 0,
+      amount_paid = 0 } = strategy;
 
+    const isEmpty = Object.keys(strategy).length > 0 ? false : true;
+
+    console.log('cumulative_returns ', cumulative_returns)
     return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
               <div class="key tooltip-demo">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Since Inception </br> ${strategy_age}"></i></div>
                 <div class="d-flex justify-content-between">
-                <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
+                <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
                     <p class="mb-0 font-weight-light"></p>
                 </div>
@@ -602,31 +744,91 @@
             <div class="divider mx-2"></div>
             <div class="sparkline">
               <div class="key">Current Balance</div>
-              <div class="value white">SGD${formatWithCommas(current_balance)}</div>
+              <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(current_balance)}</div>
             </div>
             <div class="sparkline">
               <div class="key">Return / mth</div>
-              <div class="value white">SGD${formatWithCommas(deposits)}</div>
+              <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(deposits)}</div>
             </div>
             <div class="sparkline">
               <div class="key">Average Pips</div>
-              <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
+              <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(withdrawals)}</div>
             </div>
             <div class="sparkline">
             <div class="key">
                 <p class="mb-0">Total Paid <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
             </div>
-            <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
+            <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(amount_paid)}</div>
             </div>
             <div class="sparkline">
               <div class="key">Trades</div>
-              <div class="value green">${formatWithCommas(trades)}</div>
+              <div class="value ${isEmpty ? 'text-light-gray' : 'green'}">${formatWithCommas(trades)}</div>
             </div>
             <div class="sparkline">
               <div class="key">Max Drawdown</div>
-              <div class="value dark-red">${max_drawdown}</div>
+              <div class="value ${isEmpty ? 'text-light-gray' : 'dark-red'}">${max_drawdown}</div>
           </div>
       </div>`
+  }
+
+  function getSparklineResponsiveHTML(strategy) {
+    console.log('strategy ', strategy)
+    const { cumulative_returns = 0,
+      strategy_age = 0,
+      deposits = 0,
+      current_balance = 0,
+      withdrawals = 0,
+      followers = 0,
+      trades = 0,
+      max_drawdown = 0,
+      amount_paid = 0 } = strategy;
+
+    const isEmpty = Object.keys(strategy).length > 0 ? false : true;
+
+    return `
+      <div class="responsive-content">
+        <div class="d-flex justify-content-between align-items-center p-3">
+          <div class="key">
+            <p class="mb-0">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Strategy Age </br> ${strategy_age}"></i></p>
+          </div>
+          <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
+        </div>
+        <div class="horizontal-divider mx-2"></div>
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <div class="key">Balance</div>
+            <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(current_balance)}</div>
+        </div>
+        <div class="horizontal-divider mx-2"></div>
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <div class="key">Return / mth</div>
+            <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(deposits)}</div>
+        </div>
+        <div class="horizontal-divider mx-2"></div>
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <div class="key">Average Pips</div>
+            <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(withdrawals)}</div>
+        </div>
+        <div class="horizontal-divider mx-2"></div>
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <div class="key">
+                <p class="mb-0">Total Paid</p>
+                <p class="mb-0 small-font font-weight-light">Fees + Profit Shared</p>
+            </div>
+            <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(amount_paid)}</div>
+        </div>
+        <div class="horizontal-divider mx-2"></div>
+        <div class="row px-3">
+            <div class="p-3 col d-flex justify-content-between border-right">
+                <div class="key">Trades</div>
+                <div class="value ${isEmpty ? 'text-light-gray' : 'green'}">${formatWithCommas(trades)}</div>
+            </div>
+            <div class="p-3 col d-flex justify-content-between">
+                <div class="key">Max Drawdown</div>
+                <div class="value ${isEmpty ? 'text-light-gray' : 'dark-red'}">${max_drawdown}</div>
+            </div>
+        </div>
+      </div>
+      `
   }
   // render sparkline end
 

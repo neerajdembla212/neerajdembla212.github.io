@@ -233,6 +233,7 @@
     }
     const STATE = new State();
     const DESKTOP_MEDIA = window.matchMedia("(max-width: 968px)")
+    const MOBILE_MEDIA = window.matchMedia("(max-width: 480px)")
     // document ready function
     $(function () {
         // role has to be set first before callig other methods as they depend upon this value
@@ -1376,8 +1377,13 @@
     function renderSparkline(role) {
         const strategy = STATE.getStrategyDetails();
         const container = $('.sparkline-container');
-        container.empty().append(getSparklineHTML(strategy, role));
-        container.append(getSparklineResponsiveHTML(strategy, role));
+        if (MOBILE_MEDIA.matches) {
+            // screen size is below 480px
+            container.empty().append(getSparklineResponsiveHTML(strategy, role));
+        } else {
+            // screen size is above 480px
+            container.empty().append(getSparklineHTML(strategy, role));
+        }
     }
 
     function getSparklineHTML(strategy, role) {
@@ -1539,6 +1545,10 @@
                 // render providers table
                 renderStrategyProviders();
             }
+        })
+
+        MOBILE_MEDIA.addEventListener('change', function (event) {
+            renderSparkline();
         })
     }
 
