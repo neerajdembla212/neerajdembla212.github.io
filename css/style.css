@@ -13657,6 +13657,10 @@ select[name="rows-per-page"] {
   padding-bottom: 14px !important;
 }
 
+.no-text-transform {
+  text-transform: unset !important;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

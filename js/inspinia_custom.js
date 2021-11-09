@@ -517,7 +517,7 @@ function getFollowProviderPopupBody(data) {
         <div class="font-bold medium-font">${avg_lot_size}</div>
       </div>
       <div class="w-50 d-flex justify-content-between align-items-center">
-        <div class="uppercase-label">draw down</div>
+        <div class="uppercase-label">Drawdown</div>
         <div class="text-light-red medium-font">${max_drawdown}%</div>
       </div>
     </div>
