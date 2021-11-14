@@ -1002,7 +1002,7 @@ function getDropdownMenuInputHTML(filter) {
   const { filterName, filterOperation, filterValue, percentage } = filter;
   return `
   <!-- Header start -->
-    <div class="d-flex mb-3">
+    <div class="d-flex mb-3 align-items-center">
         <img src="img/ic_chevron-left.svg" class="mr-3 go-back cursor-pointer" />
         <p class="mb-0 font-bold medium-font">${filterName}</p>
     </div>

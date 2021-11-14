@@ -13666,6 +13666,10 @@ select[name="rows-per-page"] {
   text-transform: unset !important;
 }
 
+.dropdown-menu.dropdown-menu-input .go-back {
+  height: 15px;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
