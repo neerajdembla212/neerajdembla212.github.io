@@ -2549,8 +2549,8 @@
         const { id, title } = watchListRow;
         const currenciesRowHTML = [];
         if (watchListRow.currencies && Array.isArray(watchListRow.currencies)) {
-            if(watchListRow.currencies.length === 0) {
-                currenciesRowHTML.push(`<div class="py-2 px-4">
+            if (watchListRow.currencies.length === 0) {
+                currenciesRowHTML.push(`<div class="py-2 px-3">
                 No Currencies to show
                 </div>`)
             }
@@ -2561,13 +2561,10 @@
         return `
             <!-- Watchlist collapsed start -->
             <div id="watchlist-${id}-row">
-                <div class="d-flex justify-content-between align-items-center py-2">
-                <button class="btn btn-outline font-bold text-modal-black medium-font" type="button" data-toggle="collapse"
-                    data-target="#watchlist-${id}-content" aria-expanded="false" aria-controls="collapseExample">
-                    <div class="d-flex align-items-center">
-                    <i class="down-arrow arrow-black mr-2"></i>
-                    <span>${title}</span>
-                    </div>
+                <div class="d-flex justify-content-between align-items-center py-2"  data-toggle="collapse"
+                data-target="#watchlist-${id}-content" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-outline font-bold text-modal-black medium-font" type="button">
+                        <span class="watchlist-name" data-watchlist-id="${id}">${title}</span>
                 </button>
                 <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist cursor-pointer" data-id="${id}"/>
                 </div>
@@ -2659,14 +2656,51 @@
             const watchListObj = STATE.getWatchList().find(obj => +obj.id === +watchListId)
             const currencyIndex = watchListObj.currencies.findIndex(currency => currency.id === currencyId);
             watchListObj.currencies.splice(currencyIndex, 1);
-            
+
             // calling render watchlist will refresh the watchlist section which will close all the watchlist hence updating state and manipulating dom directly
             $(this).parent('.currency-row').remove();
-            if(watchListObj.currencies.length === 0) {
+            if (watchListObj.currencies.length === 0) {
                 renderWatchlists();
             }
-            
         })
+
+        // change watchlist name to input text
+        $('.watchlist-name').unbind().click(function (event) {
+            // if text has already been changed to text box then do nothing
+            if ($(this).children('input').length) {
+                return
+            }
+            const watchListName = $(this).text();
+            const watchListId = $(this).data('watchlist-id')
+            const input = $(`<input id="attribute" type="text" value="${watchListName}" class="form-control white-bg" />`)
+            $(this).text('').append(input)
+            input.select()
+            input.unbind().keydown(function (event) {
+                if (event.keyCode === 13) {
+                    // save watchlist name
+                    saveWatchListName(watchListId, $(this).val())
+
+                }
+
+            })
+            input.blur(function (event) {
+                saveWatchListName(watchListId, $(this).val())
+            })
+        })
+        // save watchlist name on blur or pressing enter in input box
+    }
+
+    function saveWatchListName(watchListId, text) {
+        // save new watchlist name to state
+        const watchList = STATE.getWatchList()
+        const targetWatchList = watchList.find(w => w.id === watchListId)
+        if (!text) {
+            text = targetWatchList.title;
+        }
+        targetWatchList.title = text; // since objects in array are stored by reference, when we modify title we wont need to re save new object in array
+
+        // revert back HTML to text from text field
+        $(`.watchlist-name[data-watchlist-id=${watchListId}]`).text('').append(text);
     }
     // render watchlist end
 
