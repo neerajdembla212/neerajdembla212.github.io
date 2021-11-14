@@ -13964,6 +13964,10 @@ select[name="rows-per-page"] {
   right: 10px;
 }
 
+.watchlist-right-sidebar .currency-row {
+  border-bottom: 1px solid #e5e5e5;
+}
+
 #modify-trade[disabled] {
   background-color: #b7c0cb;
 }
