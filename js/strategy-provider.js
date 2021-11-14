@@ -860,6 +860,12 @@
       const providerName = $(event.currentTarget).data('name');
       renderUnfollowProviderPopup(providerName);
     })
+
+    // follow provider CTA
+    $('.follow-provider-cta').unbind().click(event => {
+      const id = $(event.currentTarget).data('id')
+      fetchStrategyProviderDetails(id);
+    })
     registerTablePaginationEvents();
     registerTableSortEvents();
   }
@@ -1165,7 +1171,7 @@
     const followProviderCTA = followed === 'true' ? `<button type="button" class="btn btn-outline btn-primary btn-block unfollow-provider-cta" name="unfollow-provider-cta" data-toggle="modal"
     data-target="#unfollow-provider-modal" data-name="${name}">
     Unfollow Provider
-  </button>` : `<button id="follow-provider-cta" class="btn btn-primary font-size-12 btn-block" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
+  </button>` : `<button id="follow-provider-cta" class="btn btn-primary font-size-12 btn-block follow-provider-cta" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
   Follow Provider
 </button>`;
 

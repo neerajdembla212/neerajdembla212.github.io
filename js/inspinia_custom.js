@@ -764,8 +764,11 @@ function getFollowProviderPopupBody(data) {
         </div>
         <div>
           <p class="text-gray medium-font mb-1">By level of Equity <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-html="true" data-placement="right" title="${getLevelOfEquityTooltipText()}"></i></p>
-          <div class="position-relative w-75">
-            <input type="text" class="form-control" id="level-of-equity">
+          <div class="d-flex align-items-center">
+            <div class="position-relative w-75 mr-3">
+              <input type="text" class="form-control" id="level-of-equity">
+            </div>
+            <span class="font-bold medium-font text-dark-black">%</span>
           </div>
         </div>
       </div>
