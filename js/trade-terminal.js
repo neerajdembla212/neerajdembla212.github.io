@@ -2694,6 +2694,9 @@
         // save new watchlist name to state
         const watchList = STATE.getWatchList()
         const targetWatchList = watchList.find(w => w.id === watchListId)
+        if (!text) {
+            text = targetWatchList.title;
+        }
         targetWatchList.title = text; // since objects in array are stored by reference, when we modify title we wont need to re save new object in array
 
         // revert back HTML to text from text field
