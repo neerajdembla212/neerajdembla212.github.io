@@ -2549,6 +2549,11 @@
         const { id, title } = watchListRow;
         const currenciesRowHTML = [];
         if (watchListRow.currencies && Array.isArray(watchListRow.currencies)) {
+            if(watchListRow.currencies.length === 0) {
+                currenciesRowHTML.push(`<div class="py-2 px-4">
+                No Currencies to show
+                </div>`)
+            }
             watchListRow.currencies.forEach(currency => {
                 currenciesRowHTML.push(getWatchListCurrencyRow(currency, id));
             })
@@ -2588,7 +2593,7 @@
             currency_delta_percentage } = currency;
         return `
         <!-- Watchlist expand start -->
-        <div class="d-flex justify-content-between align-items-center mx-2 py-2">
+        <div class="d-flex justify-content-between align-items-center mx-2 py-2 currency-row">
             <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
             <p class="mb-0 font-bold">${currency_rate}</p>
             <div>    
@@ -2599,9 +2604,9 @@
                 </div>
             </div>
             <img src="img/ic_pin_unfilled.svg" alt="pin icon" class="sidebar-pin-currency cursor-pointer" data-currency-id="${id}" data-watchlist-id="${watchListId}" />
-            <img src="img/ic_pin_filled.svg" alt="pin icon" class="sidebar-unpin-currency cursor-pointer d-none" data-currency-id="${id}" data-watchlist-id="${watchListId}" />
+            <img src="img/ic_pin_filled.svg" alt="unpin icon" class="sidebar-unpin-currency cursor-pointer d-none" data-currency-id="${id}" data-watchlist-id="${watchListId}" />
+            <img src="img/ic_cross.svg" alt="remove icon" class="sidebar-remove-currency cursor-pointer" data-currency-id="${id}" data-watchlist-id="${watchListId}" />
         </div>
-        <div class="divider"></div>
         <!-- Watchlist expand end -->
         `
     }
@@ -2643,6 +2648,24 @@
                 STATE.setPinnedCurrencies(pinnedCurrencies);
                 renderPinnedCurrencies()
             }
+        })
+
+        // remove currency
+        $('.sidebar-remove-currency').unbind().click(function (event) {
+            const currentTarget = $(event.currentTarget);
+            const currencyId = currentTarget.data('currency-id');
+            const watchListId = currentTarget.data('watchlist-id');
+            // remove this currency from watchlist and re-render 
+            const watchListObj = STATE.getWatchList().find(obj => +obj.id === +watchListId)
+            const currencyIndex = watchListObj.currencies.findIndex(currency => currency.id === currencyId);
+            watchListObj.currencies.splice(currencyIndex, 1);
+            
+            // calling render watchlist will refresh the watchlist section which will close all the watchlist hence updating state and manipulating dom directly
+            $(this).parent('.currency-row').remove();
+            if(watchListObj.currencies.length === 0) {
+                renderWatchlists();
+            }
+            
         })
     }
     // render watchlist end
