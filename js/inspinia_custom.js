@@ -280,25 +280,26 @@ function registerBuySellModalEvents(data) {
       $('#buy-sell-modal #btn-expiration-date-input').attr('disabled', 'true');
     } else if (selectedItem.toUpperCase() === 'DAY ORDER') {
       const expirationDate = data.day_order_expiration_date;
-      $('#buy-sell-modal #btn-expiration-date-input').datepicker('setDate', new Date(expirationDate));
+      // $('#buy-sell-modal #btn-expiration-date-input').datepicker('setDate', new Date(expirationDate));
     } else {
       $('#buy-sell-modal #btn-expiration-date-input').removeAttr('disabled');
     }
   })
 
   // expiration date picker
-  $('#buy-sell-modal #expiration-date-input').datepicker({
-    todayBtn: "linked",
-    keyboardNavigation: true,
-    forceParse: false,
-    calendarWeeks: true,
-    autoclose: true
+  $('#buy-sell-modal #expiration-date-input').datetimepicker({
+    // todayBtn: "linked",
+    // keyboardNavigation: true,
+    // forceParse: false,
+    // calendarWeeks: true,
+    // autoclose: true
+    format: 'yyyy-mm-dd hh:ii'
   }).off('changeDate').on('changeDate', function (e) {
     const displayDateButton = $('#buy-sell-modal #btn-expiration-date-input');
     displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
   });
   const expirationDate = new Date(data.gtc_expiration_date);
-  $('#buy-sell-modal #expiration-date-input').datepicker('setDate', expirationDate);
+  // $('#buy-sell-modal #expiration-date-input').datepicker('setDate', expirationDate);
 }
 // fetch buy sell initial data end
 

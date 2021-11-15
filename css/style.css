@@ -12878,6 +12878,14 @@ table>tbody>tr:first-child>td {
   border-top: 5px solid #ffffff;
 }
 
+.down-arrow-black {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000000;
+}
+
 .arrow-red {
   border-top: 5px solid #C00000;
 }
@@ -13668,6 +13676,18 @@ select[name="rows-per-page"] {
 
 .dropdown-menu.dropdown-menu-input .go-back {
   height: 15px;
+}
+
+.date input:focus {
+  outline: none;
+}
+
+.data input:disabled {
+  color: #c2c2c2;
+}
+
+.date input {
+  width: 125px;
 }
 
 .portfolio-line-chart {
