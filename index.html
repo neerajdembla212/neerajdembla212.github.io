@@ -23,11 +23,10 @@
   <!-- Toastr style -->
   <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
-  <!-- Gritter -->
-  <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <!-- Date time picker style -->
+  <link href="css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -286,11 +285,10 @@
             <!-- Expiration Date input start -->
             <div class="d-flex justify-content-between mb-2 mx-3 align-items-center">
               <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
-              <div class="date" id="expiration-date-input">
-                <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold"
-                  aria-expanded="false">
-                  08 Aug 2021 14:00
-                </button>
+              <div class="date d-flex align-items-center">
+                <input type="text" value="" id="expiration-date-input" data-date-format="dd M yyyy hh:ii"
+                  class="border-0 font-bold cursor-pointer" />
+                <i class="down-arrow-black"></i>
               </div>
             </div>
             <!-- Expiration Date input end -->
@@ -360,6 +358,8 @@
   <script src="js/inspinia.js"></script>
   <script src="js/plugins/pace/pace.min.js"></script>
   <script src="js/inspinia_custom.js"></script>
+  <!-- Date time picker -->
+  <script src="js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 </body>
 

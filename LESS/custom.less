@@ -558,6 +558,14 @@ table>tbody>tr:first-child>td {
   border-top: 5px solid @white;
 }
 
+.down-arrow-black {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid @black;
+}
+
 .arrow-red {
   border-top: 5px solid @negative-red;
 }
@@ -1377,4 +1385,18 @@ select[name="rows-per-page"] {
 
 .dropdown-menu.dropdown-menu-input .go-back {
   height: 15px;
+}
+
+.date {
+  input {
+    width: 125px;
+  }
+
+  input:disabled {
+    color: @dark-gray;
+  }
+
+  input:focus {
+    outline: none;
+  }
 }

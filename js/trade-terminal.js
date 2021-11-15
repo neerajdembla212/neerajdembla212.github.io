@@ -30,6 +30,8 @@
             loss: false
         }
         isBuySellModalFormValid = false;
+        dateTimePickerFormat = 'dd M yyyy hh:ii';
+
         getOpenTrades() {
             return this.openTrades;
         }
@@ -183,6 +185,13 @@
                 return
             }
             this.isBuySellModalFormValid = data;
+        }
+
+        getDateTimePickerFormat() {
+            return this.dateTimePickerFormat;
+        }
+        setDateTimePickerFormat(format) {
+            this.dateTimePickerFormat = format;
         }
     }
 
@@ -1488,7 +1497,7 @@
 
     function getPendingOrderControls(mode, status) {
         const buySellData = STATE.getBuySellData();
-        const { gtc_expiration_date } = buySellData;
+        const { gtc_expiration_date, day_order_expiration_date } = buySellData;
         let priceInput = `
          <!-- Price input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
@@ -1510,6 +1519,7 @@
             </div>
             <!-- Order Type input end -->
             <div class="divider mb-3"></div>
+            
             <!-- Expiration input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Expiration</p>
@@ -1517,6 +1527,7 @@
             </div>
             <!-- Expiration input end -->
             <div class="divider mb-3"></div>
+            
             <!-- Expiration Date input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
@@ -1572,10 +1583,9 @@
         <!-- Expiration Date input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
-            <div class="date" id="expiration-date-input">
-                <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                ${formatDate(new Date(gtc_expiration_date), 'DD MMM YYYY HH:mm')}
-            </button>
+            <div class="date d-flex align-items-center">
+                <input type="text" value="${formatDate(new Date(day_order_expiration_date), 'DD MMM YYYY HH:mm')}" id="expiration-date-input" data-date-format="${STATE.getDateTimePickerFormat()}" class="border-0 font-bold cursor-pointer" />
+                <i class="down-arrow-black"></i>
             </div>
         </div>
         <!-- Expiration Date input end -->
@@ -1600,31 +1610,23 @@
             const selectedItem = event.target.innerText.trim();
             const selectedButton = container.find('#btn-expiration-input');
             selectedButton.text(selectedItem);
-            const expirationDateButton = container.find('#btn-expiration-date-input');
+            const expirationDateInput = container.find('#expiration-date-input');
+            expirationDateInput.removeAttr('disabled');
             if (selectedItem.toUpperCase() === 'GOOD TILL CANCELLED (GTC)') {
-                expirationDateButton.attr('disabled', 'true');
+                expirationDateInput.attr('disabled', 'true');
             } else if (selectedItem.toUpperCase() === 'DAY ORDER') {
                 const expirationDate = STATE.getBuySellData().day_order_expiration_date;
-                expirationDateButton.datepicker('setDate', new Date(expirationDate));
-            } else {
-                expirationDateButton.removeAttr('disabled');
+                expirationDateInput.val(formatDate(new Date(expirationDate), 'DD MMM YYYY HH:mm'))
             }
         })
 
         // expiration date picker
-        container.find('#expiration-date-input').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: true,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true
-        }).on('changeDate', function (e) {
-            const displayDateButton = container.find('#btn-expiration-date-input');
-            displayDateButton.text(formatDate(e.date, "DD MM YYYY HH:mm"));
+        container.find('#expiration-date-input').datetimepicker({
+            todayBtn: true,
+            minuteStep: 1,
+            autoclose: true,
+            pickerPosition: 'bottom-left'
         });
-        const buySellData = STATE.getBuySellData();
-        const expirationDate = new Date(buySellData.gtc_expiration_date);
-        container.find('#expiration-date-input').datepicker('setDate', expirationDate);
     }
     function registerBuySellEvents() {
         const container = $('.buy-sell-section');
