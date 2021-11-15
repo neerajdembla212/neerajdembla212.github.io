@@ -13682,7 +13682,7 @@ select[name="rows-per-page"] {
   outline: none;
 }
 
-.data input:disabled {
+.date input:disabled {
   color: #c2c2c2;
 }
 

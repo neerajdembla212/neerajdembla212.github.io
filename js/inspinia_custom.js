@@ -86,7 +86,7 @@ function registerEventHandlers() {
     $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
   }
 
-  // Open close Buy/Sell right sidebar
+  // Open close watchlist right sidebar
   $(".watchlist-right-sidebar-toggle").on("click", function (e) {
     e.preventDefault();
     $(".right-sidebar.watchlist-right-sidebar").addClass("sidebar-open");
@@ -118,7 +118,6 @@ function registerEventHandlers() {
     height: '100%',
     railOpacity: 0.9
   });
-
 }
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
@@ -276,30 +275,24 @@ function registerBuySellModalEvents(data) {
     const selectedItem = event.target.innerText.trim();
     const selectedButton = $('#buy-sell-modal #btn-expiration-input')
     selectedButton.text(selectedItem);
+    const expirationDateInput = $('#buy-sell-modal #expiration-date-input');
+    expirationDateInput.removeAttr('disabled');
     if (selectedItem.toUpperCase() === 'GOOD TILL CANCELLED (GTC)') {
-      $('#buy-sell-modal #btn-expiration-date-input').attr('disabled', 'true');
+      expirationDateInput.attr('disabled', 'true');
     } else if (selectedItem.toUpperCase() === 'DAY ORDER') {
       const expirationDate = data.day_order_expiration_date;
-      // $('#buy-sell-modal #btn-expiration-date-input').datepicker('setDate', new Date(expirationDate));
-    } else {
-      $('#buy-sell-modal #btn-expiration-date-input').removeAttr('disabled');
+      expirationDateInput.val(formatDate(new Date(expirationDate), 'DD MMM YYYY HH:mm'))
     }
   })
 
+  $('#buy-sell-modal #expiration-date-input').val(formatDate(new Date(data.day_order_expiration_date), 'DD MMM YYYY HH:mm'));
   // expiration date picker
   $('#buy-sell-modal #expiration-date-input').datetimepicker({
-    // todayBtn: "linked",
-    // keyboardNavigation: true,
-    // forceParse: false,
-    // calendarWeeks: true,
-    // autoclose: true
-    format: 'yyyy-mm-dd hh:ii'
-  }).off('changeDate').on('changeDate', function (e) {
-    const displayDateButton = $('#buy-sell-modal #btn-expiration-date-input');
-    displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
+    todayBtn: true,
+    minuteStep: 1,
+    autoclose: true,
+    pickerPosition: 'bottom-left'
   });
-  const expirationDate = new Date(data.gtc_expiration_date);
-  // $('#buy-sell-modal #expiration-date-input').datepicker('setDate', expirationDate);
 }
 // fetch buy sell initial data end
 

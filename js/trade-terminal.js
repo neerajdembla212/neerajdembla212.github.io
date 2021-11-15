@@ -1626,13 +1626,7 @@
             minuteStep: 1,
             autoclose: true,
             pickerPosition: 'bottom-left'
-        }).on('changeDate', function (e) {
-            const displayDateButton = container.find('#btn-expiration-date-input');
-            displayDateButton.text(formatDate(e.date, "DD MM YYYY HH:mm"));
         });
-        const buySellData = STATE.getBuySellData();
-        const expirationDate = new Date(buySellData.gtc_expiration_date);
-        // container.find('#expiration-date-input').datepicker('setDate', expirationDate);
     }
     function registerBuySellEvents() {
         const container = $('.buy-sell-section');

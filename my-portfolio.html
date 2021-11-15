@@ -13,10 +13,11 @@
 
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
   <link href="css/plugins/select2/select2.min.css" rel="stylesheet">
   <link href="css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
   <link href="css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
+  <!-- Date time picker style -->
+  <link href="css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -456,13 +457,12 @@
               <!-- Expiration input end -->
               <div class="divider mb-3"></div>
               <!-- Expiration Date input start -->
-              <div class="d-flex justify-content-between mb-2 align-items-center">
+              <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
-                <div class="date" id="expiration-date-input">
-                  <button id="btn-expiration-date-input" class="btn dropdown-toggle btn-dropdown font-bold"
-                    aria-expanded="false">
-                    08 Aug 2021 14:00
-                  </button>
+                <div class="date d-flex align-items-center">
+                  <input type="text" value="" id="expiration-date-input" data-date-format="dd M yyyy hh:ii"
+                    class="border-0 font-bold cursor-pointer" />
+                  <i class="down-arrow-black"></i>
                 </div>
               </div>
               <!-- Expiration Date input end -->
@@ -706,9 +706,8 @@
 
   <!-- Switchery -->
   <script src="js/plugins/switchery/switchery.js"></script>
-  <!-- Dat2 picker -->
-  <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
-
+ <!-- Date time picker -->
+ <script src="js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
   <!-- Bootstrap Tour -->
   <script src="js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
 </body>
