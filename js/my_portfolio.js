@@ -423,7 +423,7 @@
                     <p class="m-0 p-0">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="align-middle">Actions</th>
+            <th class="align-middle text-center">Actions</th>
             </tr>
         </thead>
         `
@@ -823,7 +823,7 @@
                     <p class="m-0 p-0">Com Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'com_earned' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="align-middle">Actions</th>
+            <th class="align-middle text-center">Actions</th>
             </tr>
         </thead>
         `
@@ -908,7 +908,7 @@
 
     function getStrategyFollowersActionColumn(id, isNew, name) {
         if (isNew === "true") {
-            return `<button class="btn btn-white text-dark-green font-bold px-1" type="button" data-id="${id}">Accept</button> 
+            return `<button class="btn btn-white text-dark-green font-bold px-1 mr-2" type="button" data-id="${id}">Accept</button> 
             <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>`
         } else if (isNew === "false") {
             return ` <i class="fa fa-pause mr-2 cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
@@ -997,9 +997,10 @@
                                 <i class="fa fa-play fa-rotate-270 font-size-12"></i>
                                 S$${formatWithCommas(profit_or_loss)}
                             </span>
-                            <i class="fa fa-pause mr-2 action-tools large-font cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                            ${getStrategyFollowersActionColumn(id, is_new, name)}
+                            <i class="d-none fa fa-pause mr-2 action-tools large-font cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                             data-target="#pause-follower-modal"></i>
-                            <i class="fa fa-stop mr-0 action-tools large-font cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                            <i class="d-none fa fa-stop mr-0 action-tools large-font cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                             data-target="#stop-follower-modal"></i>
                         </div>
                     </div>
