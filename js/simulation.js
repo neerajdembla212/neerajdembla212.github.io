@@ -989,10 +989,8 @@
   // render strategy provider modal start
   function renderStrategyProviderModal() {
     const strategyProviderDetails = STATE.getStrategyProviderDetails();
-    const container = $('#add-provider-modal .modal-content .modal-body');
-    container.empty().append(getStrategyProviderModalHTML(strategyProviderDetails))
-    const modalContent = $('#add-provider-modal .modal-content');
-    modalContent.append(getStrategyProviderModalFooterHTML())
+    const bodyContainer = $('#add-provider-modal .modal-content .modal-body');
+    bodyContainer.empty().append(getStrategyProviderModalHTML(strategyProviderDetails))
     // Global function 
     readMoreLessEventHandler()
     strategyProviderModalEventHandler();
@@ -1286,7 +1284,7 @@
     <!-- Follow duration section start -->
     <section class="py-3 mb-3">
         <p class="font-bold medium-font mb-2">Follow Duration </p>
-        <div class="d-flex justofy-content-between">
+        <div class="d-flex justify-content-between">
             <div class="w-50">
                 <p class="mb-0 text-dark-gray">Start Date</p>
                 <div class="date capital-date-input">
@@ -1311,12 +1309,8 @@
   }
   function getStrategyProviderModalFooterHTML() {
     return `
-    <!-- Modal footer start -->
-    <div class="w-100 d-flex justify-content-between p-3 align-items-center">
         <p class="simulation-text p-1 mb-0 extra-small-font font-bold">SIMULATION</p>
         <button type="button" class="btn btn-primary" id="add-provider">Add Provider</button>
-    </div>
-<!-- Modal footer end -->
     `
   }
   function strategyProviderModalEventHandler() {
