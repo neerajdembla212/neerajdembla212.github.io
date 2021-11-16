@@ -983,6 +983,15 @@ function registerTableFilterEvents(onApplyFilter) {
   })
 }
 
+function registerSelectedFilterEvents() {
+  $('.selected-filters-container .currency-chip').unbind().click(function () {
+    const filterId = $(this).data('id');
+    if (filterId) {
+      $(`.btn-group-more-filter .dropdown-menu>li.dropdown-item[data-id="${filterId}"]`).click();
+    }
+  })
+}
+
 function renderDropdownMenuInput(filter, onApplyFilter) {
   if (!filter) {
     return

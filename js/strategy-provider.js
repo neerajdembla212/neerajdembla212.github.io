@@ -1718,12 +1718,13 @@
         filterPercentage
       } = filter;
       filterChipsHTML.push(`
-            <div class="currency-chip d-flex align-items-center" data-id="${id}">
+            <div class="currency-chip d-flex align-items-center cursor-pointer" data-id="${id}">
                 <p class="mb-0 mr-2">${filterName} &nbsp;(${filterOperation}${filterValue}${filterPercentage ? '%' : ''})</p><img src="img/ic_cross.svg" class="remove-filter"/>
             </div>
         `)
     })
     container.empty().append(filterChipsHTML.join(''))
+    registerSelectedFilterEvents()
   }
 
   function renderTableFilters() {
@@ -1791,25 +1792,6 @@
     onTabChange(activeId, false);
   }
 
-  function renderSeletedFilters() {
-    const selectedFilters = STATE.getState().selectedTableFilters;
-    const container = $('.selected-filters-container');
-    filterChipsHTML = [];
-    selectedFilters.forEach(filter => {
-      const { id,
-        filterName,
-        filterOperation,
-        filterValue,
-        filterPercentage
-      } = filter;
-      filterChipsHTML.push(`
-            <div class="currency-chip d-flex align-items-center" data-id="${id}">
-                <p class="mb-0 mr-2">${filterName} &nbsp;(${filterOperation}${filterValue}${filterPercentage ? '%' : ''})</p><img src="img/ic_cross.svg" class="remove-filter"/>
-            </div>
-        `)
-    })
-    container.empty().append(filterChipsHTML.join(''))
-  }
 
   function clearFilters() {
     STATE.setDropdownFilterItems(defaultFilterItems);
