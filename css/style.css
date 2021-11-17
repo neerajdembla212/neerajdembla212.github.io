@@ -13690,6 +13690,11 @@ select[name="rows-per-page"] {
   width: 125px;
 }
 
+.nav-profile-img {
+  height: 48px;
+  width: 48px;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;
@@ -14623,9 +14628,19 @@ select[name="rows-per-page"] {
   }
 }
 
-.settings-page .basic-profile-settings img {
+.settings-page .basic-profile-settings .profile-img {
   width: 48px;
   height: 48px;
+}
+
+.settings-page .basic-profile-settings .camera-img {
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  background: #22D091;
+  padding: 4px;
 }
 
 .settings-page .profile-settings {
@@ -14716,6 +14731,10 @@ select[name="rows-per-page"] {
 
 #become-strategy-provider-modal .modal-body {
   max-height: 500px;
+}
+
+.basic-profile-settings .camera {
+  position: absolute;
 }
 
 .faq-content {

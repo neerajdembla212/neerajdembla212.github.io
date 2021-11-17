@@ -139,13 +139,14 @@
         } else {
             container.removeClass('mh-sm')
         }
+        registerBasicProfileEvents();
     }
 
     function getBasicProfileSettingsHTML(data) {
         if (!data) {
             return
         }
-        const { profile_image,
+        const {
             username,
             name,
             strategy_philosophy,
@@ -159,6 +160,8 @@
             max_drawdown
         } = data;
         const role = STATE.getRole();
+
+        const profile_image = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=identicon&f=y';
 
         const strategyPhilosophyHTML = role === 'provider' ? `<div class="py-3">
         <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
@@ -175,7 +178,11 @@
 
         return `
         <div class="mb-3">
-            <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
+            <div class="position-relative">
+                <img alt="image" class="profile-img rounded-circle img-fluid img-sm float-left" src="${profile_image}">
+                <img alt="camera" class="camera-img rounded-circle cursor-pointer" src="img/ic_camera.svg" />
+                <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture class="d-none"/>
+            </div>
             <div class="ml-2 float-left">
                 <p class="font-bold medium-font mb-0">${username}</p>
                 <p class="text-light-black medium-font mb-0">${name}</p>
@@ -248,6 +255,45 @@
             <button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button>
         </div>
         `
+    }
+
+    function registerBasicProfileEvents() {
+        const container = $('.basic-profile-settings');
+        // show file upload dialog on camera click
+        container.find('.camera-img').unbind().click(function () {
+            container.find('#imageUpload').click();
+        })
+        const profileImageUrl = localStorage.getItem('profileImage');
+        container.find('.profile-img').attr('src', profileImageUrl);
+        // on select pic
+        container.find('#imageUpload').unbind().change(function () {
+            showPreview(this);
+        })
+
+        function showPreview(uploader) {
+            if (uploader.files && uploader.files[0]) {
+                const file = uploader.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    container.find('.profile-img').attr('src', reader.result);
+                    $('.nav-profile-img').attr('src', reader.result);
+                    localStorage.setItem('profileImage', reader.result);
+                };
+            }
+        }
+
+        function getBase64(file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                console.log(reader.result);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+        }
+
     }
     // render basic profile end
 

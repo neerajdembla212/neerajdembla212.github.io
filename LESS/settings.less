@@ -19,11 +19,20 @@
             border-radius: 0;
         }
 
-        img {
+        .profile-img {
             width: 48px;
             height: 48px;
         }
 
+        .camera-img {
+            width: 23px;
+            height: 23px;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            background: @navy;
+            padding: 4px;
+        }
     }
 
     .profile-settings {
@@ -110,5 +119,11 @@
 
     .modal-body {
         max-height: 500px;
+    }
+}
+
+.basic-profile-settings {
+    .camera {
+        position: absolute;
     }
 }
