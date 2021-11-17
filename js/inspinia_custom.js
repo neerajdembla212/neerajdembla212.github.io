@@ -144,6 +144,13 @@ function initData() {
       const decimalCount = countDecimals(data.data.tradeData.from_currency_rate);
       data.data.tradeData.decimalCount = decimalCount;
       localStorage.setItem('tradeData', JSON.stringify(data.data.tradeData))
+      let profileImageUrl = defaultAccount.profile_image
+      if (!localStorage.getItem('profileImage')) {
+        localStorage.setItem('profileImage', defaultAccount.profile_image);
+      } else {
+        profileImageUrl = localStorage.getItem('profileImage');
+      }
+      $('.nav-profile-img').attr('src', profileImageUrl);
       registerBuySellModalEvents(data.data.tradeData);
     }
   })
