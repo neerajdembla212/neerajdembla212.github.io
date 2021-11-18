@@ -252,7 +252,7 @@
         <div class="d-flex justify-content-between flex-wrap">
             ${roleBasedCTA}
             ${settingsButton}
-            <button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button>
+            <a href="${window.location.origin}/refer-a-friend.html" ><button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button></a>
         </div>
         `
     }

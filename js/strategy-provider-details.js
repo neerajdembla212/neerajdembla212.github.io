@@ -663,7 +663,8 @@
                 <!-- profit end -->
                 <div class="divider"></div>
                 <div class="d-flex justify-content-end pt-3">
-                    <button type="button" class="btn btn-w-m btn-default text-navy">
+                    <button type="button" class="btn btn-w-m btn-default text-navy" data-toggle="modal"
+                    data-target="#follow-provider-modal">
                         Follow Provider
                     </button>
                 </div>
