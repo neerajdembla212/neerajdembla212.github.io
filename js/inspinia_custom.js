@@ -118,7 +118,45 @@ function registerEventHandlers() {
     height: '100%',
     railOpacity: 0.9
   });
+  // change event for global search
+  $('#top-search').unbind().change(function (event) {
+    const searchQuery = event.currentTarget.value;
+    fetchGlobalSearch(searchQuery);
+  })
 }
+
+function fetchGlobalSearch(searchQuery) {
+  callAjaxMethod({
+    url: `https://copypip.free.beeceptor.com/global-search?q=${searchQuery}`,
+    successCallback: (data) => {
+      renderGlobalSearchResult(data.data);
+    },
+  });
+}
+
+function renderGlobalSearchResult(data) {
+  const container = $('.global-search-container .global-dropdown-menu');
+  const rowsHTML = [];
+  data.forEach((result, i) => {
+    const isLast = i === data.length - 1;
+    rowsHTML.push(getGlobalSearchResultHTML(result, isLast))
+  })
+  container.removeClass('d-none').empty().append(rowsHTML.join(''))
+}
+
+function getGlobalSearchResultHTML(data, isLast) {
+  const { profile_image, username, role } = data;
+  return `
+    <div class="option d-flex justify-content-between ${!isLast ? 'mb-3' : ''}">
+      <div class="d-flex align-items-center">
+        <img src="${profile_image}" class="rounded-circle img-fluid img-sm mr-3 float-left"/>
+        <p class="m-0 p-0 font-weight-bold">${username}</p>
+      </div>
+      <p class="p-0 m-0 font-weight-light">${role}</p>
+    </div>  
+  `
+}
+
 function readMoreLessEventHandler() {
   $(".read-more-less .btn-read-more").unbind().click(function () {
     $('.read-more-less .read-less-text').toggleClass('d-none');
