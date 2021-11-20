@@ -1879,6 +1879,7 @@
             STATE.setIsBuySellFormValid('volume', isValid);
             return isValid;
         })
+
         // validate take profit input
         // validateTextInput(container.find('#profit-input'), function (val) {
         //     let isValid = false;

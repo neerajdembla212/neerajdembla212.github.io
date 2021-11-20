@@ -102,6 +102,7 @@
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard();
                     fillFormWithProfileDetails();
+                    validateBasicProfileEvents();
                 }
             })
         } else if (role === 'follower') {
@@ -111,6 +112,7 @@
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard(role);
                     fillFormWithProfileDetails();
+                    validateBasicProfileEvents();
                 }
             })
         }
@@ -287,17 +289,52 @@
             }
         }
 
-        function getBase64(file) {
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function () {
-                console.log(reader.result);
-            };
-            reader.onerror = function (error) {
-                console.log('Error: ', error);
-            };
-        }
+    }
 
+    function validateBasicProfileEvents() {
+        const profileDetails = STATE.getProfileDetails();
+        const container = $('.profile-settings');
+        // validate first name
+        validateTextInput(container.find('#first_name'), function (val) {
+            let isValid = false;
+            if (val.length > 20) {
+                isValid = false;
+            } else {
+                isValid = true;
+            }
+            return isValid;
+        }, 'Max length 20')
+
+        // validate last name
+        validateTextInput(container.find('#last_name'), function (val) {
+            let isValid = false;
+            if (val.length > 20) {
+                isValid = false;
+            } else {
+                isValid = true;
+            }
+            return isValid;
+        }, 'Max length 20')
+
+        // validate mobile number
+        validateTextInput(container.find('#mobile'), function (val) {
+            const { country } = profileDetails;
+            let pattern = /e/;
+            switch (country.toLowerCase()) {
+                case 'us': pattern = /^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/; break;
+                case 'sg': pattern = /^([7-9]{1})([0-9]{9})$/; break;
+                case 'cn': pattern = /^1[0-9]{10}$/; break;
+                case 'th': pattern = /(\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4})/; break;
+                case 'vn': pattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/; break;
+            }
+            return pattern.test(val);
+        }, 'Invalid phone number');
+
+        // validate email address
+        validateTextInput(container.find('#email_address'), function (val) {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return pattern.test(val)
+        }, 'Invalid email')
     }
     // render basic profile end
 
