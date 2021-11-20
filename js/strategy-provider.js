@@ -1201,7 +1201,7 @@
       <td class="px-3 d-flex">
         <span class="mr-3 return-percentage font-bold font-size-16 pt-1 align-self-center" style="height:30px">${return_percentage}%</span>
         <div class="canvas-max-width-trendline-table pt-2">
-          <canvas class="line-chart" class="mt-2"></canvas>
+          <canvas class="line-chart" class="mt-2" width="178" height="32"></canvas>
         </div>
       </td>
       <td class="text-light-red text-center align-middle">

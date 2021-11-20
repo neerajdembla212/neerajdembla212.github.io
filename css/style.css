@@ -13703,6 +13703,12 @@ select[name="rows-per-page"] {
   width: 48px;
 }
 
+.global-dropdown-menu {
+  position: absolute;
+  z-index: 2;
+  width: 300px;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

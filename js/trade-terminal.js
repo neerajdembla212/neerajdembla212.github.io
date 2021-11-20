@@ -246,7 +246,7 @@
 
     function registerGlobalEvents() {
         // tabs change event listener
-        $(".tabs-container .nav-tabs > li").click(event => {
+        $(".tabs-container .nav-tabs > li").unbind().click(event => {
             onTabChange($(event.target).attr('href'))
         })
 
@@ -270,7 +270,7 @@
         updateTabNames(MOBILE_MEDIA);
 
         // chart filter 
-        $('.chart-filter .btn').click(event => {
+        $('.chart-filter .btn').unbind().click(event => {
             const target = $(event.currentTarget);
             $('.chart-filter .btn').removeClass('active');
             target.addClass('active');
@@ -289,20 +289,20 @@
         })
 
         // watchlist search 
-        $('#search-currency').change(function (event) {
+        $('#search-currency').unbind().change(function (event) {
             console.log(event)
             const searchQuery = event.currentTarget.value;
             fetchCurrenciesSearch(searchQuery);
         })
         // clear search results
-        $('.clear-search-results').click(function () {
+        $('.clear-search-results').unbind().click(function () {
             // clear search results and go back to watchlist screen
             $('#search-currency').val('');
             renderWatchlists();
         })
 
         // add new watchlist
-        $('#add-new-watchList').click(addNewWatchList)
+        $('#add-new-watchList').unbind().click(addNewWatchList)
     }
 
     function updateTabNames(event) {
