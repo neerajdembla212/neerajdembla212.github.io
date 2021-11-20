@@ -963,12 +963,16 @@
         data-target="#pause-follower-modal"></i>`;
 
         if (isNew === "true") {
-            return `<button class="btn btn-white text-dark-green font-bold px-1 mr-2" type="button" data-id="${id}">Accept</button> 
-            <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>`
+            return `<div class="actions-btn-container m-auto d-flex justify-space-between">
+                <button class="btn btn-white text-dark-green font-bold px-1 mr-2" type="button" data-id="${id}">Accept</button> 
+                <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>
+            </div>`
         } else if (isNew === "false") {
-            return ` ${pausePlayIcon}
-            <i class="fa fa-stop mr-0 cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
-            data-target="#stop-follower-modal"></i>`
+            return ` <div class="actions-column-container m-auto">
+                ${pausePlayIcon}
+                <i class="fa fa-stop mr-0 cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                data-target="#stop-follower-modal"></i>
+            </div>`
         }
     }
 

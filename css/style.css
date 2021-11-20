@@ -12808,6 +12808,14 @@ table thead th {
   color: #D0226B;
 }
 
+.action-tools .actions-column-container {
+  width: 50px;
+}
+
+.action-tools .actions-btn-container {
+  width: 120px;
+}
+
 
 .navbar-form-custom .form-control {
   width: 234px;
