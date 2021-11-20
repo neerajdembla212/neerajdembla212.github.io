@@ -910,9 +910,10 @@
             com_earned,
             fee_earned,
             fee_mode,
-            is_new
+            is_new,
+            isPaused
         } = user;
-        const newUSerChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
+        const newUserChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
 
         return `<tr id="table-user-${id}">
         <td>
@@ -920,7 +921,7 @@
           <div class="ml-2 float-left">
             <p class="font-bold font-size-12 mb-0">
               ${username}
-              ${newUSerChip}
+              ${newUserChip}
             </p>
             <p class="text-light-black font-size-12 mb-0">
               ${name}
@@ -951,20 +952,27 @@
         </td>
       
         <td class="action-tools align-middle">
-         ${getStrategyFollowersActionColumn(id, is_new, name)}
+         ${getStrategyFollowersActionColumn(id, is_new, name, isPaused)}
         </td>
       </tr>`
     }
 
-    function getStrategyFollowersActionColumn(id, isNew, name) {
+    function getStrategyFollowersActionColumn(id, isNew, name, isPaused) {
+        const pausePlayIcon = isPaused ? `<i class="fa fa-play mr-2 cursor-pointer extra-large-font play-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+        data-target="#play-follower-modal"></i>` : `<i class="fa fa-pause mr-2 cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+        data-target="#pause-follower-modal"></i>`;
+
         if (isNew === "true") {
-            return `<button class="btn btn-white text-dark-green font-bold px-1 mr-2" type="button" data-id="${id}">Accept</button> 
-            <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>`
+            return `<div class="actions-btn-container m-auto d-flex justify-space-between">
+                <button class="btn btn-white text-dark-green font-bold px-1 mr-2" type="button" data-id="${id}">Accept</button> 
+                <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>
+            </div>`
         } else if (isNew === "false") {
-            return ` <i class="fa fa-pause mr-2 cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
-            data-target="#pause-follower-modal"></i>
-            <i class="fa fa-stop mr-0 cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
-            data-target="#stop-follower-modal"></i>`
+            return ` <div class="actions-column-container m-auto">
+                ${pausePlayIcon}
+                <i class="fa fa-stop mr-0 cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
+                data-target="#stop-follower-modal"></i>
+            </div>`
         }
     }
 
@@ -1024,7 +1032,8 @@
             balance,
             com_earned,
             fee_earned,
-            is_new
+            is_new,
+            isPaused
         } = user;
         const newUSerChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
         return `<div class="p-3">
@@ -1047,7 +1056,7 @@
                                 <i class="fa fa-play fa-rotate-270 font-size-12"></i>
                                 S$${formatWithCommas(profit_or_loss)}
                             </span>
-                            ${getStrategyFollowersActionColumn(id, is_new, name)}
+                            ${getStrategyFollowersActionColumn(id, is_new, name, isPaused)}
                             <i class="d-none fa fa-pause mr-2 action-tools large-font cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
                             data-target="#pause-follower-modal"></i>
                             <i class="d-none fa fa-stop mr-0 action-tools large-font cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
@@ -1104,14 +1113,25 @@
             </div>`
     }
     function registerStrategyFollowersTableEvents() {
-        // click on pause icon on any strategy provider tabls row and open pause provider popup
+        // click on pause icon on any strategy provider table row and open pause provider popup
         $('.pause-follower-cta').unbind().click(event => {
             const id = $(event.currentTarget).data('id');
             const providerName = $(event.currentTarget).data('name');
             renderPauseFollowerPopup(id, providerName);
+            // click on confirm pause follower cta
+            $('#pause-follower-modal #pause-follower-confirm-cta').unbind().click(onPauseFollower);
         })
 
-        // click on stop icon on any strategy provider tabls row and open stop provider popup
+        // click on play icon on any strategy follower table row and open pause provider popup
+        $('.play-follower-cta').unbind().click(event => {
+            const id = $(event.currentTarget).data('id');
+            const providerName = $(event.currentTarget).data('name');
+            renderPlayFollowerPopup(id, providerName);
+            // click on confirm pause follower cta
+            $('#play-follower-modal #play-follower-confirm-cta').unbind().click(onPlayFollower);
+        })
+
+        // click on stop icon on any strategy provider table row and open stop provider popup
         $('.stop-follower-cta').unbind().click(event => {
             const id = $(event.currentTarget).data('id');
             const providerName = $(event.currentTarget).data('name');
@@ -1120,6 +1140,24 @@
         registerStrategyFollowerPaginationEvents()
         // table sort events
         tableSortEvents($('.portfolio-users-table-content'), onFollowersTableSort);
+    }
+
+    function onPauseFollower(event) {
+        const providerId = $(event.target).data('id');
+        // update paused property of this provider in state
+        const users = STATE.getUserList();
+        const targetSP = users.find(u => u.id == providerId);
+        targetSP.isPaused = true;
+        renderStrategyFollowers();
+    }
+
+    function onPlayFollower(event) {
+        const followerId = $(event.target).data('id');
+        // update paused property of this provider in state
+        const users = STATE.getUserList();
+        const targetSF = users.find(u => u.id == followerId);
+        targetSF.isPaused = false;
+        renderStrategyFollowers()
     }
 
     function onFollowersTableSort(key, direction) {
@@ -1156,17 +1194,29 @@
             <p class="mb-3">Are you sure you want to pause follower <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="pause-follower-confirm-cta">Confirm</button>
             </div>
         `)
     }
+
+    function renderPlayFollowerPopup(id, name) {
+        const container = $('#play-follower-modal .modal-body');
+        container.empty().append(`
+            <p class="mb-3">Are you sure you want to allow <b>${name}</b> to continue following you?</p>
+            <div class="w-100 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="play-follower-confirm-cta" data-id=${id}>Confirm</button>
+            </div>
+        `)
+    }
+
     function renderStopFollowerPopup(id, name) {
         const container = $('#stop-follower-modal .modal-body');
         container.empty().append(`
             <p class="mb-3">Are you sure you want to stop follower <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id}>Confirm</button>
             </div>
         `)
     }
