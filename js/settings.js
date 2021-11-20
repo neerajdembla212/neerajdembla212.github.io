@@ -87,6 +87,10 @@
             const displayDateButton = $('#become-strategy-provider-modal .end-date-input .btn-dropdown');
             displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
         });
+        // enabling slect 2 theme on dropdown
+        $('.country_select_dropdown').select2({
+            theme: 'bootstrap4',
+        });
     }
     // data fetch functions start
     function fetchProfileDetails() {
