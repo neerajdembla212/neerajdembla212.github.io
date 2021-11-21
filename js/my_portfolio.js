@@ -306,7 +306,9 @@
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
-                STATE.setUserList(data.data);
+                // filter stopped users
+                const nonStoppedUsers = data.data.filter(d => !d.isStopped)
+                STATE.setUserList(nonStoppedUsers);
                 renderStrategyProviders();
                 renderTableFilters();
             }
@@ -684,8 +686,11 @@
 
         // click on stop icon on any strategy provider tabls row and open stop provider popup
         $('.stop-provider-cta').unbind().click(event => {
+            const id = $(event.currentTarget).data('id');
             const providerName = $(event.currentTarget).data('name');
-            renderStopProviderPopup(providerName);
+            renderStopProviderPopup(id, providerName);
+            // click on confirm follow provider cta
+            $('#stop-provider-modal #stop-provider-confirm-cta').unbind().click(onStopProvider);
         })
 
 
@@ -701,6 +706,7 @@
         const targetSP = users.find(u => u.id == providerId);
         targetSP.isPaused = true;
         renderStrategyProviders()
+        renderSuccessToast(`Paused following ${targetSP.name}`); ƒ
     }
 
     function onPlayProvider(event) {
@@ -710,6 +716,23 @@
         const targetSP = users.find(u => u.id == providerId);
         targetSP.isPaused = false;
         renderStrategyProviders()
+        renderSuccessToast(`Started following ${targetSP.name}`);
+    }
+
+    function onStopProvider(event) {
+        const providerId = $(event.target).data('id');
+        const users = STATE.getUserList();
+        let targetSPIndex = 0;
+        const targetSP = users.find((u, i) => {
+            targetSPIndex = i;
+            return u.id == providerId
+        });
+        // removing this user from state as backed will not return after integration
+        if (targetSP) {
+            users.splice(targetSPIndex, 1)
+        }
+        renderStrategyProviders()
+        renderSuccessToast(`Stopped following ${targetSP.name}`);
     }
 
     function onFollowingTableSort(key, direction) {
@@ -747,13 +770,13 @@
         `)
     }
 
-    function renderStopProviderPopup(name) {
+    function renderStopProviderPopup(id, name) {
         const container = $('#stop-provider-modal .modal-body');
         container.empty().append(`
             <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id="${id}" id="stop-provider-confirm-cta">Confirm</button>
             </div>
         `)
     }
@@ -913,7 +936,7 @@
             is_new,
             isPaused
         } = user;
-        const newUserChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
+        const newUserChip = is_new ? `<span class="new-chip px-1 ml-2">New</span>` : '';
 
         return `<tr id="table-user-${id}">
         <td>
@@ -962,12 +985,12 @@
         data-target="#play-follower-modal"></i>` : `<i class="fa fa-pause mr-2 cursor-pointer extra-large-font pause-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
         data-target="#pause-follower-modal"></i>`;
 
-        if (isNew === "true") {
+        if (isNew) {
             return `<div class="actions-btn-container m-auto d-flex justify-space-between">
-                <button class="btn btn-white text-dark-green font-bold px-1 mr-2" type="button" data-id="${id}">Accept</button> 
-                <button class="btn btn-default text-bleed-red font-bold px-1" type="button" data-id="${id}">Reject</button>
+                <button class="btn btn-white text-dark-green font-bold px-1 mr-2 accept-follower-cta" type="button" data-id="${id}">Accept</button> 
+                <button class="btn btn-default text-bleed-red font-bold px-1 reject-follower-cta" type="button" data-id="${id}">Reject</button>
             </div>`
-        } else if (isNew === "false") {
+        } else {
             return ` <div class="actions-column-container m-auto">
                 ${pausePlayIcon}
                 <i class="fa fa-stop mr-0 cursor-pointer extra-large-font stop-follower-cta" data-id="${id}" data-name="${name}" name="actions" data-toggle="modal"
@@ -1035,7 +1058,7 @@
             is_new,
             isPaused
         } = user;
-        const newUSerChip = is_new === "true" ? `<span class="new-chip px-1 ml-2">New</span>` : '';
+        const newUSerChip = is_new ? `<span class="new-chip px-1 ml-2">New</span>` : '';
         return `<div class="p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
@@ -1113,30 +1136,39 @@
             </div>`
     }
     function registerStrategyFollowersTableEvents() {
-        // click on pause icon on any strategy provider table row and open pause provider popup
+        // click on pause icon on any strategy follower table row and open pause follower popup
         $('.pause-follower-cta').unbind().click(event => {
             const id = $(event.currentTarget).data('id');
-            const providerName = $(event.currentTarget).data('name');
-            renderPauseFollowerPopup(id, providerName);
+            const followerName = $(event.currentTarget).data('name');
+            renderPauseFollowerPopup(id, followerName);
             // click on confirm pause follower cta
             $('#pause-follower-modal #pause-follower-confirm-cta').unbind().click(onPauseFollower);
         })
 
-        // click on play icon on any strategy follower table row and open pause provider popup
+        // click on play icon on any strategy follower table row and open pause follower popup
         $('.play-follower-cta').unbind().click(event => {
             const id = $(event.currentTarget).data('id');
-            const providerName = $(event.currentTarget).data('name');
-            renderPlayFollowerPopup(id, providerName);
+            const followerName = $(event.currentTarget).data('name');
+            renderPlayFollowerPopup(id, followerName);
             // click on confirm pause follower cta
             $('#play-follower-modal #play-follower-confirm-cta').unbind().click(onPlayFollower);
         })
 
-        // click on stop icon on any strategy provider table row and open stop provider popup
+        // click on stop icon on any strategy follower table row and open stop follower popup
         $('.stop-follower-cta').unbind().click(event => {
             const id = $(event.currentTarget).data('id');
-            const providerName = $(event.currentTarget).data('name');
-            renderStopFollowerPopup(id, providerName);
+            const followerName = $(event.currentTarget).data('name');
+            renderStopFollowerPopup(id, followerName);
+            // click on confirm pause follower cta
+            $('#stop-follower-modal #stop-follower-confirm-cta').unbind().click(onStopFollower);
         })
+
+        // click on accept button on any strategy follower table row show toast
+        $('.accept-follower-cta').unbind().click(onAcceptFollower);
+
+        // click on reject button on any strategy follower table row show toast
+        $('.reject-follower-cta').unbind().click(onRejectFollower);
+
         registerStrategyFollowerPaginationEvents()
         // table sort events
         tableSortEvents($('.portfolio-users-table-content'), onFollowersTableSort);
@@ -1149,15 +1181,60 @@
         const targetSP = users.find(u => u.id == providerId);
         targetSP.isPaused = true;
         renderStrategyFollowers();
+        renderSuccessToast(`Paused ${targetSP.name} from following you`)
     }
 
     function onPlayFollower(event) {
         const followerId = $(event.target).data('id');
-        // update paused property of this provider in state
         const users = STATE.getUserList();
         const targetSF = users.find(u => u.id == followerId);
+        // update paused property of this provider in state
         targetSF.isPaused = false;
         renderStrategyFollowers()
+        renderSuccessToast(`Allowed ${targetSF.name} to follow you`)
+    }
+
+    function onStopFollower(event) {
+        const followerId = $(event.target).data('id');
+        const users = STATE.getUserList();
+        let targetSFIndex = 0;
+        const targetSF = users.find((u, i) => {
+            targetSFIndex = i;
+            return u.id == followerId
+        });
+        // removing this user from state as backed will not return after integration
+        if (targetSF) {
+            users.splice(targetSFIndex, 1)
+        }
+        renderStrategyFollowers();
+        renderSuccessToast(`Stopped ${targetSP.name} from following you`);
+    }
+
+    function onAcceptFollower(event) {
+        const followerId = $(event.target).data('id');
+        const users = STATE.getUserList();
+        const targetSF = users.find(u => u.id == followerId);
+        // update isNew property of this provider in state
+        targetSF.is_new = false;
+        targetSF.isPaused = false;
+        renderStrategyFollowers()
+        renderSuccessToast(`Accepted ${targetSF.name} to follow you`)
+    }
+
+    function onRejectFollower(event) {
+        const followerId = $(event.target).data('id');
+        const users = STATE.getUserList();
+        let targetSFIndex = 0;
+        const targetSF = users.find((u, i) => {
+            targetSFIndex = i;
+            return u.id == followerId
+        });
+        // removing this user from state as backed will not return after integration
+        if (targetSF) {
+            users.splice(targetSFIndex, 1)
+        }
+        renderStrategyFollowers();
+        renderSuccessToast(`Rejected ${targetSF.name} from following you`);
     }
 
     function onFollowersTableSort(key, direction) {
@@ -1216,7 +1293,7 @@
             <p class="mb-3">Are you sure you want to stop follower <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id}>Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="stop-follower-confirm-cta">Confirm</button>
             </div>
         `)
     }
@@ -1651,6 +1728,12 @@
 
         MOBILE_MEDIA.addEventListener('change', function (event) {
             renderSparkline();
+        })
+
+        // init toast notification
+        $('.toast').toast({
+            delay: 2000,
+            animation: true
         })
     }
 

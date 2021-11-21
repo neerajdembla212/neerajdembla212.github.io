@@ -287,10 +287,6 @@
             delay: 2000,
             animation: true
         })
-        // $('.error-toast').toast({
-        //     delay: 2000,
-        //     animation: true
-        // })
 
         // watchlist search 
         $('#search-currency').unbind().change(function (event) {
@@ -2850,17 +2846,5 @@
         return $('.nav.nav-tabs .active')
     }
 
-    // render toast start
-    function renderSuccessToast(message) {
-        const toastBox = $('.toast');
-        toastBox.addClass('success').find('.toast-body').text(message);
-        toastBox.toast('show');
-    }
-
-    function renderErrorToast(message) {
-        const toastBox = $('.toast');
-        toastBox.addClass('error').find('.toast-body').text(message);
-        toastBox.toast('show');
-    }
-    // render toast end
+    
 })()
