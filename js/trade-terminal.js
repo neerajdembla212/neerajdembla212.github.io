@@ -287,6 +287,10 @@
             delay: 2000,
             animation: true
         })
+        // $('.error-toast').toast({
+        //     delay: 2000,
+        //     animation: true
+        // })
 
         // watchlist search 
         $('#search-currency').unbind().change(function (event) {
@@ -2569,7 +2573,9 @@
                 <button class="btn btn-outline font-bold text-modal-black medium-font" type="button">
                         <span class="watchlist-name" data-watchlist-id="${id}">${title}</span>
                 </button>
-                <img src="img/ic_minus.svg" alt="minus icon" class="delete-watchlist cursor-pointer" data-id="${id}"/>
+                <button class="delete-watchlist cursor-pointer btn btn-default border-0 position-relative" data-id="${id}" type="button">
+                    <i class="fa fa-minus minus-icon"></i>
+                </button>
                 </div>
                 <div class="divider"></div>
                 <!-- Watchlist collapsed end -->
@@ -2614,8 +2620,17 @@
     function registerWatchListEvents() {
         // delete watchlist
         $('.delete-watchlist').unbind().click(function (event) {
-            const watchListId = $(event.target).data('id')
-            $(`#watchlist-${watchListId}-row`).remove();
+            const watchListId = $(event.currentTarget).data('id')
+            // delete watchlist data from state
+            const watchLists = STATE.getWatchList();
+            if (watchLists.length === 1) {
+                renderErrorToast('Cannot delete all watchlist');
+                return;
+            }
+            const watchListToDeleteIndex = watchLists.findIndex(w => w.id === watchListId);
+            watchLists.splice(watchListToDeleteIndex, 1);
+            STATE.setWatchList(watchLists);
+            renderWatchlists();
         })
         // pin currency
         $('.sidebar-pin-currency').unbind().click(function (event) {
@@ -2746,7 +2761,7 @@
             <button class="btn btn-default border-0" type="button" data-toggle="dropdown" aria-expanded="false">
                 <img src="img/ic_plus.svg" alt="pin icon" />
             </button>
-            <ul id="add-currency-menu" class="dropdown-menu">
+            <ul class="dropdown-menu add-currency-menu">
                 ${getWatchListDropdownHTML(id)}
             </ul>
 
@@ -2770,7 +2785,7 @@
 
     function registerCurrencySearchResultEvents() {
         // add currency to watchList menu
-        $('#add-currency-menu').unbind().click(event => {
+        $('.add-currency-menu').unbind().click(event => {
             const watchListId = $(event.target).data('watchlist-id');
             const currencyId = $(event.target).data('currency-id');
             // find watchlist and add currency to it and re-render watchList
@@ -2781,7 +2796,7 @@
                 const selectedCurrency = currencyList.find(currency => currency.id === +currencyId);
                 if (selectedCurrency) {
                     selectedWatchList.currencies.push(selectedCurrency);
-                    STATE.setWatchList(selectedWatchList);
+                    STATE.setWatchList(watchList);
                 }
             }
         })
@@ -2798,9 +2813,7 @@
             currencies: []
         }
         STATE.watchlist.push(newWatchList);
-        const container = $('.watchlist-right-sidebar .sidebar-container .sidebar-content');
-        container.append(getWatchListHTML({ id: STATE.watchlist.length, title: `Watchlist ${STATE.watchlist.length}` }))
-        registerWatchListEvents()
+        renderWatchlists();
     }
 
     // render pinned currencies start 
@@ -2836,11 +2849,18 @@
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
     }
-    // render trade start
+
+    // render toast start
     function renderSuccessToast(message) {
         const toastBox = $('.toast');
         toastBox.addClass('success').find('.toast-body').text(message);
         toastBox.toast('show');
     }
-    // render trade end
+
+    function renderErrorToast(message) {
+        const toastBox = $('.toast');
+        toastBox.addClass('error').find('.toast-body').text(message);
+        toastBox.toast('show');
+    }
+    // render toast end
 })()
