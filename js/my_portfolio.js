@@ -1743,10 +1743,9 @@
             framework: "bootstrap4",
             container: "#page-container",
             // smartPlacement: true,
-            // backdrop: true,
+            backdrop: true,
             autoscroll: true,
             onStart: function (tour) {
-                console.log('started ', tour)
                 $('body').addClass('tour-open')
             },
             onEnd: function (tour) {
@@ -1772,7 +1771,7 @@
                     element: ".sparkline-container",
                     title: "My Portfolio",
                     content: "See your current holdings etc on this page",
-                    placement: "bottom",
+                    placement: "top",
                     backdropContainer: '#page-wrapper',
                 },
                 {
@@ -1786,7 +1785,7 @@
                     element: ".portfolio-users-table",
                     title: "Strategy Providers",
                     content: "Find Strategy Providers here to follow.",
-                    placement: "bottom",
+                    placement: "top",
                     backdropContainer: '#page-wrapper',
                 }
             ]
