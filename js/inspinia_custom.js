@@ -116,7 +116,8 @@ function registerEventHandlers() {
   })
   $('.scrollable-content').slimScroll({
     height: '100%',
-    railOpacity: 0.9
+    railOpacity: 0.9,
+    alwaysVisible: true
   });
   // change event for global search
   $('#top-search').unbind().change(function (event) {
