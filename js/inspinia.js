@@ -66,7 +66,8 @@ $(document).ready(function () {
     // Run menu of canvas
     $('body.canvas-menu .sidebar-collapse').slimScroll({
         height: '100%',
-        railOpacity: 0.9
+        railOpacity: 0.9,
+        touchScrollStep: 50
     });
 
     // Open close right sidebar
@@ -79,7 +80,8 @@ $(document).ready(function () {
     $('.sidebar-container').slimScroll({
         height: '100%',
         railOpacity: 0.4,
-        wheelStep: 10
+        wheelStep: 10,
+        touchScrollStep: 50
     });
 
     // Open close small chat
@@ -92,7 +94,8 @@ $(document).ready(function () {
     // Initialize slimscroll for small chat
     $('.small-chat-box .content').slimScroll({
         height: '234px',
-        railOpacity: 0.4
+        railOpacity: 0.4,
+        touchScrollStep: 50
     });
 
     // Small todo handler
@@ -140,7 +143,8 @@ $(document).ready(function () {
 
     // Add slimscroll to element
     $('.full-height-scroll').slimscroll({
-        height: '100%'
+        height: '100%',
+        touchScrollStep: 50
     })
 });
 
@@ -156,7 +160,8 @@ $(window).bind("load", function () {
     if ($("body").hasClass('fixed-sidebar')) {
         $('.sidebar-collapse').slimScroll({
             height: '100%',
-            railOpacity: 0.9
+            railOpacity: 0.9,
+            touchScrollStep: 50
         });
     }
 });
@@ -184,7 +189,8 @@ $(document).ready(function () {
             body.addClass('fixed-sidebar');
             $('.sidebar-collapse').slimScroll({
                 height: '100%',
-                railOpacity: 0.9
+                railOpacity: 0.9,
+                touchScrollStep: 50
             });
         }
 
