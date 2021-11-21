@@ -1188,6 +1188,26 @@ function validateBuySellPopupInputs() {
   validateTextInput($('#buy-sell-modal #price-input'), validateNumber, 'Number only')
 }
 
+// render toast start
+function renderSuccessToast(message) {
+  const toastBox = $('.toast');
+  toastBox.addClass('success').find('.toast-body').text(message);
+  toastBox.toast('show');
+}
+
+function renderErrorToast(message) {
+  const toastBox = $('.toast');
+  toastBox.addClass('error').find('.toast-body').text(message);
+  toastBox.toast('show');
+}
+
+function renderNeutralToast(message) {
+  const toastBox = $('.toast');
+  toastBox.addClass('neutral').find('.toast-body').text(message);
+  toastBox.toast('show');
+}
+// render toast end
+
 function validateNumber(val) {
   if (isNaN(val)) {
     return false;
@@ -1242,3 +1262,4 @@ function fixDecimals(element, numVal, allowedDecimalCount) {
     element.val(numValString)
   }
 }
+
