@@ -9,6 +9,10 @@
       total: 0,
       page: 0
     }
+    sortData = {
+      sortKey: '',
+      direction: '' // asc or desc
+    }
 
     getLineChartData() {
       return this.lineChartData;
@@ -56,6 +60,15 @@
         return
       }
       this.paginationData = data;
+    }
+    getSortData() {
+      return this.sortData
+    }
+    setSortData(data) {
+      if (!data) {
+        return
+      }
+      this.sortData = data;
     }
   }
   const STATE = new State();
@@ -248,19 +261,55 @@
   }
 
   function getTradeHistoryTableHeaders() {
+    const selectedSort = STATE.getSortData()
+    const { sortKey, direction } = selectedSort;
+    let arrowClass = '';
+    if (direction === 'asc') {
+      arrowClass = 'up-arrow-sort';
+    } else if (direction === 'desc') {
+      arrowClass = 'down-arrow-sort';
+    }
     return `
         <thead>
             <tr>
             <th class="align-middle">Symbol</th>
             <th class="text-center align-middle">Trader</th>
             <th class="text-center align-middle">Type</th>
-            <th class="text-center align-middle">Volume</th>
-            <th class="text-center align-middle">Price</th>
-            <th class="text-center align-middle">SL</th>
-            <th class="text-center align-middle">TP</th>
-            <th class="text-center align-middle">Closed Price</th>
-            <th class="text-center align-middle">Swap</th>
-            <th class="text-center align-middle">Profit</th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
+                    <p class="m-0 p-0">Volume<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_price">
+                    <p class="m-0 p-0">Price<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_price' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
+                    <p class="m-0 p-0">SL<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
+                    <p class="m-0 p-0">SL<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="closed_price">
+                    <p class="m-0 p-0">Closed Price<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'closed_price' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
+                    <p class="m-0 p-0">Swap<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
+            <th class="text-center align-middle">
+              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
+                    <p class="m-0 p-0">Profit<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
+              </div>
+            </th>
             </tr>
         </thead>
         `
@@ -504,6 +553,36 @@
     } else {
       $('#next-page-th').removeAttr('disabled')
     }
+
+    // table sort events
+    tableSortEvents($('.trade-history-section'), onTradeHistoryTableSort);
+  }
+
+  function onTradeHistoryTableSort(key, direction) {
+    const tradeHistory = STATE.getTradeHistory()
+    if (!tradeHistory.length) {
+      return
+    }
+    if (!tradeHistory[0].hasOwnProperty(key)) {
+      return;
+    }
+    tableSort(tradeHistory, key, direction);
+    renderTradeHistorySection()
+  }
+
+  function tableSort(data, key, direction) {
+    data.sort((a, b) => {
+      if (direction === 'asc') {
+        return a[key] - b[key]
+      } else if (direction === 'desc') {
+        return b[key] - a[key]
+      }
+    })
+    const selectedSort = {
+      sortKey: key,
+      direction
+    }
+    STATE.setSortData(selectedSort);
   }
   // render trade history responsive html end
 
