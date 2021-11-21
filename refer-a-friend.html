@@ -15,6 +15,8 @@
   <link href="css/style.css" rel="stylesheet">
   <!-- Date time picker style -->
   <link href="css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <!-- Toastr style -->
+  <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
 </head>
 
@@ -208,14 +210,30 @@
               <button type="button" class="p-0 btn btn-w-m btn-text-blue font-weight-bold demo">Login in to your client
                 portal</button>
               <div class="w-50 d-flex live">
-                <input type="text" class="p-2 mr-3 text-blue font-bold refer-link" value="http://referral.link"
-                  disabled /> <button type="button" class="btn btn-outline btn-default btn-text-blue font-bold">Copy
+                <input type="text" id="referal-link-input" class="p-2 mr-3 text-blue font-bold refer-link"
+                  value="http://referral.link" disabled /> <button type="button"
+                  class="btn btn-outline btn-default btn-text-blue font-bold" id="copy-link">Copy
                   Link</button>
               </div>
             </div>
           </section>
         </div>
       </div>
+
+      <!-- Toast start -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="font-weight-bold p-3 d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <img src="img/ic_toast_success.svg" class="mr-2 toast-icon success" />
+            <img src="img/ic_toast_stopped.svg" class="mr-2 toast-icon error" />
+            <img src="img/ic_toast_paused.svg" class="mr-2 toast-icon neutral" />
+            <p class="p-0 m-0 toast-body medium-font"></p>
+          </div>
+          <i data-dismiss="toast" aria-label="Close" aria-hidden="true" class="fa fa-close cursor-pointer"></i>
+        </div>
+      </div>
+      <!-- Toast end -->
+
       <!-- Create Demo account start -->
       <div class="modal inmodal" id="create-demo-modal" tabindex="-1" role="dialog" aria-modal="true">
         <div class="modal-dialog modal-dialog-center">
