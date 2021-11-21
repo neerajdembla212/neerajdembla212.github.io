@@ -13714,6 +13714,14 @@ select[name="rows-per-page"] {
   width: 300px;
 }
 
+.iti {
+  width: 100% !important;
+}
+
+.iti .form-control {
+  padding-left: 90px !important;
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

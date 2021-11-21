@@ -2845,6 +2845,4 @@
     function getActiveTab() {
         return $('.nav.nav-tabs .active')
     }
-
-    
 })()

@@ -20,6 +20,8 @@
   <link href="css/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
   <!-- Toastr style -->
   <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+  <!-- Bootstrap country selector -->
+  <link rel="stylesheet" href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/css/intlTelInput.css" />
 
 </head>
 
@@ -193,20 +195,15 @@
                   <!-- First name last name input end -->
                   <!-- Mobile and country input start -->
                   <div class="row mb-2">
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-12">
                       <label class="text-modal-gray medium-font font-weight-light">Mobile</label>
-                      <input type="text" class="form-control" id="mobile" />
+                      <input type="text" class="form-control" id="mobile" name="mobile" />
                     </div>
-                    <div class="form-group col-sm-6">
+                    <!-- <div class="form-group col-sm-6">
                       <label class="text-modal-gray medium-font font-weight-light">Country</label>
-                      <select class="country_select_dropdown form-control" id="country">
-                        <option value="us">US (EN)</option>
-                        <option value="cn">简体中文 (CN)</option>
-                        <option value="id">Bahasa Indonesia (ID)</option>
-                        <option value="th">ไทย (TH)</option>
-                        <option value="vn">Tiếng Việt (VN)</option>
-                      </select>
-                    </div>
+                      <select class="selectpicker countrypicker form-control" data-flag="true"></select>
+
+                    </div> -->
                   </div>
                   <!-- Mobile and country input end -->
 
@@ -295,7 +292,8 @@
             </div>
             <div class="divider"></div>
             <div class="p-3 d-flex justify-content-end">
-              <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal" id="create-demo-account">
+              <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal"
+                id="create-demo-account">
                 Create
               </button>
             </div>
@@ -582,7 +580,8 @@
           <!-- Modal content end-->
           <!-- Modal footer start -->
           <div class="modal-footer w-100 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary w-50" id="submit-provider-application" data-dismiss="modal">Submit Application</button>
+            <button type="button" class="btn btn-primary w-50" id="submit-provider-application"
+              data-dismiss="modal">Submit Application</button>
           </div>
           <!-- Modal footer end -->
         </div>
@@ -769,6 +768,8 @@
   <script src="js/plugins/select2/select2.full.min.js"></script>
   <!-- Date time picker -->
   <script src="js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+  <!-- Bootstrap country selector -->
+  <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </body>
 
 </html>
