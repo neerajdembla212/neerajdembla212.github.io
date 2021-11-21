@@ -3,6 +3,12 @@
         role = ''; // follower or provider
         profileDetails = {};
         tradingAccounts = [];
+        isProfileDetailsValid = {
+            email: false,
+            firstName: false,
+            lastName: false,
+            mobile: false
+        }
 
         getRole() {
             return this.role;
@@ -32,6 +38,22 @@
                 return
             }
             this.tradingAccounts = data;
+        }
+
+        getIsProfileDetailsValid() {
+            return this.isProfileDetailsValid.email && this.isProfileDetailsValid.firstName && this.isProfileDetailsValid.lastName && this.isProfileDetailsValid.mobile;
+        }
+
+        setIsProfileDetailsValid(control, data) {
+            if (typeof data !== "boolean") {
+                return
+            }
+            this.isProfileDetailsValid[control] = data;
+            if (!data) {
+                $('#update-profile-details').attr('disabled', 'true');
+            } else {
+                $('#update-profile-details').removeAttr('disabled');
+            }
         }
     }
 
@@ -105,8 +127,21 @@
             renderSuccessToast('Application submitted');
         })
         $('#update-profile-details').unbind().click(function () {
-            renderSuccessToast('Profile details updated')
+            const container = $('.profile-settings');
+            container.find('#email_address').blur();
+            container.find('#first_name').blur();
+            container.find('#last_name').blur();
+            container.find('#mobile').blur();
+            if (STATE.getIsProfileDetailsValid()) {
+                renderSuccessToast('Profile details updated')
+            }
         })
+
+        // country flags with prefixes
+        var input = document.querySelector("#mobile");
+        window.intlTelInput(input, {
+            separateDialCode: true
+        });
     }
     // data fetch functions start
     function fetchProfileDetails() {
@@ -117,8 +152,8 @@
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard();
-                    fillFormWithProfileDetails();
                     validateBasicProfileEvents();
+                    fillFormWithProfileDetails();
                 }
             })
         } else if (role === 'follower') {
@@ -127,8 +162,8 @@
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard(role);
-                    fillFormWithProfileDetails();
                     validateBasicProfileEvents();
+                    fillFormWithProfileDetails();
                 }
             })
         }
@@ -304,7 +339,6 @@
                 };
             }
         }
-
     }
 
     function validateBasicProfileEvents() {
@@ -318,6 +352,7 @@
             } else {
                 isValid = true;
             }
+            STATE.setIsProfileDetailsValid('firstName', isValid);
             return isValid;
         }, 'Max length 20')
 
@@ -329,27 +364,26 @@
             } else {
                 isValid = true;
             }
+            STATE.setIsProfileDetailsValid('lastName', isValid);
             return isValid;
         }, 'Max length 20')
 
         // validate mobile number
         validateTextInput(container.find('#mobile'), function (val) {
-            const { country } = profileDetails;
-            let pattern = /e/;
-            switch (country.toLowerCase()) {
-                case 'us': pattern = /^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/; break;
-                case 'sg': pattern = /^([7-9]{1})([0-9]{9})$/; break;
-                case 'cn': pattern = /^1[0-9]{10}$/; break;
-                case 'th': pattern = /(\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4})/; break;
-                case 'vn': pattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/; break;
+            let isValid = false;
+            if (!isNaN(val)) {
+                isValid = true;
             }
-            return pattern.test(val);
+            STATE.setIsProfileDetailsValid('mobile', isValid);
+            return isValid;
         }, 'Invalid phone number');
 
         // validate email address
         validateTextInput(container.find('#email_address'), function (val) {
             const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return pattern.test(val)
+            const isValid = pattern.test(val)
+            STATE.setIsProfileDetailsValid('email', isValid);
+            return isValid
         }, 'Invalid email')
     }
     // render basic profile end
