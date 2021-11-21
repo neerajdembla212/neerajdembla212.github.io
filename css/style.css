@@ -13629,6 +13629,11 @@ select[name="rows-per-page"] {
   display: block;
 }
 
+.toast.error .toast-icon.error {
+  display: block;
+}
+
+
 .row-cols-2>* {
   flex: 0 0 auto;
   width: 50%;
@@ -14003,8 +14008,12 @@ select[name="rows-per-page"] {
 }
 
 .watchlist-right-sidebar .delete-watchlist {
-  width: 16px;
-  height: 2px;
+  width: 30px;
+  height: 20px;
+}
+
+.watchlist-right-sidebar .delete-watchlist:hover {
+  background: #EDEDED;
 }
 
 .watchlist-right-sidebar .white-bg {
@@ -14019,6 +14028,13 @@ select[name="rows-per-page"] {
 
 .watchlist-right-sidebar .currency-row {
   border-bottom: 1px solid #e5e5e5;
+}
+
+.watchlist-right-sidebar .minus-icon {
+  position: absolute;
+  top: 2px;
+  font-size: 18px;
+  right: 7px;
 }
 
 #modify-trade[disabled] {
