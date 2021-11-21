@@ -556,7 +556,7 @@
       </div>
       <div class=" align-self-center m-0 d-flex flex-column">
         <p class="risk_amount h4 align-self-center text-light-gray m-0">$${risk_amount}</p>
-        <p class="text-capitalize small-font text-blue text-center">low risk</p>
+        <p class="text-capitalize small-font text-blue text-center">Advised min</p>
       </div>
     </div>
     <div class="line-chart-container">
@@ -1118,6 +1118,11 @@
           </div>
         </th>
         <th class="align-middle text-center">
+          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="risk_amount">
+            <p class="m-0 p-0 header-text">Advised Min<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'risk_amount' ? 'd-none' : ''}"></i></p>
+          </div>
+        </th>
+        <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_funds">
             <p class="m-0 p-0 header-text">Managed Funds<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_funds' ? 'd-none' : ''}"></i></p>
           </div>
@@ -1165,7 +1170,8 @@
       follower_funds,
       average_pips,
       favourite,
-      followed
+      followed,
+      risk_amount
     } = user;
 
     const followProviderCTA = followed === 'true' ? `<button type="button" class="btn btn-outline btn-primary btn-block unfollow-provider-cta" name="unfollow-provider-cta" data-toggle="modal"
@@ -1209,6 +1215,7 @@
       </td>
       <td class="font-bold text-green text-center align-middle">${average_per_month}%</td>
       <td class="font-bold text-center align-middle">${average_pips}</td>
+      <td class="font-bold text-center align-middle">${risk_amount}</td>
       <td class="font-bold text-center align-middle">${formatWithCommas(follower_funds)}</td>
       <td class="font-bold text-center align-middle">${formatWithCommas(follower_count)}</td>
       <td class="align-middle">
@@ -1291,7 +1298,8 @@
       follower_funds,
       average_pips,
       favourite,
-      followed
+      followed,
+      risk_amount
     } = user;
 
     const followProviderCTA = followed === 'true' ? `<button class="btn btn-primary btn-outline btn-small font-size-12 mr-3" data-toggle="modal" data-target="#unfollow-provider-modal" name="unfollow-provider-cta" data-name="${name}">
@@ -1349,6 +1357,10 @@
           <div class="mr-3 hide-m">
             <p class="mb-0 responsive-label">Avg Pips</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${average_pips}</p>
+          </div>
+          <div class="mr-3 hide-m">
+            <p class="mb-0 responsive-label">Advised Min</p>
+            <p class="mb-0 font-bold responsive-value text-dark-green">${risk_amount}</p>
           </div>
           <div class="mr-3 hide-m">
             <p class="mb-0 responsive-label">Managed Funds</p>
