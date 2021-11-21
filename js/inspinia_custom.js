@@ -123,6 +123,11 @@ function registerEventHandlers() {
     const searchQuery = event.currentTarget.value;
     fetchGlobalSearch(searchQuery);
   })
+
+  // create demo accout show toast
+  $('#create-demo-modal #create-demo-account').unbind().click(function () {
+    renderSuccessToast('Demo accout created')
+  })
 }
 
 function fetchGlobalSearch(searchQuery) {

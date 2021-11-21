@@ -65,6 +65,7 @@
             jackColor: '#22D091',
             jackSecondaryColor: "#FFFFFF",
         });
+
         // start date picker
         $('#become-strategy-provider-modal .start-date-input').datepicker({
             todayBtn: "linked",
@@ -76,6 +77,7 @@
             const displayDateButton = $('#become-strategy-provider-modal .start-date-input .btn-dropdown');
             displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
         });
+
         // end date picker
         $('#become-strategy-provider-modal .end-date-input').datepicker({
             todayBtn: "linked",
@@ -87,10 +89,24 @@
             const displayDateButton = $('#become-strategy-provider-modal .end-date-input .btn-dropdown');
             displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
         });
+
         // enabling slect 2 theme on dropdown
         $('.country_select_dropdown').select2({
             theme: 'bootstrap4',
         });
+
+        // init toast notification
+        $('.toast').toast({
+            delay: 2000,
+            animation: true
+        })
+
+        $('#submit-provider-application').unbind().click(function () {
+            renderSuccessToast('Application submitted');
+        })
+        $('#update-profile-details').unbind().click(function () {
+            renderSuccessToast('Profile details updated')
+        })
     }
     // data fetch functions start
     function fetchProfileDetails() {
