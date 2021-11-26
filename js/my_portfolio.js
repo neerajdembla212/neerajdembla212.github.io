@@ -392,37 +392,37 @@
             <th class="align-middle">Provider</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
-                    <p class="m-0 p-0">equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_returns">
-                    <p class="m-0 p-0">Total Returns<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_returns' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Total Returns<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_returns' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="max_drawdown">
-                    <p class="m-0 p-0">Max DD<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'max_drawdown' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Max DD<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'max_drawdown' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trades">
-                    <p class="m-0 p-0">Trades<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Trades<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
-                    <p class="m-0 p-0">Management FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Management FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
-                    <p class="m-0 p-0">P Share %<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">P Share %<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
             <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
-                    <p class="m-0 p-0">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="align-middle text-center">Actions</th>
@@ -867,36 +867,36 @@
             <th class="align-middle">Provider</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="joined_on">
-                    <p class="m-0 p-0">Joined<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'joined_on' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Joined<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'joined_on' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="text-center align-middle">Period</th>
+            <th class="text-center align-middle m-auto">Period</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_or_loss">
-                    <p class="m-0 p-0">P/L<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_or_loss' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">P/L<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_or_loss' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="hwm_diff">
-                    <p class="m-0 p-0">HWM Difference<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'hwm_diff' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">HWM Difference<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'hwm_diff' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="balance">
-                    <p class="m-0 p-0">Balance<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'balance' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Balance<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'balance' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="fee_earned">
-                    <p class="m-0 p-0">FEE Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'fee_earned' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">FEE Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'fee_earned' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="com_earned">
-                    <p class="m-0 p-0">Com Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'com_earned' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">Com Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'com_earned' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="align-middle text-center">Actions</th>
+            <th class="align-middle text-center m-auto">Actions</th>
             </tr>
         </thead>
         `
