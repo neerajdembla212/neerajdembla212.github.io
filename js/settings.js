@@ -227,10 +227,10 @@
         </div> 
         <div class="divider"></div>` : '';
 
-        const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3" type="button" data-toggle="modal"
+        const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3 mr-3" type="button" data-toggle="modal"
         data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
 
-        const roleBasedCTA = role === 'provider' ? `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button">Stop Providing
+        const roleBasedCTA = role === 'provider' ? `<button id="stop-strategy" class="btn btn-default btn-warning mt-3 mr-3" type="button">Stop Providing
         Strategy</button>` : `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button" data-toggle="modal" data-target="#become-strategy-provider-modal">Apply to be a Strategy Provider</button>`
 
         return `
@@ -252,7 +252,7 @@
         
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
-            <p class="mb-0 font-bold small-font text-dark-black">Strategy Age</p>
+            <p class="mb-0 font-bold small-font text-dark-black">Age</p>
             <p class="mb-0 medium-font font-bold text-dark-black">${role === 'provider' ? strategy_age : follower_age}</p>
         </div>
         <!-- strategy age end -->
@@ -260,7 +260,7 @@
         <!-- Total returns start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold mall-font text-dark-black">Total returns </p>
+                <p class="mb-0 font-bold mall-font text-dark-black">Total Returns </p>
                 <p class="mb-0 small-font text-dark-black font-weight-light">since Inception 1
                     Jul 2021</p>
             </div>
@@ -306,7 +306,7 @@
         <!-- Max Drawdown end -->
         <div class="divider"></div>
         <!-- CTA -->
-        <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex flex-wrap">
             ${roleBasedCTA}
             ${settingsButton}
             <a href="${window.location.origin}/refer-a-friend.html" ><button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button></a>
@@ -446,11 +446,11 @@
             demo_leverage,
             status } = account;
         return `<tr>
-                <td class="font-bold medium-font">
+                <td class="font-bold medium-font align-middle">
                     <p class="mb-0">${account_name}</p>
                 </td>
                 <td>
-                    <p class="mb-0 text-center p-1 extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
+                    <p class="mb-0 text-center p-1 m-auto extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
                 </td>
                 <td>
                     <p class="mb-0 text-center">${role}</p>
