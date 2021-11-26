@@ -435,7 +435,7 @@
     if (direction === 'asc') {
       arrowClass = 'up-arrow-sort';
     } else if (direction === 'desc') {
-      arrowClass = 'down-arrow-sort';
+      arrowClass = 'down-arrow-sort mt-1';
     }
     console.log(sortKey !== 'total_profit_loss');
     return `

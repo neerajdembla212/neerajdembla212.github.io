@@ -398,7 +398,7 @@
         if (direction === 'asc') {
             arrowClass = 'up-arrow-sort';
         } else if (direction === 'desc') {
-            arrowClass = 'down-arrow-sort';
+            arrowClass = 'down-arrow-sort mt-1';
         }
         return `
         <thead>
@@ -872,7 +872,7 @@
         if (direction === 'asc') {
             arrowClass = 'up-arrow-sort';
         } else if (direction === 'desc') {
-            arrowClass = 'down-arrow-sort';
+            arrowClass = 'down-arrow-sort mt-1';
         }
 
         return `
