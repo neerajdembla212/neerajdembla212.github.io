@@ -115,6 +115,7 @@
             sortKey: '',
             direction: '' // asc or desc
         }
+        hiddenStrategyAccounts = []
 
         getStrategyDetails() {
             return this.strategyDetails;
@@ -230,6 +231,17 @@
             }
             this.sortData = data;
         }
+
+        getHiddenStrategyAccounts() {
+            return this.hiddenStrategyAccounts;
+        }
+        setHiddenStrategyAccounts(data) {
+            if (!Array.isArray(data)) {
+                return;
+            }
+            this.hiddenStrategyAccounts = data;
+            localStorage.setItem('hiddenStrategyAccounts', JSON.stringify(this.hiddenStrategyAccounts));
+        }
     }
     const STATE = new State();
     const DESKTOP_MEDIA = window.matchMedia("(max-width: 968px)")
@@ -253,6 +265,8 @@
         if (showTour === "true") {
             tour.restart();
         }
+        const hiddenStrategyAccounts = localStorage.getItem('hiddenStrategyAccounts');
+        STATE.setHiddenStrategyAccounts(JSON.parse(hiddenStrategyAccounts));
     })
     // Fetching data function start
     // This function fetch strategy details and render sparkline
@@ -1435,7 +1449,7 @@
             $('.role-chip-follower').addClass('d-none');
             $('.role-chip-provider').removeClass('d-none');
 
-            $('#stop-strategy').removeClass('d-none');
+            $('#hide-strategy-account').removeClass('d-none');
             $('#strategy').removeClass('d-none');
             $('.portfolio-users-table .table-title').text('Followers')
         }
@@ -1443,7 +1457,7 @@
             $('.role-chip-follower').removeClass('d-none');
             $('.role-chip-provider').addClass('d-none');
 
-            $('#stop-strategy').addClass('d-none');
+            $('#hide-strategy-account').addClass('d-none');
             $('#strategy').addClass('d-none');
             $('.portfolio-users-table .table-title').text('Following')
         }
@@ -1735,6 +1749,47 @@
             delay: 2000,
             animation: true
         })
+
+        hideUnhideStrategyAccountEvents();
+    }
+
+    function hideUnhideStrategyAccountEvents() {
+        // events to show correct account number on hide and unhide SP modals
+        const accountType = localStorage.getItem('selectedAccountType');
+        const accountNo = localStorage.getItem('selectedAccountNo');
+        const selectedAccountType = $('.selected-account-type');
+        if (accountType && accountNo) {
+            if (accountType.toUpperCase() === 'DEMO') {
+                selectedAccountType.addClass('demo');
+                $('.account-number').addClass('demo-account');
+            } else {
+                selectedAccountType.removeClass('demo').addClass('live');
+                $('.account-number').removeClass('demo-account');
+            }
+            selectedAccountType.text(accountType);
+            $('.selected-account-number').text(accountNo);
+        }
+
+        // on hide cta store the data in state , localstorage and re-render button
+        $('#hide-strategy-modal #hide-account-cta').unbind().click(function () {
+            const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+            const hiddenStrategyAccounts = STATE.getHiddenStrategyAccounts();
+            hiddenStrategyAccounts.push(selectedAccountNo);
+            STATE.setHiddenStrategyAccounts(hiddenStrategyAccounts);
+            renderHideUnhideButton()
+        })
+
+        // on unhide cta remove the data in state, localstorage and re-render button
+        $('#unhide-strategy-modal #unhide-account-cta').unbind().click(function () {
+            const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+            const hiddenStrategyAccounts = STATE.getHiddenStrategyAccounts();
+            const index = hiddenStrategyAccounts.findIndex(a => a === selectedAccountNo)
+            if (index > -1) {
+                hiddenStrategyAccounts.splice(index, 1);
+                STATE.setHiddenStrategyAccounts(hiddenStrategyAccounts);
+            }
+            renderHideUnhideButton()
+        })
     }
 
     // tour start
@@ -1792,4 +1847,5 @@
         });
     }
     // tour end
+
 })();
