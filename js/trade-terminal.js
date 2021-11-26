@@ -2438,6 +2438,7 @@
                 removeError.call(this);
                 STATE.setIsBuySellModalFormValid(true);
             } else {
+                removeError.call(this);
                 addError.call(this, 'Volume between 0 and 100');
                 STATE.setIsBuySellModalFormValid(false);
             }
