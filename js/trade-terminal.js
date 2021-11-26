@@ -2420,7 +2420,7 @@
     function validateEditTradeModalInputs() {
         const container = $('#edit-trade-modal');
         const tradeDetails = STATE.getTradeDetails();
-        const { order_type, trade_type, from_currency_rate } = tradeDetails;
+        const { order_type, trade_type, from_currency_rate, trade_volume } = tradeDetails;
         const modifyTradeCTA = container.find('#modify-trade');
 
         // not adding off() here for market execution because we are adding a change listerner in registerEditTradeModalEvents so adding off() here will remove that function.
@@ -2429,28 +2429,65 @@
             container.find('#profit-input').off();
             container.find('#loss-input').off();
         }
-        container.find('#volume-input').on('blur', function (event) {
-            const value = Number(event.target.value);
-            if (event.target.value === '') {
-                addError.call(this, 'Empty not allowed');
-                STATE.setIsBuySellModalFormValid(false);
-            } else if (value >= 0.01 && value <= 100) {
-                removeError.call(this);
-                STATE.setIsBuySellModalFormValid(true);
-            } else {
-                removeError.call(this);
-                addError.call(this, 'Volume between 0 and 100');
-                STATE.setIsBuySellModalFormValid(false);
-            }
-        })
+        if (order_type === "market_execution") {
+            container.find('#volume-input').on('blur', function (event) {
+                const value = Number(event.target.value);
+                if (isNaN(value)) {
+                    addError.call(this, 'Invalid volume');
+                    container.find('#close-order').attr('disabled', true);
+                    container.find('#partial-close-order').attr('disabled', true);
+                    STATE.setIsBuySellModalFormValid(false);
+                } else if (event.target.value === '') {
+                    addError.call(this, 'Empty not allowed');
+                    container.find('#close-order').attr('disabled', true);
+                    container.find('#partial-close-order').attr('disabled', true);
+                    STATE.setIsBuySellModalFormValid(false);
+                } else if (value >= 0.01 && value <= trade_volume) {
+                    removeError.call(this);
+                    container.find('#close-order').removeAttr('disabled');
+                    container.find('#partial-close-order').removeAttr('disabled');
+                    STATE.setIsBuySellModalFormValid(true);
+                } else {
+                    removeError.call(this);
+                    addError.call(this, 'Invalid volume');
+                    container.find('#close-order').attr('disabled', true);
+                    container.find('#partial-close-order').attr('disabled', true);
+                    STATE.setIsBuySellModalFormValid(false);
+                }
+            })
+        } else if (order_type === 'pending_order') {
+            container.find('#volume-input').on('blur', function (event) {
+                const value = Number(event.target.value);
+                if (isNaN(value)) {
+                    addError.call(this, 'Invalid volume');
+                    container.find('#cancel-order').attr('disabled', true);
+                    STATE.setIsBuySellModalFormValid(false);
+                } if (event.target.value === '') {
+                    addError.call(this, 'Empty not allowed');
+                    container.find('#cancel-order').attr('disabled', true);
+                    STATE.setIsBuySellModalFormValid(false);
+                } else if (value >= 0.01 && value <= 100) {
+                    removeError.call(this);
+                    container.find('#cancel-order').removeAttr('disabled')
+                    STATE.setIsBuySellModalFormValid(true);
+                } else {
+                    removeError.call(this);
+                    addError.call(this, 'Invalid volume');
+                    container.find('#cancel-order').attr('disabled', true);
+                    STATE.setIsBuySellModalFormValid(false);
+                }
+            })
+        }
+
 
         // Profit input validation
         container.find('#profit-input').on('blur', function (event) {
             const value = +event.target.value;
             if (event.target.value === '') {
                 modifyTradeCTA.prop('disabled', true);
-                addError.call(this, `Empty not allowed`);
+                addError.call(this, `Invalid profit`);
                 STATE.setIsBuySellModalFormValid(false);
+                container.find('#cancel-order').attr('disabled', true);
             } else if (trade_type === 'BUY') { // for BUY profit amount should be greater than buy price
                 if (value >= 0 && value > from_currency_rate) {
                     modifyTradeCTA.prop('disabled', false);
@@ -2458,10 +2495,12 @@
                     STATE.setIsBuySellModalFormValid(true);
                     const allowedDecimalCount = STATE.getBuySellData().decimalCount;
                     fixDecimals(container.find('#profit-input'), value, allowedDecimalCount);
+                    container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Profit less than ${from_currency_rate}`);
+                    addError.call(this, `Invalid profit`);
                     STATE.setIsBuySellModalFormValid(false);
+                    container.find('#cancel-order').attr('disabled', true);
                 }
             } else if (trade_type === 'SELL') { // for SELL profit amount should be less than sell price
                 if (value >= 0 && value < from_currency_rate) {
@@ -2470,10 +2509,12 @@
                     STATE.setIsBuySellModalFormValid(true);
                     const allowedDecimalCount = STATE.getBuySellData().decimalCount;
                     fixDecimals(container.find('#profit-input'), value, allowedDecimalCount);
+                    container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Profit more than ${from_currency_rate}`);
+                    addError.call(this, `Invalid profit`);
                     STATE.setIsBuySellModalFormValid(false);
+                    container.find('#cancel-order').attr('disabled', true);
                 }
             }
         })
@@ -2482,8 +2523,9 @@
             const value = +event.target.value;
             if (event.target.value === '') {
                 modifyTradeCTA.prop('disabled', true);
-                addError.call(this, `Empty not allowed`);
+                addError.call(this, `Invalid loss`);
                 STATE.setIsBuySellModalFormValid(false);
+                container.find('#cancel-order').attr('disabled', true);
             } else if (trade_type === 'BUY') { // for BUY loss amount should me less than buy price
                 if (value > 0 && value < from_currency_rate) {
                     modifyTradeCTA.prop('disabled', false);
@@ -2491,10 +2533,12 @@
                     STATE.setIsBuySellModalFormValid(true);
                     const allowedDecimalCount = STATE.getBuySellData().decimalCount;
                     fixDecimals(container.find('#loss-input'), value, allowedDecimalCount);
+                    container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `loss less than ${from_currency_rate}`);
+                    addError.call(this, `Invalid loss`);
                     STATE.setIsBuySellModalFormValid(false);
+                    container.find('#cancel-order').attr('disabled', true);
                 }
             } else if (trade_type === 'SELL') { // for SELL loss amount should be greater than sell price
                 if (value >= 0 && value > from_currency_rate) {
@@ -2503,10 +2547,12 @@
                     STATE.setIsBuySellModalFormValid(true);
                     const allowedDecimalCount = STATE.getBuySellData().decimalCount;
                     fixDecimals(container.find('#loss-input'), value, allowedDecimalCount);
+                    container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Loss less than ${from_currency_rate}`);
+                    addError.call(this, `Invalid loss`);
                     STATE.setIsBuySellModalFormValid(false);
+                    container.find('#cancel-order').attr('disabled', true);
                 }
             }
         })
@@ -2519,10 +2565,12 @@
                 STATE.setIsBuySellModalFormValid(true);
                 const allowedDecimalCount = STATE.getBuySellData().decimalCount;
                 fixDecimals(container.find('#price-input'), value, allowedDecimalCount);
+                container.find('#cancel-order').removeAttr('disabled');
             } else {
                 modifyTradeCTA.prop('disabled', true);
                 addError.call(this, 'Invalid price');
                 STATE.setIsBuySellModalFormValid(false);
+                container.find('#cancel-order').attr('disabled', true);
             }
         })
     }
