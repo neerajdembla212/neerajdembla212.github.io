@@ -119,7 +119,11 @@ $(document).ready(function () {
         event.preventDefault();
         $("body").toggleClass("mini-navbar");
         SmoothlyMenu();
-
+        if ($("body").hasClass('mini-navbar')) {
+            localStorage.setItem('mini-navbar', 'true');
+        } else {
+            localStorage.setItem('mini-navbar', 'false');
+        }
     });
 
     // Tooltips demo

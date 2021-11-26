@@ -6,6 +6,10 @@ $(document).ready(function () {
   initData();
   validateBuySellPopupInputs();
   fetchNotifications();
+  const isNavbarMini = localStorage.getItem('mini-navbar');
+  if (isNavbarMini === "true") {
+    $('.custom-nav-cta').click();
+  }
 });
 
 function checkUserLogin() {
