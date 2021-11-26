@@ -9,6 +9,7 @@
             lastName: false,
             mobile: false
         }
+        hiddenStrategyAccounts = []
 
         getRole() {
             return this.role;
@@ -55,6 +56,17 @@
                 $('#update-profile-details').removeAttr('disabled');
             }
         }
+
+        getHiddenStrategyAccounts() {
+            return this.hiddenStrategyAccounts;
+        }
+        setHiddenStrategyAccounts(data) {
+            if (!Array.isArray(data)) {
+                return;
+            }
+            this.hiddenStrategyAccounts = data;
+            localStorage.setItem('hiddenStrategyAccounts', JSON.stringify(this.hiddenStrategyAccounts));
+        }
     }
 
     const STATE = new State();
@@ -67,6 +79,8 @@
         registerGlobalEvents();
         fetchProfileDetails();
         fetchTradingAccounts();
+        const hiddenStrategyAccounts = localStorage.getItem('hiddenStrategyAccounts');
+        STATE.setHiddenStrategyAccounts(JSON.parse(hiddenStrategyAccounts));
     })
 
     function registerGlobalEvents() {
@@ -142,7 +156,48 @@
         window.intlTelInput(input, {
             separateDialCode: true
         });
+        hideUnhideStrategyAccountEvents();
     }
+
+    function hideUnhideStrategyAccountEvents() {
+        // events to show correct account number on hide and unhide SP modals
+        const accountType = localStorage.getItem('selectedAccountType');
+        const accountNo = localStorage.getItem('selectedAccountNo');
+        const selectedAccountType = $('.selected-account-type');
+        if (accountType && accountNo) {
+            if (accountType.toUpperCase() === 'DEMO') {
+                selectedAccountType.addClass('demo');
+                $('.account-number').addClass('demo-account');
+            } else {
+                selectedAccountType.removeClass('demo').addClass('live');
+                $('.account-number').removeClass('demo-account');
+            }
+            selectedAccountType.text(accountType);
+            $('.selected-account-number').text(accountNo);
+        }
+
+        // on hide cta store the data in state , localstorage and re-render button
+        $('#hide-strategy-modal #hide-account-cta').unbind().click(function () {
+            const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+            const hiddenStrategyAccounts = STATE.getHiddenStrategyAccounts();
+            hiddenStrategyAccounts.push(selectedAccountNo);
+            STATE.setHiddenStrategyAccounts(hiddenStrategyAccounts);
+            renderHideUnhideButton()
+        })
+
+        // on unhide cta remove the data in state, localstorage and re-render button
+        $('#unhide-strategy-modal #unhide-account-cta').unbind().click(function () {
+            const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+            const hiddenStrategyAccounts = STATE.getHiddenStrategyAccounts();
+            const index = hiddenStrategyAccounts.findIndex(a => a === selectedAccountNo)
+            if (index > -1) {
+                hiddenStrategyAccounts.splice(index, 1);
+                STATE.setHiddenStrategyAccounts(hiddenStrategyAccounts);
+            }
+            renderHideUnhideButton()
+        })
+    }
+
     // data fetch functions start
     function fetchProfileDetails() {
         const role = STATE.getRole();
@@ -197,6 +252,7 @@
             container.removeClass('mh-sm')
         }
         registerBasicProfileEvents();
+        renderHideUnhideButton(); // global function
     }
 
     function getBasicProfileSettingsHTML(data) {
@@ -230,8 +286,7 @@
         const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3 mr-3" type="button" data-toggle="modal"
         data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
 
-        const roleBasedCTA = role === 'provider' ? `<button id="stop-strategy" class="btn btn-default btn-warning mt-3 mr-3" type="button">Stop Providing
-        Strategy</button>` : `<button id="stop-strategy" class="btn btn-default btn-warning mt-3" type="button" data-toggle="modal" data-target="#become-strategy-provider-modal">Apply to be a Strategy Provider</button>`
+        const roleBasedCTA = role === 'provider' ? `<div class="hide-strategy-button-container mt-3 mr-3"></div>` : `<button class="btn btn-default btn-warning mt-3" type="button" data-toggle="modal" data-target="#become-strategy-provider-modal">Apply to be a Strategy Provider</button>`
 
         return `
         <div class="mb-3">

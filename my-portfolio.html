@@ -161,10 +161,11 @@
           <h2 class="font-bold m-0 d-flex">My Portfolio <span
               class="role-chip role-chip-follower py-1 px-2 ml-2 d-none">Follower</span> <span
               class="role-chip role-chip-provider py-1 px-2 ml-2 d-none">Provider</span></h2>
-          <div>
-            <button id="stop-strategy" class="btn btn-default btn-warning d-none" type="button">Stop Providing
-              Strategy</button>
-            <button id="strategy" class="btn btn-default d-none" type="button" data-toggle="modal"
+          <div class="d-flex">
+            <div class="hide-strategy-button-container mr-2">
+
+            </div>
+            <button id="strategy" class="btn btn-default d-none mr-2" type="button" data-toggle="modal"
               data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>
             <div class="btn-group">
               <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
@@ -733,7 +734,8 @@
           </div>
           <div class="divider"></div>
           <div class="p-3 d-flex justify-content-end">
-            <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal" id="create-demo-account">
+            <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal"
+              id="create-demo-account">
               Create
             </button>
           </div>
@@ -741,6 +743,69 @@
       </div>
     </div>
     <!-- Create Demo account end -->
+
+    <!-- Hide strategy account start -->
+    <div class="modal inmodal" id="hide-strategy-modal" tabindex="-1" role="dialog" aria-modal="true">
+      <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content animated fadeIn">
+          <div class="d-flex justify-content-between p-3">
+            <h4 class="modal-title super-large-font">Hide Strategy Account</h4>
+            <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
+              <img src="img/ic_cross.svg">
+            </button>
+          </div>
+          <p class="pl-3 pt-0 pr-3 pb-3 m-0">Are you sure you want to hide your strategy account?</p>
+          <ul>
+            <li class="mb-3">Strategy Followers will no longer be able to search or find your account.</li>
+            <li class="mb-3">Your existing Followers will continue to follow you. However if they stop following you,
+              they will not
+              be able to search or find your account again while it is hidden.</li>
+            <li class="">Your open and pending trades will not be affected.</li>
+          </ul>
+          <div class="divider"></div>
+          <div class="d-flex justify-content-between p-3">
+            <div class="account-number p-1"><span
+                class="mr-1 text-navy live small-font selected-account-type"></span><span
+                class="medium-font font-bold small-font selected-account-number"></span>
+            </div>
+            <button type="button" id="hide-account-cta" class="btn btn-w-m btn-primary" data-dismiss="modal">
+              Hide Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hide strategy account end -->
+
+    <!-- Unhide strategy account start -->
+    <div class="modal inmodal" id="unhide-strategy-modal" tabindex="-1" role="dialog" aria-modal="true">
+      <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content animated fadeIn">
+          <div class="d-flex justify-content-between p-3">
+            <h4 class="modal-title super-large-font">Unhide Strategy Account</h4>
+            <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
+              <img src="img/ic_cross.svg">
+            </button>
+          </div>
+          <p class="pl-3 pt-0 pr-3 pb-3 m-0">Are you sure you want to unhide your strategy account?</p>
+          <ul>
+            <li class="mb-3">Strategy Followers will no longer be able to search or find your account.</li>
+            <li class="mb-3">Your open and pending trades will not be affected.</li>
+          </ul>
+          <div class="divider"></div>
+          <div class="d-flex justify-content-between p-3">
+            <div class="account-number p-1"><span
+                class="mr-1 text-navy demo small-font selected-account-type">LIVE</span><span
+                class="medium-font font-bold small-font selected-account-number"></span>
+            </div>
+            <button id="unhide-account-cta" type="button" class="btn btn-w-m btn-primary" data-dismiss="modal">
+              Unhide Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Unhide strategy account end -->
   </div>
   <div id="overlay" class="d-none"></div>
 

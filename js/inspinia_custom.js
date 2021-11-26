@@ -196,6 +196,7 @@ function initData() {
       }
       $('.nav-profile-img').attr('src', profileImageUrl);
       registerBuySellModalEvents(data.data.tradeData);
+      renderHideUnhideButton(); // this function will render hide/unhide stategy account button on My Portfolio page and settings page
     }
   })
   // set view type as grid for Strategy Provider page
@@ -203,6 +204,36 @@ function initData() {
     localStorage.setItem('viewType', 'grid');
   }
 }
+
+// hide unhide button start
+function renderHideUnhideButton() {
+  const container = $('.hide-strategy-button-container');
+  const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+  if (!selectedAccountNo) {
+    return
+  }
+  const hiddenStrategyAccounts = JSON.parse(localStorage.getItem('hiddenStrategyAccounts'));
+  let buttonHTML = '';
+  if (!Array.isArray(hiddenStrategyAccounts)) {
+    buttonHTML = `<button id="hide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
+    data-target="#hide-strategy-modal">Hide Strategy
+    Account</button>`
+  } else {
+    const isHidden = hiddenStrategyAccounts.find(a => a === selectedAccountNo);
+    if (isHidden) {
+      buttonHTML = `<button id="unhide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
+      data-target="#unhide-strategy-modal">Unhide Strategy
+      Account</button>`
+    } else {
+      buttonHTML = `<button id="hide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
+      data-target="#hide-strategy-modal">Hide Strategy
+      Account</button>`
+    }
+  }
+  container.empty().append(buttonHTML);
+}
+// hide unhide button end
+
 // account switcher start
 function renderAccountSwitcher(userAccounts) {
   if (!userAccounts || !Array.isArray(userAccounts)) {
