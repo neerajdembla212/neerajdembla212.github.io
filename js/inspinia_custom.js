@@ -613,13 +613,13 @@ function getFollowProviderPopupBody(data) {
       <!-- tabs header start -->
       <div>
         <ul class="nav nav-tabs flex-nowrap py-3" role="tablist">
-          <li>
+          <li class="mr-2">
             <a class="nav-link active" data-toggle="tab" href="#automatic">Automatic</a>
           </li>
-          <li>
+          <li class="mr-2">
             <a class="nav-link" data-toggle="tab" href="#percentage">Percentage</a>
           </li>
-          <li>
+          <li class="mr-2">
             <a class="nav-link" data-toggle="tab" href="#fixed">Fixed</a>
           </li>
           <li>
