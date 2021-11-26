@@ -1049,6 +1049,7 @@
 
     // activate tooltips
     activateTooltips();
+    validateFollowProviderPopupInputs($('#add-provider-modal')); // global function 
   }
   // render strategy provider modal end
 

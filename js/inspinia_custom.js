@@ -543,7 +543,7 @@ function renderFollowProviderPopup(strategyProviderDetails) {
   const footerContainer = $('#follow-provider-modal .modal-footer');
   footerContainer.empty().append(getFollowProviderPopupFooter())
   registerFollowProviderPopupEvents();
-  validateFollowProviderPopupInputs();
+  validateFollowProviderPopupInputs($('#follow-provider-modal'));
 }
 
 function getFollowProviderPopupBody(data) {
@@ -867,33 +867,33 @@ function getFollowProviderPopupFooter() {
     `
 }
 
-function validateFollowProviderPopupInputs() {
+function validateFollowProviderPopupInputs(container) {
   // validate Minimum lot size input 
-  validateTextInput($('#follow-provider-modal #min-lot-size'), validateNumber, 'Number only')
+  validateTextInput(container.find('#min-lot-size'), validateNumber, 'Number only')
 
   // validate Maximum lot size input 
-  validateTextInput($('#follow-provider-modal #max-lot-size'), validateNumber, 'Number only')
+  validateTextInput(container.find('#max-lot-size'), validateNumber, 'Number only')
 
   // validate Take profit input 
-  validateTextInput($('#follow-provider-modal #take-profit-input'), validateNumber, 'Number only')
+  validateTextInput(container.find('#take-profit-input'), validateNumber, 'Number only')
 
   // validate Stop loss input 
-  validateTextInput($('#follow-provider-modal #stop-loss-input'), validateNumber, 'Number only')
+  validateTextInput(container.find('#stop-loss-input'), validateNumber, 'Number only')
 
   // validate number of trades
-  validateTextInput($('#follow-provider-modal #no-of-trades'), validateNumber, 'Number only')
+  validateTextInput(container.find('#no-of-trades'), validateNumber, 'Number only')
 
   // validate level of equity
-  validateTextInput($('#follow-provider-modal #level-of-equity'), validateNumber, 'Number only')
+  validateTextInput(container.find('#level-of-equity'), validateNumber, 'Number only')
 
   // validate percentage input
-  validateTextInput($('#follow-provider-modal #percentage-input'), validatePercentage, 'Number only');
+  validateTextInput(container.find('#percentage-input'), validatePercentage, 'Number only');
 
   // validate fixed trade size input
-  validateTextInput($('#follow-provider-modal #fixed-trade-size'), validatePercentage, 'Number only');
+  validateTextInput(container.find('#fixed-trade-size'), validatePercentage, 'Number only');
 
   // validate Trade size ratio input
-  validateTextInput($('#follow-provider-modal #trade-size-ratio'), validatePercentage, 'Number only');
+  validateTextInput(container.find('#trade-size-ratio'), validatePercentage, 'Number only');
 }
 
 function registerFollowProviderPopupEvents() {
