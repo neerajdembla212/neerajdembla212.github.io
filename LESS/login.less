@@ -32,7 +32,7 @@
         }
 
         .img-logo {
-            height: 22px;
+            height: 33px;
         }
     }
 
@@ -48,6 +48,12 @@
             margin-right: 3rem;
         }
 
+        .disclaimer-content.informatory-content {
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+
         .notice-content {
             background: rgba(48, 25, 102, 0.6);
             backdrop-filter: blur(8px);
@@ -55,6 +61,14 @@
             margin-left: 3rem;
             margin-right: 3rem;
             margin-top: 10vh;
+        }
+    }
+
+    .img-display.responsive {
+        display: none;
+
+        @media screen and (max-width: 768px) {
+            display: block;
         }
     }
 }
