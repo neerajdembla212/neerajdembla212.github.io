@@ -115,7 +115,7 @@
 
     <div id="page-wrapper" class="gray-bg dashbard-1">
       <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-static-top d-flex flex-nowrap" role="navigation" style="margin-bottom: 0">
           <div class="navbar-header d-flex align-items-center">
             <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle m-0 custom-nav-cta" href="#"><span
                 class="nav-menu-toggle-arrow"></span>
@@ -131,9 +131,9 @@
               </div>
             </div>
           </div>
-          <div class="nav navbar-top-links navbar-right d-flex align-self-center">
-            <a href="/settings.html"><span class="welcome-message">Welcome KS Tan</span></a>
-            <li class="dropdown notifications-container">
+          <div class="nav navbar-top-links navbar-right d-flex align-self-center flex-nowrap navbar-top-actions">
+            <a href="/settings.html" class="m-0"><span class="welcome-message m-0">Welcome KS Tan</span></a>
+            <li class="dropdown notifications-container mx-2">
               <button type="button" class="btn btn-outline btn-default border-0 count-info p-0 m-0 dropdown-toggle"
                 data-toggle="dropdown">
                 <i class="fa fa-bell m-0"></i> <span class="label label-notification p-0"></span>
@@ -142,7 +142,7 @@
 
               </ul>
             </li>
-            <li class="dropdown language-container">
+            <li class="dropdown language-container mx-2">
               <button type="button"
                 class="btn btn-outline btn-default border-0 count-info px-0 m-0 dropdown-toggle d-flex align-items-center"
                 data-toggle="dropdown">
@@ -157,6 +157,24 @@
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="vn">Tiếng Việt (VN)</li>
               </ul>
             </li>
+            <button type="button" class="btn btn-outline btn-default border-0 p-0 m-0 btn-search-responsive">
+              <img src="img/ic_search.svg" class="m-0 mb-1 mr-1 btn-search" />
+            </button>
+            <!-- Responsive dropdown start -->
+            <div class="dropdown responsive">
+              <button type="button" class="btn btn-outline btn-default border-0 p-0 m-0 dropdown-toggle"
+                data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="dropdownResponsiveMenu">
+                <i class="fa fa-ellipsis-v m-0"></i>
+              </button>
+              <div class="dropdown-menu m-0" aria-labelledby="dropdownResponsiveMenu">
+                <div class="dropdown-item p-2" data-value="en">English (EN)</div>
+                <div class="dropdown-item p-2" data-value="cn">简体中文 (CN)</div>
+                <div class="dropdown-item p-2" data-value="id">Bahasa Indonesia (ID)</div>
+                <div class="dropdown-item p-2" data-value="th">ไทย (TH)</div>
+                <div class="dropdown-item p-2" data-value="vn">Tiếng Việt (VN)</div>
+              </div>
+            </div>
+            <!-- Responsive dropdown end -->
             <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#buy-sell-modal">
               Buy/Sell
             </button>
