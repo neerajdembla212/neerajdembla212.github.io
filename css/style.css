@@ -13722,6 +13722,41 @@ select[name="rows-per-page"] {
   padding-left: 90px !important;
 }
 
+.navbar-top-actions .responsive.dropdown {
+  display: none;
+}
+
+.navbar-top-actions .btn-search-responsive {
+  display: none;
+}
+
+.navbar-top-actions .btn-search {
+  height: 15px;
+  width: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .navbar-top-actions .welcome-message {
+    display: none;
+  }
+
+  .navbar-top-actions .notifications-container {
+    display: none;
+  }
+
+  .navbar-top-actions .language-container {
+    display: none;
+  }
+
+  .navbar-top-actions .responsive.dropdown {
+    display: block;
+  }
+
+  .navbar-top-actions .btn-search-responsive {
+    display: block;
+  }
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

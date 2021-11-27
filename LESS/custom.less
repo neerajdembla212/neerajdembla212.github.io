@@ -1427,3 +1427,41 @@ select[name="rows-per-page"] {
     padding-left: 90px !important;
   }
 }
+
+// responsive navbar
+.navbar-top-actions {
+  .responsive.dropdown {
+    display: none;
+  }
+
+  .btn-search-responsive {
+    display: none;
+  }
+
+  .btn-search {
+    height: 15px;
+    width: 15px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .welcome-message {
+      display: none;
+    }
+
+    .notifications-container {
+      display: none;
+    }
+
+    .language-container {
+      display: none;
+    }
+
+    .responsive.dropdown {
+      display: block;
+    }
+
+    .btn-search-responsive {
+      display: block;
+    }
+  }
+}
