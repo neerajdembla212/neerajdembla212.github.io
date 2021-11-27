@@ -1479,6 +1479,12 @@ ul.nav-second-level {
   left: auto;
 }
 
+@media screen and (max-width: 600px) {
+  .navbar-static-top .dropdown-menu {
+    right: auto;
+  }
+}
+
 .navbar-static-top .navbar-header {
   height: 60px;
 }
@@ -13740,7 +13746,7 @@ select[name="rows-per-page"] {
     display: none;
   }
 
-  .navbar-top-actions .notifications-container {
+  /* .navbar-top-actions .notifications-container {
     display: none;
   }
 
@@ -13750,7 +13756,7 @@ select[name="rows-per-page"] {
 
   .navbar-top-actions .responsive.dropdown {
     display: block;
-  }
+  } */
 
   .navbar-top-actions .btn-search-responsive {
     display: block;
