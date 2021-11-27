@@ -429,6 +429,7 @@
   }
 
   function getStrategyProvidersTableHeaders() {
+
     const selectedSort = STATE.getSortData()
     const { sortKey, direction } = selectedSort;
     let arrowClass = '';
@@ -517,8 +518,8 @@
                 <div class="d-flex">
                     <p class="text-light-black font-size-12 mb-0">
                         ${name}
+                        <img class="ml-1" src="${getCountryFlags(country)}" />
                     </p>
-                    <img class="ml-1" src="${getCountryFlags(country)}" />
                 </div>
             </div>
           </div>
