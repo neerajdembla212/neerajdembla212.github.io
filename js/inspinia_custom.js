@@ -262,7 +262,7 @@ function renderAccountSwitcher(userAccounts) {
   })
   rowsHTML.unshift(`
     <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3" data-account-no="create" data-toggle="modal"
-    data-target="#create-demo-modal">
+    data-target="#create-demo-modal" data-i18="nav.createDemoAccount">
       Create Demo Account
     </li>
   `)
@@ -1302,5 +1302,24 @@ function fixDecimals(element, numVal, allowedDecimalCount) {
     const numValString = numVal.toFixed(allowedDecimalCount);
     element.val(numValString)
   }
+}
+
+function initI18nPlugin() {
+  $.i18n.init({
+    resGetPath: 'locales/__lng__.json',
+    load: 'unspecific',
+    fallbackLng: false,
+    lng: 'en'
+  }, function (t) {
+    $('#wrapper').i18n();
+  });
+
+  $('.language-switcher li').unbind().click(function () {
+    const language = $(this).data('value');
+    console.log('language ', language);
+    i18n.setLng(language, function () {
+      $('#wrapper').i18n();
+    })
+  })
 }
 

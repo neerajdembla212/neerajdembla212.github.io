@@ -1751,6 +1751,8 @@
         })
 
         hideUnhideStrategyAccountEvents();
+        // init i18n plugin
+        initI18nPlugin();
     }
 
     function hideUnhideStrategyAccountEvents() {

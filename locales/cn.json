@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "CopyPiP"
+  },
+  "nav": {
+    "trade": "贸易",
+    "myPortfolio": "我的投资组合",
+    "tradeTerminal": "贸易终端",
+    "strategyProviders": "策略提供者",
+    "simulation": "模拟",
+    "economicCalendar": "经济日历",
+    "settings": "设置",
+    "help": "帮助",
+    "referFriend": "介绍个朋友",
+    "ksTan": "KS谭",
+    "strategyFollower": "策略追随者",
+    "strategyProvider": "策略提供者",
+    "signOut": "登出",
+    "createDemoAccount": "创建模拟账户"
+  },
+  "body": {
+
+  },
+  "topnav": {
+    "searchCopyPip": "搜索CopyPip",
+    "welcome": "欢迎 KS Tan",
+    "buySell": "买卖"
+  }
+}
