@@ -1,43 +1,27 @@
 {
-  "app":{
-    "name": "INSPINIA 2.4"
+  "app": {
+    "name": "CopyPiP"
   },
-  "nav":{
-    "dashboard": "Dashboards",
-    "graphs": "Graphs",
-    "mailbox": "Mailbox",
-    "widgets": "Widgets",
-    "metrics": "Metrics",
-    "forms": "Forms",
-    "appviews": "App views",
-    "otherpages": "Other pages",
-    "uielements": "UI elements",
-    "miscellaneous": "Miscellaneous",
-    "gridoptions": "Grid options",
-    "tables": "Tables",
-    "commerce": "E-commerce",
-    "gallery": "Gallery",
-    "menulevels": "Menu levels",
-    "animations": "Animations",
-    "landing": "Landing page",
-    "layouts": "Layouts",
-    "package": "Packages"
+  "nav": {
+    "trade": "Trade",
+    "myPortfolio": "My Portfolio",
+    "tradeTerminal": "Trade Terminal",
+    "strategyProviders": "Strategy Providers",
+    "simulation": "Simulation",
+    "economicCalendar": "Economic Calendar",
+    "settings": "Settings",
+    "help": "Help",
+    "referFriend": "Refer a Friend",
+    "ksTan": "KS Tan",
+    "strategyFollower": "Strategy Follower",
+    "strategyProvider": "Strategy Provider",
+    "signOut": "Sign Out",
+    "createDemoAccount": "Create Demo Account"
   },
-  "body":{
-    "welcome": "Welcome Amelia"
-
-  },
-  "topnav":{
-
-    "messageinfo": "You have 42 messages and 6 notifications.",
-    "search": "Search for something...",
-    "logout": "Log out",
-    "welcometext": "Welcome to INSPINIA+ Admin Theme.",
-    "language": "Language"
-  },
-  "demo":{
-    "text1": "Internationalization (sometimes shortened to \"I18N , meaning \"I - eighteen letters -N\") is the process of planning and implementing products and services so that they can easily be adapted to specific local languages and cultures, a process called localization . The internationalization process is sometimes called translation or localization enablement ."
+  "body": {},
+  "topnav": {
+    "searchCopyPip": "Search CopyPip",
+    "welcome": "Welcome KS Tan",
+    "buySell": "Buy/Sell"
   }
-
-
 }
