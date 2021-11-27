@@ -14608,7 +14608,7 @@ select[name="rows-per-page"] {
 }
 
 #page-wrapper.login-page .login-container .img-logo {
-  height: 22px;
+  height: 33px;
 }
 
 #page-wrapper.login-page .img-display {
@@ -14624,6 +14624,13 @@ select[name="rows-per-page"] {
   margin-right: 3rem;
 }
 
+@media screen and (max-width: 768px) {
+
+  #page-wrapper.login-page .img-display .disclaimer-content.informatory-content {
+    display: none;
+  }
+}
+
 #page-wrapper.login-page .img-display .notice-content {
   background: rgba(48, 25, 102, 0.6);
   backdrop-filter: blur(8px);
@@ -14631,6 +14638,16 @@ select[name="rows-per-page"] {
   margin-left: 3rem;
   margin-right: 3rem;
   margin-top: 10vh;
+}
+
+#page-wrapper.login-page .img-display.responsive {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #page-wrapper.login-page .img-display.responsive {
+    display: block;
+  }
 }
 
 .trading-view-widget {
