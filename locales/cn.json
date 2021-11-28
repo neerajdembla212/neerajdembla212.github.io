@@ -19,7 +19,9 @@
     "createDemoAccount": "创建模拟账户"
   },
   "body": {
-
+    "mp": {
+      "myPortfolio": "我的投资组合"
+    }
   },
   "topnav": {
     "searchCopyPip": "搜索CopyPip",

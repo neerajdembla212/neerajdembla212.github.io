@@ -18,7 +18,11 @@
     "signOut": "Sign Out",
     "createDemoAccount": "Create Demo Account"
   },
-  "body": {},
+  "body": {
+    "mp" : {
+      "myPortfolio" : "My Portfolio"
+    }
+  },
   "topnav": {
     "searchCopyPip": "Search CopyPip",
     "welcome": "Welcome KS Tan",
