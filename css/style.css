@@ -13537,11 +13537,6 @@ select[name="rows-per-page"] {
   z-index: 2221;
 }
 
-.popover.tour .arrow::after {
-  border-bottom-color: #22D091;
-  top: 2px;
-}
-
 .popover.tour .arrow::before {
   top: 1px;
 }
