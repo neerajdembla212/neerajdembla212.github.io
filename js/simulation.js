@@ -336,6 +336,8 @@
     TABLET_MEDIA.addEventListener('change', function () {
       renderStrategyProviders();
     })
+    // init i18n plugin
+    initI18nPlugin();
   }
 
   function initDatePicker() {

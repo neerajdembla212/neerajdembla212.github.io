@@ -18,7 +18,51 @@
     "signOut": "Sign Out",
     "createDemoAccount": "Create Demo Account"
   },
-  "body": {},
+  "body": {
+    "tt": {
+      "tradeTerminal": "Trade Terminal",
+      "watchList": "My Watchlist",
+      "marketOpen": "Market Open",
+      "openTrades": "Open Trades",
+      "pendingOrders": "Pending Orders",
+      "tradeHistory": "Trade History",
+      "orderByAccount": "Order by Account",
+      "live": "Live"
+    },
+    "sp": {
+      "strategyProvider":"Strategy Provider",
+      "topPerformer": "Top Performer",
+      "featured": "Featured",
+      "following": "Following",
+      "favourites": "Favourites",
+      "lowGrowth": "Low Growth",
+      "midGrowth": "Mid Growth",
+      "highGrowth": "High Growth"
+    },
+    "spd": {
+      "providersDetail": "Providers Detail",
+      "followProvider": "Follow Provider",
+      "createDemoAccount": "Create Demo Account",
+      "noticeDemoAccount": "Notice for Demo Accounts:",
+      "inactiveDemoAccount": "Inactive demo account will be removed/closed",
+      "activeDemoAccount": "Active demo account will be closed after 30 days.",
+      "demoBudget": "Demo Budget",
+      "create": "Create"
+    },
+    "ec": {
+      "economicCalendar": "Economic Calendar",
+      "currentTime": "Current Time",
+      "allDataStreaming": "All data are streaming and updated automatically"
+    },
+    "sm": {
+      "simulation": "Simulation",
+      "inputCapital": "Input Capital",
+      "volume": "Volume",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "calculate": "Calculate"
+    }
+  },
   "topnav": {
     "searchCopyPip": "Search CopyPip",
     "welcome": "Welcome KS Tan",

@@ -79,28 +79,28 @@
           <li>
             <a href="javascript: void(0)" data-href="/strategy-providers.html"><span
                 class="nav-icon strategy-providers"></span>
-              <span class="nav-label">Strategy Providers</span></a>
+              <span class="nav-label" data-i18n="nav.strategyProviders">Strategy Providers</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/simulation.html"><span class="nav-icon simulation"></span>
-              <span class="nav-label">Simulation</span></a>
+              <span class="nav-label" data-i18n="nav.simulation">Simulation</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/economic-calendar.html"><span class="nav-icon news-feed"></span>
-              <span class="nav-label">Economic Calendar</span></a>
+              <span class="nav-label" data-i18n="nav.economicCalendar">Economic Calendar</span></a>
           </li>
           <li class="divider"></li>
           <li>
             <a href="javascript: void(0)" data-href="/settings.html"><span class="nav-icon settings"></span>
-              <span class="nav-label">Settings</span></a>
+              <span class="nav-label" data-i18n="nav.settings">Settings</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/help.html"><span class="nav-icon help"></span>
-              <span class="nav-label">Help</span></a>
+              <span class="nav-label" data-i18n="nav.help">Help</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/refer-a-friend.html"><span class="nav-icon refer-a-friend"></span>
-              <span class="nav-label">Refer a Friend</span></a>
+              <span class="nav-label" data-i18n="nav.referFriend">Refer a Friend</span></a>
           </li>
         </ul>
       </div>
@@ -177,14 +177,14 @@
       </div>
       <div id="page-container" class="trade-terminal-page full-height-scroll">
         <div class="d-flex justify-content-between subheader flex-wrap align-items-center">
-          <h2 class="font-bold m-0">Trade Terminal</h2>
+          <h2 class="font-bold m-0" data-i18n="body.tt.tradeTerminal">Trade Terminal</h2>
           <div class="d-flex my-2 flex-wrap">
             <div class="pinned-currency-container d-flex">
 
             </div>
             <button type="button" class="btn btn-default btn-sm btn-watchlist watchlist-right-sidebar-toggle">
               <i class="fa fa-bookmark mr-2"></i>
-              My Watchlist <i id="watchlist-number"></i>
+              <span data-i18n="body.tt.watchList">My Watchlist</span> <i id="watchlist-number"></i>
             </button>
           </div>
         </div>
@@ -202,7 +202,7 @@
                       <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
                       <div class="d-flex">
                         <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
-                        <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                        <p class="mb-0 text-market-blue small-font" data-i18n="body.tt.marketOpen">MARKET OPEN</p>
                       </div>
                     </div>
                   </div>
@@ -220,7 +220,7 @@
                         <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
                         <div class="d-flex">
                           <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
-                          <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                          <p class="mb-0 text-market-blue small-font" data-i18n="body.tt.marketOpen">MARKET OPEN</p>
                         </div>
                       </div>
                     </div>
@@ -232,7 +232,7 @@
                         <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
                         <div class="d-flex">
                           <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
-                          <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                          <p class="mb-0 text-market-blue small-font" data-i18n="body.tt.marketOpen">MARKET OPEN</p>
                         </div>
                       </div>
                     </div>
@@ -244,7 +244,7 @@
                         <p class="mb-0 font-weight-bold medium-font text-left">EURUSD</p>
                         <div class="d-flex">
                           <p class="font-weight-light mb-0 small-font mr-3">Prices by Fullerton Markets, in USD</p>
-                          <p class="mb-0 text-market-blue small-font">MARKET OPEN</p>
+                          <p class="mb-0 text-market-blue small-font" data-i18n="body.tt.marketOpen">MARKET OPEN</p>
                         </div>
                       </div>
                     </div>
@@ -275,13 +275,13 @@
                 <div class="d-flex justify-content-between tabs-header">
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="mr-3">
-                      <a class="nav-link active" data-toggle="tab" href="#open-trades">Open Trades</a>
+                      <a class="nav-link active" data-toggle="tab" href="#open-trades" data-i18n="body.tt.openTrades">Open Trades</a>
                     </li>
                     <li class="mr-3">
-                      <a class="nav-link" data-toggle="tab" href="#pending-orders">Pending Orders</a>
+                      <a class="nav-link" data-toggle="tab" href="#pending-orders" data-i18n="body.tt.pendingOrders">Pending Orders</a>
                     </li>
                     <li class="mr-3">
-                      <a class="nav-link" data-toggle="tab" href="#closed-trades">Trade History</a>
+                      <a class="nav-link" data-toggle="tab" href="#closed-trades" data-i18n="body.tt.tradeHistory">Trade History</a>
                     </li>
                   </ul>
                 </div>
@@ -321,8 +321,8 @@
             <div class="modal-body p-3 full-height-scroll">
               <!-- order by account start -->
               <div class="d-flex justify-content-between mb-2">
-                <p class="mb-0 font-bold">Order by Account</p>
-                <div class="account-number p-1"><span class="mr-1 text-navy live small-font">LIVE</span><span
+                <p class="mb-0 font-bold" data-i18n="body.tt.orderByAccount">Order by Account</p>
+                <div class="account-number p-1"><span class="mr-1 text-navy live small-font" data-i18n="body.tt.live">LIVE</span><span
                     class="medium-font font-bold small-font">TA 209761M</span>
                 </div>
               </div>

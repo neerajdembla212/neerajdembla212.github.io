@@ -135,6 +135,8 @@
       const activeTab = localStorage.getItem('SP_active_tab_id');
       window.location.href = `${window.location.origin}/strategy-providers.html?tab=${activeTab}`
     })
+    // init i18n plugin
+    initI18nPlugin();
   }
 
   // Plot Line chart start

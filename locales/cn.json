@@ -19,7 +19,49 @@
     "createDemoAccount": "创建模拟账户"
   },
   "body": {
-
+    "tt": {
+      "tradeTerminal": "贸易终端",
+      "watchList": "我的关注列表",
+      "marketOpen": "开市",
+      "openTrades": "未结交易",
+      "pendingOrders": "挂单",
+      "tradeHistory": "交易历史",
+      "orderByAccount": "按帐户订购",
+      "live": "居住"
+    },
+    "sp": {
+      "strategyProvider":"策略提供者",
+      "topPerformer": "表现最好的",
+      "featured": "精选",
+      "following": "下列的",
+      "favourites": "收藏夹",
+      "lowGrowth": "低增长",
+      "midGrowth": "中期增长",
+      "highGrowth": "高增长"
+    },
+    "spd": {
+      "providersDetail": "供应商详情",
+      "followProvider": "关注提供商",
+      "createDemoAccount": "创建模拟账户",
+      "noticeDemoAccount": "通知模拟账户",
+      "inactiveDemoAccount": "不活跃的模拟账户",
+      "activeDemoAccount": "活跃的模拟账户",
+      "demoBudget": "演示预算",
+      "create": "创建"
+    },
+    "ec": {
+      "economicCalendar": "经济日历",
+      "currentTime": "当前时间",
+      "allDataStreaming": "所有数据都在流式传输并自动更新"
+    },
+    "sm": {
+      "simulation": "模拟",
+      "inputCapital": "投入资本",
+      "volume": "体积",
+      "startDate": "开始日期",
+      "endDate": "结束日期",
+      "calculate": "计算"
+    }
   },
   "topnav": {
     "searchCopyPip": "搜索CopyPip",

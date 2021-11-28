@@ -768,6 +768,8 @@
     // select tab based on query params
     const selectedTabId = window.location.hash;
     $(`.nav.nav-tabs [href="${selectedTabId}"]`).click();
+    // init i18n plugin
+    initI18nPlugin();
   }
 
   function onTabChange(tabId, isManual = true) {

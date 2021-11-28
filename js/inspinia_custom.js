@@ -1313,7 +1313,6 @@ function initI18nPlugin() {
   }, function (t) {
     $('#wrapper').i18n();
   });
-
   $('.language-switcher li').unbind().click(function () {
     const language = $(this).data('value');
     console.log('language ', language);

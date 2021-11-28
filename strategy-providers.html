@@ -43,13 +43,13 @@
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <p class="pl-3 pt-2 extra-large-font font-bold pb-0 mb-2">KS Tan</p>
               <div class="divider"></div>
-              <li class="dropdown-item p-3 cursor-pointer" data-role="follower">Strategy Follower</li>
-              <li class="dropdown-item p-3 cursor-pointer" data-role="provider">Strategy Provider</li>
-              <li class="dropdown-item p-3 cursor-pointer" data-role="signout">Sign Out</li>
+              <li class="dropdown-item p-3 cursor-pointer" data-role="follower" data-i18n="nav.strategyFollower">Strategy Follower</li>
+              <li class="dropdown-item p-3 cursor-pointer" data-role="provider" data-i18n="nav.strategyProvider">Strategy Provider</li>
+              <li class="dropdown-item p-3 cursor-pointer" data-role="signout" data-i18n="nav.signOut">Sign Out</li>
             </ul>
           </li>
           <li class="sm d-flex justify-content-between">
-            <div class="trade-label">Trade</div>
+            <div class="trade-label" data-i18n="nav.trade">Trade</div>
             <div class="btn-group">
               <button data-toggle="dropdown"
                 class="btn btn-default dropdown-toggle dropdown-select account-switcher-cta d-flex align-items-center">
@@ -62,37 +62,37 @@
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/my-portfolio.html">
-              <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
+              <span class="nav-icon my-portfolio"></span><span class="nav-label" data-i18n="nav.myPortfolio">My Portfolio</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/trade-terminal.html"><span class="nav-icon trade-terminal"></span>
-              <span class="nav-label">Trade Terminal</span></a>
+              <span class="nav-label" data-i18n="nav.tradeTerminal">Trade Terminal</span></a>
           </li>
           <li class="active">
             <a href="javascript: void(0)" data-href="/strategy-providers.html"><span
                 class="nav-icon strategy-providers"></span>
-              <span class="nav-label">Strategy Providers</span></a>
+              <span class="nav-label" data-i18n="nav.strategyProviders">Strategy Providers</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/simulation.html"><span class="nav-icon simulation"></span>
-              <span class="nav-label">Simulation</span></a>
+              <span class="nav-label" data-i18n="nav.simulation">Simulation</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/economic-calendar.html"><span class="nav-icon news-feed"></span>
-              <span class="nav-label">Economic Calendar</span></a>
+              <span class="nav-label" data-i18n="nav.economicCalendar">Economic Calendar</span></a>
           </li>
           <li class="divider"></li>
           <li>
             <a href="javascript: void(0)" data-href="/settings.html"><span class="nav-icon settings"></span>
-              <span class="nav-label">Settings</span></a>
+              <span class="nav-label" data-i18n="nav.settings">Settings</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/help.html"><span class="nav-icon help"></span>
-              <span class="nav-label">Help</span></a>
+              <span class="nav-label" data-i18n="nav.help">Help</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/refer-a-friend.html"><span class="nav-icon refer-a-friend"></span>
-              <span class="nav-label">Refer a Friend</span></a>
+              <span class="nav-label" data-i18n="nav.referFriend">Refer a Friend</span></a>
           </li>
         </ul>
       </div>
@@ -134,7 +134,7 @@
                 data-toggle="dropdown">
                 <img src="img/ic_globe.svg" class="mx-1" /><span class="text-modal-gray font-weight-bold mx-1">EN</span>
               </button>
-              <ul class="dropdown-menu dropdown-alerts p-0 p-2">
+              <ul class="dropdown-menu dropdown-alerts p-0 p-2 language-switcher">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
@@ -169,7 +169,7 @@
       </div>
       <div id="page-container" class="full-height-scroll strategy-providers-page">
         <div class="d-flex justify-content-between subheader flex-wrap align-items-center">
-          <h2 class="font-bold m-0">Strategy Providers</h2>
+          <h2 class="font-bold m-0" data-i18n="body.sp.strategyProvider">Strategy Providers</h2>
           <div class="d-flex my-2">
             <div class="selected-filters-container mr-2 d-flex"></div>
             <div class="btn-group" role="group">
@@ -188,29 +188,29 @@
             <div class="d-flex justify-content-between tabs-header flex-wrap">
               <ul class="nav nav-tabs flex-nowrap" role="tablist">
                 <li>
-                  <a class="nav-link active" data-toggle="tab" href="#top-growth">Top Performer</a>
+                  <a class="nav-link active" data-toggle="tab" href="#top-growth" data-i18n="body.sp.topPerformer">Top Performer</a>
                 </li>
                 <li>
-                  <a class="nav-link" data-toggle="tab" href="#featured">Featured</a>
+                  <a class="nav-link" data-toggle="tab" href="#featured" data-i18n="body.sp.featured">Featured</a>
                 </li>
                 <li>
-                  <a class="nav-link" data-toggle="tab" href="#following"><img src="img/ic_users.svg" />Following</a>
+                  <a class="nav-link" data-toggle="tab" href="#following" data-i18n="body.sp.following"><img src="img/ic_users.svg" />Following</a>
                 </li>
                 <li>
-                  <a class="nav-link" data-toggle="tab" href="#favourites"><img
+                  <a class="nav-link" data-toggle="tab" href="#favourites" data-i18n="body.sp.favourites"><img
                       src="img/ic_bookmark.svg" />Favourites</a>
                 </li>
                 <li>
                   <div class="vertical-divider"></div>
                 </li>
                 <li>
-                  <a class="nav-link" data-toggle="tab" href="#low-growth">Low Growth</a>
+                  <a class="nav-link" data-toggle="tab" href="#low-growth" data-i18n="body.sp.lowGrowth">Low Growth</a>
                 </li>
                 <li>
-                  <a class="nav-link" data-toggle="tab" href="#mid-growth">Mid Growth</a>
+                  <a class="nav-link" data-toggle="tab" href="#mid-growth" data-i18n="body.sp.midGrowth">Mid Growth</a>
                 </li>
                 <li>
-                  <a class="nav-link" data-toggle="tab" href="#high-growth">High Growth</a>
+                  <a class="nav-link" data-toggle="tab" href="#high-growth" data-i18n="body.sp.highGrowth">High Growth</a>
                 </li>
               </ul>
               <div class="actions-container">
