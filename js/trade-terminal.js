@@ -303,6 +303,8 @@
 
         // add new watchlist
         $('#add-new-watchList').unbind().click(addNewWatchList)
+        // init i18n plugin
+        initI18nPlugin();
     }
 
     function updateTabNames(event) {
