@@ -218,6 +218,12 @@ function renderHideUnhideButton() {
   }
   const hiddenStrategyAccounts = JSON.parse(localStorage.getItem('hiddenStrategyAccounts'));
   let buttonHTML = '';
+  const currentRole = localStorage.getItem('currentRole');
+  const selectedAccountType = localStorage.getItem('selectedAccountType');
+  if (currentRole === 'follower' || selectedAccountType.toUpperCase() === 'DEMO') {
+    container.empty();
+    return;
+  }
   if (!Array.isArray(hiddenStrategyAccounts)) {
     buttonHTML = `<button id="hide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
     data-target="#hide-strategy-modal">Hide Strategy
