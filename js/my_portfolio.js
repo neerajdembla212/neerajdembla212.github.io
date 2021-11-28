@@ -1452,8 +1452,7 @@
             $('#hide-strategy-account').removeClass('d-none');
             $('#strategy').removeClass('d-none');
             $('.portfolio-users-table .table-title').text('Followers')
-        }
-        else if (role.toLowerCase() === 'follower') {
+        } else if (role.toLowerCase() === 'follower') {
             $('.role-chip-follower').removeClass('d-none');
             $('.role-chip-provider').addClass('d-none');
 
@@ -1798,9 +1797,8 @@
     function setupTour() {
         return new Tour({
             framework: "bootstrap4",
-            container: "#page-container",
-            // smartPlacement: true,
-            backdrop: true,
+            container: "#wrapper",
+            backdrop: false,
             autoscroll: true,
             onStart: function (tour) {
                 $('body').addClass('tour-open')
@@ -1825,25 +1823,52 @@
             showProgressText: false,
             steps: [
                 {
-                    element: ".sparkline-container",
+                    element: ".my_portfolio_nav",
                     title: "My Portfolio",
-                    content: "See your current holdings etc on this page",
-                    placement: "top",
-                    backdropContainer: '#page-wrapper',
+                    content: "You can see the overview of your current performances including current balance, total deposits and withdrawals and total fees paid. Furthermore, you can change settings, stop copying of trades or remove strategies from your portfolio.",
+                    placement: "right",
+                    onNext: function (t) {
+                        $('.my_portfolio_nav').removeClass('active');
+                        $('.trade_terminal_nav').addClass('active');
+                    }
                 },
                 {
-                    element: ".portfolio-line-chart",
+                    element: ".trade_terminal_nav",
                     title: "Trade Terminal",
-                    content: "See your current holdings etc on this page",
-                    placement: "top",
-                    backdropContainer: '#page-wrapper',
+                    content: "The “Trade Terminal” section allows you to see your Open Trades, Pending Orders and Trade History. This is also the place where you can look at your charts and take your trades.",
+                    placement: "right",
+                    onNext: function () {
+                        $('.trade_terminal_nav').removeClass('active');
+                        $('.strategy_providers_nav').addClass('active');
+                    },
+                    onPrev: function () {
+                        $('.trade_terminal_nav').removeClass('active');
+                        $('.my_portfolio_nav').addClass('active');
+                    }
                 },
                 {
-                    element: ".portfolio-users-table",
+                    element: ".strategy_providers_nav",
                     title: "Strategy Providers",
-                    content: "Find Strategy Providers here to follow.",
-                    placement: "top",
-                    backdropContainer: '#page-wrapper',
+                    content: "All the strategy providers are listed here and you can carry out a quick review and select some strategies for a detailed analysis.",
+                    placement: "right",
+                    onNext: function () {
+                        $('.strategy_providers_nav').removeClass('active');
+                        $('.simulation_nav').addClass('active');
+                    },
+                    onPrev: function () {
+                        $('.strategy_providers_nav').removeClass('active');
+                        $('.trade_terminal_nav').addClass('active');
+                    }
+                },
+                {
+                    element: ".simulation_nav",
+                    title: "Simulation",
+                    content: "You can simulate the returns and drawdown of a single or multiple strategy providers including the fees they set to calculate real time returns based on their historical data.",
+                    placement: "right",
+                    onPrev: function () {
+                        $('.simulation_nav').removeClass('active');
+                        $('.strategy_providers_nav').addClass('active');
+                    }
                 }
             ]
         });
