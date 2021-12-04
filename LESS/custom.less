@@ -1,9 +1,9 @@
-@nav-bg: #754ef7;
+@nav-bg: #d1feff;
 @red: #e00039;
 @yellow: #f1913a; // Warning color
 @nav-text-color: rgba(255, 255, 255, 0.5);
 @nav-profile-pattern: ~"";
-@nav-bg-pattern: linear-gradient(180deg, #754ef7 0%, #4510b7 100%);
+@nav-bg-pattern: linear-gradient(180deg, #d1feff 0%, #d1feff 100%);
 
 img,
 embed,
@@ -65,7 +65,7 @@ body {
 .navbar-default .nav>li:not(.nav-header)>a:hover,
 .navbar-default .nav>li:not(.nav-header)>a:focus {
   background-color: rgba(255, 255, 255, 0.3);
-  color: white;
+  color: @black; 
   border-right: 4px solid darken(@navy, 2%);
 }
 
@@ -610,7 +610,7 @@ body .navbar-minimalize {
 
 .responsive-navbar-cta {
   display: none !important;
-  background: linear-gradient(180deg, #754EF7 0%, #4510B7 100%);
+  background: linear-gradient(180deg, #d1feff 0%, #d1feff 100%);
   width: 60px;
   height: 100%;
 
@@ -1007,7 +1007,7 @@ body .navbar-minimalize {
   }
 
   .green {
-    color: @navy !important;
+    color: @navy  !important;
   }
 
   .white {
@@ -1055,7 +1055,7 @@ textarea {
   height: 100vh;
   width: 220px;
   z-index: 1110 !important;
-  background-color: #754ef7;
+  background-color: #d1feff;
 
   @media screen and(min-width: 768px) {
     display: none;

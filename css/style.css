@@ -1154,14 +1154,14 @@ h5 {
 }
 
 .nav>li>a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #000000;
   font-weight: 600;
   padding: 14px 20px 14px 25px;
   display: block;
 }
 
 .nav>li.sm {
-  color: #ffffff;
+  color: #000000;
   padding: 0px 14px 10px 25px;
   font-weight: 600;
 }
@@ -1202,7 +1202,7 @@ h5 {
 }
 
 .nav>li.active>a {
-  color: #ffffff;
+  color: #000000;
 }
 
 .navbar-default .nav>li>a:hover,
@@ -1232,7 +1232,7 @@ h5 {
 
 .navbar-default {
   background-color: transparent;
-  border-color: #754ef7;
+  border-color: #d1feff;
 }
 
 .navbar-top-links li {
@@ -1382,8 +1382,7 @@ h5 {
 
 .nav-header {
   padding: 33px 15px;
-  background-color: #754ef7;
-  background-image: ;
+  background-color: #d1feff;
 }
 
 .caret {
@@ -1567,7 +1566,7 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav li:hover>.nav-second
   position: absolute;
   left: 70px;
   top: 0;
-  background-color: #754ef7;
+  background-color: #d1feff;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
 }
@@ -1893,7 +1892,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {
 
 body.canvas-menu nav.navbar-static-side {
   z-index: 2001;
-  background: #754ef7;
+  background: #d1feff;
   height: 100%;
   position: fixed;
   display: none;
@@ -2924,43 +2923,43 @@ button.dim:active:before {
 
 /* TOOLTIPS */
 .tooltip-inner {
-  background-color: #754ef7;
+  background-color: #d1feff;
 }
 
 .tooltip.top .tooltip-arrow {
-  border-top-color: #754ef7;
+  border-top-color: #d1feff;
 }
 
 .tooltip.right .tooltip-arrow {
-  border-right-color: #754ef7;
+  border-right-color: #d1feff;
 }
 
 .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #754ef7;
+  border-bottom-color: #d1feff;
 }
 
 .tooltip.left .tooltip-arrow {
-  border-left-color: #754ef7;
+  border-left-color: #d1feff;
 }
 
 .bs-tooltip-auto[x-placement^=left] .arrow::before,
 .bs-tooltip-left .arrow::before {
-  border-left-color: #754ef7;
+  border-left-color: #d1feff;
 }
 
 .bs-tooltip-auto[x-placement^=right] .arrow::before,
 .bs-tooltip-right .arrow::before {
-  border-right-color: #754ef7;
+  border-right-color: #d1feff;
 }
 
 .bs-tooltip-auto[x-placement^=top] .arrow::before,
 .bs-tooltip-top .arrow::before {
-  border-top-color: #754ef7;
+  border-top-color: #d1feff;
 }
 
 .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
 .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: #754ef7;
+  border-bottom-color: #d1feff;
 }
 
 /* EASY PIE CHART*/
@@ -5570,7 +5569,7 @@ samp {
 
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #754ef7;
+  background-color: #d1feff;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
@@ -5595,7 +5594,7 @@ body.boxed-layout {
 }
 
 body.boxed-layout #wrapper {
-  background-color: #754ef7;
+  background-color: #d1feff;
   max-width: 1200px;
   margin: 0 auto;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -8159,7 +8158,7 @@ dd.project-people {
 .article h1 {
   font-size: 48px;
   font-weight: 700;
-  color: #754ef7;
+  color: #d1feff;
 }
 
 .article p {
@@ -8626,7 +8625,7 @@ body.body-small .vote-icon {
 }
 
 .small-chat-box .heading {
-  background: #754ef7;
+  background: #d1feff;
   padding: 8px 15px;
   font-weight: bold;
   color: #fff;
@@ -11087,7 +11086,7 @@ body.rtls.top-navigation .footer.fixed {
 }
 
 .skin-1 .nav>li.active>a {
-  color: #fff;
+  color: #000;
 }
 
 .skin-1 .navbar-minimalize {
@@ -11160,7 +11159,7 @@ body.skin-1 {
 .skin-1 .navbar-default .nav>li>a:hover,
 .skin-1 .navbar-default .nav>li>a:focus {
   background: #3a4459;
-  color: #fff;
+  color: #000;
 }
 
 .skin-1 .nav.nav-tabs>li.active>a {
@@ -12405,7 +12404,7 @@ body {
 .navbar-default .nav>li:not(.nav-header)>a:hover,
 .navbar-default .nav>li:not(.nav-header)>a:focus {
   background-color: rgba(255, 255, 255, 0.3);
-  color: white;
+  color: #000;
   border-right: 4px solid #21c78b;
 }
 
@@ -12944,7 +12943,7 @@ table>tbody>tr:first-child>td {
 
 .responsive-navbar-cta {
   display: none !important;
-  background: linear-gradient(180deg, #754EF7 0%, #4510B7 100%);
+  background: linear-gradient(180deg, #d1feff 0%, #d1feff 100%);
   width: 60px;
   height: 100%;
 }
@@ -13050,7 +13049,7 @@ table>tbody>tr:first-child>td {
 }
 
 .tooltip-inner {
-  background-color: #754ef7;
+  background-color: #d1feff;
 }
 
 .tooltip {
@@ -13375,7 +13374,7 @@ textarea {
   height: 100vh;
   width: 220px;
   z-index: 3;
-  background-color: #754ef7;
+  background-color: #d1feff;
 }
 
 @media screen and (min-width: 768px) {
