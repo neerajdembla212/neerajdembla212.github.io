@@ -1208,7 +1208,7 @@ h5 {
 .navbar-default .nav>li>a:hover,
 .navbar-default .nav>li>a:focus {
   background-color: #6a3ff6;
-  color: white;
+  color: black;
 }
 
 .nav .open>a,
