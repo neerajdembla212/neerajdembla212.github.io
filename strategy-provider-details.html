@@ -35,11 +35,13 @@
                     <li class="nav-header position-relative">
                         <a data-toggle="dropdown" class="dropdown-toggle p-0" href="#">
                             <div class="dropdown profile-element">
-                                <img alt="image" class="rounded-circle nav-profile-img" src="img/default_profile.jpeg" />
+                                <img alt="image" class="rounded-circle nav-profile-img"
+                                    src="img/default_profile.jpeg" />
                                 <div class="details ml-2">
-                                    <span class="block m-t-xs font-weight-bold medium-font" data-i18n="nav.ksTan">KS Tan</span>
-                                    <span class="text-xs role font-weight-light"></span>
-                                  </div>
+                                    <span class="block m-t-xs font-weight-bold medium-font text-dark-black"
+                                        data-i18n="nav.ksTan">KS Tan</span>
+                                    <span class="text-xs role font-weight-light text-dark-black"></span>
+                                </div>
                             </div>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -108,69 +110,81 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top d-flex flex-nowrap" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header d-flex align-items-center">
-                      <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle m-0 custom-nav-cta" href="#"><span
-                          class="nav-menu-toggle-arrow"></span>
-                      </a>
-                      <div class="minimalize-styl-2 m-0 responsive-navbar-cta d-flex align-items-center" href="#">
-                        <img alt="image" src="img/company_logo_cp.svg">
-                      </div>
-                      <div role="search" class="navbar-form-custom ml-3">
-                        <div class="form-group position-relative global-search-container">
-                          <span class="inline-search-icon fa fa-search"></span>
-                          <input type="text" placeholder="Search CopyPip" class="form-control" name="top-search" id="top-search">
-                          <div class="global-dropdown-menu p-3 card d-none"></div>
+                        <a class="navbar-minimalize minimalize-styl-2 navbar-menu-toggle m-0 custom-nav-cta"
+                            href="#"><span class="nav-menu-toggle-arrow"></span>
+                        </a>
+                        <div class="minimalize-styl-2 m-0 responsive-navbar-cta d-flex align-items-center" href="#">
+                            <img alt="image" src="img/company_logo_cp.svg">
                         </div>
-                      </div>
+                        <div role="search" class="navbar-form-custom ml-3">
+                            <div class="form-group position-relative global-search-container">
+                                <span class="inline-search-icon fa fa-search"></span>
+                                <input type="text" placeholder="Search CopyPip" class="form-control" name="top-search"
+                                    id="top-search">
+                                <div class="global-dropdown-menu p-3 card d-none"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="nav navbar-top-links navbar-right d-flex align-self-center flex-nowrap navbar-top-actions">
-                      <a href="/settings.html" class="m-0"><span class="welcome-message m-0">Welcome KS Tan</span></a>
-                      <li class="dropdown notifications-container mx-2">
-                        <button type="button" class="btn btn-outline btn-default border-0 count-info p-0 m-0 dropdown-toggle"
-                          data-toggle="dropdown">
-                          <i class="fa fa-bell m-0"></i> <span class="label label-notification p-0"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-alerts p-0 pt-2">
-          
-                        </ul>
-                      </li>
-                      <li class="dropdown language-container mx-2">
+                    <div
+                        class="nav navbar-top-links navbar-right d-flex align-self-center flex-nowrap navbar-top-actions">
+                        <a href="/settings.html" class="m-0"><span class="welcome-message m-0">Welcome KS Tan</span></a>
+                        <li class="dropdown notifications-container mx-2">
+                            <button type="button"
+                                class="btn btn-outline btn-default border-0 count-info p-0 m-0 dropdown-toggle"
+                                data-toggle="dropdown">
+                                <i class="fa fa-bell m-0"></i> <span class="label label-notification p-0"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-alerts p-0 pt-2">
+
+                            </ul>
+                        </li>
+                        <li class="dropdown language-container mx-2">
+                            <button type="button"
+                                class="btn btn-outline btn-default border-0 count-info px-0 m-0 dropdown-toggle d-flex align-items-center"
+                                data-toggle="dropdown">
+                                <img src="img/ic_globe.svg" class="mx-1" /><span
+                                    class="text-modal-gray font-weight-bold mx-1">EN</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-alerts p-0 p-2">
+                                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">
+                                    English (EN)</li>
+                                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文
+                                    (CN)</li>
+                                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa
+                                    Indonesia (ID)
+                                </li>
+                                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="th">ไทย
+                                    (TH)</li>
+                                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="vn">Tiếng
+                                    Việt (VN)</li>
+                            </ul>
+                        </li>
                         <button type="button"
-                          class="btn btn-outline btn-default border-0 count-info px-0 m-0 dropdown-toggle d-flex align-items-center"
-                          data-toggle="dropdown">
-                          <img src="img/ic_globe.svg" class="mx-1" /><span class="text-modal-gray font-weight-bold mx-1">EN</span>
+                            class="btn btn-outline btn-default border-0 p-0 m-0 btn-search-responsive">
+                            <img src="img/ic_search.svg" class="m-0 mb-1 mr-1 btn-search" />
                         </button>
-                        <ul class="dropdown-menu dropdown-alerts p-0 p-2">
-                          <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
-                          <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
-                          <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
-                          </li>
-                          <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="th">ไทย (TH)</li>
-                          <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="vn">Tiếng Việt (VN)</li>
-                        </ul>
-                      </li>
-                      <button type="button" class="btn btn-outline btn-default border-0 p-0 m-0 btn-search-responsive">
-                        <img src="img/ic_search.svg" class="m-0 mb-1 mr-1 btn-search" />
-                      </button>
-                      <!-- Responsive dropdown start -->
-                      <div class="dropdown responsive">
-                        <button type="button" class="btn btn-outline btn-default border-0 p-0 m-0 dropdown-toggle"
-                          data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="dropdownResponsiveMenu">
-                          <i class="fa fa-ellipsis-v m-0"></i>
-                        </button>
-                        <div class="dropdown-menu m-0" aria-labelledby="dropdownResponsiveMenu">
-                          <div class="dropdown-item p-2" data-value="en">English (EN)</div>
-                          <div class="dropdown-item p-2" data-value="cn">简体中文 (CN)</div>
-                          <div class="dropdown-item p-2" data-value="id">Bahasa Indonesia (ID)</div>
-                          <div class="dropdown-item p-2" data-value="th">ไทย (TH)</div>
-                          <div class="dropdown-item p-2" data-value="vn">Tiếng Việt (VN)</div>
+                        <!-- Responsive dropdown start -->
+                        <div class="dropdown responsive">
+                            <button type="button" class="btn btn-outline btn-default border-0 p-0 m-0 dropdown-toggle"
+                                data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"
+                                id="dropdownResponsiveMenu">
+                                <i class="fa fa-ellipsis-v m-0"></i>
+                            </button>
+                            <div class="dropdown-menu m-0" aria-labelledby="dropdownResponsiveMenu">
+                                <div class="dropdown-item p-2" data-value="en">English (EN)</div>
+                                <div class="dropdown-item p-2" data-value="cn">简体中文 (CN)</div>
+                                <div class="dropdown-item p-2" data-value="id">Bahasa Indonesia (ID)</div>
+                                <div class="dropdown-item p-2" data-value="th">ไทย (TH)</div>
+                                <div class="dropdown-item p-2" data-value="vn">Tiếng Việt (VN)</div>
+                            </div>
                         </div>
-                      </div>
-                      <!-- Responsive dropdown end -->
-                      <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#buy-sell-modal">
-                        Buy/Sell
-                      </button>
+                        <!-- Responsive dropdown end -->
+                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal"
+                            data-target="#buy-sell-modal">
+                            Buy/Sell
+                        </button>
                     </div>
-                  </nav>
+                </nav>
             </div>
             <div id="page-container" class="full-height-scroll">
                 <div class="d-flex justify-content-between flex-wrap mb-3 align-items-center">
@@ -501,8 +515,8 @@
     <script src="js/plugins/switchery/switchery.js"></script>
     <!-- Date time picker -->
     <script src="js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-     <!-- i18next -->
-     <script src="js/plugins/i18next/i18next.min.js"></script>
+    <!-- i18next -->
+    <script src="js/plugins/i18next/i18next.min.js"></script>
 </body>
 
 </html>

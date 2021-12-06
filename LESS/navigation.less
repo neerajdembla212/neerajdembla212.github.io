@@ -1,5 +1,5 @@
 .nav>li>a {
-  color: @nav-text-color !important;
+  color: @nav-text-color  !important;
   font-weight: 400;
   padding: 14px 20px 14px 25px;
   display: block;
@@ -758,7 +758,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   width: 1px;
   height: 40px;
   border-radius: 0px 4px 4px 0px;
-  background: rgba(113, 73, 242, 0.19);
+  background: rgba(23, 192, 241, 0.2);
   border: none;
   position: relative;
   display: flex;
@@ -771,7 +771,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   width: 0;
   height: 0;
   border-top: 5px solid transparent;
-  border-right: 7px solid #734cf5;
+  border-right: 7px solid @nav-item-active-border;
   border-bottom: 5px solid transparent;
   display: block;
   margin: 0 2px 0 0;
@@ -781,7 +781,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   width: 0;
   height: 0;
   border-top: 5px solid transparent;
-  border-left: 7px solid #734cf5;
+  border-left: 7px solid @nav-item-active-border;
   border-bottom: 5px solid transparent;
   border-right: 0;
   display: block;
