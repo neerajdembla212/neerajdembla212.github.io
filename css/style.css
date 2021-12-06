@@ -1154,8 +1154,8 @@ h5 {
 }
 
 .nav>li>a {
-  color: #000000;
-  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
   padding: 14px 20px 14px 25px;
   display: block;
 }
@@ -1232,7 +1232,7 @@ h5 {
 
 .navbar-default {
   background-color: transparent;
-  border-color: #d1feff;
+  border-color: #DAFDFE;
 }
 
 .navbar-top-links li {
@@ -1382,7 +1382,7 @@ h5 {
 
 .nav-header {
   padding: 33px 15px;
-  background-color: #d1feff;
+  background-color: #DAFDFE;
 }
 
 .caret {
@@ -1566,7 +1566,7 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav li:hover>.nav-second
   position: absolute;
   left: 70px;
   top: 0;
-  background-color: #d1feff;
+  background-color: #DAFDFE;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
 }
@@ -1892,7 +1892,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {
 
 body.canvas-menu nav.navbar-static-side {
   z-index: 2001;
-  background: #d1feff;
+  background: #DAFDFE;
   height: 100%;
   position: fixed;
   display: none;
@@ -2923,43 +2923,43 @@ button.dim:active:before {
 
 /* TOOLTIPS */
 .tooltip-inner {
-  background-color: #d1feff;
+  background-color: #DAFDFE;
 }
 
 .tooltip.top .tooltip-arrow {
-  border-top-color: #d1feff;
+  border-top-color: #DAFDFE;
 }
 
 .tooltip.right .tooltip-arrow {
-  border-right-color: #d1feff;
+  border-right-color: #DAFDFE;
 }
 
 .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #d1feff;
+  border-bottom-color: #DAFDFE;
 }
 
 .tooltip.left .tooltip-arrow {
-  border-left-color: #d1feff;
+  border-left-color: #DAFDFE;
 }
 
 .bs-tooltip-auto[x-placement^=left] .arrow::before,
 .bs-tooltip-left .arrow::before {
-  border-left-color: #d1feff;
+  border-left-color: #DAFDFE;
 }
 
 .bs-tooltip-auto[x-placement^=right] .arrow::before,
 .bs-tooltip-right .arrow::before {
-  border-right-color: #d1feff;
+  border-right-color: #DAFDFE;
 }
 
 .bs-tooltip-auto[x-placement^=top] .arrow::before,
 .bs-tooltip-top .arrow::before {
-  border-top-color: #d1feff;
+  border-top-color: #DAFDFE;
 }
 
 .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
 .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: #d1feff;
+  border-bottom-color: #DAFDFE;
 }
 
 /* EASY PIE CHART*/
@@ -5569,7 +5569,7 @@ samp {
 
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #d1feff;
+  background-color: #DAFDFE;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
@@ -5594,7 +5594,7 @@ body.boxed-layout {
 }
 
 body.boxed-layout #wrapper {
-  background-color: #d1feff;
+  background-color: #DAFDFE;
   max-width: 1200px;
   margin: 0 auto;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -8158,7 +8158,7 @@ dd.project-people {
 .article h1 {
   font-size: 48px;
   font-weight: 700;
-  color: #d1feff;
+  color: #DAFDFE;
 }
 
 .article p {
@@ -8625,7 +8625,7 @@ body.body-small .vote-icon {
 }
 
 .small-chat-box .heading {
-  background: #d1feff;
+  background: #DAFDFE;
   padding: 8px 15px;
   font-weight: bold;
   color: #fff;
@@ -12397,7 +12397,7 @@ body {
 }
 
 .nav>li:not(.nav-header).active {
-  border-right: 4px solid #21c78b;
+  border-right: 4px solid #17C0F1;
   background: rgba(255, 255, 255, 0.3);
 }
 
@@ -12405,7 +12405,7 @@ body {
 .navbar-default .nav>li:not(.nav-header)>a:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: #000;
-  border-right: 4px solid #21c78b;
+  border-right: 4px solid #17C0F1;
 }
 
 .navbar-default .nav>li.nav-header>a:hover,
@@ -12899,6 +12899,14 @@ table>tbody>tr:first-child>td {
   border-top: 4px solid #000000;
 }
 
+.down-arrow-green {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #22D091;
+}
+
 .arrow-red {
   border-top: 5px solid #C00000;
 }
@@ -12943,7 +12951,7 @@ table>tbody>tr:first-child>td {
 
 .responsive-navbar-cta {
   display: none !important;
-  background: linear-gradient(180deg, #d1feff 0%, #d1feff 100%);
+  background: linear-gradient(180deg, #DAFDFE 0%, #DAFDFE 100%);
   width: 60px;
   height: 100%;
 }
@@ -13049,7 +13057,7 @@ table>tbody>tr:first-child>td {
 }
 
 .tooltip-inner {
-  background-color: #d1feff;
+  background-color: #DAFDFE;
 }
 
 .tooltip {
@@ -13374,7 +13382,7 @@ textarea {
   height: 100vh;
   width: 220px;
   z-index: 3;
-  background-color: #d1feff;
+  background-color: #DAFDFE;
 }
 
 @media screen and (min-width: 768px) {
@@ -13755,6 +13763,10 @@ select[name="rows-per-page"] {
   .navbar-top-actions .btn-search-responsive {
     display: block;
   }
+}
+
+.account-switcher-cta {
+  box-shadow: none !important;
 }
 
 .portfolio-line-chart {

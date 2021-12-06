@@ -1,9 +1,9 @@
-@nav-bg: #d1feff;
+@nav-bg: #DAFDFE;
 @red: #e00039;
 @yellow: #f1913a; // Warning color
-@nav-text-color: rgba(255, 255, 255, 0.5);
+@nav-text-color: rgba(0, 0, 0, 0.6);
 @nav-profile-pattern: ~"";
-@nav-bg-pattern: linear-gradient(180deg, #d1feff 0%, #d1feff 100%);
+@nav-bg-pattern: linear-gradient(180deg, #DAFDFE 0%, #DAFDFE 100%);
 
 img,
 embed,
@@ -58,15 +58,15 @@ body {
 }
 
 .nav>li:not(.nav-header).active {
-  border-right: 4px solid darken(@navy, 2%);
+  border-right: 4px solid @nav-item-active-border;
   background: rgba(255, 255, 255, 0.3);
 }
 
 .navbar-default .nav>li:not(.nav-header)>a:hover,
 .navbar-default .nav>li:not(.nav-header)>a:focus {
   background-color: rgba(255, 255, 255, 0.3);
-  color: @black; 
-  border-right: 4px solid darken(@navy, 2%);
+  color: @black;
+  border-right: 4px solid @nav-item-active-border;
 }
 
 .navbar-default .nav>li.nav-header>a:hover,
@@ -566,6 +566,14 @@ table>tbody>tr:first-child>td {
   border-top: 4px solid @black;
 }
 
+.down-arrow-green {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid @navy;
+}
+
 .arrow-red {
   border-top: 5px solid @negative-red;
 }
@@ -610,7 +618,7 @@ body .navbar-minimalize {
 
 .responsive-navbar-cta {
   display: none !important;
-  background: linear-gradient(180deg, #d1feff 0%, #d1feff 100%);
+  background: linear-gradient(180deg, #DAFDFE 0%, #DAFDFE 100%);
   width: 60px;
   height: 100%;
 
@@ -1055,7 +1063,7 @@ textarea {
   height: 100vh;
   width: 220px;
   z-index: 1110 !important;
-  background-color: #d1feff;
+  background-color: #DAFDFE;
 
   @media screen and(min-width: 768px) {
     display: none;
@@ -1450,4 +1458,8 @@ select[name="rows-per-page"] {
       display: block;
     }
   }
+}
+
+.account-switcher-cta {
+  box-shadow: none !important;
 }
