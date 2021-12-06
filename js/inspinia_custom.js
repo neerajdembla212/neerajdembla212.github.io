@@ -1325,6 +1325,7 @@ function initI18nPlugin() {
   $('.language-switcher li').unbind().click(function () {
     const language = $(this).data('value');
     localStorage.setItem('selectedLanguage', language);
+    $('.language-container .selected-language').text(language.toUpperCase())
     i18n.setLng(language, function () {
       $('#wrapper').i18n();
     })
