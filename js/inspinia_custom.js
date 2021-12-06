@@ -277,8 +277,10 @@ function renderAccountSwitcher(userAccounts) {
   accountSwitcherCTA.find('.text').text(selectedAccountType);
   if (selectedAccountType.toUpperCase() === 'LIVE') {
     accountSwitcherCTA.addClass('active');
+    accountSwitcherCTA.children('.down-arrow').removeClass('down-arrow-gray').addClass('down-arrow-green');
   } else {
-    accountSwitcherCTA.removeClass('active');
+    accountSwitcherCTA.removeClass('active').addClass('demo');
+    accountSwitcherCTA.children('.down-arrow').removeClass('down-arrow-green').addClass('down-arrow-gray');
   }
   registerAccountSwitcherEvents();
 }
