@@ -1313,14 +1313,16 @@ function fixDecimals(element, numVal, allowedDecimalCount) {
 }
 
 function initI18nPlugin() {
+  const language = localStorage.getItem('selectedLanguage')
   $.i18n.init({
     resGetPath: 'locales/__lng__.json',
     load: 'unspecific',
     fallbackLng: false,
-    lng: 'en'
+    lng: language || 'en'
   }, function (t) {
     $('#wrapper').i18n();
   });
+  $('.language-container .selected-language').text(language.toUpperCase());
 
   $('.language-switcher li').unbind().click(function () {
     const language = $(this).data('value');
