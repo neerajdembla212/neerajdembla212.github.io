@@ -18,7 +18,28 @@
         $(".login-container .nav-tabs > li").click(event => {
             onTabChange($(event.target).attr('href'))
         })
+        // init i18n plugin
+        initI18nPlugin();
     })
+
+    function initI18nPlugin() {
+        $.i18n.init({
+            resGetPath: 'locales/__lng__.json',
+            load: 'unspecific',
+            fallbackLng: false,
+            lng: 'en'
+        }, function (t) {
+            $('#wrapper').i18n();
+        });
+
+        $('.language-switcher li').unbind().click(function () {
+            const language = $(this).data('value');
+            localStorage.setItem('selectedLanguage', language);
+            i18n.setLng(language, function () {
+                $('#wrapper').i18n();
+            })
+        })
+    }
 
     function onTabChange(tabId) {
         if (!tabId) {

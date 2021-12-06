@@ -19,8 +19,39 @@
     "createDemoAccount": "Create Demo Account"
   },
   "body": {
-    "mp" : {
-      "myPortfolio" : "My Portfolio"
+    "mp": {
+      "myPortfolio": "My Portfolio"
+    },
+    "login": {
+      "signIn": "Sign In",
+      "welcomeBack": "Welcome back! Login with your email.",
+      "register": "Register",
+      "email": "Email",
+      "password": "Password",
+      "logIn": "Log in",
+      "createDemoAccountMessage": "Create a Demo Follower Account for FREE!",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "confirmEmail": "Confirm Email",
+      "confirmPassword": "Confirm Password",
+      "demoBudget": "Demo Budget",
+      "leverage": "Leverage",
+      "termsAndCondition": "I have read and agree to the terms and policy.",
+      "create": "Create",
+      "usd": "USD",
+      "eur": "EUR",
+      "sgd": "SGD",
+      "earnAutopilotMessage": "Earn on autopilot with our award-winning social trading platform",
+      "followAndCopyMessage" : "Follow, copy and earn from a global network of pro traders.",
+      "forProTradersMessage" : "For pro traders, become a strategy provider and start boosting your earning potential today.",
+      "noticeForDemoAccounts" : "Notice for Demo Accounts:",
+      "inactiveDemoAccountMessage" : "Inactive demo account will be removed/closed after 15 days.",
+      "activeDemoAccountMessage" : "Active demo account will be closed after 30 days.",
+      "disclaimer" : "Disclaimer:",
+      "tradingForeignExchangeMessage" : "Trading foreign exchange ('Forex'), Commodity futures, options, CFDs and SpreadBetting on margin carries a high level of risk, and may not be suitable for all investors",
+      "beforeDecidingToTradeMessage" : "Before deciding to trade foreign exchange ('Forex'), Commodity futures, options, CFDs or SpreadBetting you should carefully consider your monetary objectives, level of experience, and risk appetite.",
+      "thePossibilityExistsMessage" : "The possibility exists that you could sustain a loss of some or all of your deposited funds and therefore you should not speculate with capital that you cannot afford to lose.",
+      "youShouldBeAwareOfMessage" : "You should be aware of all the risks associated with foreign exchange, Commodity futures, options, CFDs and SpreadBetting trading, and seek advice from an independent advisor if you have any doubts. Past returns are not indicative of future results. "
     }
   },
   "topnav": {
