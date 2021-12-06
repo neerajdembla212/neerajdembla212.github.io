@@ -274,7 +274,7 @@
         } = data;
         const role = STATE.getRole();
 
-        const profile_image = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=identicon&f=y';
+        const profile_image = 'img/default_profile.jpeg';
 
         const strategyPhilosophyHTML = role === 'provider' ? `<div class="py-3">
         <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
