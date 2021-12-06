@@ -21,6 +21,38 @@
   "body": {
     "mp": {
       "myPortfolio": "我的投资组合"
+    },
+    "login": {
+      "signIn": "登入",
+      "welcomeBack": "欢迎回来！使用您的电子邮件登录",
+      "register": "登记",
+      "email": "电子邮件",
+      "password": "密码",
+      "logIn": "登录",
+      "createDemoAccountMessage": "免费创建一个模拟追随者帐户",
+      "firstName": "名",
+      "lastName": "姓",
+      "confirmEmail": "确认电子邮件",
+      "confirmPassword": "确认密码",
+      "demoBudget": "演示预算",
+      "leverage": "杠杆作用",
+      "termsAndCondition": "我已经阅读并且同意",
+      "termsAndPolicy": "条款和政策",
+      "create": "创建",
+      "usd": "美元",
+      "eur": "欧元",
+      "sgd": "新元",
+      "earnAutopilotMessage": "使用我们屡获殊荣的社交交易平台自动赚取收益",
+      "followAndCopyMessage": "关注、复制并从全球专业交易者网络中获利",
+      "forProTradersMessage": "对于专业交易者，成为策略提供者并立即开始提高您的盈利潜力",
+      "noticeForDemoAccounts" : "模拟账户通知",
+      "inactiveDemoAccountMessage" : "不活跃的模拟账户将在 15 天后被移除/关闭。",
+      "activeDemoAccountMessage" : "活跃的模拟账户将在 30 天后关闭。",
+      "disclaimer" : "免责声明：",
+      "tradingForeignExchangeMessage" : "以保证金交易外汇（“外汇”）、商品期货、期权、差价合约和点差交易具有高风险，可能并不适合所有投资者",
+      "beforeDecidingToTradeMessage" : "在决定交易外汇（“外汇”）、商品期货、期权、差价合约或点差交易之前，您应该仔细考虑您的货币目标、经验水平和风险偏好。",
+      "thePossibilityExistsMessage" : "您可能会损失部分或全部存入资金，因此您不应该用无法承受损失的资金进行投机。",
+      "youShouldBeAwareOfMessage" : "您应该了解与外汇、商品期货、期权、差价合约和点差交易相关的所有风险，如有任何疑问，请向独立顾问寻求建议。过去的回报并不代表未来的结果。"
     }
   },
   "topnav": {
