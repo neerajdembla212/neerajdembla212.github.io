@@ -219,6 +219,8 @@
     $(`.subheader .btn-group button[data-view-type=${viewType}]`).click();
     const activeId = getActiveTab().attr('href');
     onTabChange(activeId, false);
+    // global function
+    initI18nPlugin();
   });
 
   // fetch apis start

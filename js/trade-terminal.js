@@ -242,6 +242,8 @@
             }
         ])
         renderPinnedCurrencies();
+        // global function
+        initI18nPlugin();
     });
 
     function registerGlobalEvents() {

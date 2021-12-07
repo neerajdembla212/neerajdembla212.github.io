@@ -106,6 +106,8 @@
     plotEmptyLineChart();
     // render empty state sparkline
     renderSparkline();
+    // global function
+    initI18nPlugin();
   });
 
   function plotEmptyLineChart() {

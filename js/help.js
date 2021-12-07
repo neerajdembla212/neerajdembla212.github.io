@@ -5,6 +5,8 @@ import { FAQ } from './faq.js';
         plotStrategyFollowerFAQ();
         plotStrategyProviderFAQ();
         registerEvents();
+        // global function
+        initI18nPlugin();
     })
     function registerEvents() {
         $('.faq .accordion-title').off().on('click', function (event) {
