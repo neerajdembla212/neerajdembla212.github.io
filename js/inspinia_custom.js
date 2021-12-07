@@ -1322,7 +1322,7 @@ function initI18nPlugin() {
   }, function (t) {
     $('#wrapper').i18n();
   });
-  $('.language-container .selected-language').text(language.toUpperCase());
+  language && $('.language-container .selected-language').text(language.toUpperCase());
 
   $('.language-switcher li').unbind().click(function () {
     const language = $(this).data('value');

@@ -33,10 +33,10 @@
           <li class="nav-header position-relative">
             <a data-toggle="dropdown" class="dropdown-toggle p-0" href="#">
               <div class="dropdown profile-element">
-                <img alt="image" class="rounded-circle ml-2 nav-profile-img" src="img/default_profile.jpeg" />
+                <img alt="image" class="rounded-circle nav-profile-img" src="img/default_profile.jpeg" />
                 <div class="details ml-2">
-                  <span class="block m-t-xs font-bold">KS Tan</span>
-                  <span class="text-xs role"></span>
+                  <span class="block m-t-xs font-weight-bold medium-font" data-i18n="nav.ksTan">KS Tan</span>
+                  <span class="text-xs role font-weight-light"></span>
                 </div>
               </div>
             </a>
@@ -62,37 +62,38 @@
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/my-portfolio.html">
-              <span class="nav-icon my-portfolio"></span><span class="nav-label">My Portfolio</span></a>
+              <span class="nav-icon my-portfolio"></span><span class="nav-label" data-i18n="nav.myPortfolio">My
+                Portfolio</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/trade-terminal.html"><span class="nav-icon trade-terminal"></span>
-              <span class="nav-label">Trade Terminal</span></a>
+              <span class="nav-label" data-i18n="nav.tradeTerminal">Trade Terminal</span></a>
           </li>
           <li class="active">
             <a href="javascript: void(0)" data-href="/strategy-providers.html"><span
                 class="nav-icon strategy-providers"></span>
-              <span class="nav-label">Strategy Providers</span></a>
+              <span class="nav-label" data-i18n="nav.strategyProviders">Strategy Providers</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/simulation.html"><span class="nav-icon simulation"></span>
-              <span class="nav-label">Simulation</span></a>
+              <span class="nav-label" data-i18n="nav.simulation">Simulation</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/economic-calendar.html"><span class="nav-icon news-feed"></span>
-              <span class="nav-label">Economic Calendar</span></a>
+              <span class="nav-label" data-i18n="nav.economicCalendar">Economic Calendar</span></a>
           </li>
           <li class="divider"></li>
           <li>
             <a href="javascript: void(0)" data-href="/settings.html"><span class="nav-icon settings"></span>
-              <span class="nav-label">Settings</span></a>
+              <span class="nav-label" data-i18n="nav.settings">Settings</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/help.html"><span class="nav-icon help"></span>
-              <span class="nav-label">Help</span></a>
+              <span class="nav-label" data-i18n="nav.help">Help</span></a>
           </li>
           <li>
             <a href="javascript: void(0)" data-href="/refer-a-friend.html"><span class="nav-icon refer-a-friend"></span>
-              <span class="nav-label">Refer a Friend</span></a>
+              <span class="nav-label" data-i18n="nav.referFriend">Refer a Friend</span></a>
           </li>
         </ul>
       </div>
@@ -132,7 +133,8 @@
               <button type="button"
                 class="btn btn-outline btn-default border-0 count-info px-0 m-0 dropdown-toggle d-flex align-items-center"
                 data-toggle="dropdown">
-                <img src="img/ic_globe.svg" class="mx-1" /><span class="text-modal-gray font-weight-bold mx-1 selected-language">EN</span>
+                <img src="img/ic_globe.svg" class="mx-1" /><span
+                  class="text-modal-gray font-weight-bold mx-1 selected-language">EN</span>
               </button>
               <ul class="dropdown-menu dropdown-alerts p-0 p-2 language-switcher">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
@@ -169,7 +171,7 @@
       </div>
       <div id="page-container" class="full-height-scroll strategy-providers-page">
         <div class="d-flex justify-content-between subheader flex-wrap align-items-center">
-          <h2 class="font-bold m-0">Strategy Providers</h2>
+          <h2 class="font-bold m-0" data-i18n="nav.strategyProviders">Strategy Providers</h2>
           <div class="d-flex my-2">
             <div class="selected-filters-container mr-2 d-flex"></div>
             <div class="btn-group" role="group">
@@ -569,8 +571,8 @@
     <script src="js/plugins/switchery/switchery.js"></script>
     <!-- Date time picker -->
     <script src="js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-     <!-- i18next -->
-     <script src="js/plugins/i18next/i18next.min.js"></script>
+    <!-- i18next -->
+    <script src="js/plugins/i18next/i18next.min.js"></script>
 </body>
 
 </html>

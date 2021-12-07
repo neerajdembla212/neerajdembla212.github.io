@@ -18,5 +18,7 @@
             navigator.clipboard.writeText(copyText.value);
             renderSuccessToast('Referral link copied')
         })
+        // global function
+        initI18nPlugin();
     })
 })();

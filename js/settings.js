@@ -81,6 +81,8 @@
         fetchTradingAccounts();
         const hiddenStrategyAccounts = localStorage.getItem('hiddenStrategyAccounts');
         STATE.setHiddenStrategyAccounts(JSON.parse(hiddenStrategyAccounts));
+        // global function
+        initI18nPlugin();
     })
 
     function registerGlobalEvents() {
