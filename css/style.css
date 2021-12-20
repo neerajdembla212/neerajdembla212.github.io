@@ -1154,7 +1154,7 @@ h5 {
 }
 
 .nav>li>a {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 400;
   padding: 14px 20px 14px 25px;
   display: block;
@@ -1204,13 +1204,13 @@ h5 {
 }
 
 .nav>li.active>a {
-  color: #000000;
+  color: #ffffff;
 }
 
 .navbar-default .nav>li>a:hover,
 .navbar-default .nav>li>a:focus {
   background-color: #6a3ff6;
-  color: black;
+  color: #ffffff;
 }
 
 .nav .open>a,
@@ -1234,7 +1234,7 @@ h5 {
 
 .navbar-default {
   background-color: transparent;
-  border-color: #DAFDFE;
+  border-color: #4E5B88;
 }
 
 .navbar-top-links li {
@@ -1384,7 +1384,7 @@ h5 {
 
 .nav-header {
   padding: 33px 15px;
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
 }
 
 .caret {
@@ -1568,7 +1568,7 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav li:hover>.nav-second
   position: absolute;
   left: 70px;
   top: 0;
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
 }
@@ -1894,7 +1894,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {
 
 body.canvas-menu nav.navbar-static-side {
   z-index: 2001;
-  background: #DAFDFE;
+  background: #4E5B88;
   height: 100%;
   position: fixed;
   display: none;
@@ -2925,43 +2925,43 @@ button.dim:active:before {
 
 /* TOOLTIPS */
 .tooltip-inner {
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
 }
 
 .tooltip.top .tooltip-arrow {
-  border-top-color: #DAFDFE;
+  border-top-color: #4E5B88;
 }
 
 .tooltip.right .tooltip-arrow {
-  border-right-color: #DAFDFE;
+  border-right-color: #4E5B88;
 }
 
 .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #DAFDFE;
+  border-bottom-color: #4E5B88;
 }
 
 .tooltip.left .tooltip-arrow {
-  border-left-color: #DAFDFE;
+  border-left-color: #4E5B88;
 }
 
 .bs-tooltip-auto[x-placement^=left] .arrow::before,
 .bs-tooltip-left .arrow::before {
-  border-left-color: #DAFDFE;
+  border-left-color: #4E5B88;
 }
 
 .bs-tooltip-auto[x-placement^=right] .arrow::before,
 .bs-tooltip-right .arrow::before {
-  border-right-color: #DAFDFE;
+  border-right-color: #4E5B88;
 }
 
 .bs-tooltip-auto[x-placement^=top] .arrow::before,
 .bs-tooltip-top .arrow::before {
-  border-top-color: #DAFDFE;
+  border-top-color: #4E5B88;
 }
 
 .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
 .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: #DAFDFE;
+  border-bottom-color: #4E5B88;
 }
 
 /* EASY PIE CHART*/
@@ -5571,7 +5571,7 @@ samp {
 
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
@@ -5596,7 +5596,7 @@ body.boxed-layout {
 }
 
 body.boxed-layout #wrapper {
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
   max-width: 1200px;
   margin: 0 auto;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -6540,6 +6540,10 @@ table.table-mail tr td {
   color: #AAAAAA;
 }
 
+.text-another-gray {
+  color: #b7c0cb;
+}
+
 .text-blue {
   color: #2B99FF;
 }
@@ -6606,6 +6610,10 @@ table.table-mail tr td {
 
 .text-pink {
   color: #FF77C0;
+}
+
+.text-secondary-blue {
+  color: #16C0F2;
 }
 
 .simple_tag {
@@ -8160,7 +8168,7 @@ dd.project-people {
 .article h1 {
   font-size: 48px;
   font-weight: 700;
-  color: #DAFDFE;
+  color: #4E5B88;
 }
 
 .article p {
@@ -8627,7 +8635,7 @@ body.body-small .vote-icon {
 }
 
 .small-chat-box .heading {
-  background: #DAFDFE;
+  background: #4E5B88;
   padding: 8px 15px;
   font-weight: bold;
   color: #fff;
@@ -12400,13 +12408,13 @@ body {
 
 .nav>li:not(.nav-header).active {
   border-right: 4px solid #17C0F1;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .navbar-default .nav>li:not(.nav-header)>a:hover,
 .navbar-default .nav>li:not(.nav-header)>a:focus {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #000;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   border-right: 4px solid #17C0F1;
 }
 
@@ -12953,7 +12961,7 @@ table>tbody>tr:first-child>td {
 
 .responsive-navbar-cta {
   display: none !important;
-  background: linear-gradient(180deg, #DAFDFE 0%, #DAFDFE 100%);
+  background: linear-gradient(180deg, #4E5B88 0%, #4E5B88 100%);
   width: 60px;
   height: 100%;
 }
@@ -13059,7 +13067,7 @@ table>tbody>tr:first-child>td {
 }
 
 .tooltip-inner {
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
 }
 
 .tooltip {
@@ -13384,7 +13392,7 @@ textarea {
   height: 100vh;
   width: 220px;
   z-index: 3;
-  background-color: #DAFDFE;
+  background-color: #4E5B88;
 }
 
 @media screen and (min-width: 768px) {
