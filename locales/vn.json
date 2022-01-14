@@ -1,0 +1,94 @@
+{
+  "app": {
+    "name": "CopyPiP"
+  },
+  "nav": {
+    "trade": "Giao dịch",
+    "myPortfolio": "Danh mục đầu tư của tôi",
+    "tradeTerminal": "Trung tâm giao dịch",
+    "strategyProviders": "Nhà cung cấp chiến lược",
+    "simulation": "Mô phỏng",
+    "economicCalendar": "Lịch Kinh tế",
+    "settings": "Cài đặt",
+    "help": "Trợ giúp",
+    "referFriend": "Giới thiệu một người bạn",
+    "ksTan": "KS Tan",
+    "strategyFollower": "Người theo dõi chiến lược",
+    "strategyProvider": "Nhà cung cấp chiến lược",
+    "signOut": "Đăng xuất",
+    "createDemoAccount": "Tạo tài khoản demo"
+  },
+  "body": {
+    "mp": {
+      "myPortfolio": "Danh mục đầu tư của tôi"
+    },
+    "login": {
+      "signIn": "Đăng nhập",
+      "welcomeBack": "Chào mừng bạn trở lại! Đăng nhập bằng email của bạn.",
+      "register": "Đăng ký",
+      "email": "Email",
+      "password": "Mật khẩu",
+      "logIn": "Đăng nhập",
+      "createDemoAccountMessage": "Tạo tài khoản người theo dõi demo Miễn Phí!",
+      "firstName": "Họ",
+      "lastName": "Tên",
+      "confirmEmail": "Xác nhận Email",
+      "confirmPassword": "Xác nhận Mật khẩu",
+      "demoBudget": "Ngân sách Demo",
+      "leverage": "Đòn bẩy",
+      "termsAndCondition": "Tôi đã đọc và đồng ý với các điều khoản, chính sách.",
+      "create": "Tạo ",
+      "usd": "USD",
+      "eur": "EUR",
+      "sgd": "SGD",
+      "earnAutopilotMessage": "Kiếm tiền tự động từ nền tảng giao dịch đã đoạt nhiều giải thưởng của chúng tôi",
+      "followAndCopyMessage": "Theo dõi, sao chép và kiếm tiền từ mạng lưới chuyên gia toàn cầu.",
+      "forProTradersMessage": "Nếu bạn là nhà giao dịch chuyên nghiệp, hãy trở thành nhà cung cấp chiến lược và tăng khả năng kiếm lợi nhuận của bạn ngay hôm nay.",
+      "noticeForDemoAccounts": "Thông báo tài khoản Demo:",
+      "inactiveDemoAccountMessage": "Các tài khoản demo không hoạt động sẽ bị xóa/đóng sau 15 ngày.",
+      "activeDemoAccountMessage": "Các tài khoản demo đang hoạt động sẽ bị đóng sau 30 ngày.",
+      "disclaimer": "Tuyên bố miễn trừ trách nhiệm:",
+      "tradingForeignExchangeMessage": "Giao dịch ngoại hối ('Forex'), hợp đồng tương lai hàng hóa, quyền chọn, CFD và đặt cược chênh lệch với đòn bẩy margin mang lại mức độ rủi ro cao và có thể không phù hợp với tất cả các nhà đầu tư.",
+      "beforeDecidingToTradeMessage": "Trước khi quyết định giao dịch ngoại hối ('Forex'), hợp đồng tương lai hàng hóa, quyền chọn, CFD hoặc đặt cược chênh lệch, bạn nên cân nhắc kỹ lưỡng về mục tiêu tài chính, mức độ kinh nghiệm và mức độ chấp nhận rủi ro của mình.",
+      "thePossibilityExistsMessage": "Bạn có thể mất một phần hoặc toàn bộ số tiền đã ký gửi, vì vậy bạn không nên đầu cơ với số vốn mà bạn không chấp nhận được việc chúng có thể bị mất.",
+      "youShouldBeAwareOfMessage": "Bạn nên hiểu tất cả các rủi ro liên quan đến ngoại hối, hợp đồng tương lai hàng hóa, quyền chọn, CFD và đặt cược chênh lệch giá. Nếu bạn có bất kỳ câu hỏi nào, vui lòng tìm lời khuyên từ một nhà tư vấn độc lập. Lợi nhuận trong quá khứ không đại diện cho kết quả trong tương lai."
+    },
+    "tradeTerminal": {
+      "tradeTerminal": "Trung tâm giao dịch",
+      "pricesByFulletronMarkets": "Giá trên Fullerton Markets",
+      "maketOpen": "Thị trường mở",
+      "openTrades": "Mở Giao dịch",
+      "pendingOrders": "Lệnh chờ xử lý",
+      "tradeHistory": "Lịch sử giao dịch"
+    },
+    "common": {
+      "buySell": "Buy/Sell",
+      "orderByAccount": "Đặt lệnh theo tài khoản",
+      "volume": "Volume",
+      "type": "Loại",
+      "marketExecution": "Khớp lệnh thị trường",
+      "pendingOrder": "Lệnh chờ",
+      "orderType": "Loại lệnh",
+      "buyLimit": "Buy Limit",
+      "sellLimit": "Sell Limit",
+      "buyStop": "Buy Stop",
+      "sellStop": "Sell Stop",
+      "expiration": "Hết hạn",
+      "dayOrder": "Lệnh ngày",
+      "goodTillCancelled": "Good Till Cancelled (GTC)",
+      "specific": "Chi tiết",
+      "expirationDate": "Ngày hết hạn",
+      "price": "Giá",
+      "takeProfit": "Take Profit",
+      "stopLoss": "Stop Loss",
+      "sell": "Sell",
+      "buy": "Buy",
+      "oneClickTrading": "Giao dịch một cú nhấp chuột"
+    }
+  },
+  "topnav": {
+    "searchCopyPip": "Tìm kiếm CopyPip",
+    "welcome": "Chào mừng (Tên)",
+    "buySell": "Buy/Sell"
+  }
+}

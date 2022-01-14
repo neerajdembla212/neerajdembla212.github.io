@@ -1,0 +1,94 @@
+{
+  "app": {
+    "name": "CopyPiP"
+  },
+  "nav": {
+    "trade": "TRADE",
+    "myPortfolio": "Portfolio Pengguna",
+    "tradeTerminal": "Terminal trade",
+    "strategyProviders": "Strategy Providers",
+    "simulation": "Stimulasi",
+    "economicCalendar": "Kalender Ekonomi",
+    "settings": "Tetapan",
+    "help": "Bantuan",
+    "referFriend": "Rujuk kawan",
+    "ksTan": "KS Tan",
+    "strategyFollower": "Pengikut Strategi",
+    "strategyProvider": "Penyedia Strategi",
+    "signOut": "Log keluar",
+    "createDemoAccount": "Buka Akaun Demo"
+  },
+  "body": {
+    "mp": {
+      "myPortfolio": "Portfolio saya"
+    },
+    "login": {
+      "signIn": "Log Masuk",
+      "welcomeBack": "Selamat kembali! Log masuk dengan emel anda.",
+      "register": "Pendaftaran",
+      "email": "Emel",
+      "password": "Kata laluan",
+      "logIn": "Log masuk",
+      "createDemoAccountMessage": "Buka akaun demo follower secara PERCUMA!",
+      "firstName": "Nama pertama",
+      "lastName": "Nama akhir",
+      "confirmEmail": "Kepastian emel",
+      "confirmPassword": "Kepastian kata laluan",
+      "demoBudget": "Modal demo",
+      "leverage": "Leverage",
+      "termsAndCondition": "Saya telah membaca dan mempersetujui syarat serta polisi yang dinyatakan.",
+      "create": "Buka akaun",
+      "usd": "USD",
+      "eur": "EUR",
+      "sgd": "SGD",
+      "earnAutopilotMessage": "Peroleh keuntungan secara autopilot dengan platform trading sosial kami yang telah memenangi beberapa anugerah",
+      "followAndCopyMessage": "Ikut, salin dan peroleh keuntungan dari  para trader pro daripada rangkaian global.",
+      "forProTradersMessage": "Untuk trader pro, jadi penyedia strategi dan mula tingkatkan potensi pendapatan anda hari ini. ",
+      "noticeForDemoAccounts": "Notis untuk Akaun Demo:",
+      "inactiveDemoAccountMessage": "Akaun demo yang tidak aktif akan dialih keluar/ditutup selepas 15 hari.",
+      "activeDemoAccountMessage": "Akaun demo aktif akan ditutup selepas 30 hari.",
+      "disclaimer": "Disclaimer:",
+      "tradingForeignExchangeMessage": "Trade pertukaran asing ('Forex'), Commodity Futures, options, CFD dan SpreadBetting pada margin membawa ke tahap risiko yang tinggi, dan mungkin tidak sesuai untuk semua pelabur.",
+      "beforeDecidingToTradeMessage": "Sebelum membuat keputusan untuk trade pertukaran asing ('Forex'), Commodity Futures, options, CFD dan SpreadBetting anda harus mempertimbangkan dengan teliti objektif kewangan anda, tahap pengalaman dan tahap risiko.",
+      "thePossibilityExistsMessage": "Wujud kebarangkalian anda boleh mengalami kerugian sebahagian atau keseluruhan dana yang anda depositkan dann oleh itu anda tidak seharusnya membuat jangkaan dengan modal yang anda tidak mampu untuk kehilangannya.",
+      "youShouldBeAwareOfMessage": "Anda harus sedar tentang semua risiko yang berkaitan dengan pertukaran asing, Commodity Futures, options, CFD dan SpreadBetting dan dapatkan nasihat daripada penasihat bebas jika anda mempunyai sebarang keraguan. Pulangan lepas tidak menjamin hasil masa depan."
+    },
+    "tradeTerminal": {
+      "tradeTerminal": "Terminal Trade",
+      "pricesByFulletronMarkets": "Harga oleh Fullerton Markets",
+      "maketOpen": "Pasaran terbuka",
+      "openTrades": "Perdagangan Terbuka",
+      "pendingOrders": "Perdagangan Terbuka",
+      "tradeHistory": "Riwayat Perdagangan"
+    },
+    "common": {
+      "buySell": "Buy/Sell",
+      "orderByAccount": "Pesanan Berdasarkan Akun",
+      "volume": "Volume",
+      "type": "Tipe",
+      "marketExecution": "Eksekusi Pasar",
+      "pendingOrder": "Pesanan Tertunda",
+      "orderType": "Tipe Pesanan",
+      "buyLimit": "Buy Limit",
+      "sellLimit": "Sell Limit",
+      "buyStop": "Buy Stop",
+      "sellStop": "Sell Stop",
+      "expiration": "Waktu Berakhir",
+      "dayOrder": "Pesanan Harian",
+      "goodTillCancelled": "Baik Sampai Dibatalkan (GTC)",
+      "specific": "Spesifik",
+      "expirationDate": "Tanggal Berakhir",
+      "price": "Harga",
+      "takeProfit": "Take Profit",
+      "stopLoss": "Stop Loss",
+      "sell": "Sell",
+      "buy": "Buy",
+      "oneClickTrading": "One click trading"
+    }
+  },
+  "topnav": {
+    "searchCopyPip": "Cari CopyPip",
+    "welcome": "Selamat Datang (Nama)",
+    "buySell": "Buy/sell"
+  }
+}

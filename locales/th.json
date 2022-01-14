@@ -1,0 +1,94 @@
+{
+  "app": {
+    "name": "CopyPiP"
+  },
+  "nav": {
+    "trade": "การเทรด",
+    "myPortfolio": "พอร์ตฟอลิโอ ของฉัน",
+    "tradeTerminal": "เทรดเทอร์มินัล",
+    "strategyProviders": "ผู้ให้บริการกลยุทธ์",
+    "simulation": "การจำลอง",
+    "economicCalendar": "ปฏิทินเศรษฐกิจ",
+    "settings": "ตั้งค่า",
+    "help": "ช่วยเหลือ",
+    "referFriend": "แนะนำเพื่อน",
+    "ksTan": "KS Tan",
+    "strategyFollower": "ผู้ติดตามกลยุทธ์",
+    "strategyProvider": "ผู้ให้บริการกลยุทธ์",
+    "signOut": "ออกจากระบบ",
+    "createDemoAccount": "เปิดบัญชีทดลอง"
+  },
+  "body": {
+    "mp": {
+      "myPortfolio": "พอร์ตฟอลิโอ ของฉัน"
+    },
+    "login": {
+      "signIn": "เข้าสูู่ระบบ",
+      "welcomeBack": "ยินดีต้อนรับกลับมา! เข้าสู่ระบบด้วยอีเมลของคุณ",
+      "register": "ลงทะเบียน",
+      "email": "อีเมล",
+      "password": "รหัสผ่าน",
+      "logIn": "เข้าสูู่ระบบ",
+      "createDemoAccountMessage": "สร้างบัญชีผู้ติดตามทดลอง ฟรี!",
+      "firstName": "ชื่อจริง",
+      "lastName": "นามสกุล",
+      "confirmEmail": "ยืนยันอีเมล",
+      "confirmPassword": "ยืนยันรหัสผ่าน",
+      "demoBudget": "เงินทุนบัญชีทดลอง",
+      "leverage": "เลเวอร์เรจ",
+      "termsAndCondition": "ฉันได้อ่านเและยอมรับข้อกำหนดและเงื่อนไขเรียบร้อย​แล้ว​",
+      "create": "สร้าง",
+      "usd": "USD",
+      "eur": "EUR",
+      "sgd": "SGD",
+      "earnAutopilotMessage": "รับเงินจากระบบอัตโนมัติด้วยแพลตฟอร์มการซื้อขายที่ได้รับรางวัลของเรา",
+      "followAndCopyMessage": "ติดตาม หรือ คัดลอก และรับเงินจากเครือข่ายเทรดเดอร์มืออาชีพทั่วโลก",
+      "forProTradersMessage": "สำหรับเทรดเดอร์มืออาชีพ มาเป็นผู้ให้บริการกลยุทธ์ และเริ่มเพิ่มศักยภาพในการสร้างรายได้ของคุณ ได้แล้ววันนี้",
+      "noticeForDemoAccounts": "ประกาศสำหรับบัญชีทดลอง:",
+      "inactiveDemoAccountMessage": "บัญชีทดลองที่ไม่ใช้งานจะถูกลบออก/ปิด หลังจาก 15 วัน",
+      "activeDemoAccountMessage": "บัญชีทดลองที่ใช้งานจะถูกปิดหลังจาก 30 วัน",
+      "disclaimer": "ข้อจำกัดความรับผิดชอบ:",
+      "tradingForeignExchangeMessage": "การซื้อขายแลกเปลี่ยนเงินตราต่างประเทศ ('Forex'), Commodity Futures, Options, CFDs และ SpreadBetting บนมาร์จิ้นมีความเสี่ยงสูงและอาจไม่ได้เหมาะสำหรับนักลงทุนทุกคน",
+      "beforeDecidingToTradeMessage": "ก่อนตัดสินใจซื้อขายแลกเปลี่ยนเงินตราต่างประเทศ ('Forex'), Commodity Futures, Options, CFDs หรือ SpreadBetting คุณควรพิจารณาวัตถุประสงค์ทางการเงิน ระดับประสบการณ์ และความเสี่ยงอย่างรอบคอบ",
+      "thePossibilityExistsMessage": "มีความเป็นไปได้ที่คุณจะสูญเสียเงินทุนบางส่วนหรือทั้งหมดของคุณต่อไป ดังนั้น คุณไม่ควรเก็งกำไรด้วยเงินทุนที่คุณไม่สามารถจะสูญเสียได้",
+      "youShouldBeAwareOfMessage": "คุณควรตระหนักถึงความเสี่ยงทั้งหมดที่เกี่ยวข้องกับการแลกเปลี่ยนเงินตราต่างประเทศ ฟิวเจอร์สสินค้าโภคภัณฑ์ ออปชั่น CFD และการซื้อขาย SpreadBetting และขอคำแนะนำจากที่ปรึกษาอิสระหากคุณมีข้อสงสัย ผลตอบแทนในอดีตไม่ได้บ่งบอกถึงผลลัพธ์ในอนาคต"
+    },
+    "tradeTerminal": {
+      "tradeTerminal": "เทรด เทอร์มินัล",
+      "pricesByFulletronMarkets": "ราคาตาม Fullerton Markets",
+      "maketOpen": "ตลาดเปิด",
+      "openTrades": "Open Trades",
+      "pendingOrders": "Pending Orders",
+      "tradeHistory": "ประวัติการเทรด"
+    },
+    "common": {
+      "buySell": "ซื้อ/ขาย",
+      "orderByAccount": "Order by Account",
+      "volume": "ปริมาณ",
+      "type": "ประเภท",
+      "marketExecution": "การดำเนินการตามตลาด",
+      "pendingOrder": "Pending Order",
+      "orderType": "ประเภท Order ",
+      "buyLimit": "Buy Limit",
+      "sellLimit": "Sell Limit",
+      "buyStop": "Buy Stop",
+      "sellStop": "Sell Stop",
+      "expiration": "การหมดอายุ",
+      "dayOrder": "Day Order",
+      "goodTillCancelled": "Good Till Cancelled (GTC)",
+      "specific": "เฉพาะเจาะจง",
+      "expirationDate": "วันหมดอายุ",
+      "price": "ราคา",
+      "takeProfit": "Take Profit",
+      "stopLoss": "Stop Loss",
+      "sell": "ขาย",
+      "buy": "ซื้อ",
+      "oneClickTrading": "One click trading"
+    }
+  },
+  "topnav": {
+    "searchCopyPip": "ค้นหา CopyPip",
+    "welcome": "ยินดีต้อนรับ (Name)",
+    "buySell": "ซื้อ/ขาย"
+  }
+}
