@@ -21,15 +21,10 @@
   "body": {
     "mp": {
       "myPortfolio": "Portfolio saya",
-      "ReturnsOver2Yrs": "Keuntungan selama 2 tahun ",
-      "ReturnsMTD" : "Keuntungan MTD",
-      "ReturnsQTD" : "Keuntungan QTD",
-      "ReturnsYTD" : "Keuntungan YTD",
-      "ReturnsFromInception": "Keuntungan sejak permulaan",
       "feesEarned": "Yuran yang diperolehi",
       "totalFees": "Jumlah pembiayaan ",
       "totalReturns": "Jumlah keuntungan",
-      "currentBalance":"Baki semasa",
+      "currentBalance": "Baki semasa",
       "deposits": "Deposit",
       "withdrawals": "Pengeluaran",
       "followers": "Pengikut",
@@ -40,7 +35,7 @@
       "sinceInception": "Sejak penubuhan",
       "following": "Pengikut",
       "p/l": "P/L (Untung & rugi)",
-      "HWMDifference":"Perbezaan HWM",
+      "HWMDifference": "Perbezaan HWM",
       "balance": "Baki",
       "feeEarned": "Yuran yang diperolehi",
       "comEarned": "Komisen yang diterima (Komisen diterima)",
@@ -62,7 +57,7 @@
       "strategy": "Strategi",
       "hideStrategyAccount": "Sembunyikan Akaun Strategi",
       "unhideStrategyAccount": "Dedahkan Akaun Strategi",
-      "hideStrategyAccountQuestion":"Adakah anda pasti ingin menyembunyikan akaun strategi anda?",
+      "hideStrategyAccountQuestion": "Adakah anda pasti ingin menyembunyikan akaun strategi anda?",
       "hideStrategyAccountP1": "Pengikut Strategi tidak lagi dapat mencari atau menjumpai akaun anda.",
       "hideStrategyAccountP2": "Pengikut sedia ada anda akan terus mengikuti anda. Walau bagaimanapun, jika mereka berhenti mengikuti anda, mereka tidak akan dapat mencari atau menjumpai akaun anda lagi semasa ia disembunyikan",
       "hideStrategyAccountP3": "Trade terbuka dan trade belum selesai anda tidak akan terjejas.",
@@ -134,7 +129,30 @@
       "sell": "Sell",
       "buy": "Buy",
       "oneClickTrading": "One click trading",
-      "moreFilters": "Lebih banyak penapis"
+      "moreFilters": "Lebih banyak penapis",
+      "ReturnsOver2Yrs": "Keuntungan selama 2 tahun ",
+      "ReturnsMTD": "Keuntungan MTD",
+      "ReturnsQTD": "Keuntungan QTD",
+      "ReturnsYTD": "Keuntungan YTD",
+      "ReturnsFromInception": "Keuntungan sejak permulaan"
+    },
+    "sp": {
+      "topPerformer": "Prestasi terbaik",
+      "featured": "Menampilkan",
+      "following": "Pengikut",
+      "favourites": "Kesukaan",
+      "avg/Mth": "Purata / bulan",
+      "avgPips": "Purata Pips",
+      "managedFunds": "Menguruskan dana",
+      "advisedMin": "Advised Min",
+      "followProvider": "Mengikuti Penyedia",
+      "drawdown": "Pengeluaran",
+      "age": "Usia",
+      "totalReturns/equityGrowth":"Jumlah pulangan / pertumbuhan ekuiti",
+      "dd": "DD",
+      "follow": "Pengikut",
+      "watch": "Jam"
+
     }
   },
   "topnav": {

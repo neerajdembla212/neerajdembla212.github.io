@@ -21,11 +21,6 @@
   "body": {
     "mp": {
       "myPortfolio": "Danh mục đầu tư của tôi",
-      "ReturnsOver2Yrs": "Trả về trên 2 Năm",
-      "ReturnsMTD": "Trả về MTD",
-      "ReturnsQTD": "Trả về QTD",
-      "ReturnsYTD": "Trả về YTD",
-      "ReturnsFromInception": "Lợi nhuận từ Ban đầu",
       "feesEarned": "Phí đã kiếm được",
       "totalFees": "Tổng phí",
       "totalReturns": "Tổng lợi nhuận",
@@ -134,7 +129,29 @@
       "sell": "Sell",
       "buy": "Buy",
       "oneClickTrading": "Giao dịch một cú nhấp chuột",
-      "moreFilters": "Bộ lọc khác"
+      "moreFilters": "Bộ lọc khác",
+      "ReturnsOver2Yrs": "Trả về trên 2 Năm",
+      "ReturnsMTD": "Trả về MTD",
+      "ReturnsQTD": "Trả về QTD",
+      "ReturnsYTD": "Trả về YTD",
+      "ReturnsFromInception": "Lợi nhuận từ Ban đầu"
+    },
+    "sp": {
+      "topPerformer": "Nhà giao dịch hàng đầu",
+      "featured": "Nổi bật",
+      "following": "Đang theo dõi",
+      "favourites": "Yêu thích",
+      "avg/Mth": "Trung bình / Tháng",
+      "avgPips": "Số Pips Trung bình",
+      "managedFunds": "Quỹ quản lý",
+      "advisedMin": "Tối thiểu để xuất",
+      "followProvider": "Theo dõi nhà cung cấp",
+      "drawdown": "Sút giảm",
+      "age": "Độ tuổi",
+      "totalReturns/equityGrowth": "Tổng lợi nhuận / Tăng trưởng vốn chủ sở hữu",
+      "dd": "Sụt giảm",
+      "follow": "Theo dõi",
+      "watch": "Quan sát"
     }
   },
   "topnav": {
