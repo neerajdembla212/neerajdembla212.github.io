@@ -21,11 +21,6 @@
   "body": {
     "mp": {
       "myPortfolio": "Portofolio Saya",
-      "ReturnsOver2Yrs": "Keuntungan Selama Lebih dari 2 tahun",
-      "ReturnsMTD": "Keuntungan MTD",
-      "ReturnsQTD": "Keuntungan QTD",
-      "ReturnsYTD": "Keuntungan YTD",
-      "ReturnsFromInception": "Keuntungan Sejak Peluncuran",
       "feesEarned": "Biaya yang Diperoleh",
       "totalFees": "Total Biaya",
       "totalReturns": "Total Keuntungan",
@@ -62,7 +57,7 @@
       "strategy": "Strategi",
       "hideStrategyAccount": "Sembunyikan Akun Strategi",
       "unhideStrategyAccount": "Perlihatkan Akun Strategi",
-      "hideStrategyAccountQuestion":"Apakah Anda yakin ingin menyembunyikan akun strategi Anda?",
+      "hideStrategyAccountQuestion": "Apakah Anda yakin ingin menyembunyikan akun strategi Anda?",
       "hideStrategyAccountP1": "Pengikut Strategi tidak akan dapat lagi mencari atau menemukan akun Anda.",
       "hideStrategyAccountP2": "Pengikut Anda yang ada akan terus mengikuti Anda. Namun jika mereka berhenti mengikuti Anda, mereka tidak akan dapat mencari atau menemukan akun Anda lagi saat disembunyikan.",
       "hideStrategyAccountP3": "Perdagangan terbuka dan tertunda Anda tidak akan terpengaruh.",
@@ -134,7 +129,29 @@
       "sell": "Sell",
       "buy": "Buy",
       "oneClickTrading": "One click trading",
-      "moreFilters": "Lebih Banyak Filter"
+      "moreFilters": "Lebih Banyak Filter",
+      "ReturnsOver2Yrs": "Keuntungan Selama Lebih dari 2 tahun",
+      "ReturnsMTD": "Keuntungan MTD",
+      "ReturnsQTD": "Keuntungan QTD",
+      "ReturnsYTD": "Keuntungan YTD",
+      "ReturnsFromInception": "Keuntungan Sejak Peluncuran"
+    },
+    "sp": {
+      "topPerformer": "Performa Terbaik",
+      "featured": "Keunggulan",
+      "following": "Mengikuti",
+      "favourites": "Favorit",
+      "avg/Mth": "Rata-rata / Bulan",
+      "avgPips": "Rata-Rata Pip",
+      "managedFunds": "Dana yang Dikelola",
+      "advisedMin": "Saran Min",
+      "followProvider": "Ikuti Penyedia Strategi",
+      "drawdown": "Drawdown",
+      "age": "Usia",
+      "totalReturns/equityGrowth":"Total Keuntungan / Pertumbuhan Ekuitas",
+      "dd": "DD",
+      "follow": "Ikuti",
+      "watch": "Pantau"
     }
   },
   "topnav": {

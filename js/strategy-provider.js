@@ -2,7 +2,7 @@
   const defaultFilterItems = [
     {
       id: 1,
-      displayName: 'Equity Growth',
+      displayName: 'body.mp.equityGrowth',
       filterParam: 'equity_growth',
       filterOperation: "&gt;",
       filterPercentage: true,
@@ -10,7 +10,7 @@
     },
     {
       id: 2,
-      displayName: 'Total Returns',
+      displayName: 'body.mp.totalReturns',
       filterParam: 'total_returns',
       filterOperation: "&gt;",
       filterPercentage: true,
@@ -18,7 +18,7 @@
     },
     {
       id: 3,
-      displayName: 'Max Drawdown',
+      displayName: 'body.mp.maxDrawdown',
       filterParam: 'max_drawdown',
       filterOperation: "&lt;",
       filterPercentage: true,
@@ -26,7 +26,7 @@
     },
     {
       id: 4,
-      displayName: 'Avg / Mth',
+      displayName: 'body.sp.avg/Mth',
       filterParam: 'avg_per_month',
       filterOperation: "&lt;",
       filterPercentage: true,
@@ -34,7 +34,7 @@
     },
     {
       id: 5,
-      displayName: 'Avg Pips',
+      displayName: 'body.sp.avgPips',
       filterParam: 'avg_pips',
       filterOperation: "&lt;",
       filterPercentage: false,
@@ -42,7 +42,7 @@
     },
     {
       id: 6,
-      displayName: 'Managed Funds',
+      displayName: 'body.sp.managedFunds',
       filterParam: 'managed_funds',
       filterOperation: "&lt;",
       filterPercentage: false,
@@ -50,7 +50,7 @@
     },
     {
       id: 7,
-      displayName: 'Followers',
+      displayName: 'body.mp.followers',
       filterParam: 'followers',
       filterOperation: "&lt;",
       filterPercentage: false,
@@ -533,7 +533,7 @@
     data-target="#unfollow-provider-modal" data-name="${name}">
     Unfollow Provider
   </button>` : `<button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
-  Follow Provider
+  ${i18n.t('body.sp.followProvider')}
   </button>`;
 
     return `<div class="contact-box d-flex flex-column col" id="contact-box-${id}" data-id="${id}">
@@ -558,7 +558,7 @@
       </div>
       <div class=" align-self-center m-0 d-flex flex-column">
         <p class="risk_amount h4 align-self-center text-light-gray m-0">$${risk_amount}</p>
-        <p class="text-capitalize small-font text-blue text-center">Advised min</p>
+        <p class="text-capitalize small-font text-blue text-center">${i18n.t('body.sp.advisedMin')}</p>
       </div>
     </div>
     <div class="line-chart-container">
@@ -567,9 +567,9 @@
     ${followProviderCTA}
     <!-- area chart here-->
     <div class="d-flex mt-2 justify-content-between">
-      <span class="text-light-gray"><span class="format-us">${formatWithCommas(follower_count)}</span> Followers</span>
+      <span class="text-light-gray"><span class="format-us">${formatWithCommas(follower_count)}</span> ${i18n.t('body.mp.followers')}</span>
       <span class="font-bold">
-        Drawdown <span class="${drawDown > 0 ? 'text-green' : 'text-danger'}">${drawDown}%</span>
+        ${i18n.t('body.sp.drawdown')} <span class="${drawDown > 0 ? 'text-green' : 'text-danger'}">${drawDown}%</span>
       </span>
     </div>
   </div>`;
@@ -1093,49 +1093,49 @@
     return `
     <thead class="border-top-none">
       <tr>
-        <th class="pl-3 align-middle">PROVIDER</th>
+        <th class="pl-3 align-middle">${i18n.t('body.mp.provider')}</th>
         <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_duration">
-            <p class="m-0 p-0 header-text">Age<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_duration' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.age')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_duration' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
-            <p class="m-0 p-0 header-text">Total Returns / equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('totalReturns/equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center" data-sort-key="drawDown">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="drawDown">
-            <p class="m-0 p-0 header-text">DD<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'drawDown' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.dd')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'drawDown' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="average_per_month">
-            <p class="m-0 p-0 header-text">avg / mth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_per_month' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.avg/Mth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_per_month' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="average_pips">
-            <p class="m-0 p-0 header-text">Avg Pips<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_pips' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.avgPips')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_pips' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="risk_amount">
-            <p class="m-0 p-0 header-text">Advised Min<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'risk_amount' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.advisedMin')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'risk_amount' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_funds">
-            <p class="m-0 p-0 header-text">Managed Funds<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_funds' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.managedFunds')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_funds' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_count">
-            <p class="m-0 p-0 header-text">Followers<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_count' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.mp.followers')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_count' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
-        <th class="align-middle text-center">Follow</th>
-        <th class="pr-3 align-middle text-center">WATCH</th>
+        <th class="align-middle text-center">${i18n.t('body.sp.follow')}</th>
+        <th class="pr-3 align-middle text-center">${i18n.t('body.sp.watch')}</th>
       </tr>
     </thead>`
   }
@@ -1252,10 +1252,10 @@
       <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
       <ul class="pagination d-flex justify-content-end align-items-center m-0">
           <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
-              <option value="10">10 Rows per page</option>
-              <option value="20">20 Rows per page</option>
-              <option value="30">30 Rows per page</option>
-              <option value="40">40 Rows per page</option>
+              <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+              <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+              <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+              <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
           </select>
           <button class="btn btn-default border-0" type="button" id="prev-page-sp">
               <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -1345,31 +1345,31 @@
       </div>
       <div class="d-flex justify-content-between mt-2">
           <div class="mr-3">
-            <p class="mb-0 responsive-label">Age</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.sp.age')}</p>
             <p class="mb-0 font-bold responsive-value">${calculateDateDiff(new Date(+return_duration), new Date(), true)}</p>
           </div>
           <div class="mr-3">
-            <p class="mb-0 responsive-label">DD</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.sp.dd')}</p>
             <p class="mb-0 font-bold responsive-value text-light-red">${drawDown}</p>
           </div>
           <div class="mr-3">
-            <p class="mb-0 responsive-label">AVG/MTH</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.sp.avg/Mth')}</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${average_per_month}</p>
           </div>
           <div class="mr-3 hide-m">
-            <p class="mb-0 responsive-label">Avg Pips</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.sp.avgPips')}</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${average_pips}</p>
           </div>
           <div class="mr-3 hide-m">
-            <p class="mb-0 responsive-label">Advised Min</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.sp.advisedMin')}</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${risk_amount}</p>
           </div>
           <div class="mr-3 hide-m">
-            <p class="mb-0 responsive-label">Managed Funds</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.sp.managedFunds')}</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${follower_funds}</p>
           </div>
           <div class="mr-3">
-            <p class="mb-0 responsive-label">Followers</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.mp.followers')}</p>
             <p class="mb-0 font-bold responsive-value text-dark-green">${follower_count}</p>
           </div>
       </div>
@@ -1385,10 +1385,10 @@
     <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
     <ul class="pagination d-flex justify-content-end align-items-center m-0">
     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
-        <option value="10">10 Rows per page</option>
-        <option value="20">20 Rows per page</option>
-        <option value="30">30 Rows per page</option>
-        <option value="40">40 Rows per page</option>
+        <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+        <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+        <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+        <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
     </select>
         <button class="btn btn-default border-0" type="button" id="prev-page-sp" disabled="true">
             <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -1785,7 +1785,7 @@
     data-filter-value="${filterValue}"
     data-filter-percentage=${filterPercentage}
     data-filter-param="${filterParam}">
-    <p class="mb-0 medium-font mr-3">${displayName}</p>
+    <p class="mb-0 medium-font mr-3">${i18n.t(displayName)}</p>
     <p class="mb-0 medium-font text-dark-blue font-weight-bold">${filterOperation}${filterValue}${filterPercentage ? '%' : ''}</p>
   </li>
     `

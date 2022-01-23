@@ -21,11 +21,6 @@
   "body": {
     "mp": {
       "myPortfolio": "我的投资组合",
-      "ReturnsOver2Yrs": "超过 2 年的回报",
-      "ReturnsMTD": "返回 MTD",
-      "ReturnsQTD": "返回 QTD",
-      "ReturnsYTD": "返回 YTD",
-      "ReturnsFromInception": "成立之初的回报",
       "feesEarned": "所赚费用",
       "totalFees": "总费用",
       "totalReturns": "总回报",
@@ -62,7 +57,7 @@
       "strategy": "策略",
       "hideStrategyAccount": "隐藏策略账户",
       "unhideStrategyAccount": "取消隐藏策略账户",
-      "hideStrategyAccountQuestion":"您确定要隐藏您的策略账户吗？",
+      "hideStrategyAccountQuestion": "您确定要隐藏您的策略账户吗？",
       "hideStrategyAccountP1": "跟单者将无法再搜索或找到您的账户。",
       "hideStrategyAccountP2": "您现有的跟单者将继续关注您。但是，如果他们停止关注您，他们将无法在隐藏时再次搜索或找到您的账户。",
       "hideStrategyAccountP3": "您的未结交易和待处理交易不会受到影响。",
@@ -134,7 +129,29 @@
       "sell": "卖",
       "buy": "买",
       "oneClickTrading": "一键交易",
-      "moreFilters": "更多过滤器"
+      "moreFilters": "更多过滤器",
+      "ReturnsOver2Yrs": "超过 2 年的回报",
+      "ReturnsMTD": "返回 MTD",
+      "ReturnsQTD": "返回 QTD",
+      "ReturnsYTD": "返回 YTD",
+      "ReturnsFromInception": "成立之初的回报"
+    },
+    "sp": {
+      "topPerformer": "表现最好的",
+      "featured": "精选",
+      "following": "关注",
+      "favourites": "收藏夹",
+      "avg/Mth": "平均/月",
+      "avgPips": "平均点数",
+      "managedFunds": "管理基金",
+      "advisedMin": "Advised Min",
+      "followProvider": "关注交易达人",
+      "drawdown": "缩编",
+      "age": "年龄",
+      "totalReturns/equityGrowth":"总回报/股权增长",
+      "dd": "DD",
+      "follow": "关注",
+      "watch": "表"
     }
   },
   "topnav": {

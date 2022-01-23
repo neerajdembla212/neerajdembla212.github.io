@@ -21,11 +21,6 @@
   "body": {
     "mp": {
       "myPortfolio": "My Portfolio",
-      "ReturnsOver2Yrs": "Returns over 2 Yrs",
-      "ReturnsMTD": "Returns MTD",
-      "ReturnsQTD": "Returns QTD",
-      "ReturnsYTD": "Returns YTD",
-      "ReturnsFromInception": "Returns from Inception",
       "feesEarned": "Fees Earned",
       "totalFees": "Total Fees",
       "totalReturns": "Total Returns",
@@ -134,7 +129,29 @@
       "sell": "Sell",
       "buy": "Buy",
       "oneClickTrading": "One click trading",
-      "moreFilters": "More Filters"
+      "moreFilters": "More Filters",
+      "ReturnsOver2Yrs": "Returns over 2 Yrs",
+      "ReturnsMTD": "Returns MTD",
+      "ReturnsQTD": "Returns QTD",
+      "ReturnsYTD": "Returns YTD",
+      "ReturnsFromInception": "Returns from Inception"
+    },
+    "sp": {
+      "topPerformer": "Top Performer",
+      "featured": "Featured",
+      "following": "Following",
+      "favourites": "Favourites",
+      "avg/Mth": "Avg / Mth",
+      "avgPips": "Avg Pips",
+      "managedFunds": "Managed Funds",
+      "advisedMin": "Advised Min",
+      "followProvider": "Follow Provider",
+      "drawdown": "Drawdown",
+      "age": "Age",
+      "totalReturns/equityGrowth": "Total Returns / equity growth",
+      "dd": "DD",
+      "follow": "Follow",
+      "watch": "WATCH"
     }
   },
   "topnav": {
