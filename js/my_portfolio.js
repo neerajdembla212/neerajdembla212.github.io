@@ -1,7 +1,7 @@
 (() => {
     const spDefaultFilterItems = [{ // default filter items is the master list with default filters
         id: 1,
-        displayName: 'Equity Growth',
+        displayName: 'body.mp.equityGrowth',
         filterParam: 'equity_growth',
         filterOperation: "&gt;",
         filterPercentage: true,
@@ -9,7 +9,7 @@
     },
     {
         id: 2,
-        displayName: 'Total Returns',
+        displayName: 'body.mp.totalReturns',
         filterParam: 'total_returns',
         filterOperation: "&gt;",
         filterPercentage: true,
@@ -17,7 +17,7 @@
     },
     {
         id: 3,
-        displayName: 'No. Trades',
+        displayName: 'body.mp.noOfTrades',
         filterParam: 'trades',
         filterOperation: "&gt;",
         filterPercentage: false,
@@ -25,7 +25,7 @@
     },
     {
         id: 4,
-        displayName: 'Max Drawdown',
+        displayName: 'body.mp.maxDrawdown',
         filterParam: 'max_drawdown',
         filterOperation: "&lt;",
         filterPercentage: true,
@@ -33,7 +33,7 @@
     },
     {
         id: 5,
-        displayName: 'Management Fees',
+        displayName: 'body.mp.managementFees',
         filterParam: 'management_fee',
         filterOperation: "&lt;",
         filterPercentage: true,
@@ -41,7 +41,7 @@
     },
     {
         id: 6,
-        displayName: 'Profit Sharing',
+        displayName: 'body.mp.profitSharing',
         filterParam: 'profit_sharing',
         filterOperation: "&lt;",
         filterPercentage: true,
@@ -49,7 +49,7 @@
     },
     {
         id: 7,
-        displayName: 'Total Fees',
+        displayName: 'body.mp.totalFees',
         filterParam: 'total_fee',
         filterOperation: "&lt;",
         filterPercentage: true,
@@ -58,7 +58,7 @@
     ];
     const sfDefaultFilterItems = [{ // default filter items is the master list with default filters
         id: 1,
-        displayName: 'P/L',
+        displayName: 'body.mp.p/l',
         filterParam: 'p_l',
         filterOperation: "&gt;",
         filterPercentage: false,
@@ -66,7 +66,7 @@
     },
     {
         id: 2,
-        displayName: 'HWM Diffrence',
+        displayName: 'body.mp.HWMDifference',
         filterParam: 'hwm_difference',
         filterOperation: "&gt;",
         filterPercentage: false,
@@ -74,7 +74,7 @@
     },
     {
         id: 3,
-        displayName: 'Balance',
+        displayName: 'body.mp.balance',
         filterParam: 'balance',
         filterOperation: "&gt;",
         filterPercentage: false,
@@ -82,7 +82,7 @@
     },
     {
         id: 4,
-        displayName: 'Fee Earned',
+        displayName: 'body.mp.feeEarned',
         filterParam: 'fee_earned',
         filterOperation: "&lt;",
         filterPercentage: false,
@@ -90,7 +90,7 @@
     },
     {
         id: 5,
-        displayName: 'Com Earned',
+        displayName: 'body.mp.comEarned',
         filterParam: 'com_earned',
         filterOperation: "&lt;",
         filterPercentage: false,
@@ -250,9 +250,9 @@
     $(function () {
         // role has to be set first before callig other methods as they depend upon this value
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
-        showRoleWiseElements();
         // register events must be called after showRoleWiseElements() as few elements need to be present in dom before add event listeners on them
         registerEvents();
+        showRoleWiseElements();
         // role wise elements on sub header
         // sparkline section
         fetchStrategyDetails();
@@ -403,43 +403,43 @@
         return `
         <thead>
             <tr>
-            <th class="align-middle">Provider</th>
+            <th class="align-middle">${i18n.t('body.mp.provider')}</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
-                    <p class="m-0 p-0 m-auto">equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_returns">
-                    <p class="m-0 p-0 m-auto">Total Returns<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_returns' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.totalReturns')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_returns' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="max_drawdown">
-                    <p class="m-0 p-0 m-auto">Max DD<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'max_drawdown' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.maxDD')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'max_drawdown' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trades">
-                    <p class="m-0 p-0 m-auto">Trades<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.trades')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
-                    <p class="m-0 p-0 m-auto">Management FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.managementFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
-                    <p class="m-0 p-0 m-auto">P Share %<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.pShare%')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
             <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
-                    <p class="m-0 p-0 m-auto">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.totalFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="align-middle text-center">Actions</th>
+            <th class="align-middle text-center">${i18n.t('body.mp.actions')}</th>
             </tr>
         </thead>
         `
@@ -538,10 +538,10 @@
                 <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
                     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
-                        <option value="10">10 Rows per page</option>
-                        <option value="20">20 Rows per page</option>
-                        <option value="30">30 Rows per page</option>
-                        <option value="40">40 Rows per page</option>
+                        <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+                        <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                        <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                        <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
                     </select>
                     <button class="btn btn-default border-0" type="button" id="prev-page-sp">
                         <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -647,10 +647,10 @@
                 <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
                     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
-                        <option value="10">10 Rows per page</option>
-                        <option value="20">20 Rows per page</option>
-                        <option value="30">30 Rows per page</option>
-                        <option value="40">40 Rows per page</option>
+                        <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+                        <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                        <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                        <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
                     </select>
                     <button class="btn btn-default border-0" type="button" id="prev-page-sp">
                         <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -878,39 +878,39 @@
         return `
         <thead>
             <tr>
-            <th class="align-middle">Provider</th>
+            <th class="align-middle">${i18n.t('body.mp.provider')}</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="joined_on">
-                    <p class="m-0 p-0 m-auto">Joined<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'joined_on' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.joined')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'joined_on' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="text-center align-middle m-auto">Period</th>
+            <th class="text-center align-middle m-auto">${i18n.t('body.mp.period')}</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_or_loss">
-                    <p class="m-0 p-0 m-auto">P/L<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_or_loss' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.p/l')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_or_loss' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="hwm_diff">
-                    <p class="m-0 p-0 m-auto">HWM Difference<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'hwm_diff' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.HWMDifference')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'hwm_diff' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="balance">
-                    <p class="m-0 p-0 m-auto">Balance<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'balance' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.balance')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'balance' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="fee_earned">
-                    <p class="m-0 p-0 m-auto">FEE Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'fee_earned' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.feeEarned')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'fee_earned' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="com_earned">
-                    <p class="m-0 p-0 m-auto">Com Earned<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'com_earned' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 m-auto">${i18n.t('body.mp.comEarnedOnly')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'com_earned' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
-            <th class="align-middle text-center m-auto">Actions</th>
+            <th class="align-middle text-center m-auto">${i18n.t('body.mp.actions')}</th>
             </tr>
         </thead>
         `
@@ -1023,10 +1023,10 @@
           <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> followers</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sf-rows-per-page">
-                  <option value="10">10 Rows per page</option>
-                  <option value="20">20 Rows per page</option>
-                  <option value="30">30 Rows per page</option>
-                  <option value="40">40 Rows per page</option>
+                  <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+                  <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                  <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                  <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
               </select>
               <button class="btn btn-default border-0" type="button" id="prev-page-sf">
                   <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -1135,10 +1135,10 @@
                 <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
                     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
-                        <option value="10">10 Rows per page</option>
-                        <option value="20">20 Rows per page</option>
-                        <option value="30">30 Rows per page</option>
-                        <option value="40">40 Rows per page</option>
+                        <option value="10">${i18n.t('body.mp.body.mp.10RowsPerPage')}</option>
+                        <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                        <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                        <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
                     </select>
                     <button class="btn btn-default border-0" type="button" id="prev-page-sp">
                         <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -1403,7 +1403,7 @@
         data-filter-value="${filterValue}"
         data-filter-percentage=${filterPercentage}
         data-filter-param="${filterParam}">
-        <p class="mb-0 medium-font mr-3">${displayName}</p>
+        <p class="mb-0 medium-font mr-3">${i18n.t(displayName)}</p>
         <p class="mb-0 medium-font text-dark-blue font-weight-bold">${filterOperation}${filterValue}${filterPercentage ? '%' : ''}</p>
       </li>
         `
@@ -1446,19 +1446,21 @@
     function showRoleWiseElements() {
         const role = STATE.getRole()
         if (role.toLowerCase() === 'provider') {
+            const text = i18n.t('body.mp.followers') ? i18n.t('body.mp.followers') : 'Followers';
             $('.role-chip-follower').addClass('d-none');
             $('.role-chip-provider').removeClass('d-none');
 
             $('#hide-strategy-account').removeClass('d-none');
             $('#strategy').removeClass('d-none');
-            $('.portfolio-users-table .table-title').text('Followers')
+            $('.portfolio-users-table .table-title').text(text)
         } else if (role.toLowerCase() === 'follower') {
+            const text = i18n.t('body.mp.followers') ? i18n.t('body.mp.following') : 'Following';
             $('.role-chip-follower').removeClass('d-none');
             $('.role-chip-provider').addClass('d-none');
 
             $('#hide-strategy-account').addClass('d-none');
             $('#strategy').addClass('d-none');
-            $('.portfolio-users-table .table-title').text('Following')
+            $('.portfolio-users-table .table-title').text(text)
         }
     }
 
@@ -1593,13 +1595,13 @@
         let roleSpecificData;
         if (role === 'provider') {
             roleSpecificData = ` <div class="sparkline">
-                <div class="key">Fees Earned</div>
+                <div class="key">${i18n.t("body.mp.feesEarned")}</div>
                 <div class="value white">SGD${formatWithCommas(fees_earned)}</div>
             </div>`
         } else if (role === 'follower') {
             roleSpecificData = `<div class="sparkline">
             <div class="key">
-                <p class="mb-0">Total Fees <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="Fees + Profit Shared"></i></p>
+                <p class="mb-0">${i18n.t("body.mp.totalFees")}<i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" title="${i18n.t('body.mp.feesProfitShared')}"></i></p>
             </div>
             <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
         </div>`
@@ -1607,7 +1609,7 @@
         return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-            <div class="key">Total Returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></div>
+            <div class="key">${i18n.t('body.mp.totalReturns')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? i18n.t('body.mp.strategyAge') : i18n.t('body.mp.sinceInception')} </br> ${strategy_age}"></i></div>
             <div class="d-flex justify-content-between">
                 <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
@@ -1617,28 +1619,28 @@
             </div>
             <div class="divider mx-2"></div>
             <div class="sparkline">
-            <div class="key">Current Balance</div>
+            <div class="key">${i18n.t('body.mp.currentBalance')}</div>
             <div class="value white">SGD${formatWithCommas(current_balance)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Deposits</div>
+            <div class="key">${i18n.t('body.mp.deposits')}</div>
             <div class="value white">SGD${formatWithCommas(deposits)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Withdrawals</div>
+            <div class="key">${i18n.t('body.mp.withdrawals')}</div>
             <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
             </div>
         ${roleSpecificData}
             <div class="sparkline">
-                <div class="key">Followers</div>
+                <div class="key">${i18n.t('body.mp.followers')}</div>
             <div class="value white">SGD${formatWithCommas(followers)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Trades</div>
+            <div class="key">${i18n.t('body.mp.trades')}</div>
             <div class="value green">${formatWithCommas(trades)}</div>
             </div>
             <div class="sparkline">
-            <div class="key">Max Drawdown</div>
+            <div class="key">${i18n.t('body.mp.maxDrawdown')}</div>
             <div class="value dark-red">${max_drawdown}</div>
         </div>
       </div>`
@@ -1658,15 +1660,15 @@
 
         let roleSpecificData;
         if (role === 'provider') {
-            roleSpecificData = ` <div class="d-flex justify-content-between align-items-center p-3">
-                    <div class="key">Fees Earned</div>
+            roleSpecificData = `<div class="d-flex justify-content-between align-items-center p-3">
+                    <div class="key">${i18n.t("body.mp.feesEarned")}</div>
                     <div class="value white">SGD${formatWithCommas(fees_earned)}</div>
                 </div>`
         } else if (role === 'follower') {
             roleSpecificData = `<div class="d-flex justify-content-between align-items-center p-3">
                 <div class="key">
-                    <p class="mb-0">Total Fees</p>
-                    <p class="mb-0 small-font font-weight-light">Fees + Profit Shared</p>
+                    <p class="mb-0">${i18n.t("body.mp.totalFees")}</p>
+                    <p class="mb-0 small-font font-weight-light">${i18n.t('body.mp.feesProfitShared')}</p>
                 </div>
                 <div class="value white">SGD${formatWithCommas(amount_paid)}</div>
             </div>`
@@ -1674,23 +1676,23 @@
         return `<div class="responsive-content">
                     <div class="d-flex justify-content-between align-items-center p-3">
                         <div class="key">
-                            <p class="mb-0">Total returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? 'Strategy Age' : 'Since Inception'} </br> ${strategy_age}"></i></p>
+                            <p class="mb-0">${i18n.t('body.mp.totalReturns')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${role === 'provider' ? i18n.t('body.mp.strategyAge') : i18n.t('body.mp.sinceInception')} </br> ${strategy_age}"></i></p>
                         </div>
                         <div class="value green highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                     </div>
                     <div class="horizontal-divider mx-2"></div>
                     <div class="d-flex justify-content-between align-items-center p-3">
-                        <div class="key">Current Balance</div>
+                        <div class="key">${i18n.t('body.mp.currentBalance')}</div>
                         <div class="value white">SGD${formatWithCommas(current_balance)}</div>
                     </div>
                     <div class="horizontal-divider mx-2"></div>
                     <div class="d-flex justify-content-between align-items-center p-3">
-                        <div class="key">Deposits</div>
+                        <div class="key">${i18n.t('body.mp.deposits')}</div>
                         <div class="value white">SGD${formatWithCommas(deposits)}</div>
                     </div>
                     <div class="horizontal-divider mx-2"></div>
                     <div class="d-flex justify-content-between align-items-center p-3">
-                        <div class="key">Withdrawals</div>
+                        <div class="key">${i18n.t('body.mp.withdrawals')}</div>
                         <div class="value white">SGD${formatWithCommas(withdrawals)}</div>
                     </div>
                     <div class="horizontal-divider mx-2"></div>
@@ -1698,11 +1700,11 @@
                     <div class="horizontal-divider mx-2"></div>
                     <div class="row px-3">
                         <div class="p-3 col d-flex justify-content-between border-right">
-                            <div class="key">Trades</div>
+                            <div class="key">${i18n.t('body.mp.trades')}</div>
                             <div class="value green">${formatWithCommas(trades)}</div>
                         </div>
                         <div class="p-3 col d-flex justify-content-between">
-                            <div class="key">Max Drawdown</div>
+                            <div class="key">${i18n.t('body.mp.maxDrawdown')}</div>
                             <div class="value dark-red">${max_drawdown}</div>
                         </div>
                     </div>
@@ -1740,7 +1742,7 @@
         })
 
         MOBILE_MEDIA.addEventListener('change', function (event) {
-            renderSparkline();
+            renderSparkline(STATE.getRole());
         })
 
         // init toast notification
@@ -1752,6 +1754,31 @@
         hideUnhideStrategyAccountEvents();
         // init i18n plugin
         initI18nPlugin();
+
+        //returns dropdown
+        $('.returns-dropdown .dropdown-menu .dropdown-item').on('click', function (e) {
+            const button = $('.returns-dropdown .dropdown-toggle');
+            button.attr('data-i18n', $(e.target).data('i18n'));
+            button.text(i18n.t($(e.target).data('i18n')))
+
+        })
+
+        // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+        // each page has to add respective function on window to reload the translations on their page
+        window.reloadElementsOnLanguageChange = function () {
+            const userRole = STATE.getRole()
+            showRoleWiseElements()
+            renderSparkline(userRole);
+            renderTableFilters();
+            if (userRole.toLowerCase() === 'provider') {
+                // render followers table
+                renderStrategyFollowers();
+            } else if (userRole === 'follower') {
+                // render providers table
+                renderStrategyProviders();
+            }
+            renderHideUnhideButton();
+        }
     }
 
     function hideUnhideStrategyAccountEvents() {

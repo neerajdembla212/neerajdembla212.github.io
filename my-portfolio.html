@@ -146,7 +146,8 @@
               </button>
               <ul class="dropdown-menu dropdown-alerts p-0 p-2 language-switcher">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
-                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)</li>
+                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)
+                </li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
                 </li>
@@ -188,24 +189,26 @@
 
             </div>
             <button id="strategy" class="btn btn-default d-none mr-2" type="button" data-toggle="modal"
-              data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>
-            <div class="btn-group">
-              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+              data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;<span
+                data-i18n="body.mp.strategy">Strategy</span></button>
+            <div class="btn-group returns-dropdown">
+              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"
+                data-i18n="body.mp.ReturnsOver2Yrs">
                 Returns over 2 Yrs
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Returns MTD</a></li>
+                <li><a class="dropdown-item" href="#" data-i18n="body.mp.ReturnsMTD">Returns MTD</a></li>
                 <li>
-                  <a class="dropdown-item" href="#">Returns QTD</a>
+                  <a class="dropdown-item" href="#" data-i18n="body.mp.ReturnsQTD">Returns QTD</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Returns YTD</a>
+                  <a class="dropdown-item" href="#" data-i18n="body.mp.ReturnsQTD">Returns YTD</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Returns over 2 Yrs</a>
+                  <a class="dropdown-item" href="#" data-i18n="body.mp.ReturnsOver2Yrs"></a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Returns from Inception</a>
+                  <a class="dropdown-item" href="#" data-i18n="body.mp.ReturnsFromInception">Returns from Inception</a>
                 </li>
               </ul>
             </div>
@@ -239,7 +242,7 @@
               <div class="d-flex">
                 <div class="selected-filters-container mr-2 d-flex"></div>
                 <div class="btn-group btn-group-more-filter">
-                  <button class="btn btn-default btn-more-filter dropdown-toggle">
+                  <button class="btn btn-default btn-more-filter dropdown-toggle" data-i18n="body.common.moreFilters">
                     More Filters
                   </button>
                   <ul class="dropdown-menu dropdown-menu-list">
@@ -771,18 +774,22 @@
       <div class="modal-dialog modal-dialog-center">
         <div class="modal-content animated fadeIn">
           <div class="d-flex justify-content-between p-3">
-            <h4 class="modal-title super-large-font">Hide Strategy Account</h4>
+            <h4 class="modal-title super-large-font" data-i18n="body.mp.hideStrategyAccount">Hide Strategy Account</h4>
             <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
               <img src="img/ic_cross.svg">
             </button>
           </div>
-          <p class="pl-3 pt-0 pr-3 pb-3 m-0">Are you sure you want to hide your strategy account?</p>
+          <p class="pl-3 pt-0 pr-3 pb-3 m-0" data-i18n="body.mp.hideStrategyAccountQuestion">Are you sure you want to
+            hide your strategy account?</p>
           <ul>
-            <li class="mb-3">Strategy Followers will no longer be able to search or find your account.</li>
-            <li class="mb-3">Your existing Followers will continue to follow you. However if they stop following you,
+            <li class="mb-3" data-i18n="body.mp.hideStrategyAccountP1">Strategy Followers will no longer be able to
+              search or find your account.</li>
+            <li class="mb-3" data-i18n="body.mp.hideStrategyAccountP2">Your existing Followers will continue to follow
+              you. However if they stop following you,
               they will not
               be able to search or find your account again while it is hidden.</li>
-            <li class="">Your open and pending trades will not be affected.</li>
+            <li class="" data-i18n="body.mp.hideStrategyAccountP3">Your open and pending trades will not be affected.
+            </li>
           </ul>
           <div class="divider"></div>
           <div class="d-flex justify-content-between p-3">
@@ -790,7 +797,8 @@
                 class="mr-1 text-navy live small-font selected-account-type"></span><span
                 class="medium-font font-bold small-font selected-account-number"></span>
             </div>
-            <button type="button" id="hide-account-cta" class="btn btn-w-m btn-primary" data-dismiss="modal">
+            <button type="button" id="hide-account-cta" class="btn btn-w-m btn-primary" data-dismiss="modal"
+              data-i18n="body.mp.hideAccount">
               Hide Account
             </button>
           </div>
@@ -804,15 +812,19 @@
       <div class="modal-dialog modal-dialog-center">
         <div class="modal-content animated fadeIn">
           <div class="d-flex justify-content-between p-3">
-            <h4 class="modal-title super-large-font">Unhide Strategy Account</h4>
+            <h4 class="modal-title super-large-font" data-i18n="body.mp.unhideStrategyAccount">Unhide Strategy Account
+            </h4>
             <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
               <img src="img/ic_cross.svg">
             </button>
           </div>
-          <p class="pl-3 pt-0 pr-3 pb-3 m-0">Are you sure you want to unhide your strategy account?</p>
+          <p class="pl-3 pt-0 pr-3 pb-3 m-0" data-i18n="body.mp.unhideStrategyAccountQuestion">Are you sure you want to
+            unhide your strategy account?</p>
           <ul class="pr-3">
-            <li class="mb-3">Strategy Followers will now be able to search or find your account.</li>
-            <li class="mb-3">Your open and pending trades will not be affected.</li>
+            <li class="mb-3" data-i18n="body.mp.unhideStrategyAccountP1">Strategy Followers will now be able to search
+              or find your account.</li>
+            <li class="mb-3" data-i18n="body.mp.unhideStrategyAccountP2">Your open and pending trades will not be
+              affected.</li>
           </ul>
           <div class="divider"></div>
           <div class="d-flex justify-content-between p-3">
@@ -820,7 +832,8 @@
                 class="mr-1 text-navy demo small-font selected-account-type">LIVE</span><span
                 class="medium-font font-bold small-font selected-account-number"></span>
             </div>
-            <button id="unhide-account-cta" type="button" class="btn btn-w-m btn-primary" data-dismiss="modal">
+            <button id="unhide-account-cta" type="button" class="btn btn-w-m btn-primary" data-dismiss="modal"
+              data-i18n="body.mp.unhideAccount">
               Unhide Account
             </button>
           </div>

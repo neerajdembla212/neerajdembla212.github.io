@@ -226,18 +226,15 @@ function renderHideUnhideButton() {
   }
   if (!Array.isArray(hiddenStrategyAccounts)) {
     buttonHTML = `<button id="hide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
-    data-target="#hide-strategy-modal">Hide Strategy
-    Account</button>`
+    data-target="#hide-strategy-modal">${i18n.t('body.mp.hideStrategyAccount')}</button>`
   } else {
     const isHidden = hiddenStrategyAccounts.find(a => a === selectedAccountNo);
     if (isHidden) {
       buttonHTML = `<button id="unhide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
-      data-target="#unhide-strategy-modal">Unhide Strategy
-      Account</button>`
+      data-target="#unhide-strategy-modal">${i18n.t('body.mp.unhideStrategyAccount')}</button>`
     } else {
       buttonHTML = `<button id="hide-strategy-account" class="btn btn-default btn-warning" type="button" data-toggle="modal"
-      data-target="#hide-strategy-modal">Hide Strategy
-      Account</button>`
+      data-target="#hide-strategy-modal">${i18n.t('body.mp.hideStrategyAccount')}</button>`
     }
   }
   container.empty().append(buttonHTML);
@@ -1058,7 +1055,7 @@ function registerTableFilterEvents(onApplyFilter) {
   })
   // on click of dropdown menu item hide menu and show dropdown menu input
   $('.btn-group-more-filter .dropdown-menu>li.dropdown-item').unbind().click(function () {
-    const filterName = $(this).data('filter-name');
+    const filterName = i18n.t($(this).data('filter-name'));
     const id = $(this).data('id');
     const filterOperation = $(this).data('filter-operation');
     const filterValue = $(this).data('filter-value');
@@ -1314,14 +1311,6 @@ function fixDecimals(element, numVal, allowedDecimalCount) {
 
 function initI18nPlugin() {
   const language = localStorage.getItem('selectedLanguage')
-  $.i18n.init({
-    resGetPath: 'locales/__lng__.json',
-    load: 'unspecific',
-    fallbackLng: false,
-    lng: language || 'en'
-  }, function (t) {
-    $('#wrapper').i18n();
-  });
   language && $('.language-container .selected-language').text(language.toUpperCase());
 
   $('.language-switcher li').unbind().click(function () {
@@ -1330,7 +1319,17 @@ function initI18nPlugin() {
     $('.language-container .selected-language').text(language.toUpperCase())
     i18n.setLng(language, function () {
       $('#wrapper').i18n();
+      window.reloadElementsOnLanguageChange();
     })
   })
+
+  return $.i18n.init({
+    resGetPath: 'locales/__lng__.json',
+    load: 'unspecific',
+    fallbackLng: false,
+    lng: language || 'en'
+  }, function (t) {
+    $('#wrapper').i18n();
+  });
 }
 
