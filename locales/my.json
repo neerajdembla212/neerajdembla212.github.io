@@ -173,7 +173,11 @@
       "mobile": "Mobil",
       "updateDetails": "kemas kini butiran",
       "tradingAccounts": "Akaun Trading",
-      "createAccount": "Buka akaun"
+      "createAccount": "Buka akaun",
+      "createDemoAccount": "Buka Akaun Demo",
+      "noticeForDemoAccounts": "Notis untuk Akaun Demo: ",
+      "noticeForDemoAccountsP1":"Akaun demo yang tidak aktif akan dialih keluar/ditutup selepas 15 hari.",
+      "noticeForDemoAccountsP2": "Akaun demo aktif akan ditutup selepas 30 hari"
     }
   },
   "topnav": {

@@ -173,7 +173,11 @@
       "mobile": "เบอร์มือถือ",
       "updateDetails": "อัปเดตรายละเอียด",
       "tradingAccounts": "บัญชีเทรด",
-      "createAccount": "สร้างบัญชีใหม่"
+      "createAccount": "สร้างบัญชีใหม่",
+      "createDemoAccount": "เปิดบัญชีทดลอง",
+      "noticeForDemoAccounts": "ประกาศสำหรับบัญชีทดลอง:",
+      "noticeForDemoAccountsP1":"บัญชีทดลองที่ไม่ใช้งานจะถูกลบออก/ปิด หลังจาก 15 วัน",
+      "noticeForDemoAccountsP2": "บัญชีทดลองที่ใช้งานจะถูกปิดหลังจาก 30 วัน"
     }
   },
   "topnav": {

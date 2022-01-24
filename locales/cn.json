@@ -173,7 +173,11 @@
       "updateDetails": "更新详情",
       "tradingAccounts": "交易账户",
       "createAccount": "创建账户",
-      "profileSettings": "个人资料设置"
+      "profileSettings": "个人资料设置",
+      "createDemoAccount": "创建虚拟账户",
+      "noticeForDemoAccounts": "虚拟账户注意事项：",
+      "noticeForDemoAccountsP1":"“不活跃的模拟账户将在 15 天后被删除/关闭。",
+      "noticeForDemoAccountsP2": "活跃的模拟账户将在 30 天后关闭。”"
     }
   },
   "topnav": {

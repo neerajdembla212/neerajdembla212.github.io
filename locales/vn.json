@@ -173,7 +173,11 @@
       "mobile": "Số điện thoại",
       "updateDetails": "Cập nhật chi tiết",
       "tradingAccounts": "Tài khoản giao dịch",
-      "createAccount": "Tạo tài khoản"
+      "createAccount": "Tạo tài khoản",
+      "createDemoAccount": "Tạo tài khoản demo",
+      "noticeForDemoAccounts": "Thông báo cho Tài khoản Demo:",
+      "noticeForDemoAccountsP1": "Tài khoản demo không hoạt động sẽ bị xóa/đóng sau 15 ngày.",
+      "noticeForDemoAccountsP2": "Tài khoản demo đang hoạt động sẽ bị đóng sau 30 ngày. "
     }
   },
   "topnav": {

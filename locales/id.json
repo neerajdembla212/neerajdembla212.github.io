@@ -173,7 +173,11 @@
       "mobile": "No. Ponsel",
       "updateDetails": "Perbarui Detail",
       "tradingAccounts": "Akun Trading",
-      "createAccount": "Buat Akun"
+      "createAccount": "Buat Akun",
+      "createDemoAccount": "Buat Akun Demo",
+      "noticeForDemoAccounts": "Pemberitahuan untuk Akun Demo:",
+      "noticeForDemoAccountsP1":"Akun demo yang tidak aktif akan dihapus/ditutup setelah 15 hari.",
+      "noticeForDemoAccountsP2": "Akun demo yang aktif akan ditutup setelah 30 hari."
     }
   },
   "topnav": {

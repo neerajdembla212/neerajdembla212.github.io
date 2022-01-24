@@ -173,7 +173,11 @@
       "mobile": "Mobile",
       "updateDetails": "Update Details",
       "tradingAccounts": "Trading Accounts",
-      "createAccount": "Create Account"
+      "createAccount": "Create Account",
+      "createDemoAccount": "Create Demo Account",
+      "noticeForDemoAccounts": "Notice for Demo Accounts:",
+      "noticeForDemoAccountsP1":"Inactive demo account will be removed/closed after 15 days.",
+      "noticeForDemoAccountsP2": "Active demo account will be closed after 30 days."
     }
   },
   "topnav": {
