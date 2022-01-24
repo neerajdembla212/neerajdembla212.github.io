@@ -148,16 +148,35 @@
       "followProvider": "Mengikuti Penyedia",
       "drawdown": "Pengeluaran",
       "age": "Usia",
-      "totalReturns/equityGrowth":"Jumlah pulangan / pertumbuhan ekuiti",
+      "totalReturns/equityGrowth": "Jumlah pulangan / pertumbuhan ekuiti",
       "dd": "DD",
       "follow": "Pengikut",
       "watch": "Jam"
-
+    },
+    "settings": {
+      "strategyPhilosophy": "Falsafah strategi",
+      "applyToBeStrategyProvider": "Memohon menjadi Penyedia Strategi",
+      "averageGrowthPerMonth": "Purata pertumbuhan setiap bulan",
+      "referAFriend": "Rujuk kawan",
+      "name": "Nama",
+      "type": "Jenis",
+      "role": "Perana",
+      "server": "Server",
+      "dateCreated": "Tarikh dicipta",
+      "status": "Status",
+      "online": "Online",
+      "demoLeverage": "Demo Leverage",
+      "profileSettings": "Tetapan Profil",
+      "emailAddress": "Alamat emel",
+      "firstName": "Nama pertama",
+      "lastName": "Nama akhir",
+      "mobile": "Mobil",
+      "updateDetails": "kemas kini butiran",
+      "tradingAccounts": "Akaun Trading",
+      "createAccount": "Buka akaun"
     }
   },
   "topnav": {
-    "searchCopyPip": "Cari CopyPip",
-    "welcome": "Selamat Datang (Nama)",
-    "buySell": "Buy/sell"
+    "welcome": "Selamat Datang"
   }
 }

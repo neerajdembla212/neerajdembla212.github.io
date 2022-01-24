@@ -152,11 +152,31 @@
       "dd": "Sụt giảm",
       "follow": "Theo dõi",
       "watch": "Quan sát"
+    },
+    "settings": {
+      "strategyPhilosophy": "Triết lý chiến lược",
+      "applyToBeStrategyProvider": "Đăng ký trở thành Nhà cung cấp chiến lược",
+      "averageGrowthPerMonth": "Tăng trưởng trung bình mỗi tháng",
+      "referAFriend": "Giới thiệu một người bạn",
+      "name": "Tên",
+      "type": "Loại",
+      "role": "Vai trò",
+      "server": "Máy chủ",
+      "dateCreated": "Ngày tạo",
+      "status": "Trạng thái",
+      "online": "Online",
+      "demoLeverage": "Demo Leverage",
+      "profileSettings": "Cài đặt thông tin Profile",
+      "emailAddress": "Địa chỉ email",
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "mobile": "Số điện thoại",
+      "updateDetails": "Cập nhật chi tiết",
+      "tradingAccounts": "Tài khoản giao dịch",
+      "createAccount": "Tạo tài khoản"
     }
   },
   "topnav": {
-    "searchCopyPip": "Tìm kiếm CopyPip",
-    "welcome": "Chào mừng (Tên)",
-    "buySell": "Buy/Sell"
+    "welcome": "Chào mừng"
   }
 }

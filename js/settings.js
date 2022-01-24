@@ -159,6 +159,13 @@
             separateDialCode: true
         });
         hideUnhideStrategyAccountEvents();
+
+        // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+        // each page has to add respective function on window to reload the translations on their page
+        window.reloadElementsOnLanguageChange = function () {
+            renderBasicProfileCard();
+            renderTradingAccountsTable();
+        }
     }
 
     function hideUnhideStrategyAccountEvents() {
@@ -246,7 +253,7 @@
     function renderBasicProfileCard() {
         const profileDetails = STATE.getProfileDetails();
         const container = $('.settings-page .basic-profile-settings');
-        container.append(getBasicProfileSettingsHTML(profileDetails))
+        container.empty().append(getBasicProfileSettingsHTML(profileDetails))
         const role = STATE.getRole();
         if (role === 'follower') {
             container.addClass('mh-sm')
@@ -279,16 +286,16 @@
         const profile_image = 'img/default_profile.jpeg';
 
         const strategyPhilosophyHTML = role === 'provider' ? `<div class="py-3">
-        <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
+        <p class="mb-2 small-font font-bold text-dark-black">${i18n.t('body.settings.strategyPhilosophy')}</p>
         <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
-        <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(new Date(joined_date))}
+        <p class="mb-0 text-dark-gray small-font font-bold">${i18n.t('body.mp.joined')} ${formatDate(new Date(joined_date))}
         </div> 
         <div class="divider"></div>` : '';
 
         const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3 mr-3" type="button" data-toggle="modal"
-        data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;Strategy</button>` : '';
+        data-target="#strategy-settings-modal"><i class="fa fa-gear"></i>&nbsp;&nbsp;${i18n.t('body.mp.strategy')}</button>` : '';
 
-        const roleBasedCTA = role === 'provider' ? `<div class="hide-strategy-button-container mt-3 mr-3"></div>` : `<button class="btn btn-default btn-warning mt-3" type="button" data-toggle="modal" data-target="#become-strategy-provider-modal">Apply to be a Strategy Provider</button>`
+        const roleBasedCTA = role === 'provider' ? `<div class="hide-strategy-button-container mt-3 mr-3"></div>` : `<button class="btn btn-default btn-warning mt-3" type="button" data-toggle="modal" data-target="#become-strategy-provider-modal">${i18n.t('body.settings.applyToBeStrategyProvider')}</button>`
 
         return `
         <div class="mb-3">
@@ -309,7 +316,7 @@
         
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
-            <p class="mb-0 font-bold small-font text-dark-black">Age</p>
+            <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.sp.age')}</p>
             <p class="mb-0 medium-font font-bold text-dark-black">${role === 'provider' ? strategy_age : follower_age}</p>
         </div>
         <!-- strategy age end -->
@@ -317,8 +324,8 @@
         <!-- Total returns start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold mall-font text-dark-black">Total Returns </p>
-                <p class="mb-0 small-font text-dark-black font-weight-light">since Inception 1
+                <p class="mb-0 font-bold mall-font text-dark-black">${i18n.t('body.mp.totalReturns')} </p>
+                <p class="mb-0 small-font text-dark-black font-weight-light">${i18n.t('body.mp.sinceInception')} 1
                     Jul 2021</p>
             </div>
             <p class="mb-0 super-large-font text-dark-green font-bold">${cumulative_returns}%</p>
@@ -328,7 +335,7 @@
         <!-- Average growth start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Average Growth per Month
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.settings.averageGrowthPerMonth')}
                 </p>
             </div>
             <p class="mb-0 extra-large-font text-dark-green font-bold">${avg_growth_per_month}%</p>
@@ -338,7 +345,7 @@
         <!-- Average pips start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Average Pips </p>
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.sp.avgPips')} </p>
             </div>
             <p class="mb-0 extra-large-font text-dark-black font-bold">${avg_pips}</p>
         </div>
@@ -347,7 +354,7 @@
         <!-- Trades start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Trades </p>
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.mp.trades')} </p>
             </div>
             <p class="mb-0 extra-large-font text-dark-black font-bold">${trade_count}</p>
         </div>
@@ -356,7 +363,7 @@
         <!-- Max Drawdown start -->
         <div class="pt-3 d-flex justify-content-between align-items-center mb-2">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Max Drawdown </p>
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.mp.maxDrawdown')} </p>
             </div>
             <p class="mb-0 extra-large-font text-light-red font-bold">${max_drawdown}%</p>
         </div>
@@ -366,7 +373,7 @@
         <div class="d-flex flex-wrap">
             ${roleBasedCTA}
             ${settingsButton}
-            <a href="${window.location.origin}/refer-a-friend.html" ><button type="button" class="btn btn-default text-blue font-bold mt-3">Refer a Friend</button></a>
+            <a href="${window.location.origin}/refer-a-friend.html" ><button type="button" class="btn btn-default text-blue font-bold mt-3">${i18n.t('body.settings.referAFriend')}</button></a>
         </div>
         `
     }
@@ -464,13 +471,13 @@
         return `
         <thead>
             <tr>
-            <th class="align-middle">Name</th>
-            <th class="text-center align-middle">Type</th>
-            <th class="text-center align-middle">Role</th>
-            <th class="text-center align-middle">Server</th>
-            <th class="text-center align-middle">Date Created</th>
+            <th class="align-middle">${i18n.t('body.settings.name')}</th>
+            <th class="text-center align-middle">${i18n.t('body.settings.type')}</th>
+            <th class="text-center align-middle">${i18n.t('body.settings.role')}</th>
+            <th class="text-center align-middle">${i18n.t('body.settings.server')}</th>
+            <th class="text-center align-middle">${i18n.t('body.settings.dateCreated')}</th>
             <th class="text-center align-middle">Demo Leverage</th>
-            <th class="text-center align-middle">Status</th>
+            <th class="text-center align-middle">${i18n.t('body.settings.status')}</th>
             </tr>
         </thead>
         `
@@ -522,7 +529,7 @@
                     <p class="mb-0 text-center">${demo_leverage}</p>
                 </td>
                 <td>
-                    <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? 'online' : ''}">${status}</p>
+                    <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? i18n.t('body.settings.online') : ''}">${status}</p>
                 </td>
             </tr>
             `
