@@ -770,6 +770,23 @@
     // select tab based on query params
     const selectedTabId = window.location.hash;
     $(`.nav.nav-tabs [href="${selectedTabId}"]`).click();
+
+    //returns dropdown
+    $('.returns-dropdown .dropdown-menu .dropdown-item').on('click', function (e) {
+      const button = $('.returns-dropdown .dropdown-toggle');
+      button.attr('data-i18n', $(e.target).data('i18n'));
+      button.text(i18n.t($(e.target).data('i18n')))
+    })
+
+    // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+    // each page has to add respective function on window to reload the translations on their page
+    window.reloadElementsOnLanguageChange = function () {
+      const viewType = getCurrentViewType();
+      switch (viewType) {
+        case 'grid': plotGridView(); break;
+        case 'list': plotListView(); break;
+      }
+    }
   }
 
   function onTabChange(tabId, isManual = true) {
@@ -1101,7 +1118,7 @@
         </th>
         <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
-            <p class="m-0 p-0 header-text">${i18n.t('totalReturns/equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.totalReturns/equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center" data-sort-key="drawDown">

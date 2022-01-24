@@ -1760,7 +1760,6 @@
             const button = $('.returns-dropdown .dropdown-toggle');
             button.attr('data-i18n', $(e.target).data('i18n'));
             button.text(i18n.t($(e.target).data('i18n')))
-
         })
 
         // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
