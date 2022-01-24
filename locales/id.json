@@ -148,15 +148,35 @@
       "followProvider": "Ikuti Penyedia Strategi",
       "drawdown": "Drawdown",
       "age": "Usia",
-      "totalReturns/equityGrowth":"Total Keuntungan / Pertumbuhan Ekuitas",
+      "totalReturns/equityGrowth": "Total Keuntungan / Pertumbuhan Ekuitas",
       "dd": "DD",
       "follow": "Ikuti",
       "watch": "Pantau"
+    },
+    "settings": {
+      "strategyPhilosophy": "Filosofi Strategi",
+      "applyToBeStrategyProvider": "Terapkan untuk menjadi Penyedia Strategi",
+      "averageGrowthPerMonth": "Pertumbuhan Rata-Rata per Bulan",
+      "referAFriend": "Menunjuk teman",
+      "name": "Nama",
+      "type": "Jenis",
+      "role": "Peran",
+      "server": "Server",
+      "dateCreated": "Tanggal Dibuat",
+      "status": "Status",
+      "online": "Online",
+      "demoLeverage": "Demo Leverage",
+      "profileSettings": "Pengaturan Profil",
+      "emailAddress": "Alamat Email",
+      "firstName": "Nama Depan",
+      "lastName": "Nama Belakang",
+      "mobile": "No. Ponsel",
+      "updateDetails": "Perbarui Detail",
+      "tradingAccounts": "Akun Trading",
+      "createAccount": "Buat Akun"
     }
   },
   "topnav": {
-    "searchCopyPip": "Cari CopyPip",
-    "welcome": "Selamat datang (Name)",
-    "buySell": "Buy/Sell"
+    "welcome": "Selamat datang"
   }
 }

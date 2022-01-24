@@ -152,11 +152,31 @@
       "dd": "DD",
       "follow": "Follow",
       "watch": "WATCH"
+    },
+    "settings": {
+      "strategyPhilosophy": "Strategy Philosophy",
+      "applyToBeStrategyProvider": "Apply to be a Strategy Provider",
+      "averageGrowthPerMonth": "Average Growth per Month",
+      "referAFriend": "Refer a Friend",
+      "name": "Name",
+      "type": "Type",
+      "role": "Role",
+      "server": "Server",
+      "dateCreated": "Date Created",
+      "status": "Status",
+      "online": "Online",
+      "demoLeverage": "Demo Leverage",
+      "profileSettings": "Profile Settings",
+      "emailAddress": "Email Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "mobile": "Mobile",
+      "updateDetails": "Update Details",
+      "tradingAccounts": "Trading Accounts",
+      "createAccount": "Create Account"
     }
   },
   "topnav": {
-    "searchCopyPip": "Search CopyPip",
-    "welcome": "Welcome KS Tan",
-    "buySell": "Buy/Sell"
+    "welcome": "Welcome"
   }
 }

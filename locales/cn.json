@@ -148,15 +148,35 @@
       "followProvider": "关注交易达人",
       "drawdown": "缩编",
       "age": "年龄",
-      "totalReturns/equityGrowth":"总回报/股权增长",
+      "totalReturns/equityGrowth": "总回报/股权增长",
       "dd": "DD",
       "follow": "关注",
       "watch": "表"
+    },
+    "settings": {
+      "strategyPhilosophy": "策略理念",
+      "applyToBeStrategyProvider": "申请成为策略提供者",
+      "averageGrowthPerMonth": "每月平均增长",
+      "referAFriend": "推荐朋友",
+      "name": "名称",
+      "type": "类型",
+      "role": "角色",
+      "server": "服务器",
+      "dateCreated": "创建日期",
+      "status": "状态",
+      "online": "在线",
+      "demoLeverage": "个人资料设置",
+      "emailAddress": "电子邮件地址",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "mobile": "手机",
+      "updateDetails": "更新详情",
+      "tradingAccounts": "交易账户",
+      "createAccount": "创建账户",
+      "profileSettings": "个人资料设置"
     }
   },
   "topnav": {
-    "searchCopyPip": "搜索CopyPip",
-    "welcome": "欢迎（姓名)",
-    "buySell": "买/卖"
+    "welcome": "欢迎（姓名)"
   }
 }

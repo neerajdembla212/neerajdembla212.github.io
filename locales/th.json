@@ -152,11 +152,31 @@
       "dd": "ขาดทุนสะสม",
       "follow": "ติดตาม",
       "watch": "ดู"
+    },
+    "settings": {
+      "strategyPhilosophy": "ปรัชญากลยุทธ์",
+      "applyToBeStrategyProvider": "สมัครเป็นผู้ให้บริการกลยุทธ์",
+      "averageGrowthPerMonth": "ค่าเฉลี่ยการเติบโตต่อเดือน",
+      "referAFriend": "แนะนำเพื่อน",
+      "name": "ชื่อ",
+      "type": "ประเภท",
+      "role": "บทบาท",
+      "server": "เซิร์ฟเวอร์",
+      "dateCreated": "วันที่สร้าง",
+      "status": "สถานะ",
+      "online": "ออนไลน์",
+      "demoLeverage": "Demo Leverage",
+      "profileSettings": "ตั้งค่าโปรไฟล์",
+      "emailAddress": "อีเมล",
+      "firstName": "ชื่อจริง",
+      "lastName": "นามสกุล",
+      "mobile": "เบอร์มือถือ",
+      "updateDetails": "อัปเดตรายละเอียด",
+      "tradingAccounts": "บัญชีเทรด",
+      "createAccount": "สร้างบัญชีใหม่"
     }
   },
   "topnav": {
-    "searchCopyPip": "ค้นหา CopyPip",
-    "welcome": "ยินดีต้อนรับ (Name)",
-    "buySell": "ซื้อ/ขาย"
+    "welcome": "ยินดีต้อนรับ"
   }
 }
