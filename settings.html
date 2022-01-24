@@ -148,7 +148,8 @@
               </button>
               <ul class="dropdown-menu dropdown-alerts p-0 p-2 language-switcher">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
-                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)</li>
+                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)
+                </li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
                 </li>
@@ -198,18 +199,21 @@
                 <div class="col-sm-6">
                   <!-- Email address input start -->
                   <div class="form-group">
-                    <label class="text-modal-gray medium-font font-weight-light" data-i18n="body.settings.emailAddress">Email Address</label>
+                    <label class="text-modal-gray medium-font font-weight-light"
+                      data-i18n="body.settings.emailAddress">Email Address</label>
                     <input type="email" class="form-control" id="email_address" />
                   </div>
                   <!-- Email address input end -->
                   <!-- First name last name input start -->
                   <div class="row mb-2">
                     <div class="form-group col-sm-6">
-                      <label class="text-modal-gray medium-font font-weight-light" data-i18n="body.settings.firstName">First Name</label>
+                      <label class="text-modal-gray medium-font font-weight-light"
+                        data-i18n="body.settings.firstName">First Name</label>
                       <input type="text" class="form-control" id="first_name" />
                     </div>
                     <div class="form-group col-sm-6">
-                      <label class="text-modal-gray medium-font font-weight-light" data-i18n="body.settings.lastName">Last Name</label>
+                      <label class="text-modal-gray medium-font font-weight-light"
+                        data-i18n="body.settings.lastName">Last Name</label>
                       <input type="text" class="form-control" id="last_name" />
                     </div>
                   </div>
@@ -217,7 +221,8 @@
                   <!-- Mobile and country input start -->
                   <div class="row mb-2">
                     <div class="form-group col-sm-12">
-                      <label class="text-modal-gray medium-font font-weight-light" data-i18n="body.settings.mobile">Mobile</label>
+                      <label class="text-modal-gray medium-font font-weight-light"
+                        data-i18n="body.settings.mobile">Mobile</label>
                       <input type="text" class="form-control" id="mobile" name="mobile" />
                     </div>
                     <!-- <div class="form-group col-sm-6">
@@ -232,14 +237,16 @@
                 <div class="col-sm-6" id="strategy_philosophy_container">
                   <!-- Strategy philosophy input start -->
                   <div class="form-group ">
-                    <label class="text-modal-gray medium-font font-weight-light" data-i18n="body.settings.strategyPhilosophy">Strategy Philosophy</label>
+                    <label class="text-modal-gray medium-font font-weight-light"
+                      data-i18n="body.settings.strategyPhilosophy">Strategy Philosophy</label>
                     <textarea class="form-control" id="strategy_philosophy" rows="9" resize="none"></textarea>
                   </div>
                   <!-- Strategy philosophy input end -->
                 </div>
                 <!-- CTA -->
                 <div class="px-3">
-                  <button type="button" class="btn btn-default text-blue font-bold mr-3" id="update-profile-details" data-i18n="body.settings.updateDetails">
+                  <button type="button" class="btn btn-default text-blue font-bold mr-3" id="update-profile-details"
+                    data-i18n="body.settings.updateDetails">
                     Update Details
                   </button>
                   <button type="button" class="btn btn-default text-blue font-bold">
@@ -269,21 +276,25 @@
         <div class="modal-dialog modal-dialog-center">
           <div class="modal-content animated fadeIn">
             <div class="d-flex justify-content-between p-3">
-              <h4 class="modal-title super-large-font">Create Demo Account</h4>
+              <h4 class="modal-title super-large-font" data-i18n="body.settings.createDemoAccount">Create Demo Account
+              </h4>
               <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
                 <img src="img/ic_cross.svg">
               </button>
             </div>
             <div class="modal-body px-3 pt-0">
               <div class="highlighted-content p-3 mb-3">
-                <p class="font-bold text-white">Notice for Demo Accounts:</p>
-                <p class="font-weight-light text-white">Inactive demo account will be removed/closed after 15 days.</p>
-                <p class="font-weight-light text-white">Active demo account will be closed after 30 days.</p>
+                <p class="font-bold text-white" data-i18n="body.settings.noticeForDemoAccounts">Notice for Demo
+                  Accounts:</p>
+                <p class="font-weight-light text-white" data-i18n="body.settings.noticeForDemoAccountsP1">Inactive demo
+                  account will be removed/closed after 15 days.</p>
+                <p class="font-weight-light text-white" data-i18n="body.settings.noticeForDemoAccountsP2">Active demo
+                  account will be closed after 30 days.</p>
               </div>
               <!-- Budget input start -->
               <div class="d-flex justify-content-between mb-3">
                 <div class="mr-3">
-                  <p class="mb-1 font-weight-light text-dark-gray">
+                  <p class="mb-1 font-weight-light text-dark-gray" data-i18n="body.login.demoBudget">
                     Demo Budget
                   </p>
                   <div class="input-group demo-budget">
@@ -299,7 +310,7 @@
                   </div>
                 </div>
                 <div class="w-30">
-                  <p class="mb-1 font-weight-light text-dark-gray">Leverage</p>
+                  <p class="mb-1 font-weight-light text-dark-gray" data-i18n="body.login.leverage">Leverage</p>
                   <select class="select2_dropdown form-control" aria-valuenow="1">
                     <option value="1">1:100</option>
                     <option value="2">1:200</option>
@@ -314,7 +325,7 @@
             <div class="divider"></div>
             <div class="p-3 d-flex justify-content-end">
               <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal"
-                id="create-demo-account">
+                id="create-demo-account" data-i18n="body.login.create">
                 Create
               </button>
             </div>
