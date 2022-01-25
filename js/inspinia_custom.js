@@ -585,12 +585,12 @@ function getFollowProviderPopupBody(data) {
     <!-- Data display Row 1 start -->
           <div class="d-flex justify-content-between mb-2">
             <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
-              <div class="uppercase-label">TOTAL RETURNS</div>
+              <div class="uppercase-label">${i18n.t('body.mp.totalReturns')}</div>
               <div class="text-dark-green d-flex align-items-center"><span class="up-arrow-green mr-1"></span><span
                   class="font-bold">${cumulative_returns}%</span></div>
             </div>
             <div class="w-50 d-flex justify-content-between align-items-center">
-              <div class="uppercase-label">advised min</div>
+              <div class="uppercase-label">${i18n.t('body.sp.advisedMin')}</div>
               <div class="text-light-gray medium-font font-bold">$${formatWithCommas(advised_min)}</div>
             </div>
           </div>
@@ -598,11 +598,11 @@ function getFollowProviderPopupBody(data) {
     <!-- Data display Row 2 start -->
     <div class="d-flex justify-content-between mb-2">
       <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
-        <div class="uppercase-label">Avg Lot Size</div>
+        <div class="uppercase-label">${i18n.t('body.common.avgLotSize')}</div>
         <div class="font-bold medium-font">${avg_lot_size}</div>
       </div>
       <div class="w-50 d-flex justify-content-between align-items-center">
-        <div class="uppercase-label">Drawdown</div>
+        <div class="uppercase-label">${i18n.t('body.sp.drawdown')}</div>
         <div class="text-light-red medium-font">${max_drawdown}%</div>
       </div>
     </div>
@@ -610,11 +610,11 @@ function getFollowProviderPopupBody(data) {
     <!-- Data display Row 3 start -->
       <div class="d-flex justify-content-between mb-2">
         <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
-          <div class="uppercase-label">Age</div>
+          <div class="uppercase-label">${i18n.t('body.sp.age')}</div>
           <div class="font-bold medium-font">${strategy_age}</div>
         </div>
         <div class="w-50 d-flex justify-content-between align-items-center">
-          <div class="uppercase-label">P share %</div>
+          <div class="uppercase-label">${i18n.t('body.mp.pShare%')}</div>
           <div class="medium-font">${profit_sharing}%</div>
         </div>
       </div>
@@ -623,16 +623,16 @@ function getFollowProviderPopupBody(data) {
       <div>
         <ul class="nav nav-tabs flex-nowrap py-3" role="tablist">
           <li class="mr-2">
-            <a class="nav-link active" data-toggle="tab" href="#automatic">Automatic</a>
+            <a class="nav-link active" data-toggle="tab" href="#automatic">${i18n.t('body.common.automatic')}</a>
           </li>
           <li class="mr-2">
-            <a class="nav-link" data-toggle="tab" href="#percentage">Percentage</a>
+            <a class="nav-link" data-toggle="tab" href="#percentage">${i18n.t('body.common.percentage')}</a>
           </li>
           <li class="mr-2">
-            <a class="nav-link" data-toggle="tab" href="#fixed">Fixed</a>
+            <a class="nav-link" data-toggle="tab" href="#fixed">${i18n.t('body.common.fixed')}</a>
           </li>
           <li>
-            <a class="nav-link" data-toggle="tab" href="#proportional">Proportional</a>
+            <a class="nav-link" data-toggle="tab" href="#proportional">${i18n.t('body.common.proportional')}</a>
           </li>
         </ul>
       </div>
@@ -641,45 +641,36 @@ function getFollowProviderPopupBody(data) {
       <!-- Automatic Tab content -->
       <!-- For Read more/less to function the parent must have "read-more-less" class -->
         <div role="tabpanel" id="automatic" class="tab-pane active read-more-less">
-          <p class="font-bold medium-font text-modal-black mb-2">Automatic Settings Adjustment Fund Allocation
+          <p class="font-bold medium-font text-modal-black mb-2">${i18n.t('body.common.automaticTabHeading')}
           </p>
-          <p class="text-modal-gray extra-large-font mb-2">This process is automatic.</p>
+          <p class="text-modal-gray extra-large-font mb-2">${i18n.t('body.common.automaticTabP1')}</p>
           <p class="small-font read-less-text mb-0"><button type="button"
-              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-            <b>Automatic
-              Setting
-              Adjustments</b>
+              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">${i18n.t('body.common.learnMore')}</button> ${i18n.t('body.common.about')}
+            <b>${i18n.t('body.common.automaticSettingsAdjustments')}</b>
           </p>
           <div class="read-more-text d-none m-0">
-            <p class="m-0">The system will choose the favourable lot size for your trading
-              account
-              based on your account usage and available funds. No input from you is necessary.</p>
+            <p class="m-0">${i18n.t('body.common.automaticTabP2')}</p>
             <p class="d-flex justify-content-end m-0">
               <button type="button"
-                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                Less</button>
+                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">${i18n.t('body.common.showLess')}</button>
             </p>
           </div>
         </div>
         <!-- Percentage Tab content -->
         <div role="tabpanel" id="percentage" class="tab-pane read-more-less">
-          <p class="font-bold medium-font text-modal-black mb-2">Percentage of Total Balance Fund Allocation
+          <p class="font-bold medium-font text-modal-black mb-2">${i18n.t('body.common.percentageTabHeading')}
           </p>
-          <p class="mb-2 text-light-red">Set a percentage or fixed value for this Strategy Provider.</p>
+          <p class="mb-2 text-light-red">${i18n.t('body.common.percentageTabP1')}</p>
           <div class="d-flex align-items-center mb-3">
             <div class="btn-group mr-3">
               <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                Percentage
+                ${i18n.t('body.common.percentage')}
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item">${i18n.t('body.common.percentage')}</a></li>
                 <li>
-                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item">${i18n.t('body.common.absoluteValue')}</a>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-                <li class="dropdown-divider"></li>
               </ul>
             </div>
             <div class="position-relative w-25 mr-3">
@@ -688,110 +679,75 @@ function getFollowProviderPopupBody(data) {
             <span class="font-bold medium-font text-dark-black">%</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
-              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-            <b>Percentage of Total Balance</b>
+              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">${i18n.t('body.common.learnMore')}</button> ${i18n.t('body.common.about')}
+            <b>${i18n.t('body.common.percentageOfTotalBalance')}</b>
           </p>
           <div class="read-more-text d-none m-0">
-            <p class="m-0">Enter a percentage of the total balance that you want to allocate to this trading
-              strategy. E.g. if you enter “10%”, this means that 1/10 of your balance will be used to trade
-              according to this strategy. You may also set the value higher than 100% depending on your risk
-              tolerance.
-
-              You can also set absolute values in which case the system will calculate the percentage
-              depending
-              on your balance. E.g. if you enter “USD 1000” with a balance of “USD 3000”, our trading server
-              will execute a trade size 3 times smaller.
-
-              The trade size (no. of lots) will be calculated automatically. Please note that this allocation
-              does not limit your losses to the percentage of your account chosen. This only affects the size
-              that is opened.</p>
+            <p class="m-0">${i18n.t('body.common.percentageTabP2')}</p>
             <p class="d-flex justify-content-end m-0">
               <button type="button"
-                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                Less</button>
+                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">${i18n.t('body.common.showLess')}</button>
             </p>
           </div>
         </div>
 
         <!-- fixed Tab content -->
         <div role="tabpanel" id="fixed" class="tab-pane read-more-less">
-          <p class="font-bold medium-font text-modal-black mb-2">Fixed Lot Size Fund Allocation
+          <p class="font-bold medium-font text-modal-black mb-2">${i18n.t('body.common.fixedTabHeading')}
           </p>
-          <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
-            Provider.</p>
+          <p class="mb-2 text-light-red">${i18n.t('body.common.fixedTabP1')}</p>
           <div class="d-flex align-items-center mb-3">
-            <label class="col-form-label mr-3 font-bold text-dark-black">Fixed Trade Size</label>
+            <label class="col-form-label mr-3 font-bold text-dark-black">${i18n.t('body.common.fixedTradeSize')}</label>
             <div class="position-relative w-25 mr-3">
               <input type="text" class="form-control" id="fixed-trade-size">
             </div>
             <span class="font-bold medium-font text-dark-black">LOT</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
-              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-            <b>Fixed Lot Size</b>
+              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">${i18n.t('body.common.learnMore')}</button> ${i18n.t('body.common.about')}
+            <b>${i18n.t('body.common.fixedLotSize')}</b>
           </p>
           <div class="read-more-text d-none m-0">
-            <p class="m-0">Enter the fixed trade size that you want to execute in your brokerage account.
-              Please
-              note that if a strategy provider works with a dynamic/floating trade size, your trading results
-              may differ.
-
-              It is recommended to use this option only if you can see two increasing parallel lines on the
-              chart “Percentage vs Pips” of the trading strategy statistics page. In other words, this option
-              can be effectively used if a trading strategy generates profits in Pips. E.g. “0.10” means that
-              our trading server will always execute trades of a fixed size of 0.1 lot (10 000 units of the
-              base
-              currency) in your account.</p>
+            <p class="m-0">${i18n.t('body.common.fixedTabP2')}</p>
             <p class="d-flex justify-content-end m-0">
               <button type="button"
-                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                Less</button>
+                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">${i18n.t('body.common.showLess')}</button>
             </p>
           </div>
         </div>
 
         <!-- Proportional tab content -->
         <div role="tabpanel" id="proportional" class="tab-pane read-more-less">
-          <p class="font-bold medium-font text-modal-black mb-2">Proportional Trade Size Fund Allocation
+          <p class="font-bold medium-font text-modal-black mb-2">${i18n.t('body.common.proportionalTabHeading')}
           </p>
-          <p class="mb-2 text-light-red">Set a specific trade size you want to follow for this Strategy
-            Provider.</p>
+          <p class="mb-2 text-light-red">${i18n.t('body.common.proportionalTabP1')}</p>
           <div class="d-flex align-items-center mb-3">
-            <label class="col-form-label mr-3 font-bold text-dark-black">Ratio of Trade Size</label>
+            <label class="col-form-label mr-3 font-bold text-dark-black">${i18n.t('body.common.ratioOfTradeSize')}</label>
             <div class="position-relative w-25 mr-3">
               <input type="text" class="form-control" id="trade-size-ratio">
             </div>
-            <span class="font-bold medium-font text-dark-black">Ratio</span>
+            <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.ratio')}</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
-              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">Learn More</button> about
-            <b>Proportional Trade Size</b>
+              class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">${i18n.t('body.common.learnMore')}</button> ${i18n.t('body.common.about')}
+            <b>${i18n.t('body.common.proportionalTradeSize')}</b>
           </p>
           <div class="read-more-text d-none m-0">
-            <p class="m-0">This feature allows setting up dynamic, proportional trade size coefficient in
-              percentage relation.
-
-              If you want to open positions 5 times smaller than the strategy provider, you need to input
-              “0.20”.
-
-              If you want to open positions 5 times bigger than the strategy provider, input “5.00”.
-
-              To meet the lot quantity values of the strategy provider input “1.00”.</p>
+            <p class="m-0">${i18n.t('body.common.proportionalTabP2')}</p>
             <p class="d-flex justify-content-end m-0">
               <button type="button"
-                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">Show
-                Less</button>
+                class="btn btn-outline btn-link font-bold p-0 float-right text-navy small-font btn-read-less">${i18n.t('body.common.showLess')}</button>
             </p>
           </div>
         </div>
 
     </div>
     <section class="risk-mangement py-3">
-    <p class="font-bold medium-font">Risk Management </p>
+    <p class="font-bold medium-font">${i18n.t('body.common.riskManagement')} </p>
     <!-- Lot size input start -->
     <div class="d-flex justify-content-between mb-3">
       <div class="w-75 mr-3">
-        <p class="text-gray medium-font mb-1">Minimum Lot Size</p>
+        <p class="text-gray medium-font mb-1">${i18n.t('body.common.minimumLotSize')}</p>
         <div class="d-flex align-items-center">
           <div class="position-relative w-50 mr-3">
             <input type="text" class="form-control" id="min-lot-size">
@@ -800,7 +756,7 @@ function getFollowProviderPopupBody(data) {
         </div>
       </div>
       <div>
-        <p class="text-gray medium-font mb-1">Maximum Lot Size</p>
+        <p class="text-gray medium-font mb-1">${i18n.t('body.common.maximumLotSize')}</p>
         <div class="d-flex align-items-center">
         <div class="position-relative w-75 mr-3">
           <input type="text" class="form-control" id="max-lot-size">
@@ -813,7 +769,7 @@ function getFollowProviderPopupBody(data) {
     <!-- Fix profit/loss input start -->
     <div class="d-flex justify-content-between mb-3">
       <div class="w-75 mr-3">
-        <p class="text-gray medium-font mb-1">Fix Take Profit</p>
+        <p class="text-gray medium-font mb-1">${i18n.t('body.common.fixTakeProfit')}</p>
         <div class="d-flex align-items-center">
         <div class="position-relative w-50 mr-3">
           <input type="text" class="form-control" id="take-profit-input">
@@ -822,7 +778,7 @@ function getFollowProviderPopupBody(data) {
         </div>
       </div>
       <div>
-        <p class="text-gray medium-font mb-1">Fix Stop Loss</p>
+        <p class="text-gray medium-font mb-1">${i18n.t('body.common.fixStopLoss')}</p>
         <div class="d-flex align-items-center">
           <div class="position-relative w-75 mr-3">
             <input type="text" class="form-control" id="stop-loss-input">
@@ -835,7 +791,7 @@ function getFollowProviderPopupBody(data) {
     <!-- Limit quantity input start -->
     <div class="form-check abc-checkbox form-check-inline">
       <input id="limit-quantity-checkbox" class="form-check-input mr-3" type="checkbox" value="checked">
-      <label class="form-check-label text-gray medium-font"> Limit Quantity of Simultaneous Trades
+      <label class="form-check-label text-gray medium-font"> ${i18n.t('body.common.limitQuantityOfSimultaneousTrades')}
       </label>
     </div>
     <!-- No of trades input start -->
@@ -868,7 +824,7 @@ function getFollowProviderPopupFooter() {
   const accountNo = localStorage.getItem('selectedAccountNo');
   return `
     <div class="account-number p-1"><span class="mr-1 text-navy live">LIVE</span><span class="medium-font font-bold">${accountNo}</span></div>
-    <button type="button" class="btn btn-primary" id="follow-provider">Follow Provider</button>
+    <button type="button" class="btn btn-primary" id="follow-provider">${i18n.t('body.sp.followProvider')}</button>
     `
 }
 

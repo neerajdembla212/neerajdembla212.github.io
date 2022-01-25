@@ -104,10 +104,10 @@
     // fetch and render add strategy provider dropdown 
     fetchStrategyProvidersSearch();
     plotEmptyLineChart();
-    // render empty state sparkline
-    renderSparkline();
     // global function
     initI18nPlugin();
+    // // render empty state sparkline
+    // renderSparkline();
   });
 
   function plotEmptyLineChart() {
@@ -338,6 +338,13 @@
     TABLET_MEDIA.addEventListener('change', function () {
       renderStrategyProviders();
     })
+
+    // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+    // each page has to add respective function on window to reload the translations on their page
+    window.reloadElementsOnLanguageChange = function () {
+      renderSparkline();
+      console.log('simulation reload')
+    }
   }
 
   function initDatePicker() {
@@ -444,34 +451,34 @@
     return `
         <thead>
             <tr>
-            <th class="align-middle extra-small-font pr-0">Provider</th>
-            <th class="text-center align-middle extra-small-font pr-0">joined duration</th>
+            <th class="align-middle extra-small-font pr-0">${i18n.t('body.mp.provider')}</th>
+            <th class="text-center align-middle extra-small-font pr-0">${i18n.t('body.simulation.joinedDuration')}</th>
             <th class="text-center align-middle extra-small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
-                <p class="m-0 p-0">equity growth<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
+                <p class="m-0 p-0">${i18n.t('body.mp.equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle extra-small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trades">
-                <p class="m-0 p-0">Trades<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
+                <p class="m-0 p-0">${i18n.t('body.mp.trades')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle extra-small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
-                <p class="m-0 p-0">Management FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
+                <p class="m-0 p-0">${i18n.t('body.mp.managementFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle extra-small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
-                <p class="m-0 p-0">P Share %<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
+                <p class="m-0 p-0">${i18n.t('body.mp.pShare%')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle extra-small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
-                <p class="m-0 p-0">Total FEEs<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
+                <p class="m-0 p-0">${i18n.t('body.mp.totalFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle extra-small-font">Actions</th>
+            <th class="text-center align-middle extra-small-font">${i18n.t('body.mp.actions')}</th>
             </tr>
         </thead>
         `
@@ -624,11 +631,11 @@
             <p class="mb-0 font-bold responsive-value">$${formatWithCommas(total_profit_loss)}</p>
         </div>
         <div class="mr-3">
-            <p class="mb-0 responsive-label">Joined Duration</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.simulation.joinedDuration')}</p>
             <p class="mb-0 font-bold responsive-value">${formatDate(new Date(joined_start_date))} - ${formatDate(new Date(joined_end_date))}</p>
         </div>
         <div class="mr-3">
-            <p class="mb-0 responsive-label">Trades</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.mp.trades')}</p>
             <p class="mb-0 font-bold responsive-value">${formatWithCommas(trades)}</p>
         </div>
         <div class="mr-3">
@@ -636,11 +643,11 @@
             <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(subscription_fee)}</p>
         </div>
         <div class="mr-3">
-            <p class="mb-0 responsive-label">P share</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.mp.pShare%')}</p>
             <p class="mb-0 font-bold responsive-value">${profit_share}</p>
         </div>
         <div class="mr-3">
-            <p class="mb-0 responsive-label">Total fees</p>
+            <p class="mb-0 responsive-label">${i18n.t('body.mp.totalFees')}</p>
             <p class="mb-0 font-bold responsive-value">S$${formatWithCommas(total_fee)}</p>
         </div>
     </div>
@@ -732,11 +739,10 @@
 
     const isEmpty = Object.keys(strategy).length > 0 ? false : true;
 
-    console.log('cumulative_returns ', cumulative_returns)
     return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-              <div class="key tooltip-demo">Total Returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Since Inception </br> ${strategy_age}"></i></div>
+              <div class="key tooltip-demo">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.sinceInception')} </br> ${strategy_age}"></i></div>
                 <div class="d-flex justify-content-between">
                 <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
@@ -746,29 +752,29 @@
             </div>
             <div class="divider mx-2"></div>
             <div class="sparkline">
-              <div class="key">Current Balance</div>
+              <div class="key">${i18n.t('body.mp.currentBalance')}</div>
               <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(current_balance)}</div>
             </div>
             <div class="sparkline">
-              <div class="key">Return / Mth</div>
+              <div class="key">${i18n.t('body.simulation.return/Mth')}</div>
               <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(deposits)}</div>
             </div>
             <div class="sparkline">
-              <div class="key">Average Pips</div>
+              <div class="key">${i18n.t('body.simulation.averagePips')}</div>
               <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(withdrawals)}</div>
             </div>
             <div class="sparkline">
             <div class="key">
-                <p class="mb-0">Total Paid <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
+                <p class="mb-0">${i18n.t('body.simulation.totalPaid')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
             </div>
             <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(amount_paid)}</div>
             </div>
             <div class="sparkline">
-              <div class="key">Trades</div>
+              <div class="key">${i18n.t('body.mp.trades')}</div>
               <div class="value ${isEmpty ? 'text-light-gray' : 'green'}">${formatWithCommas(trades)}</div>
             </div>
             <div class="sparkline">
-              <div class="key">Max Drawdown</div>
+              <div class="key">${i18n.t('body.mp.maxDrawdown')}</div>
               <div class="value ${isEmpty ? 'text-light-gray' : 'dark-red'}">${max_drawdown}</div>
           </div>
       </div>`
@@ -792,41 +798,41 @@
       <div class="responsive-content">
         <div class="d-flex justify-content-between align-items-center p-3">
           <div class="key">
-            <p class="mb-0">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Strategy Age </br> ${strategy_age}"></i></p>
+            <p class="mb-0">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.strategyAge')} </br> ${strategy_age}"></i></p>
           </div>
           <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
         </div>
         <div class="horizontal-divider mx-2"></div>
         <div class="d-flex justify-content-between align-items-center p-3">
-            <div class="key">Balance</div>
+            <div class="key">${i18n.t('body.mp.balance')}</div>
             <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(current_balance)}</div>
         </div>
         <div class="horizontal-divider mx-2"></div>
         <div class="d-flex justify-content-between align-items-center p-3">
-            <div class="key">Return / mth</div>
+            <div class="key">${i18n.t('body.simulation.return/Mth')}</div>
             <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(deposits)}</div>
         </div>
         <div class="horizontal-divider mx-2"></div>
         <div class="d-flex justify-content-between align-items-center p-3">
-            <div class="key">Average Pips</div>
+            <div class="key">${i18n.t('body.simulation.averagePips')}</div>
             <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(withdrawals)}</div>
         </div>
         <div class="horizontal-divider mx-2"></div>
         <div class="d-flex justify-content-between align-items-center p-3">
             <div class="key">
-                <p class="mb-0">Total Paid</p>
-                <p class="mb-0 small-font font-weight-light">Fees + Profit Shared</p>
+                <p class="mb-0">${i18n.t('body.simulation.totalPaid')}</p>
+                <p class="mb-0 small-font font-weight-light">${i18n.t('body.mp.feesProfitShared')}</p>
             </div>
             <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD${formatWithCommas(amount_paid)}</div>
         </div>
         <div class="horizontal-divider mx-2"></div>
         <div class="row px-3">
             <div class="p-3 col d-flex justify-content-between border-right">
-                <div class="key">Trades</div>
+                <div class="key">${i18n.t('body.mp.trades')}</div>
                 <div class="value ${isEmpty ? 'text-light-gray' : 'green'}">${formatWithCommas(trades)}</div>
             </div>
             <div class="p-3 col d-flex justify-content-between">
-                <div class="key">Max Drawdown</div>
+                <div class="key">${i18n.t('body.mp.maxDrawdown')}</div>
                 <div class="value ${isEmpty ? 'text-light-gray' : 'dark-red'}">${max_drawdown}</div>
             </div>
         </div>
@@ -1008,7 +1014,7 @@
         <p class="font-bold medium-font mb-2">Follow Duration </p>
         <div class="d-flex justify-content-between">
             <div class="w-50">
-                <p class="mb-0 text-dark-gray">Start Date</p>
+                <p class="mb-0 text-dark-gray">${i18n.t('body.simulation.startDate')}</p>
                 <div class="date capital-date-input">
                   <button class="btn dropdown-toggle btn-dropdown font-bold pl-0" aria-expanded="false">
                     1 Jan 2021
@@ -1016,7 +1022,7 @@
                 </div>
             </div>
             <div class="w-50">
-                <p class="mb-0 text-dark-gray">End Date</p>
+                <p class="mb-0 text-dark-gray">${i18n.t('body.simulation.endDate')}</p>
                 <div class="date capital-date-input">
                   <button class="btn dropdown-toggle btn-dropdown font-bold pl-0" aria-expanded="false">
                     1 Jan 2021

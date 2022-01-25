@@ -134,7 +134,42 @@
       "ReturnsMTD": "Returns MTD",
       "ReturnsQTD": "Returns QTD",
       "ReturnsYTD": "Returns YTD",
-      "ReturnsFromInception": "Returns from Inception"
+      "ReturnsFromInception": "Returns from Inception",
+      "followAStrategyProvider": "Follow a Strategy Provider",
+      "avgLotSize": "Avg Lot Size",
+      "automatic": "Automatic",
+      "percentage": "Percentage",
+      "fixed": "Fixed",
+      "proportional": "Proportional",
+      "automaticTabHeading": "Automatic Settings Adjustment Fund Allocation",
+      "automaticTabP1": "This process is automatic.",
+      "learnMore": "Learn More",
+      "about": "about",
+      "automaticSettingsAdjustments": "Automatic Settings Adjustments",
+      "automaticTabP2": "The system will choose the favourable lot size for your trading account based on your account usage and available funds. No input from you is necessary.",
+      "showLess": "Show Less",
+      "percentageTabHeading": "Percentage of Total Balance Fund Allocation",
+      "percentageTabP1": "Set a percentage or fixed value for this Strategy Provider.",
+      "absoluteValue": "Absolute Value",
+      "percentageOfTotalBalance": "Percentage of Total Balance",
+      "percentageTabP2": "Enter a percentage of the total balance that you want to allocate to this trading strategy. E.g. if you enter “10%”, this means that 1/10 of your balance will be used to trade according to this strategy. You may also set the value higher than 100% depending on your risk tolerance.You can also set absolute values in which case the system will calculate the percentage depending on your balance. E.g. if you enter “USD 1000” with a balance of “USD 3000”, our trading server will execute a trade size 3 times smaller. The trade size (no. of lots) will be calculated automatically. Please note that this allocation does not limit your losses to the percentage of your account chosen. This only affects the size that is opened.",
+      "fixedTabHeading": "Fixed Lot Size Fund Allocation",
+      "fixedTabP1": "Set a specific trade size you want to follow for this Strategy Provider.",
+      "fixedTradeSize": "Fixed Trade Size",
+      "fixedLotSize": "Fixed Lot Size",
+      "fixedTabP2": "Enter the fixed trade size that you want to execute in your brokerage account. Please note that if a strategy provider works with a dynamic/floating trade size, your trading results may differ. It is recommended to use this option only if you can see two increasing parallel lines on the chart “Percentage vs Pips” of the trading strategy statistics page. In other words, this option can be effectively used if a trading strategy generates profits in Pips. E.g. “0.10” means that our trading server will always execute trades of a fixed size of 0.1 lot (10 000 units of the base currency) in your account.",
+      "proportionalTabHeading": "Proportional Trade Size Fund Allocation",
+      "proportionalTabP1": "Set a specific trade size you want to follow for this Strategy Provider.",
+      "ratioOfTradeSize": "Ratio of Trade Size",
+      "ratio": "Ratio",
+      "proportionalTradeSize": "Proportional Trade Size",
+      "proportionalTabP2": "This feature allows setting up dynamic, proportional trade size coefficient in percentage relation. If you want to open positions 5 times smaller than the strategy provider, you need to input “0.20”. If you want to open positions 5 times bigger than the strategy provider, input “5.00”. To meet the lot quantity values of the strategy provider input “1.00”.",
+      "riskManagement": "Risk Management",
+      "minimumLotSize": "Minimum Lot Size",
+      "maximumLotSize": "Maximum Lot Size",
+      "fixTakeProfit": "Fix Take Profit",
+      "fixStopLoss": "Fix Stop Loss",
+      "limitQuantityOfSimultaneousTrades": "Limit Quantity of Simultaneous Trades"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -176,11 +211,26 @@
       "createAccount": "Create Account",
       "createDemoAccount": "Create Demo Account",
       "noticeForDemoAccounts": "Notice for Demo Accounts:",
-      "noticeForDemoAccountsP1":"Inactive demo account will be removed/closed after 15 days.",
+      "noticeForDemoAccountsP1": "Inactive demo account will be removed/closed after 15 days.",
       "noticeForDemoAccountsP2": "Active demo account will be closed after 30 days."
+    },
+    "simulation": {
+      "inputCapital": "Input Capital",
+      "volume": "Volume",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "calculate": "Calculate",
+      "following": "Following",
+      "addProvider": "Add Provider",
+      "joinedDuration": "Joined Duration",
+      "simulationResults": "Simulation Results",
+      "return/Mth": "Return / mth",
+      "averagePips": "Average Pips",
+      "totalPaid": "Total Paid"
     }
   },
   "topnav": {
     "welcome": "Welcome"
   }
+
 }
