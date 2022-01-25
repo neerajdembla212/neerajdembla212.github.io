@@ -142,7 +142,8 @@
               </button>
               <ul class="dropdown-menu dropdown-alerts p-0 p-2 language-switcher">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
-                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)</li>
+                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)
+                </li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
                 </li>
@@ -186,8 +187,9 @@
             <section class="calculate-card card p-3 mr-3">
               <!-- Header start -->
               <div class="mb-3">
-                <p class="mb-0 font-weight-bold extra-large-font line-height-md">Input Capital</p>
-                <p class="mb-0 font-weight-light medium-font">Volume</p>
+                <p class="mb-0 font-weight-bold extra-large-font line-height-md"
+                  data-i18n="body.simulation.inputCapital"></p>
+                <p class="mb-0 font-weight-light medium-font" data-i18n="body.simulation.volume">Volume</p>
               </div>
               <!-- Header end -->
               <!-- input amount start -->
@@ -201,7 +203,7 @@
               <!-- input amount end -->
               <!-- start date start -->
               <div class="d-flex justify-content-between align-items-center py-2">
-                <p class="mb-0 font-weight-light medium-font">Start Date</p>
+                <p class="mb-0 font-weight-light medium-font" data-i18n="body.simulation.startDate">Start Date</p>
                 <div class="date capital-date-input">
                   <button class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
                     1 Jan 2021
@@ -212,7 +214,7 @@
               <div class="divider"></div>
               <!-- End Date start -->
               <div class="d-flex justify-content-between align-items-center py-2">
-                <p class="mb-0 font-weight-light medium-font">End Date</p>
+                <p class="mb-0 font-weight-light medium-font" data-i18n="body.simulation.endDate">End Date</p>
                 <div class="date capital-date-input">
                   <button class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
                     1 Jan 2021
@@ -221,7 +223,8 @@
               </div>
               <!--end date end -->
               <!-- Calculate button CTA start -->
-              <button id="calculate-cta" class="btn btn-primary btn-block" disabled>Calculate</button>
+              <button id="calculate-cta" class="btn btn-primary btn-block" disabled
+                data-i18n="body.simulation.calculate">Calculate</button>
               <!-- Calculate button CTA end -->
             </section>
             <!-- Calculate card end -->
@@ -229,9 +232,9 @@
             <div class="w-100">
               <section class="simulation-strategy-providers card col p-0">
                 <div class="d-flex justify-content-between p-3 align-items-center">
-                  <h3 class="">Following</h3>
+                  <h3 data-i18n="body.simulation.following">Following</h3>
                   <button type="button" data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle font-bold"
-                    aria-expanded="false">Add Provider</button>
+                    aria-expanded="false" data-i18n="body.simulation.addProvider">Add Provider</button>
                   <ul id="add-provider-menu" class="dropdown-menu">
                     <div class="form-group position-relative">
                       <span class="inline-search-icon fa fa-search"></span>
@@ -244,14 +247,22 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th class="align-middle extra-small-font pr-0">Provider</th>
-                        <th class="text-center align-middle extra-small-font pr-0">joined duration</th>
-                        <th class="text-center align-middle extra-small-font pr-0">equity growth</th>
-                        <th class="text-center align-middle extra-small-font pr-0">Trades</th>
-                        <th class="text-center align-middle extra-small-font pr-0">Management FEEs</th>
-                        <th class="text-center align-middle extra-small-font pr-0">P Share %</th>
-                        <th class="text-center align-middle extra-small-font pr-0">Total FEEs</th>
-                        <th class="text-center align-middle extra-small-font pr-0">Actions</th>
+                        <th class="align-middle extra-small-font pr-0" data-i18n="body.mp.provider">Provider</th>
+                        <th class="text-center align-middle extra-small-font pr-0"
+                          data-i18n="body.simulation.joinedDuration">
+                          joined duration</th>
+                        <th class="text-center align-middle extra-small-font pr-0" data-i18n="body.mp.equityGrowth">
+                          equity growth</th>
+                        <th class="text-center align-middle extra-small-font pr-0" data-i18n="body.mp.trades">Trades
+                        </th>
+                        <th class="text-center align-middle extra-small-font pr-0" data-i18n="body.mp.managementFees">
+                          Management FEEs</th>
+                        <th class="text-center align-middle extra-small-font pr-0" data-i18n="body.mp.pShare%">P Share %
+                        </th>
+                        <th class="text-center align-middle extra-small-font pr-0" data-i18n="body.mp.totalFees">Total
+                          FEEs</th>
+                        <th class="text-center align-middle extra-small-font pr-0" data-i18n="body.mp.actions">Actions
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -269,7 +280,7 @@
           <!-- Simulation Results start -->
           <!-- Sparkline start -->
           <div class="">
-            <h2 class="font-bold mb-3">Simulation Results</h2>
+            <h2 class="font-bold mb-3" data-i18n="body.simulation.simulationResults">Simulation Results</h2>
             <!-- Sparkline data will be displayed here from api-->
             <div class="sparkline-container mt-2">
               <div class="d-flex flex-wrap justify-content-between desktop-content">
@@ -281,29 +292,30 @@
                 </div>
                 <div class="divider mx-2"></div>
                 <div class="sparkline">
-                  <div class="key">Current Balance</div>
+                  <div class="key" data-i18n="body.mp.currentBalance">Current Balance</div>
                   <div class="value text-light-gray">SGD 0</div>
                 </div>
                 <div class="sparkline">
-                  <div class="key">Return / mth</div>
+                  <div class="key" data-i18n="body.simulation.return/Mth">Return / mth</div>
                   <div class="value text-light-gray">SGD 0</div>
                 </div>
                 <div class="sparkline">
-                  <div class="key">Average Pips</div>
+                  <div class="key" data-i18n="body.simulation.averagePips">Average Pips</div>
                   <div class="value text-light-gray">SGD 0</div>
                 </div>
                 <div class="sparkline">
                   <div class="key">
-                    <p class="mb-0">Total Paid <i class="fa fa-question-circle cursor-pointer ml-1"></i></p>
+                    <p class="mb-0"><span data-i18n="body.simulation.totalPaid">Total Paid</span> <i
+                        class="fa fa-question-circle cursor-pointer ml-1"></i></p>
                   </div>
                   <div class="value text-light-gray">SGD 0</div>
                 </div>
                 <div class="sparkline">
-                  <div class="key">Trades</div>
+                  <div class="key" data-i18n="body.mp.trades">Trades</div>
                   <div class="value text-light-gray">0</div>
                 </div>
                 <div class="sparkline">
-                  <div class="key">Max Drawdown</div>
+                  <div class="key" data-i18n="body.mp.maxDrawdown">Max Drawdown</div>
                   <div class="value text-light-gray">0%</div>
                 </div>
               </div>
@@ -335,7 +347,7 @@
             <div class="modal-content animated fadeIn">
               <!-- Modal header start -->
               <div class="d-flex justify-content-between p-3">
-                <h4 class="modal-title">Follow a Strategy Provider</h4>
+                <h4 class="modal-title" data-i18n="body.common.followAStrategyProvider">Follow a Strategy Provider</h4>
                 <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
                   <img src="img/ic_cross.svg">
                 </button>
@@ -348,8 +360,10 @@
               <!-- Modal body end -->
               <!-- Modal footer start -->
               <div class="modal-footer w-100 d-flex justify-content-between p-3 align-items-center">
-                <p class="simulation-text p-1 mb-0 extra-small-font font-bold">SIMULATION</p>
-                <button type="button" class="btn btn-primary" id="add-provider">Add Provider</button>
+                <p class="simulation-text p-1 mb-0 extra-small-font font-bold text-uppercase"
+                  data-i18n="body.nav.simulation">SIMULATION</p>
+                <button type="button" class="btn btn-primary" id="add-provider"
+                  data-i18n="body.simulation.addProvider">Add Provider</button>
               </div>
               <!-- Modal footer end -->
             </div>
