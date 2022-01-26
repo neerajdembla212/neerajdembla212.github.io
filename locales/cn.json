@@ -98,13 +98,22 @@
       "thePossibilityExistsMessage": "您可能会损失部分或全部的存入资金，因此您不应该用无法承受损失的资金进行投机。",
       "youShouldBeAwareOfMessage": "您应该了解与外汇、商品期货、期权、差价合约和点差交易相关的所有风险，如有任何疑问，请向独立顾问寻求建议。过去的回报并不代表未来的结果。"
     },
-    "tradeTerminal": {
+    "tt": {
       "tradeTerminal": "交易终端",
+      "tradingTerminal": "交易终端",
       "pricesByFulletronMarkets": "富乐敦的价格",
       "maketOpen": "开市",
       "openTrades": "未结交易",
       "pendingOrders": "挂单（表",
-      "tradeHistory": "交易历史"
+      "tradeHistory": "交易历史",
+      "symbol": "标志",
+      "trader": "交易者",
+      "openPrice": "开盘价",
+      "current": "当前的",
+      "swap": "隔夜利率",
+      "profit": "利润",
+      "cancel": "取消",
+      "status": "状态"
     },
     "common": {
       "buySell": "买/卖",
@@ -169,7 +178,10 @@
       "maximumLotSize": "最大手数",
       "fixTakeProfit": "修复获利",
       "fixStopLoss": "修复止损",
-      "limitQuantityOfSimultaneousTrades": "限制同时交易的数量"
+      "limitQuantityOfSimultaneousTrades": "限制同时交易的数量",
+      "showing": "显示",
+      "to": "到",
+      "of": "的"
     },
     "sp": {
       "topPerformer": "表现最好的",

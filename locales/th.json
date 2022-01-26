@@ -98,13 +98,22 @@
       "thePossibilityExistsMessage": "มีความเป็นไปได้ที่คุณจะสูญเสียเงินทุนบางส่วนหรือทั้งหมดของคุณต่อไป ดังนั้น คุณไม่ควรเก็งกำไรด้วยเงินทุนที่คุณไม่สามารถจะสูญเสียได้",
       "youShouldBeAwareOfMessage": "คุณควรตระหนักถึงความเสี่ยงทั้งหมดที่เกี่ยวข้องกับการแลกเปลี่ยนเงินตราต่างประเทศ ฟิวเจอร์สสินค้าโภคภัณฑ์ ออปชั่น CFD และการซื้อขาย SpreadBetting และขอคำแนะนำจากที่ปรึกษาอิสระหากคุณมีข้อสงสัย ผลตอบแทนในอดีตไม่ได้บ่งบอกถึงผลลัพธ์ในอนาคต"
     },
-    "tradeTerminal": {
+    "tt": {
       "tradeTerminal": "เทรด เทอร์มินัล",
+      "tradingTerminal": "เทรดดิ้ง เทอร์มินัล",
       "pricesByFulletronMarkets": "ราคาตาม Fullerton Markets",
       "maketOpen": "ตลาดเปิด",
       "openTrades": "Open Trades",
       "pendingOrders": "Pending Orders",
-      "tradeHistory": "ประวัติการเทรด"
+      "tradeHistory": "ประวัติการเทรด",
+      "symbol": "สัญลักษณ์",
+      "trader": "เทรดเดอร์",
+      "openPrice": "ราคาเปิด",
+      "current": "Current",
+      "swap": "Swap",
+      "profit": "กำไร",
+      "cancel": "ยกเลิก",
+      "status": "สถานะ"
     },
     "common": {
       "buySell": "ซื้อ/ขาย",
@@ -113,7 +122,7 @@
       "type": "ประเภท",
       "marketExecution": "การดำเนินการตามตลาด",
       "pendingOrder": "Pending Order",
-      "orderType": "ประเภท Order ",
+      "orderType": "ประเภท Order",
       "buyLimit": "Buy Limit",
       "sellLimit": "Sell Limit",
       "buyStop": "Buy Stop",
@@ -169,7 +178,10 @@
       "maximumLotSize": "ปริมาณล็อตสูงสุด",
       "fixTakeProfit": "Fix Take Profit",
       "fixStopLoss": "Fix Stop Loss",
-      "limitQuantityOfSimultaneousTrades": "จำกัดปริมาณการซื้อขายพร้อมกัน"
+      "limitQuantityOfSimultaneousTrades": "จำกัดปริมาณการซื้อขายพร้อมกัน",
+      "showing": "กำลังแสดง",
+      "to": "ถึง",
+      "of": "ของ"
     },
     "sp": {
       "topPerformer": "Top Performer",

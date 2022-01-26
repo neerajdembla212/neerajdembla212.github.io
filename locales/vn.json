@@ -98,18 +98,27 @@
       "thePossibilityExistsMessage": "Bạn có thể mất một phần hoặc toàn bộ số tiền đã ký gửi, vì vậy bạn không nên đầu cơ với số vốn mà bạn không chấp nhận được việc chúng có thể bị mất.",
       "youShouldBeAwareOfMessage": "Bạn nên hiểu tất cả các rủi ro liên quan đến ngoại hối, hợp đồng tương lai hàng hóa, quyền chọn, CFD và đặt cược chênh lệch giá. Nếu bạn có bất kỳ câu hỏi nào, vui lòng tìm lời khuyên từ một nhà tư vấn độc lập. Lợi nhuận trong quá khứ không đại diện cho kết quả trong tương lai."
     },
-    "tradeTerminal": {
+    "tt": {
       "tradeTerminal": "Trung tâm giao dịch",
+      "tradingTerminal": "Trung tâm Giao dịch",
       "pricesByFulletronMarkets": "Giá trên Fullerton Markets",
       "maketOpen": "Thị trường mở",
       "openTrades": "Mở Giao dịch",
       "pendingOrders": "Lệnh chờ xử lý",
-      "tradeHistory": "Lịch sử giao dịch"
+      "tradeHistory": "Lịch sử giao dịch",
+      "symbol": "Ký hiệu",
+      "trader": "Nhà giao dịch",
+      "openPrice": "Mở giá",
+      "current": "Hiện hành",
+      "swap": "Swap",
+      "profit": "Lợi nhuận",
+      "cancel": "Hủy bỏ",
+      "status": "Trạng thái"
     },
     "common": {
       "buySell": "Buy/Sell",
       "orderByAccount": "Đặt lệnh theo tài khoản",
-      "volume": "Volume",
+      "volume": "Khối lượng",
       "type": "Loại",
       "marketExecution": "Khớp lệnh thị trường",
       "pendingOrder": "Lệnh chờ",
@@ -169,7 +178,10 @@
       "maximumLotSize": "Kích thước lot tối đa",
       "fixTakeProfit": "Điều chỉnh Chốt lời",
       "fixStopLoss": "Điều chỉnh Cắt lỗ",
-      "limitQuantityOfSimultaneousTrades": "Giới hạn số lượng giao dịch đồng thời"
+      "limitQuantityOfSimultaneousTrades": "Giới hạn số lượng giao dịch đồng thời",
+      "showing": "trưng bày",
+      "to": "đến",
+      "of": "của"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
