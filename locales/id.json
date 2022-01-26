@@ -98,13 +98,22 @@
       "thePossibilityExistsMessage": "Ada kemungkinan bahwa Anda dapat menanggung kerugian sebagian atau seluruh dana yang Anda setorkan dan oleh karena itu Anda tidak boleh berspekulasi dengan modal yang Anda tidak mampu kehilangannya.",
       "youShouldBeAwareOfMessage": "Anda harus menyadari semua risiko yang terkait dengan valuta asing, komoditas berjangka, opsi, CFD, dan trading SpreadBetting, dan mencari saran dari penasihat independen jika Anda ragu. Keuntungan masa lalu tidak menunjukkan hasil di masa depan."
     },
-    "tradeTerminal": {
+    "tt": {
       "tradeTerminal": "Terminal Perdagangan",
+      "tradingTerminal": "Terminal Perdagangan",
       "pricesByFulletronMarkets": "Harga menurut Fullerton Markets",
       "maketOpen": "Pembukaan Pasar",
       "openTrades": "Perdagangan Terbuka",
       "pendingOrders": "Pesanan Tertunda",
-      "tradeHistory": "Riwayat Perdagangan"
+      "tradeHistory": "Riwayat Perdagangan",
+      "symbol": "Simbol",
+      "trader": "Trader",
+      "openPrice": "Harga Pembukaan",
+      "current": "Saat ini",
+      "swap": "Swap",
+      "profit": "Laba",
+      "cancel": "Batal",
+      "status": "Status"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -169,7 +178,10 @@
       "maximumLotSize": "Ukuran Lot Maksimum",
       "fixTakeProfit": "Fix Take Profit",
       "fixStopLoss": "Fix Stop Loss",
-      "limitQuantityOfSimultaneousTrades": "Batasi Jumlah Perdagangan Simultan"
+      "limitQuantityOfSimultaneousTrades": "Batasi Jumlah Perdagangan Simultan",
+      "showing": "menunjukkan",
+      "to": "ke",
+      "of": "dari"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

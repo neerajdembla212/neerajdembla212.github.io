@@ -98,13 +98,22 @@
       "thePossibilityExistsMessage": "The possibility exists that you could sustain a loss of some or all of your deposited funds and therefore you should not speculate with capital that you cannot afford to lose.",
       "youShouldBeAwareOfMessage": "You should be aware of all the risks associated with foreign exchange, Commodity futures, options, CFDs and SpreadBetting trading, and seek advice from an independent advisor if you have any doubts. Past returns are not indicative of future results. "
     },
-    "tradeTerminal": {
+    "tt": {
       "tradeTerminal": "Trade Terminal",
+      "tradingTerminal": "Trading Terminal",
       "pricesByFulletronMarkets": "Prices by Fullerton Markets",
       "maketOpen": "MARKET OPEN",
       "openTrades": "Open Trades",
       "pendingOrders": "Pending Orders",
-      "tradeHistory": "Trade History"
+      "tradeHistory": "Trade History",
+      "symbol": "Symbol",
+      "trader": "Trader",
+      "openPrice": "Open Price",
+      "current": "Current",
+      "swap": "Swap",
+      "profit": "Profit",
+      "cancel": "Cancel",
+      "status": "Status"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -169,7 +178,10 @@
       "maximumLotSize": "Maximum Lot Size",
       "fixTakeProfit": "Fix Take Profit",
       "fixStopLoss": "Fix Stop Loss",
-      "limitQuantityOfSimultaneousTrades": "Limit Quantity of Simultaneous Trades"
+      "limitQuantityOfSimultaneousTrades": "Limit Quantity of Simultaneous Trades",
+      "showing": "Showing",
+      "to": "to",
+      "of": "of"
     },
     "sp": {
       "topPerformer": "Top Performer",

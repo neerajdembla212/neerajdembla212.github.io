@@ -464,16 +464,16 @@
             case '#open-trades':
                 actionHeader = '<th class="text-center align-middle">Close</th>'; break;
             case '#pending-orders':
-                actionHeader = '<th class="text-center align-middle">Cancel</th>'; break;
+                actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.cancel')}</th>`; break;
             case '#closed-trades':
-                actionHeader = '<th class="text-center align-middle">Status</th>'; break;
+                actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.status')}</th>`; break;
         }
         return `
         <thead>
             <tr>
-            <th class="pl-2 align-middle">Symbol</th>
-            <th class="text-center align-middle">Trader</th>
-            <th class="text-center align-middle">Type</th>
+            <th class="pl-2 align-middle">${i18n.t('body.tt.symbol')}</th>
+            <th class="text-center align-middle">${i18n.t('body.tt.trader')}</th>
+            <th class="text-center align-middle">${i18n.t('body.common.type')}</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
                     <p class="m-0 p-0 header-text m-auto">Time Stamp<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
@@ -481,12 +481,12 @@
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                    <p class="m-0 p-0 header-text m-auto">Vol.<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.common.volume')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="open_price">
-                    <p class="m-0 p-0 header-text m-auto">Open Price<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'open_price' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.openPrice')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'open_price' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
@@ -501,17 +501,17 @@
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="current">
-                    <p class="m-0 p-0 header-text m-auto">Current<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'current' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.current')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'current' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
-                    <p class="m-0 p-0 header-text m-auto">Swap<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.swap')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
-                    <p class="m-0 p-0 header-text m-auto">Profit<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.profit')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             ${actionHeader}
@@ -606,13 +606,13 @@
         <tr>
           <td colspan="12">
           <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+            <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.trades')}</p>
             <ul class="pagination d-flex justify-content-end align-items-center m-0">
             <select class="form-control rows-per-page mr-2" name="rows-per-page" id="open-trade-rows-per-page">
-                <option value="10">10 Rows per page</option>
-                <option value="20">20 Rows per page</option>
-                <option value="30">30 Rows per page</option>
-                <option value="40">40 Rows per page</option>
+                <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+                <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
             </select>
                 <button class="btn btn-default border-0" type="button" id="prev-page-open-trade" disabled="true">
                     <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -620,7 +620,6 @@
                 <button class="btn btn-default border-0" type="button" id="next-page-open-trade" disabled="true">
                     <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
                 </button>
-                
             </ul>
             </div>
             </td>
@@ -1314,7 +1313,7 @@
         return `
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
-          <p class="mb-0 font-bold">Order by Account</p>
+          <p class="mb-0 font-bold">${i18n.t('body.common.orderByAccount')}</p>
           <div class="account-number p-1 ${selelctedAccount.type === 'DEMO' ? 'demo-account' : ''}"><span class="mr-1 text-navy live small-font ${selelctedAccount.type === 'DEMO' ? 'demo' : ''}">${selelctedAccount.type}</span><span
               class="medium-font font-bold small-font">${selelctedAccount.number}</span>
           </div>
@@ -1327,7 +1326,7 @@
         <div class="d-flex justify-content-between mb-3 align-items-center">
           <div class="line-height-md">
             <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
-            <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
+            <p class="mb-0 medium-font font-weight-light text-gray">${i18n.t('body.common.volume')}</p>
           </div>
           <div class="w-50 position-relative">
             ${volumeInputHTML}
@@ -1337,13 +1336,13 @@
         <div class="divider mb-3"></div>
         <!-- Type input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Type</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.type')}</p>
             <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
                 ${typeValue}
             </button>
             <ul id="type-input-menu" class="dropdown-menu" data-value="${type}">
-                <li data-value="market_execution"><a class="dropdown-item" href="#">Market Execution</a></li>
-                <li data-value="pending_order"><a class="dropdown-item" href="#">Pending Order</a></li>
+                <li data-value="market_execution"><a class="dropdown-item" href="#">${i18n.t('body.common.marketExecution')}</a></li>
+                <li data-value="pending_order"><a class="dropdown-item" href="#">${i18n.t('body.common.pendingOrder')}</a></li>
             </ul>
         </div>
         <!-- Type input end -->
@@ -1503,7 +1502,7 @@
         let priceInput = `
          <!-- Price input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Price</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.price')}</p>
             <div class="position-relative w-40">
                 <input type="text" class="form-control" id="price-input">
             </div>
@@ -1516,7 +1515,7 @@
             return `
             <!-- Order Type input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
-                <p class="mb-0 font-weight-light medium-font">Order Type</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.orderType')}</p>
                 <button data-toggle="dropdown" class="btn font-bold">${type}</button>
             </div>
             <!-- Order Type input end -->
@@ -1524,7 +1523,7 @@
             
             <!-- Expiration input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
-                <p class="mb-0 font-weight-light medium-font">Expiration</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expiration')}</p>
                 <button class="btn font-bold">${expiration}</button>
             </div>
             <!-- Expiration input end -->
@@ -1532,7 +1531,7 @@
             
             <!-- Expiration Date input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
-                <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expirationDate')}</p>
                 <button class="btn font-bold">${formatDate(new Date(gtc_expiration_date), 'DD MMM YYYY HH:mm')}</button>
             </div>
             <!-- Expiration Date input end -->
@@ -1546,7 +1545,7 @@
             priceInput = `
             <!-- Price input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
-                <p class="mb-0 font-weight-light medium-font">Price</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.price')}</p>
                 <div class="position-relative w-40">
                     <input type="text" class="form-control" id="price-input" value="${order_price}">
                 </div>
@@ -1555,36 +1554,36 @@
         }
         return ` <!-- Order Type input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Order Type</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.orderType')}</p>
             <button id="btn-order-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false" data-value="buy_limit">
                 Buy Limit
             </button>
             <ul id="order-type-input-menu" class="dropdown-menu">
-                <li data-value="buy_limit"><a class="dropdown-item" href="#">Buy Limit</a></li>
-                <li data-value="sell_limit"><a class="dropdown-item" href="#">Sell Limit</a></li>
-                <li data-value="buy_stop"><a class="dropdown-item" href="#">Buy Stop</a></li>
-                <li data-value="sell_stop"><a class="dropdown-item" href="#">Sell Stop</a></li>
+                <li data-value="buy_limit"><a class="dropdown-item" href="#">${i18n.t('body.common.buyLimit')}</a></li>
+                <li data-value="sell_limit"><a class="dropdown-item" href="#">${i18n.t('body.common.sellLimit')}</a></li>
+                <li data-value="buy_stop"><a class="dropdown-item" href="#">${i18n.t('body.common.buyStop')}</a></li>
+                <li data-value="sell_stop"><a class="dropdown-item" href="#">${i18n.t('body.common.sellStop')}</a></li>
             </ul>
         </div>
         <!-- Order Type input end -->
         <div class="divider mb-3"></div>
         <!-- Expiration input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Expiration</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expiration')}</p>
             <button id="btn-expiration-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
-                Day Order
+                ${i18n.t('body.common.dayOrder')}
             </button>
             <ul id="expiration-input-menu" class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Good Till Cancelled (GTC)</a></li>
-                <li><a class="dropdown-item" href="#">Day Order</a></li>
-                <li><a class="dropdown-item" href="#">Specific</a></li>
+                <li><a class="dropdown-item" href="#">${i18n.t('body.common.goodTillCancelled')}</a></li>
+                <li><a class="dropdown-item" href="#">${i18n.t('body.common.dayOrder')}</a></li>
+                <li><a class="dropdown-item" href="#">${i18n.t('body.common.specific')}</a></li>
             </ul>
         </div>
         <!-- Expiration input end -->
         <div class="divider mb-3"></div>
         <!-- Expiration Date input start -->
         <div class="d-flex justify-content-between mb-3 align-items-center">
-            <p class="mb-0 font-weight-light medium-font">Expiration Date</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expirationDate')}</p>
             <div class="date d-flex align-items-center">
                 <input type="text" value="${formatDate(new Date(day_order_expiration_date), 'DD MMM YYYY HH:mm')}" id="expiration-date-input" data-date-format="${STATE.getDateTimePickerFormat()}" class="border-0 font-bold cursor-pointer" />
                 <i class="down-arrow-black"></i>
