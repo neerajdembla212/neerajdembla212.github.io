@@ -252,22 +252,8 @@
             onTabChange($(event.target).attr('href'))
         })
 
-        DESKTOP_MEDIA.addEventListener('change', function (event) {
-            const activeId = getActiveTab().attr('href');
-            if (event.matches) {
-                // screen width is below 992px;
-                console.log('active Id ', activeId);
-                switch (activeId) {
-                    case '#open-trades': renderResponsiveTradesHTML('open'); break;
-                    case '#pending-trades': renderResponsiveTradesHTML('pending'); break;
-                    case '#closed-trades': renderResponsiveTradesHTML('closed'); break;
-                }
-            } else {
-                // screen width is above 992px;
-                onTabChange(activeId);
-            }
-        })
-
+        DESKTOP_MEDIA.addEventListener('change', renderTradeSection)
+        renderTradeSection(DESKTOP_MEDIA);
         MOBILE_MEDIA.addEventListener('change', updateTabNames)
         updateTabNames(MOBILE_MEDIA);
 
@@ -305,6 +291,29 @@
 
         // add new watchlist
         $('#add-new-watchList').unbind().click(addNewWatchList)
+
+        // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+        // each page has to add respective function on window to reload the translations on their page
+        window.reloadElementsOnLanguageChange = function () {
+            renderBuySellData();
+            renderTradeSection(DESKTOP_MEDIA);
+        }
+    }
+
+    function renderTradeSection(event) {
+        const activeId = getActiveTab().attr('href');
+        if (event.matches) {
+            // screen width is below 992px;
+            console.log('active Id ', activeId);
+            switch (activeId) {
+                case '#open-trades': renderResponsiveTradesHTML('open'); break;
+                case '#pending-trades': renderResponsiveTradesHTML('pending'); break;
+                case '#closed-trades': renderResponsiveTradesHTML('closed'); break;
+            }
+        } else {
+            // screen width is above 992px;
+            onTabChange(activeId);
+        }
     }
 
     function updateTabNames(event) {
@@ -755,7 +764,7 @@
         let actionCTA = '';
         switch (tradeType) {
             case 'open': actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">Close</button>`; break;
-            case 'pending': actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>`; break;
+            case 'pending': actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />${i18n.t('body.tt.cancel')}</button>`; break;
             case 'closed':
                 actionCTA = `
                 <div>
@@ -784,12 +793,12 @@
             </div>
         <div class="d-flex justify-content-between mt-2">
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label text-center">Open Price</p>
+                <p class="mb-0 responsive-label text-center">${i18n.t('body.tt.openPrice')}</p>
                 <p class="mb-0 font-bold responsive-value">${open_price}</p>
             </div>
             
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label text-center">Volume</p>
+                <p class="mb-0 responsive-label text-center">${i18n.t('body.common.volume')}</p>
                 <p class="mb-0 font-bold responsive-value">${trade_volume}</p>
             </div>
             
@@ -803,11 +812,11 @@
                 <p class="mb-0 font-bold responsive-value">${tp}</p>
             </div>
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label text-center">Swap</p>
+                <p class="mb-0 responsive-label text-center">${i18n.t('body.tt.swap')}</p>
                 <p class="mb-0 font-bold responsive-value">${swap}</p>
             </div>
             <div class="mr-3 d-flex flex-column justify-content-between">
-                <p class="mb-0 responsive-label text-center">Profit</p>
+                <p class="mb-0 responsive-label text-center">${i18n.t('body.tt.profit')}</p>
                 <p class="mb-0 font-bold responsive-value ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">S$${profit}</p>
             </div>
         </div>
@@ -824,13 +833,13 @@
 
         return `
         <div class="d-flex justify-content-between align-items-center p-2">
-        <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+        <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.trades')}</p>
         <ul class="pagination d-flex justify-content-end align-items-center m-0">
             <select class="form-control rows-per-page mr-2" name="rows-per-page" id="${idPrefix}-rows-per-page">
-                <option value="10">10 Rows per page</option>
-                <option value="20">20 Rows per page</option>
-                <option value="30">30 Rows per page</option>
-                <option value="40">40 Rows per page</option>
+                <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+                <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
             </select>
             <button class="btn btn-default border-0" type="button" id="prev-page-${idPrefix}" disabled="true">
                 <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
