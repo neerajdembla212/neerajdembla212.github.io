@@ -113,7 +113,10 @@
       "swap": "隔夜利率",
       "profit": "利润",
       "cancel": "取消",
-      "status": "状态"
+      "status": "状态",
+      "editOrder": "编辑订单",
+      "cancelOrder": "取消订单",
+      "modify": "调整"
     },
     "common": {
       "buySell": "买/卖",

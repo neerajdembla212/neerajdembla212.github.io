@@ -113,7 +113,10 @@
       "swap": "Swap",
       "profit": "Lợi nhuận",
       "cancel": "Hủy bỏ",
-      "status": "Trạng thái"
+      "status": "Trạng thái",
+      "editOrder": "Thay đổi lệnh yêu cầu",
+      "cancelOrder": "Hủy lệnh",
+      "modify": "Điều chỉnh"
     },
     "common": {
       "buySell": "Buy/Sell",

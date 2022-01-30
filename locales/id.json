@@ -113,7 +113,10 @@
       "swap": "Swap",
       "profit": "Laba",
       "cancel": "Batal",
-      "status": "Status"
+      "status": "Status",
+      "editOrder": "Sunting Pesanan",
+      "cancelOrder": "Batalkan Pesanan",
+      "modify": "Memodifikasi"
     },
     "common": {
       "buySell": "Buy/Sell",

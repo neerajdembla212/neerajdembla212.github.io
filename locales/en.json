@@ -113,7 +113,10 @@
       "swap": "Swap",
       "profit": "Profit",
       "cancel": "Cancel",
-      "status": "Status"
+      "status": "Status",
+      "editOrder": "Edit Order",
+      "cancelOrder": "Cancel Order",
+      "modify": "Modify"
     },
     "common": {
       "buySell": "Buy/Sell",
