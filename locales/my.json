@@ -113,7 +113,10 @@
       "swap": "Swap",
       "profit": "Untung",
       "cancel": "Batal",
-      "status": "Status"
+      "status": "Status",
+      "editOrder": "Edit Order",
+      "cancelOrder": "Batal Order",
+      "modify": "Ubah suai"
     },
     "common": {
       "buySell": "Buy/Sell",

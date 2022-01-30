@@ -209,7 +209,10 @@
         })
         registerGlobalEvents();
         resetBuySellData();
-        renderBuySellData();
+        i18n.setLng(localStorage.getItem('selectedLanguage'), function () {
+            $('#wrapper').i18n();
+            window.reloadElementsOnLanguageChange();
+        })
         const activeId = getActiveTab().attr('href');
         onTabChange(activeId);
         // fetching watchlist
@@ -242,8 +245,6 @@
             }
         ])
         renderPinnedCurrencies();
-        // global function
-        initI18nPlugin();
     });
 
     function registerGlobalEvents() {
@@ -291,6 +292,9 @@
 
         // add new watchlist
         $('#add-new-watchList').unbind().click(addNewWatchList)
+
+        // global function
+        initI18nPlugin();
 
         // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
         // each page has to add respective function on window to reload the translations on their page
@@ -938,7 +942,7 @@
                     NA
                 </td>
                 <td class="text-center align-middle">
-                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />Cancel</button>
+                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />${i18n.t('body.tt.cancel')}</button>
                 </td>
             </tr>
             `
@@ -1308,7 +1312,7 @@
             one_click_trading } = data;
 
         const selelctedAccount = STATE.getSelectedAccount();
-        const typeValue = type === 'pending_order' ? 'Pending Order' : 'Market Execution';
+        const typeValue = type === 'pending_order' ? i18n.t('body.common.pendingOrder') : i18n.t('body.common.marketExecution');
         const orderDetailsHTML = status !== 'NEW' ? `
         <div class="d-flex justify-content-between mb-3">
             <p class="mb-0 font-weight-bold text-dark-gray">${order_type} ORDER #${order_number}</p>
@@ -1364,14 +1368,14 @@
         <!-- Profit loss display end -->
         <!-- Profit loss input start -->
         <div class="d-flex justify-content-between mb-2">
-            <p class="mb-0 font-weight-light medium-font">Take Profit</p>
-            <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.takeProfit')}</p>
+            <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.stopLoss')}</p>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="position-relative w-40">
                 ${profitInputHTML}
            </div>
-            <span class="font-bold medium-font text-dark-black">Price</span>
+            <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.price')}</span>
             <div class="position-relative w-40">
                 ${lossInputHTML}
             </div>
@@ -1382,7 +1386,7 @@
         <!-- Buy Sell CTA end -->
         <!-- one Click trading start-->
         <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0 text-gray font-weight-light">One click trading</p>
+            <p class="mb-0 text-gray font-weight-light">${i18n.t('body.common.oneClickTrading')}</p>
             <input id="one-click-trading-input" type="checkbox" class="js-switch" ${one_click_trading ? 'checked' : ''} />
         </div>
         <!-- one Click trading end-->`
@@ -1459,10 +1463,10 @@
         if (status === 'NEW') {
             return `<div class="d-flex justify-content-between mb-3 buy-sell-footer">
             <button id="sell-trade" type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
-            Sell
+            ${i18n.t('body.common.sell')}
             </button>
             <button id="buy-trade" type="button" class="btn btn-w-m btn-primary w-45">
-            Buy
+            ${i18n.t('body.common.buy')}
             </button>
             <button id="place-order" type="button" class="btn btn-w-m btn-default btn-medium-blue btn-block text-white d-none">
             Place Order
@@ -1472,10 +1476,10 @@
             return `
             <div class="d-flex justify-content-between mb-3">
                 <button id="cancel-trade" type="button" class="btn btn-w-m btn-default w-45 text-bleed-red font-bold">
-                    Cancel Order
+                    ${i18n.t('body.tt.cancelOrder')}
                 </button>
                 <button type="button" class="btn btn-w-m btn-blue w-45 text-white font-bold">
-                    Modify
+                    ${i18n.t('body.tt.modify')}
                 </button>
             </div>
             <button id="create_new_order" type="button" class="btn btn-w-m btn-block w-45 text-blue font-bold m-auto">Create New Order</button>
@@ -1565,7 +1569,7 @@
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.orderType')}</p>
             <button id="btn-order-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false" data-value="buy_limit">
-                Buy Limit
+                ${i18n.t('body.common.buyLimit')}
             </button>
             <ul id="order-type-input-menu" class="dropdown-menu">
                 <li data-value="buy_limit"><a class="dropdown-item" href="#">${i18n.t('body.common.buyLimit')}</a></li>
@@ -1677,14 +1681,14 @@
             const selectedButton = container.find('#btn-type-input');
             const dropdownMenu = container.find('#type-input-menu.dropdown-menu');
             if (selectedValue === 'market_execution') {
-                selectedButton.text('Market Execution');
+                selectedButton.text(i18n.t('body.common.marketExecution'));
                 container.find('.dynamic-elements').addClass('d-none');
                 // update footer cta section to sell and buy
                 container.find('.buy-sell-footer #sell-trade').removeClass('d-none');
                 container.find('.buy-sell-footer #buy-trade').removeClass('d-none');
                 container.find('.buy-sell-footer #place-order').addClass('d-none');
             } else if (selectedValue === 'pending_order') {
-                selectedButton.text('Pending Order');
+                selectedButton.text(i18n.t('body.common.pendingOrder'));
                 container.find('.dynamic-elements').removeClass('d-none');
                 renderPendingOrderFormControls();
                 // update footer cta section to place order
@@ -2049,7 +2053,7 @@
             priceInput = `
             <!-- Price input start -->
             <div class="d-flex justify-content-between mx-3 mb-3 align-items-center">
-                <p class="mb-0 font-weight-light medium-font">Price</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.price')}</p>
                 <input type="text" class="form-control w-40" id="price-input" disabled value="${order_price}">
             </div>
             <!-- Price input end -->
@@ -2074,7 +2078,7 @@
             <!-- Sell order details end -->
             <!-- order account details start -->
             <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
-                <p class="mb-0 font-weight-bolder medium-font text-dark-gray">Order by Account</p>
+                <p class="mb-0 font-weight-bolder medium-font text-dark-gray">${i18n.t('body.common.orderByAccount')}</p>
                 <div class="account-number py-1 px-3"><span class="mr-1 text-navy live small-font">${order_account_type}</span><span
                     class="medium-font font-bold small-font">${order_account_number}</span>
                 </div>
@@ -2084,7 +2088,7 @@
             <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
                 <div class="line-height-md">
                     <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
-                    <p class="mb-0 medium-font font-weight-light text-gray">Volume</p>
+                    <p class="mb-0 medium-font font-weight-light text-gray">${i18n.t('body.common.volume')}</p>
                 </div>
                 <div class="position-relative w-40">
                     ${tradeVolumeInput}
@@ -2094,9 +2098,9 @@
             <div class="divider mb-3 mx-3"></div>
             <!-- Type input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
-                <p class="mb-0 font-weight-light medium-font">Type</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.type')}</p>
                 <button id="btn-type-input-edit" class="btn btn-dropdown font-bold">
-                    ${order_type === 'market_execution' ? 'Market Execution' : 'Pending Order'}
+                    ${order_type === 'market_execution' ? i18n.t('body.common.marketExecution') : i18n.t('body.common.pendingOrder')}
                 </button>
             </div>
             <!-- Type input end -->
@@ -2110,14 +2114,14 @@
             ${getEditTradeModalStatusHTML()}
             <!-- Profit loss input start -->
             <div class="d-flex justify-content-between mb-2 mx-3">
-                <p class="mb-0 font-weight-light medium-font">Take Profit</p>
-                <p class="mb-0 font-weight-light medium-font">Stop Loss</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.takeProfit')}</p>
+                <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.stopLoss')}</p>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-3 mx-3">
                 <div class="position-relative w-40">
                     ${takeProfitInput}
                 </div>
-                <span class="font-bold medium-font text-dark-black">Price</span>
+                <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.price')}</span>
                 <div class="position-relative w-40">
                     ${stoplLossInput}
                 </div>
@@ -2211,10 +2215,10 @@
             <!-- Modify CTA start -->
             <div class="d-flex justify-content-between mb-3 mx-3">
             <button type="button" id="cancel-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
-                Cancel Order
+                ${i18n.t('body.tt.cancelOrder')}
             </button>
             <button type="button" id="modify-trade" disabled class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
-                Modify
+                ${i18n.t('body.tt.modify')}
             </button>
             </div>
             <!-- Modify CTA end -->
@@ -2231,7 +2235,7 @@
                 Close Order
             </button>
             <button type="button" id="modify-trade" disabled class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
-                Modify
+                ${i18n.t('body.tt.modify')}
             </button>
         </div>
         <!-- Modify CTA end -->

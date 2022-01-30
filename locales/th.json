@@ -113,7 +113,10 @@
       "swap": "Swap",
       "profit": "กำไร",
       "cancel": "ยกเลิก",
-      "status": "สถานะ"
+      "status": "สถานะ",
+      "editOrder": "แก้ไข",
+      "cancelOrder": "ยกเลิก Order",
+      "modify": "แก้ไข"
     },
     "common": {
       "buySell": "ซื้อ/ขาย",
