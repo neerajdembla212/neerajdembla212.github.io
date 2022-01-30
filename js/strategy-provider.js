@@ -219,8 +219,6 @@
     $(`.subheader .btn-group button[data-view-type=${viewType}]`).click();
     const activeId = getActiveTab().attr('href');
     onTabChange(activeId, false);
-    // global function
-    initI18nPlugin();
   });
 
   // fetch apis start
@@ -770,6 +768,19 @@
     // select tab based on query params
     const selectedTabId = window.location.hash;
     $(`.nav.nav-tabs [href="${selectedTabId}"]`).click();
+
+    // global function
+    initI18nPlugin();
+    // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+    // each page has to add respective function on window to reload the translations on their page
+    window.reloadElementsOnLanguageChange = function () {
+      const viewType = getCurrentViewType();
+      if (viewType === 'list') {
+        plotListView();
+      } else {
+        plotGridView()
+      }
+    }
   }
 
   function onTabChange(tabId, isManual = true) {
@@ -1180,7 +1191,7 @@
     data-target="#unfollow-provider-modal" data-name="${name}">
     Unfollow Provider
   </button>` : `<button id="follow-provider-cta" class="btn btn-primary font-size-12 btn-block follow-provider-cta" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
-  Follow Provider
+  ${i18n.t('body.sp.followProvider')}
 </button>`;
 
     return ` <tr id="table-user-${id}" class="contact-row cursor-pointer" data-id="${id}">

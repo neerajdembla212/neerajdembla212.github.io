@@ -201,7 +201,13 @@
       "totalReturns/equityGrowth": "Total Returns / equity growth",
       "dd": "DD",
       "follow": "Follow",
-      "watch": "WATCH"
+      "watch": "WATCH",
+      "strategyProvidersDetails": "Strategy Providers Details",
+      "numberOfFollowers": "Number of Followers",
+      "followerFunds": "Follower Funds",
+      "monthlySubscriptionFee": "Monthly Subscription Fee",
+      "profitSharingPercentage": "Profit Sharing Percentage",
+      "closedPrice": "Closed Price"
     },
     "settings": {
       "strategyPhilosophy": "Strategy Philosophy",
