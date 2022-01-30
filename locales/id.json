@@ -201,7 +201,13 @@
       "totalReturns/equityGrowth": "Total Keuntungan / Pertumbuhan Ekuitas",
       "dd": "DD",
       "follow": "Ikuti",
-      "watch": "Pantau"
+      "watch": "Pantau",
+      "strategyProvidersDetails": "Detail Penyedia Strategi",
+      "numberOfFollowers": "Jumlah Pengikut",
+      "followerFunds": "Dana Pengikut",
+      "monthlySubscriptionFee": "Biaya Langganan Bulanan",
+      "profitSharingPercentage": "Persentase Bagi Hasil",
+      "closedPrice": "Harga Penutupan"
     },
     "settings": {
       "strategyPhilosophy": "Filosofi Strategi",

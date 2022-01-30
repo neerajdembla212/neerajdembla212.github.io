@@ -135,6 +135,18 @@
       const activeTab = localStorage.getItem('SP_active_tab_id');
       window.location.href = `${window.location.origin}/strategy-providers.html?tab=${activeTab}`
     })
+
+    // global function
+    initI18nPlugin();
+
+    // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+    // each page has to add respective function on window to reload the translations on their page
+    window.reloadElementsOnLanguageChange = function () {
+      renderProviderDetailsSection();
+      renderFollowersSection();
+      renderTradeHistorySection();
+      renderFollowProviderPopup(STATE.getProviderDetails())
+    }
   }
 
   // Plot Line chart start
@@ -272,17 +284,17 @@
     return `
         <thead>
             <tr>
-            <th class="align-middle">Symbol</th>
-            <th class="text-center align-middle">Trader</th>
-            <th class="text-center align-middle">Type</th>
+            <th class="align-middle">${i18n.t('body.tt.symbol')}</th>
+            <th class="text-center align-middle">${i18n.t('body.tt.trader')}</th>
+            <th class="text-center align-middle">${i18n.t('body.common.type')}</th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_volume">
-                    <p class="m-0 p-0">Volume<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.common.volume')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_volume' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_price">
-                    <p class="m-0 p-0">Price<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_price' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.common.price')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_price' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">
@@ -292,22 +304,22 @@
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                    <p class="m-0 p-0">SL<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">TP<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="closed_price">
-                    <p class="m-0 p-0">Closed Price<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'closed_price' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.sp.closedPrice')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'closed_price' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="swap">
-                    <p class="m-0 p-0">Swap<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.tt.swap')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'swap' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit">
-                    <p class="m-0 p-0">Profit<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.tt.profit')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             </tr>
@@ -393,13 +405,13 @@
         <tr>
           <td colspan="10">
           <div class="d-flex justify-content-between align-items-center">
-          <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+          <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.trades')}</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
           <select class="form-control rows-per-page mr-2" name="rows-per-page" id="th-rows-per-page">
-              <option value="10">10 Rows per page</option>
-              <option value="20">20 Rows per page</option>
-              <option value="30">30 Rows per page</option>
-              <option value="40">40 Rows per page</option>
+              <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+              <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+              <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+              <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
           </select>
               <button class="btn btn-default border-0" type="button" id="prev-page-th">
                   <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -458,19 +470,19 @@
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <div class="mr-3 d-flex flex-column justify-content-between">
-                            <p class="mb-0 responsive-label">Volume</p>
+                            <p class="mb-0 responsive-label">${i18n.t('body.common.volume')}</p>
                             <p class="mb-0 font-bold responsive-value">${trade_volume}</p>
                         </div>
                         <div class="mr-3 d-flex flex-column justify-content-between">
-                            <p class="mb-0 responsive-label">Price</p>
+                            <p class="mb-0 responsive-label">${i18n.t('body.common.price')}</p>
                             <p class="mb-0 font-bold responsive-value">${trade_price}</p>
                         </div>
                         <div class="mr-3 d-flex flex-column justify-content-between">
-                            <p class="mb-0 responsive-label">Swap</p>
+                            <p class="mb-0 responsive-label">${i18n.t('body.tt.swap')}</p>
                             <p class="mb-0 font-bold responsive-value">${swap}</p>
                         </div>
                         <div class="mr-3 d-flex flex-column justify-content-between">
-                            <p class="mb-0 responsive-label">Profit</p>
+                            <p class="mb-0 responsive-label">${i18n.t('body.tt.profit')}</p>
                             <p class="mb-0 font-bold responsive-value ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">S$${profit}</p>
                         </div>
                         <div class="mr-2 d-flex flex-column justify-content-between">
@@ -491,13 +503,13 @@
     const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
     return `
         <div class="d-flex justify-content-between align-items-center p-2">
-            <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+            <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> providers</p>
             <ul class="pagination d-flex justify-content-end align-items-center m-0">
                 <select class="form-control rows-per-page mr-2" name="rows-per-page" id="th-rows-per-page">
-                    <option value="10">10 Rows per page</option>
-                    <option value="20">20 Rows per page</option>
-                    <option value="30">30 Rows per page</option>
-                    <option value="40">40 Rows per page</option>
+                    <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
+                    <option value="20">${i18n.t('body.mp.20RowsPerPage')}</option>
+                    <option value="30">${i18n.t('body.mp.30RowsPerPage')}</option>
+                    <option value="40">${i18n.t('body.mp.40RowsPerPage')}</option>
                 </select>
                 <button class="btn btn-default border-0" type="button" id="prev-page-th">
                     <i class="fa fa-angle-left extra-large-font font-weight-bold"></i>
@@ -590,7 +602,7 @@
   function renderProviderDetailsSection() {
     const providerDetails = STATE.getProviderDetails();
     const container = $('.strategy-provider-details-section .provider-details-section');
-    container.append(getProviderDetailsHTML(providerDetails));
+    container.empty().append(getProviderDetailsHTML(providerDetails));
   }
   function getProviderDetailsHTML(data) {
     if (!data) {
@@ -626,15 +638,15 @@
         <div class="divider"></div>
         <!-- strategy philosophy start -->
         <div class="py-3">
-            <p class="mb-2 small-font font-bold text-dark-black">Strategy Philosophy</p>
+            <p class="mb-2 small-font font-bold text-dark-black">${i18n.t('body.settings.strategyPhilosophy')}</p>
             <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
-            <p class="mb-0 text-dark-gray small-font font-bold">Joined ${formatDate(+joined_date)}
+            <p class="mb-0 text-dark-gray small-font font-bold">${i18n.t('body.mp.joined')} ${formatDate(+joined_date)}
         </div>
         <!-- strategy philosophy end -->
         <div class="divider"></div>
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
-            <p class="mb-0 font-bold small-font text-dark-black">Strategy Age</p>
+            <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.mp.strategyAge')}</p>
             <p class="mb-0 medium-font font-bold text-dark-black">${strategy_age}</p>
         </div>
         <!-- strategy age end -->
@@ -642,8 +654,8 @@
         <!-- Total returns start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold mall-font text-dark-black">Total returns </p>
-                <p class="mb-0 small-font text-dark-black font-weight-light">since Inception 1
+                <p class="mb-0 font-bold mall-font text-dark-black">${i18n.t('body.mp.totalReturns')} </p>
+                <p class="mb-0 small-font text-dark-black font-weight-light">${i18n.t('body.mp.sinceInception')} 1
                     Jul 2021</p>
             </div>
             <p class="mb-0 super-large-font text-dark-green font-bold">${cumulative_returns}%</p>
@@ -653,7 +665,7 @@
         <!-- Average growth start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Average Growth per Month
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.settings.averageGrowthPerMonth')}
                 </p>
             </div>
             <p class="mb-0 extra-large-font text-dark-green font-bold">${avg_growth_per_month}%</p>
@@ -663,7 +675,7 @@
         <!-- Average pips start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Average Pips </p>
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.simulation.averagePips')} </p>
             </div>
             <p class="mb-0 extra-large-font text-dark-black font-bold">${avg_pips}</p>
         </div>
@@ -672,7 +684,7 @@
         <!-- Trades start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Trades </p>
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.mp.trades')} </p>
             </div>
             <p class="mb-0 extra-large-font text-dark-black font-bold">${trade_count}</p>
         </div>
@@ -681,7 +693,7 @@
         <!-- Max Drawdown start -->
         <div class="pt-3 d-flex justify-content-between align-items-center">
             <div>
-                <p class="mb-0 font-bold small-font text-dark-black">Max Drawdown </p>
+                <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.mp.maxDrawdown')} </p>
             </div>
             <p class="mb-0 extra-large-font text-light-red font-bold">${max_drawdown}%</p>
         </div>
@@ -694,7 +706,7 @@
   function renderFollowersSection() {
     const providerDetails = STATE.getProviderDetails();
     const container = $('.strategy-provider-details-section .followers-section');
-    container.append(getFollowerDetailsHTML(providerDetails));
+    container.empty().append(getFollowerDetailsHTML(providerDetails));
   }
 
   function getFollowerDetailsHTML(data) {
@@ -710,17 +722,17 @@
     } = data;
 
     return `
-                <p class="mb-0 font-bold extra-large-font text-modal-black">Followers</p>
+                <p class="mb-0 font-bold extra-large-font text-modal-black">${i18n.t('body.mp.followers')}</p>
                 <!--Number of followers start -->
                 <div class="py-3 d-flex justify-content-between align-items-center">
-                    <p class="mb-0 small-font font-bold">Number of Followers</p>
+                    <p class="mb-0 small-font font-bold">${i18n.t('body.sp.numberOfFollowers')}</p>
                     <p class="mb-0 large-font font-bold">${follower_count}</p>
                 </div>
                 <!--Number of followers end -->
                 <div class="divider"></div>
                 <!--follower fund start -->
                 <div class="py-3 d-flex justify-content-between align-items-center">
-                    <p class="mb-0 small-font font-bold">Follower Funds</p>
+                    <p class="mb-0 small-font font-bold">${i18n.t('body.sp.followerFunds')}</p>
                     <p class="mb-0 large-font font-bold">$${formatWithCommas(follower_funds)}</p>
                 </div>
                 <!-- follower fund end -->
@@ -729,14 +741,14 @@
                 <div class="divider"></div>
                 <!-- monthly subscription start -->
                 <div class="py-3 d-flex justify-content-between align-items-center">
-                    <p class="mb-0 small-font font-bold">Monthly Subscription Fee</p>
+                    <p class="mb-0 small-font font-bold">${i18n.t('body.sp.monthlySubscriptionFee')}</p>
                     <p class="mb-0 large-font font-bold">$${monthly_subscription_fee}</p>
                 </div>
                 <!-- monthly subscription end -->
                 <div class="divider"></div>
                 <!-- profit start -->
                 <div class="py-3 d-flex justify-content-between align-items-center">
-                    <p class="mb-0 small-font font-bold">Profit Sharing Percentage</p>
+                    <p class="mb-0 small-font font-bold">${i18n.t('body.sp.profitSharingPercentage')}</p>
                     <p class="mb-0 large-font font-bold">${profit_sharing}%</p>
                 </div>
                 <!-- profit end -->
@@ -744,7 +756,7 @@
                 <div class="d-flex justify-content-end pt-3">
                     <button type="button" class="btn btn-w-m btn-default text-navy" data-toggle="modal"
                     data-target="#follow-provider-modal">
-                        Follow Provider
+                        ${i18n.t('body.sp.followProvider')}
                     </button>
                 </div>
         `

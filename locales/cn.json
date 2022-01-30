@@ -201,7 +201,13 @@
       "totalReturns/equityGrowth": "总回报/股权增长",
       "dd": "DD",
       "follow": "关注",
-      "watch": "表"
+      "watch": "表",
+      "strategyProvidersDetails": "交易达人详情",
+      "numberOfFollowers": "跟单者数量",
+      "followerFunds": "跟单者基金",
+      "monthlySubscriptionFee": "每月订阅费",
+      "profitSharingPercentage": "利润分享百分比",
+      "closedPrice": "收盘价"
     },
     "settings": {
       "strategyPhilosophy": "策略理念",

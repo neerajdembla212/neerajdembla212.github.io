@@ -201,7 +201,13 @@
       "totalReturns/equityGrowth": "Jumlah pulangan / pertumbuhan ekuiti",
       "dd": "DD",
       "follow": "Pengikut",
-      "watch": "Jam"
+      "watch": "Jam",
+      "strategyProvidersDetails": "Butiran Penyedia Stategi",
+      "numberOfFollowers": "Jumlah Pengikut",
+      "followerFunds": "Dana Pengikut",
+      "monthlySubscriptionFee": "Yuran langganan bulanan",
+      "profitSharingPercentage": "Peratus perkongsian keuntungan",
+      "closedPrice": "Harga tutup"
     },
     "settings": {
       "strategyPhilosophy": "Falsafah strategi",

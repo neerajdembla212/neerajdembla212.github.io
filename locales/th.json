@@ -201,7 +201,13 @@
       "totalReturns/equityGrowth": "ผลตอบแทนทั้งหมด / Equity Growth",
       "dd": "ขาดทุนสะสม",
       "follow": "ติดตาม",
-      "watch": "ดู"
+      "watch": "ดู",
+      "strategyProvidersDetails": "รายละเอียดผู้ให้บริการกลยุทธ์",
+      "numberOfFollowers": "จำนวนผู้ติดตาม",
+      "followerFunds": "กองทุนผู้ติดตาม",
+      "monthlySubscriptionFee": "ค่าธรรมเนียมสมาชิกรายเดือน",
+      "profitSharingPercentage": "เปอร์เซ็นต์ส่วนแบ่งรายได้",
+      "closedPrice": "ราคาปิด"
     },
     "settings": {
       "strategyPhilosophy": "ปรัชญากลยุทธ์",

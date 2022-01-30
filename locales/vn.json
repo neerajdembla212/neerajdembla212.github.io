@@ -201,7 +201,13 @@
       "totalReturns/equityGrowth": "Tổng lợi nhuận / Tăng trưởng vốn chủ sở hữu",
       "dd": "Sụt giảm",
       "follow": "Theo dõi",
-      "watch": "Quan sát"
+      "watch": "Quan sát",
+      "strategyProvidersDetails": "Chi tiết Nhà cung cấp Chiến lược",
+      "numberOfFollowers": "Số người theo dõi",
+      "followerFunds": "Quỹ người theo dõi",
+      "monthlySubscriptionFee": "Phí đăng ký hàng tháng",
+      "profitSharingPercentage": "Phần trăm chia sẻ lợi nhuận",
+      "closedPrice": "Giá đóng"
     },
     "settings": {
       "strategyPhilosophy": "Triết lý chiến lược",
