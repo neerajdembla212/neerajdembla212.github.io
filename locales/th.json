@@ -235,7 +235,21 @@
       "createDemoAccount": "เปิดบัญชีทดลอง",
       "noticeForDemoAccounts": "ประกาศสำหรับบัญชีทดลอง:",
       "noticeForDemoAccountsP1": "บัญชีทดลองที่ไม่ใช้งานจะถูกลบออก/ปิด หลังจาก 15 วัน",
-      "noticeForDemoAccountsP2": "บัญชีทดลองที่ใช้งานจะถูกปิดหลังจาก 30 วัน"
+      "noticeForDemoAccountsP2": "บัญชีทดลองที่ใช้งานจะถูกปิดหลังจาก 30 วัน",
+      "becomeAStrategyProvider": "เป็นผู้ให้บริการกลยุทธ์",
+      "strategyName": "ชื่อกลยุทธ์",
+      "profitSharingFee": "ค่าธรรมเนียมส่วนแบ่งกำไร",
+      "autoApprovalForFollowers": "ค่าธรรมเนียมส่วนแบ่งกำไร",
+      "tradingMethod": "วิธีการซื้อขาย",
+      "manual": "เทรดด้วยตนเอง",
+      "automated": "อัตโนมัติ",
+      "combined": "แบบผสมผสาน​",
+      "tradingHistory": "ประวัติการเทรด",
+      "fullHistory": "ประวัติเต็ม",
+      "specifyDuration": "ระบุระยะเวลา",
+      "description": "คำอธิบาย",
+      "settingsDescriptionP1": "บัญชีซื้อขาย MT4 ที่ใช้สำหรับการสมัครจะต้องไม่เป็นบัญชีผู้ติดตามกลยุทธ์",
+      "submitApplication": "ส่งใบสมัคร"
     },
     "simulation": {
       "inputCapital": "เงินทุนเข้า",
