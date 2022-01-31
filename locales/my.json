@@ -235,7 +235,21 @@
       "createDemoAccount": "Buka Akaun Demo",
       "noticeForDemoAccounts": "Notis untuk Akaun Demo: ",
       "noticeForDemoAccountsP1": "Akaun demo yang tidak aktif akan dialih keluar/ditutup selepas 15 hari.",
-      "noticeForDemoAccountsP2": "Akaun demo aktif akan ditutup selepas 30 hari"
+      "noticeForDemoAccountsP2": "Akaun demo aktif akan ditutup selepas 30 hari",
+      "becomeAStrategyProvider": "Menjadi Penyedia Strategi",
+      "strategyName": "Nama strategi",
+      "profitSharingFee": "Yuran perkongsian keuntungan",
+      "autoApprovalForFollowers": "Yuran perkongsian keuntungan",
+      "tradingMethod": "Kaedah Trading",
+      "manual": "Manual",
+      "automated": "Automatik",
+      "combined": "Gabungan",
+      "tradingHistory": "Sejarah Trading",
+      "fullHistory": "Sejarah penuh",
+      "specifyDuration": "Nyatakan tempoh",
+      "description": "Penerangan",
+      "settingsDescriptionP1": "Akaun trading MT4 yang digunakan untuk permohonan mestilah akaun yang belum menjadi akaun Pengikut Strategi.",
+      "submitApplication": "Hantar permohonan"
     },
     "simulation": {
       "inputCapital": "Masukkan modal",

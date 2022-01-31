@@ -235,7 +235,21 @@
       "createDemoAccount": "Tạo tài khoản demo",
       "noticeForDemoAccounts": "Thông báo cho Tài khoản Demo:",
       "noticeForDemoAccountsP1": "Tài khoản demo không hoạt động sẽ bị xóa/đóng sau 15 ngày.",
-      "noticeForDemoAccountsP2": "Tài khoản demo đang hoạt động sẽ bị đóng sau 30 ngày. "
+      "noticeForDemoAccountsP2": "Tài khoản demo đang hoạt động sẽ bị đóng sau 30 ngày. ",
+      "becomeAStrategyProvider": "Trở thành nhà cung cấp chiến lược",
+      "strategyName": "tên chiến lược",
+      "profitSharingFee": "phí chia sẻ lợi nhuận",
+      "autoApprovalForFollowers": "phí chia sẻ lợi nhuận",
+      "tradingMethod": "Phương thức giao dịch",
+      "manual": "Thủ công",
+      "automated": "Tự động",
+      "combined": "Kết hợp",
+      "tradingHistory": "Lịch sử giao dịch",
+      "fullHistory": "Lịch sử đầy đủ",
+      "specifyDuration": "Chỉ định thời gian",
+      "description": "Mô tả",
+      "settingsDescriptionP1": "Tài khoản giao dịch MT4 được sử dụng để đăng ký hiện đang không phải là một tài khoản Nhà cung cấp chiến lược.",
+      "submitApplication": "Gửi đơn đăng ký"
     },
     "simulation": {
       "inputCapital": "Vốn đầu vào",

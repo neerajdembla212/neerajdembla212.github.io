@@ -235,7 +235,21 @@
       "createDemoAccount": "Create Demo Account",
       "noticeForDemoAccounts": "Notice for Demo Accounts:",
       "noticeForDemoAccountsP1": "Inactive demo account will be removed/closed after 15 days.",
-      "noticeForDemoAccountsP2": "Active demo account will be closed after 30 days."
+      "noticeForDemoAccountsP2": "Active demo account will be closed after 30 days.",
+      "becomeAStrategyProvider": "Become a Strategy Provider",
+      "strategyName": "Strategy Name",
+      "profitSharingFee": "Profit Sharing Fee",
+      "autoApprovalForFollowers": "Auto Approval for Followers",
+      "tradingMethod": "Trading Method",
+      "manual": "Manual",
+      "automated": "Automated",
+      "combined": "Combined",
+      "tradingHistory": "Trading History",
+      "fullHistory": "Full History",
+      "specifyDuration": "Specify Duration",
+      "description": "Description",
+      "settingsDescriptionP1": "The MT4 trading account used for application must not already be a Strategy Follower account.",
+      "submitApplication": "Submit Application"
     },
     "simulation": {
       "inputCapital": "Input Capital",

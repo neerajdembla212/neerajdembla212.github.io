@@ -235,7 +235,21 @@
       "createDemoAccount": "创建虚拟账户",
       "noticeForDemoAccounts": "虚拟账户注意事项：",
       "noticeForDemoAccountsP1": "“不活跃的模拟账户将在 15 天后被删除/关闭。",
-      "noticeForDemoAccountsP2": "活跃的模拟账户将在 30 天后关闭。”"
+      "noticeForDemoAccountsP2": "活跃的模拟账户将在 30 天后关闭。”",
+      "becomeAStrategyProvider": "成为交易达人",
+      "strategyName": "策略名称",
+      "profitSharingFee": "利润分成费",
+      "autoApprovalForFollowers": "利润分成费",
+      "tradingMethod": "交易方式",
+      "manual": "手动",
+      "automated": "自动",
+      "combined": "结合",
+      "tradingHistory": "交易历史",
+      "fullHistory": "完整历史",
+      "specifyDuration": "指定持续时间",
+      "description": "描述",
+      "settingsDescriptionP1": "用于申请的 MT4 交易账户必须不是交易达人的账户。",
+      "submitApplication": "递交申请"
     },
     "simulation": {
       "inputCapital": "投入资本",
