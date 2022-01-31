@@ -578,8 +578,8 @@
     container.empty().append(`
         <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>
         <div class="w-100 d-flex justify-content-end">
-            <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+            <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">${i18n.t('body.common.confirm')}</button>
         </div>
     `)
   }

@@ -184,7 +184,8 @@
       "limitQuantityOfSimultaneousTrades": "จำกัดปริมาณการซื้อขายพร้อมกัน",
       "showing": "กำลังแสดง",
       "to": "ถึง",
-      "of": "ของ"
+      "of": "ของ",
+      "confirm": "ยืนยัน"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -207,7 +208,8 @@
       "followerFunds": "กองทุนผู้ติดตาม",
       "monthlySubscriptionFee": "ค่าธรรมเนียมสมาชิกรายเดือน",
       "profitSharingPercentage": "เปอร์เซ็นต์ส่วนแบ่งรายได้",
-      "closedPrice": "ราคาปิด"
+      "closedPrice": "ราคาปิด",
+      "stopFollowing": "หยุดการติดตาม"
     },
     "settings": {
       "strategyPhilosophy": "ปรัชญากลยุทธ์",

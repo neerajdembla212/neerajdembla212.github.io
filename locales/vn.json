@@ -184,7 +184,8 @@
       "limitQuantityOfSimultaneousTrades": "Giới hạn số lượng giao dịch đồng thời",
       "showing": "trưng bày",
       "to": "đến",
-      "of": "của"
+      "of": "của",
+      "confirm": "Xác nhận"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
@@ -207,7 +208,8 @@
       "followerFunds": "Quỹ người theo dõi",
       "monthlySubscriptionFee": "Phí đăng ký hàng tháng",
       "profitSharingPercentage": "Phần trăm chia sẻ lợi nhuận",
-      "closedPrice": "Giá đóng"
+      "closedPrice": "Giá đóng",
+      "stopFollowing": "Ngừng theo dõi"
     },
     "settings": {
       "strategyPhilosophy": "Triết lý chiến lược",
