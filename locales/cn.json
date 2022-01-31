@@ -184,7 +184,8 @@
       "limitQuantityOfSimultaneousTrades": "限制同时交易的数量",
       "showing": "显示",
       "to": "到",
-      "of": "的"
+      "of": "的",
+      "confirm": "确定"
     },
     "sp": {
       "topPerformer": "表现最好的",
@@ -207,7 +208,8 @@
       "followerFunds": "跟单者基金",
       "monthlySubscriptionFee": "每月订阅费",
       "profitSharingPercentage": "利润分享百分比",
-      "closedPrice": "收盘价"
+      "closedPrice": "收盘价",
+      "stopFollowing": "停止关注"
     },
     "settings": {
       "strategyPhilosophy": "策略理念",

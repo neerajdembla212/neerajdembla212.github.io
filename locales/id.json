@@ -184,7 +184,8 @@
       "limitQuantityOfSimultaneousTrades": "Batasi Jumlah Perdagangan Simultan",
       "showing": "menunjukkan",
       "to": "ke",
-      "of": "dari"
+      "of": "dari",
+      "confirm": "Konfirmasi"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",
@@ -207,7 +208,8 @@
       "followerFunds": "Dana Pengikut",
       "monthlySubscriptionFee": "Biaya Langganan Bulanan",
       "profitSharingPercentage": "Persentase Bagi Hasil",
-      "closedPrice": "Harga Penutupan"
+      "closedPrice": "Harga Penutupan",
+      "stopFollowing": "Berhenti Mengikuti"
     },
     "settings": {
       "strategyPhilosophy": "Filosofi Strategi",

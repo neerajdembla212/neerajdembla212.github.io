@@ -184,7 +184,8 @@
       "limitQuantityOfSimultaneousTrades": "Limit Quantity of Simultaneous Trades",
       "showing": "Showing",
       "to": "to",
-      "of": "of"
+      "of": "of",
+      "confirm": "Confirm"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -207,7 +208,8 @@
       "followerFunds": "Follower Funds",
       "monthlySubscriptionFee": "Monthly Subscription Fee",
       "profitSharingPercentage": "Profit Sharing Percentage",
-      "closedPrice": "Closed Price"
+      "closedPrice": "Closed Price",
+      "stopFollowing": "Stop Following"
     },
     "settings": {
       "strategyPhilosophy": "Strategy Philosophy",
