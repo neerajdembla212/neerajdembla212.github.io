@@ -16,6 +16,7 @@ import { FAQ } from './faq.js';
         })
         registerEvents();
     })
+
     function registerEvents() {
         $('.faq .accordion-title').off().on('click', function (event) {
             const icon = $(this).find('.fa');
@@ -31,6 +32,7 @@ import { FAQ } from './faq.js';
             renderSuccessToast();
         })
     }
+
     function plotStrategyFollowerFAQ() {
         const strategyFollowerFAQ = FAQ.strategy_follower;
         if (!Array.isArray(strategyFollowerFAQ)) {

@@ -143,7 +143,8 @@
               </button>
               <ul class="dropdown-menu dropdown-alerts p-0 p-2 language-switcher">
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="en">English (EN)</li>
-                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)</li>
+                <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="my">Bahasa Melayu (MY)
+                </li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="cn">简体中文 (CN)</li>
                 <li class="d-flex m-0 justify-content-between p-2 cursor-pointer" data-value="id">Bahasa Indonesia (ID)
                 </li>
@@ -183,49 +184,56 @@
         <div class="wrapper wrapper-content">
           <section class="card refer-a-friend demo-content">
             <div class="p-3 highlight-content">
-              <p class="p-0 mb-1">Boost your income!</p>
-              <p class="p-0 m-0">Start earning commissions every day by referring your friends to use CopyPip!</p>
+              <p class="p-0 mb-1" data-i18n="body.refer.boostYourIncome">Boost your income!</p>
+              <p class="p-0 m-0" data-i18n="body.refer.subtitle">Start earning commissions every day by referring your
+                friends to use CopyPip!</p>
             </div>
             <div class="p-3 d-flex justify-content-between">
               <div class="why-refer">
-                <h3 class="mt-0">Why refer a friend?</h3>
+                <h3 class="mt-0" data-i18n="body.refer.referQ1">Why refer a friend?</h3>
                 <ul class="pl-4">
-                  <li>High Rebates and Commissions</li>
-                  <li>Instant Rebate and Commission Payout</li>
-                  <li>Real-Time Reporting</li>
-                  <li>Powerful Back Office with Analytics</li>
-                  <li>World-class Marketing Tools</li>
-                  <li>Full Access to Promotional Materials including Banners and Widgets</li>
+                  <li data-i18n="body.refer.referQ1P1">High Rebates and Commissions</li>
+                  <li data-i18n="body.refer.referQ1P2">Instant Rebate and Commission Payout</li>
+                  <li data-i18n="body.refer.referQ1P3">Real-Time Reporting</li>
+                  <li data-i18n="body.refer.referQ1P4">Powerful Back Office with Analytics</li>
+                  <li data-i18n="body.refer.referQ1P5">World-class Marketing Tools</li>
+                  <li data-i18n="body.refer.referQ1P6">Full Access to Promotional Materials including Banners and
+                    Widgets</li>
                 </ul>
               </div>
               <div class="empty-space"></div>
               <div class="why-join demo">
-                <h3 class="mt-0">Why join CopyPip Pro?</h3>
+                <h3 class="mt-0" data-i18n="body.refer.referQ2">Why join CopyPip Pro?</h3>
                 <ul>
-                  <li>Access a global network of strategy providers to choose from</li>
-                  <li>Fast deposit & withdrawal using direct local banks</li>
-                  <li>Multiple trade & risk allocation methods to choose from compared to other copy trading platforms
+                  <li data-i18n="body.refer.referQ2P1">Access a global network of strategy providers to choose from</li>
+                  <li data-i18n="body.refer.referQ2P2">Fast deposit & withdrawal using direct local banks</li>
+                  <li data-i18n="body.refer.referQ2P3">Multiple trade & risk allocation methods to choose from compared
+                    to other copy trading platforms
                   </li>
-                  <li>Ability to set your own acceptable maximum loss as well as take profit</li>
-                  <li>Ability to withdraw your investments at any time</li>
-                  <li>Ability to set the ratio between your account & strategy provider, so that you can automatically
+                  <li data-i18n="body.refer.referQ2P4">Ability to set your own acceptable maximum loss as well as take
+                    profit</li>
+                  <li data-i18n="body.refer.referQ2P5">Ability to withdraw your investments at any time</li>
+                  <li data-i18n="body.refer.referQ2P6">Ability to set the ratio between your account & strategy
+                    provider, so that you can automatically
                     adjust the risk & size of lots traded based on your capital</li>
                 </ul>
               </div>
               <div class="why-join live">
-                <h3 class="mt-0">Why join CopyPip?</h3>
+                <h3 class="mt-0" data-i18n="body.refer.referQ3">Why join CopyPip?</h3>
                 <ul>
-                  <li>Choose from a global network of strategy providers</li>
-                  <li>Enjoy fast deposit & withdrawal using direct local banks</li>
-                  <li>Select from more trade & risk allocation methods compared to other copy trading platforms</li>
-                  <li>Set your own acceptable maximum loss as well as take profit</li>
-                  <li>Withdraw your investments at any time</li>
-                  <li>Decide the ratio between your account & strategy provider’s – you can automatically adjust the
+                  <li data-i18n="body.refer.referQ3P1">Choose from a global network of strategy providers</li>
+                  <li data-i18n="body.refer.referQ3P2">Enjoy fast deposit & withdrawal using direct local banks</li>
+                  <li data-i18n="body.refer.referQ3P3">Select from more trade & risk allocation methods compared to
+                    other copy trading platforms</li>
+                  <li data-i18n="body.refer.referQ3P4">Set your own acceptable maximum loss as well as take profit</li>
+                  <li data-i18n="body.refer.referQ3P5">Withdraw your investments at any time</li>
+                  <li data-i18n="body.refer.referQ3P6">Decide the ratio between your account & strategy provider’s – you
+                    can automatically adjust the
                     risk & size of lots traded based on your capital!</li>
                 </ul>
               </div>
             </div>
-            <p class="px-3 live">Here is your unique referral link</p>
+            <p class="px-3 live" data-i18n="body.refer.referalLinkText">Here is your unique referral link</p>
             <div class="divider"></div>
             <div class="p-3">
               <button type="button" class="p-0 btn btn-w-m btn-text-blue font-weight-bold demo">Login in to your client
@@ -233,7 +241,8 @@
               <div class="w-50 d-flex live">
                 <input type="text" id="referal-link-input" class="p-2 mr-3 text-blue font-bold refer-link"
                   value="http://referral.link" disabled /> <button type="button"
-                  class="btn btn-outline btn-default btn-text-blue font-bold" id="copy-link">Copy
+                  class="btn btn-outline btn-default btn-text-blue font-bold" id="copy-link"
+                  data-i18n="body.refer.copyLink">Copy
                   Link</button>
               </div>
             </div>
@@ -260,21 +269,25 @@
         <div class="modal-dialog modal-dialog-center">
           <div class="modal-content animated fadeIn">
             <div class="d-flex justify-content-between p-3">
-              <h4 class="modal-title super-large-font">Create Demo Account</h4>
+              <h4 class="modal-title super-large-font" data-i18n="body.settings.createDemoAccount">Create Demo Account
+              </h4>
               <button id="close-modal" class="btn btn-default btn-outline btn-action border-0" data-dismiss="modal">
                 <img src="img/ic_cross.svg">
               </button>
             </div>
             <div class="modal-body px-3 pt-0">
               <div class="highlighted-content p-3 mb-3">
-                <p class="font-bold text-white">Notice for Demo Accounts:</p>
-                <p class="font-weight-light text-white">Inactive demo account will be removed/closed after 15 days.</p>
-                <p class="font-weight-light text-white">Active demo account will be closed after 30 days.</p>
+                <p class="font-bold text-white" data-i18n="body.settings.noticeForDemoAccounts">Notice for Demo
+                  Accounts:</p>
+                <p class="font-weight-light text-white" data-i18n="body.settings.noticeForDemoAccountsP1">Inactive demo
+                  account will be removed/closed after 15 days.</p>
+                <p class="font-weight-light text-white" data-i18n="body.settings.noticeForDemoAccountsP2">Active demo
+                  account will be closed after 30 days.</p>
               </div>
               <!-- Budget input start -->
               <div class="d-flex justify-content-between mb-3">
                 <div class="mr-3">
-                  <p class="mb-1 font-weight-light text-dark-gray">
+                  <p class="mb-1 font-weight-light text-dark-gray" data-i18n="body.login.demoBudget">
                     Demo Budget
                   </p>
                   <div class="input-group demo-budget">
@@ -290,7 +303,7 @@
                   </div>
                 </div>
                 <div class="w-30">
-                  <p class="mb-1 font-weight-light text-dark-gray">Leverage</p>
+                  <p class="mb-1 font-weight-light text-dark-gray" data-i18n="body.login.leverage">Leverage</p>
                   <select class="select2_dropdown form-control" aria-valuenow="1">
                     <option value="1">1:100</option>
                     <option value="2">1:200</option>
@@ -304,7 +317,8 @@
             </div>
             <div class="divider"></div>
             <div class="p-3 d-flex justify-content-end">
-              <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal">
+              <button type="button" class="btn btn-w-m btn-primary font-bold" data-dismiss="modal"
+                data-i18n="body.login.create">
                 Create
               </button>
             </div>
