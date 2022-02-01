@@ -2,11 +2,19 @@ import { FAQ } from './faq.js';
 (function () {
     // document ready function
     $(function () {
-        plotStrategyFollowerFAQ();
-        plotStrategyProviderFAQ();
-        registerEvents();
         // global function
         initI18nPlugin();
+        // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
+        // each page has to add respective function on window to reload the translations on their page
+        window.reloadElementsOnLanguageChange = function () {
+            plotStrategyFollowerFAQ();
+            plotStrategyProviderFAQ();
+        }
+        i18n.setLng(localStorage.getItem('selectedLanguage'), function () {
+            $('#wrapper').i18n();
+            window.reloadElementsOnLanguageChange();
+        })
+        registerEvents();
     })
     function registerEvents() {
         $('.faq .accordion-title').off().on('click', function (event) {
@@ -55,11 +63,11 @@ import { FAQ } from './faq.js';
         <!-- accordion start -->
         <div class="col question-accordion p-0">
             <div class="p-3 border-0 cursor-pointer d-flex justify-content-between accordion-title" data-toggle="collapse" data-target="#${section}-answer-${index}" aria-expanded="false" aria-controls="${section}-answer-${index}">
-                <h5 class="m-0 mr-1">${question}</h5>
+                <h5 class="m-0 mr-1">${i18n.t(question)}</h5>
                 <i class="fa fa-chevron-down"></i>
             </div>
             <div class="px-3 border-0 collapse mb-3" id="${section}-answer-${index}">
-                ${answer}
+                ${i18n.t(answer)}
             </div>
         </div>
         <!-- accordion end -->
