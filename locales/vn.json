@@ -264,6 +264,11 @@
       "return/Mth": "Lợi nhuận / tháng",
       "averagePips": "Pips trung bình",
       "totalPaid": "Tổng số chi trả"
+    },
+    "ec": {
+      "currentTime": "Giờ hiện tại",
+      "message": "Tất cả dữ liệu được phát trực tuyến và cập nhật tự động",
+      "by": "qua"
     }
   },
   "topnav": {
