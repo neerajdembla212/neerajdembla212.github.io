@@ -264,6 +264,11 @@
       "return/Mth": "Return / mth",
       "averagePips": "Average Pips",
       "totalPaid": "Total Paid"
+    },
+    "ec": {
+      "currentTime": "Current Time",
+      "message": "All data are streaming and updated automatically",
+      "by": "by"
     }
   },
   "topnav": {

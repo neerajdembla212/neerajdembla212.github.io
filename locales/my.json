@@ -264,6 +264,11 @@
       "return/Mth": "Pemulangan / bulan",
       "averagePips": "Purata Pips",
       "totalPaid": "Jumlah bayaran"
+    },
+    "ec": {
+      "currentTime": "Masa Semasa",
+      "message": "Semua data sedang distrim dan dikemas kini secara automatik",
+      "by": "oleh"
     }
   },
   "topnav": {

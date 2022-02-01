@@ -264,6 +264,11 @@
       "return/Mth": "Keuntungan / bln",
       "averagePips": "Rata-rata Pip",
       "totalPaid": "Total Dibayar"
+    },
+    "ec": {
+      "currentTime": "Waktu Saat",
+      "message": "Semua data dialirkan dan diperbarui secara otomatis",
+      "by": "oleh"
     }
   },
   "topnav": {

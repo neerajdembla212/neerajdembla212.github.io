@@ -264,6 +264,11 @@
       "return/Mth": "回报/月",
       "averagePips": "平均点数",
       "totalPaid": "总支付"
+    },
+    "ec": {
+      "currentTime": "当前时间",
+      "message": "所有数据都在流式传输并自动更新",
+      "by": "经过"
     }
   },
   "topnav": {
