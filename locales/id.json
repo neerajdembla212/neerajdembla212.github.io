@@ -303,6 +303,33 @@
       "SPAnswer9": "Ya. Anda dapat memutuskan akun trading MT4 Anda dari menjadi SP.",
       "SPQuestion10": "Bisakah pengikut berhenti mengikuti strategi saya untuk sementara?",
       "SPAnswer10": "Pengikut Strategi tidak dapat berhenti mengikuti strategi Anda untuk sementara karena biayanya dihitung setiap hari. Mereka harus terlebih dahulu menutup semua perdagangan terbuka sebelum mereka dapat berhenti mengikuti strategi Anda."
+    },
+    "refer": {
+      "boostYourIncome": "Tingkatkan penghasilan Anda!",
+      "subtitle": "Mulai dapatkan komisi setiap hari dengan merujuk teman Anda untuk menggunakan CopyPip!",
+      "referQ1": "Mengapa menunjuk teman?",
+      "referQ1P1": "rebate dan komisi tinggi",
+      "referQ1P2": "rebate instan dan pembayaran komisi",
+      "referQ1P3": "pelaporan waktu nyata",
+      "referQ1P4": "back office yang kuat dengan analitik",
+      "referQ1P5": "alat pemasaran kelas dunia",
+      "referQ1P6": "akses penuh ke materi promosi termasuk spanduk dan widget",
+      "referQ2": "Mengapa bergabung dengan CopyPip?",
+      "referQ2P1": "Jaringan global penyedia strategi untuk dipilih",
+      "referQ2P2": "setoran dan penarikan cepat menggunakan bank lokal",
+      "referQ2P3": "Banyak metode perdagangan dan alokasi risiko untuk dipilih dibandingkan dengan platform Copy Trade lainnya",
+      "referQ2P4": "kemampuan untuk mengatur kerugian maksimum Anda sendiri yang dapat diterima serta mengambil untung",
+      "referQ2P5": "kemampuan untuk menarik investasi Anda kapan saja",
+      "referQ2P6": "kemampuan untuk mengatur rasio antara akun Anda dan penyedia strategi, sehingga Anda dapat secara otomatis menyesuaikan risiko dan ukuran lot yang diperdagangkan berdasarkan modal Anda",
+      "referQ3": "Mengapa bergabung dengan CopyPip?",
+      "referQ3P1": "Jaringan global penyedia strategi untuk dipilih",
+      "referQ3P2": "setoran dan penarikan cepat menggunakan bank lokal",
+      "referQ3P3": "Banyak metode perdagangan dan alokasi risiko untuk dipilih dibandingkan dengan platform Copy Trade lainnya",
+      "referQ3P4": "kemampuan untuk mengatur kerugian maksimum Anda sendiri yang dapat diterima serta mengambil untung",
+      "referQ3P5": "kemampuan untuk menarik investasi Anda kapan saja",
+      "referQ3P6": "kemampuan untuk mengatur rasio antara akun Anda dan penyedia strategi, sehingga Anda dapat secara otomatis menyesuaikan risiko dan ukuran lot yang diperdagangkan berdasarkan modal Anda",
+      "referalLinkText":"Ini adalah tautan rujukan unik Anda",
+      "copyLink": "Salin tautan"
     }
   },
   "topnav": {

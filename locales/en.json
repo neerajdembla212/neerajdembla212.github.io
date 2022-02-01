@@ -303,6 +303,33 @@
       "SPAnswer9": "Yes. You can disconnect your MT4 trading account from being a SP.",
       "SPQuestion10": "Can followers temporarily stop following my strategy?",
       "SPAnswer10": "Strategy Followers are unable to temporarily stop following your strategy because the fees are calculated daily. They must first close all open trades before they can stop following your strategy."
+    },
+    "refer": {
+      "boostYourIncome": "Boost your income!",
+      "subtitle": "Start earning commissions every day by referring your friends to use CopyPip!",
+      "referQ1": "Why refer a friend?",
+      "referQ1P1": "high rebates and commisions",
+      "referQ1P2": "Instant rebate and commission payout",
+      "referQ1P3": "real-time reporting",
+      "referQ1P4": "powerful back office with analytics",
+      "referQ1P5": "world-class marketing tools",
+      "referQ1P6": "full access to promotional materials including banners and widgets",
+      "referQ2": "Why join CopyPip Pro?",
+      "referQ2P1": "A global network of strategy providers to choose from",
+      "referQ2P2": "fast deposit and withdrawal using direct local banks",
+      "referQ2P3": "Many trade and risk allocation methods to choose from compared to other copy trading platforms",
+      "referQ2P4": "ability to set your own acceptable maximum loss as well as take profit",
+      "referQ2P5": "ability to withdraw your investments at any time",
+      "referQ2P6": "ability to set the ratio between your account and strategy provider, so that you can automatically adjust the risk and size of lots traded based on your capital ",
+      "referQ3": "Why join CopyPip?",
+      "referQ3P1": "A global network of strategy providers to choose from",
+      "referQ3P2": "fast deposit and withdrawal using direct local banks",
+      "referQ3P3": "Many trade and risk allocation methods to choose from compared to other copy trading platforms",
+      "referQ3P4": "ability to set your own acceptable maximum loss as well as take profit",
+      "referQ3P5": "ability to withdraw your investments at any time",
+      "referQ3P6": "ability to set the ratio between your account and strategy provider, so that you can automatically adjust the risk and size of lots traded based on your capital",
+      "referalLinkText": "Here is your unique referral link",
+      "copyLink": "Copy Link"
     }
   },
   "topnav": {

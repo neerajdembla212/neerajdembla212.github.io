@@ -303,6 +303,33 @@
       "SPAnswer9": "Ya. Anda boleh memutuskan sambungan akaun trading MT4 anda daripada menjadi SP.",
       "SPQuestion10": "Bolehkah pengikut strategi berhenti mengikuti buat sementara waktu?",
       "SPAnswer10": "Pengikut Strategi tidak dapat berhenti mengikuti strategi anda buat sementara waktu kerana yuran dikira setiap hari. Mereka mesti menutup semua dagangan terbuka terlebih dahulu sebelum mereka boleh berhenti mengikuti strategi anda."
+    },
+    "refer": {
+      "boostYourIncome": "Tingkatkan pendapatan anda!",
+      "subtitle": "Mula dapatkan komisen setiap hari dengan merujuk rakan anda untuk menggunakan CopyPip!",
+      "referQ1": "Kenapa perlu rujuk kawan?",
+      "referQ1P1": "Rebat dan komisen yang tinggi",
+      "referQ1P2": "Pembayaran rebat dan komisen segera",
+      "referQ1P3": "pelaporan masa nyata",
+      "referQ1P4": "Pengurusan yang berkuasa dengan analitik",
+      "referQ1P5": "alat pemasaran bertaraf dunia",
+      "referQ1P6": "akses penuh kepada bahan promosi termasuk sepanduk dan widget",
+      "referQ2": "Mengapa sertai CopyPip?",
+      "referQ2P1": "Rangkaian global penyedia strategi untuk dipilih",
+      "referQ2P2": "deposit dan pengeluaran pantas menggunakan bank tempatan terus",
+      "referQ2P3": "Banyak kaedah trading dan peruntukan risiko untuk dipilih berbanding dengan platform dagangan salinan lain",
+      "referQ2P4": "keupayaan untuk menetapkan kerugian maksimum anda sendiri yang boleh diterima serta mengambil untung",
+      "referQ2P5": "keupayaan untuk mengeluarkan pelaburan anda pada bila-bila masa",
+      "referQ2P6": "Keupayaan untuk menetapkan nisbah antara akaun anda dan penyedia strategi, supaya anda boleh melaraskan risiko dan saiz lot yang ditrade secara automatik berdasarkan modal anda",
+      "referQ3": "Mengapa sertai CopyPip?",
+      "referQ3P1": "Rangkaian global penyedia strategi untuk dipilih",
+      "referQ3P2": "deposit dan pengeluaran pantas menggunakan bank tempatan terus",
+      "referQ3P3": "Banyak kaedah trading dan peruntukan risiko untuk dipilih berbanding dengan platform dagangan salinan lain",
+      "referQ3P4": "keupayaan untuk menetapkan kerugian maksimum anda sendiri yang boleh diterima serta mengambil untung",
+      "referQ3P5": "keupayaan untuk mengeluarkan pelaburan anda pada bila-bila masa",
+      "referQ3P6": "Keupayaan untuk menetapkan nisbah antara akaun anda dan penyedia strategi, supaya anda boleh melaraskan risiko dan saiz lot yang ditrade secara automatik berdasarkan modal anda",
+      "referalLinkText":"Berikut ialah pautan rujukan unik anda",
+      "copyLink": "Salin pautan "
     }
   },
   "topnav": {

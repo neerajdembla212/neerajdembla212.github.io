@@ -303,6 +303,33 @@
       "SPAnswer9": "Có. Bạn có thể ngắt kết nối tài khoản giao dịch MT4 đang là SP của mình.",
       "SPQuestion10": "Người theo dõi có thể tạm thời ngừng theo chiến lược của tôi không?",
       "SPAnswer10": "Người theo dõi chiến lược không thể tạm thời ngừng theo dõi chiến lược của bạn vì phí được tính hàng ngày. Trước tiên, họ phải đóng tất cả các giao dịch đang mở để có thể ngừng thực hiện theo chiến lược của bạn."
+    },
+    "refer": {
+      "boostYourIncome": "Tăng thu nhập của bạn!",
+      "subtitle": "Bắt đầu kiếm tiền hoa hồng mỗi ngày bằng cách giới thiệu bạn bè của bạn sử dụng CopyPip!",
+      "referQ1": "Tại sao lại giới thiệu khách hàng?",
+      "referQ1P1": "chiết khấu và hoa hồng cao",
+      "referQ1P2": "Thanh toán chiết khấu và hoa hồng ngay lập tức",
+      "referQ1P3": "báo cáo theo thời gian thực",
+      "referQ1P4": "đội ngũ hậu thuẫn mạnh mẽ với các phân tích",
+      "referQ1P5": "các công cụ tiếp thị đẳng cấp thế giới",
+      "referQ1P6": "toàn quyền truy cập vào các tài liệu quảng cáo bao gồm banner và tiện ích",
+      "referQ2": "Tại sao tham gia CopyPip?",
+      "referQ2P1": "Một mạng lưới toàn cầu gồm các nhà cung cấp chiến lược để lựa chọn",
+      "referQ2P2": "nạp và rút tiền nhanh chóng bằng cách sử dụng trực tiếp các cổng từ ngân hàng địa phương",
+      "referQ2P3": "Nhiều phương pháp phân bổ rủi ro và giao dịch để lựa chọn so với các nền tảng giao dịch sao chép khác",
+      "referQ2P4": "khả năng đặt mức lỗ tối đa có thể chấp nhận được của riêng bạn cũng như chốt lời",
+      "referQ2P5": "khả năng rút các khoản đầu tư của bạn bất cứ lúc nào",
+      "referQ2P6": "khả năng thiết lập tỷ lệ giữa tài khoản của bạn và nhà cung cấp chiến lược, để bạn có thể tự động điều chỉnh rủi ro và kích thước lot giao dịch dựa trên số vốn của bạn",
+      "referQ3": "Tại sao tham gia CopyPip?",
+      "referQ3P1": "Một mạng lưới toàn cầu gồm các nhà cung cấp chiến lược để lựa chọn",
+      "referQ3P2": "nạp và rút tiền nhanh chóng bằng cách sử dụng trực tiếp các cổng từ ngân hàng địa phương",
+      "referQ3P3": "Nhiều phương pháp phân bổ rủi ro và giao dịch để lựa chọn so với các nền tảng giao dịch sao chép khác",
+      "referQ3P4": "khả năng đặt mức lỗ tối đa có thể chấp nhận được của riêng bạn cũng như chốt lời",
+      "referQ3P5": "khả năng rút các khoản đầu tư của bạn bất cứ lúc nào",
+      "referQ3P6": "khả năng thiết lập tỷ lệ giữa tài khoản của bạn và nhà cung cấp chiến lược, để bạn có thể tự động điều chỉnh rủi ro và kích thước lot giao dịch dựa trên số vốn của bạn",
+      "referalLinkText": "Đây là link giới thiệu duy nhất của bạn",
+      "copyLink": "sao chép đường dẫn"
     }
   },
   "topnav": {
