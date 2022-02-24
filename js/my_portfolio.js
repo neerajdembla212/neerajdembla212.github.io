@@ -252,9 +252,7 @@
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
         // register events must be called after showRoleWiseElements() as few elements need to be present in dom before add event listeners on them
         registerEvents();
-        debugger
         i18n.setLng(localStorage.getItem('selectedLanguage'), function () {
-            debugger
             $('#wrapper').i18n();
             window.reloadElementsOnLanguageChange();
         })
