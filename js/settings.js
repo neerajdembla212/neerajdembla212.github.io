@@ -517,7 +517,7 @@
                     <p class="mb-0 text-center p-1 m-auto extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
                 </td>
                 <td>
-                    <p class="mb-0 text-center">${role}</p>
+                    <p class="mb-0 text-center">${i18n.t(`body.mp.${role}`)}</p>
                 </td>
                 <td>
                     <p class="mb-0 text-center">${server}</p>
@@ -529,7 +529,7 @@
                     <p class="mb-0 text-center">${demo_leverage}</p>
                 </td>
                 <td>
-                    <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? i18n.t('body.settings.online') : ''}">${status}</p>
+                    <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? i18n.t('body.settings.online') : ''}">${i18n.t(`body.settings.${status}`)}</p>
                 </td>
             </tr>
             `
