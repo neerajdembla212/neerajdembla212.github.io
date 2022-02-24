@@ -954,7 +954,7 @@
         <tr>
           <td colspan="12">
           <div class="d-flex justify-content-between align-items-center">
-          <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+          <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.trades')}</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
           <select class="form-control rows-per-page mr-2" name="rows-per-page" id="pending-trade-rows-per-page">
               <option value="10">10 Rows per page</option>
@@ -1165,7 +1165,7 @@
             <tr>
               <td colspan="12">
               <div class="d-flex justify-content-between align-items-center">
-              <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> trades</p>
+              <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> trades</p>
               <ul class="pagination d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page" id="closed-trade-rows-per-page">
                   <option value="10">10 Rows per page</option>
