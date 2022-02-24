@@ -574,7 +574,7 @@
                     <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
                 <td class="text-center align-middle text-blue font-weight-bolder pl-2">
-                    ${trade_type}
+                    ${i18n.t(`body.common.${String(trade_type).toLowerCase()}`)}
                 </td>
                 <td class="text-center align-middle pl-2">
                     <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
