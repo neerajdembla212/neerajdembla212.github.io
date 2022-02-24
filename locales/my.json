@@ -5,8 +5,8 @@
   "nav": {
     "trade": "TRADE",
     "myPortfolio": "Portfolio Pengguna",
-    "tradeTerminal": "Terminal trade",
-    "strategyProviders": "Strategy Providers",
+    "tradeTerminal": "Terminal Dagangan",
+    "strategyProviders": "Penyedia Strategi",
     "simulation": "Stimulasi",
     "economicCalendar": "Kalender Ekonomi",
     "settings": "Tetapan",
