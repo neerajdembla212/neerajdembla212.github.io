@@ -264,7 +264,8 @@
       "simulationResults": "模拟结果",
       "return/Mth": "回报/月",
       "averagePips": "平均点数",
-      "totalPaid": "总支付"
+      "totalPaid": "总支付",
+      "inputAmount" : "输入数量"
     },
     "ec": {
       "currentTime": "当前时间",
@@ -334,6 +335,6 @@
     }
   },
   "topnav": {
-    "welcome": "欢迎（姓名)"
+    "welcome": "欢迎"
   }
 }

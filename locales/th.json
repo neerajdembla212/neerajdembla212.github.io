@@ -264,7 +264,8 @@
       "simulationResults": "ผลการจำลอง",
       "return/Mth": "ผลตอบแทน / เดือน",
       "averagePips": "ค่าเฉลี่ย Pips",
-      "totalPaid": "จ่ายทั้งหมด"
+      "totalPaid": "จ่ายทั้งหมด",
+      "inputAmount" : "จำนวนเงินที่ป้อน"
     },
     "ec": {
       "currentTime": "เวลาปัจจุบัน",

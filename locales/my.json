@@ -264,7 +264,8 @@
       "simulationResults": "Hasil simulasi",
       "return/Mth": "Pemulangan / bulan",
       "averagePips": "Purata Pips",
-      "totalPaid": "Jumlah bayaran"
+      "totalPaid": "Jumlah bayaran",
+      "inputAmount" : "Masukkan jumlah"
     },
     "ec": {
       "currentTime": "Masa Semasa",

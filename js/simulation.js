@@ -106,6 +106,10 @@
     plotEmptyLineChart();
     // global function
     initI18nPlugin();
+    i18n.setLng(localStorage.getItem('selectedLanguage'), function () {
+      $('#wrapper').i18n();
+      window.reloadElementsOnLanguageChange();
+    })
     // // render empty state sparkline
     // renderSparkline();
   });
@@ -343,7 +347,7 @@
     // each page has to add respective function on window to reload the translations on their page
     window.reloadElementsOnLanguageChange = function () {
       renderSparkline();
-      console.log('simulation reload')
+      $('.calculate-card .input-amount').attr("placeholder", i18n.t('body.simulation.inputAmount'));
     }
   }
 

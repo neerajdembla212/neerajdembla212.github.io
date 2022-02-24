@@ -264,7 +264,8 @@
       "simulationResults": "Kết quả mô phỏng",
       "return/Mth": "Lợi nhuận / tháng",
       "averagePips": "Pips trung bình",
-      "totalPaid": "Tổng số chi trả"
+      "totalPaid": "Tổng số chi trả",
+      "inputAmount" : "Số tiền đầu vào"
     },
     "ec": {
       "currentTime": "Giờ hiện tại",

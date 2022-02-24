@@ -264,7 +264,8 @@
       "simulationResults": "Simulation Results",
       "return/Mth": "Return / mth",
       "averagePips": "Average Pips",
-      "totalPaid": "Total Paid"
+      "totalPaid": "Total Paid",
+      "inputAmount" : "Input amount"
     },
     "ec": {
       "currentTime": "Current Time",

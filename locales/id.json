@@ -264,7 +264,8 @@
       "simulationResults": "Hasil Simulasi",
       "return/Mth": "Keuntungan / bln",
       "averagePips": "Rata-rata Pip",
-      "totalPaid": "Total Dibayar"
+      "totalPaid": "Total Dibayar",
+      "inputAmount" : "Masukkan Jumlah"
     },
     "ec": {
       "currentTime": "Waktu Saat",
