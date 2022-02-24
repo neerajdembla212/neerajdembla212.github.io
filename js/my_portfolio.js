@@ -538,7 +538,7 @@
         <tr>
           <td colspan="9">
             <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+                <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.provider')}</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
                     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
                         <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
@@ -647,7 +647,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `
         <div class="d-flex justify-content-between align-items-center p-2">
-                <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+                <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.provider')}</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
                     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
                         <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
@@ -1023,7 +1023,7 @@
         <tr>
           <td colspan="9">
           <div class="d-flex justify-content-between align-items-center">
-          <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> followers</p>
+          <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.followers')}</p>
           <ul class="pagination d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sf-rows-per-page">
                   <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
@@ -1135,7 +1135,7 @@
         const { start, end, total } = getStartEndRecordCount(dataLength, STATE.getPaginationData());
         return `
             <div class="d-flex justify-content-between align-items-center p-2">
-                <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+                <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('body.mp.provider')}</p>
                 <ul class="pagination d-flex justify-content-end align-items-center m-0">
                     <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
                         <option value="10">${i18n.t('body.mp.body.mp.10RowsPerPage')}</option>
