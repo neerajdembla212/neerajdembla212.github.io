@@ -78,18 +78,7 @@ function registerEventHandlers() {
         window.location.reload();
     }
   })
-
-  // display selected role on nav header
-  const storedRole = localStorage.getItem('currentRole');
-  if (storedRole === 'provider') {
-    $('.nav-header .role').text('Strategy Provider');
-    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
-  } else {
-    $('.nav-header .role').text('Strategy Follower');
-    localStorage.setItem('currentRole', 'follower');
-    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
-  }
-
+  showRoleOnNav();
   // Open close watchlist right sidebar
   $(".watchlist-right-sidebar-toggle").on("click", function (e) {
     e.preventDefault();
@@ -246,6 +235,16 @@ function renderAccountSwitcher(userAccounts) {
   if (!userAccounts || !Array.isArray(userAccounts)) {
     return
   }
+  const selectedLanguage = localStorage.getItem('selectedLanguage');
+  let createDemoAccountLabel = '';
+  switch (selectedLanguage) {
+    case 'en': createDemoAccountLabel = 'Create Demo Account'; break;
+    case 'cn': createDemoAccountLabel = '创建虚拟账户'; break;
+    case 'id': createDemoAccountLabel = 'Buat Akun Demo'; break;
+    case 'my': createDemoAccountLabel = 'Buka Akaun Demo'; break;
+    case 'th': createDemoAccountLabel = 'เปิดบัญชีทดลอง'; break;
+    case 'vn': createDemoAccountLabel = 'Tạo tài khoản demo'; break;
+  }
   const container = $('.account-switcher');
   const rowsHTML = []
   const selectedAccountType = localStorage.getItem('selectedAccountType');
@@ -266,7 +265,7 @@ function renderAccountSwitcher(userAccounts) {
   rowsHTML.unshift(`
     <li class="dropdown-item font-bold text-navy py-2 cursor-pointer px-3" data-account-no="create" data-toggle="modal"
     data-target="#create-demo-modal" data-i18="nav.createDemoAccount">
-      Create Demo Account
+      ${createDemoAccountLabel}
     </li>
   `)
   container.empty().append(rowsHTML.join(''))
@@ -1276,6 +1275,9 @@ function initI18nPlugin() {
     i18n.setLng(language, function () {
       $('#wrapper').i18n();
       window.reloadElementsOnLanguageChange();
+      showRoleOnNav();
+      const userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
+      renderAccountSwitcher(userAccounts);
     })
   })
 
@@ -1287,5 +1289,36 @@ function initI18nPlugin() {
   }, function (t) {
     $('#wrapper').i18n();
   });
+}
+
+function showRoleOnNav() {
+  // display selected role on nav header
+  const storedRole = localStorage.getItem('currentRole');
+  const selectedLanguage = localStorage.getItem('selectedLanguage') ? localStorage.getItem('selectedLanguage') : 'en';
+  let roleText = '';
+  if (storedRole === 'provider') {
+    switch (selectedLanguage) {
+      case 'en': roleText = 'Strategy Provider'; break;
+      case 'cn': roleText = '交易达人'; break;
+      case 'id': roleText = 'Penyedia Strategi'; break;
+      case 'my': roleText = 'Penyedia Strategi'; break;
+      case 'th': roleText = 'ผู้ให้บริการกลยุทธ์'; break;
+      case 'vn': roleText = 'Nhà cung cấp chiến lược'; break;
+    }
+    $('.nav-header .role').text(roleText);
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
+  } else {
+    switch (selectedLanguage) {
+      case 'en': roleText = 'Strategy Follower'; break;
+      case 'cn': roleText = '跟单者'; break;
+      case 'id': roleText = 'Pengikut Strategi'; break;
+      case 'my': roleText = 'Pengikut Strategi'; break;
+      case 'th': roleText = 'ผู้ติดตามกลยุทธ์'; break;
+      case 'vn': roleText = 'Người theo dõi chiến lược'; break;
+    }
+    $('.nav-header .role').text(roleText);
+    localStorage.setItem('currentRole', 'follower');
+    $(`.nav-header .dropdown-menu .dropdown-item[data-role="${storedRole}"]`).append('<img src="img/ic_tick.svg" class="ml-2" />')
+  }
 }
 

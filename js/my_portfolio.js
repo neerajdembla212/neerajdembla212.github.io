@@ -252,7 +252,10 @@
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
         // register events must be called after showRoleWiseElements() as few elements need to be present in dom before add event listeners on them
         registerEvents();
-        showRoleWiseElements();
+        i18n.setLng(localStorage.getItem('selectedLanguage'), function () {
+            $('#wrapper').i18n();
+            window.reloadElementsOnLanguageChange();
+        })
         // role wise elements on sub header
         // sparkline section
         fetchStrategyDetails();
@@ -1449,15 +1452,13 @@
             const text = i18n.t('body.mp.followers') ? i18n.t('body.mp.followers') : 'Followers';
             $('.role-chip-follower').addClass('d-none');
             $('.role-chip-provider').removeClass('d-none');
-
             $('#hide-strategy-account').removeClass('d-none');
             $('#strategy').removeClass('d-none');
             $('.portfolio-users-table .table-title').text(text)
         } else if (role.toLowerCase() === 'follower') {
-            const text = i18n.t('body.mp.followers') ? i18n.t('body.mp.following') : 'Following';
+            const text = i18n.t('body.mp.following') ? i18n.t('body.mp.following') : 'Following';
             $('.role-chip-follower').removeClass('d-none');
             $('.role-chip-provider').addClass('d-none');
-
             $('#hide-strategy-account').addClass('d-none');
             $('#strategy').addClass('d-none');
             $('.portfolio-users-table .table-title').text(text)
@@ -1767,7 +1768,7 @@
         // each page has to add respective function on window to reload the translations on their page
         window.reloadElementsOnLanguageChange = function () {
             const userRole = STATE.getRole()
-            showRoleWiseElements()
+            showRoleWiseElements();
             renderSparkline(userRole);
             renderTableFilters();
             if (userRole.toLowerCase() === 'provider') {
