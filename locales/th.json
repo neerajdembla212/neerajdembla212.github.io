@@ -335,6 +335,7 @@
     }
   },
   "topnav": {
-    "welcome": "ยินดีต้อนรับ"
+    "welcome": "ยินดีต้อนรับ",
+    "searchCopypip": "ค้นหา CopyPip"
   }
 }

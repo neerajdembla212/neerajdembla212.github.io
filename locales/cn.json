@@ -335,6 +335,7 @@
     }
   },
   "topnav": {
-    "welcome": "欢迎"
+    "welcome": "欢迎",
+    "searchCopypip": "搜索CopyPip"
   }
 }

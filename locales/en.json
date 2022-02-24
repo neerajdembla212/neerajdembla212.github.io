@@ -265,7 +265,7 @@
       "return/Mth": "Return / mth",
       "averagePips": "Average Pips",
       "totalPaid": "Total Paid",
-      "inputAmount" : "Input amount"
+      "inputAmount": "Input amount"
     },
     "ec": {
       "currentTime": "Current Time",
@@ -335,7 +335,8 @@
     }
   },
   "topnav": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "searchCopypip": "Search CopyPip"
   }
 
 }

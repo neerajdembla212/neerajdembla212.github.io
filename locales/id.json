@@ -335,6 +335,7 @@
     }
   },
   "topnav": {
-    "welcome": "Selamat datang"
+    "welcome": "Selamat datang",
+    "searchCopypip": "Cari CopyPip"
   }
 }

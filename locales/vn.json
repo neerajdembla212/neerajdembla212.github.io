@@ -335,6 +335,7 @@
     }
   },
   "topnav": {
-    "welcome": "Chào mừng"
+    "welcome": "Chào mừng",
+    "searchCopypip": "Tìm kiếm CopyPip"
   }
 }

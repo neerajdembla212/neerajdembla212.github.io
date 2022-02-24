@@ -5,5 +5,7 @@
         $('.timezone-offset').text(` (${getTimezoneOffset()})`)
         // global function
         initI18nPlugin();
+        window.reloadElementsOnLanguageChange = function () {
+        }
     })
 })();

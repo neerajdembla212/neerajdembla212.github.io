@@ -1278,6 +1278,7 @@ function initI18nPlugin() {
       showRoleOnNav();
       const userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
       renderAccountSwitcher(userAccounts);
+      $('.navbar-static-top .search-copypip').attr('placeholder', i18n.t('topnav.searchCopypip'));
     })
   })
 
@@ -1288,6 +1289,7 @@ function initI18nPlugin() {
     lng: language || 'en'
   }, function (t) {
     $('#wrapper').i18n();
+    $('.navbar-static-top .search-copypip').attr('placeholder', i18n.t('topnav.searchCopypip'));
   });
 }
 
