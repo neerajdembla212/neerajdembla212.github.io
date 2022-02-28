@@ -746,7 +746,7 @@
     return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-              <div class="key tooltip-demo">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.sinceInception')} </br> ${strategy_age}"></i></div>
+              <div class="key tooltip-demo">${i18n.t('body.simulation.cumulativeReturns')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.sinceInception')} </br> ${strategy_age}"></i></div>
                 <div class="d-flex justify-content-between">
                 <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">
@@ -802,7 +802,7 @@
       <div class="responsive-content">
         <div class="d-flex justify-content-between align-items-center p-3">
           <div class="key">
-            <p class="mb-0">Cumulative returns <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.strategyAge')} </br> ${strategy_age}"></i></p>
+            <p class="mb-0">${i18n.t('body.simulation.cumulativeReturns')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.strategyAge')} </br> ${strategy_age}"></i></p>
           </div>
           <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
         </div>

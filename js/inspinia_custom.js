@@ -1286,7 +1286,7 @@ function initI18nPlugin() {
     resGetPath: 'locales/__lng__.json',
     load: 'unspecific',
     fallbackLng: false,
-    lng: language || 'en'
+    lng: language || 'en',
   }, function (t) {
     $('#wrapper').i18n();
     $('.navbar-static-top .search-copypip').attr('placeholder', i18n.t('topnav.searchCopypip'));

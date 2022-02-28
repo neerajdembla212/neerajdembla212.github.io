@@ -723,7 +723,7 @@
         const targetSP = users.find(u => u.id == providerId);
         targetSP.isPaused = true;
         renderStrategyProviders()
-        renderSuccessToast(`Paused following ${targetSP.name}`); ƒ
+        renderSuccessToast(`${i18n.t('body.mp.pauseSuccessMessage')} ${targetSP.name}`); ƒ
     }
 
     function onPlayProvider(event) {
@@ -733,7 +733,7 @@
         const targetSP = users.find(u => u.id == providerId);
         targetSP.isPaused = false;
         renderStrategyProviders()
-        renderSuccessToast(`Started following ${targetSP.name}`);
+        renderSuccessToast(`${i18n.t('body.mp.followSuccessMessage')} ${targetSP.name}`);
     }
 
     function onStopProvider(event) {
@@ -749,7 +749,7 @@
             users.splice(targetSPIndex, 1)
         }
         renderStrategyProviders()
-        renderSuccessToast(`Stopped following ${targetSP.name}`);
+        renderSuccessToast(`${i18n.t('body.mp.stoppedSuccessMessage')} ${targetSP.name}`);
     }
 
     function onFollowingTableSort(key, direction) {
@@ -768,7 +768,7 @@
     function renderPauseProviderPopup(id, name) {
         const container = $('#pause-provider-modal .modal-body');
         container.empty().append(`
-            <p class="mb-3">Are you sure you want to pause following <b>${name}</b> ?</p>
+            <p class="mb-3">${i18n.t('body.mp.pauseFollowingMessage')} <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
                 <button type="button" class="btn btn-primary" id="pause-provider-confirm-cta" data-dismiss="modal" data-id=${id}>${i18n.t('body.common.confirm')}</button>
@@ -779,7 +779,7 @@
     function renderPlayProviderModal(id, name) {
         const container = $('#play-provider-modal .modal-body');
         container.empty().append(`
-            <p class="mb-3">Are you sure you want to play following <b>${name}</b> ?</p>
+            <p class="mb-3">${i18n.t('body.mp.startFollowingMessage')} <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="play-provider-confirm-cta" data-id=${id}>${i18n.t('body.common.confirm')}</button>
@@ -790,7 +790,7 @@
     function renderStopProviderPopup(id, name) {
         const container = $('#stop-provider-modal .modal-body');
         container.empty().append(`
-            <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>
+            <p class="mb-3">${i18n.t('body.mp.stopFollowingMessage')} <b>${name}</b> ?</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-id="${id}" id="stop-provider-confirm-cta">${i18n.t('body.common.confirm')}</button>
@@ -1198,7 +1198,7 @@
         const targetSP = users.find(u => u.id == providerId);
         targetSP.isPaused = true;
         renderStrategyFollowers();
-        renderSuccessToast(`Paused ${targetSP.name} from following you`)
+        renderSuccessToast(`${targetSP.name} ${i18n.t('body.mp.pausedFollowingYou')}`)
     }
 
     function onPlayFollower(event) {
@@ -1208,7 +1208,7 @@
         // update paused property of this provider in state
         targetSF.isPaused = false;
         renderStrategyFollowers()
-        renderSuccessToast(`Allowed ${targetSF.name} to follow you`)
+        renderSuccessToast(`${targetSF.name} ${i18n.t('body.mp.hasFollowedYou')}`)
     }
 
     function onStopFollower(event) {
@@ -1224,7 +1224,7 @@
             users.splice(targetSFIndex, 1)
         }
         renderStrategyFollowers();
-        renderSuccessToast(`Stopped ${targetSP.name} from following you`);
+        renderSuccessToast(`${targetSP.name} ${i18n.t('body.mp.stoppedFollowingYou')}`);
     }
 
     function onAcceptFollower(event) {

@@ -33,7 +33,7 @@
       "feesProfitShared": "ค่าธรรมเนียม + ส่วนแบ่งกำไร",
       "strategyAge": "อายุกลยุทธ์",
       "sinceInception": "ตั้งแต่เริ่มต้น",
-      "following": "การติดตาม",
+      "following": "กำลังติดตาม",
       "p/l": "P/L (กำไร & ขาดทุน)",
       "HWMDifference": "กำไรสูงสุด",
       "balance": "บาลานซ์",
@@ -65,7 +65,19 @@
       "unhideStrategyAccountQuestion": "คุณแน่ใจหรือไม่ ที่จะเลิกซ่อนบัญชีกลยุทธ์ของคุณ?",
       "unhideStrategyAccountP1": "ผู้ติดตามกลยุทธ์จะไม่สามารถค้นหาหรือค้นหาบัญชีของคุณได้อีกต่อไป",
       "unhideStrategyAccountP2": "การซื้อขายที่เปิดและรอดำเนินการของคุณจะไม่ได้รับผลกระทบ",
-      "unhideAccount": "เลิกซ่อนบัญชี"
+      "unhideAccount": "เลิกซ่อนบัญชี",
+      "startFollowing": "เริ่มการติดตาม",
+      "startFollowingMessage": "แน่ใจหรือไม่ว่าคุณต้องการเริ่มติดตาม",
+      "stopFollowing": "หยุดการติดตาม",
+      "stopFollowingMessage": "แน่่ใจหรือไม่ว่าคุณต้องการหยุดติดตาม",
+      "pauseFollowing": "หยุุดการติดตามชั่วคราว",
+      "pauseFollowingMessage": "แน่่ใจหรือไม่ว่าคุณต้องการหยุดติดตาม ชั่วคราว",
+      "followSuccessMessage": "คุณได้ติดตาม",
+      "pauseSuccessMessage": "คุุณได้หยุดติดตาม ชั่วคราว",
+      "stoppedSuccessMessage": "คุณได้หยุดติดตาม",
+      "hasFollowedYou": "กำลังติดตามคุณ",
+      "pausedFollowingYou": "หยุดติดตามคุณชั่วคราว",
+      "stoppedFollowingYou": "หยุดติดตามคุณ"
     },
     "login": {
       "signIn": "เข้าสูู่ระบบ",
@@ -116,7 +128,14 @@
       "status": "สถานะ",
       "editOrder": "แก้ไข",
       "cancelOrder": "ยกเลิก Order",
-      "modify": "แก้ไข"
+      "modify": "แก้ไข",
+      "myWatchlist": "รายการที่เฝ้าดูของฉัน",
+      "clear": "ล้าง",
+      "last": "ล้่าสุด",
+      "searchCurrencies": "ค้นหาสกุลเงิน",
+      "close": "ปิด",
+      "closed": "ปิดแล้ว",
+      "cancelled": "ยกเลิกแล้ว"
     },
     "common": {
       "buySell": "ซื้อ/ขาย",
@@ -191,13 +210,14 @@
     "sp": {
       "topPerformer": "Top Performer",
       "featured": "จุดเด่น",
-      "following": "การติดตาม",
+      "following": "กำลังติดตาม",
       "favourites": "ความชื่นชอบ",
       "avg/Mth": "ค่าเฉลี่ย / เดือน",
       "avgPips": "ค่าเฉลี่ย Pips",
       "managedFunds": "ค่าทำเนียมการจัดการ",
       "advisedMin": "Advised Min",
       "followProvider": "ติดตามผู้ให้บริการ",
+      "unfollowProvider": "เลิกติดตามผู้ให้บริการ",
       "drawdown": "ขาดทุนสะสม",
       "age": "ค่าเฉลี่ย",
       "totalReturns/equityGrowth": "ผลตอบแทนทั้งหมด / Equity Growth",
@@ -210,7 +230,10 @@
       "monthlySubscriptionFee": "ค่าธรรมเนียมสมาชิกรายเดือน",
       "profitSharingPercentage": "เปอร์เซ็นต์ส่วนแบ่งรายได้",
       "closedPrice": "ราคาปิด",
-      "stopFollowing": "หยุดการติดตาม"
+      "stopFollowing": "หยุดการติดตาม",
+      "lowGrowth": "เติบโตต่ำ",
+      "midGrowth": "เติบโตปานกลาง",
+      "highGrowth": "เติบโตสูง"
     },
     "settings": {
       "strategyPhilosophy": "ปรัชญากลยุทธ์",
@@ -250,7 +273,8 @@
       "specifyDuration": "ระบุระยะเวลา",
       "description": "คำอธิบาย",
       "settingsDescriptionP1": "บัญชีซื้อขาย MT4 ที่ใช้สำหรับการสมัครจะต้องไม่เป็นบัญชีผู้ติดตามกลยุทธ์",
-      "submitApplication": "ส่งใบสมัคร"
+      "submitApplication": "ส่งใบสมัคร",
+      "updatePassword": "อัปเดตรหัสผ่าน"
     },
     "simulation": {
       "inputCapital": "เงินทุนเข้า",
@@ -258,14 +282,16 @@
       "startDate": "วันที่เริ่ม",
       "endDate": "วัันที่สิ้นสุด",
       "calculate": "การคำนวณ",
-      "following": "การติดตาม",
+      "following": "กำลังติดตาม",
       "addProvider": "เพิ่มผู้ให้บริการ",
       "joinedDuration": "ระยะเวลาเข้าร่วม",
       "simulationResults": "ผลการจำลอง",
       "return/Mth": "ผลตอบแทน / เดือน",
       "averagePips": "ค่าเฉลี่ย Pips",
       "totalPaid": "จ่ายทั้งหมด",
-      "inputAmount" : "จำนวนเงินที่ป้อน"
+      "inputAmount" : "จำนวนเงินที่ป้อน",
+      "cumulativeReturns": "ผลตอบแทนสะสม",
+      "emptyMessage": "เพิ่มผู้ให้บริการเพื่อเริ่มการจำลอง"
     },
     "ec": {
       "currentTime": "เวลาปัจจุบัน",
@@ -331,7 +357,8 @@
       "referQ3P5": "ความสามารถในการถอนการลงทุนของคุณได้ตลอดเวลา",
       "referQ3P6": "ความสามารถในการกำหนดอัตราส่วนระหว่างบัญชีและผู้ให้บริการกลยุทธ์ เพื่อให้คุณสามารถปรับความเสี่ยงและขนาดของล็อตที่ซื้อขายตามเงินทุนของคุณได้โดยอัตโนมัติ",
       "referalLinkText":"นี่คือลิงค์อ้างอิงเฉพาะของคุณ",
-      "copyLink": "คัดลอกลิงค์"
+      "copyLink": "คัดลอกลิงค์",
+      "loginButtonText": "เปลี่ยนการล็อกอินเข้าสู่พอทัลลูกค้าของคุณ"
     }
   },
   "topnav": {

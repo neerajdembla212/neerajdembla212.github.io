@@ -194,7 +194,7 @@
             </div>
             <button type="button" class="btn btn-default btn-sm btn-watchlist watchlist-right-sidebar-toggle">
               <i class="fa fa-bookmark mr-2"></i>
-              My Watchlist <i id="watchlist-number"></i>
+              <span data-i18n="body.tt.myWatchlist">My Watchlist</span> <i id="watchlist-number"></i>
             </button>
           </div>
         </div>
@@ -224,7 +224,7 @@
                   <div class="form-group position-relative">
                     <span class="inline-search-icon fa fa-search"></span>
                     <input type="text" placeholder="Search Currencies" class="form-control white-bg" name="top-search"
-                      id="top-search">
+                      id="search-currency">
                   </div>
                   <li class="cursor-pointer px-3 py-1">
                     <div class="d-flex justify-content-between mb-2">
@@ -521,7 +521,7 @@
           <div class="d-flex justify-content-between mb-3">
             <div class="d-flex align-items-center">
               <img src="img/ic_cross.svg" class="close mr-3" alt="close sidebar">
-              <p class="mb-0 font-weight-bold extra-large-font">My Watchlist</p>
+              <p class="mb-0 font-weight-bold extra-large-font" data-i18n="body.tt.myWatchlist">My Watchlist</p>
             </div>
             <button id="add-new-watchList" class="btn btn-default border-0 add-watchlist mr-2" type="button">
               <img src="img/ic_plus.svg" alt="pin icon" />
@@ -533,13 +533,14 @@
             <span class="inline-search-icon fa fa-search"></span>
             <input id="search-currency" type="text" placeholder="Search Currency Pairs" class="form-control white-bg"
               name="top-search" id="top-search">
-            <p class="mb-0 extra-small-font cursor-pointer clear-search-results text-dark-blue font-bold">Clear</p>
+            <p class="mb-0 extra-small-font cursor-pointer clear-search-results text-dark-blue font-bold"
+              data-i18n="body.tt.clear">Clear</p>
           </div>
           <!-- Search currency pairs end -->
           <!-- Column headers start -->
           <div class="d-flex justify-content-between mb-2">
             <p class="mb-0 extra-small-font text-gray" data-i18n="body.tt.symbol">SYMBOL</p>
-            <p class="mb-0 extra-small-font text-gray">LAST</p>
+            <p class="mb-0 extra-small-font text-gray" data-i18n="body.tt.last">LAST</p>
             <p class="mb-0 extra-small-font text-gray">CHANGE</p>
             <p class="mb-0 extra-small-font text-gray">&nbsp;&nbsp;</p>
           </div>

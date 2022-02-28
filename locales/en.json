@@ -65,7 +65,19 @@
       "unhideStrategyAccountQuestion": "Are you sure you want to unhide your strategy account?",
       "unhideStrategyAccountP1": "Strategy Followers will no longer be able to search or find your account.",
       "unhideStrategyAccountP2": "Your open and pending trades will not be affected.",
-      "unhideAccount": "Unhide Account"
+      "unhideAccount": "Unhide Account",
+      "startFollowing": "Start Following",
+      "startFollowingMessage": "Are you sure you want to start following",
+      "stopFollowing": "Stop Following",
+      "stopFollowingMessage": "Are you sure you want to stop following",
+      "pauseFollowing": "Pause Following",
+      "pauseFollowingMessage": "Are you sure you want to pause following",
+      "followSuccessMessage": "You have followed",
+      "pauseSuccessMessage": "You paused following",
+      "stoppedSuccessMessage": "You stopped following",
+      "hasFollowedYou": "has followed you",
+      "pausedFollowingYou": "paused following you",
+      "stoppedFollowingYou": "stopped following you"
     },
     "login": {
       "signIn": "Sign In",
@@ -116,7 +128,14 @@
       "status": "Status",
       "editOrder": "Edit Order",
       "cancelOrder": "Cancel Order",
-      "modify": "Modify"
+      "modify": "Modify",
+      "myWatchlist": "My Watchlist",
+      "clear": "Clear",
+      "last": "Last",
+      "searchCurrencies": "Search currencies",
+      "close": "Close",
+      "closed": "Closed",
+      "cancelled": "Cancelled"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -198,6 +217,7 @@
       "managedFunds": "Managed Funds",
       "advisedMin": "Advised Min",
       "followProvider": "Follow Provider",
+      "unfollowProvider": "Unfollow Provider",
       "drawdown": "Drawdown",
       "age": "Age",
       "totalReturns/equityGrowth": "Total Returns / equity growth",
@@ -210,7 +230,10 @@
       "monthlySubscriptionFee": "Monthly Subscription Fee",
       "profitSharingPercentage": "Profit Sharing Percentage",
       "closedPrice": "Closed Price",
-      "stopFollowing": "Stop Following"
+      "stopFollowing": "Stop Following",
+      "lowGrowth": "Low Growth",
+      "midGrowth": "Mid Growth",
+      "highGrowth": "High Growth"
     },
     "settings": {
       "strategyPhilosophy": "Strategy Philosophy",
@@ -250,7 +273,8 @@
       "specifyDuration": "Specify Duration",
       "description": "Description",
       "settingsDescriptionP1": "The MT4 trading account used for application must not already be a Strategy Follower account.",
-      "submitApplication": "Submit Application"
+      "submitApplication": "Submit Application",
+      "updatePassword": "Update Password"
     },
     "simulation": {
       "inputCapital": "Input Capital",
@@ -265,7 +289,9 @@
       "return/Mth": "Return / mth",
       "averagePips": "Average Pips",
       "totalPaid": "Total Paid",
-      "inputAmount": "Input amount"
+      "inputAmount": "Input amount",
+      "cumulativeReturns": "Cumulative returns",
+      "emptyMessage": "Add a Provider to Start Simulation"
     },
     "ec": {
       "currentTime": "Current Time",
@@ -331,7 +357,8 @@
       "referQ3P5": "ability to withdraw your investments at any time",
       "referQ3P6": "ability to set the ratio between your account and strategy provider, so that you can automatically adjust the risk and size of lots traded based on your capital",
       "referalLinkText": "Here is your unique referral link",
-      "copyLink": "Copy Link"
+      "copyLink": "Copy Link",
+      "loginButtonText": "Login in to your client"
     }
   },
   "topnav": {

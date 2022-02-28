@@ -65,7 +65,19 @@
       "unhideStrategyAccountQuestion": "您确定要取消隐藏您的策略账户吗？",
       "unhideStrategyAccountP1": "跟单者将无法再搜索或找到您的账户。",
       "unhideStrategyAccountP2": "您的未结交易和待处理交易不会受到影响。",
-      "unhideAccount": "取消隐藏帐户"
+      "unhideAccount": "取消隐藏帐户",
+      "startFollowing": "开始关注",
+      "startFollowingMessage": "您确定要开始关注",
+      "stopFollowing": "停止关注",
+      "stopFollowingMessage": "您确定要停止关注",
+      "pauseFollowing": "暂停关注",
+      "pauseFollowingMessage": "您确定要暂停关注",
+      "followSuccessMessage": "您已关注",
+      "pauseSuccessMessage": "您已暂停关注",
+      "stoppedSuccessMessage": "您已停止关注",
+      "hasFollowedYou": "已关注您",
+      "pausedFollowingYou": "已暂停关注您",
+      "stoppedFollowingYou": "已停止关注您"
     },
     "login": {
       "signIn": "登入",
@@ -116,7 +128,14 @@
       "status": "状态",
       "editOrder": "编辑订单",
       "cancelOrder": "取消订单",
-      "modify": "调整"
+      "modify": "调整",
+      "myWatchlist": "我的关注列表",
+      "clear": "清除",
+      "last": "最后的",
+      "searchCurrencies": "搜索货币",
+      "close": "关闭",
+      "closed": "关闭",
+      "cancelled": "取消"
     },
     "common": {
       "buySell": "买/卖",
@@ -198,6 +217,7 @@
       "managedFunds": "管理基金",
       "advisedMin": "Advised Min",
       "followProvider": "关注交易达人",
+      "unfollowProvider": "取消关注交易达人",
       "drawdown": "缩编",
       "age": "年龄",
       "totalReturns/equityGrowth": "总回报/股权增长",
@@ -210,7 +230,10 @@
       "monthlySubscriptionFee": "每月订阅费",
       "profitSharingPercentage": "利润分享百分比",
       "closedPrice": "收盘价",
-      "stopFollowing": "停止关注"
+      "stopFollowing": "停止关注",
+      "lowGrowth": "低增长",
+      "midGrowth": "中期增长",
+      "highGrowth": "高增长"
     },
     "settings": {
       "strategyPhilosophy": "策略理念",
@@ -250,7 +273,8 @@
       "specifyDuration": "指定持续时间",
       "description": "描述",
       "settingsDescriptionP1": "用于申请的 MT4 交易账户必须不是交易达人的账户。",
-      "submitApplication": "递交申请"
+      "submitApplication": "递交申请",
+      "updatePassword": "更新密码"
     },
     "simulation": {
       "inputCapital": "投入资本",
@@ -265,7 +289,9 @@
       "return/Mth": "回报/月",
       "averagePips": "平均点数",
       "totalPaid": "总支付",
-      "inputAmount" : "输入数量"
+      "inputAmount" : "输入数量",
+      "cumulativeReturns": "累积回报",
+      "emptyMessage": "添加交易达人以开始模拟"
     },
     "ec": {
       "currentTime": "当前时间",
@@ -331,7 +357,8 @@
       "referQ3P5": "有能力随时撤回投资",
       "referQ3P6": "能够设置您的账户和交易达人之间的比率，以便您可以根据您的资金自动调整交易手数的风险和大小",
       "referalLinkText":"这是您唯一的推荐链接",
-      "copyLink": "复制链接"
+      "copyLink": "复制链接",
+      "loginButtonText": "更改登录到您的客户端"
     }
   },
   "topnav": {

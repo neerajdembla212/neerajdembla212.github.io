@@ -33,7 +33,7 @@
       "feesProfitShared": "Biaya + Bagi Hasil",
       "strategyAge": "Usia Strategi",
       "sinceInception": "Sejak Peluncuran",
-      "following": "Mengikuti",
+      "following": "Ikuti",
       "p/l": "P/L (Laba & Rugi)",
       "HWMDifference": "Perbedaan HWM",
       "balance": "Saldo",
@@ -65,7 +65,19 @@
       "unhideStrategyAccountQuestion": "Yakin ingin memperlihatkan akun strategis Anda?",
       "unhideStrategyAccountP1": "Pengikut Strategi tidak akan dapat lagi mencari atau menemukan akun Anda.",
       "unhideStrategyAccountP2": "Perdagangan terbuka dan tertunda Anda tidak akan terpengaruh.",
-      "unhideAccount": "Perlihatkan Akun"
+      "unhideAccount": "Perlihatkan Akun",
+      "startFollowing": "Mulai Mengikuti",
+      "startFollowingMessage": "Apakah Anda yakin ingin mengikuti",
+      "stopFollowing": "Berhenti Mengikuti",
+      "stopFollowingMessage": "Apakah Anda yakin ingin berhenti mengikuti",
+      "pauseFollowing": "Jeda Mengikuti",
+      "pauseFollowingMessage": "Apakah Anda yakin inign menjeda untuk mengikuti",
+      "followSuccessMessage": "Anda telah mengikuti",
+      "pauseSuccessMessage": "Anda telah menjeda mengikuti",
+      "stoppedSuccessMessage": "Anda telah berhenti mengikuti",
+      "hasFollowedYou": "telah mengikuti Anda",
+      "pausedFollowingYou": "menjeda untuk mengikuti Anda",
+      "stoppedFollowingYou": "berhenti mengikuti Anda"
     },
     "login": {
       "signIn": "Masuk",
@@ -116,7 +128,14 @@
       "status": "Status",
       "editOrder": "Sunting Pesanan",
       "cancelOrder": "Batalkan Pesanan",
-      "modify": "Memodifikasi"
+      "modify": "Memodifikasi",
+      "myWatchlist": "Pantauan Saya",
+      "clear": "Bersihkan",
+      "last": "Akhir",
+      "searchCurrencies": "Cari Mata Uang",
+      "close": "Tutup",
+      "closed": "Ditutup",
+      "cancelled": "Dibatalkan"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -191,13 +210,14 @@
     "sp": {
       "topPerformer": "Performa Terbaik",
       "featured": "Keunggulan",
-      "following": "Mengikuti",
+      "following": "Ikuti",
       "favourites": "Favorit",
       "avg/Mth": "Rata-rata / Bulan",
       "avgPips": "Rata-Rata Pip",
       "managedFunds": "Dana yang Dikelola",
       "advisedMin": "Saran Min",
       "followProvider": "Ikuti Penyedia Strategi",
+      "unfollowProvider": "Berhenti Mengikuti Penyedia Strategi",
       "drawdown": "Drawdown",
       "age": "Usia",
       "totalReturns/equityGrowth": "Total Keuntungan / Pertumbuhan Ekuitas",
@@ -210,7 +230,10 @@
       "monthlySubscriptionFee": "Biaya Langganan Bulanan",
       "profitSharingPercentage": "Persentase Bagi Hasil",
       "closedPrice": "Harga Penutupan",
-      "stopFollowing": "Berhenti Mengikuti"
+      "stopFollowing": "Berhenti Mengikuti",
+      "lowGrowth": "Pertumbuhan Rendah",
+      "midGrowth": "Pertumbuhan Menengah",
+      "highGrowth": "Pertumbuhan Tinggi"
     },
     "settings": {
       "strategyPhilosophy": "Filosofi Strategi",
@@ -250,7 +273,8 @@
       "specifyDuration": "Tentukan Durasi",
       "description": "Deskripsi",
       "settingsDescriptionP1": "Akun trading MT4 yang digunakan untuk aplikasi tidak boleh merupakan akun Pengikut Strategi.",
-      "submitApplication": "Mengajukan Permohonan"
+      "submitApplication": "Mengajukan Permohonan",
+      "updatePassword": "Perbarui Sandi"
     },
     "simulation": {
       "inputCapital": "Masukan Modal",
@@ -258,14 +282,16 @@
       "startDate": "Tanggal Mulai",
       "endDate": "Tanggal Berakhir",
       "calculate": "Hitung",
-      "following": "Mengikuti",
+      "following": "Ikuti",
       "addProvider": "Tambahkan Penyedia",
       "joinedDuration": "Durasi Bergabung",
       "simulationResults": "Hasil Simulasi",
       "return/Mth": "Keuntungan / bln",
       "averagePips": "Rata-rata Pip",
       "totalPaid": "Total Dibayar",
-      "inputAmount" : "Masukkan Jumlah"
+      "inputAmount" : "Masukkan Jumlah",
+      "cumulativeReturns": "Imbal hasil kumulatif",
+      "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi"
     },
     "ec": {
       "currentTime": "Waktu Saat",
@@ -331,7 +357,8 @@
       "referQ3P5": "kemampuan untuk menarik investasi Anda kapan saja",
       "referQ3P6": "kemampuan untuk mengatur rasio antara akun Anda dan penyedia strategi, sehingga Anda dapat secara otomatis menyesuaikan risiko dan ukuran lot yang diperdagangkan berdasarkan modal Anda",
       "referalLinkText":"Ini adalah tautan rujukan unik Anda",
-      "copyLink": "Salin tautan"
+      "copyLink": "Salin tautan",
+      "loginButtonText": "Ubah Login ke portal klien Anda"
     }
   },
   "topnav": {

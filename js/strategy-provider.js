@@ -529,7 +529,7 @@
 
     const followProviderCTA = followed === 'true' ? `<button type="button" class="btn btn-outline btn-primary btn-block2 unfollow-provider-cta" name="unfollow-provider-cta" data-toggle="modal"
     data-target="#unfollow-provider-modal" data-name="${name}">
-    Unfollow Provider
+    ${i18n.t('body.sp.unfollowProvider')}
   </button>` : `<button class="btn btn-primary btn-block2" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
   ${i18n.t('body.sp.followProvider')}
   </button>`;
@@ -1189,7 +1189,7 @@
 
     const followProviderCTA = followed === 'true' ? `<button type="button" class="btn btn-outline btn-primary btn-block unfollow-provider-cta" name="unfollow-provider-cta" data-toggle="modal"
     data-target="#unfollow-provider-modal" data-name="${name}">
-    Unfollow Provider
+    ${i18n.t('body.sp.unfollowProvider')}
   </button>` : `<button id="follow-provider-cta" class="btn btn-primary font-size-12 btn-block follow-provider-cta" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta" data-id="${id}">
   ${i18n.t('body.sp.followProvider')}
 </button>`;

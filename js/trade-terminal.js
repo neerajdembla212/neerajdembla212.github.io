@@ -301,6 +301,8 @@
         window.reloadElementsOnLanguageChange = function () {
             renderBuySellData();
             renderTradeSection(DESKTOP_MEDIA);
+            $('#search-currency').attr('placeholder', i18n.t('body.tt.searchCurrencies'));
+
         }
     }
 
@@ -329,7 +331,7 @@
                 switch (href) {
                     case '#open-trades': tab.text = 'Open'; break;
                     case '#pending-orders': tab.text = 'Pending'; break;
-                    case '#closed-trades': tab.text = 'Closed'; break;
+                    case '#closed-trades': tab.text = i18n.t('body.tt.closed'); break;
                 }
             })
         } else {
@@ -475,7 +477,7 @@
         let actionHeader = ''
         switch (activeTabId) {
             case '#open-trades':
-                actionHeader = '<th class="text-center align-middle">Close</th>'; break;
+                actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.close')}</th>`; break;
             case '#pending-orders':
                 actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.cancel')}</th>`; break;
             case '#closed-trades':
@@ -1454,7 +1456,7 @@
             <div class="mb-2 d-flex">
                 <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
             </div>
-            <p class="mb-3 text-blur-gray super-extra-large-font font-bold">Cancelled</p>
+            <p class="mb-3 text-blur-gray super-extra-large-font font-bold">${i18n.t('body.tt.cancelled')}</p>
             `
             default: return ``;
         }
