@@ -205,7 +205,13 @@
       "to": "to",
       "of": "of",
       "confirm": "Confirm",
-      "provider": "Provider"
+      "provider": "Provider",
+      "youHaveFollowed": "You have followed",
+      "youPausedFollowing": "You paused following",
+      "youStoppedFollowing": "You stopped following",
+      "hasFollowedYou": "has followed you",
+      "pausedFollowingYou": "paused following you",
+      "stoppedFollowingYou": "stopped following you"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -358,7 +364,7 @@
       "referQ3P6": "ability to set the ratio between your account and strategy provider, so that you can automatically adjust the risk and size of lots traded based on your capital",
       "referalLinkText": "Here is your unique referral link",
       "copyLink": "Copy Link",
-      "loginButtonText": "Login in to your client"
+      "loginButtonText": "Login in to your client portal"
     }
   },
   "topnav": {

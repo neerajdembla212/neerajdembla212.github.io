@@ -391,6 +391,7 @@ function fetchNotifications() {
   callAjaxMethod({
     url: "https://copypip.free.beeceptor.com/notifications",
     successCallback: (data) => {
+      localStorage.setItem('notifications', data.data);
       renderNotifications(data.data);
       $('.notifications-container .label-notification').text(data.newNotificationCount)
     },
@@ -409,12 +410,13 @@ function renderNotifications(notifications) {
 }
 
 function getNotificationRowHTML(notification) {
-  const { profile_image, message, timestamp } = notification;
+  const { profile_image, message, timestamp, user_name, reverse } = notification;
+  const displayMessage = reverse ? `${user_name} ${i18n.t(message)}` : `${i18n.t(message)} ${user_name}`;
   return `
   <li class="d-flex m-0 justify-content-between p-2">
       <div class="m-0 d-flex">
           <img alt="image" class="rounded-circle img-fluid img-sm float-left ml-0 mr-2" src="${profile_image}" />
-          <p class="m-0 font-weight-light medium-font w-75">${message}</p>
+          <p class="m-0 font-weight-light medium-font w-75">${displayMessage}</p>
       </div>
       <p class="m-0 text-modal-gray medium-font">${formatDate(new Date(timestamp), 'DD MMM YYYY HH:mm')}</p>
   </li>
@@ -1279,6 +1281,8 @@ function initI18nPlugin() {
       const userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
       renderAccountSwitcher(userAccounts);
       $('.navbar-static-top .search-copypip').attr('placeholder', i18n.t('topnav.searchCopypip'));
+      const notifications = JSON.parse(localStorage.getItem('notifications'))
+      renderNotifications(notifications);
     })
   })
 

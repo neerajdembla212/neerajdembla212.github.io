@@ -301,7 +301,7 @@
         window.reloadElementsOnLanguageChange = function () {
             renderBuySellData();
             renderTradeSection(DESKTOP_MEDIA);
-            $('#search-currency').attr('placeholder', i18n.t('body.tt.searchCurrencies'));
+            $('.search-currency').attr('placeholder', i18n.t('body.tt.searchCurrencies'));
 
         }
     }

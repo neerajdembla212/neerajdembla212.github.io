@@ -205,7 +205,13 @@
       "to": "ke",
       "of": "dari",
       "confirm": "Konfirmasi",
-      "provider": "Penyedia"
+      "provider": "Penyedia",
+      "youHaveFollowed": "Anda telah mengikuti",
+      "youPausedFollowing": "Anda telah menjeda mengikuti",
+      "youStoppedFollowing": "Anda telah berhenti mengikuti",
+      "hasFollowedYou": "telah mengikuti Anda",
+      "pausedFollowingYou": "menjeda untuk mengikuti Anda",
+      "stoppedFollowingYou": "berhenti mengikuti Anda"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

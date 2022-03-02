@@ -205,7 +205,13 @@
       "to": "kepada",
       "of": "of",
       "confirm": "Pasti",
-      "provider": "Penyedia"
+      "provider": "Penyedia",
+      "youHaveFollowed": "Anda telah mengikuti",
+      "youPausedFollowing": "Anda telah berhenti mengikuti sebentar",
+      "youStoppedFollowing": "Anda telah berhenti mengikuti",
+      "hasFollowedYou": "telah mengikuti anda",
+      "pausedFollowingYou": "telah berhenti mengikuti anda sebentar",
+      "stoppedFollowingYou": "telah berhenti mengikuti anda sebentar"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",

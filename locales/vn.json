@@ -205,7 +205,13 @@
       "to": "đến",
       "of": "của",
       "confirm": "Xác nhận",
-      "provider": "Nhà cung cấp"
+      "provider": "Nhà cung cấp",
+      "youHaveFollowed": "Bạn đã theo dõi",
+      "youPausedFollowing": "Bạn đã tạm ngưng theo dõi",
+      "youStoppedFollowing": "Bạn đã dừng theo dõi",
+      "hasFollowedYou": "đã theo dõi bạn",
+      "pausedFollowingYou": "đã tạm ngưng theo dõi bạn",
+      "stoppedFollowingYou": "đã dừng theo dõi bạn"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",

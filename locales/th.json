@@ -205,7 +205,13 @@
       "to": "ถึง",
       "of": "ของ",
       "confirm": "ยืนยัน",
-      "provider": "ผู้ให้บริการ"
+      "provider": "ผู้ให้บริการ",
+      "youHaveFollowed": "คุณได้ติดตาม",
+      "youPausedFollowing": "คุุณได้หยุดติดตามชั่วคราว",
+      "youStoppedFollowing": "คุณได้หยุดติดตาม",
+      "hasFollowedYou": "กำลังติดตามคุณ",
+      "pausedFollowingYou": "หยุดติดตามคุณชั่วคราว",
+      "stoppedFollowingYou": "หยุดติดตามคุณ"
     },
     "sp": {
       "topPerformer": "Top Performer",

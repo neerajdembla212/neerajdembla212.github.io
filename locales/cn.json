@@ -205,7 +205,13 @@
       "to": "到",
       "of": "的",
       "confirm": "确定",
-      "provider": "交易达人"
+      "provider": "交易达人",
+      "youHaveFollowed": "您已关注",
+      "youPausedFollowing": "您已暂停关注",
+      "youStoppedFollowing": "您已停止关注",
+      "hasFollowedYou": "已关注您",
+      "pausedFollowingYou": "已暂停关注您",
+      "stoppedFollowingYou": "已停止关注您"
     },
     "sp": {
       "topPerformer": "表现最好的",
