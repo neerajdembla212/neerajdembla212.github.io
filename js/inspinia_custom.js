@@ -391,7 +391,6 @@ function fetchNotifications() {
   callAjaxMethod({
     url: "https://copypip.free.beeceptor.com/notifications",
     successCallback: (data) => {
-      localStorage.setItem('notifications', data.data);
       renderNotifications(data.data);
       $('.notifications-container .label-notification').text(data.newNotificationCount)
     },
@@ -1281,8 +1280,7 @@ function initI18nPlugin() {
       const userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
       renderAccountSwitcher(userAccounts);
       $('.navbar-static-top .search-copypip').attr('placeholder', i18n.t('topnav.searchCopypip'));
-      const notifications = JSON.parse(localStorage.getItem('notifications'))
-      renderNotifications(notifications);
+      fetchNotifications();
     })
   })
 
