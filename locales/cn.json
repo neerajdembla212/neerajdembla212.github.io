@@ -211,7 +211,9 @@
       "youStoppedFollowing": "您已停止关注",
       "hasFollowedYou": "已关注您",
       "pausedFollowingYou": "已暂停关注您",
-      "stoppedFollowingYou": "已停止关注您"
+      "stoppedFollowingYou": "已停止关注您",
+      "invalidInput": "输入无效",
+      "numberOnly": "仅数字"
     },
     "sp": {
       "topPerformer": "表现最好的",

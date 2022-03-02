@@ -211,7 +211,9 @@
       "youStoppedFollowing": "Anda telah berhenti mengikuti",
       "hasFollowedYou": "telah mengikuti Anda",
       "pausedFollowingYou": "menjeda untuk mengikuti Anda",
-      "stoppedFollowingYou": "berhenti mengikuti Anda"
+      "stoppedFollowingYou": "berhenti mengikuti Anda",
+      "invalidInput": "Masukan Tidak Valid",
+      "numberOnly": "Hanya Angka"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

@@ -211,7 +211,9 @@
       "youStoppedFollowing": "You stopped following",
       "hasFollowedYou": "has followed you",
       "pausedFollowingYou": "paused following you",
-      "stoppedFollowingYou": "stopped following you"
+      "stoppedFollowingYou": "stopped following you",
+      "invalidInput": "Invalid Input",
+      "numberOnly": "Number only"
     },
     "sp": {
       "topPerformer": "Top Performer",

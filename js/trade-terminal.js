@@ -607,7 +607,7 @@
                 <td class="text-center align-middle">
                     <button id="close-open-trade" class="btn btn-default px-2 btn-gray" type="button" name="close-trade-cta">
                         <div class="d-flex align-items-center">
-                            <img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" /> Close
+                            <img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" /> ${i18n.t('body.tt.close')}
                         </div>
                     </button>
                 </td>
@@ -769,12 +769,12 @@
 
         let actionCTA = '';
         switch (tradeType) {
-            case 'open': actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">Close</button>`; break;
+            case 'open': actionCTA = `<button id="close-open-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="close-trade-cta"><img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1">${i18n.t('body.tt.close')}</button>`; break;
             case 'pending': actionCTA = `<button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />${i18n.t('body.tt.cancel')}</button>`; break;
             case 'closed':
                 actionCTA = `
                 <div>
-                    <p class="m-0 font-weight-bold ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
+                    <p class="m-0 font-weight-bold ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${i18n.t(`body.tt.${status.toLowerCase()}`)}</p>
                     <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
                 </div>
                 `
@@ -1153,7 +1153,7 @@
                 ${profitColumn}
                 <td class="align-middle pl-2">
                     <div>
-                        <p class="m-0 font-weight-bold text-center ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${status}</p>
+                        <p class="m-0 font-weight-bold text-center ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${i18n.t(`body.tt.${status.toLowerCase()}`)}</p>
                         <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
                     </div>
                 </td>

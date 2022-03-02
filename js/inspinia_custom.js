@@ -829,14 +829,15 @@ function getFollowProviderPopupFooter() {
 }
 
 function validateFollowProviderPopupInputs(container) {
+  const numberOnlyMessage = i18n.t('body.common.numberOnly');
   // validate Minimum lot size input 
-  validateTextInput(container.find('#min-lot-size'), validateNumber, 'Number only')
+  validateTextInput(container.find('#min-lot-size'), validateNumber, numberOnlyMessage)
 
   // validate Maximum lot size input 
-  validateTextInput(container.find('#max-lot-size'), validateNumber, 'Number only')
+  validateTextInput(container.find('#max-lot-size'), validateNumber, numberOnlyMessage)
 
   // validate Take profit input 
-  validateTextInput(container.find('#take-profit-input'), validateNumber, 'Number only')
+  validateTextInput(container.find('#take-profit-input'), validateNumber, numberOnlyMessage)
 
   // validate Stop loss input 
   validateTextInput(container.find('#stop-loss-input'), validateNumber, 'Number only')
@@ -1150,7 +1151,7 @@ function tableSortEvents(container, onTableSort = () => { }) {
 }
 
 // validate text inputs
-function validateTextInput(target, test = () => { }, errorMessage = 'Invalid input') {
+function validateTextInput(target, test = () => { }, errorMessage = i18n.t('body.common.invalidInput')) {
   $(target).off().on('blur', function (event) {
     if (!test(event.target.value)) {
       // show error

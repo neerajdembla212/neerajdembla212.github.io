@@ -211,7 +211,9 @@
       "youStoppedFollowing": "คุณได้หยุดติดตาม",
       "hasFollowedYou": "กำลังติดตามคุณ",
       "pausedFollowingYou": "หยุดติดตามคุณชั่วคราว",
-      "stoppedFollowingYou": "หยุดติดตามคุณ"
+      "stoppedFollowingYou": "หยุดติดตามคุณ",
+      "invalidInput": "การนำเข้าไม่ถูกต้อง",
+      "numberOnly": "ตัวเลขเท่านั้น"
     },
     "sp": {
       "topPerformer": "Top Performer",

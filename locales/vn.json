@@ -211,7 +211,9 @@
       "youStoppedFollowing": "Bạn đã dừng theo dõi",
       "hasFollowedYou": "đã theo dõi bạn",
       "pausedFollowingYou": "đã tạm ngưng theo dõi bạn",
-      "stoppedFollowingYou": "đã dừng theo dõi bạn"
+      "stoppedFollowingYou": "đã dừng theo dõi bạn",
+      "invalidInput": "Đầu vào không hợp lệ",
+      "numberOnly": "Chỉ nhập Số"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",

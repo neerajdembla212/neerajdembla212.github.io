@@ -1112,7 +1112,7 @@
         </th>
         <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
           <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
-            <p class="m-0 p-0 header-text">${i18n.t('totalReturns/equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
+            <p class="m-0 p-0 header-text">${i18n.t('body.sp.totalReturns/equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center" data-sort-key="drawDown">
