@@ -360,6 +360,7 @@
       closed_price,
       swap,
       profit } = trade;
+    const profitText = profit > 0 ? 'S$' + profit : '-S$' + Math.abs(profit);
     return `<tr id="table-user-${id}">
                 <td>
                     <div>
@@ -371,7 +372,7 @@
                     <img alt="image" class="rounded-circle img-fluid img-sm" src="${trader_image}" />
                 </td>
                 <td class="text-center align-middle text-darker-gray font-weight-bolder">
-                    ${trade_type}
+                    ${i18n.t(trade_type)}
                 </td>
                 <td class="text-center align-middle">
                     ${formatWithCommas(trade_volume)}
@@ -392,7 +393,7 @@
                     S$${swap}
                 </td>
                 <td class="text-center align-middle font-bold ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
-                    S$${profit}
+                  ${profitText}
                 </td>
                 
             </tr>
@@ -639,7 +640,7 @@
         <!-- strategy philosophy start -->
         <div class="py-3">
             <p class="mb-2 small-font font-bold text-dark-black">${i18n.t('body.settings.strategyPhilosophy')}</p>
-            <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
+            <p class="mb-2 text-dark-gray">${i18n.t(strategy_philosophy)}</p>
             <p class="mb-0 text-dark-gray small-font font-bold">${i18n.t('body.mp.joined')} ${formatDate(+joined_date)}
         </div>
         <!-- strategy philosophy end -->

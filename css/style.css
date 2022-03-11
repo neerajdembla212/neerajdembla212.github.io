@@ -14147,9 +14147,7 @@ select[name="rows-per-page"] {
 
 .strategy-provider-section .philosophy-text {
   color: #6D788F;
-  max-height: 44px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  max-height: 60px;
   font-size: 12px;
 }
 
@@ -14168,7 +14166,6 @@ select[name="rows-per-page"] {
 
 .strategy-provider-section #featured .contact-box {
   width: 350px;
-  height: 390px;
 }
 
 .strategy-provider-section #featured .follow-provider {

@@ -27,6 +27,7 @@
       "currentBalance": "Current Balance",
       "deposits": "Deposits",
       "withdrawals": "Withdrawals",
+      "lowRisk": "Low Risk",
       "followers": "Followers",
       "trades": "Trades",
       "maxDrawdown": "Max Drawdown",
@@ -79,7 +80,8 @@
       "pausedFollowingYou": "paused following you",
       "stoppedFollowingYou": "stopped following you",
       "accept": "Accept",
-      "reject": "Reject"
+      "reject": "Reject",
+      "featuredMessage": "The EUR/USD is one of the most widely-traded currency pairs in the foreign-exchange market..."
     },
     "login": {
       "signIn": "Sign In",
@@ -286,7 +288,9 @@
       "description": "Description",
       "settingsDescriptionP1": "The MT4 trading account used for application must not already be a Strategy Follower account.",
       "submitApplication": "Submit Application",
-      "updatePassword": "Update Password"
+      "updatePassword": "Update Password",
+      "popupText": "Any changes to the 'Management Fee' or 'Profit Sharing Fees' will only be reflected on a new trading month.",
+      "tradingStrategy": "Tell us about your trading strategy"
     },
     "simulation": {
       "inputCapital": "Input Capital",

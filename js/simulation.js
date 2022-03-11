@@ -567,10 +567,10 @@
           <td colspan="9">
             <ul class="pagination w-100 d-flex justify-content-end align-items-center m-0">
               <select class="form-control rows-per-page mr-2" name="rows-per-page">
-                <option>10 Rows per page</option>
-                <option>20 Rows per page</option>
-                <option>30 Rows per page</option>
-                <option>40 Rows per page</option>
+                <option>${i18n.t('body.mp.10RowsPerPage')}</option>
+                <option>${i18n.t('body.mp.20RowsPerPage')}</option>
+                <option>${i18n.t('body.mp.30RowsPerPage')}</option>
+                <option>${i18n.t('body.mp.40RowsPerPage')}</option>
               </select>
               <i class="fa fa-angle-left mx-2"></i>
               <i class="fa fa-angle-right mx-2"></i>

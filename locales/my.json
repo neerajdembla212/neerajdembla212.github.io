@@ -27,6 +27,7 @@
       "currentBalance": "Baki semasa",
       "deposits": "Deposit",
       "withdrawals": "Pengeluaran",
+      "lowRisk": "Risiko rendah",
       "followers": "Pengikut",
       "trades": "Dagangan",
       "maxDrawdown": "Pengeluaran maksimum",
@@ -80,7 +81,7 @@
       "stoppedFollowingYou": "telah berhenti mengikuti anda sebentar",
       "accept": "Terima",
       "reject": "Tolak",
-      "pauseFollower": "Pause Follower"
+      "featuredMessage": "EUR/USD ialah salah satu pasangan mata wang yang paling banyak didagangkan dalam pasaran pertukaran asing..."
     },
     "login": {
       "signIn": "Log Masuk",
@@ -228,7 +229,7 @@
       "avg/Mth": "Purata / bulan",
       "avgPips": "Purata Pips",
       "managedFunds": "Menguruskan dana",
-      "advisedMin": "Advised Min",
+      "advisedMin": "Minimum yang disarankan",
       "followProvider": "Mengikuti Penyedia",
       "unfollowProvider": "Berhenti Mengikuti Penyedia Strategi",
       "drawdown": "Pengeluaran",
@@ -287,7 +288,9 @@
       "description": "Penerangan",
       "settingsDescriptionP1": "Akaun trading MT4 yang digunakan untuk permohonan mestilah akaun yang belum menjadi akaun Pengikut Strategi.",
       "submitApplication": "Hantar permohonan",
-      "updatePassword": "Kemaskini Kata Laluan"
+      "updatePassword": "Kemaskini Kata Laluan",
+      "popupText": "Sebarang perubahan pada 'Yuran Pengurusan' atau 'Yuran Perkongsian Keuntungan' hanya akan ditunjukkan pada bulan dagangan baharu.",
+      "tradingStrategy": "Jelaskan tentang strategi perdagangan anda"
     },
     "simulation": {
       "inputCapital": "Masukkan modal",

@@ -27,6 +27,7 @@
       "currentBalance": "当前余额",
       "deposits": "入金",
       "withdrawals": "出金",
+      "lowRisk": "低风险",
       "followers": "跟单者",
       "trades": "交易",
       "maxDrawdown": "最大回撤",
@@ -79,7 +80,8 @@
       "pausedFollowingYou": "已暂停关注您",
       "stoppedFollowingYou": "已停止关注您",
       "accept": "接受",
-      "reject": "拒绝"
+      "reject": "拒绝",
+      "featuredMessage": "欧元/美元是外汇市场上交易最广泛的货币对之一..."
     },
     "login": {
       "signIn": "登入",
@@ -227,7 +229,7 @@
       "avg/Mth": "平均/月",
       "avgPips": "平均点数",
       "managedFunds": "管理基金",
-      "advisedMin": "Advised Min",
+      "advisedMin": "最低建议",
       "followProvider": "关注交易达人",
       "unfollowProvider": "取消关注交易达人",
       "drawdown": "缩编",
@@ -286,7 +288,9 @@
       "description": "描述",
       "settingsDescriptionP1": "用于申请的 MT4 交易账户必须不是交易达人的账户。",
       "submitApplication": "递交申请",
-      "updatePassword": "更新密码"
+      "updatePassword": "更新密码",
+      "popupText": "“管理费”或“利润共享费”的任何更改将仅在新的交易月份反映出来。",
+      "tradingStrategy": "告诉我们您的交易策略"
     },
     "simulation": {
       "inputCapital": "投入资本",

@@ -27,6 +27,7 @@
       "currentBalance": "Số dư Hiện tại",
       "deposits": "Nạp",
       "withdrawals": "Rút",
+      "lowRisk": "Rủi ro thấp",
       "followers": "Người theo dõi",
       "trades": "Giao dịch",
       "maxDrawdown": "Sụt giảm tối đa",
@@ -80,7 +81,7 @@
       "stoppedFollowingYou": "đã dừng theo dõi bạn",
       "accept": "Chấp nhận",
       "reject": "Từ chối",
-      "pauseFollower": "Pause Follower"
+      "featuredMessage": "EUR / USD là một trong những cặp tiền tệ được giao dịch rộng rãi nhất trên thị trường ngoại hối ..."
     },
     "login": {
       "signIn": "Đăng nhập",
@@ -228,7 +229,7 @@
       "avg/Mth": "Trung bình / Tháng",
       "avgPips": "Số Pips Trung bình",
       "managedFunds": "Quỹ quản lý",
-      "advisedMin": "Tối thiểu để xuất",
+      "advisedMin": "Tối thiểu đề xuất",
       "followProvider": "Theo dõi nhà cung cấp",
       "unfollowProvider": "Ngừng theo dõi Nhà cung cấp",
       "drawdown": "Sút giảm",
@@ -287,7 +288,9 @@
       "description": "Mô tả",
       "settingsDescriptionP1": "Tài khoản giao dịch MT4 được sử dụng để đăng ký hiện đang không phải là một tài khoản Nhà cung cấp chiến lược.",
       "submitApplication": "Gửi đơn đăng ký",
-      "updatePassword": "Cập nhật Mật khẩu"
+      "updatePassword": "Cập nhật Mật khẩu",
+      "popupText": "Mọi thay đổi đối với 'Phí quản lý' hoặc 'Phí chia sẻ lợi nhuận' sẽ chỉ được tính vào tháng giao dịch mới tiếp theo.",
+      "tradingStrategy": "Cho chúng tôi biết về chiến lược giao dịch của bạn"
     },
     "simulation": {
       "inputCapital": "Vốn đầu vào",

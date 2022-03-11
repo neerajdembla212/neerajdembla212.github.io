@@ -822,8 +822,9 @@ function getFollowProviderPopupBody(data) {
 
 function getFollowProviderPopupFooter() {
   const accountNo = localStorage.getItem('selectedAccountNo');
+  const accountType = localStorage.getItem('selectedAccountType').toLowerCase();
   return `
-    <div class="account-number p-1"><span class="mr-1 text-navy live">LIVE</span><span class="medium-font font-bold">${accountNo}</span></div>
+    <div class="account-number p-1"><span class="mr-1 text-navy live">${i18n.t(`body.common.${accountType}`)}</span><span class="medium-font font-bold">${accountNo}</span></div>
     <button type="button" class="btn btn-primary" id="follow-provider">${i18n.t('body.sp.followProvider')}</button>
     `
 }

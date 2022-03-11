@@ -576,7 +576,7 @@
   function renderUnfollowProviderPopup(name) {
     const container = $('#unfollow-provider-modal .modal-body');
     container.empty().append(`
-        <p class="mb-3">Are you sure you want to stop following <b>${name}</b> ?</p>
+        <p class="mb-3">${i18n.t('body.mp.stopFollowingMessage')} <b>${name}</b> ?</p>
         <div class="w-100 d-flex justify-content-end">
             <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal">${i18n.t('body.common.confirm')}</button>
@@ -751,7 +751,7 @@
 
     // tabs change event listener
     $(".tabs-container .nav-tabs > li").click(event => {
-      onTabChange($(event.target).attr('href'))
+      onTabChange($(event.currentTarget).find('a').attr('href'))
     })
 
     DESKTOP_MEDIA.addEventListener('change', function (event) {
@@ -1260,7 +1260,7 @@
     <tr>
       <td colspan="11">
       <div class="d-flex justify-content-between align-items-center">
-      <p class="mb-0 text-dark-gray small-font">Showing <b>${start}</b> to <b>${end}</b> of <b>${total}</b> providers</p>
+      <p class="mb-0 text-dark-gray small-font">${i18n.t('body.common.showing')} <b>${start}</b> ${i18n.t('body.common.to')} <b>${end}</b> ${i18n.t('body.common.of')} <b>${total}</b> ${i18n.t('nav.strategyProviders')}</p>
       <ul class="pagination d-flex justify-content-end align-items-center m-0">
           <select class="form-control rows-per-page mr-2" name="rows-per-page" id="sp-rows-per-page">
               <option value="10">${i18n.t('body.mp.10RowsPerPage')}</option>
@@ -1479,43 +1479,43 @@
       </div>
       <div class="d-flex flex-column">
         <p class="risk_amount h4 align-self-center m-0">$${followers_count}</p>
-        <p class="text-capitalize small-font text-light-gray text-center">Followers</p>
+        <p class="text-capitalize small-font text-light-gray text-center">${i18n.t('body.mp.followers')}</p>
       </div>
       <div class="d-flex flex-column">
         <p class="risk_amount h4 align-self-center m-0">$${risk_amount}</p>
-        <p class="text-capitalize small-font text-blue text-center">low risk</p>
+        <p class="small-font text-blue text-center">${i18n.t('body.mp.lowRisk')}</p>
       </div>
     </div>
     <div class="line-chart-container">
       <canvas class="lineChart" class="mt-2"></canvas>
     </div>
-    <p class="font-bold mb-2">Strategy Philosophy</p>
-    <p class="philosophy-text mb-2">${strategy_philosophy}</p>
+    <p class="font-bold mb-2">${i18n.t('body.settings.strategyPhilosophy')}</p>
+    <p class="philosophy-text mb-2">${i18n.t(strategy_philosophy)}</p>
     <p class="joined-date mb-3">Joined ${formatDate(new Date(joining_date))}</p>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column">
-        <p class="text-gray small-font mb-1">AGE</p>
+        <p class="text-gray small-font mb-1">${i18n.t('body.sp.age')}</p>
         <p class="font-bold mb-1">${age}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font mb-1">MAX DD</p>
+        <p class="text-gray small-font mb-1">${i18n.t('body.mp.maxDD')}</p>
         <p class="text-light-red font-bold text-center mb-1">${drawPercentage}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font mb-1">AVG / MTH</p>
+        <p class="text-gray small-font mb-1">${i18n.t('body.sp.avg/Mth')}</p>
         <p class="text-green font-bold text-center mb-1">${avg_per_month}%</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font mb-1">AVG PIPS</p>
+        <p class="text-gray small-font mb-1">${i18n.t('body.sp.avgPips')}</p>
         <p class="font-bold text-center mb-1">${avg_pips}</p>
       </div>
       <div class="d-flex flex-column">
-        <p class="text-gray small-font mb-1">TRADES</p>
+        <p class="text-gray small-font mb-1">${i18n.t('body.mp.trades')}</p>
         <p class="font-bold text-center mb-1">${trades}</p>
       </div>
     </div>
     <button class="btn btn-primary btn-block follow-provider" data-toggle="modal" data-target="#follow-provider-modal" name="follow-provider-cta">
-      Follow Provider
+      ${i18n.t('body.sp.followProvider')}
     </button>
   </div>`;
   }
