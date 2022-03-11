@@ -31,7 +31,7 @@
       "trades": "การเทรด",
       "maxDrawdown": "ผลตอบแทนขาดทุนสูงสุด",
       "feesProfitShared": "ค่าธรรมเนียม + ส่วนแบ่งกำไร",
-      "strategyAge": "อายุกลยุทธ์",
+      "strategyAge": "อายุกลยุทธ์ 1 ปี 6 เดือน",
       "sinceInception": "ตั้งแต่เริ่มต้น",
       "following": "กำลังติดตาม",
       "p/l": "P/L (กำไร & ขาดทุน)",
@@ -77,7 +77,10 @@
       "stoppedSuccessMessage": "คุณได้หยุดติดตาม",
       "hasFollowedYou": "กำลังติดตามคุณ",
       "pausedFollowingYou": "หยุดติดตามคุณชั่วคราว",
-      "stoppedFollowingYou": "หยุดติดตามคุณ"
+      "stoppedFollowingYou": "หยุดติดตามคุณ",
+      "accept": "ยอมรับ",
+      "reject": "ยกเลิก",
+      "pauseFollower": "Pause Follower"
     },
     "login": {
       "signIn": "เข้าสูู่ระบบ",
@@ -213,7 +216,9 @@
       "pausedFollowingYou": "หยุดติดตามคุณชั่วคราว",
       "stoppedFollowingYou": "หยุดติดตามคุณ",
       "invalidInput": "การนำเข้าไม่ถูกต้อง",
-      "numberOnly": "ตัวเลขเท่านั้น"
+      "numberOnly": "ตัวเลขเท่านั้น",
+      "demo": "บัญชีทดลอง",
+      "live": "บัญชีจริง"
     },
     "sp": {
       "topPerformer": "Top Performer",

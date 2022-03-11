@@ -514,7 +514,7 @@
                     <p class="mb-0">${account_name}</p>
                 </td>
                 <td>
-                    <p class="mb-0 text-center p-1 m-auto extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${account_type}</p>
+                    <p class="mb-0 text-center p-1 m-auto extra-small-font ${account_type.toUpperCase() === 'LIVE' ? 'live-account' : 'demo-account'}">${i18n.t(`body.common.${account_type.toLowerCase()}`)}</p>
                 </td>
                 <td>
                     <p class="mb-0 text-center">${i18n.t(`body.mp.${role}`)}</p>

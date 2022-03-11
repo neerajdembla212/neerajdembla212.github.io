@@ -77,7 +77,10 @@
       "stoppedSuccessMessage": "Anda telah berhenti mengikuti",
       "hasFollowedYou": "telah mengikuti anda",
       "pausedFollowingYou": "telah berhenti mengikuti anda sebentar",
-      "stoppedFollowingYou": "telah berhenti mengikuti anda sebentar"
+      "stoppedFollowingYou": "telah berhenti mengikuti anda sebentar",
+      "accept": "Terima",
+      "reject": "Tolak",
+      "pauseFollower": "Pause Follower"
     },
     "login": {
       "signIn": "Log Masuk",
@@ -213,7 +216,9 @@
       "pausedFollowingYou": "telah berhenti mengikuti anda sebentar",
       "stoppedFollowingYou": "telah berhenti mengikuti anda sebentar",
       "invalidInput": "Input tidak sah",
-      "numberOnly": "Nombor sahaja"
+      "numberOnly": "Nombor sahaja",
+      "demo": "Demo",
+      "live": "Live"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",

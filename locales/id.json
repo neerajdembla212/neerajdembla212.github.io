@@ -31,7 +31,7 @@
       "trades": "Perdagangan",
       "maxDrawdown": "Drawdown Maks",
       "feesProfitShared": "Biaya + Bagi Hasil",
-      "strategyAge": "Usia Strategi",
+      "strategyAge": "Umur Strategi 1 Tahun 6 Bulan",
       "sinceInception": "Sejak Peluncuran",
       "following": "Ikuti",
       "p/l": "P/L (Laba & Rugi)",
@@ -77,7 +77,9 @@
       "stoppedSuccessMessage": "Anda telah berhenti mengikuti",
       "hasFollowedYou": "telah mengikuti Anda",
       "pausedFollowingYou": "menjeda untuk mengikuti Anda",
-      "stoppedFollowingYou": "berhenti mengikuti Anda"
+      "stoppedFollowingYou": "berhenti mengikuti Anda",
+      "accept": "Terima",
+      "reject": "Tolak"
     },
     "login": {
       "signIn": "Masuk",
@@ -213,7 +215,9 @@
       "pausedFollowingYou": "menjeda untuk mengikuti Anda",
       "stoppedFollowingYou": "berhenti mengikuti Anda",
       "invalidInput": "Masukan Tidak Valid",
-      "numberOnly": "Hanya Angka"
+      "numberOnly": "Hanya Angka",
+      "demo": "Demo",
+      "live": "Live"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",
@@ -297,7 +301,7 @@
       "return/Mth": "Keuntungan / bln",
       "averagePips": "Rata-rata Pip",
       "totalPaid": "Total Dibayar",
-      "inputAmount" : "Masukkan Jumlah",
+      "inputAmount": "Masukkan Jumlah",
       "cumulativeReturns": "Imbal hasil kumulatif",
       "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi"
     },
@@ -364,7 +368,7 @@
       "referQ3P4": "kemampuan untuk mengatur kerugian maksimum Anda sendiri yang dapat diterima serta mengambil untung",
       "referQ3P5": "kemampuan untuk menarik investasi Anda kapan saja",
       "referQ3P6": "kemampuan untuk mengatur rasio antara akun Anda dan penyedia strategi, sehingga Anda dapat secara otomatis menyesuaikan risiko dan ukuran lot yang diperdagangkan berdasarkan modal Anda",
-      "referalLinkText":"Ini adalah tautan rujukan unik Anda",
+      "referalLinkText": "Ini adalah tautan rujukan unik Anda",
       "copyLink": "Salin tautan",
       "loginButtonText": "Ubah Login ke portal klien Anda"
     }

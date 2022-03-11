@@ -31,7 +31,7 @@
       "trades": "交易",
       "maxDrawdown": "最大回撤",
       "feesProfitShared": "费用 + 利润共享",
-      "strategyAge": "策略年龄",
+      "strategyAge": "策略年龄 1 岁 6 个月",
       "sinceInception": "自成立以来",
       "following": "关注",
       "p/l": "盈亏（损益）",
@@ -77,7 +77,9 @@
       "stoppedSuccessMessage": "您已停止关注",
       "hasFollowedYou": "已关注您",
       "pausedFollowingYou": "已暂停关注您",
-      "stoppedFollowingYou": "已停止关注您"
+      "stoppedFollowingYou": "已停止关注您",
+      "accept": "接受",
+      "reject": "拒绝"
     },
     "login": {
       "signIn": "登入",
@@ -213,7 +215,9 @@
       "pausedFollowingYou": "已暂停关注您",
       "stoppedFollowingYou": "已停止关注您",
       "invalidInput": "输入无效",
-      "numberOnly": "仅数字"
+      "numberOnly": "仅数字",
+      "demo": "虚拟",
+      "live": "真实"
     },
     "sp": {
       "topPerformer": "表现最好的",
@@ -297,7 +301,7 @@
       "return/Mth": "回报/月",
       "averagePips": "平均点数",
       "totalPaid": "总支付",
-      "inputAmount" : "输入数量",
+      "inputAmount": "输入数量",
       "cumulativeReturns": "累积回报",
       "emptyMessage": "添加交易达人以开始模拟"
     },
@@ -364,7 +368,7 @@
       "referQ3P4": "有能力设置自己可接受的最大损失以及获利",
       "referQ3P5": "有能力随时撤回投资",
       "referQ3P6": "能够设置您的账户和交易达人之间的比率，以便您可以根据您的资金自动调整交易手数的风险和大小",
-      "referalLinkText":"这是您唯一的推荐链接",
+      "referalLinkText": "这是您唯一的推荐链接",
       "copyLink": "复制链接",
       "loginButtonText": "更改登录到您的客户端"
     }

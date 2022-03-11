@@ -915,7 +915,7 @@
                     <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
                 <td class="text-center align-middle text-blue font-weight-bolder pl-2">
-                    ${trade_type}
+                    ${i18n.t(trade_type)}
                 </td>
                 <td class="text-center align-middle pl-2">
                     <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
@@ -1135,7 +1135,7 @@
                     <img alt="image" class="rounded-circle img-fluid img-sm float-left m-auto" src="${trader_image}" />
                 </td>
                 <td class="text-center align-middle text-blue font-weight-bolder pl-2">
-                    ${trade_type}
+                    ${i18n.t(trade_type)}
                 </td>
                 <td class="text-center align-middle pl-2">
                     <p class="mb-0 small-font">${formatDate(new Date(+trade_time), "DD/MM/YYYY HH:mm")}</p>
@@ -1329,7 +1329,7 @@
         <!-- order by account start -->
         <div class="d-flex justify-content-between mb-3">
           <p class="mb-0 font-bold">${i18n.t('body.common.orderByAccount')}</p>
-          <div class="account-number p-1 ${selelctedAccount.type === 'DEMO' ? 'demo-account' : ''}"><span class="mr-1 text-navy live small-font ${selelctedAccount.type === 'DEMO' ? 'demo' : ''}">${selelctedAccount.type}</span><span
+          <div class="account-number p-1 ${selelctedAccount.type === 'DEMO' ? 'demo-account' : ''}"><span class="mr-1 text-navy live small-font ${selelctedAccount.type === 'DEMO' ? 'demo' : ''}">${i18n.t(`body.common.${selelctedAccount.type.toLowerCase()}`)}</span><span
               class="medium-font font-bold small-font">${selelctedAccount.number}</span>
           </div>
         </div>

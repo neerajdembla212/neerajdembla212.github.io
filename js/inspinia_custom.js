@@ -255,7 +255,7 @@ function renderAccountSwitcher(userAccounts) {
         <li class="dropdown-item py-2 cursor-pointer px-3 d-flex align-items-center" data-account-no="${accountNo}" data-account-type="${accountType}">
             <div class="account-number px-2 d-flex align-items-center ${accountType === 'DEMO' ?
         'demo-account' : ''}"><span
-                class="mr-2 text-navy live extra-small-font font-bold ${accountType === 'DEMO' ? 'demo' : ''}">${accountType}</span><span
+                class="mr-2 text-navy live extra-small-font font-bold ${accountType === 'DEMO' ? 'demo' : ''}">${i18n.t(`body.common.${accountType.toLowerCase()}`)}</span><span
                 class="medium-font font-bold small-font">${accountNo}</span>
             </div>
             ${selectedAccountNo === accountNo ? '<img class="ml-2" src="img/ic_tick.svg" />' : ''}
@@ -270,7 +270,7 @@ function renderAccountSwitcher(userAccounts) {
   `)
   container.empty().append(rowsHTML.join(''))
   const accountSwitcherCTA = $('.account-switcher-cta');
-  accountSwitcherCTA.find('.text').text(selectedAccountType);
+  accountSwitcherCTA.find('.text').text(i18n.t(`body.common.${selectedAccountType.toLowerCase()}`));
   if (selectedAccountType.toUpperCase() === 'LIVE') {
     accountSwitcherCTA.addClass('active');
     accountSwitcherCTA.children('.down-arrow').removeClass('down-arrow-gray').addClass('down-arrow-green');
