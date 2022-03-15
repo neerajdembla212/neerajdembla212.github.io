@@ -491,7 +491,7 @@
             <th class="text-center align-middle">${i18n.t('body.common.type')}</th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trade_time">
-                    <p class="m-0 p-0 header-text m-auto">Time Stamp<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.timeStamp')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trade_time' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
@@ -2081,7 +2081,7 @@
             <!-- order account details start -->
             <div class="d-flex justify-content-between mb-3 align-items-center mx-3">
                 <p class="mb-0 font-weight-bolder medium-font text-dark-gray">${i18n.t('body.common.orderByAccount')}</p>
-                <div class="account-number py-1 px-3"><span class="mr-1 text-navy live small-font">${order_account_type}</span><span
+                <div class="account-number py-1 px-3"><span class="mr-1 text-navy live small-font">${i18n.t(`body.common.${order_account_type.toLowerCase()}`)}</span><span
                     class="medium-font font-bold small-font">${order_account_number}</span>
                 </div>
             </div>
@@ -2234,7 +2234,7 @@
                 Partial Close Order
             </button>
             <button type="button" id="close-order" class="btn btn-w-m btn-default btn-text-red w-45 font-weight-bolder">
-                Close Order
+                ${i18n.t('body.tt.closeOrder')}
             </button>
             <button type="button" id="modify-trade" disabled class="btn btn-w-m btn-default btn-blue w-45 text-white font-weight-bolder">
                 ${i18n.t('body.tt.modify')}

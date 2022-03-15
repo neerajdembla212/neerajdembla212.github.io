@@ -81,7 +81,11 @@
       "stoppedFollowingYou": "หยุดติดตามคุณ",
       "accept": "ยอมรับ",
       "reject": "ยกเลิก",
-      "featuredMessage": "EUR/USD เป็นหนึ่งในคู่สกุลเงินที่มีการซื้อขายกันอย่างแพร่หลายมากที่สุดในตลาดแลกเปลี่ยนเงินตราต่างประเทศ..."
+      "featuredMessage": "EUR/USD เป็นหนึ่งในคู่สกุลเงินที่มีการซื้อขายกันอย่างแพร่หลายมากที่สุดในตลาดแลกเปลี่ยนเงินตราต่างประเทศ...",
+      "new": "ใหม่",
+      "prev": "ก่อนหน้า",
+      "next" : "ถัดไป",
+      "endtour" : "สิ้นสุดทัวร์"
     },
     "login": {
       "signIn": "เข้าสูู่ระบบ",
@@ -139,7 +143,9 @@
       "searchCurrencies": "ค้นหาสกุลเงิน",
       "close": "ปิด",
       "closed": "ปิดแล้ว",
-      "cancelled": "ยกเลิกแล้ว"
+      "cancelled": "ยกเลิกแล้ว",
+      "timeStamp": "ประทับเวลา",
+      "closeOrder": "ปิดคำสั่งซื้อขาย"
     },
     "common": {
       "buySell": "ซื้อ/ขาย",
@@ -219,7 +225,10 @@
       "invalidInput": "การนำเข้าไม่ถูกต้อง",
       "numberOnly": "ตัวเลขเท่านั้น",
       "demo": "บัญชีทดลอง",
-      "live": "บัญชีจริง"
+      "live": "บัญชีจริง",
+      "sl": "SL",
+      "tp": "TP",
+      "demoTourResetMessage": "การรีเซ็ตทัวร์สาธิตสำเร็จแล้ว"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -307,7 +316,8 @@
       "totalPaid": "จ่ายทั้งหมด",
       "inputAmount" : "จำนวนเงินที่ป้อน",
       "cumulativeReturns": "ผลตอบแทนสะสม",
-      "emptyMessage": "เพิ่มผู้ให้บริการเพื่อเริ่มการจำลอง"
+      "emptyMessage": "เพิ่มผู้ให้บริการเพื่อเริ่มการจำลอง",
+      "searchProviders": "Search Providers"
     },
     "ec": {
       "currentTime": "เวลาปัจจุบัน",

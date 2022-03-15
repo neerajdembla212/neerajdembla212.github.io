@@ -81,7 +81,11 @@
       "stoppedFollowingYou": "đã dừng theo dõi bạn",
       "accept": "Chấp nhận",
       "reject": "Từ chối",
-      "featuredMessage": "EUR / USD là một trong những cặp tiền tệ được giao dịch rộng rãi nhất trên thị trường ngoại hối ..."
+      "featuredMessage": "EUR / USD là một trong những cặp tiền tệ được giao dịch rộng rãi nhất trên thị trường ngoại hối ...",
+      "new": "MỚI",
+      "prev": "Trước",
+      "next" : "Tiếp theo",
+      "endtour" : "Kết thúc tour"
     },
     "login": {
       "signIn": "Đăng nhập",
@@ -139,7 +143,9 @@
       "searchCurrencies": "Tìm kiếm cặp tiền",
       "close": "Đóng",
       "closed": "Đã đóng",
-      "cancelled": "Đã hủy"
+      "cancelled": "Đã hủy",
+      "timeStamp": "MỐC THỜI GIAN",
+      "closeOrder": "Đóng Lệnh"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -219,7 +225,10 @@
       "invalidInput": "Đầu vào không hợp lệ",
       "numberOnly": "Chỉ nhập Số",
       "demo": "Demo",
-      "live": "Live"
+      "live": "Live",
+      "sl": "Cắt lỗ",
+      "tp": "Chốt lời",
+      "demoTourResetMessage": "Trải nghiệm tour tham quan"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
@@ -307,7 +316,8 @@
       "totalPaid": "Tổng số chi trả",
       "inputAmount": "Số tiền đầu vào",
       "cumulativeReturns": "Lợi nhuận tích lũy",
-      "emptyMessage": "Thêm Nhà cung cấp để bắt đầu mô phỏng"
+      "emptyMessage": "Thêm Nhà cung cấp để bắt đầu mô phỏng",
+      "searchProviders": "Search Providers"
     },
     "ec": {
       "currentTime": "Giờ hiện tại",

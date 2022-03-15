@@ -953,7 +953,7 @@
             is_new,
             isPaused
         } = user;
-        const newUserChip = is_new ? `<span class="new-chip px-1 ml-2">New</span>` : '';
+        const newUserChip = is_new ? `<span class="new-chip px-1 ml-2">${i18n.t('body.mp.new')}</span>` : '';
 
         return `<tr id="table-user-${id}">
         <td>
@@ -1842,9 +1842,9 @@
                 <h3 class='popover-header'></h3>
                 <div class='popover-body mt-2'></div>
                 <div class='popover-navigation'>
-                    <button class='btn btn-default btn-outline mr-2' data-role='prev'>Prev</button>
-                    <button class='btn btn-default btn-outline ' data-role='next'>Next</button>
-                    <button class='btn btn-default btn-outline ' data-role='end'>End tour</button>
+                    <button class='btn btn-default btn-outline mr-2' data-role='prev'>${i18n.t('body.mp.prev')}</button>
+                    <button class='btn btn-default btn-outline ' data-role='next'>${i18n.t('body.mp.next')}</button>
+                    <button class='btn btn-default btn-outline ' data-role='end'>${i18n.t('body.mp.endtour')}</button>
                 </div>
             </div>
             `,

@@ -299,12 +299,12 @@
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
-                    <p class="m-0 p-0">SL<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.common.sl')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                    <p class="m-0 p-0">TP<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0">${i18n.t('body.common.tp')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle">

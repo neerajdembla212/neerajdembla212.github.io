@@ -348,6 +348,7 @@
     window.reloadElementsOnLanguageChange = function () {
       renderSparkline();
       $('.calculate-card .input-amount').attr("placeholder", i18n.t('body.simulation.inputAmount'));
+      $('#providers-search').attr("placeholder", i18n.t('body.simulation.searchProviders'));
     }
   }
 

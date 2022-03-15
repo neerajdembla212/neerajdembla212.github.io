@@ -81,7 +81,11 @@
       "stoppedFollowingYou": "berhenti mengikuti Anda",
       "accept": "Terima",
       "reject": "Tolak",
-      "featuredMessage": "EUR/USD adalah salah satu pasangan mata uang yang paling banyak diperdagangkan di pasar valuta asing..."
+      "featuredMessage": "EUR/USD adalah salah satu pasangan mata uang yang paling banyak diperdagangkan di pasar valuta asing...",
+      "new": "BARU",
+      "prev": "Sebelumnya",
+      "next" : "Lanjut",
+      "endtour" : "Akhiri Tur"
     },
     "login": {
       "signIn": "Masuk",
@@ -139,7 +143,9 @@
       "searchCurrencies": "Cari Mata Uang",
       "close": "Tutup",
       "closed": "Ditutup",
-      "cancelled": "Dibatalkan"
+      "cancelled": "Dibatalkan",
+      "timeStamp": "STEMPEL WAKTU",
+      "closeOrder": "Tutup Posisi"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -219,7 +225,10 @@
       "invalidInput": "Masukan Tidak Valid",
       "numberOnly": "Hanya Angka",
       "demo": "Demo",
-      "live": "Live"
+      "live": "Live",
+      "sl": "SL",
+      "tp": "TP",
+      "demoTourResetMessage": "Demo Penyetelan Ulang Berhasil"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",
@@ -307,7 +316,8 @@
       "totalPaid": "Total Dibayar",
       "inputAmount": "Masukkan Jumlah",
       "cumulativeReturns": "Imbal hasil kumulatif",
-      "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi"
+      "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi",
+      "searchProviders": "Search Providers"
     },
     "ec": {
       "currentTime": "Waktu Saat",

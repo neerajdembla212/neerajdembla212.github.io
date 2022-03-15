@@ -81,7 +81,11 @@
       "stoppedFollowingYou": "stopped following you",
       "accept": "Accept",
       "reject": "Reject",
-      "featuredMessage": "The EUR/USD is one of the most widely-traded currency pairs in the foreign-exchange market..."
+      "featuredMessage": "The EUR/USD is one of the most widely-traded currency pairs in the foreign-exchange market...",
+      "new": "New",
+      "prev": "Prev",
+      "next" : "Next",
+      "endtour" : "End tour"
     },
     "login": {
       "signIn": "Sign In",
@@ -139,7 +143,9 @@
       "searchCurrencies": "Search currencies",
       "close": "Close",
       "closed": "Closed",
-      "cancelled": "Cancelled"
+      "cancelled": "Cancelled",
+      "timeStamp": "Time Stamp",
+      "closeOrder": "Close Order"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -219,7 +225,10 @@
       "invalidInput": "Invalid Input",
       "numberOnly": "Number only",
       "demo": "DEMO",
-      "live": "LIVE"
+      "live": "LIVE",
+      "sl": "SL",
+      "tp": "TP",
+      "demoTourResetMessage": "Demo Tour Reset Success"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -307,7 +316,8 @@
       "totalPaid": "Total Paid",
       "inputAmount": "Input amount",
       "cumulativeReturns": "Cumulative returns",
-      "emptyMessage": "Add a Provider to Start Simulation"
+      "emptyMessage": "Add a Provider to Start Simulation",
+      "searchProviders": "Search Providers"
     },
     "ec": {
       "currentTime": "Current Time",
