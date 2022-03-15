@@ -1235,7 +1235,7 @@
         targetSF.is_new = false;
         targetSF.isPaused = false;
         renderStrategyFollowers()
-        renderSuccessToast(`Accepted ${targetSF.name} to follow you`)
+        renderSuccessToast(`${i18n.t('body.mp.accepted')} ${targetSF.name} ${i18n.t('body.mp.toFollowYou')}`)
     }
 
     function onRejectFollower(event) {

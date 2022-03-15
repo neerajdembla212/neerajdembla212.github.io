@@ -85,7 +85,9 @@
       "new": "MỚI",
       "prev": "Trước",
       "next" : "Tiếp theo",
-      "endtour" : "Kết thúc tour"
+      "endtour" : "Kết thúc tour",
+      "accepted" : "Đã được chấp nhận",
+      "toFollowYou": "theo dõi bạn"
     },
     "login": {
       "signIn": "Đăng nhập",

@@ -84,8 +84,10 @@
       "featuredMessage": "The EUR/USD is one of the most widely-traded currency pairs in the foreign-exchange market...",
       "new": "New",
       "prev": "Prev",
-      "next" : "Next",
-      "endtour" : "End tour"
+      "next": "Next",
+      "endtour": "End tour",
+      "accepted": "Accepted",
+      "toFollowYou": "to follow you"
     },
     "login": {
       "signIn": "Sign In",

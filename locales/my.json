@@ -85,7 +85,9 @@
       "new": "Baru",
       "prev": "Sebelumnya",
       "next" : "Seterusnya",
-      "endtour" : "Akhir Lawatan"
+      "endtour" : "Akhir Lawatan",
+      "accepted" : "Diterima",
+      "toFollowYou": "untuk mengikut awak"
     },
     "login": {
       "signIn": "Log Masuk",

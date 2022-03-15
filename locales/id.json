@@ -85,7 +85,9 @@
       "new": "BARU",
       "prev": "Sebelumnya",
       "next" : "Lanjut",
-      "endtour" : "Akhiri Tur"
+      "endtour" : "Akhiri Tur",
+      "accepted" : "Diterima",
+      "toFollowYou": "untuk mengikutimu"
     },
     "login": {
       "signIn": "Masuk",

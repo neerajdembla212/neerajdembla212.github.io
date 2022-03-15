@@ -85,7 +85,9 @@
       "new": "新",
       "prev": "上一步",
       "next" : "下一步",
-      "endtour" : "结束游览"
+      "endtour" : "结束游览",
+      "accepted" : "公认",
+      "toFollowYou": "跟着你"
     },
     "login": {
       "signIn": "登入",
