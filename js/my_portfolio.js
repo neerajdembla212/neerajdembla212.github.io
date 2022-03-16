@@ -263,11 +263,11 @@
         fetchListOfUsers();
         fetchLineData();
         setDefaulltDropdownItems();
-        const tour = setupTour();
-        const showTour = localStorage.getItem('showTour');
-        if (showTour === "true") {
-            tour.restart();
-        }
+        // const tour = setupTour();
+        // const showTour = localStorage.getItem('showTour');
+        // if (showTour === "true") {
+        //     tour.restart();
+        // }
         const hiddenStrategyAccounts = localStorage.getItem('hiddenStrategyAccounts');
         STATE.setHiddenStrategyAccounts(JSON.parse(hiddenStrategyAccounts));
     })
@@ -1781,6 +1781,11 @@
             }
             renderHideUnhideButton();
             $('textarea.trading-strategy').attr('placeholder', i18n.t('body.settings.tradingStrategy'))
+            const tour = setupTour();
+            const showTour = localStorage.getItem('showTour');
+            if (showTour === "true") {
+                tour.restart();
+            }
         }
     }
 
@@ -1825,6 +1830,7 @@
 
     // tour start
     function setupTour() {
+        debugger
         return new Tour({
             framework: "bootstrap4",
             container: "#wrapper",
@@ -1854,7 +1860,7 @@
             steps: [
                 {
                     element: ".my_portfolio_nav",
-                    title: "My Portfolio",
+                    title: i18n.t('nav.myPortfolio'),
                     content: "You can see the overview of your current performances including current balance, total deposits and withdrawals and total fees paid. Furthermore, you can change settings, stop copying of trades or remove strategies from your portfolio.",
                     placement: "right",
                     onNext: function (t) {
@@ -1864,8 +1870,8 @@
                 },
                 {
                     element: ".trade_terminal_nav",
-                    title: "Trade Terminal",
-                    content: "The “Trade Terminal” section allows you to see your Open Trades, Pending Orders and Trade History. This is also the place where you can look at your charts and take your trades.",
+                    title: i18n.t('nav.tradeTerminal'),
+                    content: "The “Trade Terminal” section allows you to see your Open Trades, Pending Orders and Trade History. This is also the place where you can look at your charts and take your trades",
                     placement: "right",
                     onNext: function () {
                         $('.trade_terminal_nav').removeClass('active');
@@ -1878,7 +1884,7 @@
                 },
                 {
                     element: ".strategy_providers_nav",
-                    title: "Strategy Providers",
+                    title: i18n.t('nav.strategyProviders'),
                     content: "All the strategy providers are listed here and you can carry out a quick review and select some strategies for a detailed analysis.",
                     placement: "right",
                     onNext: function () {
@@ -1892,8 +1898,8 @@
                 },
                 {
                     element: ".simulation_nav",
-                    title: "Simulation",
-                    content: "You can simulate the returns and drawdown of a single or multiple strategy providers including the fees they set to calculate real time returns based on their historical data.",
+                    title: i18n.t('nav.simulation'),
+                    content: "You can simulate the returns and drawdown of a single or multiple strategy providers including the fees they set to calculate real time returns based on their historical data",
                     placement: "right",
                     onPrev: function () {
                         $('.simulation_nav').removeClass('active');

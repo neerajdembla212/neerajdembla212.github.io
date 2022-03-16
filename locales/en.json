@@ -87,7 +87,8 @@
       "next": "Next",
       "endtour": "End tour",
       "accepted": "Accepted",
-      "toFollowYou": "to follow you"
+      "toFollowYou": "to follow you",
+      "tourText": "You can see the overview of your current performances including current balance, total deposits and withdrawals and total fees paid. Furthermore, you can change settings, stop copying of trades or remove strategies from your portfolio."
     },
     "login": {
       "signIn": "Sign In",
@@ -148,7 +149,8 @@
       "cancelled": "Cancelled",
       "timeStamp": "Time Stamp",
       "closeOrder": "Close Order",
-      "at": "at"
+      "at": "at",
+      "tourText": "The “Trade Terminal” section allows you to see your Open Trades, Pending Orders and Trade History. This is also the place where you can look at your charts and take your trades"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -261,7 +263,8 @@
       "stopFollowing": "Stop Following",
       "lowGrowth": "Low Growth",
       "midGrowth": "Mid Growth",
-      "highGrowth": "High Growth"
+      "highGrowth": "High Growth",
+      "tourText": "All the strategy providers are listed here and you can carry out a quick review and select some strategies for a detailed analysis."
     },
     "settings": {
       "strategyPhilosophy": "Strategy Philosophy",
@@ -324,7 +327,8 @@
       "inputAmount": "Input amount",
       "cumulativeReturns": "Cumulative returns",
       "emptyMessage": "Add a Provider to Start Simulation",
-      "searchProviders": "Search Providers"
+      "searchProviders": "Search Providers",
+      "tourText": "You can simulate the returns and drawdown of a single or multiple strategy providers including the fees they set to calculate real time returns based on their historical data"
     },
     "ec": {
       "currentTime": "Current Time",
