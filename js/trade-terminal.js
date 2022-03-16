@@ -1531,7 +1531,7 @@
             <!-- Order Type input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.orderType')}</p>
-                <button data-toggle="dropdown" class="btn font-bold">${type}</button>
+                <button data-toggle="dropdown" class="btn font-bold">${i18n.t(type)}</button>
             </div>
             <!-- Order Type input end -->
             <div class="divider mb-3"></div>
@@ -1539,7 +1539,7 @@
             <!-- Expiration input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expiration')}</p>
-                <button class="btn font-bold">${expiration}</button>
+                <button class="btn font-bold">${i18n.t(expiration)}</button>
             </div>
             <!-- Expiration input end -->
             <div class="divider mb-3"></div>
@@ -2158,21 +2158,21 @@
                 <div class="mb-2 d-flex mx-3">
                     <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${trade_type}&nbsp;</p>${trade_volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
                 </div>
-                <p class="mb-3 mx-3 super-extra-large-font font-bold">Closed ${trade_volume} at ${to_currency_rate}</p>
+                <p class="mb-3 mx-3 super-extra-large-font font-bold">${i18n.t('body.tt.closed')} ${trade_volume} ${i18n.t('body.tt.at')} ${to_currency_rate}</p>
                 `;
             case 'PARTIAL_CLOSED':
                 return `
                 <div class="mb-2 d-flex mx-3">
                     <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${trade_type}&nbsp;</p>${trade_volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
                 </div>
-                <p class="mb-3 mx-3 super-extra-large-font font-bold">Partial Closed ${trade_volume} at ${to_currency_rate}</p>
+                <p class="mb-3 mx-3 super-extra-large-font font-bold">Partial Closed ${trade_volume} ${i18n.t('body.tt.at')} ${to_currency_rate}</p>
                 `;
             case 'CANCELLED':
                 return `
             <div class="mb-2 d-flex mx-3">
                 <p class="mb-0">#${order_number}</p>
             </div>
-            <p class="mb-3 mx-3 super-extra-large-font font-bold text-blur-gray">Cancelled</p>
+            <p class="mb-3 mx-3 super-extra-large-font font-bold text-blur-gray">${i18n.t('body.tt.cancelled')}</p>
             `
             default:
                 return `

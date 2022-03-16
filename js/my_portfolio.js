@@ -1780,6 +1780,7 @@
                 renderStrategyProviders();
             }
             renderHideUnhideButton();
+            $('textarea.trading-strategy').attr('placeholder', i18n.t('body.settings.tradingStrategy'))
         }
     }
 

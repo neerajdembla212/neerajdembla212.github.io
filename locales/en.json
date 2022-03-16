@@ -147,7 +147,8 @@
       "closed": "Closed",
       "cancelled": "Cancelled",
       "timeStamp": "Time Stamp",
-      "closeOrder": "Close Order"
+      "closeOrder": "Close Order",
+      "at": "at"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -230,7 +231,9 @@
       "live": "LIVE",
       "sl": "SL",
       "tp": "TP",
-      "demoTourResetMessage": "Demo Tour Reset Success"
+      "demoTourResetMessage": "Demo Tour Reset Success",
+      "lot": "LOT",
+      "pips": "Pips"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -301,7 +304,9 @@
       "submitApplication": "Submit Application",
       "updatePassword": "Update Password",
       "popupText": "Any changes to the 'Management Fee' or 'Profit Sharing Fees' will only be reflected on a new trading month.",
-      "tradingStrategy": "Tell us about your trading strategy"
+      "tradingStrategy": "Tell us about your trading strategy",
+      "update": "Update",
+      "offline": "Offline"
     },
     "simulation": {
       "inputCapital": "Input Capital",

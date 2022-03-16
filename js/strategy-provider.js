@@ -1491,7 +1491,7 @@
     </div>
     <p class="font-bold mb-2">${i18n.t('body.settings.strategyPhilosophy')}</p>
     <p class="philosophy-text mb-2">${i18n.t(strategy_philosophy)}</p>
-    <p class="joined-date mb-3">Joined ${formatDate(new Date(joining_date))}</p>
+    <p class="joined-date mb-3">${i18n.t('body.mp.joined')} ${formatDate(new Date(joining_date))}</p>
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column">
         <p class="text-gray small-font mb-1">${i18n.t('body.sp.age')}</p>
@@ -1503,7 +1503,7 @@
       </div>
       <div class="d-flex flex-column">
         <p class="text-gray small-font mb-1">${i18n.t('body.sp.avg/Mth')}</p>
-        <p class="text-green font-bold text-center mb-1">${avg_per_month}%</p>
+        <p class="text-green font-bold text-center mb-1">${avg_per_month}</p>
       </div>
       <div class="d-flex flex-column">
         <p class="text-gray small-font mb-1">${i18n.t('body.sp.avgPips')}</p>

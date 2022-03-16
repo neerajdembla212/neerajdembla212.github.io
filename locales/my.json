@@ -147,7 +147,8 @@
       "closed": "Telah ditutup",
       "cancelled": "Dibatalkan",
       "timeStamp": "Stamp Masa",
-      "closeOrder": "Tutup Pesanan"
+      "closeOrder": "Tutup Pesanan",
+      "at": "di"
     },
     "common": {
       "buySell": "Beli/Jual",
@@ -230,7 +231,9 @@
       "live": "Live",
       "sl": "SL",
       "tp": "TP",
-      "demoTourResetMessage": "Demo Lawatan Set Semula Berjaya"
+      "demoTourResetMessage": "Demo Lawatan Set Semula Berjaya",
+      "lot": "LOT",
+      "pips": "Pips"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",
@@ -301,7 +304,9 @@
       "submitApplication": "Hantar permohonan",
       "updatePassword": "Kemaskini Kata Laluan",
       "popupText": "Sebarang perubahan pada 'Yuran Pengurusan' atau 'Yuran Perkongsian Keuntungan' hanya akan ditunjukkan pada bulan dagangan baharu.",
-      "tradingStrategy": "Jelaskan tentang strategi perdagangan anda"
+      "tradingStrategy": "Jelaskan tentang strategi perdagangan anda",
+      "update": "Kemaskini",
+      "offline": "Tidak Tersedia"
     },
     "simulation": {
       "inputCapital": "Masukkan modal",
@@ -319,7 +324,7 @@
       "inputAmount" : "Masukkan jumlah",
       "cumulativeReturns": "Pulangan Terkumpul",
       "emptyMessage": "Tambah Penyedia Strategi untuk Memulakan Stimulasi",
-      "searchProviders": "Search Providers"
+      "searchProviders": "Mencari Penyedia"
     },
     "ec": {
       "currentTime": "Masa Semasa",

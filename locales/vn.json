@@ -84,9 +84,9 @@
       "featuredMessage": "EUR / USD là một trong những cặp tiền tệ được giao dịch rộng rãi nhất trên thị trường ngoại hối ...",
       "new": "MỚI",
       "prev": "Trước",
-      "next" : "Tiếp theo",
-      "endtour" : "Kết thúc tour",
-      "accepted" : "Đã được chấp nhận",
+      "next": "Tiếp theo",
+      "endtour": "Kết thúc tour",
+      "accepted": "Đã được chấp nhận",
       "toFollowYou": "theo dõi bạn"
     },
     "login": {
@@ -147,7 +147,8 @@
       "closed": "Đã đóng",
       "cancelled": "Đã hủy",
       "timeStamp": "MỐC THỜI GIAN",
-      "closeOrder": "Đóng Lệnh"
+      "closeOrder": "Đóng Lệnh",
+      "at": "tại"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -230,7 +231,9 @@
       "live": "Live",
       "sl": "Cắt lỗ",
       "tp": "Chốt lời",
-      "demoTourResetMessage": "Trải nghiệm tour tham quan"
+      "demoTourResetMessage": "Trải nghiệm tour tham quan",
+      "lot": "LOT",
+      "pips": "Pips"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
@@ -301,7 +304,9 @@
       "submitApplication": "Gửi đơn đăng ký",
       "updatePassword": "Cập nhật Mật khẩu",
       "popupText": "Mọi thay đổi đối với 'Phí quản lý' hoặc 'Phí chia sẻ lợi nhuận' sẽ chỉ được tính vào tháng giao dịch mới tiếp theo.",
-      "tradingStrategy": "Cho chúng tôi biết về chiến lược giao dịch của bạn"
+      "tradingStrategy": "Cho chúng tôi biết về chiến lược giao dịch của bạn",
+      "update": "Cập nhật",
+      "offline": "Ngoại tuyến"
     },
     "simulation": {
       "inputCapital": "Vốn đầu vào",
@@ -319,7 +324,7 @@
       "inputAmount": "Số tiền đầu vào",
       "cumulativeReturns": "Lợi nhuận tích lũy",
       "emptyMessage": "Thêm Nhà cung cấp để bắt đầu mô phỏng",
-      "searchProviders": "Search Providers"
+      "searchProviders": "Tìm kiếm Nhà cung cấp"
     },
     "ec": {
       "currentTime": "Giờ hiện tại",

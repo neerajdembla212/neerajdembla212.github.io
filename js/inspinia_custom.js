@@ -701,7 +701,7 @@ function getFollowProviderPopupBody(data) {
             <div class="position-relative w-25 mr-3">
               <input type="text" class="form-control" id="fixed-trade-size">
             </div>
-            <span class="font-bold medium-font text-dark-black">LOT</span>
+            <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.lot')}</span>
           </div>
           <p class="small-font read-less-text mb-0"><button type="button"
               class="btn btn-outline btn-link font-bold p-0 text-navy btn-read-more">${i18n.t('body.common.learnMore')}</button> ${i18n.t('body.common.about')}
@@ -752,7 +752,7 @@ function getFollowProviderPopupBody(data) {
           <div class="position-relative w-50 mr-3">
             <input type="text" class="form-control" id="min-lot-size">
           </div>
-          <span class="font-bold medium-font text-dark-black">LOT</span>
+          <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.lot')}</span>
         </div>
       </div>
       <div>
@@ -761,7 +761,7 @@ function getFollowProviderPopupBody(data) {
         <div class="position-relative w-75 mr-3">
           <input type="text" class="form-control" id="max-lot-size">
         </div>
-          <span class="font-bold medium-font text-dark-black">LOT</span>
+          <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.lot')}</span>
         </div>
       </div>
     </div>
@@ -774,7 +774,7 @@ function getFollowProviderPopupBody(data) {
         <div class="position-relative w-50 mr-3">
           <input type="text" class="form-control" id="take-profit-input">
         </div>
-          <span class="font-bold medium-font text-dark-black">Pips</span>
+          <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.pips')}</span>
         </div>
       </div>
       <div>
@@ -783,7 +783,7 @@ function getFollowProviderPopupBody(data) {
           <div class="position-relative w-75 mr-3">
             <input type="text" class="form-control" id="stop-loss-input">
           </div>
-          <span class="font-bold medium-font text-dark-black">Pips</span>
+          <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.pips')}</span>
         </div>
       </div>
     </div>

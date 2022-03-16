@@ -147,7 +147,8 @@
       "closed": "Ditutup",
       "cancelled": "Dibatalkan",
       "timeStamp": "STEMPEL WAKTU",
-      "closeOrder": "Tutup Posisi"
+      "closeOrder": "Tutup Posisi",
+      "at": "pada"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -230,7 +231,9 @@
       "live": "Live",
       "sl": "SL",
       "tp": "TP",
-      "demoTourResetMessage": "Demo Penyetelan Ulang Berhasil"
+      "demoTourResetMessage": "Demo Penyetelan Ulang Berhasil",
+      "lot": "LOT",
+      "pips": "Pips"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",
@@ -301,7 +304,9 @@
       "submitApplication": "Mengajukan Permohonan",
       "updatePassword": "Perbarui Sandi",
       "popupText": "Setiap perubahan pada 'Biaya Manajemen' atau 'Biaya Bagi Hasil' akan diterapkan pada bulan perdagangan baru",
-      "tradingStrategy": "Silahkan jelaskan secara singkat mengenai strategi perdagangan Anda"
+      "tradingStrategy": "Silahkan jelaskan secara singkat mengenai strategi perdagangan Anda",
+      "update": "Perbarui",
+      "offline": "Offline"
     },
     "simulation": {
       "inputCapital": "Masukan Modal",
@@ -319,7 +324,7 @@
       "inputAmount": "Masukkan Jumlah",
       "cumulativeReturns": "Imbal hasil kumulatif",
       "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi",
-      "searchProviders": "Search Providers"
+      "searchProviders": "Cari Penyedia"
     },
     "ec": {
       "currentTime": "Waktu Saat",

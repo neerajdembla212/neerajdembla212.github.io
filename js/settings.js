@@ -77,12 +77,14 @@
         // role has to be set first before callig other methods as they depend upon this value
         STATE.setRole(localStorage.getItem('currentRole')); // provider or follower
         registerGlobalEvents();
+        i18n.setLng(localStorage.getItem('selectedLanguage'), function () {
+            $('#wrapper').i18n();
+            window.reloadElementsOnLanguageChange();
+        })
         fetchProfileDetails();
         fetchTradingAccounts();
         const hiddenStrategyAccounts = localStorage.getItem('hiddenStrategyAccounts');
         STATE.setHiddenStrategyAccounts(JSON.parse(hiddenStrategyAccounts));
-        // global function
-        initI18nPlugin();
     })
 
     function registerGlobalEvents() {
@@ -159,12 +161,16 @@
             separateDialCode: true
         });
         hideUnhideStrategyAccountEvents();
+        // global function
+        initI18nPlugin();
         // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
         // each page has to add respective function on window to reload the translations on their page
         window.reloadElementsOnLanguageChange = function () {
             renderBasicProfileCard();
+            fillFormWithProfileDetails();
             renderTradingAccountsTable();
-            $('textarea .trading-strategy').attr('placeholder', i18n.t('body.settings.tradingStrategy'))
+            console.log('adding placeholder to ', i18n.t('body.settings.tradingStrategy'));
+            $('textarea.trading-strategy').attr('placeholder', i18n.t('body.settings.tradingStrategy'));
         }
     }
 
@@ -287,7 +293,7 @@
 
         const strategyPhilosophyHTML = role === 'provider' ? `<div class="py-3">
         <p class="mb-2 small-font font-bold text-dark-black">${i18n.t('body.settings.strategyPhilosophy')}</p>
-        <p class="mb-2 text-dark-gray">${strategy_philosophy}</p>
+        <p class="mb-2 text-dark-gray">${i18n.t(strategy_philosophy)}</p>
         <p class="mb-0 text-dark-gray small-font font-bold">${i18n.t('body.mp.joined')} ${formatDate(new Date(joined_date))}
         </div> 
         <div class="divider"></div>` : '';
@@ -476,7 +482,7 @@
             <th class="text-center align-middle">${i18n.t('body.settings.role')}</th>
             <th class="text-center align-middle">${i18n.t('body.settings.server')}</th>
             <th class="text-center align-middle">${i18n.t('body.settings.dateCreated')}</th>
-            <th class="text-center align-middle">Demo Leverage</th>
+            <th class="text-center align-middle">${i18n.t('body.settings.demoLeverage')}</th>
             <th class="text-center align-middle">${i18n.t('body.settings.status')}</th>
             </tr>
         </thead>
@@ -529,7 +535,7 @@
                     <p class="mb-0 text-center">${demo_leverage}</p>
                 </td>
                 <td>
-                    <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? i18n.t('body.settings.online') : ''}">${i18n.t(`body.settings.${status}`)}</p>
+                    <p class="mb-0 text-center p-1 ${status.toUpperCase() === 'ONLINE' ? i18n.t(status.toLowerCase()) : ''}">${i18n.t(status.toLowerCase())}</p>
                 </td>
             </tr>
             `
@@ -593,7 +599,7 @@
         const role = STATE.getRole();
         if (role === 'provider') {
             container.find('#strategy_philosophy_container').removeClass('invisible');
-            container.find('#strategy_philosophy').val(strategy_philosophy);
+            container.find('#strategy_philosophy').val(i18n.t(strategy_philosophy));
         } else if (role === 'follower') {
             container.find('#strategy_philosophy_container').addClass('invisible');
             container.find('#strategy_philosophy').val('');

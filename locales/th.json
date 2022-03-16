@@ -147,7 +147,8 @@
       "closed": "ปิดแล้ว",
       "cancelled": "ยกเลิกแล้ว",
       "timeStamp": "ประทับเวลา",
-      "closeOrder": "ปิดคำสั่งซื้อขาย"
+      "closeOrder": "ปิดคำสั่งซื้อขาย",
+      "at": "ที่"
     },
     "common": {
       "buySell": "ซื้อ/ขาย",
@@ -230,7 +231,9 @@
       "live": "บัญชีจริง",
       "sl": "SL",
       "tp": "TP",
-      "demoTourResetMessage": "การรีเซ็ตทัวร์สาธิตสำเร็จแล้ว"
+      "demoTourResetMessage": "การรีเซ็ตทัวร์สาธิตสำเร็จแล้ว",
+      "lot": "LOT",
+      "pips": "Pips"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -301,7 +304,9 @@
       "submitApplication": "ส่งใบสมัคร",
       "updatePassword": "อัปเดตรหัสผ่าน",
       "popupText": "การเปลี่ยนแปลงใดๆ ของ 'ค่าธรรมเนียมการจัดการ' หรือ 'ค่าธรรมเนียมการแบ่งปันกำไร' จะแสดงในเดือนซื้อขายใหม่เท่านั้น",
-      "tradingStrategy": "บอกเราเกี่ยวกับกลยุทธ์การซื้อขายของคุณ"
+      "tradingStrategy": "บอกเราเกี่ยวกับกลยุทธ์การซื้อขายของคุณ",
+      "update": "อัปเดต",
+      "offline": "ออฟไลน์"
     },
     "simulation": {
       "inputCapital": "เงินทุนเข้า",
@@ -319,7 +324,7 @@
       "inputAmount" : "จำนวนเงินที่ป้อน",
       "cumulativeReturns": "ผลตอบแทนสะสม",
       "emptyMessage": "เพิ่มผู้ให้บริการเพื่อเริ่มการจำลอง",
-      "searchProviders": "Search Providers"
+      "searchProviders": "ค้นหาผู้ให้บริการ"
     },
     "ec": {
       "currentTime": "เวลาปัจจุบัน",

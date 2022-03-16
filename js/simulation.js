@@ -349,6 +349,8 @@
       renderSparkline();
       $('.calculate-card .input-amount').attr("placeholder", i18n.t('body.simulation.inputAmount'));
       $('#providers-search').attr("placeholder", i18n.t('body.simulation.searchProviders'));
+      // activate dynamic Tooltips 
+      activateTooltips();
     }
   }
 
@@ -770,7 +772,7 @@
             </div>
             <div class="sparkline">
             <div class="key">
-                <p class="mb-0">${i18n.t('body.simulation.totalPaid')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="Fees + Profit Shared"></i></p>
+                <p class="mb-0">${i18n.t('body.simulation.totalPaid')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.feesProfitShared')}"></i></p>
             </div>
             <div class="value ${isEmpty ? 'text-light-gray' : 'white'}">SGD ${formatWithCommas(amount_paid)}</div>
             </div>

@@ -147,7 +147,8 @@
       "closed": "关闭",
       "cancelled": "取消",
       "timeStamp": "时间戳",
-      "closeOrder": "关闭订单"
+      "closeOrder": "关闭订单",
+      "at": "以"
     },
     "common": {
       "buySell": "买/卖",
@@ -230,7 +231,9 @@
       "live": "真实",
       "sl": "止损",
       "tp": "止盈",
-      "demoTourResetMessage": "成功重置虚拟之旅"
+      "demoTourResetMessage": "成功重置虚拟之旅",
+      "lot": "手数",
+      "pips": "点数"
     },
     "sp": {
       "topPerformer": "表现最好的",
@@ -301,7 +304,9 @@
       "submitApplication": "递交申请",
       "updatePassword": "更新密码",
       "popupText": "“管理费”或“利润共享费”的任何更改将仅在新的交易月份反映出来。",
-      "tradingStrategy": "告诉我们您的交易策略"
+      "tradingStrategy": "告诉我们您的交易策略",
+      "update": "更新",
+      "offline": "离线"
     },
     "simulation": {
       "inputCapital": "投入资本",
@@ -319,7 +324,7 @@
       "inputAmount": "输入数量",
       "cumulativeReturns": "累积回报",
       "emptyMessage": "添加交易达人以开始模拟",
-      "searchProviders": "Search Providers"
+      "searchProviders": "搜索交易达人"
     },
     "ec": {
       "currentTime": "当前时间",
