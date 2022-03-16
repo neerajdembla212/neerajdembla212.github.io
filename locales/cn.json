@@ -87,7 +87,8 @@
       "next" : "下一步",
       "endtour" : "结束游览",
       "accepted" : "公认",
-      "toFollowYou": "跟着你"
+      "toFollowYou": "跟着你",
+      "tourText": "您可以查看当前表现的概览，包括当前余额、入金和出金总额以及支付的总费用。此外，您可以更改设置、停止复制交易或从您的投资组合中删除策略。"
     },
     "login": {
       "signIn": "登入",
@@ -148,7 +149,8 @@
       "cancelled": "取消",
       "timeStamp": "时间戳",
       "closeOrder": "关闭订单",
-      "at": "以"
+      "at": "以",
+      "tourText": "“交易终端”部分允许您查看您的未平仓交易、挂单和交易历史。这也是您可以查看图表并进行交易的地方"
     },
     "common": {
       "buySell": "买/卖",
@@ -261,7 +263,8 @@
       "stopFollowing": "停止关注",
       "lowGrowth": "低增长",
       "midGrowth": "中期增长",
-      "highGrowth": "高增长"
+      "highGrowth": "高增长",
+      "tourText": "此处列出了所有策略提供者，您可以快速查看并选择一些策略进行详细分析。"
     },
     "settings": {
       "strategyPhilosophy": "策略理念",
@@ -324,7 +327,8 @@
       "inputAmount": "输入数量",
       "cumulativeReturns": "累积回报",
       "emptyMessage": "添加交易达人以开始模拟",
-      "searchProviders": "搜索交易达人"
+      "searchProviders": "搜索交易达人",
+      "tourText": "您可以模拟单个或多个交易达人的回报和回撤，包括他们设置的费用，以根据他们的历史数据计算实时回报"
     },
     "ec": {
       "currentTime": "当前时间",

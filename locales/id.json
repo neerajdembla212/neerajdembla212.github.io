@@ -87,7 +87,8 @@
       "next" : "Lanjut",
       "endtour" : "Akhiri Tur",
       "accepted" : "Diterima",
-      "toFollowYou": "untuk mengikutimu"
+      "toFollowYou": "untuk mengikutimu",
+      "tourText": "Anda dapat melihat ikhtisar kinerja Anda saat ini termasuk saldo saat ini, total setoran, dan penarikan, serta total biaya yang dibayarkan. Selanjutnya, Anda dapat mengubah pengaturan, berhenti menyalin perdagangan atau menghapus strategi dari portofolio Anda."
     },
     "login": {
       "signIn": "Masuk",
@@ -148,7 +149,8 @@
       "cancelled": "Dibatalkan",
       "timeStamp": "STEMPEL WAKTU",
       "closeOrder": "Tutup Posisi",
-      "at": "pada"
+      "at": "pada",
+      "tourText": "Bagian “Terminal Perdagangan” memungkinkan Anda untuk melihat Perdagangan Terbuka, Pesanan Tertunda, dan Riwayat Perdagangan Anda. Ini juga merupakan tempat di mana Anda dapat melihat grafik Anda dan melakukan perdagangan Anda"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -261,7 +263,8 @@
       "stopFollowing": "Berhenti Mengikuti",
       "lowGrowth": "Pertumbuhan Rendah",
       "midGrowth": "Pertumbuhan Menengah",
-      "highGrowth": "Pertumbuhan Tinggi"
+      "highGrowth": "Pertumbuhan Tinggi",
+      "tourText": "Semua penyedia strategi tercantum di sini dan Anda dapat melakukan tinjauan singkat dan memilih beberapa strategi untuk analisis terperinci."
     },
     "settings": {
       "strategyPhilosophy": "Filosofi Strategi",
@@ -324,7 +327,8 @@
       "inputAmount": "Masukkan Jumlah",
       "cumulativeReturns": "Imbal hasil kumulatif",
       "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi",
-      "searchProviders": "Cari Penyedia"
+      "searchProviders": "Cari Penyedia",
+      "tourText": "Anda dapat mensimulasikan keuntungan dan drawdown dari satu atau beberapa penyedia strategi termasuk biaya yang mereka tetapkan untuk menghitung keuntungan waktu nyata berdasarkan data historis mereka"
     },
     "ec": {
       "currentTime": "Waktu Saat",

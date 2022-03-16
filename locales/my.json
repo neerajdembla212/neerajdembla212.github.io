@@ -87,7 +87,8 @@
       "next" : "Seterusnya",
       "endtour" : "Akhir Lawatan",
       "accepted" : "Diterima",
-      "toFollowYou": "untuk mengikut awak"
+      "toFollowYou": "untuk mengikut awak",
+      "tourText": "Anda boleh melihat gambaran keseluruhan prestasi semasa anda termasuk baki semasa, jumlah deposit dan pengeluaran serta jumlah yuran yang dibayar. Tambahan pula, anda boleh menukar tetapan, menghentikan penyalinan dagangan atau mengalih keluar strategi daripada portfolio anda."
     },
     "login": {
       "signIn": "Log Masuk",
@@ -148,7 +149,8 @@
       "cancelled": "Dibatalkan",
       "timeStamp": "Stamp Masa",
       "closeOrder": "Tutup Pesanan",
-      "at": "di"
+      "at": "di",
+      "tourText": "Bahagian 'Terminal Trade' membolehkan anda melihat Trade Terbuka, Trade Belum Selesai dan Sejarah Trading anda. Ini juga merupakan tempat di mana anda boleh melihat carta anda dan mengambil trading anda"
     },
     "common": {
       "buySell": "Beli/Jual",
@@ -261,7 +263,8 @@
       "stopFollowing": "Berhenti mengikuti",
       "lowGrowth": "Pertumbuhan rendah",
       "midGrowth": "Prtumbuhan sederhana",
-      "highGrowth": "Pertumbuhan Tinggi"
+      "highGrowth": "Pertumbuhan Tinggi",
+      "tourText": "Semua penyedia strategi disenaraikan di sini dan anda boleh menjalankan semakan pantas dan memilih beberapa strategi untuk analisis terperinci."
     },
     "settings": {
       "strategyPhilosophy": "Falsafah strategi",
@@ -324,7 +327,8 @@
       "inputAmount" : "Masukkan jumlah",
       "cumulativeReturns": "Pulangan Terkumpul",
       "emptyMessage": "Tambah Penyedia Strategi untuk Memulakan Stimulasi",
-      "searchProviders": "Mencari Penyedia"
+      "searchProviders": "Mencari Penyedia",
+      "tourText": "Anda boleh mensimulasikan pulangan dan pengeluaran satu atau lebih penyedia strategi termasuk yuran yang mereka tetapkan untuk mengira pulangan masa nyata berdasarkan data sejarah mereka"
     },
     "ec": {
       "currentTime": "Masa Semasa",
