@@ -1830,7 +1830,6 @@
 
     // tour start
     function setupTour() {
-        debugger
         return new Tour({
             framework: "bootstrap4",
             container: "#wrapper",
