@@ -162,17 +162,17 @@
         window.intlTelInput(input, {
             separateDialCode: true
         });
-        hideUnhideStrategyAccountEvents();
         // global function
         initI18nPlugin();
+        hideUnhideStrategyAccountEvents();
         // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
         // each page has to add respective function on window to reload the translations on their page
         window.reloadElementsOnLanguageChange = function () {
             renderBasicProfileCard();
             fillFormWithProfileDetails();
             renderTradingAccountsTable();
-            console.log('adding placeholder to ', i18n.t('body.settings.tradingStrategy'));
             $('textarea.trading-strategy').attr('placeholder', i18n.t('body.settings.tradingStrategy'));
+            hideUnhideStrategyAccountEvents();
         }
     }
 
@@ -189,7 +189,8 @@
                 selectedAccountType.removeClass('demo').addClass('live');
                 $('.account-number').removeClass('demo-account');
             }
-            selectedAccountType.text(accountType);
+            const lowercaseAccountType = accountType.toLowerCase();
+            selectedAccountType.text(i18n.t(`body.common.${lowercaseAccountType}`));
             $('.selected-account-number').text(accountNo);
         }
 

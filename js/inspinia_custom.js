@@ -22,6 +22,7 @@ $(document).ready(function () {
   }
   registerEventHandlers();
   initData();
+  resetBuySellData();
   validateBuySellPopupInputs();
   fetchNotifications();
   const isNavbarMini = localStorage.getItem('mini-navbar');
@@ -1346,3 +1347,12 @@ function showRoleOnNav() {
   }
 }
 
+function resetBuySellData() {
+  GLOBAL_STATE.setBuySellData({})
+  GLOBAL_STATE.setIsBuySellFormValid('*', false);
+  const tradeData = localStorage.getItem('tradeData');
+  GLOBAL_STATE.setBuySellData({
+    ...JSON.parse(tradeData),
+    status: 'NEW'
+  })
+}
