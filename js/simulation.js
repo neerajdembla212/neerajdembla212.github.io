@@ -1018,7 +1018,7 @@
     <!-- Follow duration section start -->
     <div class="divider"></div>
     <section class="py-3">
-        <p class="font-bold medium-font mb-2">Follow Duration </p>
+        <p class="font-bold medium-font mb-2">${i18n.t('body.simulation.followDuration')} </p>
         <div class="d-flex justify-content-between">
             <div class="w-50">
                 <p class="mb-0 text-dark-gray">${i18n.t('body.simulation.startDate')}</p>

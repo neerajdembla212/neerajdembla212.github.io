@@ -150,7 +150,9 @@
       "timeStamp": "MỐC THỜI GIAN",
       "closeOrder": "Đóng Lệnh",
       "at": "tại",
-      "tourText": "Phần “Trung tâm giao dịch” cho phép bạn xem các Giao dịch đang mở, Lệnh chờ và Lịch sử giao dịch. Đây cũng là nơi bạn có thể xem biểu đồ và thực hiện các giao dịch của mình"
+      "tourText": "Phần “Trung tâm giao dịch” cho phép bạn xem các Giao dịch đang mở, Lệnh chờ và Lịch sử giao dịch. Đây cũng là nơi bạn có thể xem biểu đồ và thực hiện các giao dịch của mình",
+      "sl": "Cắt lỗ",
+      "tp": "Chốt lời"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -207,7 +209,7 @@
       "proportionalTabHeading": "Phân bổ vốn theo tỷ lệ kích thước giao dịch",
       "proportionalTabP1": "Đặt tỷ lệ kích thước giao dịch cụ thể mà bạn muốn tuân theo cho Nhà cung cấp chiến lược này.",
       "ratioOfTradeSize": "Tỷ lệ Kích thước giao dịch",
-      "ratio": "Ratio",
+      "ratio": "Tỷ lệ",
       "proportionalTradeSize": "Quy mô thương mại theo tỷ lệ",
       "proportionalTabP2": "Tính năng này cho phép thiết lập hệ số kích thước giao dịch động, tỷ lệ thuận theo quan hệ phần trăm. Nếu bạn muốn mở các vị thế lệnh nhỏ hơn 5 lần so với nhà cung cấp chiến lược, bạn cần nhập “0,20”. Nếu bạn muốn mở các vị thế lệnh lớn hơn 5 lần so với nhà cung cấp chiến lược, hãy nhập “5,00”. Để đáp ứng và tương đương các giá trị số lượng lot của nhà cung cấp chiến lược, đầu vào “1,00”.",
       "riskManagement": "Quản lý rủi ro",
@@ -235,7 +237,8 @@
       "tp": "Chốt lời",
       "demoTourResetMessage": "Trải nghiệm tour tham quan",
       "lot": "LOT",
-      "pips": "Pips"
+      "pips": "Pips",
+      "demoAccountSuccess": "Tài khoản Demo đã được tạo"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
@@ -309,7 +312,8 @@
       "popupText": "Mọi thay đổi đối với 'Phí quản lý' hoặc 'Phí chia sẻ lợi nhuận' sẽ chỉ được tính vào tháng giao dịch mới tiếp theo.",
       "tradingStrategy": "Cho chúng tôi biết về chiến lược giao dịch của bạn",
       "update": "Cập nhật",
-      "offline": "Ngoại tuyến"
+      "offline": "Ngoại tuyến",
+      "profileUpdateSuccess": "Thông tin cá nhân đã được cập nhật"
     },
     "simulation": {
       "inputCapital": "Vốn đầu vào",
@@ -328,7 +332,8 @@
       "cumulativeReturns": "Lợi nhuận tích lũy",
       "emptyMessage": "Thêm Nhà cung cấp để bắt đầu mô phỏng",
       "searchProviders": "Tìm kiếm Nhà cung cấp",
-      "tourText": "Bạn có thể mô phỏng lợi nhuận và mức độ sụt giảm cho một hoặc nhiều nhà cung cấp chiến lược, bao gồm cả phí do họ đặt ra, để tính toán lợi nhuận theo thời gian thực dựa trên dữ liệu lịch sử của họ"
+      "tourText": "Bạn có thể mô phỏng lợi nhuận và mức độ sụt giảm cho một hoặc nhiều nhà cung cấp chiến lược, bao gồm cả phí do họ đặt ra, để tính toán lợi nhuận theo thời gian thực dựa trên dữ liệu lịch sử của họ",
+      "followDuration": "Theo dõi thời lượng"
     },
     "ec": {
       "currentTime": "Giờ hiện tại",

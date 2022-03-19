@@ -150,7 +150,9 @@
       "timeStamp": "时间戳",
       "closeOrder": "关闭订单",
       "at": "以",
-      "tourText": "“交易终端”部分允许您查看您的未平仓交易、挂单和交易历史。这也是您可以查看图表并进行交易的地方"
+      "tourText": "“交易终端”部分允许您查看您的未平仓交易、挂单和交易历史。这也是您可以查看图表并进行交易的地方",
+      "sl": "止损",
+      "tp": "止盈"
     },
     "common": {
       "buySell": "买/卖",
@@ -207,7 +209,7 @@
       "proportionalTabHeading": "比例交易规模资金分配",
       "proportionalTabP1": "为此交易达人设置您想要遵循的特定交易规模。",
       "ratioOfTradeSize": "交易规模比率",
-      "ratio": "Ratio",
+      "ratio": "比率",
       "proportionalTradeSize": "成比例的交易规模",
       "proportionalTabP2": "“此功能允许在百分比关系中设置动态、成比例的交易规模系数。 如果您想开仓比交易达人小5倍，您需要输入“0.20”。 如果您想开仓比交易达人大 5 倍，请输入“5.00”。 为满足交易达人的手数值输入“1.00”。",
       "riskManagement": "风险管理",
@@ -235,7 +237,8 @@
       "tp": "止盈",
       "demoTourResetMessage": "成功重置虚拟之旅",
       "lot": "手数",
-      "pips": "点数"
+      "pips": "点数",
+      "demoAccountSuccess": "虚拟账户已创建"
     },
     "sp": {
       "topPerformer": "表现最好的",
@@ -309,7 +312,8 @@
       "popupText": "“管理费”或“利润共享费”的任何更改将仅在新的交易月份反映出来。",
       "tradingStrategy": "告诉我们您的交易策略",
       "update": "更新",
-      "offline": "离线"
+      "offline": "离线",
+      "profileUpdateSuccess": "个人资料已更新"
     },
     "simulation": {
       "inputCapital": "投入资本",
@@ -328,7 +332,8 @@
       "cumulativeReturns": "累积回报",
       "emptyMessage": "添加交易达人以开始模拟",
       "searchProviders": "搜索交易达人",
-      "tourText": "您可以模拟单个或多个交易达人的回报和回撤，包括他们设置的费用，以根据他们的历史数据计算实时回报"
+      "tourText": "您可以模拟单个或多个交易达人的回报和回撤，包括他们设置的费用，以根据他们的历史数据计算实时回报",
+      "followDuration": "关注时段"
     },
     "ec": {
       "currentTime": "当前时间",

@@ -150,7 +150,9 @@
       "timeStamp": "Stamp Masa",
       "closeOrder": "Tutup Pesanan",
       "at": "di",
-      "tourText": "Bahagian 'Terminal Trade' membolehkan anda melihat Trade Terbuka, Trade Belum Selesai dan Sejarah Trading anda. Ini juga merupakan tempat di mana anda boleh melihat carta anda dan mengambil trading anda"
+      "tourText": "Bahagian 'Terminal Trade' membolehkan anda melihat Trade Terbuka, Trade Belum Selesai dan Sejarah Trading anda. Ini juga merupakan tempat di mana anda boleh melihat carta anda dan mengambil trading anda",
+      "sl": "SL",
+      "tp": "TP"
     },
     "common": {
       "buySell": "Beli/Jual",
@@ -207,7 +209,7 @@
       "proportionalTabHeading": "Peruntukan Dana Saiz Trade Berkadar",
       "proportionalTabP1": "Tetapkan saiz trade tertentu yang anda mahu ikuti untuk Penyedia Strategi ini.",
       "ratioOfTradeSize": "Nisbah Saiz Trade",
-      "ratio": "Ratio",
+      "ratio": "Nisbah",
       "proportionalTradeSize": "Saiz Perdagangan Berkadar",
       "proportionalTabP2": "Ciri ini membolehkan menyediakan pekali saiz trade yang dinamik dan berkadar dalam hubungan peratusan. Jika anda ingin membuka kedudukan 5 kali lebih kecil daripada penyedia strategi, anda perlu memasukkan '0.20'. Jika anda ingin membuka kedudukan 5 kali lebih besar daripada penyedia strategi, masukkan '5.00'. Untuk memenuhi nilai kuantiti lot pembekal strategi input '1.00'.",
       "riskManagement": "Risiko pengurusan ",
@@ -235,7 +237,8 @@
       "tp": "TP",
       "demoTourResetMessage": "Demo Lawatan Set Semula Berjaya",
       "lot": "LOT",
-      "pips": "Pips"
+      "pips": "Pips",
+      "demoAccountSuccess": "Akaun demo tercipta"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",
@@ -309,7 +312,8 @@
       "popupText": "Sebarang perubahan pada 'Yuran Pengurusan' atau 'Yuran Perkongsian Keuntungan' hanya akan ditunjukkan pada bulan dagangan baharu.",
       "tradingStrategy": "Jelaskan tentang strategi perdagangan anda",
       "update": "Kemaskini",
-      "offline": "Tidak Tersedia"
+      "offline": "Tidak Tersedia",
+      "profileUpdateSuccess": "Maklumat profail dikemaskini"
     },
     "simulation": {
       "inputCapital": "Masukkan modal",
@@ -328,7 +332,8 @@
       "cumulativeReturns": "Pulangan Terkumpul",
       "emptyMessage": "Tambah Penyedia Strategi untuk Memulakan Stimulasi",
       "searchProviders": "Mencari Penyedia",
-      "tourText": "Anda boleh mensimulasikan pulangan dan pengeluaran satu atau lebih penyedia strategi termasuk yuran yang mereka tetapkan untuk mengira pulangan masa nyata berdasarkan data sejarah mereka"
+      "tourText": "Anda boleh mensimulasikan pulangan dan pengeluaran satu atau lebih penyedia strategi termasuk yuran yang mereka tetapkan untuk mengira pulangan masa nyata berdasarkan data sejarah mereka",
+      "followDuration": "Durasi Ikutan"
     },
     "ec": {
       "currentTime": "Masa Semasa",

@@ -1,3 +1,21 @@
+class GlobalState {
+  buySellData = {};
+  isBuySellFormValid = {
+    volume: false,
+    profit: false,
+    loss: false
+  }
+  getBuySellData() {
+    return this.buySellData;
+  }
+  setBuySellData(data) {
+    if (!data) {
+      return;
+    }
+    this.buySellData = data;
+  }
+}
+const GLOBAL_STATE = new GlobalState();
 $(document).ready(function () {
   if (!checkUserLogin()) {
     window.location.href = window.origin + '/login.html'
@@ -120,7 +138,7 @@ function registerEventHandlers() {
 
   // create demo accout show toast
   $('#create-demo-modal #create-demo-account').unbind().click(function () {
-    renderSuccessToast('Demo accout created')
+    renderSuccessToast(i18n.t('body.common.demoAccountSuccess'))
   })
 }
 

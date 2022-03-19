@@ -151,7 +151,7 @@
             container.find('#last_name').blur();
             container.find('#mobile').blur();
             if (STATE.getIsProfileDetailsValid()) {
-                renderSuccessToast('Profile details updated')
+                renderSuccessToast(i18n.t('body.settings.profileUpdateSuccess'))
             }
         })
 

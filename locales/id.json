@@ -150,7 +150,9 @@
       "timeStamp": "STEMPEL WAKTU",
       "closeOrder": "Tutup Posisi",
       "at": "pada",
-      "tourText": "Bagian “Terminal Perdagangan” memungkinkan Anda untuk melihat Perdagangan Terbuka, Pesanan Tertunda, dan Riwayat Perdagangan Anda. Ini juga merupakan tempat di mana Anda dapat melihat grafik Anda dan melakukan perdagangan Anda"
+      "tourText": "Bagian “Terminal Perdagangan” memungkinkan Anda untuk melihat Perdagangan Terbuka, Pesanan Tertunda, dan Riwayat Perdagangan Anda. Ini juga merupakan tempat di mana Anda dapat melihat grafik Anda dan melakukan perdagangan Anda",
+      "sl": "SL",
+      "tp": "TP"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -207,7 +209,7 @@
       "proportionalTabHeading": "Alokasi Dana Ukuran Perdagangan Proporsional",
       "proportionalTabP1": "Tetapkan ukuran perdagangan tertentu yang ingin Anda ikuti untuk Penyedia Strategi ini.",
       "ratioOfTradeSize": "Rasio Ukuran Perdagangan",
-      "ratio": "Ratio",
+      "ratio": "Perbandingan",
       "proportionalTradeSize": "Ukuran Perdagangan Proporsional",
       "proportionalTabP2": "Fitur ini memungkinkan pengaturan koefisien ukuran perdagangan yang dinamis dan proporsional dalam hubungan persentase. Jika Anda ingin membuka posisi 5 kali lebih kecil dari penyedia strategi, Anda harus memasukkan “0.20”. Jika Anda ingin membuka posisi 5 kali lebih besar dari penyedia strategi, masukkan “5.00”. Untuk memenuhi nilai kuantitas lot dari penyedia strategi, masukkan '1.00'",
       "riskManagement": "Manajemen Risiko",
@@ -235,7 +237,8 @@
       "tp": "TP",
       "demoTourResetMessage": "Demo Penyetelan Ulang Berhasil",
       "lot": "LOT",
-      "pips": "Pips"
+      "pips": "Pips",
+      "demoAccountSuccess": "Akun demo dibuat"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",
@@ -309,7 +312,8 @@
       "popupText": "Setiap perubahan pada 'Biaya Manajemen' atau 'Biaya Bagi Hasil' akan diterapkan pada bulan perdagangan baru",
       "tradingStrategy": "Silahkan jelaskan secara singkat mengenai strategi perdagangan Anda",
       "update": "Perbarui",
-      "offline": "Offline"
+      "offline": "Offline",
+      "profileUpdateSuccess": "Detail profil diperbarui"
     },
     "simulation": {
       "inputCapital": "Masukan Modal",
@@ -328,7 +332,8 @@
       "cumulativeReturns": "Imbal hasil kumulatif",
       "emptyMessage": "Tambahkan Penyedia Strategi untuk Memulai Simulasi",
       "searchProviders": "Cari Penyedia",
-      "tourText": "Anda dapat mensimulasikan keuntungan dan drawdown dari satu atau beberapa penyedia strategi termasuk biaya yang mereka tetapkan untuk menghitung keuntungan waktu nyata berdasarkan data historis mereka"
+      "tourText": "Anda dapat mensimulasikan keuntungan dan drawdown dari satu atau beberapa penyedia strategi termasuk biaya yang mereka tetapkan untuk menghitung keuntungan waktu nyata berdasarkan data historis mereka",
+      "followDuration": "Durasi Mengikuti"
     },
     "ec": {
       "currentTime": "Waktu Saat",

@@ -506,12 +506,12 @@
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="sl">
-                    <p class="m-0 p-0 header-text m-auto">SL<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.sl')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'sl' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
                 <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="tp">
-                    <p class="m-0 p-0 header-text m-auto">TP<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
+                    <p class="m-0 p-0 header-text m-auto">${i18n.t('body.tt.tp')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'tp' ? 'd-none' : ''}"></i></p>
                 </div>
             </th>
             <th class="text-center align-middle">
