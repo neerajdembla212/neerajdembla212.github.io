@@ -50,7 +50,7 @@
       "actions": "Tindakan",
       "period": "Tempoh",
       "comEarnedOnly": "Komisen yang diperolehi",
-      "joined": "Menyertai",
+      "joined": "Durasi penyertaan",
       "10RowsPerPage": "10 baris setiap halaman",
       "20RowsPerPage": "20 baris setiap halaman",
       "30RowsPerPage": "30 baris setiap halaman",
@@ -91,7 +91,8 @@
       "tourText": "Anda boleh melihat gambaran keseluruhan prestasi semasa anda termasuk baki semasa, jumlah deposit dan pengeluaran serta jumlah yuran yang dibayar. Tambahan pula, anda boleh menukar tetapan, menghentikan penyalinan dagangan atau mengalih keluar strategi daripada portfolio anda.",
       "allowFollower": "Benarkan Pengikut",
       "pauseFollower" : "Jeda Pengikut",
-      "pauseFollowerMessage": "Adakah anda pasti untuk menjeda pengikut"
+      "pauseFollowerMessage": "Adakah anda pasti untuk menjeda pengikut",
+      "stopFollower": "Berhenti Pengikut"
     },
     "login": {
       "signIn": "Log Masuk",
@@ -156,7 +157,13 @@
       "tourText": "Bahagian 'Terminal Trade' membolehkan anda melihat Trade Terbuka, Trade Belum Selesai dan Sejarah Trading anda. Ini juga merupakan tempat di mana anda boleh melihat carta anda dan mengambil trading anda",
       "sl": "SL",
       "tp": "TP",
-      "sellOrder": "PESANAN JUAL"
+      "sellOrder": "PESANAN JUAL",
+      "tradeClosed": "Trade Ditutup",
+      "placeOrder": "Tempatkan Pesanan",
+      "addTo": "tambah kepada",
+      "change": "Ubah",
+      "watchlist": "Senarai pantauan",
+      "closeWindow": "Tutup Tingkap"
     },
     "common": {
       "buySell": "Beli/Jual",

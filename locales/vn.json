@@ -50,7 +50,7 @@
       "actions": "Các hành động",
       "period": "Giai đoạn",
       "comEarnedOnly": "Hoa hồng kiếm được",
-      "joined": "Đã tham gia",
+      "joined": "Thời lượng đã tham gia",
       "10RowsPerPage": "10 dòng trên Trang",
       "20RowsPerPage": "20 dòng trên Trang",
       "30RowsPerPage": "30 dòng trên Trang",
@@ -91,7 +91,14 @@
       "tourText": "Bạn có thể xem tổng quan về hoạt động hiện tại của mình bao gồm số dư hiện tại, tổng tiền nạp và rút và tổng phí đã trả. Hơn nữa, bạn có thể thay đổi cài đặt, ngừng sao chép giao dịch hoặc xóa chiến lược khỏi danh mục đầu tư của mình.",
       "allowFollower": "Cho phép người theo dõi",
       "pauseFollower" : "Tạm dừng người theo dõi",
-      "pauseFollowerMessage": "Are you sure you want to pause follower"
+      "pauseFollowerMessage": "Are you sure you want to pause follower",
+      "stopFollower": "Dừng người theo dõi",
+      "tradeClosed": "Giao dịch đã đóng",
+      "placeOrder": "Đặt lệnh",
+      "addTo": "Thêm vào",
+      "change": "Thay đổi",
+      "watchlist": "Danh sách theo dõi",
+      "closeWindow": "Close Window"
     },
     "login": {
       "signIn": "Đăng nhập",

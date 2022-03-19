@@ -1973,7 +1973,7 @@
                         var audioElement = document.querySelector('#success-sound');
                         audioElement.play();
                         // show success toast
-                        renderSuccessToast('Trade closed');
+                        renderSuccessToast(i18n.t('body.mp.tradeClosed'));
                         onTabChange('#open-trades');
                     }
                 }
@@ -2206,7 +2206,7 @@
             return `
             <div class="px-3 mb-3">
                 <button type="button" id="close-window" class="close-window-cta btn btn-w-m btn-default btn-block btn-text-medium-blue font-weight-bolder">
-                    Close Window
+                    ${i18n.t('body.tt.closeWindow')}
                 </button>
             </div>
             `;
@@ -2838,7 +2838,7 @@
         const listHTML = [];
         watchList.forEach(watchListObj => {
             listHTML.push(`
-                <li data-currency-id="${currencyId}" data-watchlist-id="${watchListObj.id}"><a data-currency-id="${currencyId}" data-watchlist-id="${watchListObj.id}" class="dropdown-item" href="#">Add to ${watchListObj.title}</a></li>
+                <li data-currency-id="${currencyId}" data-watchlist-id="${watchListObj.id}"><a data-currency-id="${currencyId}" data-watchlist-id="${watchListObj.id}" class="dropdown-item" href="#">${i18n.t('body.tt.addTo')} ${watchListObj.title}</a></li>
             `)
         })
         return listHTML.join('');
@@ -2870,7 +2870,7 @@
 
         const newWatchList = {
             id: watchList[watchList.length - 1].id + 1,
-            title: "Watchlist " + watchList[watchList.length - 1].id + 1,
+            title: i18n.t('body.tt.watchlist') + ' ' + watchList[watchList.length - 1].id + 1,
             currencies: []
         }
         STATE.watchlist.push(newWatchList);

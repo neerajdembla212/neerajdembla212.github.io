@@ -91,7 +91,8 @@
       "tourText": "You can see the overview of your current performances including current balance, total deposits and withdrawals and total fees paid. Furthermore, you can change settings, stop copying of trades or remove strategies from your portfolio.",
       "allowFollower": "Allow Follower",
       "pauseFollower": "Pause Follower",
-      "pauseFollowerMessage": "Are you sure you want to pause follower"
+      "pauseFollowerMessage": "Are you sure you want to pause follower",
+      "stopFollower": "Stop Follower"
     },
     "login": {
       "signIn": "Sign In",
@@ -156,7 +157,13 @@
       "tourText": "The “Trade Terminal” section allows you to see your Open Trades, Pending Orders and Trade History. This is also the place where you can look at your charts and take your trades",
       "sl": "SL",
       "tp": "TP",
-      "sellOrder": "SELL ORDER"
+      "sellOrder": "SELL ORDER",
+      "tradeClosed": "Trade Closed",
+      "placeOrder": "Place Order",
+      "addTo": "Add to",
+      "change": "Change",
+      "watchlist": "Watchlist",
+      "closeWindow": "Close Window"
     },
     "common": {
       "buySell": "Buy/Sell",

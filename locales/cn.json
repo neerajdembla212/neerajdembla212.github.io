@@ -50,7 +50,7 @@
       "actions": "行动",
       "period": "时期",
       "comEarnedOnly": "返佣",
-      "joined": "已加入",
+      "joined": "加入时间",
       "10RowsPerPage": "每页 10 行",
       "20RowsPerPage": "每页 20 行",
       "30RowsPerPage": "每页 30 行",
@@ -91,7 +91,8 @@
       "tourText": "您可以查看当前表现的概览，包括当前余额、入金和出金总额以及支付的总费用。此外，您可以更改设置、停止复制交易或从您的投资组合中删除策略。",
       "allowFollower": "允许关注者",
       "pauseFollower" : "暂停关注者",
-      "pauseFollowerMessage": "Are you sure you want to pause follower"
+      "pauseFollowerMessage": "Are you sure you want to pause follower",
+      "stopFollower": "停止关注者"
     },
     "login": {
       "signIn": "登入",
@@ -130,7 +131,7 @@
       "pricesByFulletronMarkets": "富乐敦的价格",
       "maketOpen": "开市",
       "openTrades": "未结交易",
-      "pendingOrders": "挂单（表",
+      "pendingOrders": "挂单",
       "tradeHistory": "交易历史",
       "symbol": "标志",
       "trader": "交易者",
@@ -156,7 +157,13 @@
       "tourText": "“交易终端”部分允许您查看您的未平仓交易、挂单和交易历史。这也是您可以查看图表并进行交易的地方",
       "sl": "止损",
       "tp": "止盈",
-      "sellOrder": "卖单"
+      "sellOrder": "卖单",
+      "tradeClosed": "平仓",
+      "placeOrder": "下单",
+      "addTo": "添加",
+      "change": "改变",
+      "watchlist": "关注列表",
+      "closeWindow": "关闭视窗"
     },
     "common": {
       "buySell": "买/卖",

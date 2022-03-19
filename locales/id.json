@@ -50,7 +50,7 @@
       "actions": "TIndakan",
       "period": "Periode",
       "comEarnedOnly": "Komisi (Komisi yang Diperoleh)",
-      "joined": "Bergabung",
+      "joined": "Durasi Bergabung",
       "10RowsPerPage": "10 Baris per Halaman",
       "20RowsPerPage": "20 Baris per Halaman",
       "30RowsPerPage": "30 Baris per Halaman",
@@ -84,14 +84,15 @@
       "featuredMessage": "EUR/USD adalah salah satu pasangan mata uang yang paling banyak diperdagangkan di pasar valuta asing...",
       "new": "BARU",
       "prev": "Sebelumnya",
-      "next" : "Lanjut",
-      "endtour" : "Akhiri Tur",
-      "accepted" : "Diterima",
+      "next": "Lanjut",
+      "endtour": "Akhiri Tur",
+      "accepted": "Diterima",
       "toFollowYou": "untuk mengikutimu",
       "tourText": "Anda dapat melihat ikhtisar kinerja Anda saat ini termasuk saldo saat ini, total setoran, dan penarikan, serta total biaya yang dibayarkan. Selanjutnya, Anda dapat mengubah pengaturan, berhenti menyalin perdagangan atau menghapus strategi dari portofolio Anda.",
       "allowFollower": "Izinkan Pengikut",
-      "pauseFollower" : "Jeda Pengikut",
-      "pauseFollowerMessage": "Are you sure you want to pause follower"
+      "pauseFollower": "Jeda Pengikut",
+      "pauseFollowerMessage": "Are you sure you want to pause follower",
+      "stopFollower": "Hentikan Pengikut"
     },
     "login": {
       "signIn": "Masuk",
@@ -156,7 +157,13 @@
       "tourText": "Bagian “Terminal Perdagangan” memungkinkan Anda untuk melihat Perdagangan Terbuka, Pesanan Tertunda, dan Riwayat Perdagangan Anda. Ini juga merupakan tempat di mana Anda dapat melihat grafik Anda dan melakukan perdagangan Anda",
       "sl": "SL",
       "tp": "TP",
-      "sellOrder": "ORDER JUAL"
+      "sellOrder": "ORDER JUAL",
+      "tradeClosed": "Perdagangan Ditutup",
+      "placeOrder": "Tempatkan Pesanan",
+      "addTo": "Tambahkan",
+      "change": "Ubah",
+      "watchlist": "Pantauan",
+      "closeWindow": "Tutup Jendela"
     },
     "common": {
       "buySell": "Buy/Sell",

@@ -458,34 +458,34 @@
     return `
         <thead>
             <tr>
-            <th class="align-middle extra-small-font pr-0">${i18n.t('body.mp.provider')}</th>
-            <th class="text-center align-middle extra-small-font pr-0">${i18n.t('body.simulation.joinedDuration')}</th>
-            <th class="text-center align-middle extra-small-font pr-0">
+            <th class="align-middle small-font pr-0">${i18n.t('body.mp.provider')}</th>
+            <th class="text-center align-middle small-font pr-0">${i18n.t('body.simulation.joinedDuration')}</th>
+            <th class="text-center align-middle small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
                 <p class="m-0 p-0">${i18n.t('body.mp.equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle extra-small-font pr-0">
+            <th class="text-center align-middle small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="trades">
                 <p class="m-0 p-0">${i18n.t('body.mp.trades')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'trades' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle extra-small-font pr-0">
+            <th class="text-center align-middle small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
                 <p class="m-0 p-0">${i18n.t('body.mp.managementFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle extra-small-font pr-0">
+            <th class="text-center align-middle small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
                 <p class="m-0 p-0">${i18n.t('body.mp.pShare%')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle extra-small-font pr-0">
+            <th class="text-center align-middle small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
                 <p class="m-0 p-0">${i18n.t('body.mp.totalFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle extra-small-font">${i18n.t('body.mp.actions')}</th>
+            <th class="text-center align-middle small-font">${i18n.t('body.mp.actions')}</th>
             </tr>
         </thead>
         `

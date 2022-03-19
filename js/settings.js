@@ -98,13 +98,15 @@
             }
         })
         // add switchery radio button in modal
-        var elem = document.querySelector('#become-strategy-provider-modal .js-switch');
-        new Switchery(elem, {
-            color: '#E5E5E5',
-            secondaryColor: '#E5E5E5',
-            jackColor: '#22D091',
-            jackSecondaryColor: "#FFFFFF",
-        });
+        var elements = $('.js-switch');
+        elements.each((i, elem) => {
+            new Switchery(elem, {
+                color: '#E5E5E5',
+                secondaryColor: '#E5E5E5',
+                jackColor: '#22D091',
+                jackSecondaryColor: "#FFFFFF",
+            });
+        })
 
         // start date picker
         $('#become-strategy-provider-modal .start-date-input').datepicker({
@@ -590,9 +592,9 @@
         const profileDetails = STATE.getProfileDetails();
         const {
             email,
-            name,
+            name = '',
             phone,
-            country,
+            country = '',
             strategy_philosophy
         } = profileDetails;
         const container = $('.profile-settings');
@@ -604,9 +606,12 @@
             container.find('#strategy_philosophy_container').addClass('invisible');
             container.find('#strategy_philosophy').val('');
         }
+        const names = name.split(' ');
+        const firstName = name.length > 0 ? name[0] : '';
+        const lastName = name.length > 1 ? name[1] : '';
         container.find('#email_address').val(email);
-        container.find('#first_name').val(name.split(' ')[0]);
-        container.find('#last_name').val(name.split(' ')[1]);
+        container.find('#first_name').val(firstName);
+        container.find('#last_name').val(lastName);
         container.find('#mobile').val(phone);
         container.find('#country').val(country.toUpperCase());
     }
