@@ -88,7 +88,10 @@
       "endtour" : "Akhiri Tur",
       "accepted" : "Diterima",
       "toFollowYou": "untuk mengikutimu",
-      "tourText": "Anda dapat melihat ikhtisar kinerja Anda saat ini termasuk saldo saat ini, total setoran, dan penarikan, serta total biaya yang dibayarkan. Selanjutnya, Anda dapat mengubah pengaturan, berhenti menyalin perdagangan atau menghapus strategi dari portofolio Anda."
+      "tourText": "Anda dapat melihat ikhtisar kinerja Anda saat ini termasuk saldo saat ini, total setoran, dan penarikan, serta total biaya yang dibayarkan. Selanjutnya, Anda dapat mengubah pengaturan, berhenti menyalin perdagangan atau menghapus strategi dari portofolio Anda.",
+      "allowFollower": "Izinkan Pengikut",
+      "pauseFollower" : "Jeda Pengikut",
+      "pauseFollowerMessage": "Are you sure you want to pause follower"
     },
     "login": {
       "signIn": "Masuk",
@@ -152,7 +155,8 @@
       "at": "pada",
       "tourText": "Bagian “Terminal Perdagangan” memungkinkan Anda untuk melihat Perdagangan Terbuka, Pesanan Tertunda, dan Riwayat Perdagangan Anda. Ini juga merupakan tempat di mana Anda dapat melihat grafik Anda dan melakukan perdagangan Anda",
       "sl": "SL",
-      "tp": "TP"
+      "tp": "TP",
+      "sellOrder": "ORDER JUAL"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -238,7 +242,8 @@
       "demoTourResetMessage": "Demo Penyetelan Ulang Berhasil",
       "lot": "LOT",
       "pips": "Pips",
-      "demoAccountSuccess": "Akun demo dibuat"
+      "demoAccountSuccess": "Akun demo dibuat",
+      "strategyProviderSettings": "Pengaturan Penyedia Strategi"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

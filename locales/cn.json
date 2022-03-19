@@ -88,7 +88,10 @@
       "endtour" : "结束游览",
       "accepted" : "公认",
       "toFollowYou": "跟着你",
-      "tourText": "您可以查看当前表现的概览，包括当前余额、入金和出金总额以及支付的总费用。此外，您可以更改设置、停止复制交易或从您的投资组合中删除策略。"
+      "tourText": "您可以查看当前表现的概览，包括当前余额、入金和出金总额以及支付的总费用。此外，您可以更改设置、停止复制交易或从您的投资组合中删除策略。",
+      "allowFollower": "允许关注者",
+      "pauseFollower" : "暂停关注者",
+      "pauseFollowerMessage": "Are you sure you want to pause follower"
     },
     "login": {
       "signIn": "登入",
@@ -152,7 +155,8 @@
       "at": "以",
       "tourText": "“交易终端”部分允许您查看您的未平仓交易、挂单和交易历史。这也是您可以查看图表并进行交易的地方",
       "sl": "止损",
-      "tp": "止盈"
+      "tp": "止盈",
+      "sellOrder": "卖单"
     },
     "common": {
       "buySell": "买/卖",
@@ -238,7 +242,8 @@
       "demoTourResetMessage": "成功重置虚拟之旅",
       "lot": "手数",
       "pips": "点数",
-      "demoAccountSuccess": "虚拟账户已创建"
+      "demoAccountSuccess": "虚拟账户已创建",
+      "strategyProviderSettings": "策略提供者设置"
     },
     "sp": {
       "topPerformer": "表现最好的",

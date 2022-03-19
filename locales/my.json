@@ -88,7 +88,10 @@
       "endtour" : "Akhir Lawatan",
       "accepted" : "Diterima",
       "toFollowYou": "untuk mengikut awak",
-      "tourText": "Anda boleh melihat gambaran keseluruhan prestasi semasa anda termasuk baki semasa, jumlah deposit dan pengeluaran serta jumlah yuran yang dibayar. Tambahan pula, anda boleh menukar tetapan, menghentikan penyalinan dagangan atau mengalih keluar strategi daripada portfolio anda."
+      "tourText": "Anda boleh melihat gambaran keseluruhan prestasi semasa anda termasuk baki semasa, jumlah deposit dan pengeluaran serta jumlah yuran yang dibayar. Tambahan pula, anda boleh menukar tetapan, menghentikan penyalinan dagangan atau mengalih keluar strategi daripada portfolio anda.",
+      "allowFollower": "Benarkan Pengikut",
+      "pauseFollower" : "Jeda Pengikut",
+      "pauseFollowerMessage": "Adakah anda pasti untuk menjeda pengikut"
     },
     "login": {
       "signIn": "Log Masuk",
@@ -152,7 +155,8 @@
       "at": "di",
       "tourText": "Bahagian 'Terminal Trade' membolehkan anda melihat Trade Terbuka, Trade Belum Selesai dan Sejarah Trading anda. Ini juga merupakan tempat di mana anda boleh melihat carta anda dan mengambil trading anda",
       "sl": "SL",
-      "tp": "TP"
+      "tp": "TP",
+      "sellOrder": "PESANAN JUAL"
     },
     "common": {
       "buySell": "Beli/Jual",
@@ -238,7 +242,8 @@
       "demoTourResetMessage": "Demo Lawatan Set Semula Berjaya",
       "lot": "LOT",
       "pips": "Pips",
-      "demoAccountSuccess": "Akaun demo tercipta"
+      "demoAccountSuccess": "Akaun demo tercipta",
+      "strategyProviderSettings": "Aturan Penyedia Strategi"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",

@@ -2072,7 +2072,7 @@
             <!-- Sell order details start -->
             <div class="d-flex justify-content-between mb-3 mx-3">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 font-weight-bolder large-font mr-1 text-dark-gray">SELL ORDER</p>
+                    <p class="mb-0 font-weight-bolder large-font mr-1 text-dark-gray">${i18n.t('body.tt.sellOrder')}</p>
                     <p class="mb-0 medium-font">#${order_number}</p>
                 </div>
                 <p class="mb-0 medium-font">${formatDate(new Date(trade_time), 'DD/MM/YYYY HH:mm')}</p>

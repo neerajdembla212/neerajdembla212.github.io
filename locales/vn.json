@@ -88,7 +88,10 @@
       "endtour": "Kết thúc tour",
       "accepted": "Đã được chấp nhận",
       "toFollowYou": "theo dõi bạn",
-      "tourText": "Bạn có thể xem tổng quan về hoạt động hiện tại của mình bao gồm số dư hiện tại, tổng tiền nạp và rút và tổng phí đã trả. Hơn nữa, bạn có thể thay đổi cài đặt, ngừng sao chép giao dịch hoặc xóa chiến lược khỏi danh mục đầu tư của mình."
+      "tourText": "Bạn có thể xem tổng quan về hoạt động hiện tại của mình bao gồm số dư hiện tại, tổng tiền nạp và rút và tổng phí đã trả. Hơn nữa, bạn có thể thay đổi cài đặt, ngừng sao chép giao dịch hoặc xóa chiến lược khỏi danh mục đầu tư của mình.",
+      "allowFollower": "Cho phép người theo dõi",
+      "pauseFollower" : "Tạm dừng người theo dõi",
+      "pauseFollowerMessage": "Are you sure you want to pause follower"
     },
     "login": {
       "signIn": "Đăng nhập",
@@ -152,7 +155,8 @@
       "at": "tại",
       "tourText": "Phần “Trung tâm giao dịch” cho phép bạn xem các Giao dịch đang mở, Lệnh chờ và Lịch sử giao dịch. Đây cũng là nơi bạn có thể xem biểu đồ và thực hiện các giao dịch của mình",
       "sl": "Cắt lỗ",
-      "tp": "Chốt lời"
+      "tp": "Chốt lời",
+      "sellOrder": "LỆNH BÁN"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -238,7 +242,8 @@
       "demoTourResetMessage": "Trải nghiệm tour tham quan",
       "lot": "LOT",
       "pips": "Pips",
-      "demoAccountSuccess": "Tài khoản Demo đã được tạo"
+      "demoAccountSuccess": "Tài khoản Demo đã được tạo",
+      "strategyProviderSettings": "Cài đặt Nhà cung cấp chiến lược"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
