@@ -250,7 +250,12 @@
       "lot": "LOT",
       "pips": "Pips",
       "demoAccountSuccess": "Demo account created",
-      "strategyProviderSettings": "Strategy Provider Settings"
+      "strategyProviderSettings": "Strategy Provider Settings",
+      "yr": "Yr",
+      "mths": "Mths",
+      "years": "Years",
+      "months": "Months",
+      "days": "Days"
     },
     "sp": {
       "topPerformer": "Top Performer",

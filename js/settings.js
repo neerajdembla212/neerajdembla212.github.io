@@ -168,11 +168,15 @@
         // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
         // each page has to add respective function on window to reload the translations on their page
         window.reloadElementsOnLanguageChange = function () {
+            renderBuySellData(); // global function
             renderBasicProfileCard();
             fillFormWithProfileDetails();
             renderTradingAccountsTable();
             $('textarea.trading-strategy').attr('placeholder', i18n.t('body.settings.tradingStrategy'));
             hideUnhideStrategyAccountEvents();
+            $('.yrMths').each((i, e) => {
+                e.textContent = translateYearMonths(e.textContent);
+            })
         }
     }
 
@@ -326,7 +330,7 @@
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.sp.age')}</p>
-            <p class="mb-0 medium-font font-bold text-dark-black">${role === 'provider' ? strategy_age : follower_age}</p>
+            <p class="mb-0 medium-font font-bold text-dark-black">${role === 'provider' ? translateYearMonths(strategy_age) : translateYearMonths(follower_age)}</p>
         </div>
         <!-- strategy age end -->
         <div class="divider"></div>

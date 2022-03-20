@@ -250,7 +250,12 @@
       "lot": "LOT",
       "pips": "Pips",
       "demoAccountSuccess": "Akun demo dibuat",
-      "strategyProviderSettings": "Pengaturan Penyedia Strategi"
+      "strategyProviderSettings": "Pengaturan Penyedia Strategi",
+      "yr": "Tahun",
+      "mths": "Bulan",
+      "years": "Bertahun-tahun",
+      "months": "Bulan",
+      "days": "hari"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

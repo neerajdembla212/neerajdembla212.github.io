@@ -6,6 +6,7 @@
         // global function
         initI18nPlugin();
         window.reloadElementsOnLanguageChange = function () {
+            renderBuySellData(); // global function
         }
     })
 })();

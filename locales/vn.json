@@ -90,7 +90,7 @@
       "toFollowYou": "theo dõi bạn",
       "tourText": "Bạn có thể xem tổng quan về hoạt động hiện tại của mình bao gồm số dư hiện tại, tổng tiền nạp và rút và tổng phí đã trả. Hơn nữa, bạn có thể thay đổi cài đặt, ngừng sao chép giao dịch hoặc xóa chiến lược khỏi danh mục đầu tư của mình.",
       "allowFollower": "Cho phép người theo dõi",
-      "pauseFollower" : "Tạm dừng người theo dõi",
+      "pauseFollower": "Tạm dừng người theo dõi",
       "pauseFollowerMessage": "Are you sure you want to pause follower",
       "stopFollower": "Dừng người theo dõi",
       "tradeClosed": "Giao dịch đã đóng",
@@ -250,7 +250,12 @@
       "lot": "LOT",
       "pips": "Pips",
       "demoAccountSuccess": "Tài khoản Demo đã được tạo",
-      "strategyProviderSettings": "Cài đặt Nhà cung cấp chiến lược"
+      "strategyProviderSettings": "Cài đặt Nhà cung cấp chiến lược",
+      "yr": "năm",
+      "mths": "tháng",
+      "years": "năm",
+      "months": "Tháng",
+      "days": "Ngày"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",

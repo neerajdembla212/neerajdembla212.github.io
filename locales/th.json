@@ -250,7 +250,12 @@
       "lot": "LOT",
       "pips": "Pips",
       "demoAccountSuccess": "เปิดบัญชี​ทดลอง",
-      "strategyProviderSettings": "การตั้งค่าผู้ให้บริการกลยุทธ์​"
+      "strategyProviderSettings": "การตั้งค่าผู้ให้บริการกลยุทธ์​",
+      "yr": "ปี",
+      "mths": "เดือน",
+      "years": "ปีที่",
+      "months": "เดือน",
+      "days": "วัน"
     },
     "sp": {
       "topPerformer": "Top Performer",

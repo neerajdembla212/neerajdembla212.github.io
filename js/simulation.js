@@ -346,6 +346,7 @@
     // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
     // each page has to add respective function on window to reload the translations on their page
     window.reloadElementsOnLanguageChange = function () {
+      renderBuySellData(); // global function
       renderSparkline();
       $('.calculate-card .input-amount').attr("placeholder", i18n.t('body.simulation.inputAmount'));
       $('#providers-search').attr("placeholder", i18n.t('body.simulation.searchProviders'));

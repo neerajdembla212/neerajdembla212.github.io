@@ -774,6 +774,7 @@
     // this function will be called by language switcher event from insipnia_custom.js file when language has been set successfully
     // each page has to add respective function on window to reload the translations on their page
     window.reloadElementsOnLanguageChange = function () {
+      renderBuySellData(); // global function
       const viewType = getCurrentViewType();
       if (viewType === 'list') {
         plotListView();
@@ -1466,7 +1467,7 @@
           src="${profile_image}"
         />
         <div class="d-flex flex-column ml-3">
-          <span class="font-bold">${username} <span class="ml-2 featured-chip px-1 text-white extra-small-font">Featured</span></span>
+          <span class="font-bold">${username} <span class="ml-2 featured-chip px-1 text-white extra-small-font">${i18n.t('body.sp.featured')}</span></span>
           <span class="text-light-black">${name}</span>
         </div>
       </div>
@@ -1475,7 +1476,7 @@
     <div class="d-flex justify-content-between mt-2">
       <div class="d-flex flex-column">
         <p class="return-percentage h4 align-self-center m-0 font-bold">${return_percentage}%</p>
-        <p class="text-uppercase text-light-gray small-font">${return_duration}</p>
+        <p class="text-uppercase text-light-gray small-font">${translateYearMonths(return_duration)}</p>
       </div>
       <div class="d-flex flex-column">
         <p class="risk_amount h4 align-self-center m-0">$${followers_count}</p>

@@ -1,5 +1,6 @@
 class GlobalState {
   buySellData = {};
+  tradeDetails = {};
   isBuySellFormValid = {
     volume: false,
     profit: false,
@@ -14,15 +15,42 @@ class GlobalState {
     }
     this.buySellData = data;
   }
+  setIsBuySellFormValid(control, data) {
+    if (typeof data !== 'boolean') {
+      return
+    }
+    if (control !== '*' && !this.isBuySellFormValid.hasOwnProperty(control)) {
+      return;
+    }
+    if (control === '*') {
+      this.isBuySellFormValid.volume = data;
+      this.isBuySellFormValid.profit = data;
+      this.isBuySellFormValid.loss = data;
+    } else {
+      this.isBuySellFormValid[control] = data;
+    }
+  }
+  getIsBuySellFormValid() {
+    return this.isBuySellFormValid.volume && this.isBuySellFormValid.profit && this.isBuySellFormValid.loss;
+  }
+  getTradeDetails() {
+    return this.tradeDetails;
+  }
+  setTradeDetails(data) {
+    if (!data) {
+      return;
+    }
+    this.tradeDetails = data;
+  }
 }
 const GLOBAL_STATE = new GlobalState();
 $(document).ready(function () {
   if (!checkUserLogin()) {
     window.location.href = window.origin + '/login.html'
   }
+  resetBuySellData();
   registerEventHandlers();
   initData();
-  resetBuySellData();
   validateBuySellPopupInputs();
   fetchNotifications();
   const isNavbarMini = localStorage.getItem('mini-navbar');
@@ -207,8 +235,9 @@ function initData() {
         profileImageUrl = localStorage.getItem('profileImage');
       }
       $('.nav-profile-img').attr('src', profileImageUrl);
-      registerBuySellModalEvents(data.data.tradeData);
+      // registerBuySellModalEvents(data.data.tradeData);
       renderHideUnhideButton(); // this function will render hide/unhide stategy account button on My Portfolio page and settings page
+      renderBuySellData();
     }
   })
   // set view type as grid for Strategy Provider page
@@ -516,13 +545,13 @@ function calculateDateDiff(a, b, short = false) {
   const months = Math.floor(days / 31);
   const years = Math.floor(months / 12);
   if (years > 0) {
-    durationStr += `${years} ${short ? 'Yr ' : 'Years '}`
+    durationStr += `${years} ${short ? `${i18n.t('body.common.yr')} ` : `${i18n.t('body.common.years')} `}`
   }
   if (months > 0) {
-    durationStr += `${months} ${short ? 'Mths ' : 'Months '}`;
+    durationStr += `${months} ${short ? `${i18n.t('body.common.mths')} ` : `${i18n.t('body.common.months')} `}`;
   }
   if (days <= 31) {
-    durationStr += `${days} Days`;
+    durationStr += `${days} ${i18n.t('body.common.days')}`;
   }
   return durationStr;
 }
@@ -1355,4 +1384,585 @@ function resetBuySellData() {
     ...JSON.parse(tradeData),
     status: 'NEW'
   })
+}
+function renderBuySellData() {
+  const buySellData = GLOBAL_STATE.getBuySellData();
+  const container = $('#buy-sell-modal .modal-body');
+  const footerContainer = $('#buy-sell-modal .footer-modal');
+  $('#buy-sell-modal .modal-title').text(i18n.t('body.common.buySell'));
+  container.empty().append(getBuySellDataHTML(buySellData));
+  footerContainer.empty().append(getBuySellDataFooterHTML(buySellData));
+  // buySellSectionAdjustHeight();
+  registerBuySellEvents();
+}
+
+function getBuySellDataHTML(data) {
+  if (!data) {
+    return;
+  }
+  let {
+    status,
+    order_number,
+    order_type,
+    order_time,
+    type,
+    profit,
+    loss,
+    volume,
+    one_click_trading } = data;
+
+  const selectedAccountType = localStorage.getItem('selectedAccountType');
+  const selectedAccountNo = localStorage.getItem('selectedAccountNo');
+
+  const typeValue = type === 'pending_order' ? i18n.t('body.common.pendingOrder') : i18n.t('body.common.marketExecution');
+  const orderDetailsHTML = status !== 'NEW' ? `
+  <div class="d-flex justify-content-between mb-3">
+      <p class="mb-0 font-weight-bold text-dark-gray">${order_type} ORDER #${order_number}</p>
+      <p class="mb-0">${formatDate(new Date(order_time), 'DD/MM/YYYY HH:mm')}</p>
+  </div>
+      ` : '';
+
+  const profitInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="profit-input" value=${profit}>` : `<input type="text" class="form-control" id="profit-input" value="0">`;
+  const lossInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="loss-input" value="${loss}">` : `<input type="text" class="form-control" id="loss-input" value="0">`;
+  const volumeInputHTML = status !== 'NEW' ? `<input type="text" disabled class="form-control" id="volume-input" value="${volume}">` : `<input type="text" class="form-control" id="volume-input">`;
+  return `
+  <!-- order by account start -->
+  <div class="d-flex justify-content-between mb-3">
+    <p class="mb-0 font-bold">${i18n.t('body.common.orderByAccount')}</p>
+    <div class="account-number p-1 ${selectedAccountType === 'DEMO' ? 'demo-account' : ''}"><span class="mr-1 text-navy live small-font ${selectedAccountType === 'DEMO' ? 'demo' : ''}">${i18n.t(`body.common.${selectedAccountType.toLowerCase()}`)}</span><span
+        class="medium-font font-bold small-font">${selectedAccountNo}</span>
+    </div>
+  </div>
+  <!-- order by account end -->
+  <!-- order details start -->
+  ${orderDetailsHTML}
+ <!-- order details end -->
+  <!-- Currency exchange input start -->
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+    <div class="line-height-md">
+      <p class="mb-0 extra-large-font font-bold text-modal-black">EURUSD</p>
+      <p class="mb-0 medium-font font-weight-light text-gray">${i18n.t('body.common.volume')}</p>
+    </div>
+    <div class="w-50 position-relative">
+      ${volumeInputHTML}
+    </div>
+  </div>
+  <!-- Currency exchange input end -->
+  <div class="divider mb-3"></div>
+  <!-- Type input start -->
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.type')}</p>
+      <button id="btn-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
+          ${typeValue}
+      </button>
+      <ul id="type-input-menu" class="dropdown-menu" data-value="${type}">
+          <li data-value="market_execution"><a class="dropdown-item" href="#">${i18n.t('body.common.marketExecution')}</a></li>
+          <li data-value="pending_order"><a class="dropdown-item" href="#">${i18n.t('body.common.pendingOrder')}</a></li>
+      </ul>
+  </div>
+  <!-- Type input end -->
+  <div class="divider mb-3"></div>
+  <div class="dynamic-elements">
+  ${type === 'pending_order' ? getPendingOrderControls() : ''}
+  </div>
+  <!-- Profit loss display start -->
+  ${getProfitLossDisplayHTML()}
+  <!-- Profit loss display end -->
+  <!-- Profit loss input start -->
+  <div class="d-flex justify-content-between mb-2">
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.takeProfit')}</p>
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.stopLoss')}</p>
+  </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="position-relative w-40">
+          ${profitInputHTML}
+     </div>
+      <span class="font-bold medium-font text-dark-black">${i18n.t('body.common.price')}</span>
+      <div class="position-relative w-40">
+          ${lossInputHTML}
+      </div>
+  </div>
+  <!-- Profit loss input end -->
+  `
+}
+
+function getPendingOrderControls() {
+  const buySellData = GLOBAL_STATE.getBuySellData();
+  const { gtc_expiration_date, day_order_expiration_date } = buySellData;
+  let priceInput = `
+   <!-- Price input start -->
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.price')}</p>
+      <div class="position-relative w-40">
+          <input type="text" class="form-control" id="price-input">
+      </div>
+  </div>
+  <!-- Price input end -->
+  `
+  return ` <!-- Order Type input start -->
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.orderType')}</p>
+      <button id="btn-order-type-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false" data-value="buy_limit">
+          ${i18n.t('body.common.buyLimit')}
+      </button>
+      <ul id="order-type-input-menu" class="dropdown-menu">
+          <li data-value="buy_limit"><a class="dropdown-item" href="#">${i18n.t('body.common.buyLimit')}</a></li>
+          <li data-value="sell_limit"><a class="dropdown-item" href="#">${i18n.t('body.common.sellLimit')}</a></li>
+          <li data-value="buy_stop"><a class="dropdown-item" href="#">${i18n.t('body.common.buyStop')}</a></li>
+          <li data-value="sell_stop"><a class="dropdown-item" href="#">${i18n.t('body.common.sellStop')}</a></li>
+      </ul>
+  </div>
+  <!-- Order Type input end -->
+  <div class="divider mb-3"></div>
+  <!-- Expiration input start -->
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expiration')}</p>
+      <button id="btn-expiration-input" data-toggle="dropdown" class="btn dropdown-toggle btn-dropdown font-bold" aria-expanded="false">
+          ${i18n.t('body.common.dayOrder')}
+      </button>
+      <ul id="expiration-input-menu" class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">${i18n.t('body.common.goodTillCancelled')}</a></li>
+          <li><a class="dropdown-item" href="#">${i18n.t('body.common.dayOrder')}</a></li>
+          <li><a class="dropdown-item" href="#">${i18n.t('body.common.specific')}</a></li>
+      </ul>
+  </div>
+  <!-- Expiration input end -->
+  <div class="divider mb-3"></div>
+  <!-- Expiration Date input start -->
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+      <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expirationDate')}</p>
+      <div class="date d-flex align-items-center">
+          <input type="text" value="${formatDate(new Date(day_order_expiration_date), 'DD MMM YYYY HH:mm')}" id="expiration-date-input" data-date-format="dd M yyyy hh:ii" class="border-0 font-bold cursor-pointer" />
+          <i class="down-arrow-black"></i>
+      </div>
+  </div>
+  <!-- Expiration Date input end -->
+  <div class="divider mb-3"></div>
+  ${priceInput}
+  `
+}
+
+function getBuySellDataFooterHTML(data) {
+  const { one_click_trading } = data;
+  return `
+  <!-- Buy Sell CTA start -->
+  ${getBuySellSectionCTA()}
+  <!-- Buy Sell CTA end -->
+  <!-- one Click trading start-->
+  <div class="d-flex justify-content-between align-items-center">
+      <p class="mb-0 text-gray font-weight-light">${i18n.t('body.common.oneClickTrading')}</p>
+      <input id="one-click-trading-input" type="checkbox" class="js-switch" ${one_click_trading ? 'checked' : ''} />
+  </div>
+  <!-- one Click trading end-->`
+}
+function getProfitLossDisplayHTML() {
+  let { status,
+    from_currency_rate,
+    from_currency_delta,
+    to_currency_rate,
+    to_currency_delta,
+    from_currency,
+    to_currency,
+    volume,
+    order_number,
+    order_type } = GLOBAL_STATE.getBuySellData();
+
+  switch (status) {
+    case 'NEW':
+      return `
+          <div class="d-flex justify-content-between mb-3 align-items-center">
+          <div>
+              <p class="mb-0 super-extra-large-font font-bold text-modal-black">${from_currency_rate}</p>
+              <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                    class="up-arrow-green mr-1"></span>+${from_currency_delta}
+              </p>
+          </div>
+          <div>
+              <p class="mb-0 super-extra-large-font font-bold text-modal-black">${to_currency_rate}</p>
+              <p class="mb-0 small-font text-dark-green d-flex align-items-center"><span
+                    class="up-arrow-green mr-1"></span>+${to_currency_delta}
+          </div>
+      </div>
+          `
+    case 'TRADE_OPEN_SUCCESS':
+      return `
+      <div class="mb-2 d-flex">
+          <p class="mb-0 font-bold extra-large-font">#${order_number}</p>
+      </div>
+      <p class="mb-3 text-light-green super-extra-large-font font-bold">Trade Open Success</p>
+      `;
+    case 'TRADE_ORDER_PLACED':
+      return `
+          <div class="mb-2 d-flex">
+              <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+          </div>
+          <p class="mb-3 super-extra-large-font font-bold text-light-green">Order Placed</p>
+          `;
+    case 'NO_CONNECTION':
+      return `
+      <div class="mb-2 d-flex">
+          <p class="mb-0 font-bold extra-large-font">#${order_number}</p>
+      </div>
+      <p class="mb-3 text-light-brown super-extra-large-font font-bold">No Connection</p>
+      `
+    case 'TRADE_CLOSED':
+      return `
+      <div class="mb-2 d-flex">
+          <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+      </div>
+      <p class="mb-3 super-extra-large-font font-bold">Closed ${volume} at ${to_currency_rate}</p>
+      `
+    case 'CANCELLED':
+      return `
+      <div class="mb-2 d-flex">
+          <p class="mb-0">#${order_number} <p class="mb-0 text-lowercase">&nbsp;${order_type}&nbsp;</p>${volume} ${from_currency}${to_currency} at ${to_currency_rate}</p>
+      </div>
+      <p class="mb-3 text-blur-gray super-extra-large-font font-bold">${i18n.t('body.tt.cancelled')}</p>
+      `
+    default: return ``;
+  }
+}
+
+function getBuySellSectionCTA() {
+  return `<div class="d-flex justify-content-between mb-3 buy-sell-footer">
+      <button id="sell-trade" type="button" class="btn btn-w-m btn-default btn-bleed-red w-45 text-white">
+      ${i18n.t('body.common.sell')}
+      </button>
+      <button id="buy-trade" type="button" class="btn btn-w-m btn-primary w-45">
+      ${i18n.t('body.common.buy')}
+      </button>
+      <button id="place-order" type="button" class="btn btn-w-m btn-default btn-medium-blue btn-block text-white d-none">
+      ${i18n.t('body.tt.placeOrder')}
+      </button>
+      </div>`
+}
+
+function registerBuySellEvents() {
+  const container = $('#buy-sell-modal');
+  // switchery radio button
+  var elem = document.querySelector('#buy-sell-modal .js-switch');
+  new Switchery(elem, {
+    color: '#E5E5E5',
+    secondaryColor: '#E5E5E5',
+    jackColor: '#22D091',
+    jackSecondaryColor: "#FFFFFF",
+  });
+
+  // change status on click of buy CTA
+  container.find('#buy-trade').unbind().click(() => handleClickBuySellTrade('BUY'));
+
+  // change status on click of sell CTA
+  container.find('#sell-trade').unbind().click(() => handleClickBuySellTrade('SELL'));
+
+  container.find('#place-order').unbind().click(() => {
+    const orderType = container.find('#btn-order-type-input').data('value');
+    if (orderType === 'buy_limit' || orderType === 'buy_stop') {
+      handleClickBuySellTrade('BUY');
+    } else if (orderType === 'sell_limit' || orderType === 'sell_stop') {
+      handleClickBuySellTrade('SELL');
+    }
+  });
+
+  // type input dropdown
+  container.find('#type-input-menu.dropdown-menu li').click(event => {
+    const selectedValue = $(event.currentTarget).data('value');
+    const selectedButton = container.find('#btn-type-input');
+    const dropdownMenu = container.find('#type-input-menu.dropdown-menu');
+    if (selectedValue === 'market_execution') {
+      selectedButton.text(i18n.t('body.common.marketExecution'));
+      container.find('.dynamic-elements').addClass('d-none');
+      // update footer cta section to sell and buy
+      container.find('.buy-sell-footer #sell-trade').removeClass('d-none');
+      container.find('.buy-sell-footer #buy-trade').removeClass('d-none');
+      container.find('.buy-sell-footer #place-order').addClass('d-none');
+    } else if (selectedValue === 'pending_order') {
+      selectedButton.text(i18n.t('body.common.pendingOrder'));
+      container.find('.dynamic-elements').removeClass('d-none');
+      renderPendingOrderFormControls();
+      // update footer cta section to place order
+      container.find('.buy-sell-footer #sell-trade').addClass('d-none');
+      container.find('.buy-sell-footer #buy-trade').addClass('d-none');
+      container.find('.buy-sell-footer #place-order').removeClass('d-none');
+    }
+    dropdownMenu.data('value', selectedValue)
+    validateBuySellInputs($('#buy-sell-modal'));
+    // buySellSectionAdjustHeight();
+  })
+
+  container.find('#one-click-trading-input').off().on('change', function (event) {
+    const buySellData = GLOBAL_STATE.getBuySellData();
+    GLOBAL_STATE.setBuySellData({
+      ...buySellData,
+      one_click_trading: event.currentTarget.checked
+    })
+  })
+  validateBuySellInputs($('#buy-sell-modal'));
+}
+
+function validateBuySellInputs(container) {
+  // validate volume input 
+  validateTextInput(container.find('#volume-input'), function (val) {
+    let isValid = false;
+    if (isNaN(val)) {
+      isValid = false;
+    } else if (val === '') {
+      isValid = false;
+    } else {
+      const numVal = Number(val);
+      if (numVal >= 0.01 && numVal <= 100) {
+        isValid = true;
+      }
+    }
+    GLOBAL_STATE.setIsBuySellFormValid('volume', isValid);
+    return isValid;
+  })
+
+  // validate take profit input
+  // validateTextInput(container.find('#profit-input'), function (val) {
+  //     let isValid = false;
+  //     if (isNaN(val)) {
+  //         isValid = false;
+  //     } else if (val === '') {
+  //         isValid = false;
+  //     } else {
+  //         const numVal = Number(val);
+  //         if (numVal >= 0) {
+  //             isValid = true;
+  //             const allowedDecimalCount = STATE.getBuySellData().decimalCount;
+  //             fixDecimals(container.find('#profit-input'), numVal, allowedDecimalCount);
+  //         }
+  //     }
+  //     STATE.setIsBuySellFormValid('profit', isValid);
+  //     return isValid;
+  // }, '')
+
+  // validate stop loss input
+  // validateTextInput(container.find('#loss-input'), function (val) {
+  //     let isValid = false;
+  //     if (isNaN(val)) {
+  //         isValid = false;
+  //     } else if (val === '') {
+  //         isValid = false;
+  //     } else {
+  //         const numVal = Number(val);
+  //         if (numVal >= 0) {
+  //             isValid = true;
+  //             const allowedDecimalCount = STATE.getBuySellData().decimalCount;
+  //             fixDecimals(container.find('#loss-input'), numVal, allowedDecimalCount);
+  //         }
+  //     }
+  //     STATE.setIsBuySellFormValid('loss', isValid);
+  //     return isValid;
+  // }, 'Number only')
+
+  // validate price input
+  validateTextInput(container.find('#price-input'), function (val) {
+    let isValid = false;
+    if (isNaN(val)) {
+      isValid = false;
+    }
+    if (val === '') {
+      isValid = false;
+    } else {
+      const numVal = Number(val);
+      if (numVal >= 0) {
+        isValid = true;
+      }
+    }
+    return isValid;
+  }, 'Number only')
+}
+
+function handleClickBuySellTrade(status) {
+  const container = $('#buy-sell-modal');
+  container.find('#volume-input').blur();
+  container.find('#profit-input').blur();
+  container.find('#loss-input').blur();
+  validateProfitLossInputs(status);
+  if (!GLOBAL_STATE.getIsBuySellFormValid()) {
+    // play bad sound and return
+    var audioElement = document.querySelector('#error-sound');
+    audioElement.play();
+    return;
+  }
+  const buySellData = GLOBAL_STATE.getBuySellData();
+  buySellData.order_number = buySellData.order_number ? +buySellData.order_number + 1 : 10796400
+  buySellData.order_type = status;
+  buySellData.type = $('#buy-sell-modal #type-input-menu.dropdown-menu').data('value');
+  buySellData.profit = $('#profit-input').val();
+  buySellData.loss = $('#loss-input').val();
+  buySellData.volume = $('#volume-input').val();
+  // check internet connection
+  if (!navigator.onLine) {
+    handleBuySellTradeError(buySellData)
+    return;
+  }
+  if (buySellData.type === 'market_execution') {
+    // call an api here and on success render buy sell data
+    callAjaxMethod({
+      url: 'https://copypip.free.beeceptor.com/initiate-trade',
+      method: 'POST',
+      successCallback: () => {
+        handleBuySellTradeSuccess(buySellData);
+      },
+      errorCallback: () => {
+        handleBuySellTradeError(buySellData)
+      }
+    })
+  } else if (buySellData.type === 'pending_order') {
+    callAjaxMethod({
+      url: 'https://copypip.free.beeceptor.com/place-order',
+      method: 'POST',
+      successCallback: () => {
+        handleBuySellTradeSuccess(buySellData);
+      },
+      errorCallback: () => {
+        handleBuySellTradeError(buySellData)
+      }
+    })
+  }
+}
+
+function handleBuySellTradeSuccess(buySellData) {
+  let toastMessage = '';
+  if (buySellData.type === 'market_execution') {
+    buySellData.status = 'TRADE_OPEN_SUCCESS';
+    toastMessage = 'Trade open success';
+  } else if (buySellData.type === 'pending_order') {
+    buySellData.status = 'TRADE_ORDER_PLACED';
+    toastMessage = 'Trade order placed';
+  }
+  GLOBAL_STATE.setBuySellData(buySellData);
+  renderBuySellData();
+  // play success sound
+  var audioElement = document.querySelector('#success-sound');
+  audioElement.play();
+  // show toast message
+  renderSuccessToast(toastMessage);
+  // render buy sell data to new state after 0.5 seconds
+  setTimeout(() => {
+    resetBuySellData();
+    renderBuySellData()
+  }, 500)
+}
+
+function handleBuySellTradeError(buySellData) {
+  buySellData.status = 'NO_CONNECTION';
+  GLOBAL_STATE.setBuySellData(buySellData);
+  renderBuySellData();
+  // play error sound
+  var audioElement = document.querySelector('#error-sound');
+  audioElement.play();
+  // render buy sell data to new state after 2 seconds
+  setTimeout(() => {
+    resetBuySellData();
+    renderBuySellData();
+  }, 2000)
+}
+
+function validateProfitLossInputs(action) {
+  const { from_currency_rate, to_currency_rate } = GLOBAL_STATE.getBuySellData();
+  const container = $('#buy-sell-modal');
+  const profitInput = container.find('#profit-input');
+  const lossInput = container.find('#loss-input');
+  const profitVal = Number(profitInput.val());
+  const lossVal = Number(lossInput.val());
+
+  function addError(element, errorMessage) {
+    element.addClass('error');
+    $(`<p class="mb-0 position-absolute error-message text-error-red d-flex"><img src="img/ic_error.svg" class="mr-2"/>${errorMessage}</p>`).insertAfter(element);
+  }
+
+  function removeError(element) {
+    element.removeClass('error');
+    element.siblings('.error-message').remove();
+  }
+
+  if (action === 'BUY') {
+    targetValue = Math.min(from_currency_rate, to_currency_rate);
+    // checking profit value
+    if (profitVal >= targetValue) {
+      removeError(profitInput);
+      GLOBAL_STATE.setIsBuySellFormValid('profit', true);
+    } else {
+      const errorMessage = `Invalid TP`;
+      addError(profitInput, errorMessage);
+      GLOBAL_STATE.setIsBuySellFormValid('profit', false);
+    }
+    // checking loss value
+    if (lossVal <= targetValue) {
+      removeError(lossInput);
+      GLOBAL_STATE.setIsBuySellFormValid('loss', true);
+    } else {
+      const errorMessage = `Invalid SL`;
+      addError(lossInput, errorMessage);
+      GLOBAL_STATE.setIsBuySellFormValid('loss', false);
+    }
+  } else if (action === 'SELL') {
+    targetValue = Math.max(from_currency_rate, to_currency_rate);
+    // checking profit value
+    if (profitVal <= targetValue) {
+      removeError(profitInput);
+      GLOBAL_STATE.setIsBuySellFormValid('profit', true);
+    } else {
+      const errorMessage = `Invalid TP`;
+      addError(profitInput, errorMessage);
+      GLOBAL_STATE.setIsBuySellFormValid('profit', false);
+    }
+    // checking loss value
+    if (lossVal >= targetValue) {
+      removeError(lossInput);
+      GLOBAL_STATE.setIsBuySellFormValid('loss', true);
+    } else {
+      const errorMessage = `Invalid SL`;
+      addError(lossInput, errorMessage);
+      GLOBAL_STATE.setIsBuySellFormValid('loss', false);
+    }
+  }
+}
+function renderPendingOrderFormControls(mode) {
+  const container = $('#buy-sell-modal .dynamic-elements')
+  container.empty().append(getPendingOrderControls())
+  registerPendingOrderEvents(container);
+}
+
+function registerPendingOrderEvents(container) {
+  // order type dropdown menu
+  container.find('#order-type-input-menu.dropdown-menu li').click(event => {
+    const selectedItem = $(event.currentTarget);
+    const selectedValue = selectedItem.data('value');
+    const selectedItemText = event.currentTarget.innerText.trim();
+    const selectedButton = container.find('#btn-order-type-input');
+    selectedButton.text(selectedItemText);
+    selectedButton.attr('data-value', selectedValue);
+  })
+
+  // expiration dropdown menu
+  container.find('#expiration-input-menu.dropdown-menu').click(event => {
+    const selectedItem = event.target.innerText.trim();
+    const selectedButton = container.find('#btn-expiration-input');
+    selectedButton.text(selectedItem);
+    const expirationDateInput = container.find('#expiration-date-input');
+    expirationDateInput.removeAttr('disabled');
+    if (selectedItem.toUpperCase() === 'GOOD TILL CANCELLED (GTC)') {
+      expirationDateInput.attr('disabled', 'true');
+    } else if (selectedItem.toUpperCase() === 'DAY ORDER') {
+      const expirationDate = GLOBAL_STATE.getBuySellData().day_order_expiration_date;
+      expirationDateInput.val(formatDate(new Date(expirationDate), 'DD MMM YYYY HH:mm'))
+    }
+  })
+
+  // expiration date picker
+  container.find('#expiration-date-input').datetimepicker({
+    todayBtn: true,
+    minuteStep: 1,
+    autoclose: true,
+    pickerPosition: 'bottom-left'
+  });
+}
+
+function translateYearMonths(data) {
+  const yr = i18n.t('body.common.yr');
+  const mths = i18n.t('body.common.mths');
+  return data.replace('Yr', yr).replace('Mths', mths);
 }
