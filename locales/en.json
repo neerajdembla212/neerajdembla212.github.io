@@ -91,8 +91,10 @@
       "tourText": "You can see the overview of your current performances including current balance, total deposits and withdrawals and total fees paid. Furthermore, you can change settings, stop copying of trades or remove strategies from your portfolio.",
       "allowFollower": "Allow Follower",
       "pauseFollower": "Pause Follower",
-      "pauseFollowerMessage": "Are you sure you want to pause follower",
-      "stopFollower": "Stop Follower"
+      "pauseFollowerMessage": "Are you sure you want to pause follower <b><spname></b> ?",
+      "stopFollower": "Stop Follower",
+      "allowFollowerMessage": "Are you sure you want to allow <b><spname></b> to continue following you?",
+      "stopFollowerMessage" : "Are you sure you want to stop follower <b><spname></b> ?"
     },
     "login": {
       "signIn": "Sign In",

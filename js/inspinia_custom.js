@@ -1966,3 +1966,6 @@ function translateYearMonths(data) {
   const mths = i18n.t('body.common.mths');
   return data.replace('Yr', yr).replace('Mths', mths);
 }
+function translatePopupMessage(message, name) {
+  return message.replace('<spname>', name);
+}

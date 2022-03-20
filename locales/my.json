@@ -84,15 +84,17 @@
       "featuredMessage": "EUR/USD ialah salah satu pasangan mata wang yang paling banyak didagangkan dalam pasaran pertukaran asing...",
       "new": "Baru",
       "prev": "Sebelumnya",
-      "next" : "Seterusnya",
-      "endtour" : "Akhir Lawatan",
-      "accepted" : "Diterima",
+      "next": "Seterusnya",
+      "endtour": "Akhir Lawatan",
+      "accepted": "Diterima",
       "toFollowYou": "untuk mengikut awak",
       "tourText": "Anda boleh melihat gambaran keseluruhan prestasi semasa anda termasuk baki semasa, jumlah deposit dan pengeluaran serta jumlah yuran yang dibayar. Tambahan pula, anda boleh menukar tetapan, menghentikan penyalinan dagangan atau mengalih keluar strategi daripada portfolio anda.",
       "allowFollower": "Benarkan Pengikut",
-      "pauseFollower" : "Jeda Pengikut",
-      "pauseFollowerMessage": "Adakah anda pasti untuk menjeda pengikut",
-      "stopFollower": "Berhenti Pengikut"
+      "pauseFollower": "Jeda Pengikut",
+      "pauseFollowerMessage": "Adakah anda pasti untuk menjeda pengikut <b><spname></b> ?",
+      "stopFollower": "Berhenti Pengikut",
+      "allowFollowerMessage": "Adakah anda pasti untuk membenarkan <b><spname></b> terus mengikuti anda?",
+      "stopFollowerMessage" : "Adakah anda pasti untuk menghentikan pengikut <b><spname></b> ?"
     },
     "login": {
       "signIn": "Log Masuk",
@@ -345,7 +347,7 @@
       "return/Mth": "Pemulangan / bulan",
       "averagePips": "Purata Pips",
       "totalPaid": "Jumlah bayaran",
-      "inputAmount" : "Masukkan jumlah",
+      "inputAmount": "Masukkan jumlah",
       "cumulativeReturns": "Pulangan Terkumpul",
       "emptyMessage": "Tambah Penyedia Strategi untuk Memulakan Stimulasi",
       "searchProviders": "Mencari Penyedia",
@@ -415,7 +417,7 @@
       "referQ3P4": "keupayaan untuk menetapkan kerugian maksimum anda sendiri yang boleh diterima serta mengambil untung",
       "referQ3P5": "keupayaan untuk mengeluarkan pelaburan anda pada bila-bila masa",
       "referQ3P6": "Keupayaan untuk menetapkan nisbah antara akaun anda dan penyedia strategi, supaya anda boleh melaraskan risiko dan saiz lot yang ditrade secara automatik berdasarkan modal anda",
-      "referalLinkText":"Berikut ialah pautan rujukan unik anda",
+      "referalLinkText": "Berikut ialah pautan rujukan unik anda",
       "copyLink": "Salin pautan ",
       "loginButtonText": "Tukar Log Masuk ke Portal Klien Anda"
     }

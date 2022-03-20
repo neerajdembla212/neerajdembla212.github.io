@@ -91,8 +91,10 @@
       "tourText": "Anda dapat melihat ikhtisar kinerja Anda saat ini termasuk saldo saat ini, total setoran, dan penarikan, serta total biaya yang dibayarkan. Selanjutnya, Anda dapat mengubah pengaturan, berhenti menyalin perdagangan atau menghapus strategi dari portofolio Anda.",
       "allowFollower": "Izinkan Pengikut",
       "pauseFollower": "Jeda Pengikut",
-      "pauseFollowerMessage": "Are you sure you want to pause follower",
-      "stopFollower": "Hentikan Pengikut"
+      "pauseFollowerMessage": "Apakah Anda yakin ingin menjeda pengikut <b><spname></b>?",
+      "stopFollower": "Hentikan Pengikut",
+      "allowFollowerMessage": "Apakah Anda yakin ingin mengizinkan <b><spname></b> untuk terus mengikuti Anda?",
+      "stopFollowerMessage": "Apakah Anda yakin ingin menghentikan pengikut <b><spname></b> ?"
     },
     "login": {
       "signIn": "Masuk",

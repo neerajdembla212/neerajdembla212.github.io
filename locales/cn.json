@@ -91,8 +91,10 @@
       "tourText": "您可以查看当前表现的概览，包括当前余额、入金和出金总额以及支付的总费用。此外，您可以更改设置、停止复制交易或从您的投资组合中删除策略。",
       "allowFollower": "允许关注者",
       "pauseFollower": "暂停关注者",
-      "pauseFollowerMessage": "Are you sure you want to pause follower",
-      "stopFollower": "停止关注者"
+      "pauseFollowerMessage": "您确定要暂停关注 <b><spname></b> 吗？",
+      "stopFollower": "停止关注者",
+      "allowFollowerMessage": "您确定允许 <b><spname></b> 继续关注您吗？",
+      "stopFollowerMessage" : "您确定要停止关注 <b><spname></b> 吗？"
     },
     "login": {
       "signIn": "登入",

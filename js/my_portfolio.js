@@ -1279,8 +1279,10 @@
 
     function renderPauseFollowerPopup(id, name) {
         const container = $('#pause-follower-modal .modal-body');
+        const message = i18n.t('body.mp.pauseFollowerMessage');
+        const translatedMessage = translatePopupMessage(message, name);
         container.empty().append(`
-            <p class="mb-3">Are you sure you want to pause follower <b>${name}</b> ?</p>
+            <p class="mb-3">${translatedMessage}</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="pause-follower-confirm-cta">Confirm</button>
@@ -1290,8 +1292,10 @@
 
     function renderPlayFollowerPopup(id, name) {
         const container = $('#play-follower-modal .modal-body');
+        const message = i18n.t('body.mp.allowFollowerMessage');
+        const translatedMessage = translatePopupMessage(message, name);
         container.empty().append(`
-            <p class="mb-3">Are you sure you want to allow <b>${name}</b> to continue following you?</p>
+            <p class="mb-3">${translatedMessage}</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="play-follower-confirm-cta" data-id=${id}>Confirm</button>
@@ -1301,8 +1305,10 @@
 
     function renderStopFollowerPopup(id, name) {
         const container = $('#stop-follower-modal .modal-body');
+        const message = i18n.t('body.mp.stopFollowerMessage');
+        const translatedMessage = translatePopupMessage(message, name);
         container.empty().append(`
-            <p class="mb-3">Are you sure you want to stop follower <b>${name}</b> ?</p>
+            <p class="mb-3">${translatedMessage}</p>
             <div class="w-100 d-flex justify-content-end">
                 <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="stop-follower-confirm-cta">Confirm</button>
