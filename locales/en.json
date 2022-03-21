@@ -94,7 +94,7 @@
       "pauseFollowerMessage": "Are you sure you want to pause follower <b><spname></b> ?",
       "stopFollower": "Stop Follower",
       "allowFollowerMessage": "Are you sure you want to allow <b><spname></b> to continue following you?",
-      "stopFollowerMessage" : "Are you sure you want to stop follower <b><spname></b> ?"
+      "stopFollowerMessage": "Are you sure you want to stop follower <b><spname></b> ?"
     },
     "login": {
       "signIn": "Sign In",
@@ -165,7 +165,10 @@
       "addTo": "Add to",
       "change": "Change",
       "watchlist": "Watchlist",
-      "closeWindow": "Close Window"
+      "closeWindow": "Close Window",
+      "noCurrencyError": "No Currencies to show",
+      "tradeCancelled": "Trade cancelled",
+      "tradeModified": "Trade modified"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -257,7 +260,10 @@
       "mths": "Mths",
       "years": "Years",
       "months": "Months",
-      "days": "Days"
+      "days": "Days",
+      "invalidSL": "Invalid SL",
+      "invalidTP": "Invalid TP",
+      "usdm": "USD/m"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -332,7 +338,9 @@
       "tradingStrategy": "Tell us about your trading strategy",
       "update": "Update",
       "offline": "Offline",
-      "profileUpdateSuccess": "Profile details updated"
+      "profileUpdateSuccess": "Profile details updated",
+      "phoneErrorMessage": "Invalid phone number",
+      "applicationSubmitted": "Application Submitted"
     },
     "simulation": {
       "inputCapital": "Input Capital",

@@ -302,7 +302,7 @@
             renderBuySellData(); // global function
             renderTradeSection(DESKTOP_MEDIA);
             $('.search-currency').attr('placeholder', i18n.t('body.tt.searchCurrencies'));
-
+            renderWatchlists();
         }
     }
 
@@ -1790,7 +1790,7 @@
                 removeError(profitInput);
                 STATE.setIsBuySellFormValid('profit', true);
             } else {
-                const errorMessage = `Invalid TP`;
+                const errorMessage = i18n.t('body.common.invalidTP');
                 addError(profitInput, errorMessage);
                 STATE.setIsBuySellFormValid('profit', false);
             }
@@ -1799,7 +1799,7 @@
                 removeError(lossInput);
                 STATE.setIsBuySellFormValid('loss', true);
             } else {
-                const errorMessage = `Invalid SL`;
+                const errorMessage = i18n.t('body.common.invalidSL');
                 addError(lossInput, errorMessage);
                 STATE.setIsBuySellFormValid('loss', false);
             }
@@ -1810,7 +1810,7 @@
                 removeError(profitInput);
                 STATE.setIsBuySellFormValid('profit', true);
             } else {
-                const errorMessage = `Invalid TP`;
+                const errorMessage = i18n.t('body.common.invalidTP');
                 addError(profitInput, errorMessage);
                 STATE.setIsBuySellFormValid('profit', false);
             }
@@ -1819,7 +1819,7 @@
                 removeError(lossInput);
                 STATE.setIsBuySellFormValid('loss', true);
             } else {
-                const errorMessage = `Invalid SL`;
+                const errorMessage = i18n.t('body.common.invalidSL');
                 addError(lossInput, errorMessage);
                 STATE.setIsBuySellFormValid('loss', false);
             }
@@ -1973,7 +1973,7 @@
                         var audioElement = document.querySelector('#success-sound');
                         audioElement.play();
                         // show success toast
-                        renderSuccessToast(i18n.t('body.mp.tradeClosed'));
+                        renderSuccessToast(i18n.t('body.tt.tradeClosed'));
                         onTabChange('#open-trades');
                     }
                 }
@@ -1996,7 +1996,7 @@
                         var audioElement = document.querySelector('#success-sound');
                         audioElement.play();
                         // show toast success
-                        renderSuccessToast('Trade cancelled');
+                        renderSuccessToast(i18n.t('body.tt.tradeCancelled'));
                         onTabChange('#pending-trades');
                     }
                 }
@@ -2309,7 +2309,7 @@
         var audioElement = document.querySelector('#success-sound');
         audioElement.play();
         // show success toast
-        renderSuccessToast('Trade modified');
+        renderSuccessToast(i18n.t('body.tt.tradeModified'));
         // render buy sell data to new state after 0.5 seconds
         setTimeout(() => {
             STATE.setTradeDetails({});
@@ -2423,7 +2423,7 @@
             STATE.setIsBuySellFormValid('*', false);
             $('#edit-trade-modal').modal('hide');
             // show success toast
-            renderSuccessToast('Trade cancelled');
+            renderSuccessToast(i18n.t('body.tt.tradeCancelled'));
         }, 500)
         // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
         if (tradeDetails.order_type === 'market_execution') {
@@ -2619,7 +2619,7 @@
         if (watchListRow.currencies && Array.isArray(watchListRow.currencies)) {
             if (watchListRow.currencies.length === 0) {
                 currenciesRowHTML.push(`<div class="py-2 px-3">
-                No Currencies to show
+                ${i18n.t('body.tt.noCurrencyError')}
                 </div>`)
             }
             watchListRow.currencies.forEach(currency => {

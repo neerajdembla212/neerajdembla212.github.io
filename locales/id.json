@@ -165,7 +165,10 @@
       "addTo": "Tambahkan",
       "change": "Ubah",
       "watchlist": "Pantauan",
-      "closeWindow": "Tutup Jendela"
+      "closeWindow": "Tutup Jendela",
+      "noCurrencyError": "Tidak ada mata uang untuk ditampilkan",
+      "tradeCancelled": "Perdagangan dibatalkan",
+      "tradeModified": "Perdagangan dimodifikasi"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -257,7 +260,10 @@
       "mths": "Bulan",
       "years": "Bertahun-tahun",
       "months": "Bulan",
-      "days": "hari"
+      "days": "hari",
+      "invalidSL": "SL tidak valid",
+      "invalidTP": "TP tidak valid",
+      "m": "USD/Bulan"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",
@@ -332,7 +338,9 @@
       "tradingStrategy": "Silahkan jelaskan secara singkat mengenai strategi perdagangan Anda",
       "update": "Perbarui",
       "offline": "Offline",
-      "profileUpdateSuccess": "Detail profil diperbarui"
+      "profileUpdateSuccess": "Detail profil diperbarui",
+      "phoneErrorMessage": "Nomor telepon tidak valid",
+      "applicationSubmitted": "Aplikasi dikirim"
     },
     "simulation": {
       "inputCapital": "Masukan Modal",

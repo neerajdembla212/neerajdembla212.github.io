@@ -165,7 +165,10 @@
       "addTo": "Thêm vào",
       "change": "Thay đổi",
       "watchlist": "Danh sách theo dõi",
-      "closeWindow": "Close Window"
+      "closeWindow": "Close Window",
+      "noCurrencyError": "Không có loại tiền nào để hiển thị",
+      "tradeCancelled": "Giao dịch đã huỷ",
+      "tradeModified": "Trade modified"
     },
     "common": {
       "buySell": "Buy/Sell",
@@ -257,7 +260,10 @@
       "mths": "tháng",
       "years": "năm",
       "months": "Tháng",
-      "days": "Ngày"
+      "days": "Ngày",
+      "invalidSL": "SL không hợp lệ",
+      "invalidTP": "TP không hợp lệ",
+      "usdm": "USD/tháng"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
@@ -332,7 +338,9 @@
       "tradingStrategy": "Cho chúng tôi biết về chiến lược giao dịch của bạn",
       "update": "Cập nhật",
       "offline": "Ngoại tuyến",
-      "profileUpdateSuccess": "Thông tin cá nhân đã được cập nhật"
+      "profileUpdateSuccess": "Thông tin cá nhân đã được cập nhật",
+      "phoneErrorMessage": "Số điện thoại không hợp lệ",
+      "applicationSubmitted": "Đơn đăng ký đã gửi"
     },
     "simulation": {
       "inputCapital": "Vốn đầu vào",

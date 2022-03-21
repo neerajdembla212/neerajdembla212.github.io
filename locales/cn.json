@@ -165,7 +165,10 @@
       "addTo": "添加",
       "change": "改变",
       "watchlist": "关注列表",
-      "closeWindow": "关闭视窗"
+      "closeWindow": "关闭视窗",
+      "noCurrencyError": "没有货币显示",
+      "tradeCancelled": "交易已被取消",
+      "tradeModified": "交易已被修改"
     },
     "common": {
       "buySell": "买/卖",
@@ -257,7 +260,10 @@
       "mths": "个月",
       "years": "年份",
       "months": "几个月",
-      "days": "天"
+      "days": "天",
+      "invalidSL": "SL无效",
+      "invalidTP": "TP无效",
+      "usdm": "USD/月"
     },
     "sp": {
       "topPerformer": "表现最好的",
@@ -332,7 +338,9 @@
       "tradingStrategy": "告诉我们您的交易策略",
       "update": "更新",
       "offline": "离线",
-      "profileUpdateSuccess": "个人资料已更新"
+      "profileUpdateSuccess": "个人资料已更新",
+      "phoneErrorMessage": "电话号码无效",
+      "applicationSubmitted": "已提交申请"
     },
     "simulation": {
       "inputCapital": "投入资本",

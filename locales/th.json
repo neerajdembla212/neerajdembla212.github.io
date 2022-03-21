@@ -165,7 +165,10 @@
       "addTo": "เพิ่ม",
       "change": "เปลี่ยนแปลง",
       "watchlist": "รายการเฝ้าดู",
-      "closeWindow": "ปิดหน้าต่างนี้"
+      "closeWindow": "ปิดหน้าต่างนี้",
+      "noCurrencyError": "ไม่มีสกุลเงินที่จะแสดง",
+      "tradeCancelled": "ยกเลิกการเทรด",
+      "tradeModified": "แก้ไขการเทรด"
     },
     "common": {
       "buySell": "ซื้อ/ขาย",
@@ -257,7 +260,10 @@
       "mths": "เดือน",
       "years": "ปีที่",
       "months": "เดือน",
-      "days": "วัน"
+      "days": "วัน",
+      "invalidSL": "SL ไม่ถูกต้อง",
+      "invalidTP": "TP ไม่ถูกต้อง",
+      "usdm": "USD/เดือน"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -332,7 +338,9 @@
       "tradingStrategy": "บอกเราเกี่ยวกับกลยุทธ์การซื้อขายของคุณ",
       "update": "อัปเดต",
       "offline": "ออฟไลน์",
-      "profileUpdateSuccess": "อัพเดต​ข้อมูลส่วนตัว"
+      "profileUpdateSuccess": "อัพเดต​ข้อมูลส่วนตัว",
+      "phoneErrorMessage": "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+      "applicationSubmitted": "ส่งใบสมัครแล้ว"
     },
     "simulation": {
       "inputCapital": "เงินทุนเข้า",

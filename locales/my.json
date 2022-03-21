@@ -165,7 +165,10 @@
       "addTo": "tambah kepada",
       "change": "Ubah",
       "watchlist": "Senarai pantauan",
-      "closeWindow": "Tutup Tingkap"
+      "closeWindow": "Tutup Tingkap",
+      "noCurrencyError": "Tiada matawang untuk ditunjuk",
+      "tradeCancelled": "Trade dibatal",
+      "tradeModified": "Trade diubah"
     },
     "common": {
       "buySell": "Beli/Jual",
@@ -257,7 +260,10 @@
       "mths": "Bulan",
       "years": "tahun",
       "months": "berbulan-bulan",
-      "days": "hari-hari"
+      "days": "hari-hari",
+      "invalidSL": "SL tidak sah",
+      "invalidTP": "TP tidak sah",
+      "usdm": "USD/Bulan"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",
@@ -332,7 +338,9 @@
       "tradingStrategy": "Jelaskan tentang strategi perdagangan anda",
       "update": "Kemaskini",
       "offline": "Tidak Tersedia",
-      "profileUpdateSuccess": "Maklumat profail dikemaskini"
+      "profileUpdateSuccess": "Maklumat profail dikemaskini",
+      "phoneErrorMessage": "Nombor telefon tidak sah",
+      "applicationSubmitted": "Permohonan dihantar"
     },
     "simulation": {
       "inputCapital": "Masukkan modal",

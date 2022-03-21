@@ -750,7 +750,7 @@
     return `
         <div class="d-flex flex-wrap justify-content-between desktop-content">
             <div class="sparkline mr-0">
-              <div class="key tooltip-demo">${i18n.t('body.simulation.cumulativeReturns')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.sinceInception')} </br> ${strategy_age}"></i></div>
+              <div class="key tooltip-demo">${i18n.t('body.simulation.cumulativeReturns')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="right" data-html="true" title="${i18n.t('body.mp.sinceInception')} </br> ${translateYearMonths(strategy_age)}"></i></div>
                 <div class="d-flex justify-content-between">
                 <div class="value ${isEmpty ? 'text-light-gray' : 'green'} highlight">${cumulative_returns}<sup class="ml-1 font-weight-normal">%</sup></div>
                 <div class="ml-3 mt-2 light-white">

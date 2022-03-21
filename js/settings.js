@@ -144,7 +144,7 @@
         })
 
         $('#submit-provider-application').unbind().click(function () {
-            renderSuccessToast('Application submitted');
+            renderSuccessToast(i18n.t('body.settings.applicationSubmitted'));
         })
         $('#update-profile-details').unbind().click(function () {
             const container = $('.profile-settings');
@@ -453,7 +453,7 @@
             }
             STATE.setIsProfileDetailsValid('mobile', isValid);
             return isValid;
-        }, 'Invalid phone number');
+        }, i18n.t('body.settings.phoneErrorMessage'));
 
         // validate email address
         validateTextInput(container.find('#email_address'), function (val) {

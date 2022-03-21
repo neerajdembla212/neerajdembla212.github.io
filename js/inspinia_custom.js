@@ -659,7 +659,7 @@ function getFollowProviderPopupBody(data) {
       <div class="d-flex justify-content-between mb-2">
         <div class="w-50 d-flex justify-content-between mr-3 align-items-center">
           <div class="uppercase-label">${i18n.t('body.sp.age')}</div>
-          <div class="font-bold medium-font">${strategy_age}</div>
+          <div class="font-bold medium-font">${translateYearMonths(strategy_age)}</div>
         </div>
         <div class="w-50 d-flex justify-content-between align-items-center">
           <div class="uppercase-label">${i18n.t('body.mp.pShare%')}</div>
@@ -1885,7 +1885,7 @@ function validateProfitLossInputs(action) {
       removeError(profitInput);
       GLOBAL_STATE.setIsBuySellFormValid('profit', true);
     } else {
-      const errorMessage = `Invalid TP`;
+      const errorMessage = i18n.t('body.common.invalidTP');
       addError(profitInput, errorMessage);
       GLOBAL_STATE.setIsBuySellFormValid('profit', false);
     }
@@ -1894,7 +1894,7 @@ function validateProfitLossInputs(action) {
       removeError(lossInput);
       GLOBAL_STATE.setIsBuySellFormValid('loss', true);
     } else {
-      const errorMessage = `Invalid SL`;
+      const errorMessage = i18n.t('body.common.invalidSL');
       addError(lossInput, errorMessage);
       GLOBAL_STATE.setIsBuySellFormValid('loss', false);
     }
@@ -1905,7 +1905,7 @@ function validateProfitLossInputs(action) {
       removeError(profitInput);
       GLOBAL_STATE.setIsBuySellFormValid('profit', true);
     } else {
-      const errorMessage = `Invalid TP`;
+      const errorMessage = i18n.t('body.common.invalidTP');
       addError(profitInput, errorMessage);
       GLOBAL_STATE.setIsBuySellFormValid('profit', false);
     }
@@ -1914,7 +1914,7 @@ function validateProfitLossInputs(action) {
       removeError(lossInput);
       GLOBAL_STATE.setIsBuySellFormValid('loss', true);
     } else {
-      const errorMessage = `Invalid SL`;
+      const errorMessage = i18n.t('body.common.invalidSL');
       addError(lossInput, errorMessage);
       GLOBAL_STATE.setIsBuySellFormValid('loss', false);
     }
