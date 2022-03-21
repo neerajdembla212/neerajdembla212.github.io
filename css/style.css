@@ -13780,6 +13780,10 @@ select[name="rows-per-page"] {
   box-shadow: none !important;
 }
 
+.w-80 {
+  width: 80% !important
+}
+
 .portfolio-line-chart {
   border: 1px solid #E5E5E5;
   border-radius: 6px;

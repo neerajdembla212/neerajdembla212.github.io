@@ -110,8 +110,6 @@
       $('#wrapper').i18n();
       window.reloadElementsOnLanguageChange();
     })
-    // // render empty state sparkline
-    // renderSparkline();
   });
 
   function plotEmptyLineChart() {
@@ -347,6 +345,7 @@
     // each page has to add respective function on window to reload the translations on their page
     window.reloadElementsOnLanguageChange = function () {
       renderBuySellData(); // global function
+      renderStrategyProviders();
       renderSparkline();
       $('.calculate-card .input-amount').attr("placeholder", i18n.t('body.simulation.inputAmount'));
       $('#providers-search').attr("placeholder", i18n.t('body.simulation.searchProviders'));
@@ -460,7 +459,7 @@
         <thead>
             <tr>
             <th class="align-middle small-font pr-0">${i18n.t('body.mp.provider')}</th>
-            <th class="text-center align-middle small-font pr-0">${i18n.t('body.simulation.joinedDuration')}</th>
+            <th class="align-middle small-font px-5">${i18n.t('body.simulation.joinedDuration')}</th>
             <th class="text-center align-middle small-font pr-0">
               <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_profit_loss">
                 <p class="m-0 p-0">${i18n.t('body.mp.equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_profit_loss' ? 'd-none' : ''}"></i></p>
@@ -472,21 +471,21 @@
               </div>
             </th>
             <th class="text-center align-middle small-font pr-0">
-              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="subscription_fee">
+              <div class="sort-header d-flex align-items-center cursor-pointer w-80 m-auto" data-sort-key="subscription_fee">
                 <p class="m-0 p-0">${i18n.t('body.mp.managementFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'subscription_fee' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle small-font pr-0">
-              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="profit_share">
+              <div class="sort-header d-flex align-items-center cursor-pointer w-80 m-auto" data-sort-key="profit_share">
                 <p class="m-0 p-0">${i18n.t('body.mp.pShare%')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'profit_share' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
             <th class="text-center align-middle small-font pr-0">
-              <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="total_fee">
+              <div class="sort-header d-flex align-items-center cursor-pointer w-75 m-auto" data-sort-key="total_fee">
                 <p class="m-0 p-0">${i18n.t('body.mp.totalFees')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'total_fee' ? 'd-none' : ''}"></i></p>
               </div>
             </th>
-            <th class="text-center align-middle small-font">${i18n.t('body.mp.actions')}</th>
+            <th class="text-right align-middle small-font">${i18n.t('body.mp.actions')}</th>
             </tr>
         </thead>
         `
@@ -559,7 +558,7 @@
         <td class="text-center font-bold align-middle">
             S$${formatWithCommas(total_fee)}
         </td>
-        <td class="action-tools text-center align-middle action-icon provider-modal-cta" data-id=${id} data-toggle="modal" data-target="#add-provider-modal">
+        <td class="action-tools text-right align-middle action-icon provider-modal-cta" data-id=${id} data-toggle="modal" data-target="#add-provider-modal">
             <i class="fa fa-gear mr-1"></i>
         </td>
       </tr>`

@@ -477,11 +477,11 @@
         let actionHeader = ''
         switch (activeTabId) {
             case '#open-trades':
-                actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.close')}</th>`; break;
+                actionHeader = `<th class="text-center align-middle"><p class="m-0 w-75 float-right">${i18n.t('body.tt.close')}</p></th>`; break;
             case '#pending-orders':
-                actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.cancel')}</th>`; break;
+                actionHeader = `<th class="text-center align-middle"><p class="m-0 w-75 float-right">${i18n.t('body.tt.cancel')}</p></th>`; break;
             case '#closed-trades':
-                actionHeader = `<th class="text-center align-middle">${i18n.t('body.tt.status')}</th>`; break;
+                actionHeader = `<th class="text-center align-middle"><p class="m-0 w-75 float-right">${i18n.t('body.tt.status')}</p></th>`; break;
         }
         return `
         <thead>
@@ -605,7 +605,7 @@
                     S$${profit}
                 </td>
                 <td class="text-center align-middle">
-                    <button id="close-open-trade" class="btn btn-default px-2 btn-gray" type="button" name="close-trade-cta">
+                    <button id="close-open-trade" class="btn btn-default px-2 btn-gray float-right" type="button" name="close-trade-cta">
                         <div class="d-flex align-items-center">
                             <img name="close-trade-cta" src="img/ic_cross_red.svg" class="mr-1" /> ${i18n.t('body.tt.close')}
                         </div>
@@ -944,7 +944,7 @@
                     NA
                 </td>
                 <td class="text-center align-middle">
-                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />${i18n.t('body.tt.cancel')}</button>
+                    <button id="cancel-pending-trade" class="btn btn-default d-flex align-items-center px-2 btn-gray float-right" type="button" name="cancel-trade-cta"><img name="cancel-trade-cta" src="img/ic_cross_red.svg" class="mr-1" />${i18n.t('body.tt.cancel')}</button>
                 </td>
             </tr>
             `
@@ -1152,9 +1152,9 @@
                 ${swapColumn}
                 ${profitColumn}
                 <td class="align-middle pl-2">
-                    <div>
+                    <div class="w-80 float-right">
                         <p class="m-0 font-weight-bold text-center ${status === 'CLOSED' ? 'text-extra-light-blue' : 'text-pink'}">${i18n.t(`body.tt.${status.toLowerCase()}`)}</p>
-                        <p class="m-0">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
+                        <p class="m-0 text-center">${formatDate(new Date(terminate_time), 'DD/MM/YYYY HH:mm')}</p>
                     </div>
                 </td>
             </tr>
