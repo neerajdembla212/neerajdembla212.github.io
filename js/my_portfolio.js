@@ -968,7 +968,7 @@
           ${formatDate(new Date(+joined_on))}
         </td>
         <td class="text-center align-middle">
-          ${calculateDateDiff(new Date(+joined_on), new Date())}
+          ${calculateDateDiff(new Date(+joined_on), new Date(), true)}
         </td>
         <td class="text-center font-bold text-dark-green align-middle">
         S$${formatWithCommas(profit_or_loss)}
@@ -980,7 +980,7 @@
         S$${formatWithCommas(balance)}
         </td>
         <td class="text-center align-middle">
-        S$${fee_earned}/${fee_mode}
+        S$${fee_earned}/${i18n.t(`body.common.${fee_mode}`)}
         </td>
         <td class="font-bold text-center align-middle">
         S$${formatWithCommas(com_earned)}
@@ -1230,7 +1230,9 @@
         targetSF.is_new = false;
         targetSF.isPaused = false;
         renderStrategyFollowers()
-        renderSuccessToast(`${i18n.t('body.mp.accepted')} ${targetSF.name} ${i18n.t('body.mp.toFollowYou')}`)
+        const message = i18n.t('body.mp.acceptedMessage');
+        const translatedMessage = translatePopupMessage(message, targetSF.name);
+        renderSuccessToast(translatedMessage);
     }
 
     function onRejectFollower(event) {
@@ -1246,7 +1248,9 @@
             users.splice(targetSFIndex, 1)
         }
         renderStrategyFollowers();
-        renderSuccessToast(`Rejected ${targetSF.name} from following you`);
+        const message = i18n.t('body.mp.rejectedMessage');
+        const translatedMessage = translatePopupMessage(message, targetSF.name);
+        renderSuccessToast(translatedMessage);
     }
 
     function onFollowersTableSort(key, direction) {
@@ -1284,8 +1288,8 @@
         container.empty().append(`
             <p class="mb-3">${translatedMessage}</p>
             <div class="w-100 d-flex justify-content-end">
-                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="pause-follower-confirm-cta">Confirm</button>
+                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="pause-follower-confirm-cta">${i18n.t('body.common.confirm')}</button>
             </div>
         `)
     }
@@ -1297,8 +1301,8 @@
         container.empty().append(`
             <p class="mb-3">${translatedMessage}</p>
             <div class="w-100 d-flex justify-content-end">
-                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="play-follower-confirm-cta" data-id=${id}>Confirm</button>
+                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="play-follower-confirm-cta" data-id=${id}>${i18n.t('body.common.confirm')}</button>
             </div>
         `)
     }
@@ -1310,8 +1314,8 @@
         container.empty().append(`
             <p class="mb-3">${translatedMessage}</p>
             <div class="w-100 d-flex justify-content-end">
-                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="stop-follower-confirm-cta">Confirm</button>
+                <button type="button" class="btn btn-outline btn-link text-navy font-weight-bold" data-dismiss="modal">${i18n.t('body.tt.cancel')}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-id=${id} id="stop-follower-confirm-cta">${i18n.t('body.common.confirm')}</button>
             </div>
         `)
     }
@@ -1753,7 +1757,6 @@
             animation: true
         })
 
-        hideUnhideStrategyAccountEvents();
         // init i18n plugin
         initI18nPlugin();
 
@@ -1774,6 +1777,7 @@
             renderSparkline(userRole);
             activateTooltips();
             renderTableFilters();
+            hideUnhideStrategyAccountEvents();
             if (userRole.toLowerCase() === 'provider') {
                 // render followers table
                 renderStrategyFollowers();
@@ -1807,7 +1811,7 @@
                 selectedAccountType.removeClass('demo').addClass('live');
                 $('.account-number').removeClass('demo-account');
             }
-            selectedAccountType.text(accountType);
+            selectedAccountType.text(i18n.t(`body.common.${accountType.toLowerCase()}`));
             $('.selected-account-number').text(accountNo);
         }
 

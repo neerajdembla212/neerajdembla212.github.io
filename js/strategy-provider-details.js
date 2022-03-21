@@ -649,7 +649,7 @@
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.mp.strategyAge')}</p>
-            <p class="mb-0 medium-font font-bold text-dark-black">${strategy_age}</p>
+            <p class="mb-0 medium-font font-bold text-dark-black">${translateYearMonths(strategy_age)}</p>
         </div>
         <!-- strategy age end -->
         <div class="divider"></div>

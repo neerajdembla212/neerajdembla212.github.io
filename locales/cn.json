@@ -32,7 +32,7 @@
       "trades": "交易",
       "maxDrawdown": "最大回撤",
       "feesProfitShared": "费用 + 利润共享",
-      "strategyAge": "策略年龄 1 岁 6 个月",
+      "strategyAge": "策略年龄",
       "sinceInception": "自成立以来",
       "following": "关注",
       "p/l": "盈亏（损益）",
@@ -94,7 +94,9 @@
       "pauseFollowerMessage": "您确定要暂停关注 <b><spname></b> 吗？",
       "stopFollower": "停止关注者",
       "allowFollowerMessage": "您确定允许 <b><spname></b> 继续关注您吗？",
-      "stopFollowerMessage" : "您确定要停止关注 <b><spname></b> 吗？"
+      "stopFollowerMessage" : "您确定要停止关注 <b><spname></b> 吗？",
+      "acceptedMessage": "接受<spname>关注您",
+      "rejectedMessage": "拒绝<spname>关注您"
     },
     "login": {
       "signIn": "登入",
@@ -263,7 +265,8 @@
       "days": "天",
       "invalidSL": "SL无效",
       "invalidTP": "TP无效",
-      "usdm": "USD/月"
+      "usdm": "USD/月",
+      "m": "月"
     },
     "sp": {
       "topPerformer": "表现最好的",

@@ -32,7 +32,7 @@
       "trades": "Giao dịch",
       "maxDrawdown": "Sụt giảm tối đa",
       "feesProfitShared": "Phí + Lợi nhuận chia sẻ",
-      "strategyAge": "Độ tuổi chiến lược 1 năm 6 tháng",
+      "strategyAge": "Độ tuổi chiến lược",
       "sinceInception": "Từ khi bắt đầu",
       "following": "Đang theo dõi",
       "p/l": "P/L (Lãi & lỗ)",
@@ -94,7 +94,9 @@
       "pauseFollowerMessage": "Bạn có chắc chắn muốn tạm dừng người theo dõi <b><spname></b>?",
       "stopFollower": "Dừng người theo dõi",
       "allowFollowerMessage": "Bạn có chắc chắn muốn <b><spname></b> tiếp tục theo dõi bạn?",
-      "stopFollowerMessage": "Bạn có chắc chắn muốn dừng người theo dõi <b><spname></b>?"
+      "stopFollowerMessage": "Bạn có chắc chắn muốn dừng người theo dõi <b><spname></b>?",
+      "acceptedMessage": "Chấp nhận theo dõi từ <spname>",
+      "rejectedMessage": "Từ chối theo dõi từ <spname>"
     },
     "login": {
       "signIn": "Đăng nhập",
@@ -263,7 +265,8 @@
       "days": "Ngày",
       "invalidSL": "SL không hợp lệ",
       "invalidTP": "TP không hợp lệ",
-      "usdm": "USD/tháng"
+      "usdm": "USD/tháng",
+      "m": "tháng"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",

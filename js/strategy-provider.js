@@ -1107,47 +1107,47 @@
       <tr>
         <th class="pl-3 align-middle">${i18n.t('body.mp.provider')}</th>
         <th class="align-middle text-center">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_duration">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-50 m-auto" data-sort-key="return_duration">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.age')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_duration' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th style="height:32px" class="align-middle text-center" data-sort-key="return_percentage">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="return_percentage">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-50 m-auto" data-sort-key="return_percentage">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.totalReturns/equityGrowth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'return_percentage' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center" data-sort-key="drawDown">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="drawDown">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-50 m-auto" data-sort-key="drawDown">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.dd')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'drawDown' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="average_per_month">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-100 m-auto" data-sort-key="average_per_month">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.avg/Mth')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_per_month' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="average_pips">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-100 m-auto" data-sort-key="average_pips">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.avgPips')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'average_pips' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="risk_amount">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-100 m-auto" data-sort-key="risk_amount">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.advisedMin')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'risk_amount' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_funds">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-100 m-auto" data-sort-key="follower_funds">
             <p class="m-0 p-0 header-text">${i18n.t('body.sp.managedFunds')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_funds' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">
-          <div class="sort-header d-flex align-items-center cursor-pointer" data-sort-key="follower_count">
+          <div class="sort-header d-flex align-items-center cursor-pointer w-100 m-auto" data-sort-key="follower_count">
             <p class="m-0 p-0 header-text">${i18n.t('body.mp.followers')}<i class="arrow ${arrowClass} ml-1 ${sortKey !== 'follower_count' ? 'd-none' : ''}"></i></p>
           </div>
         </th>
         <th class="align-middle text-center">${i18n.t('body.sp.follow')}</th>
-        <th class="pr-3 align-middle text-center">${i18n.t('body.sp.watch')}</th>
+        <th class="pr-3 align-middle"><p class="m-0 text-center">${i18n.t('body.sp.watch')}</p></th>
       </tr>
     </thead>`
   }
@@ -1243,8 +1243,8 @@
             btn-square
             btn-outline
             btn-action
-            mx-2
             border-0
+            float-right
           "
           name="favourites-cta"
         >

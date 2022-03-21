@@ -32,7 +32,7 @@
       "trades": "Perdagangan",
       "maxDrawdown": "Drawdown Maks",
       "feesProfitShared": "Biaya + Bagi Hasil",
-      "strategyAge": "Umur Strategi 1 Tahun 6 Bulan",
+      "strategyAge": "Umur Strategi",
       "sinceInception": "Sejak Peluncuran",
       "following": "Ikuti",
       "p/l": "P/L (Laba & Rugi)",
@@ -94,7 +94,9 @@
       "pauseFollowerMessage": "Apakah Anda yakin ingin menjeda pengikut <b><spname></b>?",
       "stopFollower": "Hentikan Pengikut",
       "allowFollowerMessage": "Apakah Anda yakin ingin mengizinkan <b><spname></b> untuk terus mengikuti Anda?",
-      "stopFollowerMessage": "Apakah Anda yakin ingin menghentikan pengikut <b><spname></b> ?"
+      "stopFollowerMessage": "Apakah Anda yakin ingin menghentikan pengikut <b><spname></b> ?",
+      "acceptedMessage": "Terima <spname> untuk mengikuti Anda",
+      "rejectedMessage": "Tolak <spname> mengikuti Anda"
     },
     "login": {
       "signIn": "Masuk",
@@ -263,7 +265,8 @@
       "days": "hari",
       "invalidSL": "SL tidak valid",
       "invalidTP": "TP tidak valid",
-      "m": "USD/Bulan"
+      "usdm": "USD/Bulan",
+      "m": "Bulan"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

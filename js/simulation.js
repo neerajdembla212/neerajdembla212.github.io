@@ -977,7 +977,7 @@
       return_percentage } = provider;
     return `
             <li class="cursor-pointer px-2 provider-modal-cta" data-id="${id}" data-toggle="modal" data-target="#add-provider-modal">
-                <div class="d-flex justify-content-between py-2">
+                <div class="d-flex justify-content-between py-2 align-items-center">
                     <div class="d-flex">
                         <img alt="image" class="rounded-circle img-fluid img-sm float-left" src="${profile_image}">
                         <div class="ml-2 float-left">
@@ -988,8 +988,10 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mb-0 medium-font text-light-gray font-bold">${return_duration}</p>
-                    <p class="mb-0 medium-font text-dark-green font-bold">${return_percentage}%</p>
+                    <div class="d-flex">
+                      <p class="mb-0 medium-font text-light-gray font-bold mr-3">${translateYearMonths(return_duration)}</p>
+                      <p class="mb-0 medium-font text-dark-green font-bold">${return_percentage}%</p>
+                    </div>
                 </div>
             </li>
         `

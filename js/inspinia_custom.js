@@ -1962,6 +1962,9 @@ function registerPendingOrderEvents(container) {
 }
 
 function translateYearMonths(data) {
+  if(!data) {
+    return '';
+  }
   const yr = i18n.t('body.common.yr');
   const mths = i18n.t('body.common.mths');
   return data.replace('Yr', yr).replace('Mths', mths);

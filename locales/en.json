@@ -32,7 +32,7 @@
       "trades": "Trades",
       "maxDrawdown": "Max Drawdown",
       "feesProfitShared": "Fees + Profit Shared",
-      "strategyAge": "Strategy Age 1 Yr 6 Mths",
+      "strategyAge": "Strategy Age",
       "sinceInception": "Since Inception",
       "following": "Following",
       "p/l": "P/L (Profit & Loss)",
@@ -94,7 +94,9 @@
       "pauseFollowerMessage": "Are you sure you want to pause follower <b><spname></b> ?",
       "stopFollower": "Stop Follower",
       "allowFollowerMessage": "Are you sure you want to allow <b><spname></b> to continue following you?",
-      "stopFollowerMessage": "Are you sure you want to stop follower <b><spname></b> ?"
+      "stopFollowerMessage": "Are you sure you want to stop follower <b><spname></b> ?",
+      "acceptedMessage": "Accepted <spname> to follow you",
+      "rejectedMessage": "Rejected <spname> from following you"
     },
     "login": {
       "signIn": "Sign In",
@@ -263,7 +265,8 @@
       "days": "Days",
       "invalidSL": "Invalid SL",
       "invalidTP": "Invalid TP",
-      "usdm": "USD/m"
+      "usdm": "USD/m",
+      "m": "m"
     },
     "sp": {
       "topPerformer": "Top Performer",

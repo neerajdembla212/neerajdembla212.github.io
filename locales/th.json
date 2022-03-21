@@ -32,7 +32,7 @@
       "trades": "การเทรด",
       "maxDrawdown": "ผลตอบแทนขาดทุนสูงสุด",
       "feesProfitShared": "ค่าธรรมเนียม + ส่วนแบ่งกำไร",
-      "strategyAge": "อายุกลยุทธ์ 1 ปี 6 เดือน",
+      "strategyAge": "อายุกลยุทธ์",
       "sinceInception": "ตั้งแต่เริ่มต้น",
       "following": "กำลังติดตาม",
       "p/l": "P/L (กำไร & ขาดทุน)",
@@ -94,7 +94,9 @@
       "pauseFollowerMessage": "คุณแน่ใจหรือไม่ว่าต้องการหยุดติดตาม  <b><spname></b>  ชั่วคราว",
       "stopFollower": "หยุุดผู้ติดตาม",
       "allowFollowerMessage": "คุณแน่ใจหรือไม่ว่าต้องการอนุญาตให้ <b><spname></b> ติดตามคุณต่อไป?",
-      "stopFollowerMessage": "คุณแน่ใจหรือไม่ว่าต้องการหยุดติดตาม  <b><spname></b> "
+      "stopFollowerMessage": "คุณแน่ใจหรือไม่ว่าต้องการหยุดติดตาม  <b><spname></b> ",
+      "acceptedMessage": "ยอมรับ <spname> เพื่อติดตามคุณ",
+      "rejectedMessage": "ปฏิเสธ <spname> จากการกดติดตามคุณ"
     },
     "login": {
       "signIn": "เข้าสูู่ระบบ",
@@ -263,7 +265,8 @@
       "days": "วัน",
       "invalidSL": "SL ไม่ถูกต้อง",
       "invalidTP": "TP ไม่ถูกต้อง",
-      "usdm": "USD/เดือน"
+      "usdm": "USD/เดือน",
+      "m": "เดือน"
     },
     "sp": {
       "topPerformer": "Top Performer",
