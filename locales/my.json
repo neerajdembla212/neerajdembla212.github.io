@@ -266,7 +266,13 @@
       "invalidSL": "SL tidak sah",
       "invalidTP": "TP tidak sah",
       "usdm": "USD/Bulan",
-      "m": "Bulan"
+      "m": "Bulan",
+      "moreThan": "Lebih Dari",
+      "lessThan": "Kurang Dari",
+      "apply": "Mohon",
+      "byNumberOfTrades": "Melalui Jumlah Trade",
+      "byLevelOfEquity": "Melalui Level Ekuiti",
+      "referralLinkCopied": "Pautan referral disalin"
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",

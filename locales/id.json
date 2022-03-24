@@ -266,7 +266,13 @@
       "invalidSL": "SL tidak valid",
       "invalidTP": "TP tidak valid",
       "usdm": "USD/Bulan",
-      "m": "Bulan"
+      "m": "Bulan",
+      "moreThan": "Lebih dari",
+      "lessThan": "Kurang dari",
+      "apply": "Terapkan",
+      "byNumberOfTrades": "Berdasarkan Jumlah Perdagangan",
+      "byLevelOfEquity": "Berdasarkan Tingkat Ekuitas",
+      "referralLinkCopied": "Tautan rujukan disalin"
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

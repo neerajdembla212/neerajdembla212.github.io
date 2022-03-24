@@ -266,7 +266,13 @@
       "invalidSL": "Invalid SL",
       "invalidTP": "Invalid TP",
       "usdm": "USD/m",
-      "m": "m"
+      "m": "m",
+      "moreThan": "More Than",
+      "lessThan": "Less Than",
+      "apply": "Apply",
+      "byNumberOfTrades": "By Number of Trades",
+      "byLevelOfEquity": "By Level of Equity",
+      "referralLinkCopied": "Referral link copied"
     },
     "sp": {
       "topPerformer": "Top Performer",

@@ -266,7 +266,13 @@
       "invalidSL": "SL ไม่ถูกต้อง",
       "invalidTP": "TP ไม่ถูกต้อง",
       "usdm": "USD/เดือน",
-      "m": "เดือน"
+      "m": "เดือน",
+      "moreThan": "มากกว่า",
+      "lessThan": "น้อยกว่า",
+      "apply": "ใช้งาน",
+      "byNumberOfTrades": "จากจำนวนการเทรด",
+      "byLevelOfEquity": "จากจำนวนเงินทุน",
+      "referralLinkCopied": "คัดลอกลิงค์อ้างอิงแล้ว"
     },
     "sp": {
       "topPerformer": "Top Performer",

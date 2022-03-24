@@ -266,7 +266,13 @@
       "invalidSL": "SL无效",
       "invalidTP": "TP无效",
       "usdm": "USD/月",
-      "m": "月"
+      "m": "月",
+      "moreThan": "超过",
+      "lessThan": "少过",
+      "apply": "申请",
+      "byNumberOfTrades": "按交易数量",
+      "byLevelOfEquity": "按权益水平",
+      "referralLinkCopied": "已复制推荐链接"
     },
     "sp": {
       "topPerformer": "表现最好的",

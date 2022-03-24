@@ -583,11 +583,11 @@ function activateTooltips() {
   $("[data-toggle='tooltip']").tooltip({ container: 'body' })
 }
 function getNoOfTradesTooltipText() {
-  return '<b>By Number of Trades</b> This option blocks the opening of new trades / pending orders, if the current number of open trades / pending orders (in the given trading strategy) in the brokerage account exceeds or is equal to the value specified in the field.'
+  return `<b>${i18n.t('body.common.byNumberOfTrades')}</b> This option blocks the opening of new trades / pending orders, if the current number of open trades / pending orders (in the given trading strategy) in the brokerage account exceeds or is equal to the value specified in the field.`
 }
 
 function getLevelOfEquityTooltipText() {
-  return '<b>By Level of Equity</b> This option blocks the opening of new trades, if the current equity in the brokerage account is less than the set amount.'
+  return `<b>${i18n.t('body.common.byLevelOfEquity')}</b> This option blocks the opening of new trades, if the current equity in the brokerage account is less than the set amount.`
 }
 // render follow provider start
 function renderFollowProviderPopup(strategyProviderDetails) {
@@ -846,13 +846,13 @@ function getFollowProviderPopupBody(data) {
     <section id="limit-quantity-input" class="d-none">
       <div class="d-flex justify-content-between mt-2">
         <div class="w-50">
-          <p class="text-gray medium-font mb-1">By Number of Trades <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="left" data-html="true" title="${getNoOfTradesTooltipText()}"></i></p>
+          <p class="text-gray medium-font mb-1">${i18n.t('body.common.byNumberOfTrades')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-placement="left" data-html="true" title="${getNoOfTradesTooltipText()}"></i></p>
           <div class="position-relative w-50">
             <input type="text" class="form-control" id="no-of-trades">
           </div>
         </div>
         <div>
-          <p class="text-gray medium-font mb-1">By level of Equity <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-html="true" data-placement="right" title="${getLevelOfEquityTooltipText()}"></i></p>
+          <p class="text-gray medium-font mb-1">${i18n.t('body.common.byLevelOfEquity')} <i class="fa fa-question-circle cursor-pointer ml-1" data-toggle="tooltip" data-html="true" data-placement="right" title="${getLevelOfEquityTooltipText()}"></i></p>
           <div class="d-flex align-items-center">
             <div class="position-relative w-75 mr-3">
               <input type="text" class="form-control" id="level-of-equity">
@@ -1110,8 +1110,8 @@ function getDropdownMenuInputHTML(filter) {
   <!-- Content start -->
   <div class="content">
     <div class="d-flex justify-content-between mb-3">
-      <button type="button" class="btn btn-outline btn-default mr-2 ${filterOperation === '>' ? 'active' : ''}" data-filter-operation="&gt;">&gt; More Than</button>
-      <button type="button" class="btn btn-outline btn-default ${filterOperation === '<' ? 'active' : ''}" data-filter-operation="&lt;">&lt; Less Than</button>
+      <button type="button" class="btn btn-outline btn-default mr-2 ${filterOperation === '>' ? 'active' : ''}" data-filter-operation="&gt;">&gt; ${i18n.t('body.common.moreThan')}</button>
+      <button type="button" class="btn btn-outline btn-default ${filterOperation === '<' ? 'active' : ''}" data-filter-operation="&lt;">&lt; ${i18n.t('body.common.lessThan')}</button>
     </div>
     <div class="position-relative">
       <input type="text" class="form-control" value="${filterValue}">
@@ -1121,7 +1121,7 @@ function getDropdownMenuInputHTML(filter) {
   <!-- Content end -->
   <!-- Footer start -->
   <div class="d-flex justify-content-end">
-    <button type="button" class="close-cta btn btn-outline btn-link font-bold text-navy">Apply</button>
+    <button type="button" class="close-cta btn btn-outline btn-link font-bold text-navy">${i18n.t('body.common.apply')}</button>
   </div>
   <!-- Footer end -->
   `
@@ -1962,7 +1962,7 @@ function registerPendingOrderEvents(container) {
 }
 
 function translateYearMonths(data) {
-  if(!data) {
+  if (!data) {
     return '';
   }
   const yr = i18n.t('body.common.yr');

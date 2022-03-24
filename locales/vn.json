@@ -266,7 +266,13 @@
       "invalidSL": "SL không hợp lệ",
       "invalidTP": "TP không hợp lệ",
       "usdm": "USD/tháng",
-      "m": "tháng"
+      "m": "tháng",
+      "moreThan": "Lớn hơn",
+      "lessThan": "Nhỏ hơn",
+      "apply": "Áp dụng",
+      "byNumberOfTrades": "Số lượng giao dịch",
+      "byLevelOfEquity": "Cấp độ vốn chủ sở hữu",
+      "referralLinkCopied": "Sao chép liên kết giới thiệu"
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
