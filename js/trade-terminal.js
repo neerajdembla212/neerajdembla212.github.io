@@ -1949,7 +1949,7 @@
                 }
             }
             return isValid;
-        }, 'Number only')
+        }, i18n.t('body.common.numberOnly'))
     }
     // render buy sell section end
 
@@ -2351,7 +2351,7 @@
             STATE.setIsBuySellFormValid('*', false);
             $('#edit-trade-modal').modal('hide');
             // render toast success
-            renderSuccessToast('Trade closed');
+            renderSuccessToast(i18n.t('body.tt.tradeClosed'));
         }, 500)
         // refetch open or pending trades from table based on type selected (Market execution or Pending orders)
         if (tradeDetails.order_type === 'market_execution') {
@@ -2501,7 +2501,7 @@
             const value = +event.target.value;
             if (event.target.value === '') {
                 modifyTradeCTA.prop('disabled', true);
-                addError.call(this, `Invalid profit`);
+                addError.call(this, i18n.t('body.common.invalidTP'));
                 STATE.setIsBuySellModalFormValid(false);
                 container.find('#cancel-order').attr('disabled', true);
             } else if (trade_type === 'BUY') { // for BUY profit amount should be greater than buy price
@@ -2514,7 +2514,7 @@
                     container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Invalid profit`);
+                    addError.call(this, i18n.t('body.common.invalidTP'));
                     STATE.setIsBuySellModalFormValid(false);
                     container.find('#cancel-order').attr('disabled', true);
                 }
@@ -2528,7 +2528,7 @@
                     container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Invalid profit`);
+                    addError.call(this, i18n.t('body.common.invalidTP'));
                     STATE.setIsBuySellModalFormValid(false);
                     container.find('#cancel-order').attr('disabled', true);
                 }
@@ -2539,7 +2539,7 @@
             const value = +event.target.value;
             if (event.target.value === '') {
                 modifyTradeCTA.prop('disabled', true);
-                addError.call(this, `Invalid loss`);
+                addError.call(this, i18n.t('body.common.invalidSL'));
                 STATE.setIsBuySellModalFormValid(false);
                 container.find('#cancel-order').attr('disabled', true);
             } else if (trade_type === 'BUY') { // for BUY loss amount should me less than buy price
@@ -2552,7 +2552,7 @@
                     container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Invalid loss`);
+                    addError.call(this, i18n.t('body.common.invalidSL'));
                     STATE.setIsBuySellModalFormValid(false);
                     container.find('#cancel-order').attr('disabled', true);
                 }
@@ -2566,7 +2566,7 @@
                     container.find('#cancel-order').removeAttr('disabled');
                 } else {
                     modifyTradeCTA.prop('disabled', true);
-                    addError.call(this, `Invalid loss`);
+                    addError.call(this, i18n.t('body.common.invalidSL'));
                     STATE.setIsBuySellModalFormValid(false);
                     container.find('#cancel-order').attr('disabled', true);
                 }
@@ -2584,7 +2584,7 @@
                 container.find('#cancel-order').removeAttr('disabled');
             } else {
                 modifyTradeCTA.prop('disabled', true);
-                addError.call(this, 'Invalid price');
+                addError.call(this, i18n.t('body.common.invalidInput'));
                 STATE.setIsBuySellModalFormValid(false);
                 container.find('#cancel-order').attr('disabled', true);
             }

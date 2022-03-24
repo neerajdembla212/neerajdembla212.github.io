@@ -889,22 +889,22 @@ function validateFollowProviderPopupInputs(container) {
   validateTextInput(container.find('#take-profit-input'), validateNumber, numberOnlyMessage)
 
   // validate Stop loss input 
-  validateTextInput(container.find('#stop-loss-input'), validateNumber, 'Number only')
+  validateTextInput(container.find('#stop-loss-input'), validateNumber, numberOnlyMessage)
 
   // validate number of trades
-  validateTextInput(container.find('#no-of-trades'), validateNumber, 'Number only')
+  validateTextInput(container.find('#no-of-trades'), validateNumber, numberOnlyMessage)
 
   // validate level of equity
-  validateTextInput(container.find('#level-of-equity'), validateNumber, 'Number only')
+  validateTextInput(container.find('#level-of-equity'), validateNumber, numberOnlyMessage)
 
   // validate percentage input
-  validateTextInput(container.find('#percentage-input'), validatePercentage, 'Number only');
+  validateTextInput(container.find('#percentage-input'), validatePercentage, numberOnlyMessage);
 
   // validate fixed trade size input
-  validateTextInput(container.find('#fixed-trade-size'), validatePercentage, 'Number only');
+  validateTextInput(container.find('#fixed-trade-size'), validatePercentage, numberOnlyMessage);
 
   // validate Trade size ratio input
-  validateTextInput(container.find('#trade-size-ratio'), validatePercentage, 'Number only');
+  validateTextInput(container.find('#trade-size-ratio'), validatePercentage, numberOnlyMessage);
 }
 
 function registerFollowProviderPopupEvents() {
@@ -1229,15 +1229,15 @@ function validateBuySellPopupInputs() {
       return true
     }
     return false
-  }, 'Number only')
+  }, i18n.t('body.common.numberOnly'))
   // validate take profit input
-  validateTextInput($('#buy-sell-modal #profit-input'), validateNumber, 'Number only')
+  validateTextInput($('#buy-sell-modal #profit-input'), validateNumber, i18n.t('body.common.numberOnly'))
 
   // validate stop loss input
-  validateTextInput($('#buy-sell-modal #loss-input'), validateNumber, 'Number only')
+  validateTextInput($('#buy-sell-modal #loss-input'), validateNumber, i18n.t('body.common.numberOnly'))
 
   // validate price input
-  validateTextInput($('#buy-sell-modal #price-input'), validateNumber, 'Number only')
+  validateTextInput($('#buy-sell-modal #price-input'), validateNumber, i18n.t('body.common.numberOnly'))
 }
 
 // render toast start
@@ -1770,7 +1770,7 @@ function validateBuySellInputs(container) {
       }
     }
     return isValid;
-  }, 'Number only')
+  }, i18n.t('body.common.numberOnly'))
 }
 
 function handleClickBuySellTrade(status) {
