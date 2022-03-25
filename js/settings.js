@@ -13,6 +13,10 @@
             managementFee: false,
             profitSharingFee: false
         }
+        isBecomeSPFormValid = {
+            managementFee: false,
+            profitSharingFee: false
+        }
         hiddenStrategyAccounts = []
 
         getRole() {
@@ -76,6 +80,23 @@
             }
         }
 
+        getIsBecomeSPFormValid() {
+            return this.isBecomeSPFormValid.managementFee && this.isBecomeSPFormValid.profitSharingFee;
+        }
+
+        setIsBecomeSPFormValid(control, data) {
+            if (typeof data !== "boolean") {
+                return
+            }
+            this.isStrategySettingsFormValid[control] = data;
+            if (!data) {
+                $('#submit-provider-application').attr('disabled', 'true');
+            } else {
+                $('#submit-provider-application').removeAttr('disabled');
+            }
+        }
+
+
         getHiddenStrategyAccounts() {
             return this.hiddenStrategyAccounts;
         }
@@ -127,30 +148,6 @@
             });
         })
 
-        // start date picker
-        $('#become-strategy-provider-modal .start-date-input').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: true,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true
-        }).off('changeDate').on('changeDate', function (e) {
-            const displayDateButton = $('#become-strategy-provider-modal .start-date-input .btn-dropdown');
-            displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
-        });
-
-        // end date picker
-        $('#become-strategy-provider-modal .end-date-input').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: true,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true
-        }).off('changeDate').on('changeDate', function (e) {
-            const displayDateButton = $('#become-strategy-provider-modal .end-date-input .btn-dropdown');
-            displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm"));
-        });
-
         // enabling slect 2 theme on dropdown
         $('.country_select_dropdown').select2({
             theme: 'bootstrap4',
@@ -197,6 +194,7 @@
                 e.textContent = translateYearMonths(e.textContent);
             })
             registerStrategySettingsEvents();
+            registerBecomeSPModalEvents();
         }
     }
 
@@ -648,7 +646,6 @@
     }
 
     function validateStrategySettingsInputs() {
-        // fill profile settings end
         const container = $('#strategy-settings-modal');
         const numberOnlyMessage = i18n.t('body.common.numberOnly');
         validateTextInput(container.find('#management-fee'), function (val) {
@@ -694,4 +691,81 @@
         container.modal('hide');
     }
 
+    function registerBecomeSPModalEvents() {
+        const container = $('#become-strategy-provider-modal');
+        container.find('#submit-provider-application').unbind().click(handleClickBecomeSP);
+        // start date picker
+        container.find('.start-date-input').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: true,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        }).off('changeDate').on('changeDate', function (e) {
+
+            const displayDateButton = container.find('.start-date-input .btn-dropdown');
+            displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm", true));
+        });
+
+        // end date picker
+        container.find('.end-date-input').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: true,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        }).off('changeDate').on('changeDate', function (e) {
+            const displayDateButton = container.find('.end-date-input .btn-dropdown');
+            displayDateButton.text(formatDate(e.date, "DD MMM YYYY HH:mm", true));
+        });
+        validateBecomeSPModalEvents();
+    }
+
+    function validateBecomeSPModalEvents() {
+        const container = $('#become-strategy-provider-modal');
+        const numberOnlyMessage = i18n.t('body.common.numberOnly');
+        validateTextInput(container.find('#management-fee'), function (val) {
+            let isValid = false;
+            if (isNaN(val)) {
+                isValid = false;
+            }
+            if (val === '') {
+                isValid = false;
+            } else {
+                const numVal = Number(val);
+                if (numVal >= 0) {
+                    isValid = true
+                }
+            }
+            STATE.setIsBecomeSPFormValid('managementFee', isValid);
+            return isValid;
+        }, numberOnlyMessage);
+
+        validateTextInput(container.find('#profit-sharing-fee'), function (val) {
+            let isValid = false;
+            if (isNaN(val)) {
+                isValid = false;
+            }
+            if (val === '') {
+                isValid = false;
+            } else {
+                const numVal = Number(val);
+                if (numVal >= 0) {
+                    isValid = true
+                }
+            }
+            STATE.setIsBecomeSPFormValid('profitSharingFee', isValid);
+            return isValid;
+        }, numberOnlyMessage);
+    }
+
+    function handleClickBecomeSP() {
+        const container = $('#become-strategy-provider-modal');
+        container.find('#management-fee').blur();
+        container.find('#profit-sharing-fee').blur();
+        if (!STATE.getIsBecomeSPFormValid()) {
+            return;
+        }
+        container.modal('hide');
+    }
 })();

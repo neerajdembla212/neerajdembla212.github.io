@@ -489,7 +489,7 @@ function getCountryFlags(country) {
 }
 
 // utility method to format date eg output : 1 Feb 2021
-function formatDate(date, format = "DD MMM YYYY") {
+function formatDate(date, format = "DD MMM YYYY", resetTime = false) {
   if (!isDateValid(date)) {
     return '';
   }
@@ -499,19 +499,22 @@ function formatDate(date, format = "DD MMM YYYY") {
   let ye = +new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
   let hr = +new Intl.DateTimeFormat('en', { hour: '2-digit', hour12: false }).format(date);
   let min = +new Intl.DateTimeFormat('en', { minute: '2-digit' }).format(date);
-
+  let initialHr = +new Intl.DateTimeFormat('en', { hour: 'numeric', hourCycle: 'h23' }).format(date);
+  let initialMin = +new Intl.DateTimeFormat('en', { minute: 'numeric', hourCycle: 'h23' }).format(date);
   // add prefix zero if value is < 10
   da = addPrefixZero(da);
   mm = addPrefixZero(mm);
   ye = addPrefixZero(ye);
   hr = addPrefixZero(hr);
   min = addPrefixZero(min);
+  initialHr = addPrefixZero(initialHr)
+  initialMin = addPrefixZero(initialMin)
 
   switch (format) {
     case 'DD MMM YYYY': return `${da} ${mmm} ${ye}`;
-    case 'DD MM YYYY HH:mm': return `${da} ${mm} ${ye} ${hr}:${min}`;
-    case 'DD MMM YYYY HH:mm': return `${da} ${mmm} ${ye} ${hr}:${min}`;
-    case 'DD/MM/YYYY HH:mm': return `${da}/${mm}/${ye} ${hr}:${min}`;
+    case 'DD MM YYYY HH:mm': return `${da} ${mm} ${ye} ${resetTime ? initialHr : hr}:${resetTime ? initialMin : min}`;
+    case 'DD MMM YYYY HH:mm': return `${da} ${mmm} ${ye} ${resetTime ? initialHr : hr}:${resetTime ? initialMin : min}`;
+    case 'DD/MM/YYYY HH:mm': return `${da}/${mm}/${ye} ${resetTime ? initialHr : hr}:${resetTime ? initialMin : min}`;
     case 'HH:mm': return `${hr}:${min}`
   }
 }
