@@ -13537,7 +13537,7 @@ select[name="rows-per-page"] {
 .popover.tour {
   background-color: #393C51;
   color: #ffffff;
-  min-width: 330px;
+  min-width: 375px;
 }
 
 .popover.tour>* {

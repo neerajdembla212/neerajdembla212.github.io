@@ -9,6 +9,10 @@
             lastName: false,
             mobile: false
         }
+        isStrategySettingsFormValid = {
+            managementFee: false,
+            profitSharingFee: false
+        }
         hiddenStrategyAccounts = []
 
         getRole() {
@@ -54,6 +58,21 @@
                 $('#update-profile-details').attr('disabled', 'true');
             } else {
                 $('#update-profile-details').removeAttr('disabled');
+            }
+        }
+        getIsStrategySettingsFormValid() {
+            return this.isStrategySettingsFormValid.managementFee && this.isStrategySettingsFormValid.profitSharingFee;
+        }
+
+        setIsStrategySettingsFormValid(control, data) {
+            if (typeof data !== "boolean") {
+                return
+            }
+            this.isStrategySettingsFormValid[control] = data;
+            if (!data) {
+                $('#update-strategy-settings').attr('disabled', 'true');
+            } else {
+                $('#update-strategy-settings').removeAttr('disabled');
             }
         }
 
@@ -177,6 +196,7 @@
             $('.yrMths').each((i, e) => {
                 e.textContent = translateYearMonths(e.textContent);
             })
+            registerStrategySettingsEvents();
         }
     }
 
@@ -620,6 +640,58 @@
         container.find('#mobile').val(phone);
         container.find('#country').val(country.toUpperCase());
     }
-    // fill profile settings end
+
+    function registerStrategySettingsEvents() {
+        const container = $('#strategy-settings-modal');
+        container.find('#update-strategy-settings').unbind().click(handleClickUpdateStrategySettings);
+        validateStrategySettingsInputs();
+    }
+
+    function validateStrategySettingsInputs() {
+        // fill profile settings end
+        const container = $('#strategy-settings-modal');
+        const numberOnlyMessage = i18n.t('body.common.numberOnly');
+        validateTextInput(container.find('#management-fee'), function (val) {
+            let isValid = false;
+            if (isNaN(val)) {
+                isValid = false;
+            }
+            if (val === '') {
+                isValid = true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                isValid = true
+            }
+            STATE.setIsStrategySettingsFormValid('managementFee', isValid);
+            return isValid;
+        }, numberOnlyMessage);
+
+        validateTextInput(container.find('#profit-sharing-fee'), function (val) {
+            let isValid = false;
+            if (isNaN(val)) {
+                isValid = false;
+            }
+            if (val === '') {
+                isValid = true;
+            }
+            const numVal = Number(val);
+            if (numVal >= 0) {
+                isValid = true
+            }
+            STATE.setIsStrategySettingsFormValid('profitSharingFee', isValid);
+            return isValid;
+        }, numberOnlyMessage);
+    }
+
+    function handleClickUpdateStrategySettings() {
+        const container = $('#strategy-settings-modal');
+        container.find('#management-fee').blur();
+        container.find('#profit-sharing-fee').blur();
+        if (!STATE.getIsStrategySettingsFormValid()) {
+            return;
+        }
+        container.modal('hide');
+    }
 
 })();
