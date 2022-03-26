@@ -1471,7 +1471,7 @@
             ${i18n.t('body.common.buy')}
             </button>
             <button id="place-order" type="button" class="btn btn-w-m btn-default btn-medium-blue btn-block text-white d-none">
-            Place Order
+            ${i18n.t('body.tt.placeOrder')}
             </button>
             </div>`
         } else if (status === "ORDER_PLACED") {
