@@ -234,7 +234,7 @@
       "minimumLotSize": "Saiz lot minimum ",
       "maximumLotSize": "Saiz lot maksimum ",
       "fixTakeProfit": "Take profit tetap ",
-      "fixStopLoss": "Stop loss tetap ",
+      "fixStopLoss": "Stop loss tetap",
       "limitQuantityOfSimultaneousTrades": "Hadkan Kuantiti Trade Serentak",
       "showing": "Menunjukkan",
       "to": "kepada",
@@ -272,7 +272,9 @@
       "apply": "Mohon",
       "byNumberOfTrades": "Melalui Jumlah Trade",
       "byLevelOfEquity": "Melalui Level Ekuiti",
-      "referralLinkCopied": "Pautan referral disalin"
+      "referralLinkCopied": "Pautan referral disalin",
+      "noOfTradesTooltipText": "Pilihan ini menghalang pembukaan trade baru / order pending, jika nombor trade sedia ada yang terbuka / order pending (di dalam strategi trading tersebut) di dalam akaun pembrokeran melebihi atau sama dengan nilai yang dinyatakan di dalam ruang",
+      "levelOfEquityTooltipText": "Pilihan ini menghalang pembukaan trade baru, jika ekuiti sedia ada di dalam akaun pembrokeran adalah kurang daripada jumlah yang ditetapkan."
     },
     "sp": {
       "topPerformer": "Prestasi terbaik",

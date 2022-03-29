@@ -233,8 +233,8 @@
       "riskManagement": "การบริหารความเสี่ยง",
       "minimumLotSize": "ปริมาณล็อตขั้นต่ำ",
       "maximumLotSize": "ปริมาณล็อตสูงสุด",
-      "fixTakeProfit": "Fix Take Profit",
-      "fixStopLoss": "Fix Stop Loss",
+      "fixTakeProfit": "กำหนด Take Profit",
+      "fixStopLoss": "กำหนด Stop loss",
       "limitQuantityOfSimultaneousTrades": "จำกัดปริมาณการซื้อขายพร้อมกัน",
       "showing": "กำลังแสดง",
       "to": "ถึง",
@@ -272,7 +272,9 @@
       "apply": "ใช้งาน",
       "byNumberOfTrades": "จากจำนวนการเทรด",
       "byLevelOfEquity": "จากจำนวนเงินทุน",
-      "referralLinkCopied": "คัดลอกลิงค์อ้างอิงแล้ว"
+      "referralLinkCopied": "คัดลอกลิงค์อ้างอิงแล้ว",
+      "noOfTradesTooltipText": "ตัวเลือกนี้บล็อกการเปิดการซื้อขายใหม่ / คำสั่งที่รอดำเนินการ หากจำนวนการซื้อขายที่เปิดอยู่ในปัจจุบัน / คำสั่งที่รอดำเนินการ (ในกลยุทธ์การซื้อขายที่กำหนด) ในบัญชีโบเคอเรจ เกิน หรือเท่ากับค่าที่ระบุในฟิลด์",
+      "levelOfEquityTooltipText": "ตัวเลือกนี้ จะทำการบล็อกการเปิดการซื้อขายใหม่ หากจำนวนทุนปัจจุบันในบัญชีน้อยกว่าจำนวนที่ตั้งค่าไว้"
     },
     "sp": {
       "topPerformer": "Top Performer",
@@ -282,7 +284,7 @@
       "avg/Mth": "ค่าเฉลี่ย / เดือน",
       "avgPips": "ค่าเฉลี่ย Pips",
       "managedFunds": "ค่าทำเนียมการจัดการ",
-      "advisedMin": "Advised Min",
+      "advisedMin": "ขั้นต่ำที่แนะนำ",
       "followProvider": "ติดตามผู้ให้บริการ",
       "unfollowProvider": "เลิกติดตามผู้ให้บริการ",
       "drawdown": "ขาดทุนสะสม",

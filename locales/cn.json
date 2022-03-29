@@ -272,7 +272,9 @@
       "apply": "申请",
       "byNumberOfTrades": "按交易数量",
       "byLevelOfEquity": "按权益水平",
-      "referralLinkCopied": "已复制推荐链接"
+      "referralLinkCopied": "已复制推荐链接",
+      "noOfTradesTooltipText": "若目前的经纪账户未完成交易/挂单（在指定的交易策略）数量超过或等于该字段中指定的值，此选项将阻止开通新交易/挂单。",
+      "levelOfEquityTooltipText": "若目前经纪账户的净值低于设定金额，此选项会阻止开通新交易。"
     },
     "sp": {
       "topPerformer": "表现最好的",

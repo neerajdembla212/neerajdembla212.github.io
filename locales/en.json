@@ -233,8 +233,8 @@
       "riskManagement": "Risk Management",
       "minimumLotSize": "Minimum Lot Size",
       "maximumLotSize": "Maximum Lot Size",
-      "fixTakeProfit": "Fix Take Profit",
-      "fixStopLoss": "Fix Stop Loss",
+      "fixTakeProfit": "Fixed Take Profit",
+      "fixStopLoss": "Fixed Stop Loss",
       "limitQuantityOfSimultaneousTrades": "Limit Quantity of Simultaneous Trades",
       "showing": "Showing",
       "to": "to",
@@ -272,7 +272,9 @@
       "apply": "Apply",
       "byNumberOfTrades": "By Number of Trades",
       "byLevelOfEquity": "By Level of Equity",
-      "referralLinkCopied": "Referral link copied"
+      "referralLinkCopied": "Referral link copied",
+      "noOfTradesTooltipText": "This option blocks the opening of new trades / pending orders, if the current number of open trades / pending orders (in the given trading strategy) in the bokerage account exceeds or is equal to the value specified in the field",
+      "levelOfEquityTooltipText": "This option blocks the opening of new trades, if the current equity in the brokerage account is less than the set amount."
     },
     "sp": {
       "topPerformer": "Top Performer",

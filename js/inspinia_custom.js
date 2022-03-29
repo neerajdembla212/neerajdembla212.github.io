@@ -586,11 +586,11 @@ function activateTooltips() {
   $("[data-toggle='tooltip']").tooltip({ container: 'body' })
 }
 function getNoOfTradesTooltipText() {
-  return `<b>${i18n.t('body.common.byNumberOfTrades')}</b> This option blocks the opening of new trades / pending orders, if the current number of open trades / pending orders (in the given trading strategy) in the brokerage account exceeds or is equal to the value specified in the field.`
+  return `<b>${i18n.t('body.common.byNumberOfTrades')}</b> ${i18n.t('body.common.noOfTradesTooltipText')}`
 }
 
 function getLevelOfEquityTooltipText() {
-  return `<b>${i18n.t('body.common.byLevelOfEquity')}</b> This option blocks the opening of new trades, if the current equity in the brokerage account is less than the set amount.`
+  return `<b>${i18n.t('body.common.byLevelOfEquity')}</b> ${i18n.t('body.common.levelOfEquityTooltipText')}`
 }
 // render follow provider start
 function renderFollowProviderPopup(strategyProviderDetails) {

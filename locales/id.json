@@ -233,8 +233,8 @@
       "riskManagement": "Manajemen Risiko",
       "minimumLotSize": "Ukuran Lot Minimum",
       "maximumLotSize": "Ukuran Lot Maksimum",
-      "fixTakeProfit": "Fix Take Profit",
-      "fixStopLoss": "Fix Stop Loss",
+      "fixTakeProfit": "Fixed Take Profit",
+      "fixStopLoss": "Fixed Stop Loss",
       "limitQuantityOfSimultaneousTrades": "Batasi Jumlah Perdagangan Simultan",
       "showing": "menunjukkan",
       "to": "ke",
@@ -272,7 +272,9 @@
       "apply": "Terapkan",
       "byNumberOfTrades": "Berdasarkan Jumlah Perdagangan",
       "byLevelOfEquity": "Berdasarkan Tingkat Ekuitas",
-      "referralLinkCopied": "Tautan rujukan disalin"
+      "referralLinkCopied": "Tautan rujukan disalin",
+      "noOfTradesTooltipText": "Opsi ini memblokir pembukaan perdagangan baru/pending order, jika jumlah perdagangan terbuka/pending order saat ini (dalam strategi perdagangan yang diberikan) di akun broker melebihi atau sama dengan nilai yang ditentukan di lapangan",
+      "levelOfEquityTooltipText": "Opsi ini memblokir pembukaan perdagangan baru, jika ekuitas saat ini di akun broker kurang dari jumlah yang ditetapkan."
     },
     "sp": {
       "topPerformer": "Performa Terbaik",

@@ -272,7 +272,9 @@
       "apply": "Áp dụng",
       "byNumberOfTrades": "Số lượng giao dịch",
       "byLevelOfEquity": "Cấp độ vốn chủ sở hữu",
-      "referralLinkCopied": "Sao chép liên kết giới thiệu"
+      "referralLinkCopied": "Sao chép liên kết giới thiệu",
+      "noOfTradesTooltipText": "Tùy chọn này chặn việc mở giao dịch mới / lệnh chờ, nếu số lượng giao dịch đang mở / lệnh chờ xử lý hiện tại (trong chiến lược giao dịch nhất định) trong tài khoản bokerage vượt quá hoặc bằng giá trị được chỉ định trong trường có sẵn.",
+      "levelOfEquityTooltipText": "Tùy chọn này chặn việc mở các giao dịch mới, nếu vốn chủ sở hữu hiện tại trong tài khoản môi giới nhỏ hơn số tiền đã đặt."
     },
     "sp": {
       "topPerformer": "Nhà giao dịch hàng đầu",
