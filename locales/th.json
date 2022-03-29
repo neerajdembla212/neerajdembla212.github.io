@@ -205,7 +205,7 @@
       "avgLotSize": "ค่าเฉลี่ย Lot Size",
       "automatic": "อัตโนมัติ",
       "percentage": "เปอร์เซ็นต์",
-      "fixed": "Fixed",
+      "fixed": "ล็อตคงที่",
       "proportional": "สัดส่วน",
       "automaticTabHeading": "การจัดสรรกองทุนปรับการตั้งค่าอัตโนมัติ",
       "automaticTabP1": "กระบวนการนี้เป็นไปโดยอัตโนมัติ.",
