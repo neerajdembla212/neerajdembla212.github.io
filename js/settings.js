@@ -243,7 +243,7 @@
         const role = STATE.getRole();
         if (role === 'provider') {
             callAjaxMethod({
-                url: 'https://copypip.free.beeceptor.com/strategy-provider-details?id=123',
+                url: 'https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=123',
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard();
@@ -253,7 +253,7 @@
             })
         } else if (role === 'follower') {
             callAjaxMethod({
-                url: 'https://copypip.free.beeceptor.com/strategy-follower-details?id=123',
+                url: 'https://thisisademo.huatliao.com/copypipmock/strategy-follower-details?id=123',
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard(role);
@@ -266,7 +266,7 @@
 
     function fetchTradingAccounts() {
         callAjaxMethod({
-            url: 'https://copypip.free.beeceptor.com/get-trading-accounts',
+            url: 'https://thisisademo.huatliao.com/copypipmock/get-trading-accounts',
             successCallback: (data) => {
                 STATE.setTradingAccounts(data.data);
                 if (MOBILE_MEDIA.matches) {
@@ -320,7 +320,7 @@
         <p class="mb-2 small-font font-bold text-dark-black">${i18n.t('body.settings.strategyPhilosophy')}</p>
         <p class="mb-2 text-dark-gray">${i18n.t(strategy_philosophy)}</p>
         <p class="mb-0 text-dark-gray small-font font-bold">${i18n.t('body.mp.joined')} ${formatDate(new Date(joined_date))}
-        </div> 
+        </div>
         <div class="divider"></div>` : '';
 
         const settingsButton = role === 'provider' ? `<button id="strategy" class="btn btn-default mt-3 mr-3" type="button" data-toggle="modal"
@@ -344,7 +344,7 @@
         <!-- strategy philosophy start -->
         ${strategyPhilosophyHTML}
         <!-- strategy philosophy end -->
-        
+
         <!-- strategy age start -->
         <div class="py-3 d-flex justify-content-between align-items-center">
             <p class="mb-0 font-bold small-font text-dark-black">${i18n.t('body.sp.age')}</p>

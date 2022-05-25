@@ -199,7 +199,7 @@
     const STATE = new State();
     const DESKTOP_MEDIA = window.matchMedia("(max-width: 992px)")
     const MOBILE_MEDIA = window.matchMedia("(max-width: 480px)")
-    // document ready function 
+    // document ready function
     $(function () {
         const accountNo = localStorage.getItem('selectedAccountNo');
         const accontType = localStorage.getItem('selectedAccountType');
@@ -258,7 +258,7 @@
         MOBILE_MEDIA.addEventListener('change', updateTabNames)
         updateTabNames(MOBILE_MEDIA);
 
-        // chart filter 
+        // chart filter
         $('.chart-filter .btn').unbind().click(event => {
             const target = $(event.currentTarget);
             $('.chart-filter .btn').removeClass('active');
@@ -277,7 +277,7 @@
             animation: true
         })
 
-        // watchlist search 
+        // watchlist search
         $('#search-currency').unbind().change(function (event) {
             console.log(event)
             const searchQuery = event.currentTarget.value;
@@ -365,7 +365,7 @@
     function fetchOpenTrades() {
         const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/open-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/open-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
@@ -382,7 +382,7 @@
     function fetchPendingTrades() {
         const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/pending-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/pending-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
@@ -399,7 +399,7 @@
     function fetchClosedTrades() {
         const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/closed-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/closed-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
@@ -415,7 +415,7 @@
 
     function fetchWatchList() {
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/get-watchlist",
+            url: "https://thisisademo.huatliao.com/copypipmock/get-watchlist",
             successCallback: (data) => {
                 STATE.setWatchList(data.data);
                 renderWatchlists();
@@ -425,7 +425,7 @@
 
     function fetchCurrenciesSearch(query) {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/search-currency?q=${query}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/search-currency?q=${query}`,
             successCallback: (data) => {
                 STATE.setCurrencySearchResult(data.data);
                 renderCurrencySearchResult();
@@ -435,7 +435,7 @@
 
     // Api call functions end
     function resetPagination() {
-        // reset pagination 
+        // reset pagination
         const paginationData = STATE.getPaginationData();
         paginationData.page = 0;
         paginationData.rowsPerPage = 10
@@ -802,17 +802,17 @@
                 <p class="mb-0 responsive-label text-center">${i18n.t('body.tt.openPrice')}</p>
                 <p class="mb-0 font-bold responsive-value">${open_price}</p>
             </div>
-            
+
             <div class="mr-3 d-flex flex-column justify-content-between">
                 <p class="mb-0 responsive-label text-center">${i18n.t('body.common.volume')}</p>
                 <p class="mb-0 font-bold responsive-value">${trade_volume}</p>
             </div>
-            
+
             <div class="mr-3 d-flex flex-column justify-content-between">
                 <p class="mb-0 responsive-label text-center">SL</p>
                 <p class="mb-0 font-bold responsive-value">${sl}</p>
             </div>
-            
+
             <div class="mr-3 d-flex flex-column justify-content-between">
                 <p class="mb-0 responsive-label text-center">TP</p>
                 <p class="mb-0 font-bold responsive-value">${tp}</p>
@@ -970,7 +970,7 @@
               <button class="btn btn-default border-0" type="button" id="next-page-pending-trade">
                   <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
               </button>
-              
+
           </ul>
           </div>
           </td>
@@ -1181,7 +1181,7 @@
                   <button class="btn btn-default border-0" type="button" id="next-page-closed-trade">
                       <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
                   </button>
-                  
+
               </ul>
               </div>
               </td>
@@ -1535,7 +1535,7 @@
             </div>
             <!-- Order Type input end -->
             <div class="divider mb-3"></div>
-            
+
             <!-- Expiration input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expiration')}</p>
@@ -1543,7 +1543,7 @@
             </div>
             <!-- Expiration input end -->
             <div class="divider mb-3"></div>
-            
+
             <!-- Expiration Date input start -->
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <p class="mb-0 font-weight-light medium-font">${i18n.t('body.common.expirationDate')}</p>
@@ -1740,7 +1740,7 @@
         if (buySellData.type === 'market_execution') {
             // call an api here and on success render buy sell data
             callAjaxMethod({
-                url: 'https://copypip.free.beeceptor.com/initiate-trade',
+                url: 'https://thisisademo.huatliao.com/copypipmock/initiate-trade',
                 method: 'POST',
                 successCallback: () => {
                     handleBuySellTradeSuccess(buySellData);
@@ -1751,7 +1751,7 @@
             })
         } else if (buySellData.type === 'pending_order') {
             callAjaxMethod({
-                url: 'https://copypip.free.beeceptor.com/place-order',
+                url: 'https://thisisademo.huatliao.com/copypipmock/place-order',
                 method: 'POST',
                 successCallback: () => {
                     handleBuySellTradeSuccess(buySellData);
@@ -1879,7 +1879,7 @@
         })
     }
     function validateBuySellInputs(container) {
-        // validate volume input 
+        // validate volume input
         validateTextInput(container.find('#volume-input'), function (val) {
             let isValid = false;
             if (isNaN(val)) {
@@ -1956,7 +1956,7 @@
     // render edit trade popup start
     function fetchOpenTradeDetails(tradeId, name) {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-open-trade?id=${tradeId}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/get-open-trade?id=${tradeId}`,
             successCallback: (data) => {
                 STATE.setTradeDetails(data.data);
                 renderEditTradeModal();
@@ -1983,7 +1983,7 @@
 
     function fetchPendingTradeDetails(tradeId, name) {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-pending-trade?id=${tradeId}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/get-pending-trade?id=${tradeId}`,
             successCallback: (data) => {
                 if (name === 'cancel-trade-cta') {
                     const buySellData = STATE.getBuySellData();
@@ -2013,7 +2013,7 @@
 
     function fetchClosedTradeDetails(tradeId) {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-closed-trade?id=${tradeId}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/get-closed-trade?id=${tradeId}`,
             successCallback: (data) => {
                 STATE.setTradeDetails(data.data);
                 renderEditTradeModal();
@@ -2663,7 +2663,7 @@
         <div class="d-flex justify-content-between align-items-center mx-2 py-2 currency-row">
             <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
             <p class="mb-0 font-bold">${currency_rate}</p>
-            <div>    
+            <div>
                 <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold medium-font">${currency_delta_amount}</p>
                 <div class="d-flex align-items-center">
                     <i class="${currency_delta_amount > 0 ? 'up-arrow-green' : 'down-arrow arrow-red'} mr-1"></i>
@@ -2731,7 +2731,7 @@
             const currentTarget = $(event.currentTarget);
             const currencyId = currentTarget.data('currency-id');
             const watchListId = currentTarget.data('watchlist-id');
-            // remove this currency from watchlist and re-render 
+            // remove this currency from watchlist and re-render
             const watchListObj = STATE.getWatchList().find(obj => +obj.id === +watchListId)
             const currencyIndex = watchListObj.currencies.findIndex(currency => currency.id === currencyId);
             watchListObj.currencies.splice(currencyIndex, 1);
@@ -2812,7 +2812,7 @@
         <div class="d-flex justify-content-between align-items-center mx-2 py-2">
             <p class="mb-0 font-bold text-dark-black">${from_currency}${to_currency}</p>
             <p class="mb-0 font-bold">${currency_rate}</p>
-            <div>    
+            <div>
                 <p class="mb-0 ${currency_delta_amount > 0 ? 'text-dark-green' : 'text-negative-red'} font-bold medium-font">${currency_delta_amount}</p>
                 <div class="d-flex align-items-center">
                     <i class="${currency_delta_amount > 0 ? 'up-arrow-green' : 'down-arrow arrow-red'} mr-1"></i>
@@ -2864,7 +2864,7 @@
     }
     // render currencies search result end
 
-    // Add new Watchlist 
+    // Add new Watchlist
     function addNewWatchList() {
         const watchList = STATE.getWatchList();
 
@@ -2877,7 +2877,7 @@
         renderWatchlists();
     }
 
-    // render pinned currencies start 
+    // render pinned currencies start
     function renderPinnedCurrencies() {
         const pinnedCurrencies = STATE.getPinnedCurrencies();
         const container = $('.trade-terminal-page .pinned-currency-container');

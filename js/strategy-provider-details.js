@@ -85,7 +85,7 @@
 
   function fetchLineData() {
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/strategy-details-line-data",
+      url: "https://thisisademo.huatliao.com/copypipmock/strategy-details-line-data",
       successCallback: (data) => {
         STATE.setLineChartData(data.data);
         plotLineChart()
@@ -96,7 +96,7 @@
   function fetchTradeHistory() {
     const paginationData = STATE.getPaginationData();
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/strategy-provider-trade-history?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-trade-history?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
       successCallback: (data) => {
         paginationData.total = data.total;
         STATE.setPaginationData(paginationData);
@@ -108,7 +108,7 @@
 
   function fetchProviderDetails() {
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${STATE.getProviderId()}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${STATE.getProviderId()}`,
       successCallback: (data) => {
         STATE.setProviderDetails(data.data);
         renderProviderDetailsSection();
@@ -396,7 +396,7 @@
                 <td class="text-center align-middle font-bold ${+profit > 0 ? 'text-dark-green' : 'text-bleed-red'}">
                   ${profitText}
                 </td>
-                
+
             </tr>
             `
   }

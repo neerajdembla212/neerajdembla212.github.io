@@ -101,7 +101,7 @@
   // Document ready
   $(function () {
     registerGlobalEvents();
-    // fetch and render add strategy provider dropdown 
+    // fetch and render add strategy provider dropdown
     fetchStrategyProvidersSearch();
     plotEmptyLineChart();
     // global function
@@ -288,7 +288,7 @@
     // datepicker init
     initDatePicker();
 
-    // chart fileter buttons 
+    // chart fileter buttons
     $('.chart-filter .btn').click(event => {
       const target = $(event.currentTarget);
       $('.chart-filter .btn').removeClass('active');
@@ -349,7 +349,7 @@
       renderSparkline();
       $('.calculate-card .input-amount').attr("placeholder", i18n.t('body.simulation.inputAmount'));
       $('#providers-search').attr("placeholder", i18n.t('body.simulation.searchProviders'));
-      // activate dynamic Tooltips 
+      // activate dynamic Tooltips
       activateTooltips();
     }
   }
@@ -370,7 +370,7 @@
   // fetch api methods start
   function fetchStrategyProviders() {
     callAjaxMethod({
-      url: 'https://copypip.free.beeceptor.com/get-portfolio-users/providers',
+      url: 'https://thisisademo.huatliao.com/copypipmock/get-portfolio-users/providers',
       successCallback: (data) => {
         STATE.setStrategyProviders(data.data);
         renderStrategyProviders();
@@ -380,11 +380,11 @@
 
   function fetchStrategyDetails() {
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/get-strategy-details`,
+      url: `https://thisisademo.huatliao.com/copypipmock/get-strategy-details`,
       successCallback: (data) => {
         STATE.setStrategyDetails(data.data);
         renderSparkline();
-        // activate dynamic Tooltips 
+        // activate dynamic Tooltips
         activateTooltips();
       }
     })
@@ -392,7 +392,7 @@
 
   function fetchLineData() {
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/portfolio-line-data",
+      url: "https://thisisademo.huatliao.com/copypipmock/portfolio-line-data",
       successCallback: (data) => {
         STATE.setLineChartData(data.data);
         plotLineChart()
@@ -402,7 +402,7 @@
 
   function fetchStrategyProvidersSearch() {
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/strategy-providers",
+      url: "https://thisisademo.huatliao.com/copypipmock/strategy-providers",
       successCallback: (data) => {
         STATE.setStrategyProvidersSearchResult(data.data);
         renderSearchStrategyProvider();
@@ -413,7 +413,7 @@
 
   function fetchStrategyProviderDetails(providerId) {
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${providerId}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${providerId}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
         renderStrategyProviderModal();
@@ -849,7 +849,7 @@
   // render sparkline end
 
   // render line chart start
-  // Plot Line chart 
+  // Plot Line chart
   function plotLineChart() {
     const canvas = document.querySelector(".simulation-line-chart #line-chart");
     const lineData = STATE.getLineChartData();
@@ -1051,7 +1051,7 @@
       fetchStrategyProviders();
       $('#add-provider-modal').modal('hide');
     })
-    // Global function 
+    // Global function
     readMoreLessEventHandler()
     // show hide fields based on limit quantity checkbox
     $('#limit-quantity-checkbox').unbind().click(function () {
@@ -1067,7 +1067,7 @@
 
     // activate tooltips
     activateTooltips();
-    validateFollowProviderPopupInputs($('#add-provider-modal')); // global function 
+    validateFollowProviderPopupInputs($('#add-provider-modal')); // global function
   }
   // render strategy provider modal end
 

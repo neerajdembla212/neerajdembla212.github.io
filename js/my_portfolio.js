@@ -270,11 +270,11 @@
     // This function fetch strategy details and render sparkline
     function fetchStrategyDetails() {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-strategy-details/${STATE.getRole()}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/get-strategy-details/${STATE.getRole()}`,
             successCallback: (data) => {
                 STATE.setStrategyDetails(data.data);
                 renderSparkline(STATE.getRole());
-                // activate dynamic Tooltips 
+                // activate dynamic Tooltips
                 activateTooltips();
             }
         })
@@ -283,7 +283,7 @@
     // This function will fetch line data and plot line chart
     function fetchLineData() {
         callAjaxMethod({
-            url: "https://copypip.free.beeceptor.com/portfolio-line-data",
+            url: "https://thisisademo.huatliao.com/copypipmock/portfolio-line-data",
             successCallback: (data) => {
                 STATE.setLineChartData(data.data);
                 plotLineChart()
@@ -313,7 +313,7 @@
         renderSeletedFilters();
         const filterQueryParams = getSelectedFiltersQueryParams(STATE.getSelectedTableFilters());
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-portfolio-users/providers${filterQueryParams}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/get-portfolio-users/providers${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
@@ -331,7 +331,7 @@
         renderSeletedFilters();
         const filterQueryParams = getSelectedFiltersQueryParams(STATE.getSelectedTableFilters());
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/get-portfolio-users/followers${filterQueryParams}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/get-portfolio-users/followers${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
@@ -345,7 +345,7 @@
 
     function fetchStrategyProviderDetails(id) {
         callAjaxMethod({
-            url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${id}`,
+            url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${id}`,
             successCallback: (data) => {
                 STATE.setStrategyProviderDetails(data.data)
                 renderFollowProviderPopup(data.data);
@@ -985,7 +985,7 @@
         <td class="font-bold text-center align-middle">
         S$${formatWithCommas(com_earned)}
         </td>
-      
+
         <td class="action-tools align-middle">
          ${getStrategyFollowersActionColumn(id, is_new, name, isPaused)}
         </td>
@@ -999,7 +999,7 @@
 
         if (isNew) {
             return `<div class="actions-btn-container m-auto d-flex justify-space-between">
-                <button class="btn btn-white text-dark-green font-bold px-1 mr-2 accept-follower-cta" type="button" data-id="${id}">${i18n.t('body.mp.accept')}</button> 
+                <button class="btn btn-white text-dark-green font-bold px-1 mr-2 accept-follower-cta" type="button" data-id="${id}">${i18n.t('body.mp.accept')}</button>
                 <button class="btn btn-default text-bleed-red font-bold px-1 reject-follower-cta" type="button" data-id="${id}">${i18n.t('body.mp.reject')}</button>
             </div>`
         } else {
@@ -1384,9 +1384,9 @@
 
     function removeAppliedFilter() {
         const filterId = $(this).parent('.currency-chip').data('id');
-        // remove selected filter from state 
+        // remove selected filter from state
         STATE.removeSelectedFilter(filterId);
-        // update dropdowm filter list items 
+        // update dropdowm filter list items
         const defaultFilter = STATE.getDefaultFilterItems().find(f => f.id === filterId);
         const dropdownFilterItems = STATE.getDropdownFilterItems();
         const dropdownFilterItemIndex = dropdownFilterItems.findIndex(f => f.id === filterId);
@@ -1394,7 +1394,7 @@
             dropdownFilterItems[dropdownFilterItemIndex].filterOperation = defaultFilter.filterOperation;
             dropdownFilterItems[dropdownFilterItemIndex].filterValue = defaultFilter.filterValue;
         }
-        // fetch and render table based on role 
+        // fetch and render table based on role
         fetchListOfUsers();
     }
 
@@ -1404,7 +1404,7 @@
         }
         const { id, displayName, filterOperation, filterValue, filterPercentage, filterParam } = filter;
         return `
-        <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer" 
+        <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer"
         data-id="${id}"
         data-filter-name="${displayName}"
         data-filter-operation="${filterOperation}"
@@ -1419,7 +1419,7 @@
     function onApplyFilter(selectedFilter) {
         console.log('filter applied ', selectedFilter);
         STATE.addSelectedFilter(selectedFilter); // update filter chips
-        // update filter items list 
+        // update filter items list
         const filterItems = STATE.getDropdownFilterItems();
         const filterItemIndex = filterItems.findIndex(f => f.id === selectedFilter.id)
         if (filterItemIndex > -1) {
@@ -1470,7 +1470,7 @@
         }
     }
 
-    // Plot Line chart 
+    // Plot Line chart
 
     function plotLineChart() {
         const canvas = document.getElementById("line-chart");

@@ -89,7 +89,7 @@ function delete_cookie(name) {
 }
 
 function registerEventHandlers() {
-  // navigating pages 
+  // navigating pages
   $('nav .metismenu li a[data-href]').unbind().click(function (event) {
     const target = $(event.currentTarget).data('href');
     if (target === window.location.pathname) {
@@ -173,7 +173,7 @@ function registerEventHandlers() {
 
 function fetchGlobalSearch(searchQuery) {
   callAjaxMethod({
-    url: `https://copypip.free.beeceptor.com/global-search?q=${searchQuery}`,
+    url: `https://thisisademo.huatliao.com/copypipmock/global-search?q=${searchQuery}`,
     successCallback: (data) => {
       renderGlobalSearchResult(data.data);
     },
@@ -199,7 +199,7 @@ function getGlobalSearchResultHTML(data, isLast) {
         <p class="m-0 p-0 font-weight-bold">${username}</p>
       </div>
       <p class="p-0 m-0 font-weight-light">${role}</p>
-    </div>  
+    </div>
   `
 }
 
@@ -216,7 +216,7 @@ function readMoreLessEventHandler() {
 // set init data
 function initData() {
   callAjaxMethod({
-    url: 'https://copypip.free.beeceptor.com/get-user-config',
+    url: 'https://thisisademo.huatliao.com/copypipmock/get-user-config',
     successCallback: (data) => {
       localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
       const defaultAccount = data.data.defaultAccount;
@@ -374,7 +374,7 @@ function callAjaxMethod({
   }
 }
 // fetch buy sell initial data start
-// Buy sell popup events 
+// Buy sell popup events
 
 function registerBuySellModalEvents(data) {
   if (!data) {
@@ -437,7 +437,7 @@ function registerBuySellModalEvents(data) {
 // fetch notifications start
 function fetchNotifications() {
   callAjaxMethod({
-    url: "https://copypip.free.beeceptor.com/notifications",
+    url: "https://thisisademo.huatliao.com/copypipmock/notifications",
     successCallback: (data) => {
       renderNotifications(data.data);
       $('.notifications-container .label-notification').text(data.newNotificationCount)
@@ -882,16 +882,16 @@ function getFollowProviderPopupFooter() {
 
 function validateFollowProviderPopupInputs(container) {
   const numberOnlyMessage = i18n.t('body.common.numberOnly');
-  // validate Minimum lot size input 
+  // validate Minimum lot size input
   validateTextInput(container.find('#min-lot-size'), validateNumber, numberOnlyMessage)
 
-  // validate Maximum lot size input 
+  // validate Maximum lot size input
   validateTextInput(container.find('#max-lot-size'), validateNumber, numberOnlyMessage)
 
-  // validate Take profit input 
+  // validate Take profit input
   validateTextInput(container.find('#take-profit-input'), validateNumber, numberOnlyMessage)
 
-  // validate Stop loss input 
+  // validate Stop loss input
   validateTextInput(container.find('#stop-loss-input'), validateNumber, numberOnlyMessage)
 
   // validate number of trades
@@ -1158,7 +1158,7 @@ function registerDropdownMenuInputEvents(filter, onApplyFilter) {
   })
 }
 
-// process selected filters and create query params 
+// process selected filters and create query params
 function getSelectedFiltersQueryParams(selectedFilters) {
   if (!selectedFilters || !Array.isArray(selectedFilters)) {
     return '';
@@ -1219,7 +1219,7 @@ function validateTextInput(target, test = () => { }, errorMessage = i18n.t('body
 
 // validate buy sell popup inputs
 function validateBuySellPopupInputs() {
-  // validate volume input 
+  // validate volume input
   validateTextInput($('#buy-sell-modal #volume-input'), function (val) {
     if (isNaN(val)) {
       return false;
@@ -1703,7 +1703,7 @@ function registerBuySellEvents() {
 }
 
 function validateBuySellInputs(container) {
-  // validate volume input 
+  // validate volume input
   validateTextInput(container.find('#volume-input'), function (val) {
     let isValid = false;
     if (isNaN(val)) {
@@ -1803,7 +1803,7 @@ function handleClickBuySellTrade(status) {
   if (buySellData.type === 'market_execution') {
     // call an api here and on success render buy sell data
     callAjaxMethod({
-      url: 'https://copypip.free.beeceptor.com/initiate-trade',
+      url: 'https://thisisademo.huatliao.com/copypipmock/initiate-trade',
       method: 'POST',
       successCallback: () => {
         handleBuySellTradeSuccess(buySellData);
@@ -1814,7 +1814,7 @@ function handleClickBuySellTrade(status) {
     })
   } else if (buySellData.type === 'pending_order') {
     callAjaxMethod({
-      url: 'https://copypip.free.beeceptor.com/place-order',
+      url: 'https://thisisademo.huatliao.com/copypipmock/place-order',
       method: 'POST',
       successCallback: () => {
         handleBuySellTradeSuccess(buySellData);

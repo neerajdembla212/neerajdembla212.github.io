@@ -206,7 +206,7 @@
   }
 
   // creating state object which will contain application data fetched from api in memory for SP page only.
-  // every page will have a similar structure to store data for their view. 
+  // every page will have a similar structure to store data for their view.
   // NOTE : This state structure ensures whenever data changes by any function / api they call methods of state data fist to update data and then update UI
   // however this structure doesn't support data sharing between two pages, for that we have to rely upon api or local storage
   const STATE = new State();
@@ -226,7 +226,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/top-growth${filterQueryParams}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/users/top-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -245,7 +245,7 @@
 
   function fetchFeaturedProviders(activeTabId) {
     callAjaxMethod({
-      url: "https://copypip.free.beeceptor.com/users/featured-providers",
+      url: "https://thisisademo.huatliao.com/copypipmock/users/featured-providers",
       successCallback: (data) => {
         STATE.setFeaturedProviders(data.data);
         const viewType = getCurrentViewType();
@@ -262,7 +262,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/following${filterQueryParams}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/users/following${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -283,7 +283,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/favourites${filterQueryParams}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/users/favourites${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -301,7 +301,7 @@
 
   function fetchStrategyProviderDetails(id) {
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/strategy-provider-details?id=${id}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${id}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
         // global function (insipnia_custom.js)
@@ -314,7 +314,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/low-growth${filterQueryParams}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/users/low-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -334,7 +334,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/mid-growth${filterQueryParams}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/users/mid-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -354,7 +354,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://copypip.free.beeceptor.com/users/high-growth${filterQueryParams}`,
+      url: `https://thisisademo.huatliao.com/copypipmock/users/high-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -840,7 +840,7 @@
     // redirect on click of contact box
     $('.strategy-provider-section .contact-box').unbind().click(showStrategyProviderDetailsPage)
 
-    // follow provider popup 
+    // follow provider popup
     const activeTabId = getActiveTab().attr('href');
     $(`${activeTabId} .panel-body .contact-box`).click(event => {
       const id = $(event.currentTarget).data('id')
@@ -1408,12 +1408,12 @@
         <button class="btn btn-default border-0" type="button" id="next-page-sp" disabled="true">
             <i class="fa fa-angle-right extra-large-font font-weight-bold"></i>
         </button>
-        
+
     </ul>
     </div>
     `
   }
-  // render user table responsive HTML end 
+  // render user table responsive HTML end
 
   // render featured providers card HTML start
   function plotFeaturedProviersCard(data) {
@@ -1769,9 +1769,9 @@
 
   function removeAppliedFilter() {
     const filterId = $(this).parent('.currency-chip').data('id');
-    // remove selected filter from state 
+    // remove selected filter from state
     STATE.removeSelectedFilter(filterId);
-    // update dropdowm filter list items 
+    // update dropdowm filter list items
     const defaultFilter = defaultFilterItems.find(f => f.id === filterId);
     const dropdownFilterItems = STATE.getState().dropdownFilterItems;
     const dropdownFilterItemIndex = dropdownFilterItems.findIndex(f => f.id === filterId);
@@ -1790,7 +1790,7 @@
     }
     const { id, displayName, filterOperation, filterValue, filterPercentage, filterParam } = filter;
     return `
-    <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer" 
+    <li class="dropdown-item d-flex justify-content-between p-3 cursor-pointer"
     data-id="${id}"
     data-filter-name="${displayName}"
     data-filter-operation="${filterOperation}"
@@ -1806,7 +1806,7 @@
   function onApplyFilter(selectedFilter) {
     console.log('filter applied ', selectedFilter);
     STATE.addSelectedFilter(selectedFilter); // update filter chips
-    // update filter items list 
+    // update filter items list
     const filterItems = STATE.getState().dropdownFilterItems;
     const filterItemIndex = filterItems.findIndex(f => f.id === selectedFilter.id)
     if (filterItemIndex > -1) {
