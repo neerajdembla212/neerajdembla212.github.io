@@ -226,7 +226,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/users/top-growth${filterQueryParams}`,
+      url: `https://mockapi.huatliao.com/copypip/users/top-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -245,7 +245,7 @@
 
   function fetchFeaturedProviders(activeTabId) {
     callAjaxMethod({
-      url: "https://thisisademo.huatliao.com/copypipmock/users/featured-providers",
+      url: "https://mockapi.huatliao.com/copypip/users/featured-providers",
       successCallback: (data) => {
         STATE.setFeaturedProviders(data.data);
         const viewType = getCurrentViewType();
@@ -262,7 +262,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/users/following${filterQueryParams}`,
+      url: `https://mockapi.huatliao.com/copypip/users/following${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -283,7 +283,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/users/favourites${filterQueryParams}`,
+      url: `https://mockapi.huatliao.com/copypip/users/favourites${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -301,7 +301,7 @@
 
   function fetchStrategyProviderDetails(id) {
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${id}`,
+      url: `https://mockapi.huatliao.com/copypip/strategy-provider-details?id=${id}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
         // global function (insipnia_custom.js)
@@ -314,7 +314,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/users/low-growth${filterQueryParams}`,
+      url: `https://mockapi.huatliao.com/copypip/users/low-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -334,7 +334,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/users/mid-growth${filterQueryParams}`,
+      url: `https://mockapi.huatliao.com/copypip/users/mid-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;
@@ -354,7 +354,7 @@
     renderSeletedFilters();
     const filterQueryParams = getSelectedFiltersQueryParams(STATE.getState().selectedTableFilters);
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/users/high-growth${filterQueryParams}`,
+      url: `https://mockapi.huatliao.com/copypip/users/high-growth${filterQueryParams}`,
       successCallback: (data) => {
         const paginationData = STATE.getState().paginationData;
         paginationData.total = data.total;

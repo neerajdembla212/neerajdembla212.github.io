@@ -370,7 +370,7 @@
   // fetch api methods start
   function fetchStrategyProviders() {
     callAjaxMethod({
-      url: 'https://thisisademo.huatliao.com/copypipmock/get-portfolio-users/providers',
+      url: 'https://mockapi.huatliao.com/copypip/get-portfolio-users/providers',
       successCallback: (data) => {
         STATE.setStrategyProviders(data.data);
         renderStrategyProviders();
@@ -380,7 +380,7 @@
 
   function fetchStrategyDetails() {
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/get-strategy-details`,
+      url: `https://mockapi.huatliao.com/copypip/get-strategy-details`,
       successCallback: (data) => {
         STATE.setStrategyDetails(data.data);
         renderSparkline();
@@ -392,7 +392,7 @@
 
   function fetchLineData() {
     callAjaxMethod({
-      url: "https://thisisademo.huatliao.com/copypipmock/portfolio-line-data",
+      url: "https://mockapi.huatliao.com/copypip/portfolio-line-data",
       successCallback: (data) => {
         STATE.setLineChartData(data.data);
         plotLineChart()
@@ -402,7 +402,7 @@
 
   function fetchStrategyProvidersSearch() {
     callAjaxMethod({
-      url: "https://thisisademo.huatliao.com/copypipmock/strategy-providers",
+      url: "https://mockapi.huatliao.com/copypip/strategy-providers",
       successCallback: (data) => {
         STATE.setStrategyProvidersSearchResult(data.data);
         renderSearchStrategyProvider();
@@ -413,7 +413,7 @@
 
   function fetchStrategyProviderDetails(providerId) {
     callAjaxMethod({
-      url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${providerId}`,
+      url: `https://mockapi.huatliao.com/copypip/strategy-provider-details?id=${providerId}`,
       successCallback: (data) => {
         STATE.setStrategyProviderDetails(data.data);
         renderStrategyProviderModal();

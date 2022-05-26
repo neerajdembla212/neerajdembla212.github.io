@@ -173,7 +173,7 @@ function registerEventHandlers() {
 
 function fetchGlobalSearch(searchQuery) {
   callAjaxMethod({
-    url: `https://thisisademo.huatliao.com/copypipmock/global-search?q=${searchQuery}`,
+    url: `https://mockapi.huatliao.com/copypip/global-search?q=${searchQuery}`,
     successCallback: (data) => {
       renderGlobalSearchResult(data.data);
     },
@@ -216,7 +216,7 @@ function readMoreLessEventHandler() {
 // set init data
 function initData() {
   callAjaxMethod({
-    url: 'https://thisisademo.huatliao.com/copypipmock/get-user-config',
+    url: 'https://mockapi.huatliao.com/copypip/get-user-config',
     successCallback: (data) => {
       localStorage.setItem('userAccounts', JSON.stringify(data.data.userAccounts));
       const defaultAccount = data.data.defaultAccount;
@@ -437,7 +437,7 @@ function registerBuySellModalEvents(data) {
 // fetch notifications start
 function fetchNotifications() {
   callAjaxMethod({
-    url: "https://thisisademo.huatliao.com/copypipmock/notifications",
+    url: "https://mockapi.huatliao.com/copypip/notifications",
     successCallback: (data) => {
       renderNotifications(data.data);
       $('.notifications-container .label-notification').text(data.newNotificationCount)
@@ -1803,7 +1803,7 @@ function handleClickBuySellTrade(status) {
   if (buySellData.type === 'market_execution') {
     // call an api here and on success render buy sell data
     callAjaxMethod({
-      url: 'https://thisisademo.huatliao.com/copypipmock/initiate-trade',
+      url: 'https://mockapi.huatliao.com/copypip/initiate-trade',
       method: 'POST',
       successCallback: () => {
         handleBuySellTradeSuccess(buySellData);
@@ -1814,7 +1814,7 @@ function handleClickBuySellTrade(status) {
     })
   } else if (buySellData.type === 'pending_order') {
     callAjaxMethod({
-      url: 'https://thisisademo.huatliao.com/copypipmock/place-order',
+      url: 'https://mockapi.huatliao.com/copypip/place-order',
       method: 'POST',
       successCallback: () => {
         handleBuySellTradeSuccess(buySellData);

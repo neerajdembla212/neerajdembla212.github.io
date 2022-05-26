@@ -365,7 +365,7 @@
     function fetchOpenTrades() {
         const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/open-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+            url: `https://mockapi.huatliao.com/copypip/open-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
@@ -382,7 +382,7 @@
     function fetchPendingTrades() {
         const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/pending-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+            url: `https://mockapi.huatliao.com/copypip/pending-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
@@ -399,7 +399,7 @@
     function fetchClosedTrades() {
         const paginationData = STATE.getPaginationData();
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/closed-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
+            url: `https://mockapi.huatliao.com/copypip/closed-trades?limit=${paginationData.rowsPerPage}?page=${paginationData.page}`,
             successCallback: (data) => {
                 paginationData.total = data.total;
                 STATE.setPaginationData(paginationData);
@@ -415,7 +415,7 @@
 
     function fetchWatchList() {
         callAjaxMethod({
-            url: "https://thisisademo.huatliao.com/copypipmock/get-watchlist",
+            url: "https://mockapi.huatliao.com/copypip/get-watchlist",
             successCallback: (data) => {
                 STATE.setWatchList(data.data);
                 renderWatchlists();
@@ -425,7 +425,7 @@
 
     function fetchCurrenciesSearch(query) {
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/search-currency?q=${query}`,
+            url: `https://mockapi.huatliao.com/copypip/search-currency?q=${query}`,
             successCallback: (data) => {
                 STATE.setCurrencySearchResult(data.data);
                 renderCurrencySearchResult();
@@ -1740,7 +1740,7 @@
         if (buySellData.type === 'market_execution') {
             // call an api here and on success render buy sell data
             callAjaxMethod({
-                url: 'https://thisisademo.huatliao.com/copypipmock/initiate-trade',
+                url: 'https://mockapi.huatliao.com/copypip/initiate-trade',
                 method: 'POST',
                 successCallback: () => {
                     handleBuySellTradeSuccess(buySellData);
@@ -1751,7 +1751,7 @@
             })
         } else if (buySellData.type === 'pending_order') {
             callAjaxMethod({
-                url: 'https://thisisademo.huatliao.com/copypipmock/place-order',
+                url: 'https://mockapi.huatliao.com/copypip/place-order',
                 method: 'POST',
                 successCallback: () => {
                     handleBuySellTradeSuccess(buySellData);
@@ -1956,7 +1956,7 @@
     // render edit trade popup start
     function fetchOpenTradeDetails(tradeId, name) {
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/get-open-trade?id=${tradeId}`,
+            url: `https://mockapi.huatliao.com/copypip/get-open-trade?id=${tradeId}`,
             successCallback: (data) => {
                 STATE.setTradeDetails(data.data);
                 renderEditTradeModal();
@@ -1983,7 +1983,7 @@
 
     function fetchPendingTradeDetails(tradeId, name) {
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/get-pending-trade?id=${tradeId}`,
+            url: `https://mockapi.huatliao.com/copypip/get-pending-trade?id=${tradeId}`,
             successCallback: (data) => {
                 if (name === 'cancel-trade-cta') {
                     const buySellData = STATE.getBuySellData();
@@ -2013,7 +2013,7 @@
 
     function fetchClosedTradeDetails(tradeId) {
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/get-closed-trade?id=${tradeId}`,
+            url: `https://mockapi.huatliao.com/copypip/get-closed-trade?id=${tradeId}`,
             successCallback: (data) => {
                 STATE.setTradeDetails(data.data);
                 renderEditTradeModal();

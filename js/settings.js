@@ -243,7 +243,7 @@
         const role = STATE.getRole();
         if (role === 'provider') {
             callAjaxMethod({
-                url: 'https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=123',
+                url: 'https://mockapi.huatliao.com/copypip/strategy-provider-details?id=123',
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard();
@@ -253,7 +253,7 @@
             })
         } else if (role === 'follower') {
             callAjaxMethod({
-                url: 'https://thisisademo.huatliao.com/copypipmock/strategy-follower-details?id=123',
+                url: 'https://mockapi.huatliao.com/copypip/strategy-follower-details?id=123',
                 successCallback: (data) => {
                     STATE.setProfileDetails(data.data);
                     renderBasicProfileCard(role);
@@ -266,7 +266,7 @@
 
     function fetchTradingAccounts() {
         callAjaxMethod({
-            url: 'https://thisisademo.huatliao.com/copypipmock/get-trading-accounts',
+            url: 'https://mockapi.huatliao.com/copypip/get-trading-accounts',
             successCallback: (data) => {
                 STATE.setTradingAccounts(data.data);
                 if (MOBILE_MEDIA.matches) {

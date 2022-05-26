@@ -270,7 +270,7 @@
     // This function fetch strategy details and render sparkline
     function fetchStrategyDetails() {
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/get-strategy-details/${STATE.getRole()}`,
+            url: `https://mockapi.huatliao.com/copypip/get-strategy-details/${STATE.getRole()}`,
             successCallback: (data) => {
                 STATE.setStrategyDetails(data.data);
                 renderSparkline(STATE.getRole());
@@ -283,7 +283,7 @@
     // This function will fetch line data and plot line chart
     function fetchLineData() {
         callAjaxMethod({
-            url: "https://thisisademo.huatliao.com/copypipmock/portfolio-line-data",
+            url: "https://mockapi.huatliao.com/copypip/portfolio-line-data",
             successCallback: (data) => {
                 STATE.setLineChartData(data.data);
                 plotLineChart()
@@ -313,7 +313,7 @@
         renderSeletedFilters();
         const filterQueryParams = getSelectedFiltersQueryParams(STATE.getSelectedTableFilters());
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/get-portfolio-users/providers${filterQueryParams}`,
+            url: `https://mockapi.huatliao.com/copypip/get-portfolio-users/providers${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
@@ -331,7 +331,7 @@
         renderSeletedFilters();
         const filterQueryParams = getSelectedFiltersQueryParams(STATE.getSelectedTableFilters());
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/get-portfolio-users/followers${filterQueryParams}`,
+            url: `https://mockapi.huatliao.com/copypip/get-portfolio-users/followers${filterQueryParams}`,
             successCallback: (data) => {
                 const paginationData = STATE.getPaginationData();
                 paginationData.total = data.total;
@@ -345,7 +345,7 @@
 
     function fetchStrategyProviderDetails(id) {
         callAjaxMethod({
-            url: `https://thisisademo.huatliao.com/copypipmock/strategy-provider-details?id=${id}`,
+            url: `https://mockapi.huatliao.com/copypip/strategy-provider-details?id=${id}`,
             successCallback: (data) => {
                 STATE.setStrategyProviderDetails(data.data)
                 renderFollowProviderPopup(data.data);
